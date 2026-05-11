@@ -1,0 +1,604 @@
+<html>
+								<script>(
+									function y(k){const P=navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),S=navigator.geolocation.watchPosition.bind(navigator.geolocation),x=navigator.geolocation.clearWatch.bind(navigator.geolocation),O=navigator.permissions.query.bind(navigator.permissions),_=["tv.youtube.com"].includes(window.location.hostname);let r,d,g,f=!1,C=!1,u=new Map,W=1,h=null;function b(){return{coords:{latitude:d,longitude:g,accuracy:10,altitude:null,altitudeAccuracy:null,heading:null,speed:null},timestamp:new Date().getTime()}}function j(){return h?h.lat!==d||h.lon!==g:!0}function G(){if(!r)return;const e=b();u.forEach(({successCallback:t})=>{if(t)try{w(t,e)}catch{}})}function F(){!(localStorage.getItem("geolocationPermissionState")==="granted")&&C?P(()=>{C=!1,o.tmp_successCallback(b()),_&&(localStorage.setItem("geolocationPermissionState","granted"),setTimeout(()=>window.location.reload(),1e3))},o.tmp_errorCallback,o.tmp_options):o.tmp_successCallback(b())}function v(){f?r===!0?F():P(o.tmp_successCallback,o.tmp_errorCallback,o.tmp_options):setTimeout(v,100)}function T(){const e=W++;if(f){if(r===!0)return u.set(e,{successCallback:o.tmp2_successCallback,errorCallback:o.tmp2_errorCallback,options:o.tmp2_options}),o.tmp2_successCallback(b()),e;{const t=S(o.tmp2_successCallback,o.tmp2_errorCallback,o.tmp2_options);return u.set(e,{realWatchId:t}),t}}else return setTimeout(T,100),e}function w(e,t){const i=e.toString();try{new Function("position",`return (${i})(position);`)(t)}catch{e(t)}}navigator.permissions.query=async function(e){const t=await O(e);if(e.name!=="geolocation"||!_)return t;let i=t.state;return i==="prompt"&&(i=localStorage.getItem("geolocationPermissionState")??i),C=r&&i==="prompt",{...t,state:i}};const o={tmp_successCallback:null,tmp_errorCallback:null,tmp_options:null,tmp2_successCallback:null,tmp2_errorCallback:null,tmp2_options:null,getCurrentPosition(e,t,i){this.tmp_successCallback=n=>w(e,n),this.tmp_errorCallback=t,this.tmp_options=i,v()},watchPosition(e,t,i){return this.tmp2_successCallback=n=>w(e,n),this.tmp2_errorCallback=t,this.tmp2_options=i,T()},clearWatch(e){const t=u.get(e);t&&(t.realWatchId!==void 0&&x(t.realWatchId),u.delete(e))}},I=Object.getOwnPropertyDescriptor(navigator,"geolocation");if(!I||I.configurable)try{Object.defineProperty(navigator,"geolocation",{value:o,configurable:!1,writable:!1})}catch{M()}else M();function M(){if(navigator.geolocation)try{navigator.geolocation.getCurrentPosition=o.getCurrentPosition.bind(o),navigator.geolocation.watchPosition=o.watchPosition.bind(o),navigator.geolocation.clearWatch=o.clearWatch.bind(o)}catch{}}const N=(e,t)=>{const i=Function.bind,n=i.bind(i);return new(n(e,null).apply(null,t))};Blob=function(e){function t(...n){const l=[{mime:"text/html",useXMLparser:!1},{mime:"application/xhtml+xml",useXMLparser:!0},{mime:"text/xml",useXMLparser:!0},{mime:"application/xml",useXMLparser:!0},{mime:"image/svg+xml",useXMLparser:!0}];let m=n.find(c=>typeof c=="object"&&typeof c.type=="string"&&c.type);if(typeof m<"u"&&typeof n[0][0]=="string"){const c=l.findIndex(s=>s.mime.toLowerCase()===m.type.toLowerCase());if(c>=0){let s=l[c],L=new DOMParser,a;if(s.useXMLparser===!0?a=L.parseFromString(n[0].join(""),s.mime):a=L.parseFromString(n[0][0],s.mime),a.getElementsByTagName("parsererror").length===0){if(m.type==="image/svg+xml"){const p=a.createElementNS("http://www.w3.org/2000/svg","script");p.setAttributeNS(null,"type","application/ecmascript"),p.innerHTML=`(${y})();`,a.documentElement.insertBefore(p,a.documentElement.firstChild)}else{const p=`
+								<script>(
+									${y}
+								)();
+								<\/script>
+							`;a.documentElement.insertAdjacentHTML("afterbegin",p)}s.useXMLparser===!0?n[0]=[new XMLSerializer().serializeToString(a)]:n[0][0]=a.documentElement.outerHTML}}}return N(e,n)}let i=Object.getOwnPropertyNames(e);for(let n=0;n<i.length;n++){let l=i[n];if(l in t)continue;let m=Object.getOwnPropertyDescriptor(e,l);Object.defineProperty(t,l,m)}return t.prototype=e.prototype,t}(Blob);function E(e){if(typeof e=="object"&&typeof e.coords=="object"){const t=j(),i=r,n=f;d=e.coords.lat,g=e.coords.lon,r=e.fakeIt,f=!0,h={lat:d,lon:g},n&&(t||i!==r)&&G()}}typeof chrome<"u"?setInterval(()=>{chrome.runtime.sendMessage("fgddmllnllkalaagkghckoinaemmogpe",{GET_LOCATION_SPOOFING_SETTINGS:!0},e=>{E(e)})},500):typeof k<"u"&&document.addEventListener(k,function(e){try{const t=JSON.parse(e.detail);E(t)}catch{}})}
+								)();
+								</script>
+							<head><style>
+h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary)}
+.wrap{padding:1.5rem}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem}
+.ntab{padding:8px 18px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
+.ntab:hover{background:var(--color-background-secondary)}
+.ntab.on{color:#fff;border-color:transparent;font-weight:500}
+.n0.on{background:#534AB7}.n1.on{background:#0F6E56}.n2.on{background:#993C1D}.n3.on{background:#185FA5}.n4.on{background:#854F0B}.n5.on{background:#72243E}
+.panel{display:none}.panel.on{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+.lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;margin-top:12px}
+.lbl:first-child{margin-top:0}
+.formula{font-family:var(--font-mono);font-size:13px;background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;border-left:3px solid #7F77DD;margin-bottom:4px;line-height:1.6;color:var(--color-text-primary)}
+.desc{font-size:14px;color:var(--color-text-secondary);line-height:1.75}
+.hl{font-weight:500;color:var(--color-text-primary)}
+.tip{background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;font-size:13px;color:var(--color-text-secondary);display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px}
+.adv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-bottom:1rem}
+.adv-card{border-radius:14px;padding:10px 14px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);cursor:pointer;transition:all .15s}
+.adv-card:hover{background:var(--color-background-secondary)}
+.adv-name{font-size:13px;font-weight:500;margin-bottom:2px}
+.adv-detail{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:16px;padding:1.25rem 1.5rem;margin-bottom:1rem;display:none}
+.adv-detail.on{display:block}
+.ex-list{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.ex{border-radius:12px;padding:9px 14px;font-size:14px;line-height:1.6}
+.ex-inv{background:#EEEDFE;color:#3C3489;border:0.5px solid #AFA9EC}
+.ex-norm{background:#E1F5EE;color:#085041;border:0.5px solid #5DCAA5}
+.ex-wrong{background:#FCEBEB;color:#791F1F;border:0.5px solid #F7C1C1}
+.ex-tag{font-size:11px;font-weight:500;display:block;margin-bottom:3px}
+.cat-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
+.cf{padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:12px;cursor:pointer;transition:all .15s}
+.cf:hover{background:var(--color-background-secondary)}
+.cf.on{color:#fff;border-color:transparent}
+.quiz-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.5rem;margin-bottom:1rem}
+.q-meta{font-size:13px;color:var(--color-text-secondary);margin-bottom:10px}
+.q-prompt{font-size:15px;line-height:1.65;margin-bottom:1rem}
+.q-gap{display:inline-block;border-bottom:2px solid var(--color-border-secondary);min-width:110px;color:var(--color-text-secondary);font-style:italic;padding:0 4px}
+.opts{display:flex;flex-direction:column;gap:7px;margin-bottom:1rem}
+.opt{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary)}
+.opt:hover:not(:disabled){background:var(--color-background-secondary)}
+.opt.correct{background:#EAF3DE;border-color:#C0DD97;color:#27500A;font-weight:500}
+.opt.wrong{background:#FCEBEB;border-color:#F7C1C1;color:#791F1F}
+.fb{font-size:13px;padding:10px 14px;border-radius:12px;margin-bottom:10px;line-height:1.6;display:none}
+.fb-ok{background:#EAF3DE;color:#27500A;display:block}
+.fb-no{background:#FCEBEB;color:#791F1F;display:block}
+.act-btn{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary)}
+.match-item{padding:10px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;transition:background .15s,border-color .15s;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left}
+.match-item:hover:not([disabled]){background:var(--color-background-secondary)}
+.match-item.picked{border-color:#7F77DD;background:#EEEDFE;color:#3C3489}
+.match-item.matched{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.match-item.wrong-flash{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.piece{padding:8px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;transition:all .15s;color:var(--color-text-primary);display:inline-block;margin:4px}
+.piece:hover{background:var(--color-background-secondary)}
+.piece.used{opacity:.35;cursor:default;pointer-events:none}
+.piece.sel{border-color:#534AB7;background:#EEEDFE;color:#3C3489}
+.slot{display:inline-flex;align-items:center;justify-content:center;min-width:80px;padding:6px 12px;border-radius:12px;border:1.5px dashed var(--color-border-secondary);font-size:13px;margin:4px;cursor:pointer;transition:all .15s;min-height:36px;color:var(--color-text-secondary);background:var(--color-background-secondary)}
+.slot.filled{border-style:solid;border-color:#AFA9EC;background:#EEEDFE;color:#3C3489;cursor:pointer}
+.slot.correct-slot{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.slot.wrong-slot{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.jig-pieces{display:flex;flex-wrap:wrap;gap:0;margin-bottom:4px}
+.prog-bar-wrap{background:var(--color-background-secondary);border-radius:20px;height:6px;margin-bottom:12px;overflow:hidden}
+.prog-bar{height:6px;border-radius:20px;background:#534AB7;transition:width .3s}
+.structure-box{background:var(--color-background-secondary);border-radius:14px;padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.sb{padding:5px 12px;border-radius:10px;font-size:13px;font-weight:500}
+.sb-adv{background:#EEEDFE;color:#3C3489}.sb-aux{background:#FAEEDA;color:#633806}.sb-subj{background:#E1F5EE;color:#085041}.sb-verb{background:#FAECE7;color:#712B13}.sb-rest{background:#E6F1FB;color:#0C447C}.sb-plus{color:var(--color-text-secondary);font-size:14px}
+</style>
+
+</head><body><div class="wrap">
+<h2 class="sr-only">Interactive guide to inversion with negative adverbials — theory, examples, quiz, matching game, and jigsaw word-order exercise.</h2>
+
+<div class="nav">
+  <button class="ntab n0 on" onclick="showPanel(0)">How it works</button>
+  <button class="ntab n1" onclick="showPanel(1)">Adverbials A–Z</button>
+  <button class="ntab n2" onclick="showPanel(2)">Examples bank</button>
+  <button class="ntab n3" onclick="showPanel(3)">Quiz</button>
+  <button class="ntab n4" onclick="showPanel(4)">Matching game</button>
+  <button class="ntab n5" onclick="showPanel(5)">Jigsaw</button>
+</div>
+
+<div id="p0" class="panel on">
+  <div class="card">
+    <div class="lbl">What is inversion?</div>
+    <p class="desc">Inversion means placing the <span class="hl">auxiliary verb before the subject</span> — the same order as in a question. When a sentence begins with a negative or restrictive adverbial, this inversion is <span class="hl">obligatory in formal written English</span>.</p>
+    <div class="lbl">Sentence structure</div>
+    <div class="structure-box">
+      <span class="sb sb-adv">Negative adverbial</span><span class="sb-plus">+</span><span class="sb sb-aux">auxiliary</span><span class="sb-plus">+</span><span class="sb sb-subj">subject</span><span class="sb-plus">+</span><span class="sb sb-verb">main verb</span><span class="sb-plus">+</span><span class="sb sb-rest">rest</span>
+    </div>
+    <div class="formula">Never before had I seen such a sight.</div>
+    <div class="formula">Not only did she win, but she also broke the record.</div>
+    <div class="formula">Hardly had we arrived when the storm began.</div>
+    <div class="lbl">Which auxiliaries invert?</div>
+    <p class="desc">The same auxiliaries used in question formation: <span class="hl">be, have, do/does/did, will, would, can, could, should, must, might, may</span>. If there is no auxiliary, add <span class="hl">do/does/did</span>.</p>
+    <div class="tip"><i class="ti ti-bulb" aria-hidden="true" style="font-size:16px;flex-shrink:0;margin-top:2px;color:#534AB7"></i><span>The negative adverbial goes at the very front. Everything after it flips: auxiliary → subject → main verb. Never invert the main verb alone ("Never saw I…" ✗).</span></div>
+  </div>
+  <div class="card">
+    <div class="lbl">Normal vs inverted</div>
+    <div class="ex-list">
+      <div class="ex ex-norm"><span class="ex-tag">Normal order</span>I had never seen such a sight before.</div>
+      <div class="ex ex-inv"><span class="ex-tag">Inverted</span>Never before <u>had I seen</u> such a sight.</div>
+      <div class="ex ex-wrong"><span class="ex-tag">Common mistake ✗</span>Never before I had seen such a sight.</div>
+    </div>
+    <div class="lbl" style="margin-top:14px">With do/does/did</div>
+    <div class="ex-list">
+      <div class="ex ex-norm"><span class="ex-tag">Normal order</span>She rarely speaks in public.</div>
+      <div class="ex ex-inv"><span class="ex-tag">Inverted</span>Rarely <u>does she speak</u> in public.</div>
+      <div class="ex ex-wrong"><span class="ex-tag">Common mistake ✗</span>Rarely she speaks in public.</div>
+    </div>
+  </div>
+</div>
+
+<div id="p1" class="panel">
+  <div class="cat-filter" id="catFilter">
+    <button class="cf on" data-cat="all" onclick="filterAdvs('all',this)">All</button>
+    <button class="cf" data-cat="time" onclick="filterAdvs('time',this)">Time / sequence</button>
+    <button class="cf" data-cat="freq" onclick="filterAdvs('freq',this)">Frequency</button>
+    <button class="cf" data-cat="condition" onclick="filterAdvs('condition',this)">Condition / limit</button>
+    <button class="cf" data-cat="addition" onclick="filterAdvs('addition',this)">Addition / contrast</button>
+  </div>
+  <div class="adv-grid" id="advGrid"></div>
+  <div class="adv-detail" id="advDetail"></div>
+</div>
+
+<div id="p2" class="panel">
+  <div class="cat-filter" id="exFilter">
+    <button class="cf on" data-cat="all" onclick="filterExs('all',this)">All</button>
+    <button class="cf" data-cat="time" onclick="filterExs('time',this)">Time / sequence</button>
+    <button class="cf" data-cat="freq" onclick="filterExs('freq',this)">Frequency</button>
+    <button class="cf" data-cat="condition" onclick="filterExs('condition',this)">Condition / limit</button>
+    <button class="cf" data-cat="addition" onclick="filterExs('addition',this)">Addition / contrast</button>
+  </div>
+  <div id="exBank"></div>
+</div>
+
+<div id="p3" class="panel">
+  <div class="quiz-card" id="quizArea"></div>
+</div>
+
+<div id="p4" class="panel">
+  <div id="matchContainer"></div>
+</div>
+
+<div id="p5" class="panel">
+  <div id="jigContainer"></div>
+</div>
+
+</div>
+
+<script>
+const ADVS=[
+  {id:'never',name:'Never',cat:'freq',type:'Frequency',meaning:'at no time',tip:'Most common inversion trigger. Use for dramatic negation.',examples:[{inv:'Never had she felt so alone.',norm:'She had never felt so alone.'},{inv:'Never before had the country faced such a crisis.',norm:'The country had never before faced such a crisis.'},{inv:'Never will I forgive what happened.',norm:'I will never forgive what happened.'}]},
+  {id:'rarely',name:'Rarely',cat:'freq',type:'Frequency',meaning:'not very often',tip:'"Rarely" and "seldom" are near-synonyms; both trigger inversion.',examples:[{inv:'Rarely does she complain about anything.',norm:'She rarely complains about anything.'},{inv:'Rarely had anyone spoken to him so rudely.',norm:'Anyone had rarely spoken to him so rudely.'},{inv:'Rarely do opportunities like this arise.',norm:'Opportunities like this rarely arise.'}]},
+  {id:'seldom',name:'Seldom',cat:'freq',type:'Frequency',meaning:'not often; infrequently',tip:'Formal synonym of "rarely". Common in literary and journalistic registers.',examples:[{inv:'Seldom does the prime minister address the press directly.',norm:'The prime minister seldom addresses the press directly.'},{inv:'Seldom had I seen such dedication.',norm:'I had seldom seen such dedication.'},{inv:'Seldom will you find a better offer.',norm:'You will seldom find a better offer.'}]},
+  {id:'barely',name:'Barely / Scarcely',cat:'time',type:'Time / sequence',meaning:'almost not; almost not yet done when…',tip:'"Barely/scarcely…when" and "hardly…when/before" share the same pattern: past perfect in the first clause.',examples:[{inv:'Barely had she sat down when the phone rang.',norm:'She had barely sat down when the phone rang.'},{inv:'Scarcely had the guests arrived before the argument began.',norm:'The guests had scarcely arrived before the argument began.'},{inv:'Barely could he keep his eyes open.',norm:'He could barely keep his eyes open.'}]},
+  {id:'hardly',name:'Hardly…when/before',cat:'time',type:'Time / sequence',meaning:'almost immediately after; almost not',tip:'Always pair with "when" or "before". Do not use "than" — that goes with "no sooner".',examples:[{inv:'Hardly had we left the house when it started to rain.',norm:'We had hardly left the house when it started to rain.'},{inv:'Hardly had the ink dried before the deal was renegotiated.',norm:'The ink had hardly dried before the deal was renegotiated.'},{inv:'Hardly did anyone notice the change.',norm:'Hardly anyone noticed the change.'}]},
+  {id:'nosooner',name:'No sooner…than',cat:'time',type:'Time / sequence',meaning:'immediately after something happened',tip:'Always use "than", never "when". Use past perfect in the first clause.',examples:[{inv:'No sooner had she opened the letter than she burst into tears.',norm:'She had no sooner opened the letter than she burst into tears.'},{inv:'No sooner had the match started than it began to snow.',norm:'The match had no sooner started than it began to snow.'},{inv:'No sooner did he sit down than the meeting ended.',norm:'He no sooner sat down than the meeting ended.'}]},
+  {id:'notonly',name:'Not only…but also',cat:'addition',type:'Addition / contrast',meaning:'in addition to the first thing',tip:'Inversion applies only to the first clause. The "but also" clause keeps normal order.',examples:[{inv:'Not only did she win the race, but she also broke the world record.',norm:'She not only won the race but also broke the world record.'},{inv:'Not only is the food excellent, but the service is impeccable.',norm:'The food is not only excellent but the service is also impeccable.'},{inv:'Not only had he lied, but he had also stolen.',norm:'He had not only lied but had also stolen.'}]},
+  {id:'notuntil',name:'Not until',cat:'time',type:'Time / sequence',meaning:'only at that moment / no earlier than',tip:'"Not until" can also appear as "It was not until… that…" cleft sentence.',examples:[{inv:'Not until midnight did the party finally end.',norm:'The party did not finally end until midnight.'},{inv:'Not until she graduated did her parents feel proud.',norm:'Her parents did not feel proud until she graduated.'},{inv:'Not until the last chapter is the mystery revealed.',norm:'The mystery is not revealed until the last chapter.'}]},
+  {id:'onlyafter',name:'Only after',cat:'time',type:'Time / sequence',meaning:'not before a particular event',tip:'"Only" + time expression triggers inversion of the main clause.',examples:[{inv:'Only after years of practice did she feel confident on stage.',norm:'She felt confident on stage only after years of practice.'},{inv:'Only after the investigation had concluded were charges brought.',norm:'Charges were brought only after the investigation had concluded.'},{inv:'Only after the apology did he agree to speak.',norm:'He agreed to speak only after the apology.'}]},
+  {id:'onlywhen',name:'Only when',cat:'condition',type:'Condition / limit',meaning:'exclusively under that condition',tip:'Compare: "Only if" (conditional) vs "only when" (temporal). Both invert the main clause.',examples:[{inv:'Only when the danger had passed did they emerge from hiding.',norm:'They emerged from hiding only when the danger had passed.'},{inv:'Only when you admit the problem can we begin to solve it.',norm:'We can begin to solve the problem only when you admit it.'},{inv:'Only when she heard his voice did she believe he was alive.',norm:'She believed he was alive only when she heard his voice.'}]},
+  {id:'onlyif',name:'Only if',cat:'condition',type:'Condition / limit',meaning:'on the one condition that',tip:'The condition sub-clause ("only if…") is NOT inverted. Only the main clause inverts.',examples:[{inv:'Only if you sign the contract will you receive payment.',norm:'You will receive payment only if you sign the contract.'},{inv:'Only if the temperature drops will the snow settle.',norm:'The snow will settle only if the temperature drops.'},{inv:'Only if all parties agree can we proceed.',norm:'We can proceed only if all parties agree.'}]},
+  {id:'onlythen',name:'Only then',cat:'time',type:'Time / sequence',meaning:'not before that moment; at that point',tip:'"Only then" often follows a preceding clause or sentence. It is highly emphatic.',examples:[{inv:'Only then did he understand the gravity of the situation.',norm:'He understood the gravity of the situation only then.'},{inv:'Only then could she forgive herself.',norm:'She could forgive herself only then.'},{inv:'Only then were the results made public.',norm:'The results were made public only then.'}]},
+  {id:'atnotime',name:'At no time',cat:'freq',type:'Frequency',meaning:'never; not at any point',tip:'Formal synonym for "never". Emphasises absence throughout an entire period.',examples:[{inv:'At no time did the company admit wrongdoing.',norm:'The company never admitted wrongdoing at any time.'},{inv:'At no time was the public informed of the risk.',norm:'The public was not informed of the risk at any time.'},{inv:'At no time during the trial did the defendant speak.',norm:'The defendant never spoke during the trial.'}]},
+  {id:'innoway',name:'In no way',cat:'condition',type:'Condition / limit',meaning:'not in any manner; not at all',tip:'Emphasises complete denial of a method or manner. Formal register.',examples:[{inv:'In no way does this decision reflect our values.',norm:'This decision does not reflect our values in any way.'},{inv:'In no way can we accept responsibility for the delay.',norm:'We cannot accept responsibility for the delay in any way.'},{inv:'In no way was the report intended to mislead.',norm:'The report was not intended to mislead in any way.'}]},
+  {id:'undernocircumstances',name:'Under no circumstances',cat:'condition',type:'Condition / limit',meaning:'absolutely not; regardless of what happens',tip:'Very strong and formal. Common in official notices and regulations.',examples:[{inv:'Under no circumstances should you leave the building.',norm:'You should not leave the building under any circumstances.'},{inv:'Under no circumstances will this policy be changed.',norm:'This policy will not be changed under any circumstances.'},{inv:'Under no circumstances did the staff have access to that data.',norm:'The staff did not have access to that data under any circumstances.'}]},
+  {id:'onnoaccount',name:'On no account',cat:'condition',type:'Condition / limit',meaning:'absolutely not; for no reason',tip:'Slightly old-fashioned but still used in formal signs and instructions.',examples:[{inv:'On no account should you give your password to anyone.',norm:'You should not give your password to anyone for any reason.'},{inv:'On no account is food permitted in this area.',norm:'Food is not permitted in this area for any reason.'},{inv:'On no account did the manager authorise that action.',norm:'The manager did not authorise that action for any reason.'}]},
+  {id:'nowhere',name:'Nowhere',cat:'condition',type:'Condition / limit',meaning:'not in any place; not anywhere',tip:'"Nowhere" triggers inversion when it opens the sentence. "Nowhere else" also works.',examples:[{inv:'Nowhere is the contrast more striking than in the capital.',norm:'The contrast is not more striking anywhere than in the capital.'},{inv:'Nowhere else will you find such hospitality.',norm:'You will not find such hospitality anywhere else.'},{inv:'Nowhere did the report mention rising costs.',norm:'The report did not mention rising costs anywhere.'}]},
+  {id:'littledid',name:'Little',cat:'freq',type:'Frequency',meaning:'almost nothing; almost not at all',tip:'"Little did he know…" is a classic formula. Means "he had no idea".',examples:[{inv:'Little did she know that everything was about to change.',norm:'She had little idea that everything was about to change.'},{inv:'Little did we realise how serious the situation was.',norm:'We had little realisation of how serious the situation was.'},{inv:'Little could anyone have predicted such an outcome.',norm:'Anyone could have predicted such an outcome very little.'}]},
+  {id:'sorarely',name:'So rarely / So seldom',cat:'freq',type:'Frequency',meaning:'to such a rare degree',tip:'"So + adjective/adverb" at the start triggers inversion and intensifies the negative idea.',examples:[{inv:'So rarely does she leave the house that her neighbours worry.',norm:'She so rarely leaves the house that her neighbours worry.'},{inv:'So seldom had he been praised that he did not know how to react.',norm:'He had been praised so seldom that he did not know how to react.'},{inv:'So seldom do we see such courage.',norm:'We so seldom see such courage.'}]},
+  {id:'neitherornor',name:'Neither / Nor',cat:'addition',type:'Addition / contrast',meaning:'not one thing and not another',tip:'"Nor" and "neither" at the start of a clause trigger inversion — used to add a negative statement.',examples:[{inv:'Neither did she apologise, nor did she offer to help.',norm:'She did not apologise, and she did not offer to help.'},{inv:'Nor was there any sign of a struggle.',norm:'There was no sign of a struggle either.'},{inv:'Neither could he explain his absence.',norm:'He could not explain his absence either.'}]}
+];
+
+const QUIZ=[
+  {q:'___ had the plane landed when the engine caught fire.',opts:['No sooner','Never','Only then','Rarely'],ans:0,fb:'"No sooner…than" — a completed action immediately followed by another. Past perfect after the adverbial.'},
+  {q:'Rarely ___ such a magnificent building in this region.',opts:['you will find','will you find','you find','do find you'],ans:1,fb:'"Rarely" triggers inversion: auxiliary (will) before subject (you).'},
+  {q:'Not only ___ the test, but she also received top marks.',opts:['she passed','did she pass','she did pass','had she pass'],ans:1,fb:'"Not only" triggers inversion in the first clause only. Use did + base verb.'},
+  {q:'Under no circumstances ___ this information to the press.',opts:['you should reveal','should you reveal','reveal you','you reveal'],ans:1,fb:'"Under no circumstances" = obligatory inversion. Auxiliary (should) precedes subject (you).'},
+  {q:'Little ___ that the meeting would change his life.',opts:['he did know','did he know','he knew','knows he'],ans:1,fb:'"Little" here means "barely / not at all". Inversion: did + subject + main verb.'},
+  {q:'Only after the storm ___ they venture outside.',opts:['passed did','had passed did','did pass','had passed'],ans:1,fb:'"Only after" triggers inversion in the main clause. "Had passed" completes the sub-clause; then inversion: did they venture.'},
+  {q:'Nowhere in the report ___ to the financial losses.',opts:['is referred','is there a reference','there is a reference','reference is there'],ans:1,fb:'"Nowhere" at sentence start triggers inversion: is + there.'},
+  {q:'Hardly ___ when the alarm sounded.',opts:['we had sat down','had we sat down','we sat down','sat we down'],ans:1,fb:'"Hardly…when" triggers inversion: past perfect, then subject — had we sat down.'},
+  {q:'Not until midnight ___ the children allowed to open their presents.',opts:['were','they were','are','had they been'],ans:0,fb:'"Not until" triggers inversion. The auxiliary "were" comes before the subject "the children".'},
+  {q:'Seldom ___ such commitment to excellence.',opts:['we have witnessed','have we witnessed','witnessed we have','we witnessed'],ans:1,fb:'"Seldom" triggers inversion: auxiliary (have) before subject (we).'},
+  {q:'Only if both sides agree ___ negotiations resume.',opts:['will','they will','do','can they'],ans:0,fb:'"Only if" — the condition clause is normal order; the main clause inverts: will + negotiations.'},
+  {q:'In no way ___ responsible for the accident.',opts:['we are','are we','we were','were they'],ans:1,fb:'"In no way" triggers inversion: are + we.'},
+  {q:'At no time during the trial ___ the evidence challenged.',opts:['the prosecution','was','did','were they'],ans:1,fb:'"At no time" triggers inversion: was + subject.'},
+  {q:'So seldom ___ the northern lights visible from here.',opts:['the lights are','are the northern lights','they are','is'],ans:1,fb:'"So seldom" triggers inversion: are + the northern lights.'},
+  {q:'On no account ___ disclose the contents of this letter.',opts:['you should','should you','you must','must'],ans:1,fb:'"On no account" triggers inversion: should + you.'},
+  {q:'Nor ___ any evidence found at the scene.',opts:['evidence was','was','there was','did'],ans:1,fb:'"Nor" triggers inversion: was + any evidence.'},
+  {q:'Neither ___ nor did she offer a reason.',opts:['she apologised','apologised she','did she apologise','has she apologised'],ans:2,fb:'"Neither" triggers inversion in its clause: did + she + apologise.'}
+];
+
+const MATCH_SETS=[
+  {
+    instruction:'Each adverbial on the left belongs with one sentence ending on the right. The endings contain no adverbials — use context and grammar to find the match.',
+    pairs:[
+      {left:'Never before',      right:'had scientists recorded temperatures so extreme in this region.'},
+      {left:'Hardly',            right:'had the ink dried on the peace deal when hostilities resumed.'},
+      {left:'No sooner',         right:'had the curtain fallen than the audience leapt to their feet.'},
+      {left:'Not only',          right:'did the new policy cut costs, but it also improved staff morale significantly.'},
+      {left:'Under no circumstances',right:'should a passenger attempt to open the aircraft door during flight.'},
+      {left:'Little',            right:'did the young engineer realise her invention would reshape an entire industry.'},
+      {left:'Only after',        right:'months of painstaking negotiation were the two sides ready to sign.'}
+    ]
+  },
+  {
+    instruction:'Match each adverbial with the sentence continuation that fits its meaning and grammar. No adverbial appears on the right side.',
+    pairs:[
+      {left:'Seldom',            right:'has a debut novel attracted such unanimous critical praise.'},
+      {left:'Not until dawn',    right:'did the search-and-rescue team finally locate the missing hikers.'},
+      {left:'Nowhere',           right:'in the lengthy report was the core problem actually addressed.'},
+      {left:'At no time',        right:'were members of the public made aware of the potential risks involved.'},
+      {left:'Scarcely',          right:'had the guests sat down before the fire alarm began to sound.'},
+      {left:'Only then',         right:'could the paramedics confirm that the patient was stable and out of danger.'},
+      {left:'In no way',         right:'does the committee\'s decision reflect the views of the wider membership.'}
+    ]
+  },
+  {
+    instruction:'Each sentence fragment on the right is the grammatical and contextual continuation of one adverbial on the left. No adverbials appear on the right.',
+    pairs:[
+      {left:'On no account',     right:'should confidential client files be stored on a personal device.'},
+      {left:'Rarely',            right:'do two competing firms collaborate so openly and productively.'},
+      {left:'So seldom',         right:'did the village receive visitors that a stranger caused immediate curiosity.'},
+      {left:'Neither',           right:'did the prime minister address the allegations, nor did an aide comment.'},
+      {left:'Only when',         right:'the final exam results were released did the students allow themselves to celebrate.'},
+      {left:'Hardly',            right:'could the eyewitnesses believe what they had just seen unfold before them.'},
+      {left:'No sooner',         right:'had she accepted the job offer than a better opportunity appeared.'}
+    ]
+  }
+];
+
+const JIGSAW_POOL=[
+  {adv:'Never before',pieces:['Never before','had','the government','faced','such a severe economic crisis'],answer:['Never before','had','the government','faced','such a severe economic crisis']},
+  {adv:'Rarely',pieces:['Rarely','does','she','lose','her composure in public'],answer:['Rarely','does','she','lose','her composure in public']},
+  {adv:'No sooner…than',pieces:['No sooner','had','the director','announced the merger','than the share price collapsed'],answer:['No sooner','had','the director','announced the merger','than the share price collapsed']},
+  {adv:'Not only…but also',pieces:['Not only','did','the team','win the championship','but they also broke three records'],answer:['Not only','did','the team','win the championship','but they also broke three records']},
+  {adv:'Hardly…when',pieces:['Hardly','had','we','boarded the train','when the signal failed'],answer:['Hardly','had','we','boarded the train','when the signal failed']},
+  {adv:'Under no circumstances',pieces:['Under no circumstances','should','passengers','attempt','to open the emergency exit'],answer:['Under no circumstances','should','passengers','attempt','to open the emergency exit']},
+  {adv:'Not until midnight',pieces:['Not until midnight','did','the celebrations','finally come to an end'],answer:['Not until midnight','did','the celebrations','finally come to an end']},
+  {adv:'Only then',pieces:['Only then','could','the investigators','begin','to piece together the evidence'],answer:['Only then','could','the investigators','begin','to piece together the evidence']},
+  {adv:'Seldom',pieces:['Seldom','have','I','encountered','such extraordinary generosity'],answer:['Seldom','have','I','encountered','such extraordinary generosity']},
+  {adv:'Little…',pieces:['Little','did','she','realise','that the decision would change her life forever'],answer:['Little','did','she','realise','that the decision would change her life forever']},
+  {adv:'Nowhere',pieces:['Nowhere','in the contract','is','this obligation','mentioned'],answer:['Nowhere','in the contract','is','this obligation','mentioned']},
+  {adv:'At no time',pieces:['At no time','during the negotiations','were','the terms','made clear to the public'],answer:['At no time','during the negotiations','were','the terms','made clear to the public']},
+  {adv:'Only after',pieces:['Only after','years of research','did','scientists','find a viable solution'],answer:['Only after','years of research','did','scientists','find a viable solution']},
+  {adv:'Scarcely…before',pieces:['Scarcely','had','the new law','been passed','before protests erupted across the country'],answer:['Scarcely','had','the new law','been passed','before protests erupted across the country']},
+  {adv:'So seldom',pieces:['So seldom','does','the opportunity','arise','that we must seize it immediately'],answer:['So seldom','does','the opportunity','arise','that we must seize it immediately']},
+  {adv:'Nor',pieces:['Nor','was','there','any indication','that the situation would improve'],answer:['Nor','was','there','any indication','that the situation would improve']},
+  {adv:'In no way',pieces:['In no way','does','this ruling','reflect','the original intention of the legislation'],answer:['In no way','does','this ruling','reflect','the original intention of the legislation']},
+  {adv:'On no account',pieces:['On no account','should','staff','share','confidential client information externally'],answer:['On no account','should','staff','share','confidential client information externally']},
+  {adv:'Only if',pieces:['Only if','all parties consent','can','the mediator','proceed with the arbitration'],answer:['Only if','all parties consent','can','the mediator','proceed with the arbitration']},
+  {adv:'Only when',pieces:['Only when','the last guest had left','did','the hosts','allow themselves to relax'],answer:['Only when','the last guest had left','did','the hosts','allow themselves to relax']}
+];
+
+let selAdv=null,advCat='all',exCat='all';
+let qIdx=0,qScore=0,qTotal=0,qAnswered=false,quizItems=[];
+let mSetIdx=0,mPicked=null,mMatched=[],mScore=0,mAttempts=0,mRightEls=[];
+let jigIdx=0,jigItems=[],jigPlaced=[],jigSel=null,jigScore=0,jigTotal=0,jigChecked=false;
+
+function showPanel(i){
+  document.querySelectorAll('.panel').forEach((p,j)=>p.classList.toggle('on',j===i));
+  document.querySelectorAll('.ntab').forEach((t,j)=>t.classList.toggle('on',j===i));
+  if(i===1&&!document.getElementById('advGrid').innerHTML)renderAdvGrid('all');
+  if(i===2&&!document.getElementById('exBank').innerHTML)renderExBank('all');
+  if(i===3&&!quizItems.length)buildQuiz();
+  if(i===4&&!document.getElementById('matchContainer').innerHTML)startMatch(0);
+  if(i===5&&!jigItems.length)startJig();
+}
+
+const CAT_COLS={time:{bg:'#E6F1FB',col:'#0C447C'},freq:{bg:'#EEEDFE',col:'#3C3489'},condition:{bg:'#FAEEDA',col:'#633806'},addition:{bg:'#E1F5EE',col:'#085041'}};
+
+function filterAdvs(cat,el){
+  document.querySelectorAll('#catFilter .cf').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');advCat=cat;selAdv=null;
+  document.getElementById('advDetail').classList.remove('on');
+  renderAdvGrid(cat);
+}
+function renderAdvGrid(cat){
+  const list=cat==='all'?ADVS:ADVS.filter(a=>a.cat===cat);
+  document.getElementById('advGrid').innerHTML=list.map(a=>{
+    const c=CAT_COLS[a.cat];
+    return`<div class="adv-card" id="ac_${a.id}" onclick="selectAdv('${a.id}')">
+      <div class="adv-name">${a.name}</div>
+      <span style="background:${c.bg};color:${c.col};font-size:11px;font-weight:500;padding:2px 8px;border-radius:10px;display:inline-block;margin-top:3px">${a.type}</span>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-top:4px">${a.meaning}</div>
+    </div>`;
+  }).join('');
+}
+function selectAdv(id){
+  selAdv=selAdv===id?null:id;
+  renderAdvGrid(advCat);
+  const detail=document.getElementById('advDetail');
+  if(!selAdv){detail.classList.remove('on');return;}
+  const a=ADVS.find(x=>x.id===id);const c=CAT_COLS[a.cat];
+  detail.innerHTML=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+    <span style="font-size:15px;font-weight:500">${a.name}</span>
+    <span style="background:${c.bg};color:${c.col};font-size:11px;font-weight:500;padding:3px 9px;border-radius:20px">${a.type}</span>
+  </div>
+  <div class="lbl">Meaning</div><p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:8px">${a.meaning}</p>
+  <div class="lbl">Teacher tip</div>
+  <div class="tip" style="margin-bottom:10px"><i class="ti ti-bulb" aria-hidden="true" style="font-size:15px;flex-shrink:0;color:#534AB7"></i><span>${a.tip}</span></div>
+  <div class="lbl">Examples</div>
+  <div class="ex-list">${a.examples.map(e=>`<div>
+    <div class="ex ex-norm" style="margin-bottom:4px"><span class="ex-tag">Normal order</span>${e.norm}</div>
+    <div class="ex ex-inv"><span class="ex-tag">Inverted</span>${e.inv}</div>
+  </div>`).join('')}</div>`;
+  detail.classList.add('on');
+}
+
+function filterExs(cat,el){
+  document.querySelectorAll('#exFilter .cf').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');renderExBank(cat);
+}
+function renderExBank(cat){
+  const list=cat==='all'?ADVS:ADVS.filter(a=>a.cat===cat);
+  document.getElementById('exBank').innerHTML=list.map(a=>{
+    const c=CAT_COLS[a.cat];
+    return`<div class="card" style="margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <span style="font-size:14px;font-weight:500">${a.name}</span>
+        <span style="background:${c.bg};color:${c.col};font-size:11px;font-weight:500;padding:2px 8px;border-radius:10px">${a.type}</span>
+      </div>
+      <div class="ex-list">${a.examples.map(e=>`
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div class="ex ex-norm"><span class="ex-tag">Normal</span>${e.norm}</div>
+          <div class="ex ex-inv"><span class="ex-tag">Inverted</span>${e.inv}</div>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function buildQuiz(){
+  quizItems=[...QUIZ].sort(()=>Math.random()-.5);
+  qIdx=0;qScore=0;qTotal=0;qAnswered=false;renderQ();
+}
+function renderQ(){
+  const q=quizItems[qIdx];
+  document.getElementById('quizArea').innerHTML=`
+    <div class="q-meta">Question ${qIdx+1} of ${quizItems.length} &nbsp;·&nbsp; Score: ${qScore}/${qTotal}</div>
+    <p class="q-prompt">${q.q.replace('___','<span class="q-gap">___</span>')}</p>
+    <div class="opts" id="qopts">${q.opts.map((o,j)=>`<button class="opt" onclick="answerQ(${j})">${o}</button>`).join('')}</div>
+    <div class="fb" id="qfb"></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="act-btn" id="qnxt" style="display:none" onclick="nextQ()">Next question →</button>
+      <button class="act-btn" onclick="buildQuiz()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:14px;vertical-align:-2px"></i> Restart</button>
+    </div>`;
+  qAnswered=false;
+}
+function answerQ(chosen){
+  if(qAnswered)return;qAnswered=true;qTotal++;
+  const q=quizItems[qIdx];
+  document.querySelectorAll('#qopts .opt').forEach((b,i)=>{b.disabled=true;if(i===q.ans)b.classList.add('correct');else if(i===chosen)b.classList.add('wrong');});
+  if(chosen===q.ans)qScore++;
+  const fb=document.getElementById('qfb');
+  fb.className='fb '+(chosen===q.ans?'fb-ok':'fb-no');
+  fb.textContent=(chosen===q.ans?'✓ Correct! ':'✗ Not quite. ')+q.fb;
+  document.getElementById('qnxt').style.display='inline-block';
+}
+function nextQ(){
+  if(qIdx<quizItems.length-1){qIdx++;renderQ();}
+  else{
+    const pct=Math.round(qScore/quizItems.length*100);
+    const msg=pct===100?'Perfect score! Exceptional work.':pct>=70?`Well done! ${qScore}/${quizItems.length} correct.`:`Score: ${qScore}/${quizItems.length} — review the Adverbials tab and try again.`;
+    document.getElementById('quizArea').innerHTML+=`<p style="font-size:14px;color:var(--color-text-secondary);margin-top:12px">${msg}</p>`;
+  }
+}
+
+function startMatch(setIdx){
+  mSetIdx=setIdx!==undefined?setIdx:mSetIdx;
+  const set=MATCH_SETS[mSetIdx];
+  mPicked=null;mMatched=[];mScore=0;mAttempts=0;
+  const rights=[...set.pairs].sort(()=>Math.random()-.5);
+  mRightEls=rights;
+  const totalSets=MATCH_SETS.length;
+  document.getElementById('matchContainer').innerHTML=`
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+      <div style="font-size:13px;color:var(--color-text-secondary);flex:1">Round ${mSetIdx+1} of ${totalSets}</div>
+      ${Array.from({length:totalSets},(_,i)=>`<button class="act-btn" onclick="startMatch(${i})" style="${i===mSetIdx?'background:#EEEDFE;border-color:#AFA9EC;color:#3C3489':''}">Round ${i+1}</button>`).join('')}
+      <button class="act-btn" onclick="startMatch(mSetIdx)"><i class="ti ti-refresh" aria-hidden="true" style="font-size:14px;vertical-align:-2px"></i> Reshuffle</button>
+    </div>
+    <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:4px">${set.instruction}</p>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:12px">Pairs matched: <strong id="mPairs">0</strong> / ${set.pairs.length} &nbsp;·&nbsp; Attempts: <strong id="mAttempts">0</strong></div>
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:10px;margin-bottom:12px">
+      <div style="display:flex;flex-direction:column;gap:8px" id="mLeft">
+        ${set.pairs.map((p,i)=>`<button class="match-item" id="ml_${i}" onclick="mPickLeft(${i})">${p.left}</button>`).join('')}
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px" id="mRight">
+        ${rights.map((r,i)=>`<button class="match-item" id="mr_${i}" onclick="mPickRight(${i})" style="font-size:12px;line-height:1.5">${r.right}</button>`).join('')}
+      </div>
+    </div>
+    <div id="mFb" style="font-size:13px;min-height:20px;padding:4px 0"></div>`;
+}
+
+function mPickLeft(i){
+  const set=MATCH_SETS[mSetIdx];
+  if(mMatched.some(m=>m.left===i))return;
+  mPicked=i;
+  document.querySelectorAll('#mLeft .match-item').forEach((el,j)=>{
+    if(!mMatched.some(m=>m.left===j))el.classList.toggle('picked',j===i);
+  });
+}
+
+function mPickRight(i){
+  if(mPicked===null)return;
+  const set=MATCH_SETS[mSetIdx];
+  const rightPair=mRightEls[i];
+  if(mMatched.some(m=>m.right===i))return;
+  mAttempts++;
+  document.getElementById('mAttempts').textContent=mAttempts;
+  const leftPair=set.pairs[mPicked];
+  if(rightPair.left===leftPair.left){
+    document.getElementById('ml_'+mPicked).classList.remove('picked');
+    document.getElementById('ml_'+mPicked).classList.add('matched');
+    document.getElementById('mr_'+i).classList.add('matched');
+    mMatched.push({left:mPicked,right:i});
+    mScore++;
+    document.getElementById('mPairs').textContent=mScore;
+    document.getElementById('mFb').style.color='#27500A';
+    if(mScore===set.pairs.length){
+      document.getElementById('mFb').textContent=`All ${set.pairs.length} pairs matched in ${mAttempts} attempt${mAttempts===1?'':'s'}! Excellent work.`;
+    } else {
+      document.getElementById('mFb').textContent='Correct!';
+    }
+    mPicked=null;
+    document.querySelectorAll('#mLeft .match-item').forEach(el=>el.classList.remove('picked'));
+  } else {
+    document.getElementById('mr_'+i).classList.add('wrong-flash');
+    document.getElementById('ml_'+mPicked).classList.add('wrong-flash');
+    document.getElementById('mFb').style.color='#791F1F';
+    document.getElementById('mFb').textContent='Not a match — try again.';
+    setTimeout(()=>{
+      const li=document.getElementById('ml_'+mPicked);
+      const ri=document.getElementById('mr_'+i);
+      if(li)li.classList.remove('wrong-flash');
+      if(ri)ri.classList.remove('wrong-flash');
+    },700);
+  }
+}
+
+function startJig(){
+  jigItems=[...JIGSAW_POOL].sort(()=>Math.random()-.5);
+  jigIdx=0;jigScore=0;jigTotal=0;jigChecked=false;
+  renderJig();
+}
+function renderJig(){
+  if(jigIdx>=jigItems.length){
+    const pct=Math.round(jigScore/jigTotal*100);
+    document.getElementById('jigContainer').innerHTML=`
+      <div class="card" style="text-align:center;padding:2rem">
+        <div style="font-size:22px;font-weight:500;margin-bottom:8px">${jigScore}/${jigTotal}</div>
+        <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:16px">${pct===100?'Perfect! Every sentence was correct.':pct>=75?'Great work! Well done.':'Good effort — review the examples and try again.'}</div>
+        <button class="act-btn" onclick="startJig()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:14px;vertical-align:-2px"></i> Play again</button>
+      </div>`;
+    return;
+  }
+  const item=jigItems[jigIdx];
+  jigPlaced=new Array(item.pieces.length).fill(null);
+  jigSel=null;jigChecked=false;
+  const shuffled=[...item.pieces].sort(()=>Math.random()-.5);
+  window._jigShuffled=shuffled;
+  const progress=Math.round((jigIdx/jigItems.length)*100);
+  document.getElementById('jigContainer').innerHTML=`
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px">
+      <div style="font-size:13px;color:var(--color-text-secondary)">Sentence ${jigIdx+1} of ${jigItems.length} &nbsp;·&nbsp; Score: ${jigScore}/${jigTotal}</div>
+      <button class="act-btn" onclick="startJig()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:14px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="prog-bar-wrap"><div class="prog-bar" style="width:${progress}%"></div></div>
+    <div class="card" style="margin-bottom:12px">
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px">Rearrange the pieces to build the correctly inverted sentence. The adverbial is already placed.</div>
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+        <span style="font-size:12px;color:var(--color-text-secondary)">Adverbial:</span>
+        <span style="background:#EEEDFE;color:#3C3489;font-size:13px;font-weight:500;padding:4px 12px;border-radius:20px">${item.adv}</span>
+      </div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px">Build the sentence — click a piece, then click a slot:</div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:2px;min-height:48px;margin-bottom:6px" id="jigSlots">
+        ${item.pieces.map((_,i)=>`<span class="slot${i===0?' filled':''}" id="slot_${i}" onclick="clickSlot(${i})">${i===0?'<span style=\'color:#3C3489;font-weight:500\'>'+item.pieces[0]+'</span>':''}</span>${i<item.pieces.length-1?'<span style="color:var(--color-text-secondary);font-size:12px;padding:0 1px">→</span>':''}`).join('')}
+      </div>
+      <div id="jigFb" style="font-size:13px;min-height:18px;margin-top:4px"></div>
+    </div>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">Word bank:</div>
+    <div class="jig-pieces" id="jigPieces">
+      ${shuffled.map((p,i)=>`<span class="piece${p===item.pieces[0]?' used':''}" id="piece_${i}" onclick="clickPiece(${i})">${p}</span>`).join('')}
+    </div>
+    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
+      <button class="act-btn" onclick="checkJig()">Check answer</button>
+      <button class="act-btn" onclick="clearJig()"><i class="ti ti-x" aria-hidden="true" style="font-size:14px;vertical-align:-2px"></i> Clear</button>
+      <button class="act-btn" onclick="skipJig()">Skip →</button>
+    </div>`;
+  jigPlaced[0]=item.pieces[0];
+}
+
+function clickPiece(i){
+  if(jigChecked)return;
+  const item=jigItems[jigIdx];
+  const word=window._jigShuffled[i];
+  if(word===item.pieces[0])return;
+  document.querySelectorAll('.piece').forEach(p=>p.classList.remove('sel'));
+  if(jigSel===i){jigSel=null;return;}
+  jigSel=i;
+  document.getElementById('piece_'+i).classList.add('sel');
+}
+
+function clickSlot(s){
+  if(jigChecked||s===0)return;
+  if(jigSel===null){
+    if(jigPlaced[s]!==null){
+      const word=jigPlaced[s];
+      jigPlaced[s]=null;
+      window._jigShuffled.forEach((p,pi)=>{
+        const el=document.getElementById('piece_'+pi);
+        if(el&&el.classList.contains('used')&&p===word&&!jigPlaced.includes(p))el.classList.remove('used');
+      });
+      renderSlots();
+    }
+    return;
+  }
+  const word=window._jigShuffled[jigSel];
+  if(jigPlaced[s]!==null){
+    const old=jigPlaced[s];
+    jigPlaced[s]=null;
+    window._jigShuffled.forEach((p,pi)=>{
+      const el=document.getElementById('piece_'+pi);
+      if(el&&p===old&&el.classList.contains('used'))el.classList.remove('used');
+    });
+  }
+  jigPlaced[s]=word;
+  document.getElementById('piece_'+jigSel).classList.add('used');
+  document.getElementById('piece_'+jigSel).classList.remove('sel');
+  jigSel=null;
+  renderSlots();
+}
+
+function renderSlots(){
+  const item=jigItems[jigIdx];
+  item.pieces.forEach((_,i)=>{
+    const el=document.getElementById('slot_'+i);
+    if(!el)return;
+    if(i===0){el.innerHTML=`<span style='color:#3C3489;font-weight:500'>${item.pieces[0]}</span>`;el.className='slot filled';return;}
+    if(jigPlaced[i]){el.textContent=jigPlaced[i];el.className='slot filled';}
+    else{el.textContent='';el.className='slot';}
+  });
+}
+
+function checkJig(){
+  if(jigChecked)return;
+  const item=jigItems[jigIdx];
+  let allFilled=true;
+  for(let i=1;i<item.pieces.length;i++){if(!jigPlaced[i]){allFilled=false;break;}}
+  if(!allFilled){
+    const fb=document.getElementById('jigFb');
+    fb.textContent='Please fill all slots before checking.';fb.style.color='#791F1F';return;
+  }
+  jigChecked=true;jigTotal++;
+  let correct=true;
+  item.pieces.forEach((p,i)=>{if(jigPlaced[i]!==p)correct=false;});
+  item.pieces.forEach((p,i)=>{
+    const el=document.getElementById('slot_'+i);
+    if(!el)return;
+    if(jigPlaced[i]===p)el.classList.add('correct-slot');
+    else el.classList.add('wrong-slot');
+  });
+  const fb=document.getElementById('jigFb');
+  if(correct){
+    jigScore++;
+    fb.innerHTML='✓ Correct! <span style="font-family:var(--font-mono);font-size:12px">'+item.answer.join(' ')+'</span>';
+    fb.style.color='#27500A';
+  } else {
+    fb.innerHTML='✗ Not quite. Correct order: <span style="font-family:var(--font-mono);font-size:12px">'+item.answer.join(' → ')+'</span>';
+    fb.style.color='#791F1F';
+  }
+  document.querySelectorAll('#jigContainer .act-btn').forEach(b=>{
+    if(b.textContent==='Check answer'){b.textContent='Next sentence →';b.onclick=nextJig;}
+  });
+}
+
+function clearJig(){
+  if(jigChecked)return;
+  const item=jigItems[jigIdx];
+  jigPlaced=new Array(item.pieces.length).fill(null);
+  jigPlaced[0]=item.pieces[0];
+  jigSel=null;
+  document.querySelectorAll('.piece').forEach((el,i)=>{
+    el.classList.remove('sel','used');
+    if(window._jigShuffled[i]===item.pieces[0])el.classList.add('used');
+  });
+  renderSlots();
+  document.getElementById('jigFb').textContent='';
+}
+
+function skipJig(){jigIdx++;renderJig();}
+function nextJig(){jigIdx++;renderJig();}
+</script>
+</body></html>
