@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inversion with Negative Adverbials — Complete Interactive Lesson</title>
+<style>
+:root{
+--color-text-primary:#1f2937;
+--color-text-secondary:#6b7280;
+--color-background-primary:#ffffff;
+--color-background-secondary:#f5f6ff;
+--color-border-secondary:#d6d8ef;
+--color-border-tertiary:#e4e6f5;
+--purple:#534AB7;
+--green:#0F6E56;
+--orange:#854F0B;
+--blue:#185FA5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f4f5fb;color:var(--color-text-primary)}
+.wrap{max-width:1200px;margin:auto;padding:24px}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.ntab{padding:9px 18px;border-radius:999px;border:1px solid var(--color-border-secondary);background:white;cursor:pointer;font-size:14px;color:var(--color-text-secondary);transition:.2s}
+.ntab.on{background:var(--purple);color:white;border-color:transparent}
+.panel{display:none}.panel.on{display:block}
+.card{background:white;border:1px solid var(--color-border-tertiary);border-radius:22px;padding:24px;margin-bottom:18px}
+.lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:8px;margin-top:14px}
+.desc{line-height:1.75;color:var(--color-text-secondary);font-size:15px}
+.formula{font-family:monospace;background:#efefff;border-left:4px solid var(--purple);padding:12px 16px;border-radius:12px;margin-bottom:8px}
+.structure-box{display:flex;gap:8px;flex-wrap:wrap;background:#f7f7ff;padding:16px;border-radius:14px;margin-top:12px}
+.sb{padding:6px 12px;border-radius:10px;font-size:13px;font-weight:bold}
+.sb-adv{background:#ede9fe;color:#4338ca}
+.sb-aux{background:#fef3c7;color:#92400e}
+.sb-subj{background:#dcfce7;color:#166534}
+.sb-verb{background:#fee2e2;color:#991b1b}
+.sb-rest{background:#dbeafe;color:#1d4ed8}
+.tip{background:#f6f7ff;border-radius:14px;padding:14px;margin-top:12px;color:var(--color-text-secondary);line-height:1.6}
+.ex-list{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.ex{padding:12px 14px;border-radius:12px;font-size:14px;line-height:1.6}
+.ex-norm{background:#e8f7f1;color:#065f46}
+.ex-inv{background:#ede9fe;color:#4338ca}
+.ex-wrong{background:#fee2e2;color:#991b1b}
+.ex-tag{display:block;font-size:11px;font-weight:bold;margin-bottom:4px}
+.quiz-card{background:white;border:1px solid var(--color-border-tertiary);border-radius:22px;padding:24px}
+.q-gap{border-bottom:2px solid #999;padding:0 20px;font-style:italic}
+.opts{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+.opt,.match-item,.word{padding:11px 14px;border-radius:14px;border:1px solid var(--color-border-secondary);background:white;cursor:pointer;transition:.2s}
+.opt:hover,.match-item:hover,.word:hover{background:#f5f5ff}
+.correct{background:#dcfce7!important;border-color:#22c55e!important;color:#166534!important}
+.wrong{background:#fee2e2!important;border-color:#ef4444!important;color:#991b1b!important}
+.fb{margin-top:14px;padding:12px;border-radius:12px;display:none}
+.fb-ok{display:block;background:#dcfce7;color:#166534}
+.fb-no{display:block;background:#fee2e2;color:#991b1b}
+button.small{margin-top:14px;padding:9px 16px;border-radius:999px;border:none;background:var(--purple);color:white;cursor:pointer}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.match-col{display:flex;flex-direction:column;gap:10px}
+.selected{background:#ede9fe;border-color:#4338ca;color:#4338ca}
+.feedback{margin-top:16px;font-weight:bold;min-height:20px}
+.scramble-zone,.answer-line{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;min-height:60px}
+.answer-line{border:2px dashed #d6d8ef;padding:14px;border-radius:14px;background:#fafaff}
+.score{margin-top:14px;font-weight:bold;color:#4338ca}
+@media(max-width:850px){.match-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="nav">
+<button class="ntab on" onclick="showPanel(0)">How it works</button>
+<button class="ntab" onclick="showPanel(1)">Examples</button>
+<button class="ntab" onclick="showPanel(2)">Quiz</button>
+<button class="ntab" onclick="showPanel(3)">Advanced Matching</button>
+<button class="ntab" onclick="showPanel(4)">Scrambled Sentences</button>
+</div>
+
+<div id="p0" class="panel on">
+<div class="card">
+<div class="lbl">What is inversion?</div>
+<p class="desc">Inversion means placing the auxiliary verb before the subject. This usually happens after negative or restrictive adverbials in formal English.</p>
+
+<div class="lbl">Sentence structure</div>
+<div class="structure-box">
+<span class="sb sb-adv">Negative adverbial</span>
+<span class="sb sb-aux">auxiliary</span>
+<span class="sb sb-subj">subject</span>
+<span class="sb sb-verb">main verb</span>
+<span class="sb sb-rest">rest of sentence</span>
+</div>
+
+<div class="lbl">Examples</div>
+<div class="formula">Never had she seen such chaos.</div>
+<div class="formula">Rarely do students understand inversion immediately.</div>
+<div class="formula">Only after the meeting did he apologise.</div>
+
+<div class="tip">Remember: the auxiliary verb moves before the subject. If there is no auxiliary in the original sentence, use do / does / did.</div>
+</div>
+
+<div class="card">
+<div class="lbl">Common mistakes</div>
+<div class="ex-list">
+<div class="ex ex-norm"><span class="ex-tag">Normal</span>She rarely visits the office.</div>
+<div class="ex ex-inv"><span class="ex-tag">Correct inversion</span>Rarely does she visit the office.</div>
+<div class="ex ex-wrong"><span class="ex-tag">Incorrect</span>Rarely she visits the office.</div>
+</div>
+</div>
+</div>
+
+<div id="p1" class="panel">
+<div class="card">
+<div class="lbl">Examples bank</div>
+<div class="ex-list">
+<div class="ex ex-inv">Hardly had the concert begun when the electricity failed.</div>
+<div class="ex ex-inv">Not until midnight did the guests leave.</div>
+<div class="ex ex-inv">Only if both sides agree can negotiations continue.</div>
+<div class="ex ex-inv">Under no circumstances should this information be shared.</div>
+<div class="ex ex-inv">Little did she know that the plan would fail.</div>
+<div class="ex ex-inv">No sooner had the lesson started than the fire alarm rang.</div>
+<div class="ex ex-inv">Rarely have scientists encountered such resistance.</div>
+</div>
+</div>
+</div>
+
+<div id="p2" class="panel">
+<div class="quiz-card" id="quizArea"></div>
+</div>
+
+<div id="p3" class="panel">
+<div class="card">
+<div class="lbl">Advanced matching challenge</div>
+<p class="desc">Match each negative adverbial with the correct inverted sentence. Focus carefully on tense and auxiliary choice.</p>
+
+<div class="match-grid">
+<div class="match-col" id="leftColumn"></div>
+<div class="match-col" id="rightColumn"></div>
+</div>
+
+<div class="feedback" id="matchFeedback"></div>
+<div class="score" id="matchScore"></div>
+<button class="small" onclick="restartMatching()">New round</button>
+</div>
+</div>
+
+<div id="p4" class="panel">
+<div class="card">
+<div class="lbl">Scrambled inversion builder</div>
+<p class="desc">Put the words in the correct order to create grammatically accurate inverted sentences.</p>
+
+<h3 id="scramblePrompt" style="margin-top:8px"></h3>
+
+<div class="scramble-zone" id="wordBank"></div>
+
+<div class="lbl">Your answer</div>
+<div class="answer-line" id="answerLine"></div>
+
+<div class="feedback" id="scrambleFeedback"></div>
+<div class="score" id="scrambleScore"></div>
+
+<button class="small" onclick="checkScramble()">Check answer</button>
+<button class="small" onclick="nextScramble()">Next sentence</button>
+<button class="small" onclick="resetScramble()">Reset</button>
+</div>
+</div>
+
+</div>
+
+<script>
+function showPanel(i){
+ document.querySelectorAll('.panel').forEach((p,j)=>p.classList.toggle('on',j===i));
+ document.querySelectorAll('.ntab').forEach((t,j)=>t.classList.toggle('on',j===i));
+}
+
+const QUIZ=[
+{q:'Rarely ___ such behaviour in a professional environment.',opts:['you see','do you see','see you','you do see'],ans:1,fb:'Rarely triggers inversion: auxiliary before subject.'},
+{q:'Not until the final chapter ___ the truth.',opts:['revealed was','was revealed','did reveal','revealed'],ans:1,fb:'The passive auxiliary comes before the subject.'},
+{q:'Only after the meeting ___ the decision announced.',opts:['was','did','had','were'],ans:0,fb:'Passive structure: was the decision announced.'}
+];
+
+let qIdx=0;
+function renderQuiz(){
+ const q=QUIZ[qIdx];
+ document.getElementById('quizArea').innerHTML=`
+ <div>Question ${qIdx+1} of ${QUIZ.length}</div>
+ <p style="margin-top:16px;font-size:18px">${q.q.replace('___','<span class="q-gap">___</span>')}</p>
+ <div class="opts">${q.opts.map((o,i)=>`<div class="opt" onclick="answerQuiz(${i})">${o}</div>`).join('')}</div>
+ <div class="fb" id="quizFb"></div>
+ <button class="small" onclick="nextQuiz()">Next question</button>`;
+}
+
+function answerQuiz(i){
+ const q=QUIZ[qIdx];
+ const fb=document.getElementById('quizFb');
+ if(i===q.ans){fb.className='fb fb-ok';fb.textContent='✓ Correct! '+q.fb;}
+ else{fb.className='fb fb-no';fb.textContent='✗ Incorrect. '+q.fb;}
+}
+
+function nextQuiz(){
+ qIdx=(qIdx+1)%QUIZ.length;
+ renderQuiz();
+}
+
+renderQuiz();
+
+const matchingData=[
+{left:'Hardly...',right:'Hardly had the lecture begun when the fire alarm went off.'},
+{left:'Not until...',right:'Not until the evidence was examined did the police change their theory.'},
+{left:'Rarely...',right:'Rarely do students complete the task without mistakes.'},
+{left:'Only after...',right:'Only after the CEO resigned did the shareholders calm down.'},
+{left:'Under no circumstances...',right:'Under no circumstances should confidential files be shared.'},
+{left:'Little did...',right:'Little did they realise how serious the situation had become.'}
+];
+
+let currentPairs=[];
+let selectedLeft=null;
+let selectedRight=null;
+let matches=0;
+
+function shuffle(arr){return [...arr].sort(()=>Math.random()-.5)}
+
+function restartMatching(){
+ matches=0;
+ currentPairs=shuffle(matchingData);
+ const rights=shuffle(currentPairs);
+ window.rights=rights;
+ document.getElementById('leftColumn').innerHTML=currentPairs.map((p,i)=>`<div class="match-item" id="l${i}" onclick="pickLeft(${i})">${p.left}</div>`).join('');
+ document.getElementById('rightColumn').innerHTML=rights.map((p,i)=>`<div class="match-item" id="r${i}" onclick="pickRight(${i})">${p.right}</div>`).join('');
+ document.getElementById('matchFeedback').textContent='';
+ document.getElementById('matchScore').textContent='';
+}
+
+function pickLeft(i){
+ document.querySelectorAll('#leftColumn .match-item').forEach(el=>el.classList.remove('selected'));
+ document.getElementById('l'+i).classList.add('selected');
+ selectedLeft=i;
+ attemptMatch();
+}
+
+function pickRight(i){
+ document.querySelectorAll('#rightColumn .match-item').forEach(el=>el.classList.remove('selected'));
+ document.getElementById('r'+i).classList.add('selected');
+ selectedRight=i;
+ attemptMatch();
+}
+
+function attemptMatch(){
+ if(selectedLeft===null||selectedRight===null)return;
+ const l=currentPairs[selectedLeft];
+ const r=window.rights[selectedRight];
+ const lEl=document.getElementById('l'+selectedLeft);
+ const rEl=document.getElementById('r'+selectedRight);
+ if(l.right===r.right){
+  lEl.classList.add('correct');
+  rEl.classList.add('correct');
+  matches++;
+  document.getElementById('matchFeedback').textContent='Correct match!';
+  if(matches===currentPairs.length){document.getElementById('matchScore').textContent='Excellent work — all pairs matched.'}
+ } else {
+  lEl.classList.add('wrong');
+  rEl.classList.add('wrong');
+  document.getElementById('matchFeedback').textContent='Not quite — check the inversion structure.';
+  setTimeout(()=>{
+   lEl.classList.remove('wrong','selected');
+   rEl.classList.remove('wrong','selected');
+  },700)
+ }
+ selectedLeft=null;
+ selectedRight=null;
+}
+
+restartMatching();
+
+const scrambleData=[
+{correct:'Rarely have the researchers encountered such resistance',words:['encountered','such','Rarely','have','researchers','resistance','the']},
+{correct:'Only after the meeting did the truth emerge',words:['truth','meeting','did','Only','emerge','after','the','the']},
+{correct:'Under no circumstances should employees share passwords',words:['employees','share','passwords','should','Under','no','circumstances']},
+{correct:'Little did she know about the hidden agreement',words:['agreement','know','did','Little','hidden','about','she','the']}
+];
+
+let scrambleIndex=0;
+let scrambleScore=0;
+
+function loadScramble(){
+ const item=scrambleData[scrambleIndex];
+ document.getElementById('scramblePrompt').textContent='Build the sentence using inversion:';
+ document.getElementById('answerLine').innerHTML='';
+ document.getElementById('scrambleFeedback').textContent='';
+ const shuffled=shuffle(item.words);
+ document.getElementById('wordBank').innerHTML=shuffled.map(w=>`<div class="word" onclick="moveWord(this)">${w}</div>`).join('');
+ document.getElementById('scrambleScore').textContent=`Score: ${scrambleScore}/${scrambleData.length}`;
+}
+
+function moveWord(el){
+ document.getElementById('answerLine').appendChild(el);
+ el.onclick=function(){
+  document.getElementById('wordBank').appendChild(el);
+  el.onclick=()=>moveWord(el);
+ }
+}
+
+function checkScramble(){
+ const built=[...document.querySelectorAll('#answerLine .word')].map(e=>e.textContent).join(' ');
+ const correct=scrambleData[scrambleIndex].correct;
+ const fb=document.getElementById('scrambleFeedback');
+ if(built===correct){
+  fb.className='fb fb-ok';
+  fb.textContent='✓ Correct inversion structure!';
+  scrambleScore++;
+ } else {
+  fb.className='fb fb-no';
+  fb.textContent='✗ Incorrect. Correct answer: '+correct;
+ }
+ document.getElementById('scrambleScore').textContent=`Score: ${scrambleScore}/${scrambleData.length}`;
+}
+
+function nextScramble(){
+ scrambleIndex=(scrambleIndex+1)%scrambleData.length;
+ loadScramble();
+}
+
+function resetScramble(){loadScramble()}
+
+loadScramble();
+</script>
+</body>
+</html>
