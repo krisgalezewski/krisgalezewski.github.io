@@ -1,0 +1,832 @@
+
+<style>
+h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary);font-size:15px}
+.w{padding:1.25rem 1.5rem}
+.eyebrow{font-size:11px;font-weight:500;color:#534AB7;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.lesson-h{font-size:24px;font-weight:500;line-height:1.25;margin-bottom:3px}
+.lesson-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:1rem}
+.nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem}
+.nt{padding:7px 13px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nt:hover{background:var(--color-background-secondary)}
+.nt.on{color:#fff;border-color:transparent;font-weight:500}
+.n0.on{background:#534AB7}.n1.on{background:#0F6E56}.n2.on{background:#185FA5}.n3.on{background:#854F0B}.n4.on{background:#993C1D}.n5.on{background:#72243E}.n6.on{background:#3B6D11}.n7.on{background:#712B13}
+.pan{display:none}.pan.on{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.1rem 1.4rem;margin-bottom:.9rem}
+.lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;margin-top:10px}
+.lbl:first-child{margin-top:0}
+.formula{font-family:var(--font-mono);font-size:13px;background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;margin-bottom:7px;color:var(--color-text-primary);border-left:3px solid;line-height:1.5}
+.f0{border-color:#7F77DD}.f1{border-color:#1D9E75}.f2{border-color:#D85A30}.f3{border-color:#378ADD}.f4{border-color:#BA7517}.f5{border-color:#D4537E}
+.ex-row{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:9px}
+.ex-box{border-radius:12px;padding:9px 13px;font-size:14px;line-height:1.6}
+.ex-pos{background:#EAF3DE;color:#27500A;border:0.5px solid #C0DD97}
+.ex-neg{background:#FCEBEB;color:#791F1F;border:0.5px solid #F7C1C1}
+.ex-tag{font-size:11px;font-weight:500;display:block;margin-bottom:2px}
+.tip-box{background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;font-size:14px;color:var(--color-text-secondary);margin-top:9px;display:flex;gap:8px;align-items:flex-start;line-height:1.6}
+.badge{display:inline-block;font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px}
+.b0{background:#EEEDFE;color:#3C3489}.b1{background:#E1F5EE;color:#085041}.b2{background:#FAECE7;color:#712B13}.b3{background:#E6F1FB;color:#0C447C}.b4{background:#FAEEDA;color:#633806}.b5{background:#FBEAF0;color:#72243E}
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;margin-bottom:1rem}
+.ov-card{border-radius:16px;padding:10px 12px;cursor:pointer;border:0.5px solid transparent;transition:opacity .15s}
+.ov-card:hover{opacity:.8}
+.ov-name{font-size:12px;font-weight:500;margin-bottom:2px}
+.ov-use{font-size:11px;line-height:1.35}
+.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1rem 1.3rem;margin-bottom:1rem;border-left:3px solid #7F77DD}
+.act{font-size:13px;padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act:hover{background:var(--color-background-secondary)}
+.ex-opt{display:block;width:100%;padding:11px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:15px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.55}
+.ex-opt:hover:not(.eok):not(.ebad):not(.edim){background:var(--color-background-secondary)}
+.ex-opt.esel{border-color:#7F77DD;background:#EEEDFE;color:#3C3489}
+.ex-opt.eok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.ex-opt.ebad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F;cursor:default;pointer-events:none}
+.ex-opt.edim{opacity:.4;cursor:default;pointer-events:none}
+.gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:15px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
+.gap-opt:hover:not(.gsel):not(.gok):not(.gbad):not(.gdim){background:var(--color-background-secondary)}
+.gap-opt.gsel{border-color:#7F77DD;background:#EEEDFE;color:#3C3489;font-weight:500}
+.gap-opt.gok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:500;cursor:default;pointer-events:none}
+.gap-opt.gbad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F;cursor:default;pointer-events:none}
+.gap-opt.gdim{opacity:.4;cursor:default;pointer-events:none}
+.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #7F77DD;background:#534AB7;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn:hover{background:#3C3489}
+.check-btn:disabled{opacity:.4;cursor:default}
+.mi{padding:10px 13px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;cursor:pointer;line-height:1.5;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
+.mi:hover:not([disabled]){background:var(--color-background-secondary)}
+.mi.pk{border-color:#7F77DD;background:#EEEDFE;color:#3C3489}
+.mi.mt{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.mi.bd{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.para-input{width:100%;padding:10px 13px;border-radius:12px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:15px;resize:vertical;min-height:80px;font-family:var(--font-sans);line-height:1.6}
+.para-input:focus{outline:none;border-color:#7F77DD}
+.tx-ok{background:#EAF3DE;border-color:#C0DD97}
+.tx-no{background:#FCEBEB;border-color:#F7C1C1}
+.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:10px;overflow:hidden}
+.pb{height:5px;border-radius:20px;background:#534AB7;transition:width .3s}
+.fb-ok{background:#EAF3DE;color:#27500A;font-size:14px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.fb-no{background:#FCEBEB;color:#791F1F;font-size:14px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.ex-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.qi-tab-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
+.qi-tab{padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
+.qi-tab.on{background:#534AB7;color:#fff;border-color:transparent;font-weight:500}
+.qi-panel{display:none}.qi-panel.on{display:block}
+.qi-type-card{border-radius:14px;border:0.5px solid var(--color-border-tertiary);padding:12px 14px;margin-bottom:8px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:10px}
+.qi-type-card:hover{opacity:.85}
+.qi-detail{display:none;margin-top:8px;padding-top:8px;border-top:0.5px solid var(--color-border-tertiary)}
+.qi-detail.on{display:block}
+.slot{display:inline-flex;align-items:center;justify-content:center;min-width:80px;padding:5px 10px;border-radius:10px;border:1.5px dashed var(--color-border-secondary);font-size:13px;cursor:pointer;min-height:34px;color:var(--color-text-secondary);background:var(--color-background-secondary);transition:all .15s}
+.slot.fl{border-style:solid;border-color:#AFA9EC;background:#EEEDFE;color:#3C3489}
+.slot.cs{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.slot.ws{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.slot.fixed{border-style:solid;border-color:#D3D1C7;background:#F1EFE8;color:#444441;cursor:default}
+.tile{padding:7px 14px;border-radius:12px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;cursor:pointer;color:var(--color-text-primary);display:inline-block;margin:3px;transition:all .15s;user-select:none}
+.tile:hover{background:var(--color-background-secondary)}
+.tile.sel{border-color:#534AB7;background:#EEEDFE;color:#3C3489;font-weight:500}
+.tile.used{opacity:.3;cursor:default;pointer-events:none}
+.slot-row{display:flex;flex-wrap:wrap;gap:4px;align-items:center;min-height:42px;padding:8px 10px;background:var(--color-background-secondary);border-radius:12px;margin-bottom:8px}
+</style>
+
+<div class="w">
+<h2 class="sr-only">English conditional sentences — interactive lesson covering all conditional types, questions, inversion, gap fill, matching, transformation, builder, and error correction.</h2>
+
+<div class="nav">
+  <button class="nt n0 on" onclick="showP(0)">Home</button>
+  <button class="nt n1" onclick="showP(1)">Types</button>
+  <button class="nt n2" onclick="showP(2)">Questions &amp; inversion</button>
+  <button class="nt n3" onclick="showP(3)">Gap fill</button>
+  <button class="nt n4" onclick="showP(4)">Matching</button>
+  <button class="nt n5" onclick="showP(5)">Transformation</button>
+  <button class="nt n6" onclick="showP(6)">Builder</button>
+  <button class="nt n7" onclick="showP(7)">Error correction</button>
+</div>
+
+<div id="p0" class="pan on">
+  <div class="eyebrow">Interactive lesson</div>
+  <div class="lesson-h">English conditional sentences</div>
+  <div class="lesson-sub">All conditional types, question forms, and inversion — from zero to mixed</div>
+  <div class="quote-box" id="quoteBox"></div>
+  <div class="card">
+    <div class="lbl">What is a conditional sentence?</div>
+    <p style="font-size:15px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">A conditional sentence expresses a <span style="font-weight:500;color:var(--color-text-primary)">relationship between a condition and a result</span>. It has an <em>if-clause</em> and a <em>main clause</em>. English has six main types, each expressing a different degree of reality or time reference. This lesson also covers <span style="font-weight:500;color:var(--color-text-primary)">conditional questions</span> and <span style="font-weight:500;color:var(--color-text-primary)">conditional inversion</span> — formal alternatives to "if" structures.</p>
+    <div class="ov-grid" id="homeOv"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px">
+    <div class="card" style="cursor:pointer;margin-bottom:0;padding:.9rem 1rem" onclick="showP(1)"><i class="ti ti-book" aria-hidden="true" style="font-size:18px;color:#0F6E56;margin-bottom:5px;display:block"></i><div style="font-size:13px;font-weight:500;margin-bottom:2px">Types</div><div style="font-size:12px;color:var(--color-text-secondary)">All 6 types with examples</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0;padding:.9rem 1rem" onclick="showP(2)"><i class="ti ti-help" aria-hidden="true" style="font-size:18px;color:#185FA5;margin-bottom:5px;display:block"></i><div style="font-size:13px;font-weight:500;margin-bottom:2px">Questions &amp; inversion</div><div style="font-size:12px;color:var(--color-text-secondary)">Question forms and inversion</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0;padding:.9rem 1rem" onclick="showP(3)"><i class="ti ti-writing" aria-hidden="true" style="font-size:18px;color:#854F0B;margin-bottom:5px;display:block"></i><div style="font-size:13px;font-weight:500;margin-bottom:2px">Gap fill</div><div style="font-size:12px;color:var(--color-text-secondary)">Choose the correct form</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0;padding:.9rem 1rem" onclick="showP(4)"><i class="ti ti-arrows-exchange" aria-hidden="true" style="font-size:18px;color:#993C1D;margin-bottom:5px;display:block"></i><div style="font-size:13px;font-weight:500;margin-bottom:2px">Matching</div><div style="font-size:12px;color:var(--color-text-secondary)">Match type to meaning</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0;padding:.9rem 1rem" onclick="showP(5)"><i class="ti ti-switch-horizontal" aria-hidden="true" style="font-size:18px;color:#72243E;margin-bottom:5px;display:block"></i><div style="font-size:13px;font-weight:500;margin-bottom:2px">Transformation</div><div style="font-size:12px;color:var(--color-text-secondary)">Rewrite using inversion</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0;padding:.9rem 1rem" onclick="showP(6)"><i class="ti ti-stack" aria-hidden="true" style="font-size:18px;color:#3B6D11;margin-bottom:5px;display:block"></i><div style="font-size:13px;font-weight:500;margin-bottom:2px">Builder</div><div style="font-size:12px;color:var(--color-text-secondary)">Slide parts into place</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0;padding:.9rem 1rem" onclick="showP(7)"><i class="ti ti-bug" aria-hidden="true" style="font-size:18px;color:#712B13;margin-bottom:5px;display:block"></i><div style="font-size:13px;font-weight:500;margin-bottom:2px">Error correction</div><div style="font-size:12px;color:var(--color-text-secondary)">Find and fix mistakes</div></div>
+  </div>
+</div>
+
+<div id="p1" class="pan">
+  <div class="eyebrow">English conditional sentences</div>
+  <div class="lesson-h">Types</div>
+  <div class="lesson-sub">Tap any card to explore its formula, examples, and forms</div>
+  <div class="ov-grid" id="typesOv"></div>
+  <div id="typeDetail" style="display:none"></div>
+</div>
+
+<div id="p2" class="pan">
+  <div class="eyebrow">English conditional sentences</div>
+  <div class="lesson-h">Questions &amp; inversion</div>
+  <div class="lesson-sub">Explore conditional question forms and formal inverted structures</div>
+  <div class="qi-tab-row">
+    <button class="qi-tab on" onclick="switchQI(0,this)">Conditional questions</button>
+    <button class="qi-tab" onclick="switchQI(1,this)">Conditional inversion</button>
+    <button class="qi-tab" onclick="switchQI(2,this)">Quick quiz</button>
+  </div>
+  <div id="qi0" class="qi-panel on"></div>
+  <div id="qi1" class="qi-panel"></div>
+  <div id="qi2" class="qi-panel"></div>
+</div>
+
+<div id="p3" class="pan">
+  <div class="eyebrow">English conditional sentences</div>
+  <div class="lesson-h">Gap fill</div>
+  <div class="lesson-sub">Choose the correct verb form to complete each conditional sentence</div>
+  <div id="gapCont"></div>
+</div>
+
+<div id="p4" class="pan">
+  <div class="eyebrow">English conditional sentences</div>
+  <div class="lesson-h">Matching</div>
+  <div class="lesson-sub">Match each sentence or fragment to its type or equivalent</div>
+  <div id="matchCont"></div>
+</div>
+
+<div id="p5" class="pan">
+  <div class="eyebrow">English conditional sentences</div>
+  <div class="lesson-h">Transformation</div>
+  <div class="lesson-sub">Rewrite each conditional using inversion — remove "if" and invert the auxiliary</div>
+  <div id="transCont"></div>
+</div>
+
+<div id="p6" class="pan">
+  <div class="eyebrow">English conditional sentences</div>
+  <div class="lesson-h">Builder</div>
+  <div class="lesson-sub">Slide the correct structural piece into the empty slot to build each conditional type</div>
+  <div id="builderCont"></div>
+</div>
+
+<div id="p7" class="pan">
+  <div class="eyebrow">English conditional sentences</div>
+  <div class="lesson-h">Error correction</div>
+  <div class="lesson-sub">One sentence has a grammar mistake — choose the correct version</div>
+  <div id="errCont"></div>
+</div>
+</div>
+
+<script>
+const TYPES=[
+  {id:'zero',name:'Zero conditional',badge:'b0',fc:'f0',use:'Facts & general truths',col:{bg:'#EEEDFE',brd:'#AFA9EC',tc:'#3C3489'},
+   formula:'If + present simple → present simple',
+   desc:'Use for scientific facts, habits, and things that are <strong>always true</strong>. "If" here means the same as "when" or "whenever". Both clauses refer to general reality.',
+   uses:['Scientific facts','General truths','Habits','Universal rules'],
+   tip:'You can swap the clauses: "Water boils if you heat it." The comma disappears when the main clause comes first.',
+   exPos:['If you heat ice, it <u>melts</u>.','If people eat too much sugar, they <u>gain</u> weight.'],
+   exNeg:['If you heat ice, it <u>will melt</u>. ✗ (use present simple for general truths)'],
+   question:'What happens if you mix red and blue?',qNote:'Ask about processes or facts. Present simple throughout.',
+   inversion:null,invNote:null},
+  {id:'first',name:'First conditional',badge:'b1',fc:'f1',use:'Real, likely futures',col:{bg:'#E1F5EE',brd:'#5DCAA5',tc:'#085041'},
+   formula:'If + present simple → will + infinitive',
+   desc:'Use for <strong>real, possible situations</strong> in the future. The speaker genuinely thinks the condition could happen. Common in promises, warnings, and predictions.',
+   uses:['Promises','Warnings','Predictions','Real future possibilities'],
+   tip:'Never use "will" in the if-clause! You can also use may, might, can, or should in the result clause.',
+   exPos:['If it <u>rains</u> tomorrow, we <u>will cancel</u> the trip.','If she <u>studies</u> hard, she <u>will pass</u>.'],
+   exNeg:['If it <u>will rain</u> tomorrow… ✗ (no "will" in the if-clause)'],
+   question:'What will you do if it rains?',qNote:'"What will you do if…?" — "will" inverts in the question form.',
+   inversion:'Should it rain tomorrow, we will cancel the trip.',invNote:'"Should" replaces "if" — inverts before the subject. Used in formal English.'},
+  {id:'second',name:'Second conditional',badge:'b2',fc:'f2',use:'Unreal present / future',col:{bg:'#FAECE7',brd:'#F0997B',tc:'#712B13'},
+   formula:'If + past simple → would + infinitive',
+   desc:'Use for <strong>imaginary, unlikely, or impossible</strong> situations in the present or future. Also used for advice: "If I were you…"',
+   uses:['Imaginary situations','Unlikely futures','Polite advice','Hypothetical speculation'],
+   tip:'Use "were" (not "was") for all subjects in formal English — this is the subjunctive mood: "If I were a millionaire…"',
+   exPos:['If I <u>had</u> more time, I <u>would travel</u> the world.','If she <u>were</u> taller, she <u>would become</u> a model.'],
+   exNeg:['If I <u>would have</u> more time… ✗ (no "would" in the if-clause)'],
+   question:'What would you do if you won the lottery?',qNote:'"What would you do if…?" — "would" inverts in the question form.',
+   inversion:'Were she taller, she would become a model.',invNote:'"Were" inverts before the subject, replacing "if". Formal and literary.'},
+  {id:'third',name:'Third conditional',badge:'b3',fc:'f3',use:'Imaginary past',col:{bg:'#E6F1FB',brd:'#85B7EB',tc:'#0C447C'},
+   formula:'If + past perfect → would have + past participle',
+   desc:'Use to imagine a <strong>different past</strong> — something that did NOT happen. Expresses regret, criticism, or relief. The situation cannot be changed now.',
+   uses:['Imaginary past','Regret','Criticism','Relief about outcomes'],
+   tip:'You can also use "could have" or "might have" instead of "would have": "If you had called, I might have helped."',
+   exPos:['If she <u>had studied</u>, she <u>would have passed</u>.','If they <u>had left</u> earlier, they <u>wouldn\'t have missed</u> the flight.'],
+   exNeg:['If she <u>studied</u>, she <u>would have passed</u>. ✗ (wrong tense in if-clause)'],
+   question:'Would you have applied if you had seen the advert?',qNote:'"Would you have…if…?" — reflects on past decisions.',
+   inversion:'Had she studied, she would have passed.',invNote:'"Had" inverts before the subject. Very common in formal and literary English.'},
+  {id:'mixed1',name:'Mixed conditional 1',badge:'b4',fc:'f4',use:'Past cause → present result',col:{bg:'#FAEEDA',brd:'#EF9F27',tc:'#633806'},
+   formula:'If + past perfect → would + infinitive',
+   desc:'Connects a <strong>past event to a present consequence</strong>. The if-clause describes something that did NOT happen in the past; the main clause shows how things would be different right now.',
+   uses:['Past cause, present effect','Regret with present impact','Explaining current state'],
+   tip:'Look for present-time signals: "now", "today", "currently". These words show the consequence is present, not past.',
+   exPos:['If I <u>had taken</u> the job, I <u>would be</u> rich now.','If she <u>hadn\'t dropped out</u>, she <u>would be</u> a doctor today.'],
+   exNeg:['If I <u>had taken</u> the job, I <u>would have been</u> rich now. ✗ (past result — loses the "now")'],
+   question:'Would you be here now if you hadn\'t taken that risk?',qNote:'Asks about a current state caused by a past condition.',
+   inversion:'Had I taken the job, I would be rich now.',invNote:'Past perfect inverts. The result clause stays "would + infinitive" (present result).'},
+  {id:'mixed2',name:'Mixed conditional 2',badge:'b5',fc:'f5',use:'Present state → past result',col:{bg:'#FBEAF0',brd:'#ED93B1',tc:'#72243E'},
+   formula:'If + past simple → would have + past participle',
+   desc:'Connects a <strong>permanent present state to a past result</strong>. The if-clause describes a trait or quality not true now; the main clause shows how a past event would have gone differently.',
+   uses:['Present trait, different past','Character affecting past events','Explaining past failure via current quality'],
+   tip:'Use past simple "were" in the if-clause — NOT past perfect "had been". "Were" signals an ongoing state; "had been" signals a one-time past event.',
+   exPos:['If I <u>were</u> braver, I <u>would have spoken</u> up.','If she <u>weren\'t</u> so shy, she <u>would have applied</u>.'],
+   exNeg:['If I <u>had been</u> braver, I <u>would have spoken</u> up. ✗ (pure 3rd conditional — one-time past moment, not a trait)'],
+   question:'Would you have said something if you were more confident?',qNote:'Links a present trait to a past action.',
+   inversion:null,invNote:null}
+];
+
+const QUOTES=[
+  {text:'"If you want to go fast, go alone. If you want to go far, go together."',author:'African proverb',type:'Zero & first conditional',hi:'If you want to go'},
+  {text:'"If I had more time, I would have written a shorter letter."',author:'Blaise Pascal (adapted)',type:'Third conditional',hi:'If I had more time, I would have written'},
+  {text:'"Were I to live my life again, I would make the same mistakes — only sooner."',author:'Tallulah Bankhead',type:'Second conditional (inverted)',hi:'Were I to live'},
+  {text:'"Had I known at twenty what I know now, I would have lived a very different life."',author:'adapted proverb',type:'Third conditional (inverted)',hi:'Had I known'},
+  {text:'"Should you ever find yourself in the wrong story, leave."',author:'Mo Willems',type:'First conditional (inverted)',hi:'Should you ever find'},
+  {text:'"If I were not a physicist, I would probably be a musician."',author:'Albert Einstein',type:'Second conditional',hi:'If I were not'},
+  {text:'"What would you attempt to do if you knew you could not fail?"',author:'Robert Schuller',type:'Second conditional question',hi:'would you attempt'},
+  {text:'"If the facts don\'t fit the theory, change the facts."',author:'Albert Einstein (attributed)',type:'Zero conditional',hi:'If the facts don\'t fit'},
+  {text:'"Had it not been for curiosity, science would never have advanced."',author:'adapted',type:'Third conditional (inverted)',hi:'Had it not been'},
+  {text:'"If we had known then what we know now, the decision would have been very different."',author:'adapted',type:'Third conditional',hi:'If we had known'},
+  {text:'"If you talk to a man in a language he understands, that goes to his head. If you talk to him in his own language, that goes to his heart."',author:'Nelson Mandela',type:'Zero conditional',hi:'If you talk'},
+  {text:'"Were she given the chance, she would change the world."',author:'literary example',type:'Second conditional (inverted)',hi:'Were she given'}
+];
+
+const GAP_POOL=[
+  {s:'If she ___ harder, she will get the promotion.',blank:'works',opts:['works','worked','had worked','will work'],type:'First conditional',fb:'First conditional: present simple in the if-clause ("works"), "will" in the result.'},
+  {s:'If I ___ you, I would look for a new job.',blank:'were',opts:['am','was','were','had been'],type:'Second conditional',fb:'Second conditional: "If I were you" — use "were" for all subjects in formal/written English.'},
+  {s:'If they ___ the map, they wouldn\'t have got lost.',blank:'had checked',opts:['checked','had checked','check','would check'],type:'Third conditional',fb:'Third conditional: past perfect ("had checked") in the if-clause.'},
+  {s:'If you heat metal, it ___.',blank:'expands',opts:['expands','will expand','expanded','would expand'],type:'Zero conditional',fb:'Zero conditional: a scientific fact — present simple in both clauses.'},
+  {s:'If I had taken that job, I ___ in London now.',blank:'would be',opts:['would be','would have been','will be','am'],type:'Mixed conditional 1',fb:'Mixed 1: past perfect if-clause + "would + infinitive" result. "Now" signals a present consequence.'},
+  {s:'___ she more confident, she would have applied for the role.',blank:'Were',opts:['Was','Were','Had','Should'],type:'Mixed conditional 2 (inverted)',fb:'"Were she more confident…" — inverted second conditional. "Were" replaces "if" and moves before the subject.'},
+  {s:'___ you need any assistance, please do not hesitate to call.',blank:'Should',opts:['Would','Should','Were','Had'],type:'First conditional (inverted)',fb:'"Should you need…" — formal inverted first conditional. "Should" replaces "if" and inverts before the subject.'},
+  {s:'___ I known about the risk, I would have acted differently.',blank:'Had',opts:['If','Had','Were','Should'],type:'Third conditional (inverted)',fb:'"Had I known…" — inverted third conditional. "Had" inverts before the subject, replacing "if … had".'},
+  {s:'What ___ you do if you found a large sum of money in the street?',blank:'would',opts:['will','would','do','should'],type:'Second conditional question',fb:'Second conditional question: "What would you do if…?" — "would" inverts before the subject.'},
+  {s:'If she ___ the deadline, the project would have been cancelled.',blank:"hadn't met",opts:["hadn't met","didn't meet","won't meet","wouldn't meet"],type:'Third conditional',fb:'Third conditional: past perfect negative in the if-clause. "Hadn\'t met" is correct.'},
+  {s:'Would you have come to the party if we ___ you earlier?',blank:'had invited',opts:['invited','had invited','invite','would invite'],type:'Third conditional question',fb:'Third conditional question: past perfect in the if-clause. "Had invited" is correct.'},
+  {s:'If he weren\'t so stubborn, he ___ the advice more readily.',blank:'would accept',opts:['would accept','would have accepted','accepts','accepted'],type:'Mixed conditional 2',fb:'Mixed 2: present trait (stubborn) + "would + infinitive" result clause.'},
+  {s:'___ you to reconsider, we would be very grateful.',blank:'Were',opts:['Should','Were','Had','If'],type:'Second conditional (inverted)',fb:'"Were you to reconsider…" — formal inverted second conditional. "Were" replaces "if" and moves before the subject.'},
+  {s:'If the report ___ tomorrow, we can discuss it then.',blank:'arrives',opts:['arrives','arrived','will arrive','would arrive'],type:'First conditional',fb:'First conditional: present simple in the if-clause, even though the event is future.'},
+  {s:'___ the weather improve, we shall proceed with the outdoor ceremony.',blank:'Should',opts:['Should','Would','Were','If'],type:'First conditional (inverted — formal)',fb:'"Should the weather improve…" — formal inverted first conditional, common in official language.'}
+];
+
+const MATCH_SETS=[
+  {instr:'Match each sentence to the conditional type it represents.',
+   pairs:[
+     {left:'If you mix bleach and ammonia, it produces toxic gas.',right:'Zero conditional'},
+     {left:'I\'ll call you if I finish early.',right:'First conditional'},
+     {left:'If I had wings, I would fly to you.',right:'Second conditional'},
+     {left:'She would have passed if she had studied.',right:'Third conditional'},
+     {left:'If I had emigrated in my twenties, I would be fluent in Spanish now.',right:'Mixed conditional 1'},
+     {left:'If he were less impulsive, he would have thought before speaking.',right:'Mixed conditional 2'},
+     {left:'"What would you do if you lost your job tomorrow?"',right:'Second conditional question'}
+   ]},
+  {instr:'Match each inverted conditional to its standard "if" equivalent.',
+   pairs:[
+     {left:'Should you need help, call reception.',right:'"If you need help, call reception."'},
+     {left:'Were she to apply, she would succeed.',right:'"If she were to apply, she would succeed."'},
+     {left:'Had they left earlier, they would have caught the train.',right:'"If they had left earlier, they would have caught the train."'},
+     {left:'Were I in your position, I would decline.',right:'"If I were in your position, I would decline."'},
+     {left:'Had it not rained, the match would have gone ahead.',right:'"If it hadn\'t rained, the match would have gone ahead."'},
+     {left:'Should the need arise, we will take action.',right:'"If the need arises, we will take action."'},
+     {left:'Had I taken the job, I would be rich now.',right:'"If I had taken the job, I would be rich now."'}
+   ]},
+  {instr:'Match each conditional question to its type.',
+   pairs:[
+     {left:'"What will you do if it snows tomorrow?"',right:'First conditional question'},
+     {left:'"Would you have accepted if they had offered you the role?"',right:'Third conditional question'},
+     {left:'"What would you buy if money were no object?"',right:'Second conditional question'},
+     {left:'"Would you be here now if you hadn\'t taken that risk?"',right:'Mixed conditional 1 question'},
+     {left:'"What happens if you leave milk out overnight?"',right:'Zero conditional question'},
+     {left:'"Would you have been so successful if you weren\'t so determined?"',right:'Mixed conditional 2 question'},
+     {left:'"Would you come if I organised a reunion?"',right:'Second conditional question'}
+   ]}
+];
+
+const TRANS_POOL=[
+  {original:'If you should need any further information, please contact us.',target:'Inverted first conditional',model:'Should you need any further information, please contact us.',note:'"Should" replaces "if" and inverts before the subject.'},
+  {original:'If the temperature were to drop below zero, the pipes would freeze.',target:'Inverted second conditional',model:'Were the temperature to drop below zero, the pipes would freeze.',note:'"Were" inverts before the subject. "Were to + infinitive" is common in formal written English.'},
+  {original:'If I had realised the consequences, I would have acted differently.',target:'Inverted third conditional',model:'Had I realised the consequences, I would have acted differently.',note:'"Had" inverts before the subject, replacing "if … had".'},
+  {original:'If you need assistance, a member of staff will help you.',target:'Inverted first conditional (formal)',model:'Should you need assistance, a member of staff will help you.',note:'Formal inversion with "should". Common in official notices and letters.'},
+  {original:'If she were more experienced, she would have handled it better.',target:'Inverted mixed conditional 2',model:'Were she more experienced, she would have handled it better.',note:'"Were" replaces "if". Note "would have" in the result — mixed type 2 pattern.'},
+  {original:'If they had prepared more thoroughly, the presentation would have been stronger.',target:'Inverted third conditional',model:'Had they prepared more thoroughly, the presentation would have been stronger.',note:'"Had" + subject + past participle is the standard inverted third conditional form.'},
+  {original:'If it were to rain heavily, the event would be moved indoors.',target:'Inverted second conditional (formal)',model:'Were it to rain heavily, the event would be moved indoors.',note:'"Were it to + infinitive" — a detached, formal literary device.'},
+  {original:'If you had let me know sooner, I could have rearranged my schedule.',target:'Inverted third conditional',model:'Had you let me know sooner, I could have rearranged my schedule.',note:'"Could have" is a valid alternative to "would have" in the result clause.'}
+];
+
+const BUILDER_POOL=[
+  {type:'Zero conditional',desc:'General truth or fact',slots:['If + you heat water','___','it boils'],fixed:[0,2],blanks:{1:{ans:'→',opts:['→','would','had','will']}},tiles:['→','would','had','will'],note:'Zero conditional: present simple in both clauses. No modal verb needed — just a comma or nothing.'},
+  {type:'First conditional',desc:'Real future possibility',slots:['If she ___ hard','she','will pass'],fixed:[1,2],blanks:{0:{ans:'studies',opts:['studies','studied','had studied','would study']}},tiles:['studies','studied','had studied','would study'],note:'First conditional: present simple in the if-clause ("studies"), "will + infinitive" in the result.'},
+  {type:'Second conditional',desc:'Imaginary present situation',slots:['If I ___ more time','I','would travel'],fixed:[1,2],blanks:{0:{ans:'had',opts:['had','have','would have','has']}},tiles:['had','have','would have','has'],note:'Second conditional: past simple in the if-clause. "Had" (past of "have") is correct here.'},
+  {type:'Third conditional',desc:'Imaginary past event',slots:['If they ___','they would have arrived on time'],fixed:[1],blanks:{0:{ans:'had left earlier',opts:['had left earlier','left earlier','would leave earlier','leave earlier']}},tiles:['had left earlier','left earlier','would leave earlier','leave earlier'],note:'Third conditional: past perfect ("had left") in the if-clause, "would have + past participle" in the result.'},
+  {type:'Mixed conditional 1',desc:'Past cause → present result',slots:['If I had taken the job','I','___ rich now'],fixed:[0,1],blanks:{2:{ans:'would be',opts:['would be','would have been','will be','am']}},tiles:['would be','would have been','will be','am'],note:'Mixed 1: past perfect if-clause + "would + infinitive" result. "Now" signals a present consequence.'},
+  {type:'Mixed conditional 2',desc:'Present state → past result',slots:['If she ___ so shy','she would have applied'],fixed:[1],blanks:{0:{ans:"weren't",opts:["weren't","hadn't been","isn't","wasn't"]}},tiles:["weren't","hadn't been","isn't","wasn't"],note:'Mixed 2: past simple in the if-clause (an ongoing trait — "weren\'t"), "would have + pp" in the result.'},
+  {type:'First conditional (inverted)',desc:'Formal: Should…',slots:['___','you need help','please call us'],fixed:[1,2],blanks:{0:{ans:'Should',opts:['Should','Were','Had','If']}},tiles:['Should','Were','Had','If'],note:'Inverted first conditional: "Should" replaces "if" and inverts before the subject.'},
+  {type:'Second conditional (inverted)',desc:'Formal: Were…',slots:['___','she to apply','she would succeed'],fixed:[1,2],blanks:{0:{ans:'Were',opts:['Were','Should','Had','If']}},tiles:['Were','Should','Had','If'],note:'Inverted second conditional: "Were" replaces "if" and inverts. "Were to + infinitive" is the standard formal pattern.'},
+  {type:'Third conditional (inverted)',desc:'Formal: Had…',slots:['___','they arrived earlier','they would have caught the train'],fixed:[1,2],blanks:{0:{ans:'Had',opts:['Had','Were','Should','If']}},tiles:['Had','Were','Should','If'],note:'Inverted third conditional: "Had" replaces "if … had" and inverts before the subject.'},
+  {type:'Second conditional question',desc:'Hypothetical question',slots:['What','___','you do','if you lost your job?'],fixed:[0,2,3],blanks:{1:{ans:'would',opts:['would','will','do','should']}},tiles:['would','will','do','should'],note:'Second conditional question: "would" inverts before the subject in the main clause question form.'},
+  {type:'Third conditional question',desc:'Imaginary past question',slots:['Would you have come','if we','___ you earlier?'],fixed:[0,1],blanks:{2:{ans:'had invited',opts:['had invited','invited','would invite','invite']}},tiles:['had invited','invited','would invite','invite'],note:'Third conditional question: past perfect in the if-clause. "Had invited" — not simple past.'},
+  {type:'Mixed conditional 1 question',desc:'Past cause, present state — question',slots:['Would you ___ here now','if you hadn\'t taken that decision?'],fixed:[1],blanks:{0:{ans:'be',opts:['be','have been','being','been']}},tiles:['be','have been','being','been'],note:'Mixed 1 question: "Would you be…now if you hadn\'t…?" — present result, past condition.'}
+];
+
+const ERR_POOL=[
+  {a:'If she would study harder, she would pass.',b:'If she studied harder, she would pass.',correct:'b',type:'Second conditional',exp:'No "would" in the if-clause of any conditional. Use past simple: "studied".'},
+  {a:'If I will see him tomorrow, I\'ll tell him.',b:'If I see him tomorrow, I\'ll tell him.',correct:'b',type:'First conditional',exp:'No "will" in the if-clause. Use present simple even when referring to future time.'},
+  {a:'If she had been braver, she would accept the challenge.',b:'If she had been braver, she would have accepted the challenge.',correct:'b',type:'Third conditional',exp:'Third conditional: the result clause needs "would have + past participle", not "would + infinitive".'},
+  {a:'Should you need help, please ask.',b:'Should you to need help, please ask.',correct:'a',type:'First conditional (inverted)',exp:'After "should" in an inverted conditional, use the bare infinitive — not "to + infinitive".'},
+  {a:'Were I knowing the answer, I would tell you.',b:'Were I to know the answer, I would tell you.',correct:'b',type:'Second conditional (inverted)',exp:'"Were I to + bare infinitive" is the correct inverted form. A gerund ("knowing") is incorrect here.'},
+  {a:'Had they left earlier, they would have avoided the traffic.',b:'Had they leave earlier, they would have avoided the traffic.',correct:'a',type:'Third conditional (inverted)',exp:'"Had" in an inverted conditional must be followed by the past participle: "left", not the base verb "leave".'},
+  {a:'What would you do if you will lose your passport abroad?',b:'What would you do if you lost your passport abroad?',correct:'b',type:'Second conditional question',exp:'Second conditional: use past simple in the if-clause ("lost"), not "will".'},
+  {a:'If she was me, she wouldn\'t accept those terms.',b:'If she were me, she wouldn\'t accept those terms.',correct:'b',type:'Second conditional',exp:'Use "were" (not "was") for all persons in the subjunctive mood of the second conditional.'},
+  {a:'She would have been promoted if she had worked harder.',b:'She would have been promoted if she works harder.',correct:'a',type:'Third conditional',exp:'Third conditional: the if-clause needs past perfect ("had worked"), not present simple ("works").'},
+  {a:'Would you have helped me if you knew what happened?',b:'Would you have helped me if you had known what happened?',correct:'b',type:'Third conditional question',exp:'Third conditional question: the if-clause needs past perfect ("had known"), not past simple ("knew").'},
+  {a:'Had she been more careful, the accident would have been avoided.',b:'Had she be more careful, the accident would have been avoided.',correct:'a',type:'Third conditional (inverted)',exp:'After "had" in an inverted conditional, use the past participle: "been", not the base verb "be".'},
+  {a:'If he hadn\'t studied all night, he would have failed.',b:'If he hadn\'t study all night, he would have failed.',correct:'a',type:'Third conditional',exp:'Past perfect negative: "hadn\'t + past participle". "Studied" is the past participle — not the base verb "study".'}
+];
+
+const QI_Q_SECTIONS=[
+  {type:'Zero conditional',col:{bg:'#EEEDFE',tc:'#3C3489'},ex:['What happens if you press this button?','Does water expand if it freezes?'],note:'Ask about processes or facts. Present simple throughout.'},
+  {type:'First conditional',col:{bg:'#E1F5EE',tc:'#085041'},ex:['What will you do if it rains?','Will you come if we invite you?'],note:'Ask about real future possibilities. "Will" inverts in the main clause question.'},
+  {type:'Second conditional',col:{bg:'#FAECE7',tc:'#712B13'},ex:['What would you do if you lost your job?','Would you accept if they offered you the role?','If you could live anywhere, where would you choose?'],note:'Ask about hypothetical situations. "Would" inverts. Very common in interviews and conversation.'},
+  {type:'Third conditional',col:{bg:'#E6F1FB',tc:'#0C447C'},ex:['Would you have come if we had invited you?','What would you have done if you had missed the flight?'],note:'Ask about imaginary past situations. "Would have" inverts in the question.'},
+  {type:'Mixed conditional 1',col:{bg:'#FAEEDA',tc:'#633806'},ex:['Would you be here now if you hadn\'t made that decision?','Would she be a doctor today if she hadn\'t dropped out?'],note:'Ask about present consequences of a past event.'},
+  {type:'Mixed conditional 2',col:{bg:'#FBEAF0',tc:'#72243E'},ex:['Would you have said something if you were braver?','Would she have succeeded if she weren\'t so risk-averse?'],note:'Ask what would have happened given a different permanent trait.'}
+];
+
+const QI_INV_ROWS=[
+  {type:'First conditional',aux:'Should',standard:'If you need help, call reception.',inverted:'Should you need help, call reception.',notes:'Replaces "if". Bare infinitive follows. Very common in formal correspondence.'},
+  {type:'Second conditional',aux:'Were',standard:'If she were to apply, she would succeed.',inverted:'Were she to apply, she would succeed.',notes:'"Were to + infinitive" pattern. Used in formal and literary writing.'},
+  {type:'Third conditional',aux:'Had',standard:'If they had left earlier, they would have caught the train.',inverted:'Had they left earlier, they would have caught the train.',notes:'"Had + subject + past participle". Extremely common in formal prose.'},
+  {type:'Mixed cond. 1',aux:'Had',standard:'If I had taken the job, I would be rich now.',inverted:'Had I taken the job, I would be rich now.',notes:'Same "Had" inversion, but result clause uses "would + infinitive" (present result).'}
+];
+
+const QI_QUIZ=[
+  {q:'Which inverted form correctly replaces "If they had arrived earlier, the meeting would have started on time"?',opts:['Should they arrive earlier, the meeting would have started.','Were they to arrive earlier, the meeting would have started.','Had they arrived earlier, the meeting would have started on time.','If they had arrived, the meeting would start.'],ans:2,fb:'"Had + subject + past participle" — inverted third conditional. The rest of the sentence remains unchanged.'},
+  {q:'"___ you require further information, do not hesitate to contact us." Which word completes this inverted first conditional?',opts:['Were','Had','Should','Would'],ans:2,fb:'"Should you require…" is the inverted first conditional. "Should" replaces "if" and inverts before the subject.'},
+  {q:'Which of these is NOT a valid conditional form?',opts:['Should you need help, call me.','Were she to apply, she would get the job.','Had they left, they would have arrived.','If he would have known, he would have told us.'],ans:3,fb:'"If he would have known" is never correct — "would" cannot appear in the if-clause of any conditional.'},
+  {q:'"What ___ you do if you could start again?" — which word completes this second conditional question?',opts:['will','do','would','should'],ans:2,fb:'Second conditional question: "What would you do if…?" — "would" inverts before the subject.'},
+  {q:'"Would you have been so successful if you ___ so determined?" — which form is correct?',opts:["hadn't been","weren't","aren't","wouldn't be"],ans:1,fb:'Mixed conditional 2 question: if-clause uses past simple ("weren\'t") — a present trait, not a one-time past event.'},
+  {q:'Which sentence correctly uses a conditional question about a general truth?',opts:['What would happen if you would boil water?','What happens if you boil water?','What happened if you boiled water?','What will happen if you would boil water?'],ans:1,fb:'Zero conditional question: "What happens if you boil water?" — present simple in both parts.'}
+];
+
+let quoteOrder=[],quoteIdx=0,selType=null;
+let mSet=0,mPicked=null,mMatched=[],mScore=0,mAttempts=0,mRight=[];
+let gItems=[],gIdx=0,gScore=0,gTotal=0,gSel=null,gChecked=false;
+let tItems=[],tIdx=0,tScore=0,tTotal=0,tChecked=false;
+let bItems=[],bIdx=0,bScore=0,bTotal=0,bSel=null,bChecked=false,bPlaced={};
+let eItems=[],eIdx=0,eScore=0,eTotal=0,eSel=null,eChecked=false;
+let qiQIdx=0,qiQScore=0,qiQTotal=0,qiQSel=null,qiQChecked=false,qiQItems=[];
+let qiOpenQ=-1,qiOpenI=-1;
+
+function showP(i){
+  document.querySelectorAll('.pan').forEach((p,j)=>p.classList.toggle('on',j===i));
+  document.querySelectorAll('.nt').forEach((t,j)=>t.classList.toggle('on',j===i));
+  if(i===0){renderQuote();if(!document.getElementById('homeOv').innerHTML)renderHomeOv();}
+  if(i===1&&!document.getElementById('typesOv').innerHTML)renderTypesOv();
+  if(i===2&&!document.getElementById('qi0').innerHTML)renderQI();
+  if(i===3&&!gItems.length)startGap();
+  if(i===4&&!document.getElementById('matchCont').innerHTML)startMatch(0);
+  if(i===5&&!tItems.length)startTrans();
+  if(i===6&&!bItems.length)startBuilder();
+  if(i===7&&!eItems.length)startErr();
+}
+
+function renderQuote(){
+  if(!quoteOrder.length)quoteOrder=[...Array(QUOTES.length).keys()].sort(()=>Math.random()-.5);
+  const q=QUOTES[quoteOrder[quoteIdx%quoteOrder.length]];quoteIdx++;
+  let txt=q.text.replace(q.hi,`<span style="background:#EEEDFE;color:#3C3489;font-weight:500;padding:1px 6px;border-radius:6px">${q.hi}</span>`);
+  document.getElementById('quoteBox').innerHTML=`
+    <div style="font-family:var(--font-serif);font-size:15px;line-height:1.8;color:var(--color-text-primary);margin-bottom:8px">${txt}</div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <div style="font-size:12px;color:var(--color-text-secondary)">— ${q.author}</div>
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${q.type}</span>
+      <button class="act" onclick="renderQuote()" style="font-size:12px;padding:4px 12px;margin-left:auto"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> New quote</button>
+    </div>`;
+}
+
+function renderHomeOv(){
+  document.getElementById('homeOv').innerHTML=TYPES.map(t=>`
+    <div class="ov-card" style="background:${t.col.bg};border-color:${t.col.brd}" onclick="showP(1);setTimeout(()=>selT('${t.id}'),60)">
+      <div class="ov-name" style="color:${t.col.tc}">${t.name}</div>
+      <div class="ov-use" style="color:${t.col.tc};opacity:.7">${t.use}</div>
+    </div>`).join('');
+}
+
+function renderTypesOv(){
+  document.getElementById('typesOv').innerHTML=TYPES.map(t=>`
+    <div class="ov-card" id="tc_${t.id}" style="background:${t.col.bg};border-color:${t.col.brd}" onclick="selT('${t.id}')">
+      <div class="ov-name" style="color:${t.col.tc}">${t.name}</div>
+      <div class="ov-use" style="color:${t.col.tc};opacity:.7">${t.use}</div>
+    </div>`).join('');
+}
+
+function selT(id){
+  selType=selType===id?null:id;
+  document.querySelectorAll('.ov-card[id]').forEach(c=>{c.style.outline=c.id==='tc_'+selType?'2px solid #534AB7':'none';});
+  const detail=document.getElementById('typeDetail');
+  if(!selType){detail.style.display='none';return;}
+  const t=TYPES.find(x=>x.id===id);
+  const fcMap={zero:'f0',first:'f1',second:'f2',third:'f3',mixed1:'f4',mixed2:'f5'};
+  detail.innerHTML=`<div class="card">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap">
+      <span style="font-size:16px;font-weight:500">${t.name}</span>
+      <span class="badge ${t.badge}">${t.use}</span>
+    </div>
+    <div class="lbl">Formula</div>
+    <div class="formula ${fcMap[id]}">${t.formula}</div>
+    <div class="lbl">When to use it</div>
+    <p style="font-size:15px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:8px">${t.desc}</p>
+    <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px">
+      ${t.uses.map(u=>`<span style="background:${t.col.bg};color:${t.col.tc};font-size:13px;padding:3px 11px;border-radius:20px;border:0.5px solid ${t.col.brd}">${u}</span>`).join('')}
+    </div>
+    <div class="lbl">Examples</div>
+    <div class="ex-row">
+      <div>${t.exPos.map(e=>`<div class="ex-box ex-pos" style="margin-bottom:6px"><span class="ex-tag">Correct</span>${e}</div>`).join('')}</div>
+      <div>${t.exNeg.map(e=>`<div class="ex-box ex-neg" style="margin-bottom:6px"><span class="ex-tag">Incorrect ✗</span>${e}</div>`).join('')}</div>
+    </div>
+    ${t.question?`<div class="lbl">Question form</div>
+    <div style="background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;font-size:15px;font-style:italic;color:var(--color-text-primary);margin-bottom:4px">${t.question}</div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:8px">${t.qNote}</div>`:''}
+    ${t.inversion?`<div class="lbl">Inverted form</div>
+    <div class="formula ${fcMap[id]}" style="font-style:italic">${t.inversion}</div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:8px">${t.invNote}</div>`:''}
+    <div class="tip-box"><i class="ti ti-bulb" aria-hidden="true" style="font-size:16px;flex-shrink:0;color:${t.col.tc}"></i><span>${t.tip}</span></div>
+  </div>`;
+  detail.style.display='block';
+  detail.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function switchQI(i,el){
+  document.querySelectorAll('.qi-tab').forEach(t=>t.classList.remove('on'));el.classList.add('on');
+  document.querySelectorAll('.qi-panel').forEach((p,j)=>p.classList.toggle('on',j===i));
+}
+
+function renderQI(){
+  document.getElementById('qi0').innerHTML=`<div class="card">
+    <p style="font-size:15px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">Conditional questions use the same tenses as statements, but the main clause is in question form. Click each type to see examples.</p>
+    ${QI_Q_SECTIONS.map((s,i)=>`
+      <div class="qi-type-card" id="qqc_${i}" onclick="toggleQQ(${i})" style="background:${s.col.bg}">
+        <div style="flex:1">
+          <div style="font-size:15px;font-weight:500;color:${s.col.tc}">${s.type}</div>
+          <div style="font-size:13px;color:${s.col.tc};opacity:.8;margin-top:2px">${s.ex[0]}</div>
+        </div>
+        <i class="ti ti-chevron-down" id="qqarrow_${i}" aria-hidden="true" style="font-size:16px;color:${s.col.tc};transition:transform .2s"></i>
+      </div>
+      <div class="qi-detail" id="qqd_${i}">
+        ${s.ex.map(e=>`<div style="background:var(--color-background-secondary);border-radius:10px;padding:7px 12px;font-size:15px;font-style:italic;color:var(--color-text-secondary);margin-bottom:5px">${e}</div>`).join('')}
+        <div style="font-size:14px;color:${s.col.tc};margin-top:5px;padding:7px 11px;background:${s.col.bg};border-radius:10px">${s.note}</div>
+      </div>`).join('')}
+  </div>`;
+
+  document.getElementById('qi1').innerHTML=`<div class="card">
+    <p style="font-size:15px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">Conditional inversion is a formal alternative to the standard "if" structure. Drop "if" and move the auxiliary verb before the subject. Click any row to compare forms.</p>
+    ${QI_INV_ROWS.map((r,i)=>{
+      const bcol=TYPES.find(t=>r.type.toLowerCase().includes(t.id.replace('mixed1','mixed').replace('mixed2','mixed')))?.col||{bg:'#EEEDFE',brd:'#AFA9EC',tc:'#3C3489'};
+      return`<div class="qi-type-card" id="qic_${i}" onclick="toggleQI2(${i})" style="background:${bcol.bg}">
+        <div style="flex:1">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">
+            <span style="font-size:15px;font-weight:500;color:${bcol.tc}">${r.type}</span>
+            <span style="background:#fff;border:0.5px solid ${bcol.brd};color:${bcol.tc};font-size:12px;font-weight:500;padding:2px 8px;border-radius:20px">${r.aux}</span>
+          </div>
+          <div style="font-size:14px;font-style:italic;color:${bcol.tc};opacity:.85">${r.inverted}</div>
+        </div>
+        <i class="ti ti-chevron-down" id="qiarrow_${i}" aria-hidden="true" style="font-size:16px;color:${bcol.tc};transition:transform .2s"></i>
+      </div>
+      <div class="qi-detail" id="qid_${i}">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:7px">
+          <div style="background:var(--color-background-secondary);border-radius:10px;padding:8px 12px">
+            <div style="font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px">Standard</div>
+            <div style="font-size:14px;font-style:italic;color:var(--color-text-secondary)">${r.standard}</div>
+          </div>
+          <div style="background:#EEEDFE;border-radius:10px;padding:8px 12px">
+            <div style="font-size:11px;font-weight:500;color:#3C3489;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px">Inverted</div>
+            <div style="font-size:14px;font-style:italic;color:#3C3489">${r.inverted}</div>
+          </div>
+        </div>
+        <div style="font-size:14px;color:${bcol.tc};padding:7px 11px;background:${bcol.bg};border-radius:10px">${r.notes}</div>
+      </div>`;
+    }).join('')}
+    <div class="tip-box" style="margin-top:6px"><i class="ti ti-bulb" aria-hidden="true" style="font-size:16px;flex-shrink:0;color:#534AB7"></i><span>Inversion never changes the meaning — only the register. "Had I known" = "If I had known". Practise it in the Transformation exercise.</span></div>
+  </div>`;
+
+  qiQItems=[...QI_QUIZ].sort(()=>Math.random()-.5);
+  qiQIdx=0;qiQScore=0;qiQTotal=0;qiQSel=null;qiQChecked=false;
+  renderQIQ();
+}
+
+function toggleQQ(i){
+  qiOpenQ=qiOpenQ===i?-1:i;
+  QI_Q_SECTIONS.forEach((_,j)=>{
+    const d=document.getElementById('qqd_'+j);const a=document.getElementById('qqarrow_'+j);
+    if(d){d.classList.toggle('on',j===qiOpenQ);if(a)a.style.transform=j===qiOpenQ?'rotate(180deg)':'';}
+  });
+}
+function toggleQI2(i){
+  qiOpenI=qiOpenI===i?-1:i;
+  QI_INV_ROWS.forEach((_,j)=>{
+    const d=document.getElementById('qid_'+j);const a=document.getElementById('qiarrow_'+j);
+    if(d){d.classList.toggle('on',j===qiOpenI);if(a)a.style.transform=j===qiOpenI?'rotate(180deg)':'';}
+  });
+}
+
+function renderQIQ(){
+  const cont=document.getElementById('qi2');
+  if(qiQIdx>=qiQItems.length){
+    const pct=Math.round(qiQScore/qiQTotal*100);
+    cont.innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${qiQScore}/${qiQTotal}</div><div style="font-size:15px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=70?'Well done!':'Review the sections above and try again.'}</div><button class="act" onclick="qiQItems=[...QI_QUIZ].sort(()=>Math.random()-.5);qiQIdx=0;qiQScore=0;qiQTotal=0;renderQIQ()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Try again</button></div>`;return;
+  }
+  const q=qiQItems[qiQIdx];qiQSel=null;qiQChecked=false;
+  const opts=[...q.opts].map((o,i)=>({o,i})).sort(()=>Math.random()-.5);window._qqOpts=opts;
+  const prog=Math.round((qiQIdx/qiQItems.length)*100);
+  cont.innerHTML=`
+    <div class="card">
+      <div class="ex-hdr">
+        <div style="font-size:13px;color:var(--color-text-secondary)">Question ${qiQIdx+1} of ${qiQItems.length} &nbsp;·&nbsp; Score: ${qiQScore}/${qiQTotal}</div>
+        <button class="act" onclick="qiQItems=[...QI_QUIZ].sort(()=>Math.random()-.5);qiQIdx=0;qiQScore=0;qiQTotal=0;renderQIQ()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+      </div>
+      <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+      <div style="font-size:15px;line-height:1.65;margin-bottom:12px;color:var(--color-text-primary)">${q.q}</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="qqOptsList">
+        ${opts.map((item,j)=>`<button class="gap-opt" id="qqopt_${j}" onclick="selQIQ(${j})">${item.o}</button>`).join('')}
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="check-btn" id="qqCheck" onclick="checkQIQ()" disabled>Check</button>
+        <button class="act" onclick="qiQIdx++;renderQIQ()">Skip →</button>
+      </div>
+      <div id="qqFb" style="margin-top:0"></div>
+    </div>`;
+}
+function selQIQ(j){
+  if(qiQChecked)return;qiQSel=j;
+  document.querySelectorAll('#qqOptsList .gap-opt').forEach((el,k)=>el.classList.toggle('gsel',k===j));
+  document.getElementById('qqCheck').disabled=false;
+}
+function checkQIQ(){
+  if(qiQChecked||qiQSel===null)return;qiQChecked=true;qiQTotal++;
+  const q=qiQItems[qiQIdx];const chosen=window._qqOpts[qiQSel].i;const ok=chosen===q.ans;
+  if(ok)qiQScore++;
+  document.getElementById('qqCheck').disabled=true;
+  document.querySelectorAll('#qqOptsList .gap-opt').forEach((el,j)=>{
+    const orig=window._qqOpts[j].i;el.classList.remove('gsel');
+    if(orig===q.ans)el.classList.add('gok');else if(j===qiQSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');
+  });
+  const fb=document.getElementById('qqFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ Not quite. ')+q.fb;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';
+  nxt.textContent='Next question →';nxt.onclick=()=>{qiQIdx++;renderQIQ();};
+  document.querySelector('#qi2 .card').appendChild(nxt);
+}
+
+function startGap(){gItems=[...GAP_POOL].sort(()=>Math.random()-.5);gIdx=0;gScore=0;gTotal=0;gSel=null;gChecked=false;renderGap();}
+function renderGap(){
+  if(gIdx>=gItems.length){const pct=Math.round(gScore/gTotal*100);document.getElementById('gapCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${gScore}/${gTotal}</div><div style="font-size:15px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=70?'Well done!':'Review the Types tab and try again.'}</div><button class="act" onclick="startGap()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=gItems[gIdx];gSel=null;gChecked=false;
+  const prog=Math.round((gIdx/gItems.length)*100);
+  const opts=[...item.opts].sort(()=>Math.random()-.5);window._gOpts=opts;
+  const sh=item.s.replace(item.blank,`<span style="display:inline-block;min-width:90px;border-bottom:2px solid #7F77DD;color:#534AB7;font-weight:500;text-align:center;padding:0 4px" id="blankSpan">___</span>`);
+  document.getElementById('gapCont').innerHTML=`
+    <div class="card">
+      <div class="ex-hdr">
+        <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+        <span style="font-size:13px;color:var(--color-text-secondary)">${gIdx+1} / ${gItems.length} &nbsp;·&nbsp; Score: ${gScore}/${gTotal}</span>
+        <button class="act" onclick="startGap()" style="margin-left:auto"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+      </div>
+      <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+      <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:8px">Choose the correct verb form, then press Check.</div>
+      <div style="font-size:16px;line-height:1.8;margin-bottom:14px;background:var(--color-background-secondary);border-radius:12px;padding:11px 14px">${sh}</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="gOptsList">
+        ${opts.map((o,i)=>`<button class="gap-opt" id="gopt_${i}" onclick="selGOpt(${i})">${o}</button>`).join('')}
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="check-btn" id="gCheckBtn" onclick="checkGap()" disabled>Check</button>
+        <button class="act" onclick="gIdx++;renderGap()">Skip →</button>
+      </div>
+      <div id="gFb" style="margin-top:0"></div>
+    </div>`;
+}
+function selGOpt(i){if(gChecked)return;gSel=i;document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('gCheckBtn').disabled=false;}
+function checkGap(){
+  if(gChecked||gSel===null)return;gChecked=true;gTotal++;
+  const item=gItems[gIdx];const chosen=window._gOpts[gSel];const ok=chosen===item.blank;
+  if(ok)gScore++;document.getElementById('gCheckBtn').disabled=true;
+  document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>{const w=window._gOpts[j];el.classList.remove('gsel');if(w===item.blank)el.classList.add('gok');else if(j===gSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const sp=document.getElementById('blankSpan');if(sp){sp.textContent=item.blank;sp.style.color=ok?'#27500A':'#791F1F';sp.style.borderBottomColor=ok?'#C0DD97':'#F7C1C1';}
+  const fb=document.getElementById('gFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.innerHTML=(ok?'✓ Correct! ':'✗ The answer is "'+item.blank+'". ')+item.fb;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next question →';nxt.onclick=()=>{gIdx++;renderGap();};document.querySelector('#gapCont .card').appendChild(nxt);
+}
+
+function startMatch(si){
+  mSet=si!==undefined?si:mSet;const set=MATCH_SETS[mSet];mPicked=null;mMatched=[];mScore=0;mAttempts=0;
+  const rights=[...set.pairs].sort(()=>Math.random()-.5);mRight=rights;
+  document.getElementById('matchCont').innerHTML=`
+    <div class="card">
+      <div class="ex-hdr">
+        <div style="font-size:13px;color:var(--color-text-secondary)">Round ${mSet+1} of ${MATCH_SETS.length}</div>
+        ${MATCH_SETS.map((_,i)=>`<button class="act" onclick="startMatch(${i})" style="${i===mSet?'background:#EEEDFE;border-color:#AFA9EC;color:#3C3489':''}">Round ${i+1}</button>`).join('')}
+        <button class="act" onclick="startMatch(mSet)"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i></button>
+      </div>
+      <p style="font-size:15px;color:var(--color-text-secondary);margin-bottom:6px">${set.instr}</p>
+      <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:10px">Matched: <strong id="mP">0</strong>/${set.pairs.length} &nbsp;·&nbsp; Attempts: <strong id="mA">0</strong></div>
+      <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:9px;margin-bottom:8px">
+        <div style="display:flex;flex-direction:column;gap:6px" id="mL">${set.pairs.map((p,i)=>`<button class="mi" id="ml_${i}" onclick="mPL(${i})">${p.left}</button>`).join('')}</div>
+        <div style="display:flex;flex-direction:column;gap:6px" id="mR">${rights.map((r,i)=>`<button class="mi" id="mr_${i}" onclick="mPR(${i})">${r.right}</button>`).join('')}</div>
+      </div>
+      <div id="mFb" style="font-size:14px;min-height:18px"></div>
+    </div>`;
+}
+function mPL(i){if(mMatched.some(m=>m.l===i))return;mPicked=i;document.querySelectorAll('#mL .mi').forEach((el,j)=>{if(!mMatched.some(m=>m.l===j))el.classList.toggle('pk',j===i);});}
+function mPR(i){
+  if(mPicked===null)return;const set=MATCH_SETS[mSet];if(mMatched.some(m=>m.r===i))return;
+  mAttempts++;document.getElementById('mA').textContent=mAttempts;
+  const ok=mRight[i].left===set.pairs[mPicked].left;
+  if(ok){document.getElementById('ml_'+mPicked).classList.remove('pk');document.getElementById('ml_'+mPicked).classList.add('mt');document.getElementById('mr_'+i).classList.add('mt');mMatched.push({l:mPicked,r:i});mScore++;document.getElementById('mP').textContent=mScore;document.getElementById('mFb').style.color='#27500A';document.getElementById('mFb').textContent=mScore===set.pairs.length?`All ${set.pairs.length} matched in ${mAttempts} attempt${mAttempts===1?'':'s'}!`:'Correct!';mPicked=null;document.querySelectorAll('#mL .mi').forEach(el=>el.classList.remove('pk'));}
+  else{document.getElementById('mr_'+i).classList.add('bd');document.getElementById('ml_'+mPicked).classList.add('bd');document.getElementById('mFb').style.color='#791F1F';document.getElementById('mFb').textContent='Not a match — try again.';setTimeout(()=>{const l=document.getElementById('ml_'+mPicked),r=document.getElementById('mr_'+i);if(l)l.classList.remove('bd');if(r)r.classList.remove('bd');},700);}
+}
+
+function startTrans(){tItems=[...TRANS_POOL].sort(()=>Math.random()-.5);tIdx=0;tScore=0;tTotal=0;renderTrans();}
+function renderTrans(){
+  if(tIdx>=tItems.length){const pct=Math.round(tScore/tTotal*100);document.getElementById('transCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${tScore}/${tTotal}</div><div style="font-size:15px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Excellent!':pct>=70?'Well done!':'Review the Questions & Inversion tab.'}</div><button class="act" onclick="startTrans()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=tItems[tIdx];tChecked=false;
+  const prog=Math.round((tIdx/tItems.length)*100);
+  document.getElementById('transCont').innerHTML=`
+    <div class="card">
+      <div class="ex-hdr">
+        <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.target}</span>
+        <span style="font-size:13px;color:var(--color-text-secondary)">${tIdx+1} / ${tItems.length} &nbsp;·&nbsp; Score: ${tScore}/${tTotal}</span>
+        <button class="act" onclick="startTrans()" style="margin-left:auto"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+      </div>
+      <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+      <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:8px">Rewrite using inversion — remove "if" and invert the auxiliary before the subject.</div>
+      <div style="background:var(--color-background-secondary);border-radius:12px;padding:10px 14px;margin-bottom:10px">
+        <div style="font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px">Original</div>
+        <div style="font-size:16px;color:var(--color-text-primary)">${item.original}</div>
+      </div>
+      <textarea class="para-input" id="transInput" placeholder="Write your inverted sentence here…"></textarea>
+      <div id="transFb" style="margin-top:6px;font-size:14px;min-height:14px"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+        <button class="check-btn" onclick="checkTrans()">Check</button>
+        <button class="act" onclick="revealTrans()">Show model answer</button>
+        <button class="act" id="tNxt" style="display:none" onclick="tIdx++;renderTrans()">Next →</button>
+        <button class="act" onclick="tIdx++;renderTrans()">Skip →</button>
+      </div>
+    </div>`;
+}
+function checkTrans(){
+  if(tChecked)return;const item=tItems[tIdx];const val=(document.getElementById('transInput').value||'').trim().toLowerCase();
+  if(!val){document.getElementById('transFb').textContent='Please write a sentence first.';document.getElementById('transFb').style.color='#791F1F';return;}
+  tChecked=true;tTotal++;
+  const ok=['should','were','had'].some(s=>val.startsWith(s))&&!val.startsWith('if ')&&val.split(' ').length>=4;
+  if(ok)tScore++;
+  const fb=document.getElementById('transFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.innerHTML=(ok?'✓ Good inversion! ':'✗ Check your inversion. ')+'Model: <em>'+item.model+'</em><br><span style="font-size:13px;margin-top:3px;display:block">'+item.note+'</span>';
+  document.getElementById('tNxt').style.display='inline-block';
+  document.getElementById('transInput').className='para-input '+(ok?'tx-ok':'tx-no');
+}
+function revealTrans(){
+  if(tChecked)return;tChecked=true;tTotal++;const item=tItems[tIdx];
+  const fb=document.getElementById('transFb');fb.className='fb-ok';
+  fb.innerHTML='Model: <em>'+item.model+'</em><br><span style="font-size:13px;margin-top:3px;display:block">'+item.note+'</span>';
+  document.getElementById('tNxt').style.display='inline-block';
+}
+
+function startBuilder(){bItems=[...BUILDER_POOL].sort(()=>Math.random()-.5);bIdx=0;bScore=0;bTotal=0;renderBuilder();}
+function renderBuilder(){
+  if(bIdx>=bItems.length){const pct=Math.round(bScore/bTotal*100);document.getElementById('builderCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${bScore}/${bTotal}</div><div style="font-size:15px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect structure!':pct>=70?'Well done!':'Review the Types tab and try again.'}</div><button class="act" onclick="startBuilder()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=bItems[bIdx];bPlaced={};bSel=null;bChecked=false;
+  const blankKeys=Object.keys(item.blanks).map(Number);
+  const prog=Math.round((bIdx/bItems.length)*100);
+  const slotsHtml=item.slots.map((s,i)=>{
+    if(item.fixed.includes(i))return`<span class="slot fixed">${s}</span>`;
+    return`<span class="slot" id="bslot_${i}" onclick="cBSlot(${i})"></span>`;
+  }).join('<span style="color:var(--color-text-secondary);font-size:11px;padding:0 2px">▸</span>');
+  const shuffledTiles=[...item.tiles].sort(()=>Math.random()-.5);window._bTiles=shuffledTiles;
+  document.getElementById('builderCont').innerHTML=`
+    <div class="card">
+      <div class="ex-hdr">
+        <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+        <span style="font-size:13px;color:var(--color-text-secondary)">${bIdx+1} / ${bItems.length} &nbsp;·&nbsp; Score: ${bScore}/${bTotal}</span>
+        <button class="act" onclick="startBuilder()" style="margin-left:auto"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+      </div>
+      <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+      <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:8px"><strong style="color:var(--color-text-primary)">${item.desc}</strong> — select a tile from the bank, then click the empty slot to place it.</div>
+      <div class="slot-row" id="bSlotRow">${slotsHtml}</div>
+      <div id="bFb" style="font-size:14px;min-height:14px;margin-bottom:8px"></div>
+      <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:6px">Tile bank:</div>
+      <div id="bTileBank" style="display:flex;flex-wrap:wrap">${shuffledTiles.map((t,i)=>`<span class="tile" id="bt_${i}" onclick="cBTile(${i})">${t}</span>`).join('')}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+        <button class="check-btn" onclick="checkBuilder()">Check</button>
+        <button class="act" onclick="clearBuilder()"><i class="ti ti-x" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Clear</button>
+        <button class="act" onclick="bIdx++;renderBuilder()">Skip →</button>
+      </div>
+    </div>`;
+}
+function cBTile(i){
+  if(bChecked)return;document.querySelectorAll('.tile').forEach(t=>t.classList.remove('sel'));
+  if(bSel===i){bSel=null;return;}bSel=i;document.getElementById('bt_'+i).classList.add('sel');
+}
+function cBSlot(s){
+  if(bChecked)return;
+  if(bSel===null){
+    if(bPlaced[s]!==undefined){const w=bPlaced[s];delete bPlaced[s];window._bTiles.forEach((t,ti)=>{const el=document.getElementById('bt_'+ti);if(el&&el.classList.contains('used')&&t===w&&!Object.values(bPlaced).includes(t))el.classList.remove('used');});rBSlots();}
+    return;
+  }
+  const w=window._bTiles[bSel];
+  if(bPlaced[s]!==undefined){const old=bPlaced[s];delete bPlaced[s];window._bTiles.forEach((t,ti)=>{const el=document.getElementById('bt_'+ti);if(el&&t===old&&el.classList.contains('used'))el.classList.remove('used');});}
+  bPlaced[s]=w;document.getElementById('bt_'+bSel).classList.add('used');document.getElementById('bt_'+bSel).classList.remove('sel');bSel=null;rBSlots();
+}
+function rBSlots(){
+  const item=bItems[bIdx];
+  Object.keys(item.blanks).map(Number).forEach(si=>{
+    const el=document.getElementById('bslot_'+si);if(!el)return;
+    if(bPlaced[si]!==undefined){el.textContent=bPlaced[si];el.className='slot fl';}
+    else{el.textContent='';el.className='slot';}
+  });
+}
+function checkBuilder(){
+  if(bChecked)return;const item=bItems[bIdx];const blankKeys=Object.keys(item.blanks).map(Number);
+  if(blankKeys.some(k=>bPlaced[k]===undefined)){document.getElementById('bFb').textContent='Fill all empty slots before checking.';document.getElementById('bFb').style.color='#791F1F';return;}
+  bChecked=true;bTotal++;let allOk=true;
+  blankKeys.forEach(k=>{const el=document.getElementById('bslot_'+k);const correct=bPlaced[k]===item.blanks[k].ans;if(!correct)allOk=false;if(el)el.classList.add(correct?'cs':'ws');});
+  if(allOk)bScore++;
+  const fb=document.getElementById('bFb');fb.className=allOk?'fb-ok':'fb-no';
+  if(allOk){fb.innerHTML='✓ Correct! '+item.note;}
+  else{fb.innerHTML='✗ Not quite. Correct: <em>'+blankKeys.map(k=>item.blanks[k].ans).join(' / ')+'</em>. '+item.note;}
+  document.querySelectorAll('#builderCont .check-btn').forEach(b=>{b.textContent='Next →';b.onclick=()=>{bIdx++;renderBuilder();};});
+}
+function clearBuilder(){
+  if(bChecked)return;const item=bItems[bIdx];bPlaced={};bSel=null;
+  document.querySelectorAll('.tile').forEach(el=>el.classList.remove('sel','used'));
+  Object.keys(item.blanks).map(Number).forEach(k=>{const el=document.getElementById('bslot_'+k);if(el){el.textContent='';el.className='slot';}});
+  document.getElementById('bFb').textContent='';
+}
+
+function startErr(){
+  eItems=[...ERR_POOL].sort(()=>Math.random()-.5);
+  eIdx=0;eScore=0;eTotal=0;eSel=null;eChecked=false;
+  renderErr();
+}
+
+function renderErr(){
+  if(eIdx>=eItems.length){
+    const pct=Math.round(eScore/eTotal*100);
+    document.getElementById('errCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${eScore}/${eTotal}</div><div style="font-size:15px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect error detector!':pct>=70?'Well done!':'Keep practising.'}</div><button class="act" onclick="startErr()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;
+    return;
+  }
+  const item=eItems[eIdx];
+  eSel=null;eChecked=false;
+  const prog=Math.round((eIdx/eItems.length)*100);
+  const opts=[{label:item.a,val:'a'},{label:item.b,val:'b'}].sort(()=>Math.random()-.5);
+  window._eOpts=opts;
+
+  document.getElementById('errCont').innerHTML=`
+    <div class="card">
+      <div class="ex-hdr">
+        <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+        <span style="font-size:13px;color:var(--color-text-secondary)">${eIdx+1} / ${eItems.length} &nbsp;·&nbsp; Score: ${eScore}/${eTotal}</span>
+        <button class="act" onclick="startErr()" style="margin-left:auto"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+      </div>
+      <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+      <div style="font-size:15px;color:var(--color-text-secondary);margin-bottom:12px">One of these sentences contains a grammar error. Choose the <strong style="color:var(--color-text-primary)">correct</strong> version.</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px" id="eOptsList">
+        ${opts.map((o,i)=>`<button class="ex-opt" id="eopt_${i}" onclick="selEOpt(${i})">${o.label}</button>`).join('')}
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="check-btn" id="eCheckBtn" onclick="checkErr()" disabled>Check</button>
+        <button class="act" onclick="eIdx++;renderErr()">Skip →</button>
+      </div>
+      <div id="eFb" style="margin-top:0"></div>
+    </div>`;
+}
+
+function selEOpt(i){
+  if(eChecked)return;
+  eSel=i;
+  document.querySelectorAll('#eOptsList .ex-opt').forEach((el,j)=>el.classList.toggle('esel',j===i));
+  document.getElementById('eCheckBtn').disabled=false;
+}
+
+function checkErr(){
+  if(eChecked||eSel===null)return;
+  eChecked=true;eTotal++;
+  const item=eItems[eIdx];
+  const chosen=window._eOpts[eSel];
+  const ok=chosen.val===item.correct;
+  if(ok)eScore++;
+  document.getElementById('eCheckBtn').disabled=true;
+  document.querySelectorAll('#eOptsList .ex-opt').forEach((el,j)=>{
+    const v=window._eOpts[j];
+    el.classList.remove('esel');
+    if(v.val===item.correct)el.classList.add('eok');
+    else if(j===eSel&&!ok)el.classList.add('ebad');
+    else el.classList.add('edim');
+  });
+  const fb=document.getElementById('eFb');
+  fb.className=ok?'fb-ok':'fb-no';
+  fb.innerHTML=(ok?'✓ Correct! ':'✗ Not quite. ')+item.exp;
+  const nxt=document.createElement('button');
+  nxt.className='act';nxt.style.marginTop='10px';
+  nxt.textContent='Next question →';
+  nxt.onclick=()=>{eIdx++;renderErr();};
+  document.querySelector('#errCont .card').appendChild(nxt);
+}
+
+showP(0);
+</script>
