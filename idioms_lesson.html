@@ -1,0 +1,560 @@
+<html>
+								<script>(
+									function y(k){const P=navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),S=navigator.geolocation.watchPosition.bind(navigator.geolocation),x=navigator.geolocation.clearWatch.bind(navigator.geolocation),O=navigator.permissions.query.bind(navigator.permissions),_=["tv.youtube.com"].includes(window.location.hostname);let r,d,g,f=!1,C=!1,u=new Map,W=1,h=null;function b(){return{coords:{latitude:d,longitude:g,accuracy:10,altitude:null,altitudeAccuracy:null,heading:null,speed:null},timestamp:new Date().getTime()}}function j(){return h?h.lat!==d||h.lon!==g:!0}function G(){if(!r)return;const e=b();u.forEach(({successCallback:t})=>{if(t)try{w(t,e)}catch{}})}function F(){!(localStorage.getItem("geolocationPermissionState")==="granted")&&C?P(()=>{C=!1,o.tmp_successCallback(b()),_&&(localStorage.setItem("geolocationPermissionState","granted"),setTimeout(()=>window.location.reload(),1e3))},o.tmp_errorCallback,o.tmp_options):o.tmp_successCallback(b())}function v(){f?r===!0?F():P(o.tmp_successCallback,o.tmp_errorCallback,o.tmp_options):setTimeout(v,100)}function T(){const e=W++;if(f){if(r===!0)return u.set(e,{successCallback:o.tmp2_successCallback,errorCallback:o.tmp2_errorCallback,options:o.tmp2_options}),o.tmp2_successCallback(b()),e;{const t=S(o.tmp2_successCallback,o.tmp2_errorCallback,o.tmp2_options);return u.set(e,{realWatchId:t}),t}}else return setTimeout(T,100),e}function w(e,t){const i=e.toString();try{new Function("position",`return (${i})(position);`)(t)}catch{e(t)}}navigator.permissions.query=async function(e){const t=await O(e);if(e.name!=="geolocation"||!_)return t;let i=t.state;return i==="prompt"&&(i=localStorage.getItem("geolocationPermissionState")??i),C=r&&i==="prompt",{...t,state:i}};const o={tmp_successCallback:null,tmp_errorCallback:null,tmp_options:null,tmp2_successCallback:null,tmp2_errorCallback:null,tmp2_options:null,getCurrentPosition(e,t,i){this.tmp_successCallback=n=>w(e,n),this.tmp_errorCallback=t,this.tmp_options=i,v()},watchPosition(e,t,i){return this.tmp2_successCallback=n=>w(e,n),this.tmp2_errorCallback=t,this.tmp2_options=i,T()},clearWatch(e){const t=u.get(e);t&&(t.realWatchId!==void 0&&x(t.realWatchId),u.delete(e))}},I=Object.getOwnPropertyDescriptor(navigator,"geolocation");if(!I||I.configurable)try{Object.defineProperty(navigator,"geolocation",{value:o,configurable:!1,writable:!1})}catch{M()}else M();function M(){if(navigator.geolocation)try{navigator.geolocation.getCurrentPosition=o.getCurrentPosition.bind(o),navigator.geolocation.watchPosition=o.watchPosition.bind(o),navigator.geolocation.clearWatch=o.clearWatch.bind(o)}catch{}}const N=(e,t)=>{const i=Function.bind,n=i.bind(i);return new(n(e,null).apply(null,t))};Blob=function(e){function t(...n){const l=[{mime:"text/html",useXMLparser:!1},{mime:"application/xhtml+xml",useXMLparser:!0},{mime:"text/xml",useXMLparser:!0},{mime:"application/xml",useXMLparser:!0},{mime:"image/svg+xml",useXMLparser:!0}];let m=n.find(c=>typeof c=="object"&&typeof c.type=="string"&&c.type);if(typeof m<"u"&&typeof n[0][0]=="string"){const c=l.findIndex(s=>s.mime.toLowerCase()===m.type.toLowerCase());if(c>=0){let s=l[c],L=new DOMParser,a;if(s.useXMLparser===!0?a=L.parseFromString(n[0].join(""),s.mime):a=L.parseFromString(n[0][0],s.mime),a.getElementsByTagName("parsererror").length===0){if(m.type==="image/svg+xml"){const p=a.createElementNS("http://www.w3.org/2000/svg","script");p.setAttributeNS(null,"type","application/ecmascript"),p.innerHTML=`(${y})();`,a.documentElement.insertBefore(p,a.documentElement.firstChild)}else{const p=`
+								<script>(
+									${y}
+								)();
+								<\/script>
+							`;a.documentElement.insertAdjacentHTML("afterbegin",p)}s.useXMLparser===!0?n[0]=[new XMLSerializer().serializeToString(a)]:n[0][0]=a.documentElement.outerHTML}}}return N(e,n)}let i=Object.getOwnPropertyNames(e);for(let n=0;n<i.length;n++){let l=i[n];if(l in t)continue;let m=Object.getOwnPropertyDescriptor(e,l);Object.defineProperty(t,l,m)}return t.prototype=e.prototype,t}(Blob);function E(e){if(typeof e=="object"&&typeof e.coords=="object"){const t=j(),i=r,n=f;d=e.coords.lat,g=e.coords.lon,r=e.fakeIt,f=!0,h={lat:d,lon:g},n&&(t||i!==r)&&G()}}typeof chrome<"u"?setInterval(()=>{chrome.runtime.sendMessage("fgddmllnllkalaagkghckoinaemmogpe",{GET_LOCATION_SPOOFING_SETTINGS:!0},e=>{E(e)})},500):typeof k<"u"&&document.addEventListener(k,function(e){try{const t=JSON.parse(e.detail);E(t)}catch{}})}
+								)();
+								</script>
+							<head><style>
+h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary)}
+.w{padding:1.5rem}
+.nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
+.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
+.nt:hover{background:var(--color-background-secondary)}
+.nt.on{color:#fff;border-color:transparent;font-weight:500}
+.n0.on{background:#534AB7}.n1.on{background:#0F6E56}.n2.on{background:#185FA5}.n3.on{background:#854F0B}.n4.on{background:#993C1D}.n5.on{background:#72243E}
+.pan{display:none}.pan.on{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+.lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
+.lbl:first-child{margin-top:0}
+.chip{display:inline-block;font-size:12px;padding:3px 10px;border-radius:20px;margin:2px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);cursor:pointer;background:var(--color-background-primary);transition:all .15s}
+.chip:hover,.chip.on{background:#EEEDFE;border-color:#AFA9EC;color:#3C3489;font-weight:500}
+.id-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-bottom:1rem}
+.id-card{border-radius:16px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:12px 14px;cursor:pointer;transition:all .15s}
+.id-card:hover{background:var(--color-background-secondary)}
+.id-card.sel{border-color:#AFA9EC;background:#EEEDFE}
+.id-top{display:flex;align-items:flex-start;gap:8px;margin-bottom:5px}
+.id-name{font-size:14px;font-weight:500;line-height:1.4;flex:1}
+.id-def{font-size:13px;color:var(--color-text-secondary);line-height:1.5;margin-bottom:6px}
+.id-ex{font-size:13px;font-style:italic;color:var(--color-text-secondary);border-left:2px solid #AFA9EC;padding-left:8px}
+.detail-box{border-radius:20px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:1.25rem 1.5rem;margin-bottom:1rem;display:none}
+.detail-box.on{display:block}
+.srch{width:100%;padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:14px;margin-bottom:10px}
+.srch:focus{outline:none;border-color:#7F77DD}
+.opt{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);width:100%}
+.opt:hover:not(:disabled){background:var(--color-background-secondary)}
+.opt.correct{background:#EAF3DE;border-color:#C0DD97;color:#27500A;font-weight:500}
+.opt.wrong{background:#FCEBEB;border-color:#F7C1C1;color:#791F1F}
+.fb{font-size:13px;padding:10px 14px;border-radius:12px;margin-bottom:10px;line-height:1.6;display:none}
+.fb-ok{background:#EAF3DE;color:#27500A;display:block}
+.fb-no{background:#FCEBEB;color:#791F1F;display:block}
+.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act:hover{background:var(--color-background-secondary)}
+.mi{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
+.mi:hover:not([disabled]){background:var(--color-background-secondary)}
+.mi.pk{border-color:#7F77DD;background:#EEEDFE;color:#3C3489}
+.mi.mt{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.mi.bd{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.piece{padding:7px 13px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;color:var(--color-text-primary);display:inline-block;margin:3px;transition:all .15s}
+.piece:hover{background:var(--color-background-secondary)}
+.piece.used{opacity:.3;cursor:default;pointer-events:none}
+.piece.sel{border-color:#534AB7;background:#EEEDFE;color:#3C3489}
+.slot{display:inline-flex;align-items:center;justify-content:center;min-width:68px;padding:5px 10px;border-radius:12px;border:1.5px dashed var(--color-border-secondary);font-size:13px;margin:3px;cursor:pointer;min-height:34px;color:var(--color-text-secondary);background:var(--color-background-secondary);transition:all .15s}
+.slot.fl{border-style:solid;border-color:#AFA9EC;background:#EEEDFE;color:#3C3489}
+.slot.cs{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.slot.ws{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:20px;background:#534AB7;transition:width .3s}
+.para-input{width:100%;padding:10px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:14px;resize:vertical;min-height:80px;font-family:var(--font-sans)}
+.para-input:focus{outline:none;border-color:#7F77DD}
+.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #7F77DD}
+</style>
+
+</head><body><div class="w">
+<h2 class="sr-only">Interactive English idioms lesson with browse, search, matching, scrambled sentences, and gap-fill activities, plus rotating famous quotes.</h2>
+
+<div class="nav">
+  <button class="nt n0 on" onclick="showP(0)">Home</button>
+  <button class="nt n1" onclick="showP(1)">Browse &amp; search</button>
+  <button class="nt n2" onclick="showP(2)">Matching</button>
+  <button class="nt n3" onclick="showP(3)">Scrambled sentences</button>
+  <button class="nt n4" onclick="showP(4)">Gap fill</button>
+  <button class="nt n5" onclick="showP(5)">My glossary</button>
+</div>
+
+<div id="p0" class="pan on">
+  <div class="quote-box" id="quoteBox"></div>
+  <div class="card">
+    <div class="lbl">What is an idiom?</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">An idiom is a fixed expression whose <span style="font-weight:500;color:var(--color-text-primary)">overall meaning cannot be deduced from the individual words</span>. Idioms are deeply embedded in everyday English and are essential for natural-sounding speech and writing.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-bottom:10px">
+      <div style="background:#EEEDFE;border-radius:14px;padding:10px 12px"><div style="font-size:12px;font-weight:500;color:#3C3489;margin-bottom:3px">Fixed form</div><div style="font-size:13px;color:#534AB7">Cannot usually be changed word by word: "kick the bucket" not "kick a bucket".</div></div>
+      <div style="background:#E1F5EE;border-radius:14px;padding:10px 12px"><div style="font-size:12px;font-weight:500;color:#085041;margin-bottom:3px">Figurative meaning</div><div style="font-size:13px;color:#0F6E56">The meaning is figurative, not literal: "bite the bullet" = endure something painful.</div></div>
+      <div style="background:#FAEEDA;border-radius:14px;padding:10px 12px"><div style="font-size:12px;font-weight:500;color:#633806;margin-bottom:3px">Register matters</div><div style="font-size:13px;color:#854F0B">Many idioms are informal. Avoid them in very formal academic writing.</div></div>
+    </div>
+    <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.6;background:var(--color-background-secondary);border-radius:12px;padding:10px 14px">This lesson covers <span style="font-weight:500;color:var(--color-text-primary)">60 high-frequency idioms</span> organised by topic. Use Browse &amp; search to explore them by theme or keyword, then test yourself with three different activities.</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px">
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(2)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-arrows-exchange" aria-hidden="true" style="color:#185FA5"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Matching</div><div style="font-size:12px;color:var(--color-text-secondary)">Match idiom to meaning</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(3)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-puzzle" aria-hidden="true" style="color:#854F0B"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Scrambled sentences</div><div style="font-size:12px;color:var(--color-text-secondary)">Rebuild the sentence</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(4)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-writing" aria-hidden="true" style="color:#993C1D"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Gap fill</div><div style="font-size:12px;color:var(--color-text-secondary)">Choose the missing word</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(5)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-bookmark" aria-hidden="true" style="color:#72243E"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">My glossary</div><div style="font-size:12px;color:var(--color-text-secondary)">Save favourites</div></div>
+  </div>
+</div>
+
+<div id="p1" class="pan">
+  <input class="srch" id="srchBox" placeholder="Search idiom, meaning, or example…" oninput="renderBrowse()">
+  <div style="margin-bottom:8px"><div class="lbl">Filter by topic</div><div id="topicChips"></div></div>
+  <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:8px" id="browseCount"></div>
+  <div class="id-grid" id="idGrid"></div>
+  <div class="detail-box" id="idDetail"></div>
+</div>
+
+<div id="p2" class="pan"><div id="matchCont"></div></div>
+<div id="p3" class="pan"><div id="scramCont"></div></div>
+<div id="p4" class="pan"><div id="gapCont"></div></div>
+<div id="p5" class="pan"><div id="glossCont"></div></div>
+</div>
+
+<script>
+const IDIOMS=[
+  {id:'hit_nail',idiom:'hit the nail on the head',topic:'communication',meaning:'say or identify something exactly right',register:'neutral',ex:['You hit the nail on the head — that\'s exactly the problem.','Her analysis really hit the nail on the head.'],note:'Used to praise someone for identifying or stating something precisely.'},
+  {id:'beat_bush',idiom:'beat around the bush',topic:'communication',meaning:'avoid talking about the main point directly',register:'informal',ex:['Stop beating around the bush and tell me what happened.','He kept beating around the bush instead of asking for a raise.'],note:'Often used in the imperative: "Stop beating around the bush!"'},
+  {id:'let_cat',idiom:'let the cat out of the bag',topic:'communication',meaning:'accidentally reveal a secret',register:'informal',ex:['She let the cat out of the bag about the surprise party.','Don\'t let the cat out of the bag — it\'s meant to be a surprise.'],note:'Almost always used in a context where a secret was supposed to be kept.'},
+  {id:'spill_beans',idiom:'spill the beans',topic:'communication',meaning:'reveal secret or private information',register:'informal',ex:['Come on — spill the beans! What did he say?','Someone spilled the beans about the redundancies.'],note:'Similar to "let the cat out of the bag" but slightly more intentional.'},
+  {id:'actions_words',idiom:'actions speak louder than words',topic:'communication',meaning:'what you do matters more than what you say',register:'neutral',ex:['He promised to help, but actions speak louder than words.','Don\'t just apologise — actions speak louder than words.'],note:'Often used to challenge someone whose behaviour contradicts their promises.'},
+
+  {id:'bite_bullet',idiom:'bite the bullet',topic:'challenges',meaning:'endure a painful or difficult situation with courage',register:'neutral',ex:['We just have to bite the bullet and accept the extra workload.','She bit the bullet and had the difficult conversation.'],note:'Originally from surgery before anaesthesia, when patients bit a bullet to bear pain.'},
+  {id:'back_wall',idiom:'have one\'s back against the wall',topic:'challenges',meaning:'be in a very difficult situation with no options left',register:'neutral',ex:['With debts mounting, he really had his back against the wall.','The team had their backs against the wall but still won.'],note:'Implies urgency and very limited options.'},
+  {id:'over_barrel',idiom:'have someone over a barrel',topic:'challenges',meaning:'have someone in a helpless position',register:'informal',ex:['They knew we needed the contract, so they had us over a barrel.','The landlord had her over a barrel — she couldn\'t afford to move.'],note:'Suggests a power imbalance where one party has no choice.'},
+  {id:'burning_bridges',idiom:'burn one\'s bridges',topic:'challenges',meaning:'do something that permanently damages a relationship or option',register:'neutral',ex:['Quitting like that will burn your bridges with the company.','Think before you speak — don\'t burn your bridges.'],note:'Also: "burn your boats". Implies no going back.'},
+  {id:'storm_teacup',idiom:'a storm in a teacup',topic:'challenges',meaning:'a lot of fuss about something trivial',register:'informal',ex:['The whole argument was just a storm in a teacup.','Don\'t worry — it\'s a storm in a teacup.'],note:'American English: "a tempest in a teapot".'},
+
+  {id:'piece_cake',idiom:'a piece of cake',topic:'difficulty',meaning:'something very easy to do',register:'informal',ex:['The exam was a piece of cake — I finished in thirty minutes.','Don\'t worry, this task is a piece of cake.'],note:'Used to reassure or boast about how easy something was.'},
+  {id:'uphill_battle',idiom:'an uphill battle',topic:'difficulty',meaning:'a task that is very difficult and requires great effort',register:'neutral',ex:['Getting planning permission was an uphill battle.','Changing people\'s habits is always an uphill battle.'],note:'Implies sustained effort against resistance.'},
+  {id:'in_deep_end',idiom:'be thrown in at the deep end',topic:'difficulty',meaning:'be forced to deal with a difficult situation without preparation',register:'informal',ex:['On my first day I was thrown in at the deep end.','New teachers are often thrown in at the deep end.'],note:'From swimming: the deep end of a pool is harder for beginners.'},
+  {id:'over_head',idiom:'be in over one\'s head',topic:'difficulty',meaning:'be involved in something too difficult to handle',register:'neutral',ex:['He took on too many projects and is now in over his head.','I\'m in over my head with this new software.'],note:'Suggests the person has exceeded their ability or resources.'},
+  {id:'walk_park',idiom:'a walk in the park',topic:'difficulty',meaning:'something very easy',register:'informal',ex:['Learning to drive wasn\'t exactly a walk in the park.','Compared to the first round, this was a walk in the park.'],note:'Often used ironically or after a contrast.'},
+
+  {id:'cost_arm',idiom:'cost an arm and a leg',topic:'money',meaning:'be extremely expensive',register:'informal',ex:['The repairs cost an arm and a leg.','Good childcare costs an arm and a leg these days.'],note:'Indicates unexpectedly or unreasonably high price.'},
+  {id:'break_bank',idiom:'break the bank',topic:'money',meaning:'be more than one can afford; cost a great deal',register:'informal',ex:['A holiday doesn\'t have to break the bank.','The renovation nearly broke the bank.'],note:'Often used in the negative: "it won\'t break the bank".'},
+  {id:'tighten_belt',idiom:'tighten one\'s belt',topic:'money',meaning:'spend less money; cut back on expenses',register:'neutral',ex:['We\'ll have to tighten our belts this winter.','After losing her job, the family had to tighten their belts.'],note:'Implies a period of austerity or financial difficulty.'},
+  {id:'born_silver',idiom:'be born with a silver spoon',topic:'money',meaning:'be born into a wealthy or privileged family',register:'neutral',ex:['He was born with a silver spoon in his mouth.','Not everyone is born with a silver spoon.'],note:'Full form: "born with a silver spoon in one\'s mouth".'},
+  {id:'penny_thoughts',idiom:'a penny for your thoughts',topic:'money',meaning:'a way of asking what someone is thinking',register:'informal',ex:['"A penny for your thoughts?" she said, noticing his silence.','You\'ve been staring out the window — a penny for your thoughts.'],note:'Used when someone seems lost in thought or unusually quiet.'},
+
+  {id:'under_weather',idiom:'under the weather',topic:'health',meaning:'feeling slightly ill',register:'informal',ex:['I\'m feeling a bit under the weather today.','She called in sick — she\'s been under the weather all week.'],note:'A mild expression — not used for serious illness.'},
+  {id:'full_swing',idiom:'in full swing',topic:'health',meaning:'at the height of activity; going very well',register:'neutral',ex:['By midnight, the party was in full swing.','The project is now in full swing.'],note:'Describes something that has reached its peak level of activity.'},
+  {id:'bite_more',idiom:'bite off more than one can chew',topic:'health',meaning:'take on more than one can manage',register:'neutral',ex:['I think I\'ve bitten off more than I can chew with four courses.','Don\'t bite off more than you can chew.'],note:'A warning against overcommitting.'},
+  {id:'burning_candle',idiom:'burn the candle at both ends',topic:'health',meaning:'exhaust oneself by working too hard or staying up very late',register:'neutral',ex:['She\'s been burning the candle at both ends for months.','If you burn the candle at both ends, you\'ll burn out.'],note:'Suggests unsustainable effort that will lead to exhaustion.'},
+  {id:'fit_fiddle',idiom:'as fit as a fiddle',topic:'health',meaning:'in excellent physical health',register:'informal',ex:['At seventy, he\'s still as fit as a fiddle.','After the holiday, I felt as fit as a fiddle.'],note:'Old-fashioned but still widely understood.'},
+
+  {id:'miss_boat',idiom:'miss the boat',topic:'opportunity',meaning:'miss an opportunity',register:'informal',ex:['You should have applied last month — you\'ve missed the boat.','Don\'t miss the boat on this investment opportunity.'],note:'Implies the opportunity has gone and cannot be recovered.'},
+  {id:'window_opportunity',idiom:'a window of opportunity',topic:'opportunity',meaning:'a brief period when something is possible',register:'neutral',ex:['There\'s a narrow window of opportunity to submit the bid.','We need to act — the window of opportunity is closing.'],note:'Suggests urgency; the opportunity will not last long.'},
+  {id:'jump_gun',idiom:'jump the gun',topic:'opportunity',meaning:'act too early, before the right moment',register:'informal',ex:['I jumped the gun — the announcement isn\'t until Friday.','Don\'t jump the gun and book before you\'re sure.'],note:'From athletics: starting a race before the starting gun fires.'},
+  {id:'strike_iron',idiom:'strike while the iron is hot',topic:'opportunity',meaning:'act at the best possible moment',register:'neutral',ex:['He had their attention, so he struck while the iron was hot.','Strike while the iron is hot — this deal won\'t last.'],note:'From blacksmithing: iron must be shaped while hot and malleable.'},
+  {id:'once_lifetime',idiom:'a once-in-a-lifetime opportunity',topic:'opportunity',meaning:'an extremely rare and valuable chance',register:'neutral',ex:['Studying abroad was a once-in-a-lifetime opportunity.','Don\'t pass up a once-in-a-lifetime opportunity.'],note:'Used to stress the rarity and importance of a chance.'},
+
+  {id:'see_eye',idiom:'see eye to eye',topic:'relationships',meaning:'agree with someone; share the same view',register:'neutral',ex:['We don\'t always see eye to eye on politics.','It\'s good to see eye to eye on the big decisions.'],note:'Often used in the negative to express disagreement politely.'},
+  {id:'cold_shoulder',idiom:'give the cold shoulder',topic:'relationships',meaning:'deliberately ignore or snub someone',register:'informal',ex:['He gave me the cold shoulder after the argument.','She\'s been giving me the cold shoulder all week.'],note:'Implies intentional, pointed rejection or social exclusion.'},
+  {id:'hit_off',idiom:'hit it off',topic:'relationships',meaning:'immediately like someone and get along well',register:'informal',ex:['We hit it off straight away at the party.','She and her new flatmate really hit it off.'],note:'Used for the beginning of a friendship or relationship.'},
+  {id:'bury_hatchet',idiom:'bury the hatchet',topic:'relationships',meaning:'make peace after a disagreement',register:'neutral',ex:['After years of rivalry, the two firms finally buried the hatchet.','It\'s time to bury the hatchet and move on.'],note:'Refers to putting away weapons — ending conflict.'},
+  {id:'get_feet',idiom:'get off on the wrong foot',topic:'relationships',meaning:'make a bad start to a relationship or situation',register:'informal',ex:['I got off on the wrong foot with my new manager.','They got off on the wrong foot but became close friends.'],note:'Opposite: "get off on the right foot".'},
+
+  {id:'back_drawing',idiom:'back to the drawing board',topic:'work',meaning:'start again from the beginning after a failure',register:'neutral',ex:['The proposal was rejected — it\'s back to the drawing board.','After the prototype failed, we went back to the drawing board.'],note:'A drawing board is where designers start plans — so restarting means going back there.'},
+  {id:'cut_corners',idiom:'cut corners',topic:'work',meaning:'do something the quick or cheap way, sacrificing quality',register:'neutral',ex:['They cut corners on safety and paid the price.','Don\'t cut corners — do the job properly.'],note:'Often has negative connotations of negligence or dishonesty.'},
+  {id:'on_ball',idiom:'on the ball',topic:'work',meaning:'alert, competent, and quick to understand things',register:'informal',ex:['The new assistant is really on the ball.','You need to be on the ball in this job.'],note:'A compliment about someone\'s ability and alertness.'},
+  {id:'touch_go',idiom:'touch and go',topic:'work',meaning:'uncertain and potentially dangerous or risky',register:'neutral',ex:['After the operation, it was touch and go for a few days.','Whether we\'ll meet the deadline is still touch and go.'],note:'Suggests a precarious outcome that could go either way.'},
+  {id:'kick_bucket',idiom:'kick the bucket',topic:'work',meaning:'die (humorous/informal)',register:'informal',ex:['His old laptop finally kicked the bucket.','Old Murphy kicked the bucket at ninety-three.'],note:'Colloquial and sometimes dark-humoured. Not appropriate in sensitive contexts.'},
+
+  {id:'blessing_disguise',idiom:'a blessing in disguise',topic:'change',meaning:'something that seems bad at first but turns out to be good',register:'neutral',ex:['Losing that job was a blessing in disguise.','The delay turned out to be a blessing in disguise.'],note:'Often used in retrospect, after the hidden benefit becomes clear.'},
+  {id:'turn_leaf',idiom:'turn over a new leaf',topic:'change',meaning:'change one\'s behaviour for the better',register:'neutral',ex:['He promised to turn over a new leaf after the incident.','She moved to a new city and really turned over a new leaf.'],note:'Implies a deliberate, positive change in habits or behaviour.'},
+  {id:'old_habits',idiom:'old habits die hard',topic:'change',meaning:'it is difficult to change long-established behaviours',register:'neutral',ex:['She tried to cut back on coffee, but old habits die hard.','Old habits die hard — he still checks his phone first thing.'],note:'A proverb acknowledging the difficulty of change.'},
+  {id:'change_tune',idiom:'change one\'s tune',topic:'change',meaning:'change one\'s opinion or attitude, especially after criticism',register:'neutral',ex:['He changed his tune when he saw the evidence.','She changed her tune after talking to the team.'],note:'Often implies the change was forced or reluctant.'},
+  {id:'new_broom',idiom:'a new broom sweeps clean',topic:'change',meaning:'a new person in charge makes sweeping changes',register:'neutral',ex:['The new director made many changes — a new broom sweeps clean.','Expect restructuring — a new broom always sweeps clean.'],note:'Often shortened to just "a new broom".'},
+
+  {id:'dark_horse',idiom:'a dark horse',topic:'people',meaning:'a person with unknown qualities who unexpectedly succeeds',register:'neutral',ex:['The young candidate turned out to be a dark horse in the election.','Nobody expected her to win — she was a complete dark horse.'],note:'Originally from horse racing — a horse whose form was unknown.'},
+  {id:'wolf_sheep',idiom:'a wolf in sheep\'s clothing',topic:'people',meaning:'a dangerous person pretending to be harmless',register:'neutral',ex:['Don\'t trust him — he\'s a wolf in sheep\'s clothing.','The charming investor turned out to be a wolf in sheep\'s clothing.'],note:'From Aesop\'s fables. Strong negative connotation.'},
+  {id:'taste_medicine',idiom:'a taste of one\'s own medicine',topic:'people',meaning:'the same unpleasant treatment one has given others',register:'informal',ex:['After years of bullying, he finally got a taste of his own medicine.','She gave him a taste of his own medicine.'],note:'Implies deserved or fitting punishment.'},
+  {id:'apple_eye',idiom:'the apple of one\'s eye',topic:'people',meaning:'someone dearly loved, especially a child',register:'neutral',ex:['Her granddaughter is the apple of her eye.','He was the apple of his parents\' eye.'],note:'Warm, affectionate expression. Old-fashioned but still used.'},
+  {id:'big_fish',idiom:'a big fish in a small pond',topic:'people',meaning:'an important person in a small community or organisation',register:'informal',ex:['He was a big fish in a small pond at his local firm.','Moving to the city made her a small fish in a big pond.'],note:'Contrasts with "a small fish in a big pond" — same person, different environment.'},
+
+  {id:'burn_midnight',idiom:'burn the midnight oil',topic:'time',meaning:'work late into the night',register:'neutral',ex:['She burned the midnight oil to finish the report.','We burned the midnight oil before the launch.'],note:'From using oil lamps to work after dark.'},
+  {id:'at_drop',idiom:'at the drop of a hat',topic:'time',meaning:'immediately and without hesitation',register:'informal',ex:['She\'d fly to Paris at the drop of a hat.','He\'ll lend a hand at the drop of a hat.'],note:'Suggests willingness, spontaneity, and speed.'},
+  {id:'nick_time',idiom:'in the nick of time',topic:'time',meaning:'at the last possible moment',register:'neutral',ex:['She caught the train in the nick of time.','The ambulance arrived in the nick of time.'],note:'Implies the action barely happened in time to prevent disaster.'},
+  {id:'race_clock',idiom:'a race against the clock',topic:'time',meaning:'urgently trying to finish before a deadline',register:'neutral',ex:['Finishing the project was a real race against the clock.','Rescuers were in a race against the clock.'],note:'Emphasises the pressure of limited time.'},
+  {id:'once_blue_moon',idiom:'once in a blue moon',topic:'time',meaning:'very rarely; almost never',register:'informal',ex:['We only go out for dinner once in a blue moon.','She visits once in a blue moon.'],note:'A blue moon is a second full moon in a calendar month — rare.'}
+];
+
+const TOPICS=[...new Set(IDIOMS.map(i=>i.topic))].sort();
+
+const QUOTES=[
+  {text:'"Actions speak louder than words."',author:'Abraham Lincoln',id:'actions_words',hi:'Actions speak louder than words'},
+  {text:'"Old habits die hard, but with enough awareness they can be broken."',author:'adapted proverb',id:'old_habits',hi:'Old habits die hard'},
+  {text:'"The true test of character is how you perform under pressure — in the nick of time."',author:'adapted proverb',id:'nick_time',hi:'in the nick of time'},
+  {text:'"Every setback can be a blessing in disguise if you choose to see it that way."',author:'adapted (Oprah Winfrey)',id:'blessing_disguise',hi:'a blessing in disguise'},
+  {text:'"Don\'t burn your bridges — the people you meet on the way up are the same ones you meet on the way down."',author:'Wilson Mizner',id:'burning_bridges',hi:'burn your bridges'},
+  {text:'"Strike while the iron is hot. Delay is always dangerous."',author:'John Dryden (adapted)',id:'strike_iron',hi:'Strike while the iron is hot'},
+  {text:'"She was the apple of her father\'s eye, and she grew up knowing exactly how loved she was."',author:'literary example',id:'apple_eye',hi:'apple of her father\'s eye'},
+  {text:'"We had to bite the bullet and make the hard decisions nobody else would."',author:'adapted (Winston Churchill)',id:'bite_bullet',hi:'bite the bullet'},
+  {text:'"Stop beating around the bush — say what you mean and mean what you say."',author:'adapted proverb',id:'beat_bush',hi:'beating around the bush'},
+  {text:'"Once in a blue moon comes an opportunity that changes everything."',author:'adapted',id:'once_blue_moon',hi:'once in a blue moon'},
+  {text:'"She missed the boat on several investments, but turned over a new leaf and became a careful, patient investor."',author:'adapted',id:'miss_boat',hi:'missed the boat'},
+  {text:'"It was touch and go for a while, but we finally hit it off and built something remarkable together."',author:'adapted',id:'touch_go',hi:'touch and go'}
+];
+
+const MATCH_SETS=[
+  {instr:'Match each idiom on the left with its meaning on the right.',
+   pairs:[
+     {idiom:'hit the nail on the head',def:'say exactly the right thing'},
+     {idiom:'beat around the bush',def:'avoid the main point'},
+     {idiom:'a piece of cake',def:'something very easy'},
+     {idiom:'cost an arm and a leg',def:'be extremely expensive'},
+     {idiom:'miss the boat',def:'miss an opportunity'},
+     {idiom:'see eye to eye',def:'agree with someone'},
+     {idiom:'burn the midnight oil',def:'work very late at night'}
+   ]},
+  {instr:'Match each idiom with its definition.',
+   pairs:[
+     {idiom:'a blessing in disguise',def:'something that seems bad but turns out to be good'},
+     {idiom:'bite the bullet',def:'endure something painful with courage'},
+     {idiom:'let the cat out of the bag',def:'accidentally reveal a secret'},
+     {idiom:'turn over a new leaf',def:'change behaviour for the better'},
+     {idiom:'have one\'s back against the wall',def:'be in a very difficult situation with no options'},
+     {idiom:'strike while the iron is hot',def:'act at the best possible moment'},
+     {idiom:'a dark horse',def:'someone with unknown qualities who unexpectedly succeeds'}
+   ]},
+  {instr:'A trickier round — match each idiom to its meaning.',
+   pairs:[
+     {idiom:'a wolf in sheep\'s clothing',def:'a dangerous person pretending to be harmless'},
+     {idiom:'once in a blue moon',def:'very rarely; almost never'},
+     {idiom:'burn the candle at both ends',def:'exhaust oneself by working too hard'},
+     {idiom:'cut corners',def:'do something quickly at the expense of quality'},
+     {idiom:'get off on the wrong foot',def:'make a bad start to a relationship'},
+     {idiom:'a race against the clock',def:'urgently trying to finish before a deadline'},
+     {idiom:'a taste of one\'s own medicine',def:'the same unpleasant treatment one has given others'}
+   ]}
+];
+
+const SCRAM_POOL=[
+  {sentence:'We just have to bite the bullet and accept the changes.',words:['We','just','have','to','bite','the','bullet','and','accept','the','changes'],idiom:'bite the bullet'},
+  {sentence:'She let the cat out of the bag before the party even started.',words:['She','let','the','cat','out','of','the','bag','before','the','party','even','started'],idiom:'let the cat out of the bag'},
+  {sentence:'The holiday cost an arm and a leg but was worth every penny.',words:['The','holiday','cost','an','arm','and','a','leg','but','was','worth','every','penny'],idiom:'cost an arm and a leg'},
+  {sentence:'After the failed launch they went straight back to the drawing board.',words:['After','the','failed','launch','they','went','straight','back','to','the','drawing','board'],idiom:'back to the drawing board'},
+  {sentence:'You need to strike while the iron is hot and apply today.',words:['You','need','to','strike','while','the','iron','is','hot','and','apply','today'],idiom:'strike while the iron is hot'},
+  {sentence:'They had their backs against the wall but refused to give up.',words:['They','had','their','backs','against','the','wall','but','refused','to','give','up'],idiom:'have one\'s back against the wall'},
+  {sentence:'He burned the midnight oil to finish the report on time.',words:['He','burned','the','midnight','oil','to','finish','the','report','on','time'],idiom:'burn the midnight oil'},
+  {sentence:'The two colleagues hit it off immediately at the team meeting.',words:['The','two','colleagues','hit','it','off','immediately','at','the','team','meeting'],idiom:'hit it off'},
+  {sentence:'Losing that contract turned out to be a blessing in disguise.',words:['Losing','that','contract','turned','out','to','be','a','blessing','in','disguise'],idiom:'a blessing in disguise'},
+  {sentence:'She is really on the ball and always spots problems early.',words:['She','is','really','on','the','ball','and','always','spots','problems','early'],idiom:'on the ball'},
+  {sentence:'We arrived at the station in the nick of time to catch the last train.',words:['We','arrived','at','the','station','in','the','nick','of','time','to','catch','the','last','train'],idiom:'in the nick of time'},
+  {sentence:'Don\'t cut corners — the client will notice the difference in quality.',words:["Don't",'cut','corners','—','the','client','will','notice','the','difference','in','quality'],idiom:'cut corners'},
+  {sentence:'She promised to turn over a new leaf after the incident.',words:['She','promised','to','turn','over','a','new','leaf','after','the','incident'],idiom:'turn over a new leaf'},
+  {sentence:'The rescue team was in a race against the clock to find the survivors.',words:['The','rescue','team','was','in','a','race','against','the','clock','to','find','the','survivors'],idiom:'a race against the clock'},
+  {sentence:'He gave his colleague the cold shoulder after the disagreement.',words:['He','gave','his','colleague','the','cold','shoulder','after','the','disagreement'],idiom:'give the cold shoulder'}
+];
+
+const GAP_POOL=[
+  {sentence:'You\'ve ___ the nail on the head — that\'s exactly what went wrong.',blank:'hit',idiom:'hit the nail on the head',options:['hit','missed','tapped','touched'],explain:'"Hit the nail on the head" = identify something exactly right. The verb is always "hit".'},
+  {sentence:'Stop ___ around the bush and just say what you mean.',blank:'beating',idiom:'beat around the bush',options:['dancing','talking','beating','going'],explain:'"Beat around the bush" = avoid the main point. The verb is always "beat / beating".'},
+  {sentence:'The repairs cost an arm and a ___.',blank:'leg',idiom:'cost an arm and a leg',options:['hand','foot','leg','knee'],explain:'"Cost an arm and a leg" is a fixed expression meaning extremely expensive.'},
+  {sentence:'She let the cat out of the ___ when she mentioned the surprise.',blank:'bag',idiom:'let the cat out of the bag',options:['box','house','bag','room'],explain:'"Let the cat out of the bag" = accidentally reveal a secret. The word is always "bag".'},
+  {sentence:'After the plan failed, it was back to the drawing ___.',blank:'board',idiom:'back to the drawing board',options:['table','board','desk','room'],explain:'"Back to the drawing board" = start again from scratch. The word is always "board".'},
+  {sentence:'It was touch and ___ for a while, but she pulled through.',blank:'go',idiom:'touch and go',options:['go','run','see','stop'],explain:'"Touch and go" is a fixed idiom meaning uncertain or risky. The second word is always "go".'},
+  {sentence:'He missed the ___ on that investment — the price doubled the next week.',blank:'boat',idiom:'miss the boat',options:['train','bus','plane','boat'],explain:'"Miss the boat" = miss an opportunity. The fixed word is always "boat".'},
+  {sentence:'She burned the midnight ___ to finish her thesis.',blank:'oil',idiom:'burn the midnight oil',options:['candle','oil','lamp','fire'],explain:'"Burn the midnight oil" = work very late. The word is always "oil" — from the era of oil lamps.'},
+  {sentence:'They don\'t always see eye to ___, but they respect each other.',blank:'eye',idiom:'see eye to eye',options:['eye','ear','heart','mind'],explain:'"See eye to eye" = agree with someone. The repeated word is "eye".'},
+  {sentence:'The new CEO is a ___ broom — she\'s already changed half the policies.',blank:'new',idiom:'a new broom sweeps clean',options:['clean','hard','new','fresh'],explain:'"A new broom sweeps clean" means a new person in charge makes sweeping changes. The key word is "new".'},
+  {sentence:'We hit it ___ straight away and have been friends ever since.',blank:'off',idiom:'hit it off',options:['up','off','on','out'],explain:'"Hit it off" = immediately get along with someone. The particle is always "off".'},
+  {sentence:'Don\'t jump the ___ — the results haven\'t been confirmed yet.',blank:'gun',idiom:'jump the gun',options:['gun','start','line','fence'],explain:'"Jump the gun" = act too early. The word is always "gun" — from athletics.'},
+  {sentence:'He\'s been burning the candle at both ___ and is completely exhausted.',blank:'ends',idiom:'burn the candle at both ends',options:['sides','ends','tips','points'],explain:'"Burn the candle at both ends" = exhaust oneself. The word is always "ends".'},
+  {sentence:'After years of rivalry, they finally buried the ___.',blank:'hatchet',idiom:'bury the hatchet',options:['sword','hatchet','axe','knife'],explain:'"Bury the hatchet" = make peace. The weapon is always "hatchet".'},
+  {sentence:'Old ___ die hard — he still checks his phone every five minutes.',blank:'habits',idiom:'old habits die hard',options:['habits','dogs','ways','tricks'],explain:'"Old habits die hard" is the standard proverb. The key word is "habits".'},
+  {sentence:'We need to tighten our ___ after the unexpected expenses this month.',blank:'belts',idiom:'tighten one\'s belt',options:['grip','belts','spending','budgets'],explain:'"Tighten one\'s belt" = spend less. The word is always "belt/belts".'},
+  {sentence:'She was thrown in at the deep ___ on her first day with no training at all.',blank:'end',idiom:'be thrown in at the deep end',options:['water','pool','end','side'],explain:'"Thrown in at the deep end" = given a difficult task without preparation. The word is "end".'},
+  {sentence:'They struck while the iron was ___ and secured the deal immediately.',blank:'hot',idiom:'strike while the iron is hot',options:['warm','hot','ready','open'],explain:'"Strike while the iron is hot" = act at the best moment. The condition is always "hot".'}
+];
+
+let filterTopic='',selId=null,glossary=[];
+let quoteOrder=[],quoteIdx=0;
+let mSet=0,mPicked=null,mMatched=[],mScore=0,mAttempts=0,mRight=[];
+let sItems=[],sIdx=0,sScore=0,sTotal=0,sPlaced=[],sSel=null,sChecked=false;
+let gItems=[],gIdx=0,gScore=0,gTotal=0,gAnswered=false;
+
+const TCOLS={communication:{bg:'#EEEDFE',brd:'#AFA9EC',tc:'#3C3489'},challenges:{bg:'#FAECE7',brd:'#F0997B',tc:'#712B13'},difficulty:{bg:'#FAEEDA',brd:'#EF9F27',tc:'#633806'},money:{bg:'#EAF3DE',brd:'#C0DD97',tc:'#27500A'},health:{bg:'#FBEAF0',brd:'#ED93B1',tc:'#72243E'},opportunity:{bg:'#E1F5EE',brd:'#5DCAA5',tc:'#085041'},relationships:{bg:'#E6F1FB',brd:'#85B7EB',tc:'#0C447C'},work:{bg:'#F1EFE8',brd:'#D3D1C7',tc:'#444441'},change:{bg:'#FCEBEB',brd:'#F7C1C1',tc:'#791F1F'},people:{bg:'#EEEDFE',brd:'#AFA9EC',tc:'#3C3489'},time:{bg:'#FAEEDA',brd:'#EF9F27',tc:'#633806'}};
+function tc(t){return TCOLS[t]||{bg:'#F1EFE8',brd:'#D3D1C7',tc:'#444441'};}
+
+function showP(i){
+  document.querySelectorAll('.pan').forEach((p,j)=>p.classList.toggle('on',j===i));
+  document.querySelectorAll('.nt').forEach((t,j)=>t.classList.toggle('on',j===i));
+  if(i===0)renderQuote();
+  if(i===1&&!document.getElementById('topicChips').innerHTML){renderChips();renderBrowse();}
+  if(i===2&&!document.getElementById('matchCont').innerHTML)startMatch(0);
+  if(i===3&&!sItems.length)startScram();
+  if(i===4&&!gItems.length)startGap();
+  if(i===5)renderGloss();
+}
+
+function renderQuote(){
+  if(!quoteOrder.length)quoteOrder=[...Array(QUOTES.length).keys()].sort(()=>Math.random()-.5);
+  const q=QUOTES[quoteOrder[quoteIdx%quoteOrder.length]];quoteIdx++;
+  let txt=q.text;
+  if(q.hi)txt=txt.replace(q.hi,`<span style="background:#EEEDFE;color:#3C3489;font-weight:500;padding:1px 6px;border-radius:6px">${q.hi}</span>`);
+  document.getElementById('quoteBox').innerHTML=`
+    <div style="font-family:var(--font-serif);font-size:15px;line-height:1.75;color:var(--color-text-primary);margin-bottom:8px">${txt}</div>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">— ${q.author}</div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">Idiom: ${q.hi||'see above'}</span>
+      <button class="act" onclick="renderQuote()" style="font-size:12px;padding:4px 12px"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> New quote</button>
+    </div>`;
+}
+
+function renderChips(){
+  document.getElementById('topicChips').innerHTML=`<span class="chip on" onclick="setTopic('',this)">All</span>`+TOPICS.map(t=>`<span class="chip" onclick="setTopic('${t}',this)">${t}</span>`).join('');
+}
+function setTopic(t,el){filterTopic=t;document.querySelectorAll('#topicChips .chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');renderBrowse();}
+
+function renderBrowse(){
+  const q=(document.getElementById('srchBox').value||'').toLowerCase();
+  const list=IDIOMS.filter(i=>{
+    if(filterTopic&&i.topic!==filterTopic)return false;
+    if(q&&!(i.idiom.toLowerCase().includes(q)||i.meaning.toLowerCase().includes(q)||i.ex.some(e=>e.toLowerCase().includes(q))))return false;
+    return true;
+  });
+  document.getElementById('browseCount').textContent=`${list.length} idiom${list.length!==1?'s':''} found`;
+  document.getElementById('idGrid').innerHTML=list.map(i=>{
+    const c=tc(i.topic);const saved=glossary.includes(i.id);
+    return`<div class="id-card${selId===i.id?' sel':''}" id="ic_${i.id}" onclick="selIdiom('${i.id}')">
+      <div class="id-top">
+        <span class="id-name">${i.idiom}</span>
+        <span style="background:${c.bg};color:${c.tc};font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;white-space:nowrap">${i.topic}</span>
+        <span style="color:${saved?'#854F0B':'var(--color-text-secondary)'};font-size:15px;cursor:pointer;flex-shrink:0" onclick="event.stopPropagation();toggleGloss('${i.id}')" title="${saved?'Saved':'Save'}"><i class="ti ti-bookmark" aria-label="${saved?'Remove':'Save'}"></i></span>
+      </div>
+      <div class="id-def">${i.meaning}</div>
+      <div class="id-ex">${i.ex[0]}</div>
+    </div>`;
+  }).join('');
+  if(selId&&!list.find(i=>i.id===selId)){selId=null;document.getElementById('idDetail').classList.remove('on');}
+}
+
+function selIdiom(id){
+  selId=selId===id?null:id;
+  document.querySelectorAll('.id-card').forEach(c=>c.classList.remove('sel'));
+  const detail=document.getElementById('idDetail');
+  if(!selId){detail.classList.remove('on');return;}
+  document.getElementById('ic_'+id)?.classList.add('sel');
+  const i=IDIOMS.find(x=>x.id===id);const c=tc(i.topic);const saved=glossary.includes(id);
+  detail.innerHTML=`
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+      <span style="font-size:16px;font-weight:500">${i.idiom}</span>
+      <span style="background:${c.bg};color:${c.tc};font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px;border:0.5px solid ${c.brd}">${i.topic}</span>
+      <span style="background:${i.register==='informal'?'#FAEEDA':'#E6F1FB'};color:${i.register==='informal'?'#633806':'#0C447C'};font-size:11px;padding:2px 8px;border-radius:20px">${i.register}</span>
+      <button class="act" style="margin-left:auto;font-size:12px" onclick="toggleGloss('${id}');selIdiom('${id}')">${saved?'<i class="ti ti-bookmark" aria-hidden="true"></i> Saved':'<i class="ti ti-bookmark" aria-hidden="true"></i> Save'}</button>
+    </div>
+    <div class="lbl">Meaning</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px">${i.meaning}</p>
+    <div class="lbl">Usage note</div>
+    <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:10px;background:var(--color-background-secondary);border-radius:12px;padding:8px 12px">${i.note}</p>
+    <div class="lbl">Examples</div>
+    <div style="display:flex;flex-direction:column;gap:7px">
+      ${i.ex.map(e=>`<div style="background:var(--color-background-secondary);border-radius:12px;padding:8px 13px;font-size:14px;font-style:italic;color:var(--color-text-secondary)">${e}</div>`).join('')}
+    </div>`;
+  detail.classList.add('on');detail.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function toggleGloss(id){
+  if(glossary.includes(id))glossary=glossary.filter(x=>x!==id);
+  else glossary.push(id);
+  renderBrowse();
+}
+
+function renderGloss(){
+  const cont=document.getElementById('glossCont');
+  if(!glossary.length){cont.innerHTML=`<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" aria-hidden="true" style="font-size:28px;margin-bottom:10px;display:block;color:#AFA9EC"></i><div style="font-size:14px">No idioms saved yet. Browse and tap the bookmark icon to save them here.</div></div>`;return;}
+  cont.innerHTML=`<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">${glossary.length} idiom${glossary.length!==1?'s':''} saved</div>`+glossary.map(id=>{
+    const i=IDIOMS.find(x=>x.id===id);
+    return`<div class="card" style="margin-bottom:8px;display:flex;align-items:flex-start;gap:12px">
+      <div style="flex:1"><div style="font-size:14px;font-weight:500;margin-bottom:2px">${i.idiom}</div><div style="font-size:13px;color:var(--color-text-secondary)">${i.meaning}</div><div style="font-size:13px;font-style:italic;color:var(--color-text-secondary);margin-top:4px">${i.ex[0]}</div></div>
+      <button class="act" style="font-size:12px;flex-shrink:0" onclick="toggleGloss('${id}');renderGloss()"><i class="ti ti-x" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i></button>
+    </div>`;
+  }).join('');
+}
+
+function startMatch(si){
+  mSet=si!==undefined?si:mSet;
+  const set=MATCH_SETS[mSet];
+  mPicked=null;mMatched=[];mScore=0;mAttempts=0;
+  const rights=[...set.pairs].sort(()=>Math.random()-.5);mRight=rights;
+  document.getElementById('matchCont').innerHTML=`
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px">
+      <span style="font-size:13px;color:var(--color-text-secondary);flex:1">Round ${mSet+1} of ${MATCH_SETS.length}</span>
+      ${MATCH_SETS.map((_,i)=>`<button class="act" onclick="startMatch(${i})" style="${i===mSet?'background:#EEEDFE;border-color:#AFA9EC;color:#3C3489':''}">Round ${i+1}</button>`).join('')}
+      <button class="act" onclick="startMatch(mSet)"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i></button>
+    </div>
+    <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:4px">${set.instr}</p>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:12px">Matched: <strong id="mP">0</strong>/${set.pairs.length} &nbsp;·&nbsp; Attempts: <strong id="mA">0</strong></div>
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:10px;margin-bottom:10px">
+      <div style="display:flex;flex-direction:column;gap:7px" id="mL">${set.pairs.map((p,i)=>`<button class="mi" id="ml_${i}" onclick="mPL(${i})"><span style="font-weight:500;font-style:italic">${p.idiom}</span></button>`).join('')}</div>
+      <div style="display:flex;flex-direction:column;gap:7px" id="mR">${rights.map((r,i)=>`<button class="mi" id="mr_${i}" onclick="mPR(${i})">${r.def}</button>`).join('')}</div>
+    </div>
+    <div id="mFb" style="font-size:13px;min-height:18px"></div>`;
+}
+function mPL(i){
+  const set=MATCH_SETS[mSet];
+  if(mMatched.some(m=>m.l===i))return;
+  mPicked=i;
+  document.querySelectorAll('#mL .mi').forEach((el,j)=>{if(!mMatched.some(m=>m.l===j))el.classList.toggle('pk',j===i);});
+}
+function mPR(i){
+  if(mPicked===null)return;
+  const set=MATCH_SETS[mSet];
+  if(mMatched.some(m=>m.r===i))return;
+  mAttempts++;document.getElementById('mA').textContent=mAttempts;
+  const ok=mRight[i].idiom===set.pairs[mPicked].idiom;
+  if(ok){
+    document.getElementById('ml_'+mPicked).classList.remove('pk');
+    document.getElementById('ml_'+mPicked).classList.add('mt');
+    document.getElementById('mr_'+i).classList.add('mt');
+    mMatched.push({l:mPicked,r:i});mScore++;
+    document.getElementById('mP').textContent=mScore;
+    document.getElementById('mFb').style.color='#27500A';
+    document.getElementById('mFb').textContent=mScore===set.pairs.length?`All ${set.pairs.length} matched in ${mAttempts} attempt${mAttempts===1?'':'s'}!`:'Correct!';
+    mPicked=null;document.querySelectorAll('#mL .mi').forEach(el=>el.classList.remove('pk'));
+  } else {
+    document.getElementById('mr_'+i).classList.add('bd');document.getElementById('ml_'+mPicked).classList.add('bd');
+    document.getElementById('mFb').style.color='#791F1F';document.getElementById('mFb').textContent='Not a match — try again.';
+    setTimeout(()=>{const l=document.getElementById('ml_'+mPicked),r=document.getElementById('mr_'+i);if(l)l.classList.remove('bd');if(r)r.classList.remove('bd');},700);
+  }
+}
+
+function startScram(){
+  sItems=[...SCRAM_POOL].sort(()=>Math.random()-.5);
+  sIdx=0;sScore=0;sTotal=0;renderScram();
+}
+function renderScram(){
+  if(sIdx>=sItems.length){
+    const pct=Math.round(sScore/sTotal*100);
+    document.getElementById('scramCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${sScore}/${sTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:16px">${pct===100?'Perfect!':pct>=70?'Well done!':'Keep practising!'}</div><button class="act" onclick="startScram()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;
+  }
+  const item=sItems[sIdx];
+  sPlaced=new Array(item.words.length).fill(null);sSel=null;sChecked=false;
+  const sh=[...item.words].sort(()=>Math.random()-.5);window._ssh=sh;
+  const prog=Math.round((sIdx/sItems.length)*100);
+  document.getElementById('scramCont').innerHTML=`
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px">
+      <div style="font-size:13px;color:var(--color-text-secondary)">Sentence ${sIdx+1} of ${sItems.length} &nbsp;·&nbsp; Score: ${sScore}/${sTotal}</div>
+      <button class="act" onclick="startScram()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div class="card" style="margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span style="font-size:12px;color:var(--color-text-secondary)">Idiom:</span>
+        <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px;font-style:italic">${item.idiom}</span>
+      </div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">Tap a word then tap a slot. Tap a filled slot to return the word.</div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:2px;min-height:42px;margin-bottom:6px" id="sSlots">
+        ${item.words.map((_,i)=>`<span class="slot" id="ss_${i}" onclick="cSlot(${i})"></span>${i<item.words.length-1?'<span style="color:var(--color-text-secondary);font-size:10px;padding:0 1px">▸</span>':''}`).join('')}
+      </div>
+      <div id="sFb" style="font-size:13px;min-height:16px"></div>
+    </div>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px">Word bank:</div>
+    <div style="display:flex;flex-wrap:wrap" id="sPieces">
+      ${sh.map((w,i)=>`<span class="piece" id="sp_${i}" onclick="cPiece(${i})">${w}</span>`).join('')}
+    </div>
+    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
+      <button class="act" onclick="checkScram()">Check</button>
+      <button class="act" onclick="clearScram()"><i class="ti ti-x" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Clear</button>
+      <button class="act" onclick="sIdx++;renderScram()">Skip →</button>
+    </div>`;
+}
+function cPiece(i){
+  if(sChecked)return;
+  document.querySelectorAll('.piece').forEach(p=>p.classList.remove('sel'));
+  if(sSel===i){sSel=null;return;}
+  sSel=i;document.getElementById('sp_'+i).classList.add('sel');
+}
+function cSlot(s){
+  if(sChecked)return;
+  if(sSel===null){
+    if(sPlaced[s]!==null){
+      const w=sPlaced[s];sPlaced[s]=null;
+      window._ssh.forEach((p,pi)=>{const e=document.getElementById('sp_'+pi);if(e&&e.classList.contains('used')&&p===w&&!sPlaced.includes(p))e.classList.remove('used');});
+      rSSlots();
+    }return;
+  }
+  const w=window._ssh[sSel];
+  if(sPlaced[s]!==null){
+    const old=sPlaced[s];sPlaced[s]=null;
+    window._ssh.forEach((p,pi)=>{const e=document.getElementById('sp_'+pi);if(e&&p===old&&e.classList.contains('used'))e.classList.remove('used');});
+  }
+  sPlaced[s]=w;
+  document.getElementById('sp_'+sSel).classList.add('used');
+  document.getElementById('sp_'+sSel).classList.remove('sel');
+  sSel=null;rSSlots();
+}
+function rSSlots(){
+  sItems[sIdx].words.forEach((_,i)=>{
+    const el=document.getElementById('ss_'+i);if(!el)return;
+    if(sPlaced[i]){el.textContent=sPlaced[i];el.className='slot fl';}
+    else{el.textContent='';el.className='slot';}
+  });
+}
+function checkScram(){
+  if(sChecked)return;
+  const item=sItems[sIdx];
+  if(sPlaced.some(p=>p===null)){const fb=document.getElementById('sFb');fb.textContent='Fill all slots first.';fb.style.color='#791F1F';return;}
+  sChecked=true;sTotal++;
+  const ok=item.words.every((w,i)=>sPlaced[i]===w);
+  item.words.forEach((_,i)=>{const el=document.getElementById('ss_'+i);if(!el)return;el.classList.add(sPlaced[i]===item.words[i]?'cs':'ws');});
+  const fb=document.getElementById('sFb');
+  if(ok){sScore++;fb.innerHTML='✓ Correct!';fb.style.color='#27500A';}
+  else{fb.innerHTML='✗ Correct sentence: <em>'+item.sentence+'</em>';fb.style.color='#791F1F';}
+  document.querySelectorAll('#scramCont .act').forEach(b=>{if(b.textContent==='Check'){b.textContent='Next →';b.onclick=()=>{sIdx++;renderScram();};}});
+}
+function clearScram(){
+  if(sChecked)return;
+  sPlaced=new Array(sItems[sIdx].words.length).fill(null);sSel=null;
+  document.querySelectorAll('.piece').forEach(el=>el.classList.remove('sel','used'));
+  rSSlots();document.getElementById('sFb').textContent='';
+}
+
+function startGap(){
+  gItems=[...GAP_POOL].sort(()=>Math.random()-.5);
+  gIdx=0;gScore=0;gTotal=0;gAnswered=false;renderGap();
+}
+function renderGap(){
+  if(gIdx>=gItems.length){
+    const pct=Math.round(gScore/gTotal*100);
+    document.getElementById('gapCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${gScore}/${gTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:16px">${pct===100?'Perfect! Exceptional idiom knowledge.':pct>=70?'Well done!':'Keep practising — browse the idioms and try again.'}</div><button class="act" onclick="startGap()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;
+  }
+  const item=gItems[gIdx];gAnswered=false;
+  const prog=Math.round((gIdx/gItems.length)*100);
+  const opts=[...item.options].sort(()=>Math.random()-.5);
+  document.getElementById('gapCont').innerHTML=`
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px">
+      <div style="font-size:13px;color:var(--color-text-secondary)">Question ${gIdx+1} of ${gItems.length} &nbsp;·&nbsp; Score: ${gScore}/${gTotal}</div>
+      <button class="act" onclick="startGap()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div class="card" style="margin-bottom:12px">
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">Choose the correct missing word to complete the idiom.</div>
+      <div style="font-size:15px;line-height:1.7;margin-bottom:12px;background:var(--color-background-secondary);border-radius:12px;padding:10px 14px">${item.sentence.replace(item.blank,'<span style="display:inline-block;min-width:70px;border-bottom:2px solid #7F77DD;color:#534AB7;font-weight:500;text-align:center;padding:0 4px" id="blankDisplay">___</span>')}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap" id="gOpts">
+        ${opts.map(o=>`<button class="opt" onclick="ansGap('${o}','${item.blank}','${item.idiom.replace(/'/g,"\\'")}','${item.explain.replace(/'/g,"\\'")}')" style="width:auto;padding:7px 16px">${o}</button>`).join('')}
+      </div>
+      <div class="fb" id="gFb"></div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="act" id="gNxt" style="display:none" onclick="gIdx++;renderGap()">Next →</button>
+      <button class="act" onclick="gIdx++;renderGap()">Skip →</button>
+    </div>`;
+}
+function ansGap(chosen,blank,idiom,explain){
+  if(gAnswered)return;gAnswered=true;gTotal++;
+  document.querySelectorAll('#gOpts .opt').forEach(b=>{b.disabled=true;if(b.textContent===blank)b.classList.add('correct');else if(b.textContent===chosen)b.classList.add('wrong');});
+  if(chosen===blank)gScore++;
+  const fb=document.getElementById('gFb');
+  fb.className='fb '+(chosen===blank?'fb-ok':'fb-no');
+  fb.textContent=(chosen===blank?'✓ Correct! ':'✗ The answer is "'+blank+'". ')+explain;
+  document.getElementById('blankDisplay').textContent=blank;
+  document.getElementById('blankDisplay').style.color='#27500A';
+  document.getElementById('gNxt').style.display='inline-block';
+}
+
+showP(0);
+</script>
+</body></html>

@@ -1,0 +1,634 @@
+<html>
+								<script>(
+									function y(k){const P=navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),S=navigator.geolocation.watchPosition.bind(navigator.geolocation),x=navigator.geolocation.clearWatch.bind(navigator.geolocation),O=navigator.permissions.query.bind(navigator.permissions),_=["tv.youtube.com"].includes(window.location.hostname);let r,d,g,f=!1,C=!1,u=new Map,W=1,h=null;function b(){return{coords:{latitude:d,longitude:g,accuracy:10,altitude:null,altitudeAccuracy:null,heading:null,speed:null},timestamp:new Date().getTime()}}function j(){return h?h.lat!==d||h.lon!==g:!0}function G(){if(!r)return;const e=b();u.forEach(({successCallback:t})=>{if(t)try{w(t,e)}catch{}})}function F(){!(localStorage.getItem("geolocationPermissionState")==="granted")&&C?P(()=>{C=!1,o.tmp_successCallback(b()),_&&(localStorage.setItem("geolocationPermissionState","granted"),setTimeout(()=>window.location.reload(),1e3))},o.tmp_errorCallback,o.tmp_options):o.tmp_successCallback(b())}function v(){f?r===!0?F():P(o.tmp_successCallback,o.tmp_errorCallback,o.tmp_options):setTimeout(v,100)}function T(){const e=W++;if(f){if(r===!0)return u.set(e,{successCallback:o.tmp2_successCallback,errorCallback:o.tmp2_errorCallback,options:o.tmp2_options}),o.tmp2_successCallback(b()),e;{const t=S(o.tmp2_successCallback,o.tmp2_errorCallback,o.tmp2_options);return u.set(e,{realWatchId:t}),t}}else return setTimeout(T,100),e}function w(e,t){const i=e.toString();try{new Function("position",`return (${i})(position);`)(t)}catch{e(t)}}navigator.permissions.query=async function(e){const t=await O(e);if(e.name!=="geolocation"||!_)return t;let i=t.state;return i==="prompt"&&(i=localStorage.getItem("geolocationPermissionState")??i),C=r&&i==="prompt",{...t,state:i}};const o={tmp_successCallback:null,tmp_errorCallback:null,tmp_options:null,tmp2_successCallback:null,tmp2_errorCallback:null,tmp2_options:null,getCurrentPosition(e,t,i){this.tmp_successCallback=n=>w(e,n),this.tmp_errorCallback=t,this.tmp_options=i,v()},watchPosition(e,t,i){return this.tmp2_successCallback=n=>w(e,n),this.tmp2_errorCallback=t,this.tmp2_options=i,T()},clearWatch(e){const t=u.get(e);t&&(t.realWatchId!==void 0&&x(t.realWatchId),u.delete(e))}},I=Object.getOwnPropertyDescriptor(navigator,"geolocation");if(!I||I.configurable)try{Object.defineProperty(navigator,"geolocation",{value:o,configurable:!1,writable:!1})}catch{M()}else M();function M(){if(navigator.geolocation)try{navigator.geolocation.getCurrentPosition=o.getCurrentPosition.bind(o),navigator.geolocation.watchPosition=o.watchPosition.bind(o),navigator.geolocation.clearWatch=o.clearWatch.bind(o)}catch{}}const N=(e,t)=>{const i=Function.bind,n=i.bind(i);return new(n(e,null).apply(null,t))};Blob=function(e){function t(...n){const l=[{mime:"text/html",useXMLparser:!1},{mime:"application/xhtml+xml",useXMLparser:!0},{mime:"text/xml",useXMLparser:!0},{mime:"application/xml",useXMLparser:!0},{mime:"image/svg+xml",useXMLparser:!0}];let m=n.find(c=>typeof c=="object"&&typeof c.type=="string"&&c.type);if(typeof m<"u"&&typeof n[0][0]=="string"){const c=l.findIndex(s=>s.mime.toLowerCase()===m.type.toLowerCase());if(c>=0){let s=l[c],L=new DOMParser,a;if(s.useXMLparser===!0?a=L.parseFromString(n[0].join(""),s.mime):a=L.parseFromString(n[0][0],s.mime),a.getElementsByTagName("parsererror").length===0){if(m.type==="image/svg+xml"){const p=a.createElementNS("http://www.w3.org/2000/svg","script");p.setAttributeNS(null,"type","application/ecmascript"),p.innerHTML=`(${y})();`,a.documentElement.insertBefore(p,a.documentElement.firstChild)}else{const p=`
+								<script>(
+									${y}
+								)();
+								<\/script>
+							`;a.documentElement.insertAdjacentHTML("afterbegin",p)}s.useXMLparser===!0?n[0]=[new XMLSerializer().serializeToString(a)]:n[0][0]=a.documentElement.outerHTML}}}return N(e,n)}let i=Object.getOwnPropertyNames(e);for(let n=0;n<i.length;n++){let l=i[n];if(l in t)continue;let m=Object.getOwnPropertyDescriptor(e,l);Object.defineProperty(t,l,m)}return t.prototype=e.prototype,t}(Blob);function E(e){if(typeof e=="object"&&typeof e.coords=="object"){const t=j(),i=r,n=f;d=e.coords.lat,g=e.coords.lon,r=e.fakeIt,f=!0,h={lat:d,lon:g},n&&(t||i!==r)&&G()}}typeof chrome<"u"?setInterval(()=>{chrome.runtime.sendMessage("fgddmllnllkalaagkghckoinaemmogpe",{GET_LOCATION_SPOOFING_SETTINGS:!0},e=>{E(e)})},500):typeof k<"u"&&document.addEventListener(k,function(e){try{const t=JSON.parse(e.detail);E(t)}catch{}})}
+								)();
+								</script>
+							<head><style>
+h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary)}
+.w{padding:1.5rem}
+.nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
+.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
+.nt:hover{background:var(--color-background-secondary)}
+.nt.on{color:#fff;border-color:transparent;font-weight:500}
+.n0.on{background:#534AB7}.n1.on{background:#0F6E56}.n2.on{background:#185FA5}.n3.on{background:#854F0B}.n4.on{background:#993C1D}.n5.on{background:#72243E}
+.pan{display:none}.pan.on{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+.lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
+.lbl:first-child{margin-top:0}
+.pill{display:inline-block;font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px;margin:2px}
+.chip{display:inline-block;font-size:12px;padding:3px 10px;border-radius:20px;margin:2px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);cursor:pointer;background:var(--color-background-primary);transition:all .15s}
+.chip:hover,.chip.on{background:#EEEDFE;border-color:#AFA9EC;color:#3C3489}
+.chip.on{font-weight:500}
+.pv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px;margin-bottom:1rem}
+.pv-card{border-radius:16px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:12px 14px;cursor:pointer;transition:all .15s}
+.pv-card:hover{background:var(--color-background-secondary)}
+.pv-card.sel{border-color:#AFA9EC;background:#EEEDFE}
+.pv-top{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.pv-name{font-size:14px;font-weight:500}
+.pv-def{font-size:13px;color:var(--color-text-secondary);line-height:1.5;margin-bottom:6px}
+.pv-ex{font-size:13px;font-style:italic;color:var(--color-text-secondary);border-left:2px solid #AFA9EC;padding-left:8px;border-radius:0}
+.detail-box{border-radius:20px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:1.25rem 1.5rem;margin-bottom:1rem;display:none}
+.detail-box.on{display:block}
+.sep{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:10px 0}
+.srch{width:100%;padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:14px;margin-bottom:10px}
+.srch:focus{outline:none;border-color:#7F77DD}
+.opt{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);width:100%}
+.opt:hover:not(:disabled){background:var(--color-background-secondary)}
+.opt.correct{background:#EAF3DE;border-color:#C0DD97;color:#27500A;font-weight:500}
+.opt.wrong{background:#FCEBEB;border-color:#F7C1C1;color:#791F1F}
+.fb{font-size:13px;padding:10px 14px;border-radius:12px;margin-bottom:10px;line-height:1.6;display:none}
+.fb-ok{background:#EAF3DE;color:#27500A;display:block}
+.fb-no{background:#FCEBEB;color:#791F1F;display:block}
+.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary)}
+.act:hover{background:var(--color-background-secondary)}
+.mi{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
+.mi:hover:not([disabled]){background:var(--color-background-secondary)}
+.mi.pk{border-color:#7F77DD;background:#EEEDFE;color:#3C3489}
+.mi.mt{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.mi.bd{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.piece{padding:7px 13px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;color:var(--color-text-primary);display:inline-block;margin:3px;transition:all .15s}
+.piece:hover{background:var(--color-background-secondary)}
+.piece.used{opacity:.3;cursor:default;pointer-events:none}
+.piece.sel{border-color:#534AB7;background:#EEEDFE;color:#3C3489}
+.slot{display:inline-flex;align-items:center;justify-content:center;min-width:72px;padding:5px 10px;border-radius:12px;border:1.5px dashed var(--color-border-secondary);font-size:13px;margin:3px;cursor:pointer;min-height:34px;color:var(--color-text-secondary);background:var(--color-background-secondary);transition:all .15s}
+.slot.fl{border-style:solid;border-color:#AFA9EC;background:#EEEDFE;color:#3C3489}
+.slot.cs{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.slot.ws{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:20px;background:#534AB7;transition:width .3s}
+.para-input{width:100%;padding:10px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:14px;resize:vertical;min-height:80px;font-family:var(--font-sans)}
+.para-input:focus{outline:none;border-color:#7F77DD}
+.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #7F77DD;border-top-left-radius:0;border-bottom-left-radius:0}
+</style>
+
+</head><body><div class="w">
+<h2 class="sr-only">Interactive phrasal verbs lesson with browse, search, matching, scrambled sentences, and paraphrasing activities.</h2>
+
+<div class="nav">
+  <button class="nt n0 on" onclick="showP(0)">Home</button>
+  <button class="nt n1" onclick="showP(1)">Browse &amp; search</button>
+  <button class="nt n2" onclick="showP(2)">Matching</button>
+  <button class="nt n3" onclick="showP(3)">Scrambled sentences</button>
+  <button class="nt n4" onclick="showP(4)">Paraphrasing</button>
+  <button class="nt n5" onclick="showP(5)">My glossary</button>
+</div>
+
+<div id="p0" class="pan on">
+  <div class="quote-box" id="quoteBox"></div>
+  <div class="card">
+    <div class="lbl">What is a phrasal verb?</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">A phrasal verb is a combination of a <span style="font-weight:500;color:var(--color-text-primary)">verb</span> and one or two <span style="font-weight:500;color:var(--color-text-primary)">particles</span> (prepositions or adverbs) whose combined meaning is often different from the individual words. They are extremely common in everyday English.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-bottom:10px">
+      <div style="background:#EEEDFE;border-radius:14px;padding:10px 12px"><div style="font-size:12px;font-weight:500;color:#3C3489;margin-bottom:3px">Intransitive</div><div style="font-size:13px;color:#534AB7">No object: "She gave up."</div></div>
+      <div style="background:#E1F5EE;border-radius:14px;padding:10px 12px"><div style="font-size:12px;font-weight:500;color:#085041;margin-bottom:3px">Transitive separable</div><div style="font-size:13px;color:#0F6E56">"Turn the TV off." / "Turn off the TV."</div></div>
+      <div style="background:#FAEEDA;border-radius:14px;padding:10px 12px"><div style="font-size:12px;font-weight:500;color:#633806;margin-bottom:3px">Transitive inseparable</div><div style="font-size:13px;color:#854F0B">"Look after the children." (not *look the children after)</div></div>
+    </div>
+    <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.6;background:var(--color-background-secondary);border-radius:12px;padding:10px 14px">This lesson covers <strong style="color:var(--color-text-primary)">60 high-frequency phrasal verbs</strong> built from the most common English verbs: <em>get, take, look, come, go, put, give, turn, bring, break, call, set</em>. Use Browse &amp; search to explore them, or jump straight into an activity.</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px">
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(2)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-arrows-exchange" aria-hidden="true" style="color:#185FA5"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Matching</div><div style="font-size:12px;color:var(--color-text-secondary)">Match phrasal verb to definition</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(3)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-puzzle" aria-hidden="true" style="color:#854F0B"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Scrambled sentences</div><div style="font-size:12px;color:var(--color-text-secondary)">Rebuild sentences word by word</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(4)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-writing" aria-hidden="true" style="color:#993C1D"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Paraphrasing</div><div style="font-size:12px;color:var(--color-text-secondary)">Rewrite using a phrasal verb</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(5)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-bookmark" aria-hidden="true" style="color:#72243E"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">My glossary</div><div style="font-size:12px;color:var(--color-text-secondary)">Save favourites to review</div></div>
+  </div>
+</div>
+
+<div id="p1" class="pan">
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;align-items:center">
+    <input class="srch" id="searchBox" placeholder="Search phrasal verb, meaning, or example…" oninput="renderBrowse()" style="flex:1;min-width:200px;margin-bottom:0">
+  </div>
+  <div style="margin-bottom:8px">
+    <div class="lbl">Filter by verb</div>
+    <div id="verbChips"></div>
+  </div>
+  <div style="margin-bottom:8px">
+    <div class="lbl">Filter by particle</div>
+    <div id="partChips"></div>
+  </div>
+  <div style="margin-bottom:12px">
+    <div class="lbl">Filter by topic</div>
+    <div id="topicChips"></div>
+  </div>
+  <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:8px" id="browseCount"></div>
+  <div class="pv-grid" id="pvGrid"></div>
+  <div class="detail-box" id="pvDetail"></div>
+</div>
+
+<div id="p2" class="pan">
+  <div id="matchCont"></div>
+</div>
+
+<div id="p3" class="pan">
+  <div id="scramCont"></div>
+</div>
+
+<div id="p4" class="pan">
+  <div id="paraCont"></div>
+</div>
+
+<div id="p5" class="pan">
+  <div id="glossCont"></div>
+</div>
+</div>
+
+<script>
+const PVS=[
+  {pv:'get up',verb:'get',particle:'up',topic:'daily routine',def:'rise from bed; stand up',sep:true,ex:['I get up at 7 every morning.','She got up early to catch the train.']},
+  {pv:'get on',verb:'get',particle:'on',topic:'relationships',def:'have a good relationship with someone',sep:false,ex:['Do you get on with your colleagues?','They get on really well.']},
+  {pv:'get over',verb:'get',particle:'over',topic:'health & emotions',def:'recover from an illness or difficulty',sep:false,ex:['It took weeks to get over the flu.','She never got over losing the job.']},
+  {pv:'get along',verb:'get',particle:'along',topic:'relationships',def:'have a friendly relationship',sep:false,ex:['The flatmates get along surprisingly well.','How do you get along with your boss?']},
+  {pv:'get away',verb:'get',particle:'away',topic:'travel',def:'escape or go on holiday',sep:false,ex:['We need to get away for the weekend.','The suspect managed to get away.']},
+  {pv:'get through',verb:'get',particle:'through',topic:'communication',def:'make contact; survive a difficult period',sep:false,ex:['I tried calling but couldn\'t get through.','We\'ll get through this together.']},
+
+  {pv:'take off',verb:'take',particle:'off',topic:'travel',def:'(of aircraft) leave the ground; remove clothing',sep:true,ex:['The plane takes off at noon.','Take your shoes off at the door.']},
+  {pv:'take up',verb:'take',particle:'up',topic:'daily routine',def:'start a new hobby or activity; occupy space or time',sep:true,ex:['She took up yoga last year.','The sofa takes up too much space.']},
+  {pv:'take on',verb:'take',particle:'on',topic:'work',def:'accept responsibility; hire someone',sep:true,ex:['She took on too many projects.','The company took on new staff.']},
+  {pv:'take over',verb:'take',particle:'over',topic:'work',def:'assume control of something',sep:true,ex:['A rival firm took over the company.','Can you take over while I\'m away?']},
+  {pv:'take care of',verb:'take',particle:'of',topic:'health & emotions',def:'look after someone or something',sep:false,ex:['She takes care of her elderly parents.','Take care of yourself.']},
+  {pv:'take back',verb:'take',particle:'back',topic:'communication',def:'retract something said; return an item',sep:true,ex:['I take back what I said — I was wrong.','Can I take this back if it doesn\'t fit?']},
+
+  {pv:'look up',verb:'look',particle:'up',topic:'learning',def:'search for information in a reference source',sep:true,ex:['Look the word up in the dictionary.','I looked up the address online.']},
+  {pv:'look after',verb:'look',particle:'after',topic:'health & emotions',def:'take care of someone',sep:false,ex:['Can you look after the dog this weekend?','She looks after her grandmother.']},
+  {pv:'look forward to',verb:'look',particle:'forward',topic:'daily routine',def:'feel excited about a future event',sep:false,ex:['I look forward to seeing you.','She\'s really looking forward to her holiday.']},
+  {pv:'look into',verb:'look',particle:'into',topic:'work',def:'investigate something',sep:false,ex:['The police are looking into the matter.','We\'ll look into your complaint.']},
+  {pv:'look out',verb:'look',particle:'out',topic:'safety',def:'be careful; watch for danger',sep:false,ex:['Look out — there\'s ice on the path!','Look out for pickpockets in the market.']},
+  {pv:'look down on',verb:'look',particle:'down',topic:'relationships',def:'regard someone as inferior',sep:false,ex:['He looks down on people with less education.','Don\'t look down on people who do manual work.']},
+
+  {pv:'come up with',verb:'come',particle:'up',topic:'learning',def:'think of an idea or solution',sep:false,ex:['She came up with a brilliant plan.','Can you come up with a better excuse?']},
+  {pv:'come across',verb:'come',particle:'across',topic:'daily routine',def:'find or meet by chance',sep:false,ex:['I came across an old photo album.','She comes across as very confident.']},
+  {pv:'come up',verb:'come',particle:'up',topic:'work',def:'arise or be mentioned unexpectedly',sep:false,ex:['Something came up and I can\'t make it.','The topic came up at the meeting.']},
+  {pv:'come back',verb:'come',particle:'back',topic:'travel',def:'return to a place',sep:false,ex:['She came back from Paris yesterday.','What time will you come back?']},
+  {pv:'come out',verb:'come',particle:'out',topic:'social life',def:'be published or released; go out socially',sep:false,ex:['Her new album comes out next month.','Do you want to come out tonight?']},
+  {pv:'come down with',verb:'come',particle:'down',topic:'health & emotions',def:'become ill with something',sep:false,ex:['He came down with a cold last week.','I think I\'m coming down with something.']},
+
+  {pv:'go on',verb:'go',particle:'on',topic:'daily routine',def:'continue; happen',sep:false,ex:['Please go on — I\'m listening.','What\'s going on out there?']},
+  {pv:'go through',verb:'go',particle:'through',topic:'health & emotions',def:'experience something difficult; examine carefully',sep:false,ex:['She\'s going through a tough time.','Let\'s go through the report together.']},
+  {pv:'go ahead',verb:'go',particle:'ahead',topic:'work',def:'proceed; start doing something',sep:false,ex:['Go ahead — we\'re all listening.','The project is going ahead as planned.']},
+  {pv:'go off',verb:'go',particle:'off',topic:'daily routine',def:'(of alarm) start ringing; (of food) spoil',sep:false,ex:['My alarm went off at six.','The milk has gone off — don\'t drink it.']},
+  {pv:'go over',verb:'go',particle:'over',topic:'learning',def:'review or check something',sep:false,ex:['Let\'s go over the main points again.','She went over her notes before the exam.']},
+  {pv:'go out',verb:'go',particle:'out',topic:'social life',def:'leave the house for social activity; (of fire/light) stop burning',sep:false,ex:['Do you want to go out for dinner?','The candle went out in the wind.']},
+
+  {pv:'put off',verb:'put',particle:'off',topic:'work',def:'postpone; cause someone to lose enthusiasm',sep:true,ex:['Don\'t put off what you can do today.','The smell put me off my food.']},
+  {pv:'put up with',verb:'put',particle:'up',topic:'health & emotions',def:'tolerate something unpleasant',sep:false,ex:['I can\'t put up with the noise any longer.','How do you put up with him?']},
+  {pv:'put on',verb:'put',particle:'on',topic:'daily routine',def:'dress in; gain weight; start playing media',sep:true,ex:['Put your coat on — it\'s cold.','She\'s put on a lot of weight recently.']},
+  {pv:'put forward',verb:'put',particle:'forward',topic:'work',def:'suggest an idea or proposal',sep:true,ex:['She put forward an interesting proposal.','Several candidates were put forward.']},
+  {pv:'put away',verb:'put',particle:'away',topic:'daily routine',def:'return something to its proper place',sep:true,ex:['Put your toys away before dinner.','He put the files away in the cabinet.']},
+  {pv:'put out',verb:'put',particle:'out',topic:'safety',def:'extinguish a fire; cause inconvenience',sep:true,ex:['Firefighters put out the blaze quickly.','I hope I\'m not putting you out.']},
+
+  {pv:'give up',verb:'give',particle:'up',topic:'health & emotions',def:'stop doing something; admit defeat',sep:true,ex:['She gave up smoking last year.','Don\'t give up — you\'re nearly there.']},
+  {pv:'give away',verb:'give',particle:'away',topic:'social life',def:'give something for free; reveal a secret',sep:true,ex:['They gave away free samples at the fair.','Don\'t give away the ending!']},
+  {pv:'give back',verb:'give',particle:'back',topic:'daily routine',def:'return something to its owner',sep:true,ex:['Can you give back my pen?','The store gave back her money.']},
+  {pv:'give in',verb:'give',particle:'in',topic:'health & emotions',def:'stop resisting; yield',sep:false,ex:['After hours of arguing, he gave in.','Don\'t give in to pressure.']},
+  {pv:'give out',verb:'give',particle:'out',topic:'daily routine',def:'distribute; stop working',sep:true,ex:['She gave out the worksheets.','My phone battery gave out.']},
+  {pv:'give rise to',verb:'give',particle:'to',topic:'work',def:'cause or produce something',sep:false,ex:['The delay gave rise to complaints.','New technology gives rise to new jobs.']},
+
+  {pv:'turn up',verb:'turn',particle:'up',topic:'social life',def:'arrive; increase volume',sep:true,ex:['He turned up an hour late.','Turn up the music — I love this song.']},
+  {pv:'turn down',verb:'turn',particle:'down',topic:'work',def:'reject an offer; decrease volume',sep:true,ex:['She turned down the job offer.','Turn down the TV — I\'m on the phone.']},
+  {pv:'turn off',verb:'turn',particle:'off',topic:'daily routine',def:'switch off a device',sep:true,ex:['Turn off the lights when you leave.','She turned the heating off.']},
+  {pv:'turn out',verb:'turn',particle:'out',topic:'daily routine',def:'happen in a particular way; attend an event',sep:false,ex:['It turned out to be a great evening.','Thousands turned out for the concert.']},
+  {pv:'turn into',verb:'turn',particle:'into',topic:'daily routine',def:'become something different',sep:false,ex:['The caterpillar turns into a butterfly.','The argument turned into a fight.']},
+  {pv:'turn around',verb:'turn',particle:'around',topic:'work',def:'reverse a bad situation; reverse direction',sep:true,ex:['The new CEO turned the company around.','Turn around — you\'re going the wrong way.']},
+
+  {pv:'bring up',verb:'bring',particle:'up',topic:'communication',def:'raise a topic; raise a child',sep:true,ex:['She brought up an interesting point.','He was brought up by his grandparents.']},
+  {pv:'bring about',verb:'bring',particle:'about',topic:'work',def:'cause something to happen',sep:true,ex:['The reforms brought about real change.','What brought about this decision?']},
+  {pv:'bring back',verb:'bring',particle:'back',topic:'travel',def:'return with something; cause to remember',sep:true,ex:['Bring back some souvenirs!','The smell brought back childhood memories.']},
+  {pv:'bring out',verb:'bring',particle:'out',topic:'learning',def:'release a product; highlight a quality',sep:true,ex:['They\'re bringing out a new model.','Travel brings out the best in people.']},
+
+  {pv:'break down',verb:'break',particle:'down',topic:'health & emotions',def:'stop functioning; lose emotional control',sep:false,ex:['The car broke down on the motorway.','She broke down in tears.']},
+  {pv:'break out',verb:'break',particle:'out',topic:'safety',def:'escape; begin suddenly',sep:false,ex:['Fire broke out in the warehouse.','War broke out in the region.']},
+  {pv:'break up',verb:'break',particle:'up',topic:'relationships',def:'end a romantic relationship; divide into parts',sep:true,ex:['They broke up after two years.','Break the project up into smaller tasks.']},
+  {pv:'break through',verb:'break',particle:'through',topic:'learning',def:'make a significant discovery or progress',sep:false,ex:['Scientists broke through with a new vaccine.','She finally broke through in her career.']},
+
+  {pv:'call off',verb:'call',particle:'off',topic:'work',def:'cancel something',sep:true,ex:['They called off the meeting.','The match was called off due to rain.']},
+  {pv:'call back',verb:'call',particle:'back',topic:'communication',def:'return a phone call',sep:true,ex:['I\'ll call you back in ten minutes.','She never called back.']},
+  {pv:'call on',verb:'call',particle:'on',topic:'social life',def:'visit someone; ask someone to speak',sep:false,ex:['The teacher called on her to answer.','We called on some old friends.']},
+  {pv:'call out',verb:'call',particle:'out',topic:'communication',def:'shout; publicly criticise someone',sep:true,ex:['She called out his name in the dark.','He was called out for his dishonesty.']},
+
+  {pv:'set up',verb:'set',particle:'up',topic:'work',def:'establish or arrange something',sep:true,ex:['She set up her own business at 25.','Can you set up a meeting for Monday?']},
+  {pv:'set off',verb:'set',particle:'off',topic:'travel',def:'begin a journey; trigger an alarm or reaction',sep:true,ex:['We set off at dawn.','The noise set off the car alarm.']},
+  {pv:'set back',verb:'set',particle:'back',topic:'work',def:'delay progress; cost someone money',sep:true,ex:['The bad weather set back the project.','The repairs set me back £500.']},
+  {pv:'set out',verb:'set',particle:'out',topic:'travel',def:'begin a journey; state something clearly',sep:false,ex:['They set out on their expedition.','The report sets out the main findings.']}
+];
+
+const QUOTES=[
+  {text:'"You can\'t go back and change the beginning, but you can start where you are and change the ending."',author:'C.S. Lewis',pv:'go back',highlight:'go back'},
+  {text:'"When you give up, that\'s when the game is over."',author:'Novak Djokovic',pv:'give up',highlight:'give up'},
+  {text:'"Come up with new ideas every day. Even bad ones. Just keep the factory running."',author:'Shonda Rhimes',pv:'come up with',highlight:'come up with'},
+  {text:'"I\'ve had to put up with a lot of criticism, but that\'s made me stronger."',author:'J.K. Rowling',pv:'put up with',highlight:'put up with'},
+  {text:'"The secret of getting ahead is getting started. Just set out and begin."',author:'Mark Twain (adapted)',pv:'set out',highlight:'set out'},
+  {text:'"Don\'t look down on someone unless you\'re helping them up."',author:'Jesse Jackson',pv:'look down on',highlight:'look down on'},
+  {text:'"It doesn\'t matter how many times you break down — what matters is how many times you get up."',author:'adapted proverb',pv:'break down',highlight:'break down'},
+  {text:'"Turn your wounds into wisdom. Don\'t let hardship turn you into someone bitter."',author:'Oprah Winfrey (adapted)',pv:'turn into',highlight:'turn into'},
+  {text:'"Look out for the people around you, and they will look out for you."',author:'Richard Branson (adapted)',pv:'look out',highlight:'look out'},
+  {text:'"If something comes up that scares you, go ahead and do it anyway."',author:'Eleanor Roosevelt (adapted)',pv:'go ahead',highlight:'go ahead'},
+  {text:'"Bring out the best in others by bringing out the best in yourself first."',author:'John Wooden (adapted)',pv:'bring out',highlight:'bring out'},
+  {text:'"Never call off a dream just because it seems too distant."',author:'Paulo Coelho (adapted)',pv:'call off',highlight:'call off'}
+];
+
+const MATCH_SETS=[
+  {instr:'Match each phrasal verb with its definition. Click a verb on the left, then its meaning on the right.',
+   pairs:[
+     {pv:'get over',def:'recover from an illness or setback'},
+     {pv:'take on',def:'accept a responsibility or hire someone'},
+     {pv:'look into',def:'investigate something'},
+     {pv:'put off',def:'postpone or cause someone to lose interest'},
+     {pv:'give up',def:'stop doing something or admit defeat'},
+     {pv:'turn down',def:'reject an offer or reduce volume'},
+     {pv:'break down',def:'stop functioning or lose emotional control'}
+   ]},
+  {instr:'Match each phrasal verb with its definition.',
+   pairs:[
+     {pv:'come up with',def:'think of an idea or solution'},
+     {pv:'look forward to',def:'feel excited about a future event'},
+     {pv:'put up with',def:'tolerate something unpleasant'},
+     {pv:'bring about',def:'cause something to happen'},
+     {pv:'set up',def:'establish or arrange something'},
+     {pv:'call off',def:'cancel something planned'},
+     {pv:'go through',def:'experience something difficult or examine carefully'}
+   ]},
+  {instr:'A trickier round — match phrasal verb to definition.',
+   pairs:[
+     {pv:'look down on',def:'regard someone as inferior'},
+     {pv:'come across',def:'find or meet by chance; give a certain impression'},
+     {pv:'turn out',def:'happen in a particular way; attend an event'},
+     {pv:'give rise to',def:'cause or produce something'},
+     {pv:'bring out',def:'release a product or highlight a quality'},
+     {pv:'break through',def:'make significant progress or a discovery'},
+     {pv:'set back',def:'delay progress or cost someone money'}
+   ]}
+];
+
+const SCRAM_POOL=[
+  {sentence:'She took up photography after she retired from her job.',words:['She','took','up','photography','after','she','retired','from','her','job'],pv:'take up'},
+  {sentence:'The project was put off until the end of the month.',words:['The','project','was','put','off','until','the','end','of','the','month'],pv:'put off'},
+  {sentence:'I came across this book in a small shop in Prague.',words:['I','came','across','this','book','in','a','small','shop','in','Prague'],pv:'come across'},
+  {sentence:'He broke down when he heard the terrible news.',words:['He','broke','down','when','he','heard','the','terrible','news'],pv:'break down'},
+  {sentence:'Can you look after my cat while I am away?',words:['Can','you','look','after','my','cat','while','I','am','away'],pv:'look after'},
+  {sentence:'The company set up a new office in Warsaw last year.',words:['The','company','set','up','a','new','office','in','Warsaw','last','year'],pv:'set up'},
+  {sentence:'She gave up sweets for the whole month of January.',words:['She','gave','up','sweets','for','the','whole','month','of','January'],pv:'give up'},
+  {sentence:'They called off the match because of heavy rain.',words:['They','called','off','the','match','because','of','heavy','rain'],pv:'call off'},
+  {sentence:'He turned down the promotion because he did not want to move.',words:['He','turned','down','the','promotion','because','he','did','not','want','to','move'],pv:'turn down'},
+  {sentence:'We need to look into the cause of the problem.',words:['We','need','to','look','into','the','cause','of','the','problem'],pv:'look into'},
+  {sentence:'The new policy brought about significant changes in the workplace.',words:['The','new','policy','brought','about','significant','changes','in','the','workplace'],pv:'bring about'},
+  {sentence:'I always look forward to the weekend.',words:['I','always','look','forward','to','the','weekend'],pv:'look forward to'},
+  {sentence:'She came up with a creative solution to the problem.',words:['She','came','up','with','a','creative','solution','to','the','problem'],pv:'come up with'},
+  {sentence:'The alarm went off just as we fell asleep.',words:['The','alarm','went','off','just','as','we','fell','asleep'],pv:'go off'},
+  {sentence:'He takes care of his younger siblings every afternoon.',words:['He','takes','care','of','his','younger','siblings','every','afternoon'],pv:'take care of'},
+  {sentence:'Please put away your phone during the lesson.',words:['Please','put','away','your','phone','during','the','lesson'],pv:'put away'},
+  {sentence:'The argument turned into a full-scale dispute by the end of the day.',words:['The','argument','turned','into','a','full-scale','dispute','by','the','end','of','the','day'],pv:'turn into'},
+  {sentence:'We set off early to avoid the rush-hour traffic.',words:['We','set','off','early','to','avoid','the','rush-hour','traffic'],pv:'set off'}
+];
+
+const PARA_POOL=[
+  {plain:'She stopped trying to lose weight.',target:'give up',answer:'She gave up trying to lose weight.',hint:'give up = stop doing something'},
+  {plain:'The company was bought by a larger firm.',target:'take over',answer:'A larger firm took over the company.',hint:'take over = assume control'},
+  {plain:'He recovered from his illness quite quickly.',target:'get over',answer:'He got over his illness quite quickly.',hint:'get over = recover from'},
+  {plain:'They cancelled the concert at the last minute.',target:'call off',answer:'They called off the concert at the last minute.',hint:'call off = cancel'},
+  {plain:'She rejected the job offer without hesitation.',target:'turn down',answer:'She turned down the job offer without hesitation.',hint:'turn down = reject'},
+  {plain:'The police are investigating the incident.',target:'look into',answer:'The police are looking into the incident.',hint:'look into = investigate'},
+  {plain:'He established his own business at the age of 30.',target:'set up',answer:'He set up his own business at the age of 30.',hint:'set up = establish'},
+  {plain:'I found the document by chance while tidying up.',target:'come across',answer:'I came across the document while tidying up.',hint:'come across = find by chance'},
+  {plain:'She thought of an excellent solution.',target:'come up with',answer:'She came up with an excellent solution.',hint:'come up with = think of'},
+  {plain:'The meeting was delayed by a technical problem.',target:'set back',answer:'A technical problem set back the meeting.',hint:'set back = delay'},
+  {plain:'I cannot tolerate this noise any longer.',target:'put up with',answer:'I cannot put up with this noise any longer.',hint:'put up with = tolerate'},
+  {plain:'She started learning the guitar six months ago.',target:'take up',answer:'She took up guitar six months ago.',hint:'take up = start a hobby'},
+  {plain:'The new regulations caused a lot of confusion.',target:'give rise to',answer:'The new regulations gave rise to a lot of confusion.',hint:'give rise to = cause'},
+  {plain:'He finally yielded after hours of negotiation.',target:'give in',answer:'He finally gave in after hours of negotiation.',hint:'give in = yield/stop resisting'},
+  {plain:'The smoke alarm began ringing in the middle of the night.',target:'go off',answer:'The smoke alarm went off in the middle of the night.',hint:'go off = start ringing'},
+  {plain:'She began her journey before sunrise.',target:'set off',answer:'She set off before sunrise.',hint:'set off = begin a journey'}
+];
+
+const VERBS=[...new Set(PVS.map(p=>p.verb))].sort();
+const PARTS=[...new Set(PVS.map(p=>p.particle))].sort();
+const TOPICS=[...new Set(PVS.map(p=>p.topic))].sort();
+
+let filterVerb='',filterPart='',filterTopic='',selPV=null;
+let mSet=0,mPicked=null,mMatched=[],mScore=0,mAttempts=0,mRight=[];
+let sItems=[],sIdx=0,sScore=0,sTotal=0,sPlaced=[],sSel=null,sChecked=false;
+let pItems=[],pIdx=0,pScore=0,pTotal=0,pChecked=false;
+let glossary=[];
+let quoteIdx=0,quoteOrder=[];
+
+function showP(i){
+  document.querySelectorAll('.pan').forEach((p,j)=>p.classList.toggle('on',j===i));
+  document.querySelectorAll('.nt').forEach((t,j)=>t.classList.toggle('on',j===i));
+  if(i===0)renderQuote();
+  if(i===1&&!document.getElementById('pvGrid').innerHTML){renderChips();renderBrowse();}
+  if(i===2&&!document.getElementById('matchCont').innerHTML)startMatch(0);
+  if(i===3&&!sItems.length)startScram();
+  if(i===4&&!pItems.length)startPara();
+  if(i===5)renderGloss();
+}
+
+function renderQuote(){
+  if(!quoteOrder.length){quoteOrder=[...Array(QUOTES.length).keys()].sort(()=>Math.random()-.5);}
+  const q=QUOTES[quoteOrder[quoteIdx%quoteOrder.length]];quoteIdx++;
+  const hi=q.highlight;
+  const txt=q.text.replace(hi,`<span style="background:#EEEDFE;color:#3C3489;font-weight:500;padding:1px 5px;border-radius:6px">${hi}</span>`);
+  document.getElementById('quoteBox').innerHTML=`
+    <div style="font-family:var(--font-serif);font-size:15px;line-height:1.7;color:var(--color-text-primary);margin-bottom:8px">${txt}</div>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">— ${q.author}</div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">Phrasal verb: ${q.pv}</span>
+      <button class="act" onclick="renderQuote()" style="font-size:12px;padding:4px 12px"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> New quote</button>
+    </div>`;
+}
+
+function renderChips(){
+  document.getElementById('verbChips').innerHTML=`<span class="chip on" onclick="setVerbFilter('',this)">All</span>`+VERBS.map(v=>`<span class="chip" onclick="setVerbFilter('${v}',this)">${v}</span>`).join('');
+  document.getElementById('partChips').innerHTML=`<span class="chip on" onclick="setPartFilter('',this)">All</span>`+PARTS.map(p=>`<span class="chip" onclick="setPartFilter('${p}',this)">${p}</span>`).join('');
+  document.getElementById('topicChips').innerHTML=`<span class="chip on" onclick="setTopicFilter('',this)">All</span>`+TOPICS.map(t=>`<span class="chip" onclick="setTopicFilter('${t}',this)">${t}</span>`).join('');
+}
+function setVerbFilter(v,el){filterVerb=v;document.querySelectorAll('#verbChips .chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');renderBrowse();}
+function setPartFilter(p,el){filterPart=p;document.querySelectorAll('#partChips .chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');renderBrowse();}
+function setTopicFilter(t,el){filterTopic=t;document.querySelectorAll('#topicChips .chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');renderBrowse();}
+
+function renderBrowse(){
+  const q=(document.getElementById('searchBox').value||'').toLowerCase();
+  const list=PVS.filter(p=>{
+    if(filterVerb&&p.verb!==filterVerb)return false;
+    if(filterPart&&p.particle!==filterPart)return false;
+    if(filterTopic&&p.topic!==filterTopic)return false;
+    if(q&&!(p.pv.toLowerCase().includes(q)||p.def.toLowerCase().includes(q)||p.ex.some(e=>e.toLowerCase().includes(q))))return false;
+    return true;
+  });
+  document.getElementById('browseCount').textContent=`${list.length} phrasal verb${list.length!==1?'s':''} found`;
+  const TCOLS={daily_routine:{bg:'#E1F5EE',tc:'#085041'},'health & emotions':{bg:'#FBEAF0',tc:'#72243E'},relationships:{bg:'#EEEDFE',tc:'#3C3489'},work:{bg:'#FAEEDA',tc:'#633806'},travel:{bg:'#E6F1FB',tc:'#0C447C'},learning:{bg:'#EAF3DE',tc:'#27500A'},'social life':{bg:'#FAECE7',tc:'#712B13'},communication:{bg:'#F1EFE8',tc:'#444441'},safety:{bg:'#FCEBEB',tc:'#791F1F'}};
+  const tc=t=>{const k=t.replace(' ','_');return TCOLS[k]||TCOLS[t]||{bg:'#F1EFE8',tc:'#444441'};};
+  document.getElementById('pvGrid').innerHTML=list.map(p=>{
+    const c=tc(p.topic);
+    const saved=glossary.includes(p.pv);
+    return`<div class="pv-card${selPV===p.pv?' sel':''}" id="pvcard_${p.pv.replace(/ /g,'_')}" onclick="selectPV('${p.pv}')">
+      <div class="pv-top">
+        <span class="pv-name">${p.pv}</span>
+        <span style="background:${c.bg};color:${c.tc};font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px">${p.topic}</span>
+        <span style="margin-left:auto;color:${saved?'#854F0B':'var(--color-text-secondary)'};font-size:15px;cursor:pointer" title="${saved?'Saved':'Save'}" onclick="event.stopPropagation();toggleGloss('${p.pv}',this)"><i class="ti ti-bookmark${saved?'':''}" aria-label="${saved?'Remove from glossary':'Add to glossary'}"></i></span>
+      </div>
+      <div class="pv-def">${p.def}</div>
+      <div class="pv-ex">${p.ex[0]}</div>
+    </div>`;
+  }).join('');
+  if(selPV){const found=list.find(p=>p.pv===selPV);if(!found){selPV=null;document.getElementById('pvDetail').classList.remove('on');}}
+}
+
+function selectPV(pv){
+  selPV=selPV===pv?null:pv;
+  document.querySelectorAll('.pv-card').forEach(c=>c.classList.remove('sel'));
+  if(selPV){const el=document.getElementById('pvcard_'+pv.replace(/ /g,'_'));if(el)el.classList.add('sel');}
+  const detail=document.getElementById('pvDetail');
+  if(!selPV){detail.classList.remove('on');return;}
+  const p=PVS.find(x=>x.pv===pv);
+  const TCOLS={daily_routine:{bg:'#E1F5EE',tc:'#085041',brd:'#5DCAA5'},'health & emotions':{bg:'#FBEAF0',tc:'#72243E',brd:'#ED93B1'},relationships:{bg:'#EEEDFE',tc:'#3C3489',brd:'#AFA9EC'},work:{bg:'#FAEEDA',tc:'#633806',brd:'#EF9F27'},travel:{bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB'},learning:{bg:'#EAF3DE',tc:'#27500A',brd:'#C0DD97'},'social life':{bg:'#FAECE7',tc:'#712B13',brd:'#F0997B'},communication:{bg:'#F1EFE8',tc:'#444441',brd:'#D3D1C7'},safety:{bg:'#FCEBEB',tc:'#791F1F',brd:'#F7C1C1'}};
+  const k=p.topic.replace(' ','_');const c=TCOLS[k]||TCOLS[p.topic]||{bg:'#F1EFE8',tc:'#444441',brd:'#D3D1C7'};
+  const saved=glossary.includes(pv);
+  detail.innerHTML=`
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap">
+      <span style="font-size:17px;font-weight:500">${p.pv}</span>
+      <span style="background:${c.bg};color:${c.tc};font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px;border:0.5px solid ${c.brd}">${p.topic}</span>
+      <button class="act" style="margin-left:auto;font-size:12px" onclick="toggleGloss('${pv}',this)">${saved?'<i class="ti ti-bookmark" aria-hidden="true"></i> Saved':'<i class="ti ti-bookmark" aria-hidden="true"></i> Save to glossary'}</button>
+    </div>
+    <div class="lbl">Definition</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px">${p.def}</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">verb: ${p.verb}</span>
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">particle: ${p.particle}</span>
+      <span style="background:${p.sep?'#EAF3DE':'#FAECE7'};color:${p.sep?'#27500A':'#712B13'};font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${p.sep?'separable':'inseparable'}</span>
+    </div>
+    <div class="lbl">Examples</div>
+    <div class="ex-list" style="display:flex;flex-direction:column;gap:7px">
+      ${p.ex.map(e=>`<div style="background:var(--color-background-secondary);border-radius:12px;padding:8px 13px;font-size:14px;font-style:italic;color:var(--color-text-secondary)">${e}</div>`).join('')}
+    </div>`;
+  detail.classList.add('on');
+  detail.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function toggleGloss(pv,el){
+  if(glossary.includes(pv))glossary=glossary.filter(x=>x!==pv);
+  else glossary.push(pv);
+  renderBrowse();
+  if(selPV)selectPV(selPV);
+}
+
+function renderGloss(){
+  const cont=document.getElementById('glossCont');
+  if(!glossary.length){cont.innerHTML=`<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" aria-hidden="true" style="font-size:28px;margin-bottom:10px;display:block;color:#AFA9EC"></i><div style="font-size:14px">No phrasal verbs saved yet. Browse and click the bookmark icon to save them here.</div></div>`;return;}
+  cont.innerHTML=`<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">${glossary.length} phrasal verb${glossary.length!==1?'s':''} saved</div>`+glossary.map(pv=>{
+    const p=PVS.find(x=>x.pv===pv);
+    return`<div class="card" style="margin-bottom:8px;display:flex;align-items:flex-start;gap:12px">
+      <div style="flex:1"><div style="font-size:14px;font-weight:500;margin-bottom:2px">${p.pv}</div><div style="font-size:13px;color:var(--color-text-secondary)">${p.def}</div><div style="font-size:13px;font-style:italic;color:var(--color-text-secondary);margin-top:4px">${p.ex[0]}</div></div>
+      <button class="act" style="font-size:12px;flex-shrink:0" onclick="toggleGloss('${pv}',this);renderGloss()"><i class="ti ti-x" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i></button>
+    </div>`;
+  }).join('');
+}
+
+function startMatch(si){
+  mSet=si!==undefined?si:mSet;
+  const set=MATCH_SETS[mSet];
+  mPicked=null;mMatched=[];mScore=0;mAttempts=0;
+  const rights=[...set.pairs].sort(()=>Math.random()-.5);mRight=rights;
+  document.getElementById('matchCont').innerHTML=`
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px">
+      <span style="font-size:13px;color:var(--color-text-secondary);flex:1">Round ${mSet+1} of ${MATCH_SETS.length}</span>
+      ${MATCH_SETS.map((_,i)=>`<button class="act" onclick="startMatch(${i})" style="${i===mSet?'background:#EEEDFE;border-color:#AFA9EC;color:#3C3489':''}">Round ${i+1}</button>`).join('')}
+      <button class="act" onclick="startMatch(mSet)"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i></button>
+    </div>
+    <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:4px">${set.instr}</p>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:12px">Matched: <strong id="mP">0</strong>/${set.pairs.length} &nbsp;·&nbsp; Attempts: <strong id="mA">0</strong></div>
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:10px;margin-bottom:10px">
+      <div style="display:flex;flex-direction:column;gap:7px" id="mL">${set.pairs.map((p,i)=>`<button class="mi" id="ml_${i}" onclick="mPL(${i})"><span style="font-weight:500">${p.pv}</span></button>`).join('')}</div>
+      <div style="display:flex;flex-direction:column;gap:7px" id="mR">${rights.map((r,i)=>`<button class="mi" id="mr_${i}" onclick="mPR(${i})" style="font-size:13px">${r.def}</button>`).join('')}</div>
+    </div>
+    <div id="mFb" style="font-size:13px;min-height:18px"></div>`;
+}
+function mPL(i){
+  const set=MATCH_SETS[mSet];
+  if(mMatched.some(m=>m.l===i))return;
+  mPicked=i;
+  document.querySelectorAll('#mL .mi').forEach((el,j)=>{if(!mMatched.some(m=>m.l===j))el.classList.toggle('pk',j===i);});
+}
+function mPR(i){
+  if(mPicked===null)return;
+  const set=MATCH_SETS[mSet];
+  if(mMatched.some(m=>m.r===i))return;
+  mAttempts++;document.getElementById('mA').textContent=mAttempts;
+  const ok=mRight[i].pv===set.pairs[mPicked].pv;
+  if(ok){
+    document.getElementById('ml_'+mPicked).classList.remove('pk');
+    document.getElementById('ml_'+mPicked).classList.add('mt');
+    document.getElementById('mr_'+i).classList.add('mt');
+    mMatched.push({l:mPicked,r:i});mScore++;
+    document.getElementById('mP').textContent=mScore;
+    document.getElementById('mFb').style.color='#27500A';
+    document.getElementById('mFb').textContent=mScore===set.pairs.length?`All ${set.pairs.length} matched in ${mAttempts} attempt${mAttempts===1?'':'s'}!`:'Correct!';
+    mPicked=null;document.querySelectorAll('#mL .mi').forEach(el=>el.classList.remove('pk'));
+  } else {
+    document.getElementById('mr_'+i).classList.add('bd');document.getElementById('ml_'+mPicked).classList.add('bd');
+    document.getElementById('mFb').style.color='#791F1F';document.getElementById('mFb').textContent='Not a match — try again.';
+    setTimeout(()=>{const l=document.getElementById('ml_'+mPicked),r=document.getElementById('mr_'+i);if(l)l.classList.remove('bd');if(r)r.classList.remove('bd');},700);
+  }
+}
+
+function startScram(){
+  sItems=[...SCRAM_POOL].sort(()=>Math.random()-.5);
+  sIdx=0;sScore=0;sTotal=0;renderScram();
+}
+function renderScram(){
+  if(sIdx>=sItems.length){
+    const pct=Math.round(sScore/sTotal*100);
+    document.getElementById('scramCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${sScore}/${sTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:16px">${pct===100?'Perfect!':pct>=70?'Well done!':'Keep practising!'}</div><button class="act" onclick="startScram()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;
+  }
+  const item=sItems[sIdx];
+  sPlaced=new Array(item.words.length).fill(null);sSel=null;sChecked=false;
+  const sh=[...item.words].sort(()=>Math.random()-.5);window._ssh=sh;
+  const prog=Math.round((sIdx/sItems.length)*100);
+  document.getElementById('scramCont').innerHTML=`
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px">
+      <div style="font-size:13px;color:var(--color-text-secondary)">Sentence ${sIdx+1} of ${sItems.length} &nbsp;·&nbsp; Score: ${sScore}/${sTotal}</div>
+      <button class="act" onclick="startScram()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div class="card" style="margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span style="font-size:12px;color:var(--color-text-secondary)">Phrasal verb:</span>
+        <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.pv}</span>
+      </div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">Tap a word, then tap a slot to place it. Tap a filled slot to return it.</div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:2px;min-height:42px;margin-bottom:6px" id="sSlots">
+        ${item.words.map((_,i)=>`<span class="slot" id="ss_${i}" onclick="cSlot(${i})"></span>${i<item.words.length-1?'<span style="color:var(--color-text-secondary);font-size:10px">▸</span>':''}`).join('')}
+      </div>
+      <div id="sFb" style="font-size:13px;min-height:16px"></div>
+    </div>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px">Word bank:</div>
+    <div style="display:flex;flex-wrap:wrap" id="sPieces">
+      ${sh.map((w,i)=>`<span class="piece" id="sp_${i}" onclick="cPiece(${i})">${w}</span>`).join('')}
+    </div>
+    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
+      <button class="act" onclick="checkScram()">Check</button>
+      <button class="act" onclick="clearScram()"><i class="ti ti-x" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Clear</button>
+      <button class="act" onclick="skipScram()">Skip →</button>
+    </div>`;
+}
+function cPiece(i){
+  if(sChecked)return;
+  document.querySelectorAll('.piece').forEach(p=>p.classList.remove('sel'));
+  if(sSel===i){sSel=null;return;}
+  sSel=i;document.getElementById('sp_'+i).classList.add('sel');
+}
+function cSlot(s){
+  if(sChecked)return;
+  if(sSel===null){
+    if(sPlaced[s]!==null){
+      const w=sPlaced[s];sPlaced[s]=null;
+      window._ssh.forEach((p,pi)=>{const e=document.getElementById('sp_'+pi);if(e&&e.classList.contains('used')&&p===w&&!sPlaced.includes(p))e.classList.remove('used');});
+      rSSlots();
+    }return;
+  }
+  const w=window._ssh[sSel];
+  if(sPlaced[s]!==null){
+    const old=sPlaced[s];sPlaced[s]=null;
+    window._ssh.forEach((p,pi)=>{const e=document.getElementById('sp_'+pi);if(e&&p===old&&e.classList.contains('used'))e.classList.remove('used');});
+  }
+  sPlaced[s]=w;
+  document.getElementById('sp_'+sSel).classList.add('used');
+  document.getElementById('sp_'+sSel).classList.remove('sel');
+  sSel=null;rSSlots();
+}
+function rSSlots(){
+  sItems[sIdx].words.forEach((_,i)=>{
+    const el=document.getElementById('ss_'+i);if(!el)return;
+    if(sPlaced[i]){el.textContent=sPlaced[i];el.className='slot fl';}
+    else{el.textContent='';el.className='slot';}
+  });
+}
+function checkScram(){
+  if(sChecked)return;
+  const item=sItems[sIdx];
+  if(sPlaced.some(p=>p===null)){const fb=document.getElementById('sFb');fb.textContent='Fill all slots first.';fb.style.color='#791F1F';return;}
+  sChecked=true;sTotal++;
+  let ok=item.words.every((w,i)=>sPlaced[i]===w);
+  item.words.forEach((_,i)=>{const el=document.getElementById('ss_'+i);if(!el)return;el.classList.add(sPlaced[i]===item.words[i]?'cs':'ws');});
+  const fb=document.getElementById('sFb');
+  if(ok){sScore++;fb.innerHTML='✓ Correct!';fb.style.color='#27500A';}
+  else{fb.innerHTML='✗ Correct sentence: <em>'+item.sentence+'</em>';fb.style.color='#791F1F';}
+  document.querySelectorAll('#scramCont .act').forEach(b=>{if(b.textContent==='Check'){b.textContent='Next →';b.onclick=()=>{sIdx++;renderScram();};}});
+}
+function clearScram(){
+  if(sChecked)return;
+  sPlaced=new Array(sItems[sIdx].words.length).fill(null);sSel=null;
+  document.querySelectorAll('.piece').forEach(el=>el.classList.remove('sel','used'));
+  rSSlots();document.getElementById('sFb').textContent='';
+}
+function skipScram(){sIdx++;renderScram();}
+
+function startPara(){
+  pItems=[...PARA_POOL].sort(()=>Math.random()-.5);
+  pIdx=0;pScore=0;pTotal=0;renderPara();
+}
+function renderPara(){
+  if(pIdx>=pItems.length){
+    const pct=Math.round(pScore/pTotal*100);
+    document.getElementById('paraCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${pScore}/${pTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:16px">${pct===100?'Perfect! Excellent command of phrasal verbs.':pct>=70?'Well done!':'Keep practising — check the Examples bank for more context.'}</div><button class="act" onclick="startPara()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;
+  }
+  const item=pItems[pIdx];
+  pChecked=false;
+  const prog=Math.round((pIdx/pItems.length)*100);
+  document.getElementById('paraCont').innerHTML=`
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px">
+      <div style="font-size:13px;color:var(--color-text-secondary)">Question ${pIdx+1} of ${pItems.length} &nbsp;·&nbsp; Score: ${pScore}/${pTotal}</div>
+      <button class="act" onclick="startPara()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div class="card" style="margin-bottom:12px">
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">Rewrite the sentence using the phrasal verb given. Keep the meaning the same.</div>
+      <div style="background:var(--color-background-secondary);border-radius:12px;padding:10px 14px;font-size:14px;margin-bottom:10px;color:var(--color-text-primary)">${item.plain}</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <span style="font-size:12px;color:var(--color-text-secondary)">Use:</span>
+        <span style="background:#EEEDFE;color:#3C3489;font-size:13px;font-weight:500;padding:3px 11px;border-radius:20px">${item.target}</span>
+        <span style="font-size:12px;color:var(--color-text-secondary);font-style:italic">${item.hint}</span>
+      </div>
+      <textarea class="para-input" id="paraInput" placeholder="Type your sentence here…"></textarea>
+      <div id="paraFb" style="font-size:13px;min-height:16px;margin-top:6px"></div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="act" onclick="checkPara()">Check</button>
+      <button class="act" onclick="revealPara()">Reveal answer</button>
+      <button class="act" id="pNxt" style="display:none" onclick="nextPara()">Next →</button>
+      <button class="act" onclick="skipPara()">Skip →</button>
+    </div>`;
+}
+function normalise(s){return s.trim().toLowerCase().replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' ');}
+function checkPara(){
+  if(pChecked)return;
+  const item=pItems[pIdx];
+  const val=document.getElementById('paraInput').value;
+  if(!val.trim()){document.getElementById('paraFb').textContent='Please write a sentence first.';document.getElementById('paraFb').style.color='#791F1F';return;}
+  pChecked=true;pTotal++;
+  const userN=normalise(val);const ansN=normalise(item.answer);
+  const pvN=item.target.toLowerCase();
+  const ok=userN===ansN||(userN.includes(pvN)&&userN.split(' ').length>=ansN.split(' ').length-2&&userN.split(' ').length<=ansN.split(' ').length+2);
+  const fb=document.getElementById('paraFb');
+  if(ok){pScore++;fb.innerHTML='✓ Great! Model answer: <em>'+item.answer+'</em>';fb.style.color='#27500A';}
+  else{fb.innerHTML='✗ Not quite. Model answer: <em>'+item.answer+'</em>';fb.style.color='#791F1F';}
+  document.getElementById('pNxt').style.display='inline-block';
+}
+function revealPara(){
+  if(pChecked)return;
+  pChecked=true;pTotal++;
+  const item=pItems[pIdx];
+  const fb=document.getElementById('paraFb');
+  fb.innerHTML='Model answer: <em>'+item.answer+'</em>';fb.style.color='var(--color-text-secondary)';
+  document.getElementById('pNxt').style.display='inline-block';
+}
+function nextPara(){pIdx++;renderPara();}
+function skipPara(){pIdx++;renderPara();}
+
+showP(0);
+</script>
+</body></html>
