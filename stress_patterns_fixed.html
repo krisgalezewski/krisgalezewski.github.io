@@ -1,0 +1,334 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary);font-size:15px}
+.w{padding:1.25rem 1.5rem}
+.eyebrow{font-size:11px;font-weight:500;color:#185FA5;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.lesson-h{font-size:24px;font-weight:500;line-height:1.25;margin-bottom:3px}
+.lesson-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:1rem}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.1rem 1.4rem;margin-bottom:.9rem}
+.lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;margin-top:10px}
+.lbl:first-child{margin-top:0}
+.tip-box{background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;font-size:14px;color:var(--color-text-secondary);margin-top:9px;display:flex;gap:8px;align-items:flex-start;line-height:1.6}
+.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
+.audio-btn:hover{background:#E6F1FB;border-color:#85B7EB;color:#185FA5}
+.audio-btn.playing{background:#E6F1FB;border-color:#185FA5;color:#185FA5}
+.act{font-size:13px;padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act:hover{background:var(--color-background-secondary)}
+.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #185FA5;background:#185FA5;color:#fff;font-size:14px;cursor:pointer}
+.check-btn:hover{background:#0c4577}
+.check-btn:disabled{opacity:.4;cursor:default}
+.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:10px;overflow:hidden}
+.pb{height:5px;border-radius:20px;background:#185FA5;transition:width .3s}
+.fb-ok{background:#EAF3DE;color:#27500A;font-size:14px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.fb-no{background:#FCEBEB;color:#791F1F;font-size:14px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.syl-btn{padding:8px 14px;border-radius:12px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:15px;cursor:pointer;transition:all .15s;color:var(--color-text-primary)}
+.syl-btn:hover:not(.sbsel):not(.sbok):not(.sbbad){background:var(--color-background-secondary)}
+.syl-btn.sbsel{border-color:#185FA5;background:#E6F1FB;color:#0C447C;font-weight:600}
+.syl-btn.sbok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:600}
+.syl-btn.sbbad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.ipa{font-family:var(--font-mono);font-size:15px;color:#185FA5;background:#E6F1FB;padding:3px 10px;border-radius:8px}
+</style>
+
+<div class="w">
+<div class="eyebrow">English pronunciation · British English</div>
+<div class="lesson-h">Stress patterns</div>
+<div class="lesson-sub">Tap any word to hear it — with correct stress placement</div>
+
+<div id="stressContent"></div>
+</div>
+
+<script>
+// ── VOICE ───────────────────────────────────────────────────
+let britishVoice=null;
+function loadVoices(){
+  const vs=window.speechSynthesis.getVoices();
+  britishVoice=
+    vs.find(v=>v.lang==='en-GB'&&/female|woman|fiona|kate|serena|moira|karen|victoria|claire/i.test(v.name))||
+    vs.find(v=>v.lang==='en-GB'&&!/male|man|daniel|oliver|arthur/i.test(v.name))||
+    vs.find(v=>v.lang==='en-GB')||
+    vs.find(v=>v.lang.startsWith('en-GB'))||
+    vs.find(v=>v.lang.startsWith('en'));
+}
+if(window.speechSynthesis){window.speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
+
+function baseUtter(text,rate,pitch,vol){
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-GB';u.rate=rate||0.85;u.pitch=pitch||1.05;u.volume=vol||1;
+  if(britishVoice)u.voice=britishVoice;
+  return u;
+}
+
+/*
+  STRATEGY FOR RELIABLE STRESS:
+  ─────────────────────────────
+  We speak each word as TWO separate utterances (one per syllable),
+  with a ~60 ms gap between them, using pitch/rate/volume to
+  unambiguously mark which syllable is stressed.
+
+  NOUN (stress on syl 1):  syl1 → loud, slow, high pitch
+                            syl2 → quiet, fast, low pitch
+
+  VERB (stress on syl 2):  syl1 → quiet, fast, low pitch
+                            syl2 → loud, slow, high pitch
+
+  The syllables are spelled phonetically so TTS pronounces them
+  as intended even in isolation.
+*/
+
+const PAIRS=[
+  {
+    display:'conflict',
+    nipa:'/ˈkɒnflɪkt/', vipa:'/kənˈflɪkt/',
+    nSyls:['CON','flict'],    // noun: stress syl 0
+    vSyls:['con','FLICT'],    // verb: stress syl 1
+    nPron:['kon','flikt'],
+    vPron:['kun','flikt'],
+  },
+  {
+    display:'permit',
+    nipa:'/ˈpɜːmɪt/', vipa:'/pəˈmɪt/',
+    nSyls:['PER','mit'],
+    vSyls:['per','MIT'],
+    nPron:['pur','mit'],
+    vPron:['puh','mit'],
+  },
+  {
+    display:'record',
+    nipa:'/ˈrekɔːd/', vipa:'/rɪˈkɔːd/',
+    nSyls:['REC','ord'],
+    vSyls:['re','CORD'],
+    nPron:['rek','awd'],
+    vPron:['ruh','kawd'],
+  },
+  {
+    display:'protest',
+    nipa:'/ˈprəʊtest/', vipa:'/prəˈtest/',
+    nSyls:['PRO','test'],
+    vSyls:['pro','TEST'],
+    nPron:['proh','test'],
+    vPron:['pruh','test'],
+  },
+  {
+    display:'object',
+    nipa:'/ˈɒbdʒɪkt/', vipa:'/əbˈdʒekt/',
+    nSyls:['OB','ject'],
+    vSyls:['ob','JECT'],
+    nPron:['ob','jekt'],
+    vPron:['ub','jekt'],
+  },
+  {
+    display:'produce',
+    nipa:'/ˈprɒdjuːs/', vipa:'/prəˈdjuːs/',
+    nSyls:['PRO','duce'],
+    vSyls:['pro','DUCE'],
+    nPron:['prod','yoos'],
+    vPron:['pruh','dyoos'],
+  },
+];
+
+/*
+  speakStressed(syls, pron, stressIdx, btn)
+  syls    = display labels e.g. ['CON','flict']
+  pron    = phonetic spellings for TTS e.g. ['kon','flikt']
+  stressIdx = which syllable gets stress (0 or 1)
+  btn     = the button element (for .playing class)
+*/
+function speakStressed(pron, stressIdx, btn){
+  window.speechSynthesis.cancel();
+  if(!britishVoice) loadVoices();
+  document.querySelectorAll('.audio-btn').forEach(b=>b.classList.remove('playing'));
+  if(btn) btn.classList.add('playing');
+
+  const utterances=pron.map((syl,i)=>{
+    const isStressed=(i===stressIdx);
+    return baseUtter(
+      syl,
+      isStressed ? 0.72 : 1.1,      // stressed = slower, unstressed = faster
+      isStressed ? 1.2  : 0.88,     // stressed = higher pitch
+      isStressed ? 1.0  : 0.6       // stressed = louder
+    );
+  });
+
+  // Chain utterances with a small gap
+  let i=0;
+  function next(){
+    if(i>=utterances.length){
+      if(btn) btn.classList.remove('playing');
+      return;
+    }
+    const u=utterances[i];
+    u.onend=()=>{ setTimeout(next, i===0 ? 55 : 0); };
+    window.speechSynthesis.speak(u);
+    i++;
+  }
+  next();
+}
+
+// ── SENTENCE STRESS ──────────────────────────────────────────
+const SENT_STRESS=[
+  {
+    display:"She's <strong style='color:#185FA5;font-size:17px'>COM</strong>ing on <strong style='color:#185FA5;font-size:17px'>MON</strong>day.",
+    say:"She's coming on Monday.",
+    note:'Function words ("she\'s", "on") reduce; content words ("COMING", "MONday") carry stress.'
+  },
+  {
+    display:"Can you <strong style='color:#185FA5;font-size:17px'>PASS</strong> me the <strong style='color:#185FA5;font-size:17px'>SALT</strong>?",
+    say:"Can you pass me the salt?",
+    note:'"Can" and "the" are unstressed function words. "PASS" and "SALT" are the key information words.'
+  },
+  {
+    display:"I <strong style='color:#185FA5;font-size:17px'>WANT</strong> to go <strong style='color:#185FA5;font-size:17px'>HOME</strong>.",
+    say:"I want to go home.",
+    note:'Content words carry stress; "to" reduces to /tə/.'
+  },
+];
+
+function speakSent(text, btn){
+  window.speechSynthesis.cancel();
+  if(!britishVoice) loadVoices();
+  document.querySelectorAll('.audio-btn').forEach(b=>b.classList.remove('playing'));
+  const u=baseUtter(text, 0.82, 1.05, 1);
+  if(btn){ btn.classList.add('playing'); u.onend=()=>btn.classList.remove('playing'); }
+  window.speechSynthesis.speak(u);
+}
+
+// ── STRESS QUIZ ───────────────────────────────────────────────
+const STRESS_QUIZ=[
+  {word:'photograph',syllables:['pho','to','graph'],correct:0,ipa:'/ˈfəʊtəɡrɑːf/'},
+  {word:'photography',syllables:['pho','tog','ra','phy'],correct:1,ipa:'/fəˈtɒɡrəfi/'},
+  {word:'comfortable',syllables:['com','for','ta','ble'],correct:0,ipa:'/ˈkʌmftəbl/'},
+  {word:'banana',syllables:['ba','na','na'],correct:1,ipa:'/bəˈnɑːnə/'},
+  {word:'education',syllables:['ed','u','ca','tion'],correct:2,ipa:'/ˌedjʊˈkeɪʃən/'},
+  {word:'beautiful',syllables:['beau','ti','ful'],correct:0,ipa:'/ˈbjuːtɪfəl/'},
+  {word:'environment',syllables:['en','vi','ron','ment'],correct:1,ipa:'/ɪnˈvaɪrənmənt/'},
+  {word:'international',syllables:['in','ter','na','tion','al'],correct:2,ipa:'/ˌɪntəˈnæʃənəl/'},
+  {word:'necessary',syllables:['ne','ces','sa','ry'],correct:0,ipa:'/ˈnesəseri/'},
+  {word:'economy',syllables:['e','con','o','my'],correct:1,ipa:'/ɪˈkɒnəmi/'},
+  {word:'photographer',syllables:['pho','tog','ra','pher'],correct:1,ipa:'/fəˈtɒɡrəfə/'},
+  {word:'university',syllables:['u','ni','ver','si','ty'],correct:2,ipa:'/ˌjuːnɪˈvɜːsɪti/'},
+];
+
+let sqIdx=0,sqScore=0,sqTotal=0,sqSel=null,sqChecked=false,sqItems=[];
+
+// ── BUILD ─────────────────────────────────────────────────────
+function buildStress(){
+  document.getElementById('stressContent').innerHTML=`
+    <div class="card" style="margin-bottom:.8rem">
+      <div class="lbl">Noun–verb stress pairs</div>
+      <p style="font-size:15px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:10px">
+        Many two-syllable words change stress depending on their grammatical role.
+        <strong>Nouns</strong> stress the <strong>FIRST</strong> syllable;
+        <strong>verbs</strong> stress the <strong>SECOND</strong>.
+        Click each button to hear the difference clearly.
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px">
+        ${PAIRS.map(p=>`
+          <div style="background:var(--color-background-secondary);border-radius:14px;padding:12px 14px">
+            <div style="font-size:17px;font-weight:600;text-align:center;margin-bottom:10px;letter-spacing:.01em">${p.display}</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+              <div style="background:#E6F1FB;border-radius:12px;padding:10px;text-align:center">
+                <div style="font-size:11px;font-weight:700;color:#0C447C;letter-spacing:.08em;margin-bottom:4px">NOUN</div>
+                <div style="display:flex;align-items:flex-end;justify-content:center;gap:2px;margin-bottom:6px">
+                  <span style="font-size:19px;font-weight:700;color:#0C447C">${p.nSyls[0]}</span><span style="font-size:13px;color:#5b8ab5;padding-bottom:1px">·${p.nSyls[1]}</span>
+                </div>
+                <div style="font-family:var(--font-mono);font-size:11px;color:#185FA5;margin-bottom:8px">${p.nipa}</div>
+                <button class="audio-btn" onclick="speakStressed(${JSON.stringify(p.nPron)},0,this)" style="font-size:12px;margin:0 auto;justify-content:center">🔊 Hear noun</button>
+              </div>
+              <div style="background:#E1F5EE;border-radius:12px;padding:10px;text-align:center">
+                <div style="font-size:11px;font-weight:700;color:#085041;letter-spacing:.08em;margin-bottom:4px">VERB</div>
+                <div style="display:flex;align-items:flex-end;justify-content:center;gap:2px;margin-bottom:6px">
+                  <span style="font-size:13px;color:#5ba58a;padding-bottom:1px">${p.vSyls[0]}·</span><span style="font-size:19px;font-weight:700;color:#085041">${p.vSyls[1]}</span>
+                </div>
+                <div style="font-family:var(--font-mono);font-size:11px;color:#185FA5;margin-bottom:8px">${p.vipa}</div>
+                <button class="audio-btn" onclick="speakStressed(${JSON.stringify(p.vPron)},1,this)" style="font-size:12px;margin:0 auto;justify-content:center">🔊 Hear verb</button>
+              </div>
+            </div>
+          </div>`).join('')}
+      </div>
+      <div class="tip-box" style="margin-top:12px">
+        <span>💡</span>
+        <span>The unstressed syllable in the verb often reduces to a schwa /ə/ — e.g. "produce" (noun) = <strong>/ˈprɒdjuːs/</strong> vs "produce" (verb) = <strong>/prəˈdjuːs/</strong>. This reduction is what makes the stressed syllable stand out so clearly.</span>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:.8rem">
+      <div class="lbl">Sentence stress — content words vs function words</div>
+      <p style="font-size:15px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:10px">
+        <span style="font-weight:500;color:var(--color-text-primary)">Content words</span> (nouns, main verbs, adjectives, adverbs) are stressed.
+        <span style="font-weight:500;color:var(--color-text-primary)">Function words</span> (articles, prepositions, auxiliaries, pronouns) typically reduce.
+      </p>
+      ${SENT_STRESS.map(s=>`
+        <div style="background:var(--color-background-secondary);border-radius:12px;padding:10px 14px;margin-bottom:8px">
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:5px">
+            <div style="font-size:16px;line-height:1.6">${s.display}</div>
+            <button class="audio-btn" onclick="speakSent('${s.say.replace(/'/g,"\\'")}',this)" style="margin-left:auto">🔊 Hear it</button>
+          </div>
+          <div style="font-size:13px;color:var(--color-text-secondary)">${s.note}</div>
+        </div>`).join('')}
+    </div>
+
+    <div class="card">
+      <div class="lbl">Stress quiz — click the stressed syllable</div>
+      <div id="sqArea"></div>
+    </div>`;
+
+  sqItems=[...STRESS_QUIZ].sort(()=>Math.random()-.5);
+  sqIdx=0;sqScore=0;sqTotal=0;renderSQ();
+}
+
+function renderSQ(){
+  if(sqIdx>=sqItems.length){
+    const pct=Math.round(sqScore/sqTotal*100);
+    document.getElementById('sqArea').innerHTML=`
+      <div style="text-align:center;padding:1.5rem">
+        <div style="font-size:22px;font-weight:500;margin-bottom:8px">${sqScore}/${sqTotal}</div>
+        <div style="font-size:15px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect ear!':pct>=70?'Well done!':'Keep practising.'}</div>
+        <button class="act" onclick="sqItems=[...STRESS_QUIZ].sort(()=>Math.random()-.5);sqIdx=0;sqScore=0;sqTotal=0;renderSQ()">
+          <i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Try again
+        </button>
+      </div>`;
+    return;
+  }
+  const q=sqItems[sqIdx]; sqSel=null; sqChecked=false;
+  const prog=Math.round((sqIdx/sqItems.length)*100);
+  document.getElementById('sqArea').innerHTML=`
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="font-size:13px;color:var(--color-text-secondary)">${sqIdx+1}/${sqItems.length} · Score: ${sqScore}/${sqTotal}</span>
+      <button class="audio-btn" onclick="speakSent('${q.word}',this)" style="margin-left:auto">🔊 ${q.word}</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <p style="font-size:15px;color:var(--color-text-secondary);margin-bottom:10px">Which syllable is stressed in <strong>${q.word}</strong>?</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px" id="sqBtns">
+      ${q.syllables.map((s,i)=>`<button class="syl-btn" id="sqb_${i}" onclick="selectSQ(${i})">${s}</button>`).join('')}
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" id="sqCheck" onclick="checkSQ()" disabled>Check</button>
+      <button class="act" onclick="sqIdx++;renderSQ()">Skip →</button>
+    </div>
+    <div id="sqFb" style="margin-top:0"></div>`;
+}
+
+function selectSQ(i){
+  if(sqChecked)return; sqSel=i;
+  document.querySelectorAll('#sqBtns .syl-btn').forEach((b,j)=>b.classList.toggle('sbsel',j===i));
+  document.getElementById('sqCheck').disabled=false;
+}
+function checkSQ(){
+  if(sqChecked||sqSel===null)return; sqChecked=true; sqTotal++;
+  const q=sqItems[sqIdx]; const ok=sqSel===q.correct; if(ok)sqScore++;
+  document.querySelectorAll('#sqBtns .syl-btn').forEach((b,j)=>{
+    b.classList.remove('sbsel');
+    if(j===q.correct)b.classList.add('sbok');
+    else if(j===sqSel&&!ok)b.classList.add('sbbad');
+  });
+  const fb=document.getElementById('sqFb'); fb.className=ok?'fb-ok':'fb-no';
+  fb.innerHTML=(ok?'✓ Correct! ':'✗ Not quite. ')+'IPA: <span class="ipa">'+q.ipa+'</span><br><span style="font-size:13px">Stressed syllable: <strong>'+q.syllables[q.correct].toUpperCase()+'</strong>.</span>';
+  document.getElementById('sqCheck').outerHTML='<button class="act" style="margin-top:10px" onclick="sqIdx++;renderSQ()">Next →</button>';
+}
+
+window.addEventListener('load',()=>{
+  if(window.speechSynthesis){ window.speechSynthesis.getVoices(); setTimeout(loadVoices,500); setTimeout(loadVoices,1500); }
+  buildStress();
+});
+</script>
