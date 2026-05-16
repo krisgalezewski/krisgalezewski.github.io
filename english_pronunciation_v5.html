@@ -1,0 +1,724 @@
+
+<style>
+h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary);font-size:15px}
+.w{padding:1.25rem 1.5rem}
+.eyebrow{font-size:11px;font-weight:500;color:#185FA5;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.lesson-h{font-size:24px;font-weight:500;line-height:1.25;margin-bottom:3px}
+.lesson-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:1rem}
+.nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem}
+.nt{padding:7px 13px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nt:hover{background:var(--color-background-secondary)}
+.nt.on{color:#fff;border-color:transparent;font-weight:500}
+.n0.on{background:#185FA5}.n1.on{background:#0F6E56}.n2.on{background:#993C1D}.n3.on{background:#534AB7}.n4.on{background:#854F0B}.n5.on{background:#72243E}.n6.on{background:#3B6D11}.n7.on{background:#712B13}
+.pan{display:none}.pan.on{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.1rem 1.4rem;margin-bottom:.9rem}
+.lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;margin-top:10px}
+.lbl:first-child{margin-top:0}
+.tip-box{background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;font-size:14px;color:var(--color-text-secondary);margin-top:9px;display:flex;gap:8px;align-items:flex-start;line-height:1.6}
+.act{font-size:13px;padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act:hover{background:var(--color-background-secondary)}
+.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #185FA5;background:#185FA5;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn:hover{background:#0c4577}
+.check-btn:disabled{opacity:.4;cursor:default}
+.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
+.audio-btn:hover{background:#E6F1FB;border-color:#85B7EB;color:#185FA5}
+.audio-btn.playing{background:#E6F1FB;border-color:#185FA5;color:#185FA5;font-weight:500}
+.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:10px;overflow:hidden}
+.pb{height:5px;border-radius:20px;background:#185FA5;transition:width .3s}
+.fb-ok{background:#EAF3DE;color:#27500A;font-size:14px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.fb-no{background:#FCEBEB;color:#791F1F;font-size:14px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:15px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
+.gap-opt:hover:not(.gsel):not(.gok):not(.gbad):not(.gdim){background:var(--color-background-secondary)}
+.gap-opt.gsel{border-color:#185FA5;background:#E6F1FB;color:#0C447C;font-weight:500}
+.gap-opt.gok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:500;cursor:default;pointer-events:none}
+.gap-opt.gbad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F;cursor:default;pointer-events:none}
+.gap-opt.gdim{opacity:.4;cursor:default;pointer-events:none}
+.gap-opt-mono{font-family:var(--font-mono)}
+.ex-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.ipa{font-family:var(--font-mono);font-size:15px;color:#185FA5;background:#E6F1FB;padding:3px 10px;border-radius:8px}
+.ipa-lg{font-family:var(--font-mono);font-size:20px;color:#185FA5}
+.ipa-section{margin-bottom:16px}
+.ipa-section-label{font-size:12px;font-weight:600;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;padding:4px 10px;background:var(--color-background-secondary);border-radius:8px;display:inline-block}
+.ipa-sub-label{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px;margin-top:8px;padding:3px 9px;border-radius:6px;display:inline-block}
+.unvoiced-label{background:#FAECE7;color:#712B13}
+.voiced-label{background:#E1F5EE;color:#085041}
+.ipa-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px}
+.ipa-cell{display:flex;flex-direction:column;align-items:center;justify-content:center;width:56px;height:56px;border-radius:12px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);cursor:pointer;transition:all .15s;padding:2px}
+.ipa-cell:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.ipa-cell.vowel{border-color:#85B7EB;background:#E6F1FB}
+.ipa-cell.diphthong{border-color:#5DCAA5;background:#E1F5EE}
+.ipa-cell.unvoiced{border-color:#F0997B;background:#FAECE7}
+.ipa-cell.voiced{border-color:#5DCAA5;background:#E1F5EE}
+.ipa-cell.active-cell{box-shadow:0 0 0 3px #185FA5!important;transform:translateY(-2px)}
+.ipa-symbol{font-family:var(--font-mono);font-size:18px;font-weight:600;line-height:1}
+.ipa-cell.vowel .ipa-symbol{color:#0C447C}
+.ipa-cell.diphthong .ipa-symbol{color:#085041}
+.ipa-cell.unvoiced .ipa-symbol{color:#712B13}
+.ipa-cell.voiced .ipa-symbol{color:#085041}
+.ipa-example{font-size:9px;color:var(--color-text-secondary);margin-top:2px;text-align:center}
+.ipa-detail{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:.9rem;display:none}
+.ipa-detail.on{display:block}
+.word-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.word-chip{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);cursor:pointer;transition:all .15s}
+.word-chip:hover{background:#E6F1FB;border-color:#85B7EB}
+.word-chip .wtext{font-size:14px;color:var(--color-text-primary)}
+.syl-btn{padding:8px 14px;border-radius:12px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:15px;cursor:pointer;transition:all .15s;color:var(--color-text-primary)}
+.syl-btn:hover:not(.sbsel):not(.sbok):not(.sbbad){background:var(--color-background-secondary)}
+.syl-btn.sbsel{border-color:#185FA5;background:#E6F1FB;color:#0C447C;font-weight:600}
+.syl-btn.sbok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:600}
+.syl-btn.sbbad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.tt-box{background:var(--color-background-secondary);border-radius:16px;padding:1rem 1.3rem;margin-bottom:1rem;border-left:3px solid #185FA5}
+.tt-ipa{font-family:var(--font-mono);font-size:13px;color:#185FA5;line-height:1.7;margin-top:6px;display:none;background:#E6F1FB;padding:8px 12px;border-radius:10px}
+.tt-ipa.on{display:block}
+.mp-card{border-radius:14px;border:0.5px solid var(--color-border-tertiary);padding:10px 14px;text-align:center;cursor:pointer;transition:all .15s;background:var(--color-background-primary)}
+.mp-card:hover{background:var(--color-background-secondary)}
+.mp-word{font-size:18px;font-weight:500;color:var(--color-text-primary);margin-bottom:3px}
+</style>
+
+<div class="w">
+<h2 class="sr-only">English pronunciation — IPA chart, sounds in depth, minimal pairs, connected speech, stress patterns, quiz, transcription. British English.</h2>
+<div class="nav">
+  <button class="nt n0 on" onclick="showP(0)">Home</button>
+  <button class="nt n1" onclick="showP(1)">IPA chart</button>
+  <button class="nt n2" onclick="showP(2)">Sounds in depth</button>
+  <button class="nt n3" onclick="showP(3)">Minimal pairs</button>
+  <button class="nt n4" onclick="showP(4)">Connected speech</button>
+  <button class="nt n5" onclick="showP(5)">Stress patterns</button>
+  <button class="nt n6" onclick="showP(6)">Quiz</button>
+  <button class="nt n7" onclick="showP(7)">Transcription</button>
+</div>
+
+<!-- HOME -->
+<div id="p0" class="pan on">
+  <div class="eyebrow">Interactive lesson · British English</div>
+  <div class="lesson-h">English pronunciation</div>
+  <div class="lesson-sub">Sounds, stress, rhythm, and connected speech — from phonemes to fluency</div>
+  <div class="tt-box" id="ttBox"></div>
+  <div class="card">
+    <div class="lbl">What this lesson covers</div>
+    <p style="font-size:15px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">British English has <span style="font-weight:500;color:var(--color-text-primary)">44 phonemes</span> — 20 vowel sounds and 24 consonant sounds — that don't always match the spelling. This lesson uses the <span style="font-weight:500;color:var(--color-text-primary)">International Phonetic Alphabet (IPA)</span> to show exactly how words are pronounced. All audio is British English.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:10px">
+      <div style="background:#E6F1FB;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:22px;font-family:var(--font-mono);color:#0C447C;font-weight:700">20</div><div style="font-size:11px;color:#0C447C;font-weight:500;margin-top:2px">Vowel sounds</div></div>
+      <div style="background:#E1F5EE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:22px;font-family:var(--font-mono);color:#085041;font-weight:700">24</div><div style="font-size:11px;color:#085041;font-weight:500;margin-top:2px">Consonant sounds</div></div>
+      <div style="background:#EEEDFE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:22px;font-family:var(--font-mono);color:#3C3489;font-weight:700">44</div><div style="font-size:11px;color:#3C3489;font-weight:500;margin-top:2px">Total phonemes</div></div>
+      <div style="background:#FAEEDA;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:22px;font-family:var(--font-mono);color:#633806;font-weight:700">26</div><div style="font-size:11px;color:#633806;font-weight:500;margin-top:2px">Letters in alphabet</div></div>
+    </div>
+    <div class="tip-box"><span style="font-size:16px">💡</span><span>More sounds than letters! That's why spelling and pronunciation don't always match in English — and why learning the IPA is so valuable.</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px">
+    <div class="card" style="cursor:pointer;margin-bottom:0;padding:.9rem 1rem" onclick="showP(1)"><div style="font-size:20px;margin-bottom:5px">🗺️</div><div style="font-size:13px;font-weight:500;margin-bottom:2px">IPA chart</div><div style="font-size:12px;color:var(--color-text-secondary)">Click sounds, hear audio</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0;padding:.9rem 1rem" onclick="showP(2)"><div style="font-size:20px;margin-bottom:5px">🔬</div><div style="font-size:13px;font-weight:500;margin-bottom:2px">Sounds in depth</div><div style="font-size:12px;color:var(--color-text-secondary)">Tricky sounds explained</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0;padding:.9rem 1rem" onclick="showP(3)"><div style="font-size:20px;margin-bottom:5px">👂</div><div style="font-size:13px;font-weight:500;margin-bottom:2px">Minimal pairs</div><div style="font-size:12px;color:var(--color-text-secondary)">Train your ear</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0;padding:.9rem 1rem" onclick="showP(4)"><div style="font-size:20px;margin-bottom:5px">🔗</div><div style="font-size:13px;font-weight:500;margin-bottom:2px">Connected speech</div><div style="font-size:12px;color:var(--color-text-secondary)">Linking, elision & more</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0;padding:.9rem 1rem" onclick="showP(5)"><div style="font-size:20px;margin-bottom:5px">🎵</div><div style="font-size:13px;font-weight:500;margin-bottom:2px">Stress patterns</div><div style="font-size:12px;color:var(--color-text-secondary)">Words & sentences</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0;padding:.9rem 1rem" onclick="showP(6)"><div style="font-size:20px;margin-bottom:5px">✏️</div><div style="font-size:13px;font-weight:500;margin-bottom:2px">Quiz</div><div style="font-size:12px;color:var(--color-text-secondary)">Test your knowledge</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0;padding:.9rem 1rem" onclick="showP(7)"><div style="font-size:20px;margin-bottom:5px">🔤</div><div style="font-size:13px;font-weight:500;margin-bottom:2px">Transcription</div><div style="font-size:12px;color:var(--color-text-secondary)">Hear & identify</div></div>
+  </div>
+</div>
+
+<!-- IPA CHART -->
+<div id="p1" class="pan">
+  <div class="eyebrow">English pronunciation · British English</div>
+  <div class="lesson-h">IPA chart</div>
+  <div class="lesson-sub">Click any symbol to hear an example word containing that sound</div>
+  <div class="card" style="margin-bottom:.6rem">
+    <div style="display:flex;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--color-text-secondary)">
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:14px;height:14px;border-radius:4px;background:#E6F1FB;border:0.5px solid #85B7EB;display:inline-block"></span>Short vowel</span>
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:14px;height:14px;border-radius:4px;background:#E1F5EE;border:0.5px solid #5DCAA5;display:inline-block"></span>Long vowel / diphthong</span>
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:14px;height:14px;border-radius:4px;background:#FAECE7;border:0.5px solid #F0997B;display:inline-block"></span>Unvoiced consonant</span>
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:14px;height:14px;border-radius:4px;background:#E1F5EE;border:0.5px solid #5DCAA5;display:inline-block"></span>Voiced consonant</span>
+    </div>
+  </div>
+  <div id="ipaChart"></div>
+  <div class="ipa-detail" id="ipaDetail"></div>
+</div>
+
+<!-- SOUNDS IN DEPTH -->
+<div id="p2" class="pan">
+  <div class="eyebrow">English pronunciation · British English</div>
+  <div class="lesson-h">Sounds in depth</div>
+  <div class="lesson-sub">A guided look at the sounds that cause most difficulty for learners</div>
+  <div id="soundsContent"></div>
+</div>
+
+<!-- MINIMAL PAIRS -->
+<div id="p3" class="pan">
+  <div class="eyebrow">English pronunciation · British English</div>
+  <div class="lesson-h">Minimal pairs</div>
+  <div class="lesson-sub">Listen to each word — train your ear to distinguish similar sounds</div>
+  <div id="mpContent"></div>
+</div>
+
+<!-- CONNECTED SPEECH -->
+<div id="p4" class="pan">
+  <div class="eyebrow">English pronunciation · British English</div>
+  <div class="lesson-h">Connected speech</div>
+  <div class="lesson-sub">How sounds change when words flow together in natural speech</div>
+  <div id="connContent"></div>
+</div>
+
+<!-- STRESS PATTERNS -->
+<div id="p5" class="pan">
+  <div class="eyebrow">English pronunciation · British English</div>
+  <div class="lesson-h">Stress patterns</div>
+  <div class="lesson-sub">Tap any word to hear it — noun stress on the first syllable, verb stress on the second</div>
+  <div id="stressContent"></div>
+</div>
+
+<!-- QUIZ -->
+<div id="p6" class="pan">
+  <div class="eyebrow">English pronunciation · British English</div>
+  <div class="lesson-h">Quiz</div>
+  <div class="lesson-sub">Choose the correct IPA transcription or pronunciation rule</div>
+  <div id="exContent"></div>
+</div>
+
+<!-- TRANSCRIPTION -->
+<div id="p7" class="pan">
+  <div class="eyebrow">English pronunciation · British English</div>
+  <div class="lesson-h">Transcription exercise</div>
+  <div class="lesson-sub">Listen to each word and choose its correct IPA transcription</div>
+  <div id="transContent"></div>
+</div>
+</div>
+
+<script>
+// ── VOICE ─────────────────────────────────────────────────────
+let britVoice=null;
+function loadV(){
+  const vs=window.speechSynthesis.getVoices();
+  if(!vs.length)return;
+  britVoice=
+    vs.find(v=>v.lang==='en-GB'&&/female|fiona|kate|serena|moira|karen|victoria|claire/i.test(v.name))||
+    vs.find(v=>v.lang==='en-GB'&&!/male|daniel|oliver|arthur/i.test(v.name))||
+    vs.find(v=>v.lang==='en-GB')||
+    vs.find(v=>v.lang.startsWith('en-GB'))||
+    vs.find(v=>v.lang.startsWith('en'));
+}
+if(window.speechSynthesis){window.speechSynthesis.onvoiceschanged=loadV;loadV();}
+
+function speak(text,rate,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  if(!britVoice)loadV();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-GB';u.rate=rate||0.82;u.pitch=1.08;u.volume=1;
+  if(britVoice)u.voice=britVoice;
+  if(btn){document.querySelectorAll('.audio-btn').forEach(b=>b.classList.remove('playing'));btn.classList.add('playing');u.onend=()=>btn.classList.remove('playing');}
+  window.speechSynthesis.speak(u);
+}
+
+// ── TONGUE TWISTERS ───────────────────────────────────────────
+const TWISTERS=[
+  {text:'She sells seashells on the seashore.',ipa:'/ʃiː selz ˈsiːʃelz ɒn ðə ˈsiːʃɔː/',focus:'/ʃ/ vs /s/ contrast',speed:'Try it slowly, then faster!'},
+  {text:'Peter Piper picked a peck of pickled peppers.',ipa:'/ˈpiːtə ˈpaɪpə pɪkt ə pek əv ˈpɪkld ˈpepəz/',focus:'/p/ plosive repetition',speed:'Emphasise each /p/ clearly.'},
+  {text:'How much wood would a woodchuck chuck, if a woodchuck could chuck wood?',ipa:'/haʊ mʌtʃ wʊd wʊd ə ˈwʊdtʃʌk tʃʌk/',focus:'/w/, /ʊ/, and /tʃ/ — three sounds at once',speed:'Pay attention to the /wʊd/ ambiguity!'},
+  {text:'Red lorry, yellow lorry.',ipa:'/red ˈlɒri, ˈjeləʊ ˈlɒri/',focus:'/r/ and /l/ in quick alternation',speed:'One of the hardest for speakers without an /l–r/ distinction.'},
+  {text:'The sixth sick sheikh\'s sixth sheep\'s sick.',ipa:'/ðə sɪksθ sɪk ʃeɪks sɪksθ ʃiːps sɪk/',focus:'/s/, /ʃ/, and /θ/ — three similar fricatives',speed:'Considered one of the hardest tongue twisters in English.'},
+  {text:'Unique New York, unique New York, you know you need unique New York.',ipa:'/juˈniːk njuː jɔːk/',focus:'/juː/ sequence and /ɪ/ vs /iː/',speed:'The /j/ glide before /uː/ is especially tricky.'},
+  {text:'Whether the weather is warm, whether the weather is hot, we have to put up with the weather, whether we like it or not.',ipa:'/ˈweðə ðə ˈweðə ɪz wɔːm/',focus:'/w/ vs /ð/ — both in nearly every word',speed:'Focus on the voiced /ð/ in "whether" vs /w/ in "warm".'},
+  {text:'Betty Botter bought some butter, but the butter was too bitter.',ipa:'/ˈbeti ˈbɒtə bɔːt səm ˈbʌtə, bʌt ðə ˈbʌtə wəz tuː ˈbɪtə/',focus:'/b/ and /t/ plosives with /ʌ/ and /ɪ/ vowels',speed:'The vowel contrast between "butter" /ʌ/ and "bitter" /ɪ/ is key.'},
+];
+// Randomise on first load — shuffle once and cycle through
+const ttOrder=[...Array(TWISTERS.length).keys()].sort(()=>Math.random()-.5);
+let ttIdx=0;
+function renderTT(){
+  const t=TWISTERS[ttOrder[ttIdx%ttOrder.length]];ttIdx++;
+  document.getElementById('ttBox').innerHTML=`
+    <div style="font-size:11px;font-weight:500;color:#185FA5;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">Tongue twister — try it!</div>
+    <div style="font-size:17px;line-height:1.7;color:var(--color-text-primary);margin-bottom:8px;font-style:italic">${t.text}</div>
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:8px">Focus: <em>${t.focus}</em> · ${t.speed}</div>
+    <div class="tt-ipa" id="ttIpa">${t.ipa}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center">
+      <button class="audio-btn" onclick="speak('${t.text.replace(/'/g,"\\'")}',0.82,this)">🔊 Hear it (normal)</button>
+      <button class="audio-btn" onclick="speak('${t.text.replace(/'/g,"\\'")}',0.5,this)">🐢 Slow version</button>
+      <button class="act" onclick="toggleTTipa(this)">Show IPA transcription</button>
+      <button class="act" onclick="renderTT()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> New twister</button>
+    </div>`;
+}
+function toggleTTipa(btn){
+  const el=document.getElementById('ttIpa');el.classList.toggle('on');
+  btn.textContent=el.classList.contains('on')?'Hide IPA':'Show IPA transcription';
+}
+
+// ── IPA DATA ──────────────────────────────────────────────────
+const IPA_SOUNDS=[
+  {id:'sv_I', sym:'ɪ', ex:'sit',   words:['sit','bit','ship','lid','myth'],         type:'vowel',    section:'Short vowels', sub:null,       desc:'Short, front, close-mid vowel. Lips slightly spread. Shorter and more relaxed than /iː/.', pair:null},
+  {id:'sv_e', sym:'e', ex:'bed',   words:['bed','red','men','health','breath'],      type:'vowel',    section:'Short vowels', sub:null,       desc:'Short, front, mid vowel. Mouth moderately open, lips spread.', pair:null},
+  {id:'sv_ae',sym:'æ', ex:'cat',   words:['cat','hat','man','back','laugh'],         type:'vowel',    section:'Short vowels', sub:null,       desc:'Short, front, open vowel. Jaw drops, lips spread wide. Very open.', pair:null},
+  {id:'sv_ʌ', sym:'ʌ', ex:'cup',   words:['cup','bus','love','blood','done'],        type:'vowel',    section:'Short vowels', sub:null,       desc:'Short, central vowel. Mouth half-open, lips relaxed. Very common in British English.', pair:null},
+  {id:'sv_ɒ', sym:'ɒ', ex:'hot',   words:['hot','dog','stop','wash','long'],         type:'vowel',    section:'Short vowels', sub:null,       desc:'Short, back, open vowel. Lips rounded, jaw open. British English only.', pair:null},
+  {id:'sv_ʊ', sym:'ʊ', ex:'book',  words:['book','foot','good','put','wool'],        type:'vowel',    section:'Short vowels', sub:null,       desc:'Short, back, close vowel. Lips loosely rounded. Shorter and more relaxed than /uː/.', pair:null},
+  {id:'sv_ə', sym:'ə', ex:'about', words:['about','the','doctor','butter','ago'],    type:'vowel',    section:'Short vowels', sub:null,       desc:'The schwa — the most common sound in English. Short, neutral, unstressed. Never carries word stress.', pair:null},
+  {id:'lv_iː',sym:'iː',ex:'see',   words:['see','feet','leave','key','machine'],     type:'diphthong',section:'Long vowels',  sub:null,       desc:'Long, front, close vowel. Lips spread wide. Hold noticeably longer than /ɪ/.', pair:null},
+  {id:'lv_ɑː',sym:'ɑː',ex:'car',   words:['car','farm','fast','laugh','heart'],      type:'diphthong',section:'Long vowels',  sub:null,       desc:'Long, back, open vowel. Jaw drops fully, lips unrounded. Classic British "ah" sound.', pair:null},
+  {id:'lv_ɔː',sym:'ɔː',ex:'four',  words:['four','door','saw','thought','walk'],     type:'diphthong',section:'Long vowels',  sub:null,       desc:'Long, back, mid vowel. Lips strongly rounded. Also in "thought" and "walk".', pair:null},
+  {id:'lv_uː',sym:'uː',ex:'blue',  words:['blue','food','soon','true','shoe'],       type:'diphthong',section:'Long vowels',  sub:null,       desc:'Long, back, close vowel. Lips tightly rounded and pushed forward.', pair:null},
+  {id:'lv_ɜː',sym:'ɜː',ex:'bird',  words:['bird','word','nurse','learn','her'],      type:'diphthong',section:'Long vowels',  sub:null,       desc:'Long, central vowel. The "er" sound — lips neutral, mid-open.', pair:null},
+  {id:'di_eɪ',sym:'eɪ',ex:'day',   words:['day','make','rain','they','break'],       type:'diphthong',section:'Diphthongs',   sub:null,       desc:'Glide from /e/ to /ɪ/. Starts with mouth half-open, then closes.', pair:null},
+  {id:'di_aɪ',sym:'aɪ',ex:'my',    words:['my','night','time','high','sky'],         type:'diphthong',section:'Diphthongs',   sub:null,       desc:'Glide from open /a/ to /ɪ/. Mouth starts wide open and closes.', pair:null},
+  {id:'di_ɔɪ',sym:'ɔɪ',ex:'boy',   words:['boy','voice','join','coin','enjoy'],      type:'diphthong',section:'Diphthongs',   sub:null,       desc:'Glide from /ɔ/ to /ɪ/. Starts with rounded lips, ends spread.', pair:null},
+  {id:'di_əʊ',sym:'əʊ',ex:'go',    words:['go','home','cold','know','boat'],         type:'diphthong',section:'Diphthongs',   sub:null,       desc:'Glide from /ə/ to /ʊ/. British English "oh" — lips round at the end.', pair:null},
+  {id:'di_aʊ',sym:'aʊ',ex:'now',   words:['now','out','sound','house','town'],       type:'diphthong',section:'Diphthongs',   sub:null,       desc:'Glide from open /a/ to /ʊ/. Mouth opens wide then rounds.', pair:null},
+  {id:'di_ɪə',sym:'ɪə',ex:'ear',   words:['ear','here','fear','beer','weird'],       type:'diphthong',section:'Diphthongs',   sub:null,       desc:'Glide from /ɪ/ to schwa /ə/. A centring diphthong — very characteristic of British English.', pair:null},
+  {id:'di_eə',sym:'eə',ex:'air',   words:['air','there','care','wear','bear'],       type:'diphthong',section:'Diphthongs',   sub:null,       desc:'Glide from /e/ to schwa /ə/. Another centring diphthong heard before "r" in British English.', pair:null},
+  {id:'di_ʊə',sym:'ʊə',ex:'pure',  words:['pure','sure','tour','cure','poor'],       type:'diphthong',section:'Diphthongs',   sub:null,       desc:'Glide from /ʊ/ to schwa /ə/. Increasingly rare — many speakers use /ɔː/ instead.', pair:null},
+  {id:'co_p', sym:'p',  ex:'pen',   words:['pen','cup','happy','stop','speak'],      type:'unvoiced', section:'Consonants',   sub:'Unvoiced', desc:'Voiceless bilabial plosive. Both lips close, then release with a puff of air. No vocal cord vibration.', pair:'co_b'},
+  {id:'co_t', sym:'t',  ex:'ten',   words:['ten','cat','little','water','street'],   type:'unvoiced', section:'Consonants',   sub:'Unvoiced', desc:'Voiceless alveolar plosive. Tongue tip on the alveolar ridge, then released. No vocal cord vibration.', pair:'co_d'},
+  {id:'co_k', sym:'k',  ex:'cat',   words:['cat','back','school','queen','lucky'],   type:'unvoiced', section:'Consonants',   sub:'Unvoiced', desc:'Voiceless velar plosive. Back of tongue meets the soft palate. No vocal cord vibration.', pair:'co_g'},
+  {id:'co_f', sym:'f',  ex:'fan',   words:['fan','off','phone','laugh','often'],     type:'unvoiced', section:'Consonants',   sub:'Unvoiced', desc:'Voiceless labiodental fricative. Upper teeth touch the lower lip. No vocal cord vibration.', pair:'co_v'},
+  {id:'co_θ', sym:'θ',  ex:'think', words:['think','bath','both','tooth','three'],   type:'unvoiced', section:'Consonants',   sub:'Unvoiced', desc:'Voiceless dental fricative. Tongue tip between or behind the upper teeth. No vocal buzz.', pair:'co_ð'},
+  {id:'co_s', sym:'s',  ex:'sun',   words:['sun','miss','circle','bus','city'],      type:'unvoiced', section:'Consonants',   sub:'Unvoiced', desc:'Voiceless alveolar fricative. Air through a narrow gap behind the upper teeth. No vocal cord vibration.', pair:'co_z'},
+  {id:'co_ʃ', sym:'ʃ',  ex:'she',   words:['she','wish','machine','sure','station'],type:'unvoiced', section:'Consonants',   sub:'Unvoiced', desc:'Voiceless palato-alveolar fricative. The "sh" sound. Lips slightly rounded. No vocal cord vibration.', pair:'co_ʒ'},
+  {id:'co_h', sym:'h',  ex:'hat',   words:['hat','behind','who','ahead','hello'],    type:'unvoiced', section:'Consonants',   sub:'Unvoiced', desc:'Voiceless glottal fricative. Air through the open glottis. No friction in the mouth. No vocal cord vibration.', pair:null},
+  {id:'co_tʃ',sym:'tʃ', ex:'chin',  words:['chin','watch','nature','church','future'],type:'unvoiced',section:'Consonants',  sub:'Unvoiced', desc:'Voiceless palato-alveolar affricate. Starts like /t/, releases as /ʃ/. No vocal cord vibration.', pair:'co_dʒ'},
+  {id:'co_b', sym:'b',  ex:'bad',   words:['bad','club','about','web','bubble'],     type:'voiced',   section:'Consonants',   sub:'Voiced',   desc:'Voiced bilabial plosive. Like /p/ but with vocal cord vibration — feel the buzz in your throat.', pair:'co_p'},
+  {id:'co_d', sym:'d',  ex:'dog',   words:['dog','red','middle','had','added'],      type:'voiced',   section:'Consonants',   sub:'Voiced',   desc:'Voiced alveolar plosive. Like /t/ but with vocal cord vibration.', pair:'co_t'},
+  {id:'co_g', sym:'g',  ex:'get',   words:['get','bag','bigger','ghost','glass'],    type:'voiced',   section:'Consonants',   sub:'Voiced',   desc:'Voiced velar plosive. Like /k/ but with vocal cord vibration.', pair:'co_k'},
+  {id:'co_v', sym:'v',  ex:'van',   words:['van','love','very','river','of'],        type:'voiced',   section:'Consonants',   sub:'Voiced',   desc:'Voiced labiodental fricative. Like /f/ but with vocal cord vibration.', pair:'co_f'},
+  {id:'co_ð', sym:'ð',  ex:'this',  words:['this','that','other','breathe','father'],type:'voiced',   section:'Consonants',   sub:'Voiced',   desc:'Voiced dental fricative. Like /θ/ but with vocal cord vibration — a distinct buzz on the tongue tip.', pair:'co_θ'},
+  {id:'co_z', sym:'z',  ex:'zoo',   words:['zoo','jazz','nose','busy','these'],      type:'voiced',   section:'Consonants',   sub:'Voiced',   desc:'Voiced alveolar fricative. Like /s/ but with vocal cord vibration.', pair:'co_s'},
+  {id:'co_ʒ', sym:'ʒ',  ex:'vision',words:['vision','measure','usual','pleasure','genre'],type:'voiced',section:'Consonants',sub:'Voiced',   desc:'Voiced palato-alveolar fricative. Like /ʃ/ but with vocal cord vibration. The "zh" sound.', pair:'co_ʃ'},
+  {id:'co_dʒ',sym:'dʒ', ex:'jump',  words:['jump','age','judge','giant','bridge'],   type:'voiced',   section:'Consonants',   sub:'Voiced',   desc:'Voiced palato-alveolar affricate. Like /tʃ/ but with vocal cord vibration.', pair:'co_tʃ'},
+  {id:'co_m', sym:'m',  ex:'man',   words:['man','swim','some','hammer','lamb'],     type:'voiced',   section:'Consonants',   sub:'Voiced',   desc:'Voiced bilabial nasal. Lips close; air exits through the nose. Always voiced.', pair:null},
+  {id:'co_n', sym:'n',  ex:'now',   words:['now','sun','dinner','know','sign'],      type:'voiced',   section:'Consonants',   sub:'Voiced',   desc:'Voiced alveolar nasal. Tongue tip on alveolar ridge; air exits through the nose. Always voiced.', pair:null},
+  {id:'co_ŋ', sym:'ŋ',  ex:'sing',  words:['sing','ring','think','tongue','finger'], type:'voiced',   section:'Consonants',   sub:'Voiced',   desc:'Voiced velar nasal. Back of tongue meets soft palate; air exits through the nose. Never add /g/ after it in British English.', pair:null},
+  {id:'co_l', sym:'l',  ex:'leg',   words:['leg','feel','bell','hello','cold'],      type:'voiced',   section:'Consonants',   sub:'Voiced',   desc:'Voiced alveolar lateral approximant. Tongue tip on alveolar ridge, air escapes at the sides. Always voiced.', pair:null},
+  {id:'co_r', sym:'r',  ex:'red',   words:['red','arrive','sorry','write','rain'],   type:'voiced',   section:'Consonants',   sub:'Voiced',   desc:'Voiced post-alveolar approximant. In British English (non-rhotic), only pronounced before a vowel.', pair:null},
+  {id:'co_j', sym:'j',  ex:'yes',   words:['yes','you','use','few','new'],           type:'voiced',   section:'Consonants',   sub:'Voiced',   desc:'Voiced palatal approximant. The "y" glide. Tongue near the hard palate without touching.', pair:null},
+  {id:'co_w', sym:'w',  ex:'wet',   words:['wet','away','one','where','swim'],       type:'voiced',   section:'Consonants',   sub:'Voiced',   desc:'Voiced labio-velar approximant. Lips rounded and pushed forward, then released.', pair:null},
+];
+
+const VU_PAIRS=[['co_p','co_b'],['co_t','co_d'],['co_k','co_g'],['co_f','co_v'],['co_θ','co_ð'],['co_s','co_z'],['co_ʃ','co_ʒ'],['co_tʃ','co_dʒ']];
+
+function buildIPAChart(){
+  const sects=['Short vowels','Long vowels','Diphthongs','Consonants'];
+  document.getElementById('ipaChart').innerHTML=sects.map(sec=>{
+    if(sec==='Consonants'){
+      const unv=IPA_SOUNDS.filter(s=>s.section==='Consonants'&&s.sub==='Unvoiced');
+      const voi=IPA_SOUNDS.filter(s=>s.section==='Consonants'&&s.sub==='Voiced');
+      return`<div class="ipa-section">
+        <div class="ipa-section-label">Consonants</div>
+        <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:8px;line-height:1.55">Consonants are divided into <span style="font-weight:500;color:#712B13">unvoiced</span> (no vocal cord vibration — only air) and <span style="font-weight:500;color:#085041">voiced</span> (vocal cords vibrate — you feel a buzz in your throat). Many come in voiced/unvoiced pairs.</p>
+        <div class="ipa-sub-label unvoiced-label">🔇 Unvoiced (9)</div>
+        <div class="ipa-grid">${unv.map(ph=>`<div class="ipa-cell unvoiced" id="${ph.id}" onclick="selectPhone('${ph.id}')"><span class="ipa-symbol">${ph.sym}</span><span class="ipa-example">${ph.ex}</span></div>`).join('')}</div>
+        <div class="ipa-sub-label voiced-label" style="margin-top:8px">🔊 Voiced (15)</div>
+        <div class="ipa-grid">${voi.map(ph=>`<div class="ipa-cell voiced" id="${ph.id}" onclick="selectPhone('${ph.id}')"><span class="ipa-symbol">${ph.sym}</span><span class="ipa-example">${ph.ex}</span></div>`).join('')}</div>
+        <div class="ipa-sub-label" style="background:#E6F1FB;color:#0C447C;margin-top:10px">💡 Voiced / unvoiced pairs</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px">
+          ${VU_PAIRS.map(([uid,vid])=>{
+            const u=IPA_SOUNDS.find(x=>x.id===uid),v=IPA_SOUNDS.find(x=>x.id===vid);
+            return`<div style="display:flex;align-items:center;gap:4px;background:var(--color-background-secondary);border-radius:10px;padding:4px 8px">
+              <div class="ipa-cell unvoiced" id="pair_${uid}" onclick="selectPhone('${uid}')" style="width:42px;height:42px;border-radius:9px"><span class="ipa-symbol" style="font-size:15px">${u.sym}</span><span class="ipa-example">${u.ex}</span></div>
+              <span style="font-size:11px;color:var(--color-text-secondary)">↔</span>
+              <div class="ipa-cell voiced" id="pair_${vid}" onclick="selectPhone('${vid}')" style="width:42px;height:42px;border-radius:9px"><span class="ipa-symbol" style="font-size:15px">${v.sym}</span><span class="ipa-example">${v.ex}</span></div>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>`;
+    }
+    const items=IPA_SOUNDS.filter(s=>s.section===sec);
+    const tc=sec==='Short vowels'?'vowel':'diphthong';
+    return`<div class="ipa-section"><div class="ipa-section-label">${sec}</div><div class="ipa-grid">${items.map(ph=>`<div class="ipa-cell ${tc}" id="${ph.id}" onclick="selectPhone('${ph.id}')"><span class="ipa-symbol">${ph.sym}</span><span class="ipa-example">${ph.ex}</span></div>`).join('')}</div></div>`;
+  }).join('');
+}
+
+function selectPhone(id){
+  const ph=IPA_SOUNDS.find(p=>p.id===id);if(!ph)return;
+  document.querySelectorAll('.ipa-cell').forEach(c=>c.classList.remove('active-cell'));
+  document.getElementById(id)?.classList.add('active-cell');
+  document.getElementById('pair_'+id)?.classList.add('active-cell');
+  // Play word only
+  speak(ph.ex,0.82);
+  const pairPh=ph.pair?IPA_SOUNDS.find(x=>x.id===ph.pair):null;
+  const pairHtml=pairPh?`<div style="display:flex;align-items:center;gap:8px;margin-top:8px;padding:7px 12px;background:var(--color-background-secondary);border-radius:12px;flex-wrap:wrap"><span style="font-size:13px;color:var(--color-text-secondary)">Voiced/unvoiced pair:</span><button class="audio-btn" onclick="speak('${pairPh.ex}',0.82,this)">🔊 <span style="font-family:var(--font-mono)">${pairPh.sym}</span> — <em>${pairPh.ex}</em></button></div>`:'';
+  const voiceTag=ph.type==='unvoiced'?`<span style="background:#FAECE7;color:#712B13;font-size:12px;font-weight:600;padding:2px 9px;border-radius:20px">🔇 Unvoiced</span>`:ph.type==='voiced'?`<span style="background:#E1F5EE;color:#085041;font-size:12px;font-weight:600;padding:2px 9px;border-radius:20px">🔊 Voiced</span>`:'';
+  const detail=document.getElementById('ipaDetail');
+  detail.innerHTML=`
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap">
+      <span class="ipa-lg">${ph.sym}</span>
+      <span style="font-size:16px;font-weight:500">as in <em>${ph.ex}</em></span>
+      ${voiceTag}
+      <button class="audio-btn" onclick="speak('${ph.ex}',0.82,this)" style="margin-left:auto">🔊 Hear word</button>
+    </div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:8px">${ph.desc}</p>
+    ${pairHtml}
+    <div class="lbl" style="margin-top:10px">More words with this sound — click any to hear</div>
+    <div class="word-chips">${ph.words.map(w=>`<div class="word-chip" onclick="speak('${w}',0.82)"><span>🔊</span><span class="wtext">${w}</span></div>`).join('')}</div>`;
+  detail.classList.add('on');
+  detail.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ── SOUNDS IN DEPTH ───────────────────────────────────────────
+const SOUNDS_DATA=[
+  {id:'schwa',title:'The schwa /ə/',badge:{bg:'#E6F1FB',tc:'#0C447C'},desc:'The schwa is the most frequent sound in British English. It appears in unstressed syllables and replaces many vowel sounds in natural speech.',points:['Every unstressed syllable is a potential schwa','It is never stressed','Spelling gives no reliable clue: "a", "e", "o", "er", "or", "ar" can all be /ə/'],words:[{w:'about',ipa:'/əˈbaʊt/'},{w:'problem',ipa:'/ˈprɒbləm/'},{w:'doctor',ipa:'/ˈdɒktə/'},{w:'butter',ipa:'/ˈbʌtə/'},{w:'again',ipa:'/əˈɡen/'},{w:'banana',ipa:'/bəˈnɑːnə/'}],tip:'In "banana" /bəˈnɑːnə/, the 1st and 3rd "a" are both schwas. Only the middle "a" carries stress.'},
+  {id:'th',title:'The /θ/ and /ð/ sounds',badge:{bg:'#FBEAF0',tc:'#72243E'},desc:'The "TH" sounds are unique to English. There are two: voiceless /θ/ (think) and voiced /ð/ (this).',points:['/θ/ — voiceless: no vocal cord vibration. Air passes over the tongue tip.','/ð/ — voiced: add vocal cord vibration. You feel a buzz.','Both require the tongue tip at or between the upper front teeth.'],words:[{w:'think',ipa:'/θɪŋk/'},{w:'bath',ipa:'/bɑːθ/'},{w:'this',ipa:'/ðɪs/'},{w:'breathe',ipa:'/briːð/'},{w:'three',ipa:'/θriː/'},{w:'mother',ipa:'/ˈmʌðə/'}],tip:'Place your tongue tip lightly against your upper front teeth. For /θ/, blow air. For /ð/, add voice.'},
+  {id:'dark_l',title:'Clear /l/ vs Dark /l/',badge:{bg:'#EAF3DE',tc:'#27500A'},desc:'English has two /l/ sounds. The "clear" /l/ occurs before vowels; the "dark" /l/ occurs at the end of syllables.',points:['Clear /l/ — before vowels: "light", "like", "love"','Dark /l/ — at end of syllables: "feel", "bell", "milk"','The dark /l/ has a slight /ʊ/ quality.'],words:[{w:'light',ipa:'/laɪt/'},{w:'feel',ipa:'/fiːl/'},{w:'milk',ipa:'/mɪlk/'},{w:'bell',ipa:'/bel/'},{w:'leaf',ipa:'/liːf/'},{w:'full',ipa:'/fʊl/'}],tip:'For the dark /l/, say "ull" — feel the back of your tongue rise. Then add this to words like "bell".'},
+  {id:'short_o',title:'The /ɒ/ sound — a British-only vowel',badge:{bg:'#FAEEDA',tc:'#633806'},desc:'British English has a short, rounded, open /ɒ/ vowel in "hot", "dog", and "stop". American English uses /ɑː/ instead.',points:['Jaw drops fully open; lips form a loose circle','Never tense the lips — this is a short, relaxed sound','Often confused with /ɔː/ (law) — /ɒ/ is shorter and more open'],words:[{w:'hot',ipa:'/hɒt/'},{w:'dog',ipa:'/dɒɡ/'},{w:'stop',ipa:'/stɒp/'},{w:'sorry',ipa:'/ˈsɒri/'},{w:'gone',ipa:'/ɡɒn/'},{w:'wash',ipa:'/wɒʃ/'}],tip:'Think of it as a very open "o" — your mouth almost as open as for /ɑː/ but with slight lip rounding.'},
+  {id:'iː_vs_ɪ',title:'/iː/ vs /ɪ/ — a key vowel distinction',badge:{bg:'#EEEDFE',tc:'#3C3489'},desc:'The contrast between /iː/ (sheep) and /ɪ/ (ship) is one of the most important vowel distinctions in English.',points:['/iː/ — long, tense, lips spread wide: "sheep", "feet", "see"','/ɪ/ — short, lax, lips slightly spread: "ship", "fit", "sit"','Many words change meaning entirely with this switch.'],words:[{w:'sheep',ipa:'/ʃiːp/'},{w:'ship',ipa:'/ʃɪp/'},{w:'feet',ipa:'/fiːt/'},{w:'fit',ipa:'/fɪt/'},{w:'heat',ipa:'/hiːt/'},{w:'hit',ipa:'/hɪt/'}],tip:'Hold your fingers beside your mouth: for /iː/ feel your cheeks move back wide. For /ɪ/, the movement is much smaller.'},
+  {id:'ng',title:'The /ŋ/ sound — no extra G!',badge:{bg:'#E1F5EE',tc:'#085041'},desc:'In British English, "sing", "ring", and "long" end in a pure nasal /ŋ/. No /g/ is added after it.',points:['/ŋ/ alone — no /g/: "sing" /sɪŋ/, "ring" /rɪŋ/','With /g/ — in "finger" /ˈfɪŋɡə/, "anger" /ˈæŋɡə/','Never pronounce "ng" as /n/ + /dʒ/'],words:[{w:'sing',ipa:'/sɪŋ/'},{w:'ring',ipa:'/rɪŋ/'},{w:'tongue',ipa:'/tʌŋ/'},{w:'finger',ipa:'/ˈfɪŋɡə/'},{w:'longer',ipa:'/ˈlɒŋɡə/'},{w:'think',ipa:'/θɪŋk/'}],tip:'Put your finger on your throat: for /ŋ/ you feel vibration but no stop. The back of the tongue presses the soft palate.'},
+];
+function buildSounds(){
+  document.getElementById('soundsContent').innerHTML=SOUNDS_DATA.map((s,i)=>`
+    <div class="card" style="margin-bottom:.8rem;cursor:pointer" onclick="toggleSound(${i})">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="font-size:16px;font-weight:500">${s.title}</span>
+        <span style="background:${s.badge.bg};color:${s.badge.tc};font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px">${s.id}</span>
+        <i class="ti ti-chevron-down" id="sarrow_${i}" aria-hidden="true" style="font-size:16px;color:var(--color-text-secondary);margin-left:auto;transition:transform .2s"></i>
+      </div>
+      <div id="sdiv_${i}" style="display:none;margin-top:10px;padding-top:10px;border-top:0.5px solid var(--color-border-tertiary)">
+        <p style="font-size:15px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:8px">${s.desc}</p>
+        <ul style="font-size:14px;color:var(--color-text-secondary);padding-left:1.2rem;margin-bottom:10px;line-height:1.8">${s.points.map(p=>`<li>${p}</li>`).join('')}</ul>
+        <div class="lbl">Words — click to hear</div>
+        <div class="word-chips" style="margin-top:6px">${s.words.map(w=>`<div class="word-chip" onclick="event.stopPropagation();speak('${w.w}',0.82)"><span>🔊</span><span class="wtext">${w.w}</span><span style="font-family:var(--font-mono);font-size:12px;color:#185FA5">${w.ipa}</span></div>`).join('')}</div>
+        <div class="tip-box" style="margin-top:10px"><span>💡</span><span>${s.tip}</span></div>
+      </div>
+    </div>`).join('');
+}
+function toggleSound(i){
+  const div=document.getElementById('sdiv_'+i),arrow=document.getElementById('sarrow_'+i);
+  const open=div.style.display==='block';div.style.display=open?'none':'block';arrow.style.transform=open?'':'rotate(180deg)';
+}
+
+// ── MINIMAL PAIRS ─────────────────────────────────────────────
+const MP_DATA=[
+  {label:'/iː/ vs /ɪ/',words:[['sheep','ship'],['feet','fit'],['heat','hit'],['beat','bit'],['leave','live'],['seat','sit']]},
+  {label:'/æ/ vs /e/',words:[['bad','bed'],['man','men'],['had','head'],['land','lend'],['cat','get'],['sand','send']]},
+  {label:'/ɒ/ vs /ɔː/',words:[['cot','caught'],['not','naught'],['tot','taught'],['Don','dawn'],['stock','stalk'],['fond','fawned']]},
+  {label:'/θ/ vs /s/',words:[['think','sink'],['three','tree'],['thread','tread'],['thank','sank'],['bath','bass'],['moth','moss']]},
+  {label:'/ð/ vs /d/',words:[['then','den'],['they','day'],['though','dough'],['there','dare'],['those','doze'],['lather','ladder']]},
+  {label:'/w/ vs /v/',words:[['wine','vine'],['wet','vet'],['west','vest'],['whale','vale'],['went','vent'],['worse','verse']]},
+];
+const MP_QUIZ=[
+  {q:'Which word has the /iː/ sound?',opts:['ship','sheep'],ans:1,fb:'"sheep" /ʃiːp/ has the long /iː/; "ship" /ʃɪp/ has the short /ɪ/.'},
+  {q:'Which word has the /æ/ sound?',opts:['men','man'],ans:1,fb:'"man" /mæn/ has /æ/; "men" /men/ has /e/.'},
+  {q:'Which word ends in a voiced /ð/?',opts:['breath','breathe'],ans:1,fb:'"breathe" /briːð/ ends in voiced /ð/; "breath" /breθ/ ends in voiceless /θ/.'},
+  {q:'Which word has the British /ɒ/ vowel?',opts:['caught','cot'],ans:1,fb:'"cot" /kɒt/ has /ɒ/; "caught" /kɔːt/ has the longer /ɔː/.'},
+  {q:'Which word starts with /θ/?',opts:['sink','think'],ans:1,fb:'"think" /θɪŋk/ starts with /θ/; "sink" /sɪŋk/ starts with /s/.'},
+  {q:'Which word contains the schwa /ə/?',opts:['cat','about'],ans:1,fb:'"about" /əˈbaʊt/ starts with a schwa; "cat" /kæt/ has /æ/.'},
+  {q:'Which word has /ɜː/ as in "bird"?',opts:['burn','barn'],ans:0,fb:'"burn" /bɜːn/ has /ɜː/; "barn" /bɑːn/ has /ɑː/.'},
+  {q:'Which word ends in /ŋ/ with no /g/?',opts:['finger','singer'],ans:1,fb:'"singer" /ˈsɪŋə/ has just /ŋ/; "finger" /ˈfɪŋɡə/ has /ŋɡ/.'},
+];
+let mpCat=0,mpqIdx=0,mpqScore=0,mpqTotal=0,mpqSel=null,mpqChecked=false,mpqItems=[];
+function buildMP(){
+  const d=MP_DATA[mpCat];
+  document.getElementById('mpContent').innerHTML=`
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">${MP_DATA.map((m,i)=>`<button class="act" onclick="mpCat=${i};buildMP()" style="${i===mpCat?'background:#185FA5;color:#fff;border-color:#185FA5':''}">${m.label}</button>`).join('')}</div>
+    <div class="card" style="margin-bottom:.8rem">
+      <div class="lbl">Listen carefully — click each word to hear it</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px">
+        ${d.words.map(pair=>`<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px"><div class="mp-card" onclick="speak('${pair[0]}',0.82)"><div class="mp-word">${pair[0]}</div><button class="audio-btn" style="margin:0 auto">🔊</button></div><div class="mp-card" onclick="speak('${pair[1]}',0.82)"><div class="mp-word">${pair[1]}</div><button class="audio-btn" style="margin:0 auto">🔊</button></div></div>`).join('')}
+      </div>
+    </div>
+    <div class="card"><div class="lbl">Discrimination quiz</div><div id="mpQuiz"></div></div>`;
+  mpqItems=[...MP_QUIZ].sort(()=>Math.random()-.5);mpqIdx=0;mpqScore=0;mpqTotal=0;renderMPQ();
+}
+function renderMPQ(){
+  if(mpqIdx>=mpqItems.length){const pct=Math.round(mpqScore/mpqTotal*100);document.getElementById('mpQuiz').innerHTML=`<div style="text-align:center;padding:1rem"><div style="font-size:20px;font-weight:500;margin-bottom:6px">${mpqScore}/${mpqTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px">${pct===100?'Perfect!':pct>=70?'Well done!':'Keep listening!'}</div><button class="act" onclick="mpqItems=[...MP_QUIZ].sort(()=>Math.random()-.5);mpqIdx=0;mpqScore=0;mpqTotal=0;renderMPQ()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Try again</button></div>`;return;}
+  const q=mpqItems[mpqIdx];mpqSel=null;mpqChecked=false;
+  const shuf=[...q.opts.entries()].sort(()=>Math.random()-.5);window._mpqO=shuf;
+  document.getElementById('mpQuiz').innerHTML=`
+    <p style="font-size:15px;margin-bottom:10px">${q.q} <span style="font-size:13px;color:var(--color-text-secondary)">${mpqIdx+1}/${mpqItems.length} · ${mpqScore}/${mpqTotal}</span></p>
+    <div style="display:flex;gap:8px;margin-bottom:10px" id="mpqOpts">${shuf.map(([oi,w],j)=>`<button class="gap-opt" id="mpqo_${j}" onclick="selMPQ(${j})" style="flex:1;text-align:center">${w}<br><button class="audio-btn" onclick="event.stopPropagation();speak('${w}',0.82)" style="font-size:12px;margin-top:4px">🔊</button></button>`).join('')}</div>
+    <div style="display:flex;gap:8px"><button class="check-btn" id="mpqCk" onclick="checkMPQ()" disabled>Check</button><button class="act" onclick="mpqIdx++;renderMPQ()">Skip →</button></div>
+    <div id="mpqFb" style="margin-top:0"></div>`;
+}
+function selMPQ(j){if(mpqChecked)return;mpqSel=j;document.querySelectorAll('#mpqOpts .gap-opt').forEach((el,k)=>el.classList.toggle('gsel',k===j));document.getElementById('mpqCk').disabled=false;}
+function checkMPQ(){
+  if(mpqChecked||mpqSel===null)return;mpqChecked=true;mpqTotal++;
+  const q=mpqItems[mpqIdx];const co=window._mpqO[mpqSel][0];const ok=co===q.ans;if(ok)mpqScore++;
+  document.getElementById('mpqCk').disabled=true;
+  document.querySelectorAll('#mpqOpts .gap-opt').forEach((el,j)=>{const o=window._mpqO[j][0];el.classList.remove('gsel');if(o===q.ans)el.classList.add('gok');else if(j===mpqSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const fb=document.getElementById('mpqFb');fb.className=ok?'fb-ok':'fb-no';fb.textContent=(ok?'✓ Correct! ':'✗ Not quite. ')+q.fb;
+  const n=document.createElement('button');n.className='act';n.style.marginTop='10px';n.textContent='Next →';n.onclick=()=>{mpqIdx++;renderMPQ();};document.getElementById('mpQuiz').appendChild(n);
+}
+
+// ── CONNECTED SPEECH ──────────────────────────────────────────
+const CONN_DATA=[
+  {title:'Linking',icon:'🔗',desc:'When a word ends in a consonant and the next begins with a vowel, the sounds link smoothly — as if they were one word.',examples:[{written:'an apple',linked:'/ən ˈæpl/',say:'an apple'},{written:'pick it up',linked:'/ˈpɪk ɪt ʌp/',say:'pick it up'},{written:'come in',linked:'/ˈkʌm ɪn/',say:'come in'},{written:'turn it off',linked:'/ˈtɜːn ɪt ɒf/',say:'turn it off'}]},
+  {title:'Elision',icon:'✂️',desc:'Sounds are dropped in fast, natural speech — particularly /t/ and /d/ before consonants.',examples:[{written:'last night',linked:'/ˈlɑːs naɪt/',say:'last night'},{written:'next day',linked:'/ˈneks deɪ/',say:'next day'},{written:'old man',linked:'/ˈəʊl mæn/',say:'old man'},{written:'kind of',linked:'/ˈkaɪndə/ (informal)',say:'kind of'}]},
+  {title:'Assimilation',icon:'🔀',desc:'A sound changes to become more like a neighbouring sound. /n/ before /p/ or /b/ becomes /m/.',examples:[{written:'ten people',linked:'/ˈtem ˈpiːpl/',say:'ten people'},{written:'in bed',linked:'/ɪm ˈbed/',say:'in bed'},{written:'good girl',linked:'/ˌɡʊɡ ˈɡɜːl/',say:'good girl'},{written:'that boy',linked:'/ˈðæb ˈbɔɪ/',say:'that boy'}]},
+  {title:'Weak forms',icon:'📉',desc:'Function words have strong and weak forms. In normal speech, the weak (reduced) form is used.',examples:[{written:'can → /kən/ weak',linked:'"I can do it" → /aɪ kən ˈduː ɪt/',say:'I can do it'},{written:'and → /n/ weak',linked:'"fish and chips" → /ˈfɪʃ ən ˈtʃɪps/',say:'fish and chips'},{written:'the → /ðə/ before consonants',linked:'"the book" → /ðə ˈbʊk/',say:'the book'},{written:'to → /tə/ weak',linked:'"I want to go" → /aɪ ˈwɒnt tə ˈɡəʊ/',say:'I want to go'}]},
+];
+
+// Connected speech quiz — identify which phenomenon is illustrated
+const CONN_QUIZ=[
+  {q:'In "pick it up", spoken naturally, the sounds run together because a consonant links to a following vowel. This is an example of:',opts:['Linking','Elision','Assimilation','A weak form'],ans:0,say:'pick it up',fb:'"pick it up" — the /k/ of "pick" links directly onto the /ɪ/ of "it", and the /t/ of "it" links onto the /ʌ/ of "up". This is linking.'},
+  {q:'In natural speech, "last night" is often pronounced /ˈlɑːs naɪt/ — the /t/ at the end of "last" disappears. This is:',opts:['Elision','Linking','Assimilation','A weak form'],ans:0,say:'last night',fb:'Elision — the /t/ is dropped because it comes before another consonant in fast speech. This is extremely common with /t/ and /d/.'},
+  {q:'In "ten people", the /n/ often becomes /m/ in natural speech: /ˈtem ˈpiːpl/. This change is called:',opts:['Assimilation','Elision','Linking','Stress shift'],ans:0,say:'ten people',fb:'Assimilation — /n/ changes to /m/ because the following sound /p/ is also bilabial (made with both lips). The mouth anticipates the next sound.'},
+  {q:'"I can do it" — in natural speech, "can" is usually pronounced /kən/ rather than /kæn/. This is:',opts:['A weak form','Elision','Assimilation','Linking'],ans:0,say:'I can do it',fb:'Weak form — "can" reduces to /kən/ when unstressed. The vowel becomes a schwa. Function words almost always use their weak form in natural speech.'},
+  {q:'In "fish and chips", "and" is typically reduced to /n/ or /ən/. This is an example of:',opts:['A weak form','Elision','Assimilation','Linking'],ans:0,say:'fish and chips',fb:'Weak form — "and" reduces heavily in connected speech. In very fast speech it can be just /n/: "fish \'n\' chips".'},
+  {q:'In "come in", the /m/ of "come" links directly onto the /ɪ/ of "in", sounding like one word. This is:',opts:['Linking','Assimilation','Elision','A weak form'],ans:0,say:'come in',fb:'Linking — when a word ending in a consonant is followed by a word starting with a vowel, the consonant links smoothly to the next syllable.'},
+  {q:'In "next day", the /t/ of "next" is often dropped: /ˈneks deɪ/. What is this called?',opts:['Elision','Linking','Weak form','Assimilation'],ans:0,say:'next day',fb:'Elision — /t/ disappears before the /d/ of "day" in fast speech. Consonant clusters at word boundaries are frequently simplified this way.'},
+  {q:'"I want to go" — the word "to" is usually pronounced /tə/ not /tuː/ in this sentence. This is:',opts:['A weak form','Elision','Linking','Assimilation'],ans:0,say:'I want to go',fb:'Weak form — "to" reduces to /tə/ when unstressed. Only in emphatic speech ("I want TO go, not to STAY") would you hear the strong form /tuː/.'},
+];
+
+let connQIdx=0,connQScore=0,connQTotal=0,connQSel=null,connQChecked=false,connQItems=[];
+
+function buildConn(){
+  document.getElementById('connContent').innerHTML=
+    CONN_DATA.map(c=>`
+      <div class="card" style="margin-bottom:.8rem">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="font-size:22px">${c.icon}</span><span style="font-size:17px;font-weight:500">${c.title}</span></div>
+        <p style="font-size:15px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:10px">${c.desc}</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px">
+          ${c.examples.map(ex=>`<div style="background:var(--color-background-secondary);border-radius:12px;padding:10px 12px"><div style="font-size:14px;font-weight:500;margin-bottom:3px">${ex.written}</div><div style="font-family:var(--font-mono);font-size:12px;color:#185FA5;margin-bottom:6px">${ex.linked}</div><button class="audio-btn" onclick="speak('${ex.say.replace(/'/g,"\\'")}',0.82,this)">🔊 Hear it</button></div>`).join('')}
+        </div>
+      </div>`).join('')+`
+    <div class="card" style="margin-bottom:.8rem">
+      <div class="tip-box" style="margin-top:0"><span>💡</span><span>All these features happen simultaneously in fluent British English. Don't aim for perfect isolated sounds — aim to hear and produce these patterns in connected phrases.</span></div>
+    </div>
+    <div class="card">
+      <div class="lbl">Connected speech quiz — identify the phenomenon</div>
+      <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px;line-height:1.6">Listen to each phrase, then decide which connected speech process is illustrated.</p>
+      <div id="connQArea"></div>
+    </div>`;
+  connQItems=[...CONN_QUIZ].sort(()=>Math.random()-.5);
+  connQIdx=0;connQScore=0;connQTotal=0;renderConnQ();
+}
+
+function renderConnQ(){
+  if(connQIdx>=connQItems.length){
+    const pct=Math.round(connQScore/connQTotal*100);
+    document.getElementById('connQArea').innerHTML=`<div style="text-align:center;padding:1.5rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${connQScore}/${connQTotal}</div><div style="font-size:15px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect! You know your connected speech.':pct>=70?'Well done!':'Review the examples above and try again.'}</div><button class="act" onclick="connQItems=[...CONN_QUIZ].sort(()=>Math.random()-.5);connQIdx=0;connQScore=0;connQTotal=0;renderConnQ()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Try again</button></div>`;
+    return;
+  }
+  const q=connQItems[connQIdx];connQSel=null;connQChecked=false;
+  const prog=Math.round(connQIdx/connQItems.length*100);
+  const opts=[...q.opts.entries()].sort(()=>Math.random()-.5);window._connO=opts;
+  document.getElementById('connQArea').innerHTML=`
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="font-size:13px;color:var(--color-text-secondary)">${connQIdx+1}/${connQItems.length} · Score: ${connQScore}/${connQTotal}</span>
+      <button class="audio-btn" style="margin-left:auto" onclick="speak('${q.say.replace(/'/g,"\\'")}',0.82,this)">🔊 Hear the phrase</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <p style="font-size:15px;color:var(--color-text-primary);line-height:1.65;margin-bottom:12px">${q.q}</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="connOpts">
+      ${opts.map(([oi,o],j)=>`<button class="gap-opt" id="cqo_${j}" onclick="selConnQ(${j})">${o}</button>`).join('')}
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" id="connCk" onclick="checkConnQ()" disabled>Check</button>
+      <button class="act" onclick="connQIdx++;renderConnQ()">Skip →</button>
+    </div>
+    <div id="connFb" style="margin-top:0"></div>`;
+}
+function selConnQ(j){if(connQChecked)return;connQSel=j;document.querySelectorAll('#connOpts .gap-opt').forEach((el,k)=>el.classList.toggle('gsel',k===j));document.getElementById('connCk').disabled=false;}
+function checkConnQ(){
+  if(connQChecked||connQSel===null)return;connQChecked=true;connQTotal++;
+  const q=connQItems[connQIdx];const co=window._connO[connQSel][0];const ok=co===q.ans;if(ok)connQScore++;
+  document.getElementById('connCk').disabled=true;
+  document.querySelectorAll('#connOpts .gap-opt').forEach((el,j)=>{const o=window._connO[j][0];el.classList.remove('gsel');if(o===q.ans)el.classList.add('gok');else if(j===connQSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const fb=document.getElementById('connFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ Not quite. ')+q.fb;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{connQIdx++;renderConnQ();};document.getElementById('connQArea').appendChild(nxt);
+}
+
+// ── STRESS PATTERNS ───────────────────────────────────────────
+const PAIRS=[
+  {display:'permit', nipa:'/ˈpɜːmɪt/', vipa:'/pəˈmɪt/', nSyls:['PER','mit'], vSyls:['per','MIT'], nText:'a permit',  vText:'to permit'},
+  {display:'record', nipa:'/ˈrekɔːd/', vipa:'/rɪˈkɔːd/',nSyls:['REC','ord'], vSyls:['re','CORD'], nText:'a record',  vText:'to record'},
+  {display:'protest',nipa:'/ˈprəʊtest/',vipa:'/prəˈtest/',nSyls:['PRO','test'],vSyls:['pro','TEST'],nText:'a protest',vText:'to protest'},
+  {display:'object', nipa:'/ˈɒbdʒɪkt/',vipa:'/əbˈdʒekt/',nSyls:['OB','ject'], vSyls:['ob','JECT'], nText:'an object',vText:'to object'},
+];
+const SENT_STRESS=[
+  {display:"She's <strong style='color:#185FA5;font-size:17px'>COM</strong>ing on <strong style='color:#185FA5;font-size:17px'>MON</strong>day.",say:"She's coming on Monday.",note:'Function words reduce; content words ("COMING", "MONday") carry stress.'},
+  {display:"Can you <strong style='color:#185FA5;font-size:17px'>PASS</strong> me the <strong style='color:#185FA5;font-size:17px'>SALT</strong>?",say:'Can you pass me the salt?',note:'"Can" and "the" are unstressed function words. "PASS" and "SALT" are the key information words.'},
+  {display:"I <strong style='color:#185FA5;font-size:17px'>WANT</strong> to go <strong style='color:#185FA5;font-size:17px'>HOME</strong>.",say:'I want to go home.',note:'Content words carry stress; "to" reduces to /tə/.'},
+];
+const STRESS_QUIZ=[
+  {word:'photograph',syllables:['pho','to','graph'],correct:0,ipa:'/ˈfəʊtəɡrɑːf/'},
+  {word:'photography',syllables:['pho','tog','ra','phy'],correct:1,ipa:'/fəˈtɒɡrəfi/'},
+  {word:'comfortable',syllables:['com','for','ta','ble'],correct:0,ipa:'/ˈkʌmftəbl/'},
+  {word:'banana',syllables:['ba','na','na'],correct:1,ipa:'/bəˈnɑːnə/'},
+  {word:'education',syllables:['ed','u','ca','tion'],correct:2,ipa:'/ˌedjʊˈkeɪʃən/'},
+  {word:'beautiful',syllables:['beau','ti','ful'],correct:0,ipa:'/ˈbjuːtɪfəl/'},
+  {word:'environment',syllables:['en','vi','ron','ment'],correct:1,ipa:'/ɪnˈvaɪrənmənt/'},
+  {word:'international',syllables:['in','ter','na','tion','al'],correct:2,ipa:'/ˌɪntəˈnæʃənəl/'},
+  {word:'necessary',syllables:['ne','ces','sa','ry'],correct:0,ipa:'/ˈnesəseri/'},
+  {word:'economy',syllables:['e','con','o','my'],correct:1,ipa:'/ɪˈkɒnəmi/'},
+  {word:'photographer',syllables:['pho','tog','ra','pher'],correct:1,ipa:'/fəˈtɒɡrəfə/'},
+  {word:'university',syllables:['u','ni','ver','si','ty'],correct:2,ipa:'/ˌjuːnɪˈvɜːsɪti/'},
+];
+let sqIdx=0,sqScore=0,sqTotal=0,sqSel=null,sqChecked=false,sqItems=[];
+function buildStress(){
+  document.getElementById('stressContent').innerHTML=`
+    <div class="card" style="margin-bottom:.8rem">
+      <div class="lbl">Noun–verb stress pairs</div>
+      <p style="font-size:15px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:12px"><strong>Nouns</strong> stress the <strong>FIRST</strong> syllable; <strong>verbs</strong> stress the <strong>SECOND</strong>.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px">
+        ${PAIRS.map(p=>`
+          <div style="background:var(--color-background-secondary);border-radius:14px;padding:12px 14px">
+            <div style="font-size:18px;font-weight:700;text-align:center;margin-bottom:10px">${p.display}</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+              <div style="background:#E6F1FB;border-radius:12px;padding:10px;text-align:center">
+                <div style="font-size:11px;font-weight:700;color:#0C447C;letter-spacing:.08em;margin-bottom:6px">NOUN</div>
+                <div style="display:flex;align-items:flex-end;justify-content:center;gap:1px;margin-bottom:6px"><span style="font-size:20px;font-weight:800;color:#0C447C;line-height:1">${p.nSyls[0]}</span><span style="font-size:13px;color:#5b8ab5;padding-bottom:2px">·${p.nSyls[1]}</span></div>
+                <div style="font-family:var(--font-mono);font-size:11px;color:#185FA5;margin-bottom:8px">${p.nipa}</div>
+                <button class="audio-btn" style="margin:0 auto;justify-content:center;font-size:12px" onclick="speak('${p.nText}',0.82,this)">🔊 noun</button>
+              </div>
+              <div style="background:#E1F5EE;border-radius:12px;padding:10px;text-align:center">
+                <div style="font-size:11px;font-weight:700;color:#085041;letter-spacing:.08em;margin-bottom:6px">VERB</div>
+                <div style="display:flex;align-items:flex-end;justify-content:center;gap:1px;margin-bottom:6px"><span style="font-size:13px;color:#5ba58a;padding-bottom:2px">${p.vSyls[0]}·</span><span style="font-size:20px;font-weight:800;color:#085041;line-height:1">${p.vSyls[1]}</span></div>
+                <div style="font-family:var(--font-mono);font-size:11px;color:#185FA5;margin-bottom:8px">${p.vipa}</div>
+                <button class="audio-btn" style="margin:0 auto;justify-content:center;font-size:12px" onclick="speak('${p.vText}',0.82,this)">🔊 verb</button>
+              </div>
+            </div>
+          </div>`).join('')}
+      </div>
+      <div class="tip-box" style="margin-top:12px"><span>💡</span><span>The unstressed syllable in the verb often reduces to a schwa /ə/ — listen to how "per<strong>MIT</strong>" differs from "<strong>PER</strong>mit".</span></div>
+    </div>
+    <div class="card" style="margin-bottom:.8rem">
+      <div class="lbl">Sentence stress — content words vs function words</div>
+      <p style="font-size:15px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:10px"><span style="font-weight:500;color:var(--color-text-primary)">Content words</span> (nouns, main verbs, adjectives, adverbs) are stressed. <span style="font-weight:500;color:var(--color-text-primary)">Function words</span> (articles, prepositions, auxiliaries, pronouns) typically reduce.</p>
+      ${SENT_STRESS.map(s=>`<div style="background:var(--color-background-secondary);border-radius:12px;padding:10px 14px;margin-bottom:8px"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:5px"><div style="font-size:16px;line-height:1.6">${s.display}</div><button class="audio-btn" style="margin-left:auto" onclick="speak('${s.say.replace(/'/g,"\\'")}',0.82,this)">🔊 Hear it</button></div><div style="font-size:13px;color:var(--color-text-secondary)">${s.note}</div></div>`).join('')}
+    </div>
+    <div class="card"><div class="lbl">Stress quiz — click the stressed syllable</div><div id="sqArea"></div></div>`;
+  sqItems=[...STRESS_QUIZ].sort(()=>Math.random()-.5);sqIdx=0;sqScore=0;sqTotal=0;renderSQ();
+}
+function renderSQ(){
+  if(sqIdx>=sqItems.length){const pct=Math.round(sqScore/sqTotal*100);document.getElementById('sqArea').innerHTML=`<div style="text-align:center;padding:1.5rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${sqScore}/${sqTotal}</div><div style="font-size:15px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect ear!':pct>=70?'Well done!':'Keep practising.'}</div><button class="act" onclick="sqItems=[...STRESS_QUIZ].sort(()=>Math.random()-.5);sqIdx=0;sqScore=0;sqTotal=0;renderSQ()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Try again</button></div>`;return;}
+  const q=sqItems[sqIdx];sqSel=null;sqChecked=false;
+  const prog=Math.round(sqIdx/sqItems.length*100);
+  document.getElementById('sqArea').innerHTML=`
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap"><span style="font-size:13px;color:var(--color-text-secondary)">${sqIdx+1}/${sqItems.length} · Score: ${sqScore}/${sqTotal}</span><button class="audio-btn" style="margin-left:auto" onclick="speak('${q.word}',0.82,this)">🔊 ${q.word}</button></div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <p style="font-size:15px;color:var(--color-text-secondary);margin-bottom:10px">Which syllable is stressed in <strong>${q.word}</strong>?</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px" id="sqBtns">${q.syllables.map((s,i)=>`<button class="syl-btn" id="sqb_${i}" onclick="selectSQ(${i})">${s}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="check-btn" id="sqCheck" onclick="checkSQ()" disabled>Check</button><button class="act" onclick="sqIdx++;renderSQ()">Skip →</button></div>
+    <div id="sqFb" style="margin-top:0"></div>`;
+}
+function selectSQ(i){if(sqChecked)return;sqSel=i;document.querySelectorAll('#sqBtns .syl-btn').forEach((b,j)=>b.classList.toggle('sbsel',j===i));document.getElementById('sqCheck').disabled=false;}
+function checkSQ(){
+  if(sqChecked||sqSel===null)return;sqChecked=true;sqTotal++;
+  const q=sqItems[sqIdx];const ok=sqSel===q.correct;if(ok)sqScore++;
+  document.querySelectorAll('#sqBtns .syl-btn').forEach((b,j)=>{b.classList.remove('sbsel');if(j===q.correct)b.classList.add('sbok');else if(j===sqSel&&!ok)b.classList.add('sbbad');});
+  const fb=document.getElementById('sqFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.innerHTML=(ok?'✓ Correct! ':'✗ Not quite. ')+'IPA: <span class="ipa">'+q.ipa+'</span><br><span style="font-size:13px">Stressed syllable: <strong>'+q.syllables[q.correct].toUpperCase()+'</strong>.</span>';
+  document.getElementById('sqCheck').outerHTML='<button class="act" style="margin-top:10px" onclick="sqIdx++;renderSQ()">Next →</button>';
+}
+
+// ── QUIZ ──────────────────────────────────────────────────────
+const EX_ITEMS=[
+  {q:'Which IPA symbol represents the vowel in "bird"?',opts:['/ɜː/','/ɔː/','/ɑː/','/ɪ/'],ans:0,fb:'"bird" /bɜːd/ — the /ɜː/ is the central long vowel, also in "word", "nurse", "learn".'},
+  {q:'What is the correct IPA transcription of "thought"?',opts:['/θɔːt/','/θɒt/','/θaʊt/','/θʊt/'],ans:0,fb:'"thought" = /θɔːt/ — voiceless /θ/, long /ɔː/, final /t/. The "gh" is silent.'},
+  {q:'The word "comfortable" is most naturally pronounced as:',opts:['/ˈkɒmftəbl/','/ˈkɒmfɔːtəbl/','/kɒmˈfɔːtəbl/','/ˈkɒmfəteɪbl/'],ans:0,fb:'"Comfortable" has 3 syllables in British English: /ˈkɒmftəbl/ — the middle syllable is dropped.'},
+  {q:'Which word does NOT contain the /ʌ/ vowel?',opts:['cup','come','cook','blood'],ans:2,fb:'"cook" has /ʊ/ as in "book". "Cup", "come", and "blood" all have /ʌ/.'},
+  {q:'In British English, which word contains the /ɒ/ vowel?',opts:['hot','hut','hat','hurt'],ans:0,fb:'"hot" /hɒt/ has the British /ɒ/. "hut"=/hʌt/, "hat"=/hæt/, "hurt"=/hɜːt/.'},
+  {q:'What does the diacritic /ˈ/ before a syllable indicate?',opts:['Primary stress','Secondary stress','A long vowel','A silent letter'],ans:0,fb:'The /ˈ/ mark is placed before the syllable that carries primary (main) stress.'},
+  {q:'Which word ends in the voiced fricative /ð/?',opts:['bath','bathe','bash','barge'],ans:1,fb:'"bathe" /beɪð/ ends in voiced /ð/. "bath" /bɑːθ/ ends in voiceless /θ/.'},
+  {q:'What is the IPA symbol for the consonant in "she" and "wish"?',opts:['/ʃ/','/s/','/tʃ/','/ʒ/'],ans:0,fb:'/ʃ/ is the voiceless palato-alveolar fricative — the "sh" sound.'},
+  {q:'Which sentence stress pattern is correct?',opts:['Content words stressed, function words reduced','All words equally stressed','Only the first word stressed','Only the last word stressed'],ans:0,fb:'English uses lexical stress — content words carry stress; function words reduce.'},
+  {q:'Which of these is a diphthong?',opts:['/eɪ/','/iː/','/æ/','/ɒ/'],ans:0,fb:'/eɪ/ is a diphthong — it glides from /e/ to /ɪ/, as in "day" /deɪ/.'},
+  {q:'The /r/ in British English is pronounced:',opts:['Only before a vowel sound','Before and after all sounds','Only at the end of words','Always silent'],ans:0,fb:'British English is non-rhotic: /r/ is only pronounced when followed by a vowel sound.'},
+  {q:'Which word contains a silent "k"?',opts:['knight','might','right','night'],ans:0,fb:'"knight" /naɪt/ — the "kn" combination always has a silent "k" in modern English.'},
+];
+let exIdx=0,exScore=0,exTotal=0,exSel=null,exChecked=false,exItems=[];
+function buildEx(){exItems=[...EX_ITEMS].sort(()=>Math.random()-.5);exIdx=0;exScore=0;exTotal=0;renderEx();}
+function renderEx(){
+  if(exIdx>=exItems.length){const pct=Math.round(exScore/exTotal*100);document.getElementById('exContent').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${exScore}/${exTotal}</div><div style="font-size:15px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=70?'Well done!':'Review the IPA chart and Sounds sections.'}</div><button class="act" onclick="buildEx()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const q=exItems[exIdx];exSel=null;exChecked=false;
+  const prog=Math.round(exIdx/exItems.length*100);
+  const opts=[...q.opts.entries()].sort(()=>Math.random()-.5);window._exO=opts;
+  document.getElementById('exContent').innerHTML=`
+    <div class="card">
+      <div class="ex-hdr"><span style="font-size:13px;color:var(--color-text-secondary)">${exIdx+1} / ${exItems.length} · Score: ${exScore}/${exTotal}</span><button class="act" onclick="buildEx()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button></div>
+      <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+      <p style="font-size:16px;line-height:1.65;margin-bottom:12px;color:var(--color-text-primary)">${q.q}</p>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="exOpts">${opts.map(([oi,o],j)=>`<button class="gap-opt gap-opt-mono" id="exo_${j}" onclick="selEx(${j})">${o}</button>`).join('')}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="check-btn" id="exCk" onclick="checkEx()" disabled>Check</button><button class="act" onclick="exIdx++;buildEx()">Skip →</button></div>
+      <div id="exFb" style="margin-top:0"></div>
+    </div>`;
+}
+function selEx(j){if(exChecked)return;exSel=j;document.querySelectorAll('#exOpts .gap-opt').forEach((el,k)=>el.classList.toggle('gsel',k===j));document.getElementById('exCk').disabled=false;}
+function checkEx(){
+  if(exChecked||exSel===null)return;exChecked=true;exTotal++;
+  const q=exItems[exIdx];const co=window._exO[exSel][0];const ok=co===q.ans;if(ok)exScore++;
+  document.getElementById('exCk').disabled=true;
+  document.querySelectorAll('#exOpts .gap-opt').forEach((el,j)=>{const o=window._exO[j][0];el.classList.remove('gsel');if(o===q.ans)el.classList.add('gok');else if(j===exSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const fb=document.getElementById('exFb');fb.className=ok?'fb-ok':'fb-no';fb.textContent=(ok?'✓ Correct! ':'✗ Not quite. ')+q.fb;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next question →';nxt.onclick=()=>{exIdx++;renderEx();};document.querySelector('#exContent .card').appendChild(nxt);
+}
+
+// ── TRANSCRIPTION ─────────────────────────────────────────────
+const TRANS_POOL=(()=>{
+  const items=[
+    {word:'thought',   say:'thought',    opts:['/θɔːt/','/θɒt/','/θʊt/','/ðɔːt/'],    ans:0},
+    {word:'bird',      say:'bird',        opts:['/bɜːd/','/bɪəd/','/bɔːd/','/bæd/'],   ans:0},
+    {word:'through',   say:'through',    opts:['/θruː/','/θrəʊ/','/θrɒ/','/ðruː/'],   ans:0},
+    {word:'bought',    say:'bought',      opts:['/bɔːt/','/baʊt/','/bɒt/','/buːt/'],   ans:0},
+    {word:'world',     say:'world',       opts:['/wɜːld/','/wɔːld/','/wʊld/','/wɒld/'],ans:0},
+    {word:'laughed',   say:'laughed',    opts:['/lɑːft/','/læft/','/lɔːft/','/lʌft/'], ans:0},
+    {word:'church',    say:'church',      opts:['/tʃɜːtʃ/','/ʃɜːtʃ/','/tʃɔːtʃ/','/tʃɜːʃ/'],ans:0},
+    {word:'enough',    say:'enough',      opts:['/ɪˈnʌf/','/ɪˈnuːf/','/ɪˈnɒf/','/iːˈnʌf/'],ans:0},
+    {word:'beautiful', say:'beautiful',   opts:['/ˈbjuːtɪfəl/','/bjuːˈtɪfəl/','/ˈbjuːtɪfʊl/','/ˈbjuːtɪfɪl/'],ans:0},
+    {word:'knowledge', say:'knowledge',   opts:['/ˈnɒlɪdʒ/','/ˈnəʊlɪdʒ/','/ˈnɒlɪdʃ/','/ˈnɒlɪdʒɪ/'],ans:0},
+    {word:'Wednesday', say:'Wednesday',   opts:['/ˈwenzdeɪ/','/ˈwednɪzdeɪ/','/ˈwɛndɪzdeɪ/','/ˈwedənzdeɪ/'],ans:0},
+    {word:'comfortable',say:'comfortable',opts:['/ˈkʌmftəbl/','/ˈkɒmfɔːtəbl/','/kəmˈfɔːtəbl/','/ˈkʌmfɪtəbl/'],ans:0},
+    {word:'clothes',   say:'clothes',    opts:['/kləʊðz/','/kləʊθs/','/kloʊðz/','/klɒθs/'],ans:0},
+    {word:'iron',      say:'iron',        opts:['/ˈaɪən/','/aɪˈrɒn/','/ˈaɪrən/','/ˈɪərɒn/'],ans:0},
+    {word:'colonel',   say:'colonel',    opts:['/ˈkɜːnəl/','/ˈkɒlənəl/','/kəˈlɒnəl/','/ˈkɒlnel/'],ans:0},
+  ];
+  return items.map(it=>{
+    const correct=it.opts[it.ans];
+    const others=it.opts.filter((_,i)=>i!==it.ans);
+    const shuffled=[correct,...others].sort(()=>Math.random()-.5);
+    return{...it,opts:shuffled,ans:shuffled.indexOf(correct)};
+  });
+})();
+let trIdx=0,trScore=0,trTotal=0,trSel=null,trChecked=false,trItems=[];
+function buildTrans(){trItems=[...TRANS_POOL].sort(()=>Math.random()-.5);trIdx=0;trScore=0;trTotal=0;renderTrans();}
+function renderTrans(){
+  if(trIdx>=trItems.length){const pct=Math.round(trScore/trTotal*100);document.getElementById('transContent').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${trScore}/${trTotal}</div><div style="font-size:15px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect transcription!':pct>=70?'Well done!':'Review the IPA chart and try again.'}</div><button class="act" onclick="buildTrans()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const q=trItems[trIdx];trSel=null;trChecked=false;
+  const prog=Math.round(trIdx/trItems.length*100);
+  document.getElementById('transContent').innerHTML=`
+    <div class="card">
+      <div class="ex-hdr"><span style="font-size:13px;color:var(--color-text-secondary)">${trIdx+1} / ${trItems.length} · Score: ${trScore}/${trTotal}</span><button class="act" onclick="buildTrans()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button></div>
+      <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+      <div style="font-size:15px;color:var(--color-text-secondary);margin-bottom:12px">Listen to the word, then choose the correct IPA transcription.</div>
+      <div style="text-align:center;margin-bottom:16px">
+        <div style="font-size:11px;font-weight:500;color:#185FA5;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Tap to hear the word</div>
+        <button onclick="speak('${q.say}',0.78,this)" style="background:#E6F1FB;border:2px solid #185FA5;border-radius:20px;padding:16px 32px;cursor:pointer;display:inline-flex;flex-direction:column;align-items:center;gap:8px">
+          <span style="font-size:36px">🔊</span>
+          <span style="font-size:22px;font-weight:600;color:#0C447C">${q.word}</span>
+        </button>
+        <div style="margin-top:8px"><button class="audio-btn" onclick="speak('${q.say}',0.5,this)">🐢 Slow version</button></div>
+      </div>
+      <div style="font-size:14px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px;text-align:center">Which transcription is correct?</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="trOpts">${q.opts.map((o,j)=>`<button class="gap-opt gap-opt-mono" id="tro_${j}" onclick="selTR(${j})">${o}</button>`).join('')}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="check-btn" id="trCk" onclick="checkTR()" disabled>Check</button><button class="act" onclick="trIdx++;renderTrans()">Skip →</button></div>
+      <div id="trFb" style="margin-top:0"></div>
+    </div>`;
+}
+function selTR(j){if(trChecked)return;trSel=j;document.querySelectorAll('#trOpts .gap-opt').forEach((el,k)=>el.classList.toggle('gsel',k===j));document.getElementById('trCk').disabled=false;}
+function checkTR(){
+  if(trChecked||trSel===null)return;trChecked=true;trTotal++;
+  const q=trItems[trIdx];const ok=trSel===q.ans;if(ok)trScore++;
+  document.getElementById('trCk').disabled=true;
+  document.querySelectorAll('#trOpts .gap-opt').forEach((el,j)=>{el.classList.remove('gsel');if(j===q.ans)el.classList.add('gok');else if(j===trSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const fb=document.getElementById('trFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.innerHTML=(ok?'✓ Correct! ':'✗ The correct transcription is <span class="ipa">'+q.opts[q.ans]+'</span>. ')+(ok?'The transcription matches the spoken word accurately.':'Listen again and compare with the correct transcription above.');
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{trIdx++;renderTrans();};document.querySelector('#transContent .card').appendChild(nxt);
+}
+
+// ── NAV ───────────────────────────────────────────────────────
+function showP(i){
+  document.querySelectorAll('.pan').forEach((p,j)=>p.classList.toggle('on',j===i));
+  document.querySelectorAll('.nt').forEach((t,j)=>t.classList.toggle('on',j===i));
+  if(i===0&&!document.getElementById('ttBox').innerHTML)renderTT();
+  if(i===1&&!document.getElementById('ipaChart').innerHTML)buildIPAChart();
+  if(i===2&&!document.getElementById('soundsContent').innerHTML)buildSounds();
+  if(i===3&&!document.getElementById('mpContent').innerHTML)buildMP();
+  if(i===4&&!document.getElementById('connContent').innerHTML)buildConn();
+  if(i===5&&!document.getElementById('stressContent').innerHTML)buildStress();
+  if(i===6&&!exItems.length)buildEx();
+  if(i===7&&!trItems.length)buildTrans();
+}
+
+window.addEventListener('load',()=>{
+  if(window.speechSynthesis){window.speechSynthesis.getVoices();setTimeout(loadV,500);setTimeout(loadV,1500);}
+  renderTT();
+});
+</script>
