@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English phrasal verbs</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary)}
+.w{padding:1.5rem}
+.nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
+.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nt:hover{background:var(--color-background-secondary)}
+.nt.on{color:#fff;border-color:transparent;font-weight:500}
+.n0.on{background:#534AB7}.n1.on{background:#0F6E56}.n2.on{background:#185FA5}.n3.on{background:#854F0B}.n4.on{background:#993C1D}.n5.on{background:#72243E}.n6.on{background:#3B6D11}
+.pan{display:none}.pan.on{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:.9rem}
+.lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
+.lbl:first-child{margin-top:0}
+.tip-box{background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;font-size:13px;color:var(--color-text-secondary);display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px}
+.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act:hover{background:var(--color-background-secondary)}
+.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #534AB7;background:#534AB7;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn:hover{background:#3C3489}
+.check-btn:disabled{opacity:.4;cursor:default}
+.gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
+.gap-opt:hover:not(.gsel):not(.gok):not(.gbad):not(.gdim){background:var(--color-background-secondary)}
+.gap-opt.gsel{border-color:#534AB7;background:#EEEDFE;color:#3C3489;font-weight:500}
+.gap-opt.gok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:500;cursor:default;pointer-events:none}
+.gap-opt.gbad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F;cursor:default;pointer-events:none}
+.gap-opt.gdim{opacity:.38;cursor:default;pointer-events:none}
+.fb-ok{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.fb-no{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.ex-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:20px;background:#534AB7;transition:width .3s}
+.mi{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
+.mi:hover{background:var(--color-background-secondary)}
+.mi.pk{border-color:#534AB7;background:#EEEDFE;color:#3C3489}
+.mi.mt{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.mi.bd{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.piece{padding:7px 13px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;cursor:pointer;color:var(--color-text-primary);display:inline-block;margin:3px;transition:all .15s}
+.piece:hover{background:var(--color-background-secondary)}
+.piece.used{opacity:.3;cursor:default;pointer-events:none}
+.piece.sel{border-color:#534AB7;background:#EEEDFE;color:#3C3489;font-weight:500}
+.slot{display:inline-flex;align-items:center;justify-content:center;min-width:52px;padding:5px 8px;border-radius:12px;border:1.5px dashed var(--color-border-secondary);font-size:13px;margin:2px;cursor:pointer;min-height:34px;color:var(--color-text-secondary);background:var(--color-background-secondary);transition:all .15s}
+.slot.fl{border-style:solid;border-color:#AFA9EC;background:#EEEDFE;color:#3C3489}
+.slot.cs{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.slot.ws{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #534AB7}
+.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
+.audio-btn:hover{background:#EEEDFE;border-color:#AFA9EC;color:#534AB7}
+.audio-btn.playing{background:#EEEDFE;border-color:#534AB7;color:#534AB7;font-weight:500}
+.srch{width:100%;padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:14px;font-family:var(--font-sans)}
+.srch:focus{outline:none;border-color:#AFA9EC}
+.chip{display:inline-block;font-size:12.5px;padding:3px 11px;border-radius:20px;margin:2px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);background:var(--color-background-secondary);cursor:pointer;transition:all .15s}
+.chip:hover{background:#EEEDFE;border-color:#AFA9EC;color:#3C3489}
+.chip.on{background:#EEEDFE;border-color:#534AB7;color:#3C3489;font-weight:500}
+.pv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:9px;margin-bottom:1rem}
+.pv-card{border-radius:16px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:12px 14px;cursor:pointer;transition:all .15s}
+.pv-card:hover{background:var(--color-background-secondary)}
+.pv-card.sel{border-color:#AFA9EC;background:#EEEDFE}
+.pv-top{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
+.pv-name{font-size:14px;font-weight:600;color:var(--color-text-primary)}
+.pv-def{font-size:13px;color:var(--color-text-secondary);line-height:1.5;margin-bottom:6px}
+.pv-ex{font-size:13px;font-style:italic;color:var(--color-text-secondary);border-left:2px solid #AFA9EC;padding-left:8px}
+.detail-box{border-radius:20px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:1.25rem 1.5rem;margin-bottom:1rem;display:none}
+.detail-box.on{display:block}
+.para-input{width:100%;padding:10px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:14px;resize:vertical;min-height:80px;font-family:var(--font-sans)}
+.para-input:focus{outline:none;border-color:#AFA9EC}
+.eyebrow{font-size:11px;font-weight:500;color:#534AB7;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.lesson-h{font-size:26px;font-weight:500;color:var(--color-text-primary);line-height:1.25;margin-bottom:4px}
+.lesson-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:1.25rem}
+</style>
+</head>
+<body>
+<h2 class="sr-only">English phrasal verbs — interactive lesson with browse, search, gap fill, matching, scrambled sentences, paraphrasing, and glossary.</h2>
+<div class="w">
+
+<div class="nav">
+  <button class="nt n0 on" onclick="showP(0)">Home</button>
+  <button class="nt n1" onclick="showP(1)">Browse &amp; search</button>
+  <button class="nt n2" onclick="showP(2)">Gap fill</button>
+  <button class="nt n3" onclick="showP(3)">Matching</button>
+  <button class="nt n4" onclick="showP(4)">Scrambled sentences</button>
+  <button class="nt n5" onclick="showP(5)">Paraphrasing</button>
+  <button class="nt n6" onclick="showP(6)">My glossary</button>
+</div>
+
+<!-- HOME -->
+<div id="p0" class="pan on">
+  <div class="eyebrow">Interactive lesson · Grammar &amp; vocabulary</div>
+  <div class="lesson-h">English phrasal verbs</div>
+  <div class="lesson-sub">60 high-frequency phrasal verbs — meanings, examples, grammar, and practice</div>
+  <div class="quote-box" id="quoteBox"></div>
+  <div class="card">
+    <div class="lbl">What is a phrasal verb?</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">A phrasal verb is a combination of a <span style="font-weight:500;color:var(--color-text-primary)">verb</span> and one or two <span style="font-weight:500;color:var(--color-text-primary)">particles</span> (prepositions or adverbs) whose combined meaning is often different from the individual words. They are extremely common in everyday English — especially in spoken and informal registers.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-bottom:10px">
+      <div style="background:#EEEDFE;border-radius:14px;padding:10px 12px"><div style="font-size:12px;font-weight:500;color:#3C3489;margin-bottom:3px">Intransitive</div><div style="font-size:13px;color:#534AB7">No object — "She gave up."</div></div>
+      <div style="background:#EAF3DE;border-radius:14px;padding:10px 12px"><div style="font-size:12px;font-weight:500;color:#27500A;margin-bottom:3px">Transitive separable</div><div style="font-size:13px;color:#3B6D11">"Turn the TV off." / "Turn off the TV."</div></div>
+      <div style="background:#FAEEDA;border-radius:14px;padding:10px 12px"><div style="font-size:12px;font-weight:500;color:#633806;margin-bottom:3px">Transitive inseparable</div><div style="font-size:13px;color:#854F0B">"Look after the children." — particle cannot split</div></div>
+    </div>
+    <div class="tip-box"><i class="ti ti-bulb" aria-hidden="true" style="font-size:16px;flex-shrink:0;color:#534AB7"></i><span>This lesson covers <strong>60 high-frequency phrasal verbs</strong> built around the most common English verbs: <em>get, take, look, come, go, put, give, turn, bring, break, call, set</em>. Click any phrasal verb card in the Browse tab to hear it, see its grammar, and save it to your glossary.</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px">
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(1)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-search" aria-hidden="true" style="color:#0F6E56"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Browse &amp; search</div><div style="font-size:12px;color:var(--color-text-secondary)">Explore all 60 with audio</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(2)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-writing" aria-hidden="true" style="color:#185FA5"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Gap fill</div><div style="font-size:12px;color:var(--color-text-secondary)">Choose the right phrasal verb</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(3)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-arrows-exchange" aria-hidden="true" style="color:#854F0B"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Matching</div><div style="font-size:12px;color:var(--color-text-secondary)">Match verb to definition</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(4)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-puzzle" aria-hidden="true" style="color:#993C1D"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Scrambled sentences</div><div style="font-size:12px;color:var(--color-text-secondary)">Rebuild sentences word by word</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(5)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-pencil" aria-hidden="true" style="color:#72243E"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Paraphrasing</div><div style="font-size:12px;color:var(--color-text-secondary)">Rewrite using phrasal verbs</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(6)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-bookmark" aria-hidden="true" style="color:#3B6D11"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">My glossary</div><div style="font-size:12px;color:var(--color-text-secondary)">Save favourites for review</div></div>
+  </div>
+</div>
+
+<!-- BROWSE & SEARCH -->
+<div id="p1" class="pan">
+  <div class="eyebrow">Phrasal verbs</div>
+  <div class="lesson-h">Browse &amp; search</div>
+  <div class="lesson-sub">Click any card to expand — hear the phrasal verb, see all examples, and save it to your glossary</div>
+  <input class="srch" id="searchBox" placeholder="Search phrasal verb, meaning, or example…" oninput="renderBrowse()" style="margin-bottom:10px">
+  <div style="margin-bottom:8px">
+    <div class="lbl">Filter by verb</div>
+    <div id="verbChips"></div>
+  </div>
+  <div style="margin-bottom:8px">
+    <div class="lbl">Filter by particle</div>
+    <div id="partChips"></div>
+  </div>
+  <div style="margin-bottom:12px">
+    <div class="lbl">Filter by topic</div>
+    <div id="topicChips"></div>
+  </div>
+  <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:8px" id="browseCount"></div>
+  <div class="pv-grid" id="pvGrid"></div>
+  <div class="detail-box" id="pvDetail"></div>
+</div>
+
+<!-- GAP FILL -->
+<div id="p2" class="pan">
+  <div class="eyebrow">Phrasal verbs</div>
+  <div class="lesson-h">Gap fill</div>
+  <div class="lesson-sub">Choose the correct phrasal verb to complete each sentence</div>
+  <div id="gapCont"></div>
+</div>
+
+<!-- MATCHING -->
+<div id="p3" class="pan">
+  <div class="eyebrow">Phrasal verbs</div>
+  <div class="lesson-h">Matching</div>
+  <div class="lesson-sub">Match each phrasal verb to its definition — click a verb on the left, then its meaning on the right</div>
+  <div id="matchCont"></div>
+</div>
+
+<!-- SCRAMBLED SENTENCES -->
+<div id="p4" class="pan">
+  <div class="eyebrow">Phrasal verbs</div>
+  <div class="lesson-h">Scrambled sentences</div>
+  <div class="lesson-sub">Tap a word, then tap a slot to place it — rebuild the sentence in the correct order</div>
+  <div id="scramCont"></div>
+</div>
+
+<!-- PARAPHRASING -->
+<div id="p5" class="pan">
+  <div class="eyebrow">Phrasal verbs</div>
+  <div class="lesson-h">Paraphrasing</div>
+  <div class="lesson-sub">Rewrite the sentence using the given phrasal verb — keep the meaning the same</div>
+  <div id="paraCont"></div>
+</div>
+
+<!-- GLOSSARY -->
+<div id="p6" class="pan">
+  <div class="eyebrow">Phrasal verbs</div>
+  <div class="lesson-h">My glossary</div>
+  <div class="lesson-sub">Phrasal verbs you have saved for review — click the bookmark icon on any card to add one</div>
+  <div id="glossCont"></div>
+</div>
+
+</div>
+<script>
+// ── VOICE — female British ────────────────────────────────────
+let bVoice=null;
+function loadV(){
+  const vs=window.speechSynthesis.getVoices();if(!vs.length)return;
+  bVoice=vs.find(v=>v.lang==='en-GB'&&/female|fiona|kate|serena|moira|karen|victoria|claire/i.test(v.name))
+    ||vs.find(v=>v.lang==='en-GB'&&!/male|daniel|oliver|arthur/i.test(v.name))
+    ||vs.find(v=>v.lang==='en-GB')
+    ||vs.find(v=>v.lang.startsWith('en-GB'))
+    ||vs.find(v=>v.lang.startsWith('en'));
+}
+if(window.speechSynthesis){window.speechSynthesis.onvoiceschanged=loadV;loadV();}
+function speak(txt,rate,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();if(!bVoice)loadV();
+  const u=new SpeechSynthesisUtterance(txt);u.lang='en-GB';u.rate=rate||0.84;u.pitch=1.07;
+  if(bVoice)u.voice=bVoice;
+  if(btn){document.querySelectorAll('.audio-btn').forEach(b=>b.classList.remove('playing'));btn.classList.add('playing');u.onend=()=>btn.classList.remove('playing');}
+  window.speechSynthesis.speak(u);
+}
+
+// ── DATA ──────────────────────────────────────────────────────
+const PVS=[
+  {pv:'get up',verb:'get',particle:'up',topic:'daily routine',def:'rise from bed; stand up',sep:true,ex:['I get up at 7 every morning.','She got up early to catch the train.']},
+  {pv:'get on',verb:'get',particle:'on',topic:'relationships',def:'have a good relationship with someone',sep:false,ex:['Do you get on with your colleagues?','They get on really well.']},
+  {pv:'get over',verb:'get',particle:'over',topic:'health & emotions',def:'recover from an illness or difficulty',sep:false,ex:['It took weeks to get over the flu.','She never got over losing the job.']},
+  {pv:'get along',verb:'get',particle:'along',topic:'relationships',def:'have a friendly relationship',sep:false,ex:['The flatmates get along surprisingly well.','How do you get along with your boss?']},
+  {pv:'get away',verb:'get',particle:'away',topic:'travel',def:'escape or go on holiday',sep:false,ex:['We need to get away for the weekend.','The suspect managed to get away.']},
+  {pv:'get through',verb:'get',particle:'through',topic:'communication',def:'make contact; survive a difficult period',sep:false,ex:["I tried calling but couldn't get through.",'We\'ll get through this together.']},
+  {pv:'take off',verb:'take',particle:'off',topic:'travel',def:'(of aircraft) leave the ground; remove clothing',sep:true,ex:['The plane takes off at noon.','Take your shoes off at the door.']},
+  {pv:'take up',verb:'take',particle:'up',topic:'daily routine',def:'start a new hobby or activity; occupy space or time',sep:true,ex:['She took up yoga last year.','The sofa takes up too much space.']},
+  {pv:'take on',verb:'take',particle:'on',topic:'work',def:'accept responsibility; hire someone',sep:true,ex:['She took on too many projects.','The company took on new staff.']},
+  {pv:'take over',verb:'take',particle:'over',topic:'work',def:'assume control of something',sep:true,ex:['A larger firm took over the company.','She took over as manager last month.']},
+  {pv:'take care of',verb:'take',particle:'of',topic:'daily routine',def:'look after; be responsible for',sep:false,ex:['He takes care of his younger siblings every afternoon.','Can you take care of this while I am away?']},
+  {pv:'look into',verb:'look',particle:'into',topic:'work',def:'investigate something',sep:false,ex:['We need to look into the cause of the problem.','The police are looking into the incident.']},
+  {pv:'look after',verb:'look',particle:'after',topic:'daily routine',def:'take care of someone or something',sep:false,ex:['Can you look after my cat while I\'m away?','She looks after her elderly parents.']},
+  {pv:'look forward to',verb:'look',particle:'to',topic:'social life',def:'feel excited about a future event',sep:false,ex:['I always look forward to the weekend.','We\'re looking forward to seeing you.']},
+  {pv:'look up',verb:'look',particle:'up',topic:'learning',def:'search for information; visit someone',sep:true,ex:['Look up the word in a dictionary.','Look me up next time you\'re in Poznań.']},
+  {pv:'look down on',verb:'look',particle:'on',topic:'relationships',def:'regard someone as inferior',sep:false,ex:["Don't look down on people less fortunate than you.",'She felt that her colleagues looked down on her.']},
+  {pv:'look out',verb:'look',particle:'out',topic:'safety',def:'be careful; watch for danger',sep:false,ex:['Look out — there\'s a car coming!','Look out for pickpockets in the market.']},
+  {pv:'come up with',verb:'come',particle:'up',topic:'learning',def:'think of an idea or solution',sep:false,ex:['She came up with a creative solution to the problem.','Can you come up with a better plan?']},
+  {pv:'come across',verb:'come',particle:'across',topic:'daily routine',def:'find or meet by chance; give a certain impression',sep:false,ex:['I came across this book in a small shop in Prague.','He comes across as very confident.']},
+  {pv:'come up',verb:'come',particle:'up',topic:'work',def:'arise unexpectedly; come closer',sep:false,ex:['Something has come up — I can\'t make the meeting.','A great opportunity came up.']},
+  {pv:'come back',verb:'come',particle:'back',topic:'travel',def:'return to a place or topic',sep:false,ex:['She came back from Tokyo last night.','We\'ll come back to this point later.']},
+  {pv:'go through',verb:'go',particle:'through',topic:'health & emotions',def:'experience something difficult; examine carefully',sep:false,ex:['She\'s going through a very tough time.','Let\'s go through the report together.']},
+  {pv:'go off',verb:'go',particle:'off',topic:'daily routine',def:'make a sudden loud noise; go bad (food)',sep:false,ex:['The alarm went off just as we fell asleep.','This milk has gone off.']},
+  {pv:'go ahead',verb:'go',particle:'ahead',topic:'work',def:'proceed; happen as planned',sep:false,ex:['Please go ahead with the presentation.','The event will go ahead despite the rain.']},
+  {pv:'go back',verb:'go',particle:'back',topic:'travel',def:'return to a place or earlier state',sep:false,ex:['I\'d love to go back to Vietnam someday.','We can\'t go back and change the past.']},
+  {pv:'put off',verb:'put',particle:'off',topic:'work',def:'postpone; cause someone to lose enthusiasm',sep:true,ex:["Don't put off what you can do today.",'The smell put me off my food.']},
+  {pv:'put up with',verb:'put',particle:'up',topic:'health & emotions',def:'tolerate something unpleasant',sep:false,ex:["I can't put up with the noise any longer.",'How do you put up with him?']},
+  {pv:'put on',verb:'put',particle:'on',topic:'daily routine',def:'dress in; gain weight; start playing media',sep:true,ex:["Put your coat on — it's cold.",'She\'s put on a lot of weight recently.']},
+  {pv:'put forward',verb:'put',particle:'forward',topic:'work',def:'suggest an idea or proposal',sep:true,ex:['She put forward an interesting proposal.','Several candidates were put forward.']},
+  {pv:'put away',verb:'put',particle:'away',topic:'daily routine',def:'return something to its proper place',sep:true,ex:['Put your toys away before dinner.','Please put away your phone during the lesson.']},
+  {pv:'put out',verb:'put',particle:'out',topic:'safety',def:'extinguish a fire; cause inconvenience',sep:true,ex:['Firefighters put out the blaze quickly.','I hope I\'m not putting you out.']},
+  {pv:'give up',verb:'give',particle:'up',topic:'health & emotions',def:'stop doing something; admit defeat',sep:true,ex:['She gave up smoking last year.',"Don't give up — you're nearly there."]},
+  {pv:'give away',verb:'give',particle:'away',topic:'social life',def:'give something for free; reveal a secret',sep:true,ex:['They gave away free samples at the fair.',"Don't give away the ending!"]},
+  {pv:'give back',verb:'give',particle:'back',topic:'daily routine',def:'return something to its owner',sep:true,ex:['Can you give back my pen?','The store gave back her money.']},
+  {pv:'give in',verb:'give',particle:'in',topic:'health & emotions',def:'stop resisting; yield',sep:false,ex:['After hours of arguing, he gave in.',"Don't give in to pressure."]},
+  {pv:'give out',verb:'give',particle:'out',topic:'daily routine',def:'distribute; stop working',sep:true,ex:['She gave out the worksheets.','My phone battery gave out.']},
+  {pv:'give rise to',verb:'give',particle:'to',topic:'work',def:'cause or produce something',sep:false,ex:['The delay gave rise to complaints.','New technology gives rise to new jobs.']},
+  {pv:'turn up',verb:'turn',particle:'up',topic:'social life',def:'arrive; increase volume',sep:true,ex:['He turned up an hour late.','Turn up the music — I love this song.']},
+  {pv:'turn down',verb:'turn',particle:'down',topic:'work',def:'reject an offer; decrease volume',sep:true,ex:['She turned down the job offer.','Turn down the TV — I\'m on the phone.']},
+  {pv:'turn off',verb:'turn',particle:'off',topic:'daily routine',def:'switch off a device',sep:true,ex:['Turn off the lights when you leave.','She turned the heating off.']},
+  {pv:'turn out',verb:'turn',particle:'out',topic:'daily routine',def:'happen in a particular way; attend an event',sep:false,ex:['It turned out to be a great evening.','Thousands turned out for the concert.']},
+  {pv:'turn into',verb:'turn',particle:'into',topic:'daily routine',def:'become something different',sep:false,ex:['The caterpillar turns into a butterfly.','The argument turned into a fight.']},
+  {pv:'turn around',verb:'turn',particle:'around',topic:'work',def:'reverse a bad situation; reverse direction',sep:true,ex:["The new CEO turned the company around.",'Turn around — you\'re going the wrong way.']},
+  {pv:'bring up',verb:'bring',particle:'up',topic:'communication',def:'raise a topic; raise a child',sep:true,ex:['She brought up an interesting point.','He was brought up by his grandparents.']},
+  {pv:'bring about',verb:'bring',particle:'about',topic:'work',def:'cause something to happen',sep:true,ex:['The reforms brought about real change.','What brought about this decision?']},
+  {pv:'bring back',verb:'bring',particle:'back',topic:'travel',def:'return with something; cause to remember',sep:true,ex:['Bring back some souvenirs!','The smell brought back childhood memories.']},
+  {pv:'bring out',verb:'bring',particle:'out',topic:'learning',def:'release a product; highlight a quality',sep:true,ex:["They're bringing out a new model.",'Travel brings out the best in people.']},
+  {pv:'break down',verb:'break',particle:'down',topic:'health & emotions',def:'stop functioning; lose emotional control',sep:false,ex:['The car broke down on the motorway.','She broke down in tears.']},
+  {pv:'break out',verb:'break',particle:'out',topic:'safety',def:'escape; begin suddenly',sep:false,ex:['Fire broke out in the warehouse.','War broke out in the region.']},
+  {pv:'break up',verb:'break',particle:'up',topic:'relationships',def:'end a romantic relationship; divide into parts',sep:true,ex:['They broke up after two years.','Break the project up into smaller tasks.']},
+  {pv:'break through',verb:'break',particle:'through',topic:'learning',def:'make a significant discovery or progress',sep:false,ex:['Scientists broke through with a new vaccine.','She finally broke through in her career.']},
+  {pv:'call off',verb:'call',particle:'off',topic:'work',def:'cancel something planned',sep:true,ex:['They called off the meeting.','The match was called off due to rain.']},
+  {pv:'call back',verb:'call',particle:'back',topic:'communication',def:'return a phone call',sep:true,ex:["I'll call you back in ten minutes.",'She never called back.']},
+  {pv:'call on',verb:'call',particle:'on',topic:'social life',def:'visit someone; ask someone to speak',sep:false,ex:['The teacher called on her to answer.','We called on some old friends.']},
+  {pv:'call out',verb:'call',particle:'out',topic:'communication',def:'shout; publicly criticise someone',sep:true,ex:['She called out his name in the dark.','He was called out for his dishonesty.']},
+  {pv:'set up',verb:'set',particle:'up',topic:'work',def:'establish or arrange something',sep:true,ex:['She set up her own business at 25.','Can you set up a meeting for Monday?']},
+  {pv:'set off',verb:'set',particle:'off',topic:'travel',def:'begin a journey; trigger an alarm or reaction',sep:true,ex:['We set off at dawn.','The noise set off the car alarm.']},
+  {pv:'set back',verb:'set',particle:'back',topic:'work',def:'delay progress; cost someone money',sep:true,ex:['The bad weather set back the project.','The repairs set me back £500.']},
+  {pv:'set out',verb:'set',particle:'out',topic:'travel',def:'begin a journey; state something clearly',sep:false,ex:['They set out on their expedition.','The report sets out the main findings.']},
+  {pv:'look up to',verb:'look',particle:'to',topic:'relationships',def:'admire and respect someone',sep:false,ex:['She looks up to her older sister.','Many students looked up to that professor.']},
+  {pv:'come along',verb:'come',particle:'along',topic:'social life',def:'accompany someone; make progress',sep:false,ex:["Why don't you come along to the event?",'How is your project coming along?']},
+];
+
+const TCOLS={
+  'daily routine':{bg:'#E1F5EE',tc:'#085041',brd:'#5DCAA5'},
+  'health & emotions':{bg:'#FBEAF0',tc:'#72243E',brd:'#E8A8C8'},
+  'relationships':{bg:'#EEEDFE',tc:'#3C3489',brd:'#AFA9EC'},
+  'work':{bg:'#FAEEDA',tc:'#633806',brd:'#E8C080'},
+  'travel':{bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB'},
+  'learning':{bg:'#EAF3DE',tc:'#27500A',brd:'#A8D88A'},
+  'social life':{bg:'#FAECE7',tc:'#712B13',brd:'#F0997B'},
+  'communication':{bg:'#F1EFE8',tc:'#4a4845',brd:'#D3D1C7'},
+  'safety':{bg:'#FCEBEB',tc:'#791F1F',brd:'#F7C1C1'},
+};
+const tc=t=>TCOLS[t]||{bg:'#F1EFE8',tc:'#4a4845',brd:'#D3D1C7'};
+
+const QUOTES=[
+  {text:'"You can\'t go back and change the beginning, but you can start where you are and change the ending."',author:'C.S. Lewis',pv:'go back',hi:'go back'},
+  {text:'"When you give up, that\'s when the game is over."',author:'Novak Djokovic',pv:'give up',hi:'give up'},
+  {text:'"Come up with new ideas every day. Even bad ones. Just keep the factory running."',author:'Shonda Rhimes',pv:'come up with',hi:'come up with'},
+  {text:'"I\'ve had to put up with a lot of criticism, but that\'s made me stronger."',author:'J.K. Rowling (adapted)',pv:'put up with',hi:'put up with'},
+  {text:'"The secret of getting ahead is getting started. Just set out and begin."',author:'Mark Twain (adapted)',pv:'set out',hi:'set out'},
+  {text:'"Don\'t look down on someone unless you\'re helping them up."',author:'Jesse Jackson',pv:'look down on',hi:'look down on'},
+  {text:'"It doesn\'t matter how many times you break down — what matters is how many times you get up."',author:'adapted proverb',pv:'break down',hi:'break down'},
+  {text:'"Turn your wounds into wisdom. Don\'t let hardship turn you into someone bitter."',author:'Oprah Winfrey (adapted)',pv:'turn into',hi:'turn into'},
+  {text:'"Look out for the people around you, and they will look out for you."',author:'Richard Branson (adapted)',pv:'look out',hi:'look out'},
+  {text:'"If something comes up that scares you, go ahead and do it anyway."',author:'Eleanor Roosevelt (adapted)',pv:'go ahead',hi:'go ahead'},
+  {text:'"Bring out the best in others by bringing out the best in yourself first."',author:'John Wooden (adapted)',pv:'bring out',hi:'bring out'},
+  {text:'"Never call off a dream just because it seems too distant."',author:'Paulo Coelho (adapted)',pv:'call off',hi:'call off'},
+];
+let qOrd=[...Array(QUOTES.length).keys()].sort(()=>Math.random()-.5),qI=0;
+function renderQuote(){
+  const q=QUOTES[qOrd[qI%qOrd.length]];qI++;
+  const txt=q.text.replace(q.hi,`<span style="background:#EEEDFE;color:#3C3489;font-weight:600;padding:1px 5px;border-radius:6px">${q.hi}</span>`);
+  document.getElementById('quoteBox').innerHTML=`
+    <div style="font-style:italic;font-size:15px;line-height:1.8;color:var(--color-text-primary);margin-bottom:8px">${txt}</div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span style="font-size:12px;color:var(--color-text-secondary)">— ${q.author}</span>
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">Phrasal verb: ${q.pv}</span>
+      <button class="audio-btn" onclick="speak('${q.pv.replace(/'/g,"\\'")}',0.82,this)" style="font-size:12px">🔊 Hear it</button>
+      <button class="act" onclick="renderQuote()" style="margin-left:auto;font-size:12px;padding:4px 12px"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> New quote</button>
+    </div>`;
+}
+
+// ── BROWSE ────────────────────────────────────────────────────
+const VERBS=[...new Set(PVS.map(p=>p.verb))].sort();
+const PARTS=[...new Set(PVS.map(p=>p.particle))].sort();
+const TOPICS=[...new Set(PVS.map(p=>p.topic))].sort();
+let filterVerb='',filterPart='',filterTopic='',selPV=null,glossary=[];
+
+function renderChips(){
+  document.getElementById('verbChips').innerHTML=`<span class="chip on" onclick="setVF('',this)">All</span>`+VERBS.map(v=>`<span class="chip" onclick="setVF('${v}',this)">${v}</span>`).join('');
+  document.getElementById('partChips').innerHTML=`<span class="chip on" onclick="setPF('',this)">All</span>`+PARTS.map(p=>`<span class="chip" onclick="setPF('${p}',this)">${p}</span>`).join('');
+  document.getElementById('topicChips').innerHTML=`<span class="chip on" onclick="setTF('',this)">All</span>`+TOPICS.map(t=>`<span class="chip" onclick="setTF('${t}',this)">${t}</span>`).join('');
+}
+function setVF(v,el){filterVerb=v;document.querySelectorAll('#verbChips .chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');renderBrowse();}
+function setPF(p,el){filterPart=p;document.querySelectorAll('#partChips .chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');renderBrowse();}
+function setTF(t,el){filterTopic=t;document.querySelectorAll('#topicChips .chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');renderBrowse();}
+
+function renderBrowse(){
+  const q=(document.getElementById('searchBox').value||'').toLowerCase();
+  const list=PVS.filter(p=>{
+    if(filterVerb&&p.verb!==filterVerb)return false;
+    if(filterPart&&p.particle!==filterPart)return false;
+    if(filterTopic&&p.topic!==filterTopic)return false;
+    if(q&&!(p.pv.toLowerCase().includes(q)||p.def.toLowerCase().includes(q)||p.ex.some(e=>e.toLowerCase().includes(q))))return false;
+    return true;
+  });
+  document.getElementById('browseCount').textContent=`${list.length} phrasal verb${list.length!==1?'s':''} found`;
+  document.getElementById('pvGrid').innerHTML=list.map(p=>{
+    const c=tc(p.topic);const saved=glossary.includes(p.pv);
+    return`<div class="pv-card${selPV===p.pv?' sel':''}" id="pvcard_${p.pv.replace(/ /g,'_')}" onclick="selectPV('${p.pv.replace(/'/g,"\\'")}')">
+      <div class="pv-top">
+        <span class="pv-name">${p.pv}</span>
+        <span style="background:${c.bg};color:${c.tc};font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;border:0.5px solid ${c.brd}">${p.topic}</span>
+        <button class="audio-btn" onclick="event.stopPropagation();speak('${p.pv.replace(/'/g,"\\'")}',0.82,this)" style="margin-left:auto;font-size:12px;padding:4px 10px">🔊</button>
+        <span style="color:${saved?'#854F0B':'var(--color-text-secondary)'};font-size:15px;cursor:pointer;padding:2px 4px;flex-shrink:0" onclick="event.stopPropagation();toggleGloss('${p.pv.replace(/'/g,"\\'")}')"><i class="ti ti-bookmark" aria-label="${saved?'Remove':'Save'}"></i></span>
+      </div>
+      <div class="pv-def">${p.def}</div>
+      <div class="pv-ex">${p.ex[0]}</div>
+    </div>`;
+  }).join('');
+  if(selPV){const found=list.find(p=>p.pv===selPV);if(!found){selPV=null;document.getElementById('pvDetail').classList.remove('on');}}
+}
+
+function selectPV(pv){
+  selPV=selPV===pv?null:pv;
+  document.querySelectorAll('.pv-card').forEach(c=>c.classList.remove('sel'));
+  const detail=document.getElementById('pvDetail');
+  if(!selPV){detail.classList.remove('on');return;}
+  const el=document.getElementById('pvcard_'+pv.replace(/ /g,'_'));if(el)el.classList.add('sel');
+  const p=PVS.find(x=>x.pv===pv);
+  const c=tc(p.topic);const saved=glossary.includes(pv);
+  detail.innerHTML=`
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+      <span style="font-size:18px;font-weight:600">${p.pv}</span>
+      <span style="background:${c.bg};color:${c.tc};font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px;border:0.5px solid ${c.brd}">${p.topic}</span>
+      <button class="audio-btn" onclick="speak('${p.pv.replace(/'/g,"\\'")}',0.82,this)">🔊 Hear the phrase</button>
+      <button class="act" style="margin-left:auto;font-size:12px" onclick="toggleGloss('${pv.replace(/'/g,"\\'")}');selectPV('${pv.replace(/'/g,"\\'")}')">
+        <i class="ti ti-bookmark" aria-hidden="true"></i> ${saved?'Remove from glossary':'Save to glossary'}
+      </button>
+    </div>
+    <div class="lbl">Definition</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px;line-height:1.65">${p.def}</p>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">verb: ${p.verb}</span>
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">particle: ${p.particle}</span>
+      <span style="background:${p.sep?'#EAF3DE':'#FAECE7'};color:${p.sep?'#27500A':'#712B13'};font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${p.sep?'separable ✓':'inseparable'}</span>
+    </div>
+    <div class="lbl">Examples — click 🔊 to hear</div>
+    ${p.ex.map(e=>`
+      <div style="display:flex;align-items:center;gap:8px;background:var(--color-background-secondary);border-radius:12px;padding:8px 13px;margin-bottom:7px">
+        <div style="font-size:14px;font-style:italic;color:var(--color-text-secondary);flex:1;line-height:1.6">${e}</div>
+        <button class="audio-btn" onclick="speak('${e.replace(/'/g,"\\'")}',0.82,this)" style="flex-shrink:0">🔊</button>
+      </div>`).join('')}`;
+  detail.classList.add('on');
+  detail.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function toggleGloss(pv){
+  if(glossary.includes(pv))glossary=glossary.filter(x=>x!==pv);
+  else glossary.push(pv);
+  renderBrowse();
+}
+
+// ── GAP FILL ─────────────────────────────────────────────────
+const GAP=[
+  {s:'She ___ smoking last year and has never looked back.',blank:'gave up',opts:['gave up','gave in','gave back','gave out'],type:'give up',fb:'"Give up" = stop doing something. "Give in" = yield to pressure. "Give back" = return. "Give out" = distribute or stop working.'},
+  {s:'It took her months to ___ the break-up.',blank:'get over',opts:['get over','get up','get away','get along'],type:'get over',fb:'"Get over" = recover from something difficult — physically or emotionally. "Get up" = rise from bed.'},
+  {s:'The plane ___ two hours late due to a technical fault.',blank:'took off',opts:['took off','took on','took over','took up'],type:'take off',fb:'"Take off" = leave the ground (aircraft). "Take on" = accept responsibility. "Take over" = assume control.'},
+  {s:'A larger competitor ___ the business last year.',blank:'took over',opts:['took over','took on','took up','took off'],type:'take over',fb:'"Take over" = assume control of a company or situation. "Take on" = hire or accept responsibility. "Take up" = start a hobby.'},
+  {s:'The new regulations ___ a great deal of confusion.',blank:'gave rise to',opts:['gave rise to','brought about','turned out','set back'],type:'give rise to',fb:'"Give rise to" and "bring about" both mean cause, but "give rise to" specifically implies producing a new situation or consequence, while "bring about" emphasises deliberate change.'},
+  {s:'Don\'t ___ the ending of the film — I haven\'t seen it yet!',blank:'give away',opts:['give away','give out','give in','give up'],type:'give away',fb:'"Give away" = reveal a secret. "Give out" = distribute. "Give in" = yield. "Give up" = stop doing something.'},
+  {s:'She ___ an interesting point about the company\'s strategy.',blank:'brought up',opts:['brought up','brought about','brought back','brought out'],type:'bring up',fb:'"Bring up" = raise a topic in conversation. "Bring about" = cause. "Bring back" = return with / cause to remember.'},
+  {s:'The smell of fresh bread ___ happy childhood memories.',blank:'brought back',opts:['brought back','brought up','brought about','brought out'],type:'bring back',fb:'"Bring back" = cause someone to remember or feel something from the past. "Bring up" = raise a topic.'},
+  {s:'He ___ the promotion because he didn\'t want to relocate.',blank:'turned down',opts:['turned down','turned up','turned out','turned off'],type:'turn down',fb:'"Turn down" = reject. "Turn up" = arrive or increase volume. "Turn out" = happen in a particular way. "Turn off" = switch off.'},
+  {s:'It ___ to be a wonderful evening, despite the bad start.',blank:'turned out',opts:['turned out','turned up','turned into','turned off'],type:'turn out',fb:'"Turn out" = happen in a particular way (often unexpectedly). "Turn into" = become something different.'},
+  {s:'She ___ yoga after her doctor recommended it.',blank:'took up',opts:['took up','took on','took off','took over'],type:'take up',fb:'"Take up" = start a new hobby or activity. "Take on" = accept responsibility. "Take off" = leave the ground.'},
+  {s:'I ___ an old friend while browsing in the market.',blank:'came across',opts:['came across','came up','came back','came along'],type:'come across',fb:'"Come across" = find or meet by chance. "Come up" = arise unexpectedly. "Come back" = return.'},
+  {s:'The match was ___ because of heavy rain.',blank:'called off',opts:['called off','called back','called on','called out'],type:'call off',fb:'"Call off" = cancel. "Call back" = return a phone call. "Call on" = visit or ask someone to speak.'},
+  {s:'We ___ at dawn to avoid the rush-hour traffic.',blank:'set off',opts:['set off','set up','set back','set out'],type:'set off',fb:'"Set off" = begin a journey. "Set out" also means begin a journey but is slightly more formal. "Set up" = establish. "Set back" = delay.'},
+  {s:'The technical problem ___ the project by nearly three weeks.',blank:'set back',opts:['set back','set off','set up','set out'],type:'set back',fb:'"Set back" = delay progress. Do not confuse with "set off" (begin a journey) or "set up" (establish).'},
+  {s:'He ___ an hour late without any explanation.',blank:'turned up',opts:['turned up','turned out','turned down','turned off'],type:'turn up',fb:'"Turn up" = arrive (often late or unexpectedly). "Turn out" = happen in a particular way.'},
+  {s:'She has had to ___ a great deal of pressure at work lately.',blank:'put up with',opts:['put up with','put off','put forward','put on'],type:'put up with',fb:'"Put up with" = tolerate something unpleasant. "Put off" = postpone or discourage. "Put forward" = propose.'},
+  {s:'The police are ___ the cause of the accident.',blank:'looking into',opts:['looking into','looking after','looking up','looking out for'],type:'look into',fb:'"Look into" = investigate. "Look after" = take care of. "Look up" = search for information.'},
+];
+let gItems=[],gIdx=0,gScore=0,gTotal=0,gSel=null,gChecked=false;
+function startGap(){gItems=[...GAP].sort(()=>Math.random()-.5);gIdx=0;gScore=0;gTotal=0;renderGap();}
+function renderGap(){
+  if(gIdx>=gItems.length){const pct=Math.round(gScore/gTotal*100);document.getElementById('gapCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${gScore}/${gTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=70?'Well done!':'Browse the verbs and try again.'}</div><button class="act" onclick="startGap()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=gItems[gIdx];gSel=null;gChecked=false;
+  const prog=Math.round(gIdx/gItems.length*100);
+  const opts=[...item.opts].sort(()=>Math.random()-.5);window._gO=opts;
+  const sh=item.s.replace(item.blank,`<span style="display:inline-block;min-width:100px;border-bottom:2px solid #534AB7;color:#534AB7;font-weight:500;text-align:center;padding:0 4px" id="blankSpan">___</span>`);
+  document.getElementById('gapCont').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${gIdx+1}/${gItems.length} · Score: ${gScore}/${gTotal}</span>
+      <button class="act" onclick="startGap()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:9px">Choose the correct phrasal verb to complete the sentence.</div>
+    <div style="font-size:16px;line-height:1.9;margin-bottom:14px;background:var(--color-background-secondary);border-radius:14px;padding:11px 14px;font-style:italic">${sh}</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="gOptsList">${opts.map((o,i)=>`<button class="gap-opt" id="gopt_${i}" onclick="selGOpt(${i})">${o}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" id="gCheckBtn" onclick="checkGap()" disabled>Check</button>
+      <button class="act" onclick="gIdx++;renderGap()">Skip →</button>
+    </div>
+    <div id="gFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selGOpt(i){if(gChecked)return;gSel=i;document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('gCheckBtn').disabled=false;}
+function checkGap(){
+  if(gChecked||gSel===null)return;gChecked=true;gTotal++;
+  const item=gItems[gIdx];const chosen=window._gO[gSel];const ok=chosen===item.blank;if(ok)gScore++;
+  document.getElementById('gCheckBtn').disabled=true;
+  document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>{const w=window._gO[j];el.classList.remove('gsel');if(w===item.blank)el.classList.add('gok');else if(j===gSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const sp=document.getElementById('blankSpan');if(sp){sp.textContent=item.blank;sp.style.color=ok?'#27500A':'#791F1F';sp.style.borderBottomColor=ok?'#C0DD97':'#F7C1C1';}
+  const fb=document.getElementById('gFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ The answer is "'+item.blank+'". ')+item.fb;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next question →';nxt.onclick=()=>{gIdx++;renderGap();};document.querySelector('#gapCont .card').appendChild(nxt);
+}
+
+// ── MATCHING ─────────────────────────────────────────────────
+const MATCH_SETS=[
+  {instr:'Match each phrasal verb with its definition.',
+   pairs:[
+     {pv:'get over',def:'recover from an illness or setback'},
+     {pv:'take on',def:'accept a responsibility or hire someone'},
+     {pv:'look into',def:'investigate something'},
+     {pv:'put off',def:'postpone or cause someone to lose interest'},
+     {pv:'give up',def:'stop doing something or admit defeat'},
+     {pv:'turn down',def:'reject an offer or reduce volume'},
+     {pv:'break down',def:'stop functioning or lose emotional control'},
+   ]},
+  {instr:'Match each phrasal verb with its definition.',
+   pairs:[
+     {pv:'come up with',def:'think of an idea or solution'},
+     {pv:'look forward to',def:'feel excited about a future event'},
+     {pv:'put up with',def:'tolerate something unpleasant'},
+     {pv:'bring about',def:'cause something to happen'},
+     {pv:'set up',def:'establish or arrange something'},
+     {pv:'call off',def:'cancel something planned'},
+     {pv:'go through',def:'experience something difficult or examine carefully'},
+   ]},
+  {instr:'A trickier round — match phrasal verb to definition.',
+   pairs:[
+     {pv:'look down on',def:'regard someone as inferior'},
+     {pv:'come across',def:'find or meet by chance; give a certain impression'},
+     {pv:'turn out',def:'happen in a particular way; attend an event'},
+     {pv:'give rise to',def:'cause or produce something'},
+     {pv:'bring out',def:'release a product or highlight a quality'},
+     {pv:'break through',def:'make significant progress or a discovery'},
+     {pv:'set back',def:'delay progress or cost someone money'},
+   ]},
+];
+let mSet=0,mPicked=null,mMatched=[],mScore=0,mAttempts=0,mRight=[];
+function startMatch(si){
+  mSet=si!==undefined?si:mSet;const set=MATCH_SETS[mSet];mPicked=null;mMatched=[];mScore=0;mAttempts=0;
+  const rights=[...set.pairs].sort(()=>Math.random()-.5);mRight=rights;
+  document.getElementById('matchCont').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="font-size:13px;color:var(--color-text-secondary)">Round ${mSet+1}/${MATCH_SETS.length}</span>
+      ${MATCH_SETS.map((_,i)=>`<button class="act" onclick="startMatch(${i})" style="${i===mSet?'background:#EEEDFE;border-color:#AFA9EC;color:#3C3489':''}">Round ${i+1}</button>`).join('')}
+      <button class="act" onclick="startMatch(mSet)"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i></button>
+    </div>
+    <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:6px">${set.instr}</p>
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:11px">Matched: <strong id="mP">0</strong>/${set.pairs.length} · Attempts: <strong id="mA">0</strong></div>
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:9px">
+      <div style="display:flex;flex-direction:column;gap:6px" id="mL">${set.pairs.map((p,i)=>`<button class="mi" id="ml_${i}" onclick="mPL(${i})"><strong>${p.pv}</strong></button>`).join('')}</div>
+      <div style="display:flex;flex-direction:column;gap:6px" id="mR">${rights.map((r,i)=>`<button class="mi" id="mr_${i}" onclick="mPR(${i})" style="font-size:13px">${r.def}</button>`).join('')}</div>
+    </div>
+    <div id="mFb" style="font-size:13px;min-height:18px;margin-top:8px"></div>
+  </div>`;
+}
+function mPL(i){if(mMatched.some(m=>m.l===i))return;mPicked=i;document.querySelectorAll('#mL .mi').forEach((el,j)=>{if(!mMatched.some(m=>m.l===j))el.classList.toggle('pk',j===i);});}
+function mPR(i){
+  if(mPicked===null)return;const set=MATCH_SETS[mSet];if(mMatched.some(m=>m.r===i))return;
+  mAttempts++;document.getElementById('mA').textContent=mAttempts;
+  const ok=mRight[i].pv===set.pairs[mPicked].pv;
+  if(ok){['ml_'+mPicked,'mr_'+i].forEach(id=>{const el=document.getElementById(id);if(el){el.classList.remove('pk');el.classList.add('mt');}});mMatched.push({l:mPicked,r:i});mScore++;document.getElementById('mP').textContent=mScore;document.getElementById('mFb').style.color='#27500A';document.getElementById('mFb').textContent=mScore===set.pairs.length?`All ${set.pairs.length} matched in ${mAttempts} attempt${mAttempts===1?'':'s'}!`:'✓ Correct!';mPicked=null;document.querySelectorAll('#mL .mi').forEach(el=>el.classList.remove('pk'));}
+  else{['ml_'+mPicked,'mr_'+i].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.add('bd');});document.getElementById('mFb').style.color='#791F1F';document.getElementById('mFb').textContent='✗ Not a match — try again.';setTimeout(()=>{['ml_'+mPicked,'mr_'+i].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('bd');});},700);}
+}
+
+// ── SCRAMBLED SENTENCES ───────────────────────────────────────
+const SCRAM_POOL=[
+  {sentence:'She took up photography after she retired from her job.',words:['She','took','up','photography','after','she','retired','from','her','job'],pv:'take up'},
+  {sentence:'The project was put off until the end of the month.',words:['The','project','was','put','off','until','the','end','of','the','month'],pv:'put off'},
+  {sentence:'I came across this book in a small shop in Prague.',words:['I','came','across','this','book','in','a','small','shop','in','Prague'],pv:'come across'},
+  {sentence:'He broke down when he heard the terrible news.',words:['He','broke','down','when','he','heard','the','terrible','news'],pv:'break down'},
+  {sentence:'Can you look after my cat while I am away?',words:['Can','you','look','after','my','cat','while','I','am','away'],pv:'look after'},
+  {sentence:'The company set up a new office in Warsaw last year.',words:['The','company','set','up','a','new','office','in','Warsaw','last','year'],pv:'set up'},
+  {sentence:'She gave up sweets for the whole month of January.',words:['She','gave','up','sweets','for','the','whole','month','of','January'],pv:'give up'},
+  {sentence:'They called off the match because of heavy rain.',words:['They','called','off','the','match','because','of','heavy','rain'],pv:'call off'},
+  {sentence:'He turned down the promotion because he did not want to move.',words:['He','turned','down','the','promotion','because','he','did','not','want','to','move'],pv:'turn down'},
+  {sentence:'We need to look into the cause of the problem.',words:['We','need','to','look','into','the','cause','of','the','problem'],pv:'look into'},
+  {sentence:'The new policy brought about significant changes in the workplace.',words:['The','new','policy','brought','about','significant','changes','in','the','workplace'],pv:'bring about'},
+  {sentence:'I always look forward to the weekend.',words:['I','always','look','forward','to','the','weekend'],pv:'look forward to'},
+  {sentence:'She came up with a creative solution to the problem.',words:['She','came','up','with','a','creative','solution','to','the','problem'],pv:'come up with'},
+  {sentence:'The alarm went off just as we fell asleep.',words:['The','alarm','went','off','just','as','we','fell','asleep'],pv:'go off'},
+  {sentence:'Please put away your phone during the lesson.',words:['Please','put','away','your','phone','during','the','lesson'],pv:'put away'},
+  {sentence:'The argument turned into a full-scale dispute by the end of the day.',words:['The','argument','turned','into','a','full-scale','dispute','by','the','end','of','the','day'],pv:'turn into'},
+  {sentence:'We set off early to avoid the rush-hour traffic.',words:['We','set','off','early','to','avoid','the','rush-hour','traffic'],pv:'set off'},
+  {sentence:'He takes care of his younger siblings every afternoon.',words:['He','takes','care','of','his','younger','siblings','every','afternoon'],pv:'take care of'},
+];
+let sItems=[],sIdx=0,sScore=0,sTotal=0,sPlaced=[],sSel=null,sChecked=false;
+function startScram(){sItems=[...SCRAM_POOL].sort(()=>Math.random()-.5);sIdx=0;sScore=0;sTotal=0;renderScram();}
+function renderScram(){
+  if(sIdx>=sItems.length){const pct=Math.round(sScore/sTotal*100);document.getElementById('scramCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${sScore}/${sTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=70?'Well done!':'Keep practising!'}</div><button class="act" onclick="startScram()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=sItems[sIdx];sPlaced=new Array(item.words.length).fill(null);sSel=null;sChecked=false;
+  const sh=[...item.words].sort(()=>Math.random()-.5);window._ssh=sh;
+  const prog=Math.round(sIdx/sItems.length*100);
+  document.getElementById('scramCont').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.pv}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${sIdx+1}/${sItems.length} · Score: ${sScore}/${sTotal}</span>
+      <button class="act" onclick="startScram()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:8px">Tap a word, then tap a slot to place it. Tap a filled slot to return it.</div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:2px;min-height:42px;margin-bottom:8px;padding:8px 10px;background:var(--color-background-secondary);border-radius:14px" id="sSlots">
+      ${item.words.map((_,i)=>`<span class="slot" id="ss_${i}" onclick="cSlot(${i})"></span>${i<item.words.length-1?'<span style="color:var(--color-text-secondary);font-size:10px">▸</span>':''}`).join('')}
+    </div>
+    <div id="sFb" style="font-size:13px;min-height:16px;margin-bottom:8px"></div>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px">Word bank:</div>
+    <div style="display:flex;flex-wrap:wrap" id="sPieces">${sh.map((w,i)=>`<span class="piece" id="sp_${i}" onclick="cPiece(${i})">${w}</span>`).join('')}</div>
+    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+      <button class="check-btn" onclick="checkScram()">Check</button>
+      <button class="act" onclick="clearScram()"><i class="ti ti-x" style="font-size:13px;vertical-align:-2px"></i> Clear</button>
+      <button class="act" onclick="sIdx++;renderScram()">Skip →</button>
+    </div>
+  </div>`;
+}
+function cPiece(i){if(sChecked)return;document.querySelectorAll('.piece').forEach(p=>p.classList.remove('sel'));if(sSel===i){sSel=null;return;}sSel=i;document.getElementById('sp_'+i).classList.add('sel');}
+function cSlot(s){
+  if(sChecked)return;
+  if(sSel===null){
+    if(sPlaced[s]!==null){const w=sPlaced[s];sPlaced[s]=null;window._ssh.forEach((p,pi)=>{const e=document.getElementById('sp_'+pi);if(e&&e.classList.contains('used')&&p===w&&!sPlaced.includes(p))e.classList.remove('used');});rSSlots();}return;
+  }
+  const w=window._ssh[sSel];
+  if(sPlaced[s]!==null){const old=sPlaced[s];sPlaced[s]=null;window._ssh.forEach((p,pi)=>{const e=document.getElementById('sp_'+pi);if(e&&p===old&&e.classList.contains('used'))e.classList.remove('used');});}
+  sPlaced[s]=w;document.getElementById('sp_'+sSel).classList.add('used');document.getElementById('sp_'+sSel).classList.remove('sel');sSel=null;rSSlots();
+}
+function rSSlots(){sItems[sIdx].words.forEach((_,i)=>{const el=document.getElementById('ss_'+i);if(!el)return;if(sPlaced[i]){el.textContent=sPlaced[i];el.className='slot fl';}else{el.textContent='';el.className='slot';}});}
+function checkScram(){
+  if(sChecked)return;const item=sItems[sIdx];
+  if(sPlaced.some(p=>p===null)){const fb=document.getElementById('sFb');fb.textContent='Fill all slots first.';fb.style.color='#791F1F';return;}
+  sChecked=true;sTotal++;let ok=item.words.every((w,i)=>sPlaced[i]===w);
+  item.words.forEach((_,i)=>{const el=document.getElementById('ss_'+i);if(!el)return;el.classList.add(sPlaced[i]===item.words[i]?'cs':'ws');});
+  const fb=document.getElementById('sFb');
+  if(ok){sScore++;fb.innerHTML='✓ Correct!';fb.style.color='#27500A';}
+  else{fb.innerHTML='✗ Correct sentence: <em>'+item.sentence+'</em>';fb.style.color='#791F1F';}
+  // also offer audio
+  const aBtn=document.createElement('button');aBtn.className='audio-btn';aBtn.style.marginTop='8px';aBtn.innerHTML='🔊 Hear the sentence';aBtn.onclick=()=>speak(item.sentence,0.82,aBtn);
+  document.getElementById('sFb').insertAdjacentElement('afterend',aBtn);
+  document.querySelectorAll('#scramCont .check-btn').forEach(b=>{b.textContent='Next →';b.onclick=()=>{sIdx++;renderScram();};});
+}
+function clearScram(){if(sChecked)return;sPlaced=new Array(sItems[sIdx].words.length).fill(null);sSel=null;document.querySelectorAll('.piece').forEach(el=>el.classList.remove('sel','used'));rSSlots();document.getElementById('sFb').textContent='';}
+
+// ── PARAPHRASING ──────────────────────────────────────────────
+const PARA_POOL=[
+  {plain:'She stopped trying to lose weight.',target:'give up',answer:'She gave up trying to lose weight.',hint:'give up = stop doing something'},
+  {plain:'The company was bought by a larger firm.',target:'take over',answer:'A larger firm took over the company.',hint:'take over = assume control'},
+  {plain:'He recovered from his illness quite quickly.',target:'get over',answer:'He got over his illness quite quickly.',hint:'get over = recover from'},
+  {plain:'They cancelled the concert at the last minute.',target:'call off',answer:'They called off the concert at the last minute.',hint:'call off = cancel'},
+  {plain:'She rejected the job offer without hesitation.',target:'turn down',answer:'She turned down the job offer without hesitation.',hint:'turn down = reject'},
+  {plain:'The police are investigating the incident.',target:'look into',answer:'The police are looking into the incident.',hint:'look into = investigate'},
+  {plain:'He established his own business at the age of 30.',target:'set up',answer:'He set up his own business at the age of 30.',hint:'set up = establish'},
+  {plain:'I found the document by chance while tidying up.',target:'come across',answer:'I came across the document while tidying up.',hint:'come across = find by chance'},
+  {plain:'She thought of an excellent solution.',target:'come up with',answer:'She came up with an excellent solution.',hint:'come up with = think of'},
+  {plain:'The meeting was delayed by a technical problem.',target:'set back',answer:'A technical problem set back the meeting.',hint:'set back = delay'},
+  {plain:'I cannot tolerate this noise any longer.',target:'put up with',answer:'I cannot put up with this noise any longer.',hint:'put up with = tolerate'},
+  {plain:'She started learning the guitar six months ago.',target:'take up',answer:'She took up guitar six months ago.',hint:'take up = start a hobby'},
+  {plain:'The new regulations caused a lot of confusion.',target:'give rise to',answer:'The new regulations gave rise to a lot of confusion.',hint:'give rise to = cause'},
+  {plain:'He finally yielded after hours of negotiation.',target:'give in',answer:'He finally gave in after hours of negotiation.',hint:'give in = yield/stop resisting'},
+  {plain:'The smoke alarm began ringing in the middle of the night.',target:'go off',answer:'The smoke alarm went off in the middle of the night.',hint:'go off = start ringing'},
+  {plain:'She began her journey before sunrise.',target:'set off',answer:'She set off before sunrise.',hint:'set off = begin a journey'},
+];
+let pItems=[],pIdx=0,pScore=0,pTotal=0,pChecked=false;
+function startPara(){pItems=[...PARA_POOL].sort(()=>Math.random()-.5);pIdx=0;pScore=0;pTotal=0;renderPara();}
+function renderPara(){
+  if(pIdx>=pItems.length){const pct=Math.round(pScore/pTotal*100);document.getElementById('paraCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${pScore}/${pTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect command of phrasal verbs!':pct>=70?'Well done!':'Keep practising — browse the verbs for more context.'}</div><button class="act" onclick="startPara()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=pItems[pIdx];pChecked=false;
+  const prog=Math.round(pIdx/pItems.length*100);
+  document.getElementById('paraCont').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.target}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${pIdx+1}/${pItems.length} · Score: ${pScore}/${pTotal}</span>
+      <button class="act" onclick="startPara()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:9px">Rewrite the sentence using the phrasal verb given. Keep the meaning the same.</div>
+    <div style="background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;font-size:15px;margin-bottom:10px;color:var(--color-text-primary)">${item.plain}</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+      <span style="font-size:13px;color:var(--color-text-secondary)">Use:</span>
+      <span style="background:#EEEDFE;color:#3C3489;font-size:13px;font-weight:500;padding:3px 12px;border-radius:20px">${item.target}</span>
+      <button class="audio-btn" onclick="speak('${item.target.replace(/'/g,"\\'")}',0.82,this)" style="font-size:12px">🔊</button>
+      <span style="font-size:13px;color:var(--color-text-secondary);font-style:italic">${item.hint}</span>
+    </div>
+    <textarea class="para-input" id="paraInput" placeholder="Type your sentence here…"></textarea>
+    <div id="paraFb" style="font-size:13px;min-height:16px;margin-top:6px"></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+      <button class="check-btn" onclick="checkPara()">Check</button>
+      <button class="act" onclick="revealPara()">Reveal answer</button>
+      <button class="act" id="pNxt" style="display:none" onclick="pIdx++;renderPara()">Next →</button>
+      <button class="act" onclick="pIdx++;renderPara()">Skip →</button>
+    </div>
+  </div>`;
+}
+function norm(s){return s.trim().toLowerCase().replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' ');}
+function checkPara(){
+  if(pChecked)return;const item=pItems[pIdx];
+  const val=document.getElementById('paraInput').value;
+  if(!val.trim()){document.getElementById('paraFb').textContent='Please write a sentence first.';document.getElementById('paraFb').style.color='#791F1F';return;}
+  pChecked=true;pTotal++;
+  const uN=norm(val),aN=norm(item.answer),pvN=item.target.toLowerCase();
+  const ok=uN===aN||(uN.includes(pvN)&&uN.split(' ').length>=aN.split(' ').length-2&&uN.split(' ').length<=aN.split(' ').length+2);
+  const fb=document.getElementById('paraFb');
+  if(ok){pScore++;fb.innerHTML='✓ Great! Model answer: <em>'+item.answer+'</em>';fb.style.color='#27500A';}
+  else{fb.innerHTML='✗ Not quite. Model answer: <em>'+item.answer+'</em>';fb.style.color='#791F1F';}
+  document.getElementById('pNxt').style.display='inline-block';
+}
+function revealPara(){
+  if(pChecked)return;pChecked=true;pTotal++;
+  const item=pItems[pIdx];
+  const fb=document.getElementById('paraFb');fb.innerHTML='Model answer: <em>'+item.answer+'</em>';fb.style.color='var(--color-text-secondary)';
+  document.getElementById('pNxt').style.display='inline-block';
+}
+
+// ── GLOSSARY ─────────────────────────────────────────────────
+function renderGloss(){
+  const cont=document.getElementById('glossCont');
+  if(!glossary.length){
+    cont.innerHTML=`<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)">
+      <i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px;color:var(--color-text-secondary)"></i>
+      <div style="margin-bottom:8px">No phrasal verbs saved yet.</div>
+      <div style="font-size:13px">Open <button class="act" onclick="showP(1)" style="font-size:13px;padding:4px 12px">Browse &amp; search</button>, expand any card, and tap <em>Save to glossary</em>.</div>
+    </div>`;return;
+  }
+  cont.innerHTML=`<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">${glossary.length} phrasal verb${glossary.length!==1?'s':''} saved</div>`
+    +glossary.map(pv=>{
+      const p=PVS.find(x=>x.pv===pv);if(!p)return'';
+      const c=tc(p.topic);
+      return`<div class="card" style="margin-bottom:8px;display:flex;align-items:flex-start;gap:12px;padding:1rem 1.25rem">
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap">
+            <span style="font-size:15px;font-weight:600;color:var(--color-text-primary)">${p.pv}</span>
+            <span style="background:${c.bg};color:${c.tc};font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px;border:0.5px solid ${c.brd}">${p.topic}</span>
+            <button class="audio-btn" onclick="speak('${p.pv.replace(/'/g,"\\'")}',0.82,this)" style="font-size:12px">🔊 Hear</button>
+          </div>
+          <div style="font-size:13.5px;color:var(--color-text-secondary);margin-bottom:4px">${p.def}</div>
+          <div style="font-size:13px;font-style:italic;color:var(--color-text-secondary)">${p.ex[0]}</div>
+        </div>
+        <button class="act" style="font-size:12px;flex-shrink:0" onclick="toggleGloss('${pv.replace(/'/g,"\\'")}');renderGloss()"><i class="ti ti-x" style="font-size:13px;vertical-align:-2px"></i></button>
+      </div>`;
+    }).join('');
+}
+
+// ── NAV ──────────────────────────────────────────────────────
+function showP(i){
+  document.querySelectorAll('.pan').forEach((p,j)=>p.classList.toggle('on',j===i));
+  document.querySelectorAll('.nt').forEach((t,j)=>t.classList.toggle('on',j===i));
+  if(i===0)renderQuote();
+  if(i===1&&!document.getElementById('pvGrid').innerHTML){renderChips();renderBrowse();}
+  if(i===2&&!gItems.length)startGap();
+  if(i===3&&!document.getElementById('matchCont').innerHTML)startMatch(0);
+  if(i===4&&!sItems.length)startScram();
+  if(i===5&&!pItems.length)startPara();
+  if(i===6)renderGloss();
+}
+window.addEventListener('load',()=>{
+  if(window.speechSynthesis){window.speechSynthesis.getVoices();setTimeout(loadV,500);setTimeout(loadV,1500);}
+  renderQuote();
+});
+</script>
+</body>
+</html>
