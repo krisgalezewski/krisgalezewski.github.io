@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English determiners</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary)}
+.w{padding:1.5rem}
+.nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
+.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nt:hover{background:var(--color-background-secondary)}
+.nt.on{color:#fff;border-color:transparent;font-weight:500}
+.n0.on{background:#534AB7}.n1.on{background:#185FA5}.n2.on{background:#0F6E56}.n3.on{background:#854F0B}.n4.on{background:#993C1D}.n5.on{background:#72243E}.n6.on{background:#3B6D11}.n7.on{background:#712B13}.n8.on{background:#2d7a6b}
+.pan{display:none}.pan.on{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:.9rem}
+.lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
+.lbl:first-child{margin-top:0}
+.tip-box{background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;font-size:13px;color:var(--color-text-secondary);display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px}
+.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act:hover{background:var(--color-background-secondary)}
+.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #185FA5;background:#185FA5;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn:hover{background:#0c4577}
+.check-btn:disabled{opacity:.4;cursor:default}
+.gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
+.gap-opt:hover:not(.gsel):not(.gok):not(.gbad):not(.gdim){background:var(--color-background-secondary)}
+.gap-opt.gsel{border-color:#185FA5;background:#E6F1FB;color:#0C447C;font-weight:500}
+.gap-opt.gok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:500;cursor:default;pointer-events:none}
+.gap-opt.gbad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F;cursor:default;pointer-events:none}
+.gap-opt.gdim{opacity:.38;cursor:default;pointer-events:none}
+.fb-ok{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.fb-no{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.ex-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:20px;background:#185FA5;transition:width .3s}
+.mi{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
+.mi:hover{background:var(--color-background-secondary)}
+.mi.pk{border-color:#185FA5;background:#E6F1FB;color:#0C447C}
+.mi.mt{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.mi.bd{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.piece{padding:7px 13px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;cursor:pointer;color:var(--color-text-primary);display:inline-block;margin:3px;transition:all .15s}
+.piece:hover{background:var(--color-background-secondary)}
+.piece.used{opacity:.3;cursor:default;pointer-events:none}
+.piece.sel{border-color:#185FA5;background:#E6F1FB;color:#0C447C;font-weight:500}
+.slot{display:inline-flex;align-items:center;justify-content:center;min-width:72px;padding:5px 10px;border-radius:12px;border:1.5px dashed var(--color-border-secondary);font-size:13px;margin:2px;cursor:pointer;min-height:34px;color:var(--color-text-secondary);background:var(--color-background-secondary);transition:all .15s}
+.slot.fl{border-style:solid;border-color:#85B7EB;background:#E6F1FB;color:#0C447C}
+.slot.cs{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.slot.ws{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.slot.fx{border-style:solid;border-color:var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-secondary);cursor:default}
+.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #185FA5}
+.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
+.audio-btn:hover{background:#E6F1FB;border-color:#85B7EB;color:#185FA5}
+.audio-btn.playing{background:#E6F1FB;border-color:#185FA5;color:#185FA5;font-weight:500}
+/* accordion */
+.acc-hdr{display:flex;align-items:center;gap:8px;padding:11px 15px;cursor:pointer;border-radius:14px;transition:all .15s}
+.acc-hdr:hover{background:var(--color-background-secondary)}
+.acc-body{display:none;padding:0 15px 14px;font-size:14px;color:var(--color-text-secondary);line-height:1.75}
+.acc-body.on{display:block}
+/* sub-tabs for articles */
+.sub-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
+.st{padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.st:hover{background:var(--color-background-secondary)}
+.st.on{background:#185FA5;color:#fff;border-color:#185FA5;font-weight:500}
+.spanel{display:none}.spanel.on{display:block}
+/* ov cards for all determiners */
+.ov-card{border-radius:16px;padding:11px 13px;cursor:pointer;border:0.5px solid transparent;margin-bottom:8px;transition:all .15s}
+.ov-card:hover{opacity:.85}
+.ov-card.sel{outline:2px solid #185FA5;outline-offset:2px}
+/* rule rows */
+.rule-row{display:grid;grid-template-columns:minmax(160px,1fr) minmax(0,2fr);gap:8px;align-items:start;margin-bottom:7px}
+.rule-key{font-size:13px;font-weight:500;color:var(--color-text-primary);background:var(--color-background-secondary);border-radius:10px;padding:7px 11px;line-height:1.4}
+.rule-ex{font-size:13px;color:var(--color-text-secondary);padding:7px 11px;line-height:1.55;background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:10px}
+/* quiz within article/det sections */
+.mini-q{background:var(--color-background-secondary);border-radius:14px;padding:1rem 1.25rem;margin-top:.9rem}
+.eyebrow{font-size:11px;font-weight:500;color:#185FA5;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.lesson-h{font-size:26px;font-weight:500;color:var(--color-text-primary);line-height:1.25;margin-bottom:4px}
+.lesson-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:1.25rem}
+.ex-box{border-radius:14px;padding:9px 13px;font-size:14px;line-height:1.6;margin-bottom:6px}
+.ex-pos{background:#EAF3DE;color:#27500A;border:0.5px solid #C0DD97}
+.ex-neg{background:#FCEBEB;color:#791F1F;border:0.5px solid #F7C1C1}
+.ex-tag{font-size:10.5px;font-weight:700;display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.05em}
+@media(max-width:500px){.rule-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<h2 class="sr-only">English determiners — interactive lesson covering articles, demonstratives, quantifiers, possessives, and all other determiner types</h2>
+<div class="w">
+
+<div class="nav">
+  <button class="nt n0 on" onclick="showP(0)">Home</button>
+  <button class="nt n1" onclick="showP(1)">Articles</button>
+  <button class="nt n2" onclick="showP(2)">All determiners</button>
+  <button class="nt n3" onclick="showP(3)">Gap fill</button>
+  <button class="nt n4" onclick="showP(4)">Matching</button>
+  <button class="nt n5" onclick="showP(5)">Builder</button>
+  <button class="nt n6" onclick="showP(6)">Listening</button>
+  <button class="nt n7" onclick="showP(7)">Error correction</button>
+  <button class="nt n8" onclick="showP(8)">My glossary</button>
+</div>
+
+<!-- HOME -->
+<div id="p0" class="pan on">
+  <div class="eyebrow">Interactive lesson · Grammar</div>
+  <div class="lesson-h">English determiners</div>
+  <div class="lesson-sub">Articles, demonstratives, quantifiers, possessives, numerals and more — the words that define what a noun refers to</div>
+  <div class="quote-box" id="quoteBox"></div>
+  <div class="card">
+    <div class="lbl">What is a determiner?</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">A <span style="font-weight:500;color:var(--color-text-primary)">determiner</span> is a word placed before a noun to clarify which person, thing, or quantity is meant. Unlike adjectives, determiners define <em>reference</em> and <em>quantity</em> rather than describing qualities. A noun phrase can have only <span style="font-weight:500;color:var(--color-text-primary)">one central determiner</span> at a time.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:10px">
+      <div style="background:#E6F1FB;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:500;color:#0C447C">3</div><div style="font-size:12px;font-weight:500;color:#0C447C;margin-top:2px">Articles</div></div>
+      <div style="background:#EAF3DE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:500;color:#27500A">4</div><div style="font-size:12px;font-weight:500;color:#27500A;margin-top:2px">Demonstratives</div></div>
+      <div style="background:#FAEEDA;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:500;color:#633806">20+</div><div style="font-size:12px;font-weight:500;color:#633806;margin-top:2px">Quantifiers</div></div>
+      <div style="background:#EEEDFE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:500;color:#3C3489">8</div><div style="font-size:12px;font-weight:500;color:#3C3489;margin-top:2px">Possessives</div></div>
+      <div style="background:#FCEBEB;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:500;color:#791F1F">∞</div><div style="font-size:12px;font-weight:500;color:#791F1F;margin-top:2px">Combinations</div></div>
+    </div>
+    <div class="tip-box"><i class="ti ti-bulb" aria-hidden="true" style="font-size:16px;flex-shrink:0;color:#185FA5"></i><span>You can say <em>the book</em>, <em>my book</em>, or <em>this book</em> — but never <em>the my book</em>. Predeterminers (all, both, half) and postdeterminers (ordinals, cardinals) can be added around the central determiner.</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px">
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(1)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-article" aria-hidden="true" style="color:#185FA5"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Articles</div><div style="font-size:12px;color:var(--color-text-secondary)">a/an, the, ∅ — in depth with quiz</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(2)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-list" aria-hidden="true" style="color:#0F6E56"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">All determiners</div><div style="font-size:12px;color:var(--color-text-secondary)">All types with quiz</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(3)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-writing" aria-hidden="true" style="color:#854F0B"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Gap fill</div><div style="font-size:12px;color:var(--color-text-secondary)">Choose the right determiner</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(4)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-arrows-exchange" aria-hidden="true" style="color:#993C1D"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Matching</div><div style="font-size:12px;color:var(--color-text-secondary)">Determiner to category</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(5)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-puzzle" aria-hidden="true" style="color:#72243E"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Builder</div><div style="font-size:12px;color:var(--color-text-secondary)">Assemble noun phrases</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(6)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-ear" aria-hidden="true" style="color:#3B6D11"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Listening</div><div style="font-size:12px;color:var(--color-text-secondary)">Article choice by ear</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(7)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-search" aria-hidden="true" style="color:#712B13"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Error correction</div><div style="font-size:12px;color:var(--color-text-secondary)">Find the wrong determiner</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(8)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-bookmark" aria-hidden="true" style="color:#2d7a6b"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">My glossary</div><div style="font-size:12px;color:var(--color-text-secondary)">Save determiner types</div></div>
+  </div>
+</div>
+
+<!-- ARTICLES -->
+<div id="p1" class="pan">
+  <div class="eyebrow">English determiners</div>
+  <div class="lesson-h">Articles</div>
+  <div class="lesson-sub">The indefinite article (a/an), the definite article (the), and the zero article (∅) — rules, exceptions, and an interactive quiz</div>
+  <div class="sub-tabs">
+    <button class="st on" onclick="switchArt(0,this)">a / an — indefinite</button>
+    <button class="st" onclick="switchArt(1,this)">the — definite</button>
+    <button class="st" onclick="switchArt(2,this)">∅ — zero article</button>
+    <button class="st" onclick="switchArt(3,this)">Tricky cases</button>
+    <button class="st" onclick="switchArt(4,this)">Article quiz</button>
+  </div>
+  <div id="art0" class="spanel on"></div>
+  <div id="art1" class="spanel"></div>
+  <div id="art2" class="spanel"></div>
+  <div id="art3" class="spanel"></div>
+  <div id="art4" class="spanel"></div>
+</div>
+
+<!-- ALL DETERMINERS -->
+<div id="p2" class="pan">
+  <div class="eyebrow">English determiners</div>
+  <div class="lesson-h">All determiner types</div>
+  <div class="lesson-sub">Click any category to expand it — with examples, advanced notes, and a short quiz at the bottom</div>
+  <div id="detContent"></div>
+</div>
+
+<!-- GAP FILL -->
+<div id="p3" class="pan">
+  <div class="eyebrow">English determiners</div>
+  <div class="lesson-h">Gap fill</div>
+  <div class="lesson-sub">Choose the correct determiner — articles, quantifiers, demonstratives, possessives and more</div>
+  <div id="gapCont"></div>
+</div>
+
+<!-- MATCHING -->
+<div id="p4" class="pan">
+  <div class="eyebrow">English determiners</div>
+  <div class="lesson-h">Matching</div>
+  <div class="lesson-sub">Match each underlined word or phrase to the determiner type it illustrates</div>
+  <div id="matchCont"></div>
+</div>
+
+<!-- BUILDER -->
+<div id="p5" class="pan">
+  <div class="eyebrow">English determiners</div>
+  <div class="lesson-h">Noun phrase builder</div>
+  <div class="lesson-sub">Tap a tile to select it, then tap a slot to place it — build a complete, grammatical noun phrase</div>
+  <div id="builderCont"></div>
+</div>
+
+<!-- LISTENING -->
+<div id="p6" class="pan">
+  <div class="eyebrow">English determiners</div>
+  <div class="lesson-h">Listening — article choice</div>
+  <div class="lesson-sub">Listen to each sentence and decide which article (a, an, the, or ∅) fills the gap</div>
+  <div id="listenCont"></div>
+</div>
+
+<!-- ERROR CORRECTION -->
+<div id="p7" class="pan">
+  <div class="eyebrow">English determiners</div>
+  <div class="lesson-h">Error correction</div>
+  <div class="lesson-sub">One sentence uses a determiner incorrectly — choose the correct version</div>
+  <div id="errCont"></div>
+</div>
+
+<!-- GLOSSARY -->
+<div id="p8" class="pan">
+  <div class="eyebrow">English determiners</div>
+  <div class="lesson-h">My glossary</div>
+  <div class="lesson-sub">Determiner types you have saved for review</div>
+  <div id="glossCont"></div>
+</div>
+</div>
+
+<script>
+// ── VOICE — female British ────────────────────────────────────
+let bVoice=null;
+function loadV(){
+  const vs=window.speechSynthesis.getVoices();if(!vs.length)return;
+  bVoice=vs.find(v=>v.lang==='en-GB'&&/female|fiona|kate|serena|moira|karen|victoria|claire/i.test(v.name))
+    ||vs.find(v=>v.lang==='en-GB'&&!/male|daniel|oliver|arthur/i.test(v.name))
+    ||vs.find(v=>v.lang==='en-GB')
+    ||vs.find(v=>v.lang.startsWith('en-GB'))
+    ||vs.find(v=>v.lang.startsWith('en'));
+}
+if(window.speechSynthesis){window.speechSynthesis.onvoiceschanged=loadV;loadV();}
+function speak(txt,rate,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();if(!bVoice)loadV();
+  const u=new SpeechSynthesisUtterance(txt);u.lang='en-GB';u.rate=rate||0.84;u.pitch=1.07;
+  if(bVoice)u.voice=bVoice;
+  if(btn){document.querySelectorAll('.audio-btn').forEach(b=>b.classList.remove('playing'));btn.classList.add('playing');u.onend=()=>btn.classList.remove('playing');}
+  window.speechSynthesis.speak(u);
+}
+
+// ── QUOTES ────────────────────────────────────────────────────
+const QUOTES=[
+  {q:'"<em>The</em> quality of mercy is not strained."',a:'William Shakespeare',t:'Definite article — unique abstract concept'},
+  {q:'"It was <em>a</em> truth universally acknowledged."',a:'Jane Austen',t:'Indefinite article — first mention, general'},
+  {q:'"In <em>the</em> beginning was <em>the</em> Word."',a:'The Bible, John 1:1',t:'Definite article — unique referent'},
+  {q:'"<em>No</em> man is <em>an</em> island."',a:'John Donne',t:'"No" (negative determiner) + indefinite article'},
+  {q:'"<em>All</em> that glitters is not gold."',a:'William Shakespeare',t:'"All" — predeterminer / universal quantifier'},
+  {q:'"<em>Many</em> a man has tried and failed."',a:'proverb',t:'"Many a" — literary quantifier + indefinite article'},
+  {q:'"Give us <em>this</em> day our daily bread."',a:'The Lord\'s Prayer',t:'"This" — demonstrative determiner (proximity)'},
+  {q:'"<em>Each</em> new day is <em>a</em> new life."',a:'adapted proverb',t:'"Each" — distributive determiner + indefinite article'},
+  {q:'"<em>Both</em> the artist and <em>the</em> scientist seek truth."',a:'adapted',t:'"Both" — predeterminer + definite article'},
+  {q:'"<em>Neither</em> snow nor rain stays <em>the</em> courier."',a:'adapted Herodotus',t:'"Neither" — negative distributive determiner'},
+  {q:'"<em>Whose</em> woods <em>these</em> are I think I know."',a:'Robert Frost',t:'"Whose" — interrogative possessive + demonstrative'},
+  {q:'"I have promises to keep, and miles to go before I sleep."',a:'Robert Frost',t:'Zero article — plural noun used generically'},
+];
+let qOrd=[...Array(QUOTES.length).keys()].sort(()=>Math.random()-.5),qI=0;
+function renderQuote(){
+  const q=QUOTES[qOrd[qI%qOrd.length]];qI++;
+  document.getElementById('quoteBox').innerHTML=`
+    <div style="font-style:italic;font-size:15px;line-height:1.8;color:var(--color-text-primary);margin-bottom:8px">${q.q}</div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span style="font-size:12px;color:var(--color-text-secondary)">— ${q.a}</span>
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${q.t}</span>
+      <button class="act" onclick="renderQuote()" style="margin-left:auto;font-size:12px;padding:4px 12px"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> New quote</button>
+    </div>`;
+}
+
+// ── ARTICLES CONTENT ─────────────────────────────────────────
+function ruleHtml(key,ex){return`<div class="rule-row"><div class="rule-key">${key}</div><div class="rule-ex">${ex}</div></div>`;}
+function exHtml(tag,s,pos=true){return`<div class="ex-box ${pos?'ex-pos':'ex-neg'}"><span class="ex-tag">${tag}</span>${s}</div>`;}
+
+const ART_PANELS=[
+  // 0 — a/an
+  `<div class="card">
+    <div class="lbl">Core uses of a / an</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:10px">Use <strong>a</strong> (before consonant sounds) or <strong>an</strong> (before vowel sounds) to introduce a <em>singular countable noun</em> that is non-specific or mentioned for the first time.</p>
+    ${ruleHtml('First mention','I saw <strong>a</strong> dog in the park. <em>The</em> dog was barking. (Second mention = the)')}
+    ${ruleHtml('Any member of a class','"She wants to be <strong>a</strong> doctor." — any doctor, not a specific one')}
+    ${ruleHtml('a = before consonant sound','"<strong>a</strong> university" /juːnɪˈvɜːsɪti/ — starts with /j/ (consonant sound, despite the letter u)')}
+    ${ruleHtml('an = before vowel sound','"<strong>an</strong> hour" /ˈaʊə/ — the h is silent; the word begins with the vowel sound /aʊ/')}
+    ${ruleHtml('Predicate after be / become','"He is <strong>a</strong> teacher." / "She became <strong>an</strong> expert overnight."')}
+    ${ruleHtml('Exclamations with what / such','"What <strong>a</strong> beautiful day!" / "Such <strong>an</strong> interesting idea!"')}
+    ${ruleHtml('Approximation / per','"I earn £15 <strong>a</strong> hour." / "Take it twice <strong>a</strong> day." / "<strong>a</strong> couple of"')}
+    <div class="lbl">Exceptions and advanced points</div>
+    ${ruleHtml('Silent h → an','"<strong>an</strong> hour, <strong>an</strong> heir, <strong>an</strong> honest person, <strong>an</strong> honour, <strong>an</strong> honourable gesture"')}
+    ${ruleHtml('Sounded h → a','"<strong>a</strong> hotel, <strong>a</strong> historic moment, <strong>a</strong> humble person, <strong>a</strong> hypothesis"')}
+    ${ruleHtml('u/eu with /j/ sound → a','"<strong>a</strong> university, <strong>a</strong> union, <strong>a</strong> European policy, <strong>a</strong> one-way street"')}
+    ${ruleHtml('Abbreviations by sound','"<strong>an</strong> MBA, <strong>an</strong> MP, <strong>an</strong> FAQ, <strong>a</strong> URL /juːɑːrˈel/"')}
+    ${ruleHtml('"Many a" + singular noun','"<strong>Many a</strong> student has struggled with this." — literary / formal; singular verb')}
+    ${ruleHtml('"Such a" vs "such" + uncount','"Such <strong>a</strong> clever idea!" (countable) vs "Such nonsense!" (uncountable — no article)')}
+    <div class="tip-box"><i class="ti ti-bulb" aria-hidden="true" style="font-size:16px;flex-shrink:0;color:#185FA5"></i><span>The rule is about <em>sound</em>, not spelling. "An umbrella" because /ʌ/ is a vowel sound. "A uniform" because /j/ is a consonant sound. Always say the word aloud before choosing a or an.</span></div>
+  </div>`,
+
+  // 1 — the
+  `<div class="card">
+    <div class="lbl">Core uses of the</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:10px">Use <strong>the</strong> when both speaker and listener know which specific thing is referred to — because it is unique, has been mentioned, is specified by context, or is the only one of its kind.</p>
+    ${ruleHtml('Second mention (anaphoric)','"I bought <strong>a</strong> book. <strong>The</strong> book was fascinating."')}
+    ${ruleHtml('Unique referents','"<strong>the</strong> sun, <strong>the</strong> moon, <strong>the</strong> President of France, <strong>the</strong> equator, <strong>the</strong> universe"')}
+    ${ruleHtml('Superlatives & ordinals','"She is <strong>the</strong> best student in the class." / "This is <strong>the</strong> first time I\'ve seen this."')}
+    ${ruleHtml('Shared situational context','"Could you close <strong>the</strong> window?" (both know which window — it\'s the only one in this room)')}
+    ${ruleHtml('Cataphoric (forward-pointing)','"<strong>The</strong> man I met yesterday called again." — "the" refers to the man identified in the relative clause that follows')}
+    ${ruleHtml('Geographical — rivers, seas, mountain ranges, deserts','"<strong>the</strong> Thames, <strong>the</strong> Amazon, <strong>the</strong> Alps, <strong>the</strong> Sahara, <strong>the</strong> Mediterranean"')}
+    ${ruleHtml('Plural country / group names','"<strong>the</strong> United States, <strong>the</strong> Netherlands, <strong>the</strong> United Kingdom, <strong>the</strong> Philippines"')}
+    ${ruleHtml('Musical instruments (playing)','"She plays <strong>the</strong> piano." / "He picked up <strong>the</strong> violin."')}
+    ${ruleHtml('Adjectives used as plural nouns','"<strong>the</strong> rich, <strong>the</strong> poor, <strong>the</strong> elderly, <strong>the</strong> unemployed, <strong>the</strong> homeless"')}
+    ${ruleHtml('Newspapers & official bodies','"<strong>the</strong> Times, <strong>the</strong> BBC, <strong>the</strong> European Parliament, <strong>the</strong> UN"')}
+    <div class="lbl">Advanced — generic uses with the</div>
+    ${ruleHtml('The + singular noun (species)','"<strong>The</strong> whale is an endangered species." = whales as a species. Also: "∅ Whales are endangered." — both possible, but <em>the</em> + singular sounds more formal/scientific.')}
+    ${ruleHtml('The + adjective = category','"<strong>The</strong> beautiful is not the same as the good." — abstract category')}
+    <div class="lbl">Common exceptions — no "the"</div>
+    ${ruleHtml('Most countries, cities, continents','"∅ France, ∅ London, ∅ Africa, ∅ Mount Everest" — but: <em>the</em> Netherlands (plural form), <em>the</em> Hague')}
+    ${ruleHtml('Lakes (but not seas / oceans)','"∅ Lake Victoria, ∅ Lake Baikal" — but: <em>the</em> Pacific Ocean, <em>the</em> Red Sea')}
+    ${ruleHtml('Streets, parks, airports','"∅ Oxford Street, ∅ Hyde Park, ∅ Heathrow Airport"')}
+    ${ruleHtml('Titles before names','"∅ President Obama, ∅ Professor Smith, ∅ Queen Elizabeth" — but: "the President" (without name)')}
+    <div class="tip-box"><i class="ti ti-bulb" aria-hidden="true" style="font-size:16px;flex-shrink:0;color:#185FA5"></i><span><strong>Cataphoric vs anaphoric the:</strong> Most uses of <em>the</em> are anaphoric (pointing back to something already mentioned). But <em>the</em> can also point forward: "The fact that she lied troubled me." Here <em>the</em> anticipates the that-clause which defines the fact.</span></div>
+  </div>`,
+
+  // 2 — zero article
+  `<div class="card">
+    <div class="lbl">Core uses of the zero article ∅</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:10px">The zero article (no article at all) is a deliberate grammatical choice — not an omission. It signals generic, abstract, or non-specific reference.</p>
+    ${ruleHtml('Generic plural nouns','"∅ Dogs are loyal animals." (= dogs in general) vs "The dogs in this shelter need homes." (specific dogs)')}
+    ${ruleHtml('Uncountable nouns — generic','"∅ Water is essential for life." / "She loves ∅ music." — abstract or general sense')}
+    ${ruleHtml('Abstract nouns in general sense','"∅ Courage is admirable." / "He spoke of ∅ love and ∅ loss." — not a specific instance')}
+    ${ruleHtml('Proper names (most)','"∅ France, ∅ London, ∅ Shakespeare, ∅ Einstein"')}
+    ${ruleHtml('Meals (generic)','"We have ∅ lunch at noon." / "∅ Breakfast was served at 8." — but: "The lunch I had yesterday was excellent." (specific)')}
+    ${ruleHtml('Languages','"She speaks ∅ French." / "He is learning ∅ Mandarin."')}
+    ${ruleHtml('Academic subjects & sports','"She studies ∅ medicine." / "He plays ∅ tennis."')}
+    ${ruleHtml('Seasons, days, months (general)','"∅ Summer is my favourite season." / "She comes on ∅ Monday." — but: "the summer of 1968" (specific)')}
+    ${ruleHtml('Institutions used for purpose','"in ∅ hospital" (as a patient) vs "in the hospital" (in the building). "at ∅ school" (as a student) vs "at the school" (at the building).')}
+    ${ruleHtml('Transport prepositions','"by ∅ car / ∅ bus / ∅ train / ∅ air / ∅ sea" — but: "on the bus" (= on this specific bus)')}
+    <div class="lbl">Advanced — zero article with semi-countables</div>
+    ${ruleHtml('Paper, glass, stone (material vs object)','"∅ Paper is made from wood." (material) vs "Pass me <strong>a</strong> paper." (a newspaper / document)')}
+    ${ruleHtml('Light, sound, heat, electricity','"∅ Light travels faster than ∅ sound." (physics concept) vs "Turn off <strong>the</strong> light." (specific light in room)')}
+    <div class="tip-box"><i class="ti ti-bulb" aria-hidden="true" style="font-size:16px;flex-shrink:0;color:#185FA5"></i><span>British English uses zero article with institutions more than American English. "In ∅ hospital" (British) vs "in the hospital" (American). "At ∅ university" (British) vs "at the university" (American).</span></div>
+  </div>`,
+
+  // 3 — tricky cases
+  `<div class="card">
+    <div class="lbl">Article contrast — a vs the</div>
+    ${ruleHtml('"a" = first mention / any; "the" = known / specific','"I met <strong>a</strong> doctor." (any doctor, first time mentioned) → "The doctor told me to rest." (now identified)')}
+    ${ruleHtml('Generic options — both possible','"<strong>The</strong> tiger is endangered." (species, formal) OR "∅ Tigers are endangered." (generic plural) — both correct; meaning nearly identical')}
+    ${ruleHtml('"The" with a defining clause / phrase','"<strong>The</strong> woman in the red coat is my aunt." — the relative phrase makes her uniquely identifiable')}
+    <div class="lbl">Geographical traps</div>
+    ${ruleHtml('Rivers always take the','"<strong>the</strong> Nile, <strong>the</strong> Thames, <strong>the</strong> Danube, <strong>the</strong> Yangtze"')}
+    ${ruleHtml('Lakes do NOT take the','"∅ Lake Victoria, ∅ Lake Baikal, ∅ Lake Geneva" — exception: <em>the</em> Great Lakes (plural)')}
+    ${ruleHtml('Mountain ranges take the; peaks don\'t','"<strong>the</strong> Alps, <strong>the</strong> Rockies" — but "∅ Everest, ∅ Mont Blanc, ∅ Kilimanjaro"')}
+    ${ruleHtml('"the Hague" — unique exception','"I went to <strong>the</strong> Hague." — the only city in English that routinely takes <em>the</em>')}
+    <div class="lbl">Institutions and places</div>
+    ${ruleHtml('British "zero article" for purpose','"in ∅ prison" (as a prisoner) / "in <strong>the</strong> prison" (visiting or working there) — same logic for school, university, hospital, church')}
+    ${ruleHtml('"Go to bed" vs "sleep in the bed"','"She went to ∅ bed." (the activity/purpose) vs "She lay in <strong>the</strong> bed." (the physical object)')}
+    <div class="lbl">Fixed expressions — article choices</div>
+    ${ruleHtml('No article','"by ∅ chance, on ∅ foot, at ∅ home, in ∅ bed, at ∅ work, face to face, from cover to cover"')}
+    ${ruleHtml('"a" in quantifier phrases','"<strong>a</strong> number of, <strong>a</strong> great deal of, <strong>a</strong> few, <strong>a</strong> little, <strong>a</strong> lot of, <strong>a</strong> bit of, <strong>a</strong> couple of"')}
+    ${ruleHtml('"in the" fixed phrases','"in <strong>the</strong> morning/afternoon/evening" — but "at ∅ night, at ∅ noon, at ∅ midnight"')}
+    <div class="lbl">Articles with proper names</div>
+    ${ruleHtml('The + adjective + name','"<strong>the</strong> late Professor Jones, <strong>the</strong> young Picasso, <strong>the</strong> great Shakespeare"')}
+    ${ruleHtml('"A + name" = one work/instance','"Have you read <strong>a</strong> Dostoevsky?" (= any of his works) / "She is <strong>a</strong> Picasso." (= a painting by Picasso)')}
+    <div class="tip-box"><i class="ti ti-bulb" aria-hidden="true" style="font-size:16px;flex-shrink:0;color:#185FA5"></i><span>When in doubt between <em>a/an</em> and <em>the</em>, ask: "Does my listener/reader know exactly which one I mean?" If yes → <em>the</em>. If no → <em>a/an</em>. If the noun is plural or uncountable and used generically → ∅.</span></div>
+  </div>`,
+
+  // 4 — article quiz (built dynamically)
+  `<div id="artQuizCont"></div>`,
+];
+
+const ART_QUIZ=[
+  {s:'She wants to be ___ engineer.',blank:'an',opts:['a','an','the','—'],fb:'"An" before "engineer" — begins with the vowel sound /e/. Always judge by sound, not spelling.'},
+  {s:'Please turn off ___ lights when you leave.',blank:'the',opts:['a','the','some','—'],fb:'"The" — shared situational knowledge. Both speaker and listener know which lights are meant in this room.'},
+  {s:'___ love is the most powerful force in the world.',blank:'—',opts:['The','A','—','Some'],fb:'Zero article — "love" is an abstract uncountable noun used generically. No article is needed.'},
+  {s:'She gave ___ brilliant speech that moved everyone.',blank:'a',opts:['a','an','the','—'],fb:'"A" — indefinite, first mention. "Brilliant" starts with /b/, a consonant sound, so "a" not "an".'},
+  {s:'___ Thames runs through the heart of London.',blank:'the',opts:['The','A','—','Some'],fb:'"The" — rivers always take the definite article: the Thames, the Nile, the Amazon.'},
+  {s:'I need ___ hour to finish this work.',blank:'an',opts:['a','an','the','—'],fb:'"An" before "hour" — the h is silent, so "hour" begins with the vowel sound /aʊ/.'},
+  {s:'___ music can change your mood within seconds.',blank:'—',opts:['The','A','—','Some'],fb:'Zero article — "music" used generically (music in general, not a specific piece or performance).'},
+  {s:'She is ___ only person who understands this.',blank:'the',opts:['a','the','an','—'],fb:'"The" — "only" always requires the definite article because it identifies a single unique individual.'},
+  {s:'"It\'s cold." — "I\'ll open ___ window."',blank:'the',opts:['a','the','—','some'],fb:'"The" — both know which window (shared context). Compare: "I\'ll open a window" if the listener doesn\'t know which one.'},
+  {s:'She plays ___ piano beautifully.',blank:'the',opts:['a','the','—','her'],fb:'"The" is always used with musical instruments when talking about playing them: play the piano, the violin, the guitar.'},
+  {s:'He was ___ honest man — you could trust him.',blank:'an',opts:['a','an','the','—'],fb:'"An" before "honest" — the h is silent, so "honest" begins with the vowel sound /ɒ/. Think: "an-est".'},
+  {s:'We spent ___ week in Rome last summer.',blank:'a',opts:['a','the','—','one'],fb:'"A" with a singular countable noun expressing a period of time: a week, a month, an hour.'},
+  {s:'___ Sahara Desert is the largest hot desert in the world.',blank:'The',opts:['The','A','—','An'],fb:'"The" — deserts take the definite article: the Sahara, the Gobi, the Atacama.'},
+  {s:'She went to ___ hospital after the accident.',blank:'—',opts:['the','a','—','her'],fb:'Zero article (British English) — "in hospital" means as a patient. "In the hospital" = in the building.'},
+  {s:'"What ___ wonderful surprise!"',blank:'a',opts:['a','an','the','—'],fb:'"What a" + singular countable noun in exclamations. "Surprise" is countable and singular, so "a" is required.'},
+  {s:'___ French she speaks is remarkably fluent.',blank:'The',opts:['The','A','—','An'],fb:'"The French she speaks" — the article refers to the specific variety/quality of French she uses (made specific by the relative clause).'},
+  {s:'By ___ accident, she discovered the formula.',blank:'—',opts:['the','a','—','an'],fb:'Zero article — "by accident" is a fixed expression. Compare: "by chance", "on purpose", "on foot".'},
+  {s:'He is ___ university professor.',blank:'a',opts:['a','an','the','—'],fb:'"A" — "university" begins with /j/ (a consonant sound), so "a", not "an".'},
+];
+let aqItems=[],aqIdx=0,aqScore=0,aqTotal=0,aqSel=null,aqChecked=false;
+function startAQ(){aqItems=[...ART_QUIZ].sort(()=>Math.random()-.5);aqIdx=0;aqScore=0;aqTotal=0;renderAQ();}
+function renderAQ(){
+  const cont=document.getElementById('artQuizCont');
+  if(aqIdx>=aqItems.length){const pct=Math.round(aqScore/aqTotal*100);cont.innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${aqScore}/${aqTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=70?'Well done!':'Review the Articles sections and try again.'}</div><button class="act" onclick="startAQ()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=aqItems[aqIdx];aqSel=null;aqChecked=false;
+  const prog=Math.round(aqIdx/aqItems.length*100);
+  const disp=o=>o==='—'?'∅ (no article)':o;
+  const opts=[...item.opts].sort(()=>Math.random()-.5);window._aqO=opts;
+  const sh=item.s.replace(item.blank,`<span style="display:inline-block;min-width:80px;border-bottom:2px solid #185FA5;color:#185FA5;font-weight:500;text-align:center;padding:0 4px" id="aqBlank">___</span>`);
+  cont.innerHTML=`<div class="card">
+    <div class="lbl" style="margin-top:0">Article quiz — ${aqIdx+1}/${aqItems.length} · Score: ${aqScore}/${aqTotal}</div>
+    <div class="pb-w" style="margin-top:6px"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:9px">Choose the correct article (or ∅ for no article), then press Check.</div>
+    <div style="font-size:16px;line-height:1.9;margin-bottom:14px;background:var(--color-background-secondary);border-radius:14px;padding:11px 14px;font-style:italic">${sh}</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="aqOptsList">${opts.map((o,i)=>`<button class="gap-opt" id="aqopt_${i}" onclick="selAQ(${i})">${disp(o)}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" id="aqCheck" onclick="checkAQ()" disabled>Check</button>
+      <button class="act" onclick="aqIdx++;renderAQ()">Skip →</button>
+      <button class="act" onclick="startAQ()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div id="aqFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selAQ(i){if(aqChecked)return;aqSel=i;document.querySelectorAll('#aqOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('aqCheck').disabled=false;}
+function checkAQ(){
+  if(aqChecked||aqSel===null)return;aqChecked=true;aqTotal++;
+  const item=aqItems[aqIdx];const chosen=window._aqO[aqSel];const ok=chosen===item.blank;if(ok)aqScore++;
+  document.getElementById('aqCheck').disabled=true;
+  document.querySelectorAll('#aqOptsList .gap-opt').forEach((el,j)=>{const w=window._aqO[j];el.classList.remove('gsel');if(w===item.blank)el.classList.add('gok');else if(j===aqSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const sp=document.getElementById('aqBlank');const disp=item.blank==='—'?'∅':item.blank;if(sp){sp.textContent=disp;sp.style.color=ok?'#27500A':'#791F1F';sp.style.borderBottomColor=ok?'#C0DD97':'#F7C1C1';}
+  const fb=document.getElementById('aqFb');fb.className=ok?'fb-ok':'fb-no';
+  const ans=item.blank==='—'?'∅ (no article)':'"'+item.blank+'"';
+  fb.textContent=(ok?'✓ Correct! ':'✗ The answer is '+ans+'. ')+item.fb;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{aqIdx++;renderAQ();};document.getElementById('artQuizCont').querySelector('.card').appendChild(nxt);
+}
+
+function buildArticles(){
+  ART_PANELS.forEach((html,i)=>{document.getElementById('art'+i).innerHTML=html;});
+  startAQ();
+}
+function switchArt(i,el){
+  document.querySelectorAll('.st').forEach(t=>t.classList.remove('on'));el.classList.add('on');
+  document.querySelectorAll('.spanel').forEach((p,j)=>p.classList.toggle('on',j===i));
+}
+
+// ── ALL DETERMINERS ───────────────────────────────────────────
+const DET_TYPES=[
+  {id:'pred',name:'Predeterminers',sub:'all, both, half, double, twice',col:{bg:'#EEEDFE',tc:'#3C3489',brd:'#AFA9EC'},
+   desc:'Predeterminers come <em>before</em> the central determiner (article, possessive, demonstrative). They modify the entire noun phrase and are limited in number.',
+   items:[
+     {k:'all (+ the/my/these)',ex:'"<strong>All</strong> the students passed." / "<strong>All</strong> my friends came." / "<strong>All</strong> these books are his."'},
+     {k:'both (+ the/my)',ex:'"<strong>Both</strong> the doctors agreed." / "<strong>Both</strong> her children were ill." — implies exactly two'},
+     {k:'half (+ a/the)',ex:'"<strong>Half</strong> the cake was eaten." / "<strong>Half</strong> a pint of milk." / "<strong>Half</strong> an hour later."'},
+     {k:'double / twice (+ the)',ex:'"He earns <strong>double</strong> the amount." / "She works <strong>twice</strong> the hours."'},
+   ],
+   note:'"All of / both of" can replace the predeterminer + article in informal usage: "All of the students" = "All the students". Do not confuse <em>all</em> (predeterminer) with <em>all</em> (pronoun): "All of them passed."'},
+  {id:'art',name:'Articles',sub:'a, an, the, ∅',col:{bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB'},
+   desc:'Articles are the most common central determiners. Only one central determiner can appear in a noun phrase. See the <em>Articles</em> tab for full detail.',
+   items:[
+     {k:'a / an (indefinite)',ex:'"<strong>A</strong> dog barked." (any, first mention) / "<strong>An</strong> hour passed." (vowel sound)'},
+     {k:'the (definite)',ex:'"<strong>The</strong> sun is a star." (unique) / "<strong>The</strong> book I mentioned..." (identified by clause)'},
+     {k:'∅ (zero article)',ex:'"∅ Dogs are loyal." (generic plural) / "∅ Love is blind." (abstract uncountable)'},
+   ],
+   note:'The zero article is a choice, not an error. It is very common with uncountable nouns, plural generics, proper names, and fixed expressions.'},
+  {id:'dem',name:'Demonstratives',sub:'this, that, these, those',col:{bg:'#EAF3DE',tc:'#27500A',brd:'#A8D88A'},
+   desc:'Demonstratives indicate proximity — spatial (physically near or far) or discourse (recently mentioned vs. distant in the conversation).',
+   items:[
+     {k:'this (near, singular)',ex:'"<strong>This</strong> book is mine." / "<strong>This</strong> suggests that…" (discourse — recently mentioned)'},
+     {k:'that (far, singular)',ex:'"<strong>That</strong> building is old." / "<strong>That</strong> was years ago." (discourse — distant/earlier)'},
+     {k:'these (near, plural)',ex:'"<strong>These</strong> ideas are interesting." / "<strong>These</strong> findings confirm…" (academic writing)'},
+     {k:'those (far, plural)',ex:'"<strong>Those</strong> results were unexpected." / "In <strong>those</strong> days…" (historical distance)'},
+   ],
+   note:'Demonstratives encode both spatial and discourse distance. In academic writing, "this" and "these" are used to refer to ideas just presented; "that" and "those" to things discussed earlier or more distant concepts.'},
+  {id:'poss',name:'Possessive determiners',sub:'my, your, his, her, its, our, their',col:{bg:'#FAEEDA',tc:'#633806',brd:'#E8C080'},
+   desc:'Possessive determiners (sometimes misleadingly called "possessive adjectives") show ownership, association, or relationship. They are central determiners — they cannot co-occur with articles.',
+   items:[
+     {k:'my, your, his, her',ex:'"<strong>My</strong> car is red." / "<strong>His</strong> decision surprised us." / "<strong>Her</strong> voice was calm."'},
+     {k:'its (no apostrophe!)',ex:'"<strong>Its</strong> colour is unusual." — for things and animals. Never "it\'s" (= it is/has).'},
+     {k:'our, their',ex:'"<strong>Our</strong> team won." / "<strong>Their</strong> house is large." / "<strong>Their</strong> decisions affect us all."'},
+   ],
+   note:'"Its" (possessive determiner) vs "it\'s" (it is / it has) is one of the most common punctuation errors in English. The possessive determiner never takes an apostrophe: "The dog wagged <em>its</em> tail."'},
+  {id:'quant',name:'Quantifiers',sub:'some, any, much, many, few, little…',col:{bg:'#FCEBEB',tc:'#791F1F',brd:'#F7C1C1'},
+   desc:'Quantifiers express amount or quantity. Their grammatical behaviour depends on whether the noun is countable or uncountable.',
+   items:[
+     {k:'Count nouns only',ex:'<strong>many, few, fewer, a few, several, a number of, a couple of, numerous</strong>'},
+     {k:'Uncount nouns only',ex:'<strong>much, little, a little, a great deal of, a bit of</strong>'},
+     {k:'Both count and uncount',ex:'<strong>some, any, enough, a lot of, lots of, plenty of, no, more, most, less/fewer</strong>'},
+   ],
+   note:'"Few" (= not many — negative tone) vs "a few" (= some — positive tone). "Little" (= not much) vs "a little" (= some). This distinction is crucial: "She has few friends" (implies she is lonely) vs "She has a few friends" (she has some — fine).'},
+  {id:'dist',name:'Distributives',sub:'each, every, either, neither',col:{bg:'#E1F5EE',tc:'#085041',brd:'#5DCAA5'},
+   desc:'Distributives refer to members of a group individually or in pairs, and always take a singular noun.',
+   items:[
+     {k:'each',ex:'"<strong>Each</strong> student must submit their own work." — individual focus; works with 2 or more'},
+     {k:'every',ex:'"<strong>Every</strong> child needs love." — general, three or more; slightly more emphatic than each'},
+     {k:'either',ex:'"<strong>Either</strong> day suits me." — one or the other of two (positive)'},
+     {k:'neither',ex:'"<strong>Neither</strong> option is ideal." — not one and not the other of two (negative)'},
+   ],
+   note:'"Each" emphasises individuality; "every" emphasises totality. "I checked each answer" (one by one) vs "I checked every answer" (all of them, collectively). "Either/neither" are strictly for two items.'},
+  {id:'interr',name:'Interrogative / relative',sub:'which, what, whose',col:{bg:'#EEEDFE',tc:'#3C3489',brd:'#AFA9EC'},
+   desc:'These determiners introduce questions (interrogative) or relative clauses (relative). As determiners they precede a noun.',
+   items:[
+     {k:'which (limited set)',ex:'"<strong>Which</strong> book did you choose?" — implies a known, limited set of options'},
+     {k:'what (open set)',ex:'"<strong>What</strong> time is it?" — open-ended; no predefined set'},
+     {k:'whose (possession)',ex:'"<strong>Whose</strong> coat is this?" (interrogative) / "I know the man <strong>whose</strong> car was stolen." (relative)'},
+   ],
+   note:'"Which" implies a choice from a known set; "what" is open-ended. "Which film shall we see?" (choosing from a programme) vs "What film is this?" (genuinely unknown). "Whose" is both interrogative and relative.'},
+  {id:'num',name:'Numerals (postdeterminers)',sub:'one, two, first, second…',col:{bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB'},
+   desc:'Cardinal numerals (one, two, three…) and ordinal numerals (first, second, third…) function as <em>postdeterminers</em> — they follow the central determiner.',
+   items:[
+     {k:'Cardinals after article',ex:'"<strong>The three</strong> sisters arrived together." / "<strong>My two</strong> children are grown up."'},
+     {k:'Ordinals after article',ex:'"<strong>The first</strong> time I met her…" / "<strong>My second</strong> attempt was better."'},
+     {k:'Order: pre + central + post + adj + noun',ex:'"<strong>All the first three</strong> answers were correct." — predeterminer + article + ordinal + cardinal'},
+   ],
+   note:'Ordinals always follow the definite article: "the first time", "the second chance", "the last attempt". The order in a full English noun phrase is: Predeterminer → Central determiner → Ordinal → Cardinal → Adjective(s) → Noun.'},
+  {id:'excl',name:'Exclamative determiners',sub:'what, such',col:{bg:'#FBEAF0',tc:'#72243E',brd:'#E8A8C8'},
+   desc:'"What" and "such" are used as determiners in exclamations. Their article requirements differ depending on countability.',
+   items:[
+     {k:'what + a/an + singular noun',ex:'"<strong>What a</strong> beautiful view!" / "<strong>What an</strong> extraordinary coincidence!"'},
+     {k:'what + plural or uncount noun',ex:'"<strong>What</strong> lovely weather!" / "<strong>What</strong> beautiful flowers!"'},
+     {k:'such + a/an + adj + noun',ex:'"<strong>Such a</strong> clever idea!" / "<strong>Such an</strong> unusual name!"'},
+     {k:'such + plural or uncount noun',ex:'"<strong>Such</strong> nonsense!" / "<strong>Such</strong> beautiful memories!"'},
+   ],
+   note:'"What a" and "such a" are often interchangeable for singular countables. "What a mess!" = "Such a mess!" — but "such" tends to be slightly more formal or emphatic.'},
+  {id:'neg',name:'Negative determiners',sub:'no, neither, nor (no…nor)',col:{bg:'#FAEEDA',tc:'#854F0B',brd:'#E8C080'},
+   desc:'Negative determiners negate the noun phrase entirely. "No" as a determiner is more emphatic than "not any" and works with both countable and uncountable nouns.',
+   items:[
+     {k:'"no" + singular count',ex:'"<strong>No</strong> student was absent." / "There is <strong>no</strong> excuse for this." (= stronger than "not any")'},
+     {k:'"no" + plural count',ex:'"<strong>No</strong> students failed." / "<strong>No</strong> questions were asked."'},
+     {k:'"no" + uncount',ex:'"<strong>No</strong> time was wasted." / "She showed <strong>no</strong> interest."'},
+     {k:'"neither" + singular',ex:'"<strong>Neither</strong> candidate was suitable." — not one and not the other of two'},
+   ],
+   note:'"No" as a determiner cannot be negated again: "There are no problems" ✓ vs "There are not no problems" ✗. Also note: "no one" and "nobody" are pronouns, not determiners.'},
+];
+
+// ── DET QUIZ (embedded) ──────────────────────────────────────
+const DET_QUIZ=[
+  {s:'"___ the students passed — even the weakest ones."',blank:'All',opts:['All','Both','Each','Every'],type:'Predeterminer',fb:'"All" is the correct predeterminer before "the + plural noun". "Both" works only with exactly two; "each/every" take singular nouns.'},
+  {s:'"I have ___ idea what time it is."',blank:'no',opts:['no','any','not','none'],type:'Negative determiner',fb:'"No" as a determiner replaces "not any" and is more emphatic. "None" is a pronoun (not a determiner); "any" needs a negative verb.'},
+  {s:'"___ option sounds good to me — I can\'t decide."',blank:'Either',opts:['Either','Neither','Each','Both'],type:'Distributive',fb:'"Either" = one or the other of two (positive choice). "Neither" = not one and not the other (negative).'},
+  {s:'"___ child deserves a quality education."',blank:'Every',opts:['Every','Each','All','Both'],type:'Distributive',fb:'"Every" with singular noun emphasises the totality of a group. "Each" also works but "every" is more collective.'},
+  {s:'"___ book did you recommend — the red one or the blue one?"',blank:'Which',opts:['What','Which','Whose','How'],type:'Interrogative determiner',fb:'"Which" — used when choosing from a known, limited set. "What" would be used for an open question with no predefined set.'},
+  {s:'"She spent ___ the morning revising for the exam."',blank:'all',opts:['all','both','half','every'],type:'Predeterminer',fb:'"All" + the + noun phrase. "All the morning" or "all morning" (with zero article). "Both" implies two; "every" takes a singular noun without "the".'},
+  {s:'"___ suggestion she made was ignored."',blank:'Every',opts:['Every','Each','All','Any'],type:'Distributive',fb:'"Every" with a singular noun for total coverage. "All" would need a plural noun: "All her suggestions were ignored."'},
+  {s:'"She had ___ little money left — just enough for the bus."',blank:'a',opts:['a','—','the','no'],type:'Quantifier — a little',fb:'"A little" (= some — positive). "Little" alone (= not much — negative) would make the sentence more pessimistic.'},
+];
+let dqItems=[],dqIdx=0,dqScore=0,dqTotal=0,dqSel=null,dqChecked=false;
+function startDQ(){dqItems=[...DET_QUIZ].sort(()=>Math.random()-.5);dqIdx=0;dqScore=0;dqTotal=0;renderDQ();}
+function renderDQ(){
+  const cont=document.getElementById('detQuizCont');if(!cont)return;
+  if(dqIdx>=dqItems.length){const pct=Math.round(dqScore/dqTotal*100);cont.innerHTML=`<div class="card" style="margin-bottom:0"><div class="ex-hdr"><span style="font-size:15px;font-weight:500">${dqScore}/${dqTotal}</span><span style="font-size:13px;color:var(--color-text-secondary)">${pct===100?'Perfect!':pct>=70?'Well done!':'Review the determiner types above.'}</span><button class="act" onclick="startDQ()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Again</button></div></div>`;return;}
+  const item=dqItems[dqIdx];dqSel=null;dqChecked=false;
+  const prog=Math.round(dqIdx/dqItems.length*100);
+  const opts=[...item.opts].sort(()=>Math.random()-.5);window._dqO=opts;
+  cont.innerHTML=`<div class="card" style="margin-bottom:0">
+    <div class="ex-hdr">
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${dqIdx+1}/${dqItems.length} · Score: ${dqScore}/${dqTotal}</span>
+      <button class="act" onclick="startDQ()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i></button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:15px;font-style:italic;margin-bottom:12px">${item.s}</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px" id="dqOpts">${opts.map((o,i)=>`<button class="gap-opt" id="dqo_${i}" onclick="selDQ(${i})" style="width:auto;padding:8px 16px;flex:0 0 auto">${o}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" id="dqCheck" onclick="checkDQ()" disabled>Check</button>
+      <button class="act" onclick="dqIdx++;renderDQ()">Skip →</button>
+    </div>
+    <div id="dqFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selDQ(i){if(dqChecked)return;dqSel=i;document.querySelectorAll('#dqOpts .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('dqCheck').disabled=false;}
+function checkDQ(){
+  if(dqChecked||dqSel===null)return;dqChecked=true;dqTotal++;
+  const item=dqItems[dqIdx];const chosen=window._dqO[dqSel];const ok=chosen===item.blank;if(ok)dqScore++;
+  document.getElementById('dqCheck').disabled=true;
+  document.querySelectorAll('#dqOpts .gap-opt').forEach((el,j)=>{const w=window._dqO[j];el.classList.remove('gsel');if(w===item.blank)el.classList.add('gok');else if(j===dqSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const fb=document.getElementById('dqFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ The answer is "'+item.blank+'". ')+item.fb;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{dqIdx++;renderDQ();};document.getElementById('detQuizCont').querySelector('.card').appendChild(nxt);
+}
+
+let glossary=[];
+function buildDet(){
+  document.getElementById('detContent').innerHTML=DET_TYPES.map((d,i)=>`
+    <div class="card" style="margin-bottom:.75rem;padding:0">
+      <div class="acc-hdr" id="dacchdr_${i}" onclick="toggleDet(${i})">
+        <span style="background:${d.col.bg};color:${d.col.tc};font-size:13px;font-weight:600;padding:4px 12px;border-radius:20px;border:0.5px solid ${d.col.brd}">${d.name}</span>
+        <span style="font-size:12px;color:var(--color-text-secondary);margin-left:8px">${d.sub}</span>
+        <button class="act" style="margin-left:auto;font-size:12px;padding:3px 10px" onclick="event.stopPropagation();toggleGloss('${d.id}')" id="gsBtn_${d.id}">${glossary.includes(d.id)?'🔖 Saved':'🔖 Save'}</button>
+        <i class="ti ti-chevron-down" id="daccarr_${i}" style="font-size:16px;color:var(--color-text-secondary);margin-left:8px;transition:transform .2s"></i>
+      </div>
+      <div class="acc-body" id="daccbody_${i}" style="padding:0 15px 14px">
+        <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:10px">${d.desc}</p>
+        ${d.items.map(it=>`<div class="rule-row"><div class="rule-key">${it.k}</div><div class="rule-ex">${it.ex}</div></div>`).join('')}
+        <div class="tip-box" style="margin-top:10px"><i class="ti ti-bulb" aria-hidden="true" style="font-size:16px;flex-shrink:0;color:${d.col.tc}"></i><span>${d.note}</span></div>
+      </div>
+    </div>`).join('')+`
+    <div class="card">
+      <div class="lbl" style="margin-top:0">Determiners mini quiz</div>
+      <div id="detQuizCont"></div>
+    </div>`;
+  startDQ();
+}
+function toggleDet(i){
+  const b=document.getElementById('daccbody_'+i),a=document.getElementById('daccarr_'+i);
+  const op=b.classList.contains('on');b.classList.toggle('on',!op);a.style.transform=op?'':'rotate(180deg)';
+}
+function toggleGloss(id){
+  if(glossary.includes(id))glossary=glossary.filter(x=>x!==id);else glossary.push(id);
+  document.querySelectorAll('[id^=gsBtn_]').forEach(el=>{const did=el.id.replace('gsBtn_','');el.textContent=glossary.includes(did)?'🔖 Saved':'🔖 Save';});
+  renderGloss();
+}
+function renderGloss(){
+  const cont=document.getElementById('glossCont');if(!cont)return;
+  if(!glossary.length){cont.innerHTML=`<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px;color:var(--color-text-secondary)"></i><div>No determiners saved yet. Browse the All determiners tab and tap Save.</div></div>`;return;}
+  cont.innerHTML=`<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">${glossary.length} saved</div>`+glossary.map(id=>{
+    const d=DET_TYPES.find(x=>x.id===id);if(!d)return'';
+    return`<div class="card" style="margin-bottom:8px;display:flex;align-items:flex-start;gap:12px">
+      <div style="flex:1">
+        <div style="font-size:14px;font-weight:500;margin-bottom:3px"><span style="background:${d.col.bg};color:${d.col.tc};padding:2px 9px;border-radius:20px;font-size:13px">${d.name}</span></div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin:4px 0">${d.sub}</div>
+        <div style="font-size:13.5px;color:var(--color-text-secondary)">${d.items[0].ex}</div>
+      </div>
+      <button class="act" style="font-size:12px;flex-shrink:0" onclick="toggleGloss('${id}')"><i class="ti ti-x" style="font-size:13px;vertical-align:-2px"></i></button>
+    </div>`;
+  }).join('');
+}
+
+// ── GAP FILL ─────────────────────────────────────────────────
+const GAP=[
+  {s:'She is ___ excellent teacher — all her students adore her.',blank:'an',opts:['a','an','the','—'],type:'Indefinite article (vowel sound)',fb:'"An" before "excellent" — begins with a vowel sound /e/. Always check by sound, not spelling.'},
+  {s:'Could you close ___ window? It\'s freezing.',blank:'the',opts:['a','the','—','some'],type:'Definite article (shared context)',fb:'"The" — both speaker and listener know which window. Shared situational knowledge makes it definite.'},
+  {s:'I love ___ classical music — it helps me concentrate.',blank:'—',opts:['a','the','—','some'],type:'Zero article (generic uncountable)',fb:'Zero article — "classical music" used generically. No article is needed before uncountable nouns in general sense.'},
+  {s:'___ students in this class are very motivated.',blank:'The',opts:['The','—','A','Some'],type:'Definite article (specific group)',fb:'"The" — referring to a specific, known group: the students in this particular class.'},
+  {s:'She has ___ little experience in project management.',blank:'little',opts:['few','little','a little','a few'],type:'Quantifier — uncount noun',fb:'"Little" = not much (negative tone). "A little" = some (positive). "Few/a few" are for count nouns. "Experience" is uncountable.'},
+  {s:'___ the students passed — even the weakest ones.',blank:'All',opts:['All','Both','Each','Every'],type:'Predeterminer',fb:'"All" can precede "the + plural noun" as a predeterminer. "Both" works only with exactly two. "Each/every" take singular nouns.'},
+  {s:'I have ___ idea what time it is.',blank:'no',opts:['no','any','not','none'],type:'Negative determiner',fb:'"No" as a determiner is more emphatic than "not any". "None" is a pronoun. "Not" needs a verb.'},
+  {s:'___ option sounds good to me — I can\'t decide.',blank:'Either',opts:['Either','Neither','Each','Both'],type:'Distributive — choice of two',fb:'"Either" = one or the other of two (positive choice). "Neither" = not one and not the other (negative).'},
+  {s:'She plays ___ piano beautifully.',blank:'the',opts:['a','the','—','her'],type:'Definite article (musical instrument)',fb:'"The" is always used with musical instruments when talking about playing them: play the piano, the violin, the guitar.'},
+  {s:'___ students need strong time-management skills.',blank:'—',opts:['The','—','A','Some'],type:'Zero article — generic plural',fb:'Zero article — a plural noun used generically (students in general). "The students" would refer to a specific group.'},
+  {s:'___ suggestion she made was completely ignored.',blank:'The',opts:['A','The','—','Some'],type:'Definite article — specific referent',fb:'"The" — this is a specific suggestion (the one she made), identified by the relative clause that follows.'},
+  {s:'He is ___ honest man — you can trust him completely.',blank:'an',opts:['a','an','the','—'],type:'Indefinite article — silent h',fb:'"An" before "honest" — the h is silent, so "honest" begins with the vowel sound /ɒ/.'},
+  {s:'"___ a wonderful performance!" the critics wrote.',blank:'What',opts:['Such','What','Which','How'],type:'Exclamative determiner',fb:'"What a" + singular countable noun in exclamations. "What" is the exclamative determiner here.'},
+  {s:'I saw her ___ times last week — she seems very busy.',blank:'several',opts:['much','little','several','a little'],type:'Quantifier — count noun',fb:'"Several" = more than two but not very many — used with count nouns only. "Much/a little" go with uncount nouns.'},
+  {s:'___ student must submit their assignment by Friday.',blank:'Each',opts:['Each','Every','All','Both'],type:'Distributive — individual',fb:'"Each" emphasises each individual member separately. Both "each" and "every" take singular nouns, but "each" is more individual.'},
+  {s:'We spent ___ week in Rome last summer.',blank:'a',opts:['a','the','—','one'],type:'Indefinite article — duration',fb:'"A" before a singular countable noun expressing a period of time: a week, a month, an hour.'},
+  {s:'___ news you\'ve given me is very worrying.',blank:'The',opts:['The','A','—','Some'],type:'Definite article — specific information',fb:'"The" — the specific news just shared. "News" is uncountable and cannot take "a".'},
+  {s:'She took ___ few days off to recover.',blank:'a',opts:['—','a','the','some'],type:'"A few" — quantifier',fb:'"A few" (= some — positive). "Few" alone (= not many — negative). The "a" is part of the quantifier phrase.'},
+];
+let gItems=[],gIdx=0,gScore=0,gTotal=0,gSel=null,gChecked=false;
+function startGap(){gItems=[...GAP].sort(()=>Math.random()-.5);gIdx=0;gScore=0;gTotal=0;renderGap();}
+function renderGap(){
+  if(gIdx>=gItems.length){const pct=Math.round(gScore/gTotal*100);document.getElementById('gapCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${gScore}/${gTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=70?'Well done!':'Review the Articles and All determiners tabs.'}</div><button class="act" onclick="startGap()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=gItems[gIdx];gSel=null;gChecked=false;
+  const prog=Math.round(gIdx/gItems.length*100);
+  const disp=o=>o==='—'?'∅ (no article)':o;
+  const opts=[...item.opts].sort(()=>Math.random()-.5);window._gO=opts;
+  const sh=item.s.replace('___',`<span style="display:inline-block;min-width:80px;border-bottom:2px solid #185FA5;color:#185FA5;font-weight:500;text-align:center;padding:0 4px" id="blankSpan">___</span>`);
+  document.getElementById('gapCont').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${gIdx+1}/${gItems.length} · Score: ${gScore}/${gTotal}</span>
+      <button class="act" onclick="startGap()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:9px">Choose the correct determiner, then press Check.</div>
+    <div style="font-size:16px;line-height:1.9;margin-bottom:14px;background:var(--color-background-secondary);border-radius:14px;padding:11px 14px;font-style:italic">${sh}</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="gOptsList">${opts.map((o,i)=>`<button class="gap-opt" id="gopt_${i}" onclick="selGOpt(${i})">${disp(o)}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" id="gCheckBtn" onclick="checkGap()" disabled>Check</button>
+      <button class="act" onclick="gIdx++;renderGap()">Skip →</button>
+    </div>
+    <div id="gFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selGOpt(i){if(gChecked)return;gSel=i;document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('gCheckBtn').disabled=false;}
+function checkGap(){
+  if(gChecked||gSel===null)return;gChecked=true;gTotal++;
+  const item=gItems[gIdx];const chosen=window._gO[gSel];const ok=chosen===item.blank;if(ok)gScore++;
+  document.getElementById('gCheckBtn').disabled=true;
+  document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>{const w=window._gO[j];el.classList.remove('gsel');if(w===item.blank)el.classList.add('gok');else if(j===gSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const sp=document.getElementById('blankSpan');const dv=item.blank==='—'?'∅':item.blank;if(sp){sp.textContent=dv;sp.style.color=ok?'#27500A':'#791F1F';sp.style.borderBottomColor=ok?'#C0DD97':'#F7C1C1';}
+  const fb=document.getElementById('gFb');fb.className=ok?'fb-ok':'fb-no';
+  const ans=item.blank==='—'?'∅ (no article)':'"'+item.blank+'"';
+  fb.textContent=(ok?'✓ Correct! ':'✗ The answer is '+ans+'. ')+item.fb;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next question →';nxt.onclick=()=>{gIdx++;renderGap();};document.querySelector('#gapCont .card').appendChild(nxt);
+}
+
+// ── MATCHING ─────────────────────────────────────────────────
+const MATCH_SETS=[
+  {instr:'Match each underlined word to its determiner type.',
+   pairs:[
+     {left:'"<u>Both</u> the candidates impressed the panel."',right:'Predeterminer'},
+     {left:'"<u>Several</u> issues remain unresolved."',right:'Quantifier (count noun)'},
+     {left:'"<u>Whose</u> umbrella is this?"',right:'Interrogative possessive determiner'},
+     {left:'"<u>Neither</u> answer was correct."',right:'Negative distributive determiner'},
+     {left:'"<u>My</u> sister just called."',right:'Possessive determiner'},
+     {left:'"<u>These</u> results are encouraging."',right:'Demonstrative (near, plural)'},
+     {left:'"<u>The</u> third floor is under renovation."',right:'Definite article + ordinal'},
+   ]},
+  {instr:'Match each sentence to the article rule it illustrates.',
+   pairs:[
+     {left:'"I saw a cat. The cat was black."',right:'Indefinite → definite (1st to 2nd mention)'},
+     {left:'"She plays the violin."',right:'Definite article — musical instrument'},
+     {left:'"∅ Honesty is the best policy."',right:'Zero article — abstract uncountable'},
+     {left:'"It was an honour to meet her."',right:'"An" before silent h (vowel sound)'},
+     {left:'"The Nile is the longest river in Africa."',right:'Definite article — river (unique geographical)'},
+     {left:'"∅ Students need good sleep."',right:'Zero article — generic plural noun'},
+     {left:'"What a brilliant idea!"',right:'Exclamative determiner "what" + "a"'},
+   ]},
+  {instr:'Match each quantifier to the noun type it requires.',
+   pairs:[
+     {left:'"much"',right:'Uncount nouns only — much water, much time'},
+     {left:'"many"',right:'Count nouns only — many people, many ideas'},
+     {left:'"a few"',right:'Count nouns — some (positive tone)'},
+     {left:'"a little"',right:'Uncount nouns — some (positive tone)'},
+     {left:'"enough"',right:'Both count and uncount nouns'},
+     {left:'"several"',right:'Count nouns — more than two, not very many'},
+     {left:'"a great deal of"',right:'Uncount nouns — formal register'},
+   ]},
+];
+let mSet=0,mPicked=null,mMatched=[],mScore=0,mAttempts=0,mRight=[];
+function startMatch(si){
+  mSet=si!==undefined?si:mSet;const set=MATCH_SETS[mSet];mPicked=null;mMatched=[];mScore=0;mAttempts=0;
+  const rights=[...set.pairs].sort(()=>Math.random()-.5);mRight=rights;
+  document.getElementById('matchCont').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="font-size:13px;color:var(--color-text-secondary)">Round ${mSet+1}/${MATCH_SETS.length}</span>
+      ${MATCH_SETS.map((_,i)=>`<button class="act" onclick="startMatch(${i})" style="${i===mSet?'background:#E6F1FB;border-color:#85B7EB;color:#0C447C':''}">Round ${i+1}</button>`).join('')}
+      <button class="act" onclick="startMatch(mSet)"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i></button>
+    </div>
+    <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:6px">${set.instr}</p>
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:11px">Matched: <strong id="mP">0</strong>/${set.pairs.length} · Attempts: <strong id="mA">0</strong></div>
+    <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:8px">
+      <div style="display:flex;flex-direction:column;gap:6px" id="mL">${set.pairs.map((p,i)=>`<button class="mi" id="ml_${i}" onclick="mPL(${i})" style="font-size:13px">${p.left}</button>`).join('')}</div>
+      <div style="display:flex;flex-direction:column;gap:6px" id="mR">${rights.map((r,i)=>`<button class="mi" id="mr_${i}" onclick="mPR(${i})" style="font-size:13px">${r.right}</button>`).join('')}</div>
+    </div>
+    <div id="mFb" style="font-size:13px;min-height:18px;margin-top:8px"></div>
+  </div>`;
+}
+function mPL(i){if(mMatched.some(m=>m.l===i))return;mPicked=i;document.querySelectorAll('#mL .mi').forEach((el,j)=>{if(!mMatched.some(m=>m.l===j))el.classList.toggle('pk',j===i);});}
+function mPR(i){
+  if(mPicked===null)return;const set=MATCH_SETS[mSet];if(mMatched.some(m=>m.r===i))return;
+  mAttempts++;document.getElementById('mA').textContent=mAttempts;
+  const ok=mRight[i].left===set.pairs[mPicked].left;
+  if(ok){['ml_'+mPicked,'mr_'+i].forEach(id=>{const el=document.getElementById(id);if(el){el.classList.remove('pk');el.classList.add('mt');}});mMatched.push({l:mPicked,r:i});mScore++;document.getElementById('mP').textContent=mScore;document.getElementById('mFb').style.color='#27500A';document.getElementById('mFb').textContent=mScore===set.pairs.length?`All ${set.pairs.length} matched in ${mAttempts} attempt${mAttempts===1?'':'s'}!`:'✓ Correct!';mPicked=null;document.querySelectorAll('#mL .mi').forEach(el=>el.classList.remove('pk'));}
+  else{['ml_'+mPicked,'mr_'+i].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.add('bd');});document.getElementById('mFb').style.color='#791F1F';document.getElementById('mFb').textContent='✗ Not a match — try again.';setTimeout(()=>{['ml_'+mPicked,'mr_'+i].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('bd');});},700);}
+}
+
+// ── BUILDER ──────────────────────────────────────────────────
+const BUILDER=[
+  {type:'Predeterminer + article + noun',desc:'Build the noun phrase: all of the students → use the predeterminer before the article.',
+   slots:['___','the','students'],fixed:[1,2],blanks:{0:{ans:'All',opts:['All','Both','Half','Each']}},
+   note:'"All" is the correct predeterminer — "both" implies exactly two; "each" takes a singular noun.'},
+  {type:'Article choice — specific abstract noun',desc:'Complete the noun phrase with the correct article before the abstract noun.',
+   slots:['She spoke about','___','importance of honesty.'],fixed:[0],blanks:{1:{ans:'the',opts:['the','a','an','—']}},
+   note:'"The" — we refer to the specific importance of honesty, defined by the "of-phrase". This is cataphoric: the article anticipates the modifier that follows.'},
+  {type:'Quantifier — count vs uncount',desc:'Choose the correct quantifier for a count noun.',
+   slots:['___','students','failed the exam.'],fixed:[1,2],blanks:{0:{ans:'Few',opts:['Few','Little','Much','A little']}},
+   note:'"Few" (negative — not many) goes with plural count nouns. "Little" goes with uncount nouns. "Much" is for uncount nouns.'},
+  {type:'Ordinal numeral + article',desc:'Place the article and ordinal in the correct positions.',
+   slots:['This is','___','second','time I\'ve tried this.'],fixed:[0,2,3],blanks:{1:{ans:'the',opts:['the','a','—','my']}},
+   note:'"The" always precedes ordinals: "the first", "the second", "the third". Ordinals cannot stand without the definite article in this context.'},
+  {type:'Possessive + quantifier',desc:'Assemble the noun phrase: her several attempts.',
+   slots:['Despite','___','___','attempts, she failed.'],fixed:[0,3],blanks:{1:{ans:'her',opts:['her','the','a','some']},2:{ans:'several',opts:['several','much','little','a few']}},
+   note:'"Her" is the possessive determiner (central). "Several" is a postdeterminer (quantifier). Order: possessive + quantifier + noun.'},
+  {type:'Zero article — generic plural',desc:'Choose whether to use an article or not before a generic plural.',
+   slots:['___','teachers','need emotional resilience.'],fixed:[1,2],blanks:{0:{ans:'—',opts:['—','The','A','Some']}},
+   note:'Zero article (∅) for generic plural nouns. "The teachers" would refer to specific, known teachers; ∅ refers to teachers in general.'},
+];
+let bItems=[],bIdx=0,bScore=0,bTotal=0,bSel=null,bChecked=false,bPlaced={};
+function startBuilder(){bItems=[...BUILDER].sort(()=>Math.random()-.5);bIdx=0;bScore=0;bTotal=0;renderBuilder();}
+function renderBuilder(){
+  const disp=s=>s==='—'?'∅':s;
+  if(bIdx>=bItems.length){const pct=Math.round(bScore/bTotal*100);document.getElementById('builderCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${bScore}/${bTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect noun phrases!':pct>=70?'Well done!':'Review the determiner types and try again.'}</div><button class="act" onclick="startBuilder()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=bItems[bIdx];bPlaced={};bSel=null;bChecked=false;
+  const prog=Math.round(bIdx/bItems.length*100);
+  const slotsHtml=item.slots.map((s,i)=>{if(item.fixed.includes(i))return`<span class="slot fx">${disp(s)}</span>`;return`<span class="slot" id="bslot_${i}" onclick="cBSlot(${i})"></span>`;}).join('<span style="color:var(--color-text-secondary);font-size:12px;padding:0 2px">▸</span>');
+  const allTiles=[...new Set(Object.values(item.blanks).flatMap(b=>b.opts))].sort(()=>Math.random()-.5);window._bT=allTiles;
+  document.getElementById('builderCont').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${bIdx+1}/${bItems.length} · Score: ${bScore}/${bTotal}</span>
+      <button class="act" onclick="startBuilder()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:8px"><strong style="color:var(--color-text-primary)">${item.desc}</strong> — tap a tile, then tap the empty slot.</div>
+    <div style="display:flex;flex-wrap:wrap;gap:3px;align-items:center;min-height:42px;padding:8px 10px;background:var(--color-background-secondary);border-radius:14px;margin-bottom:8px" id="bSlotRow">${slotsHtml}</div>
+    <div id="bFb" style="font-size:13px;min-height:14px;margin-bottom:8px"></div>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px">Tile bank:</div>
+    <div id="bTileBank" style="display:flex;flex-wrap:wrap">${allTiles.map((t,i)=>`<span class="piece" id="bt_${i}" onclick="cBTile(${i})">${disp(t)}</span>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+      <button class="check-btn" onclick="checkBuilder()">Check</button>
+      <button class="act" onclick="clearBuilder()"><i class="ti ti-x" style="font-size:13px;vertical-align:-2px"></i> Clear</button>
+      <button class="act" onclick="bIdx++;renderBuilder()">Skip →</button>
+    </div>
+  </div>`;
+}
+function cBTile(i){if(bChecked)return;document.querySelectorAll('.piece').forEach(t=>t.classList.remove('sel'));if(bSel===i){bSel=null;return;}bSel=i;document.getElementById('bt_'+i).classList.add('sel');}
+function cBSlot(s){
+  if(bChecked)return;if(bSel===null){if(bPlaced[s]!==undefined){const w=bPlaced[s];delete bPlaced[s];window._bT.forEach((t,ti)=>{const el=document.getElementById('bt_'+ti);if(el&&el.classList.contains('used')&&t===w&&!Object.values(bPlaced).includes(t))el.classList.remove('used');});rBSlots();}return;}
+  const w=window._bT[bSel];if(bPlaced[s]!==undefined){const old=bPlaced[s];delete bPlaced[s];window._bT.forEach((t,ti)=>{const el=document.getElementById('bt_'+ti);if(el&&t===old&&el.classList.contains('used'))el.classList.remove('used');});}
+  bPlaced[s]=w;document.getElementById('bt_'+bSel).classList.add('used');document.getElementById('bt_'+bSel).classList.remove('sel');bSel=null;rBSlots();
+}
+function rBSlots(){
+  const item=bItems[bIdx];const disp=s=>s==='—'?'∅':s;
+  Object.keys(item.blanks).map(Number).forEach(si=>{const el=document.getElementById('bslot_'+si);if(!el)return;if(bPlaced[si]!==undefined){el.textContent=disp(bPlaced[si]);el.className='slot fl';}else{el.textContent='';el.className='slot';}});
+}
+function checkBuilder(){
+  if(bChecked)return;const item=bItems[bIdx];const blankKeys=Object.keys(item.blanks).map(Number);
+  if(blankKeys.some(k=>bPlaced[k]===undefined)){document.getElementById('bFb').textContent='Fill all slots first.';document.getElementById('bFb').style.color='#791F1F';return;}
+  bChecked=true;bTotal++;let ok=true;
+  blankKeys.forEach(k=>{const el=document.getElementById('bslot_'+k);const good=bPlaced[k]===item.blanks[k].ans;if(!good)ok=false;if(el)el.classList.add(good?'cs':'ws');});
+  if(ok)bScore++;
+  const disp=s=>s==='—'?'∅':s;
+  const fb=document.getElementById('bFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.innerHTML=ok?'✓ Correct! '+item.note:'✗ Not quite. Correct: <em>'+blankKeys.map(k=>disp(item.blanks[k].ans)).join(' + ')+'</em>. '+item.note;
+  document.querySelectorAll('#builderCont .check-btn').forEach(b=>{b.textContent='Next →';b.onclick=()=>{bIdx++;renderBuilder();};});
+}
+function clearBuilder(){if(bChecked)return;const item=bItems[bIdx];bPlaced={};bSel=null;document.querySelectorAll('.piece').forEach(el=>el.classList.remove('sel','used'));Object.keys(item.blanks).map(Number).forEach(k=>{const el=document.getElementById('bslot_'+k);if(el){el.textContent='';el.className='slot';}});document.getElementById('bFb').textContent='';}
+
+// ── LISTENING ─────────────────────────────────────────────────
+const LISTEN=[
+  {text:'She wants to be ___ engineer.',say:'She wants to be an engineer.',gap:'___',ans:'an',opts:['a','an','the','—'],fb:'"An" before "engineer" — begins with the vowel sound /e/. Always judge by sound, not spelling.'},
+  {text:'Please turn off ___ lights when you leave.',say:'Please turn off the lights when you leave.',gap:'___',ans:'the',opts:['a','the','some','—'],fb:'"The" — shared situational knowledge. Both speaker and listener know which lights are meant.'},
+  {text:'___ love is the most powerful force in the world.',say:'Love is the most powerful force in the world.',gap:'___',ans:'—',opts:['The','A','—','Some'],fb:'Zero article — "love" is an abstract uncountable noun used generically.'},
+  {text:'She gave ___ brilliant speech that moved everyone.',say:'She gave a brilliant speech that moved everyone.',gap:'___',ans:'a',opts:['a','an','the','—'],fb:'"A" — indefinite, first mention. "Brilliant" starts with /b/, a consonant sound, so "a" not "an".'},
+  {text:'___ Thames runs through the heart of London.',say:'The Thames runs through the heart of London.',gap:'___',ans:'the',opts:['The','A','—','Some'],fb:'"The" — rivers always take the definite article: the Thames, the Nile, the Amazon.'},
+  {text:'I need ___ hour to finish this work.',say:'I need an hour to finish this work.',gap:'___',ans:'an',opts:['a','an','the','—'],fb:'"An" before "hour" — the h is silent, so "hour" begins with the vowel sound /aʊ/.'},
+  {text:'___ music can change your mood within seconds.',say:'Music can change your mood within seconds.',gap:'___',ans:'—',opts:['The','A','—','Some'],fb:'Zero article — "music" used generically (music in general, not a specific piece).'},
+  {text:'She is ___ only person who understands this problem.',say:'She is the only person who understands this problem.',gap:'___',ans:'the',opts:['a','the','an','—'],fb:'"The" — "only" always requires the definite article because it identifies a single unique individual.'},
+];
+let lItems=[],lIdx=0,lScore=0,lTotal=0,lSel=null,lChecked=false;
+function startListen(){lItems=[...LISTEN].sort(()=>Math.random()-.5);lIdx=0;lScore=0;lTotal=0;renderListen();}
+function renderListen(){
+  const disp=o=>o==='—'?'∅ (no article)':o;
+  if(lIdx>=lItems.length){const pct=Math.round(lScore/lTotal*100);document.getElementById('listenCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${lScore}/${lTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect article sense!':pct>=70?'Well done!':'Review the Articles tab and try again.'}</div><button class="act" onclick="startListen()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=lItems[lIdx];lSel=null;lChecked=false;
+  const prog=Math.round(lIdx/lItems.length*100);
+  const shuf=[...item.opts.entries()].sort(()=>Math.random()-.5);window._lO=shuf;
+  document.getElementById('listenCont').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="font-size:13px;color:var(--color-text-secondary)">${lIdx+1}/${lItems.length} · Score: ${lScore}/${lTotal}</span>
+      <button class="act" onclick="startListen()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px">Listen to the sentence and choose the correct article (or ∅ for no article).</div>
+    <div style="text-align:center;margin-bottom:14px">
+      <button class="audio-btn" style="font-size:14px;padding:9px 18px" onclick="speak('${item.say.replace(/'/g,"\\'")}',0.82,this)">🔊 Hear the sentence</button>
+      <div style="margin-top:8px"><button class="audio-btn" onclick="speak('${item.say.replace(/'/g,"\\'")}',0.55,this)">🐢 Slow</button></div>
+      <div style="margin-top:10px;font-size:14px;font-style:italic;color:var(--color-text-secondary);background:var(--color-background-secondary);border-radius:14px;padding:9px 14px">${item.text}</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="lOptsList">${shuf.map(([oi,o],j)=>`<button class="gap-opt" id="lopt_${j}" onclick="selLOpt(${j})">${disp(o)}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" id="lCheckBtn" onclick="checkListen()" disabled>Check</button>
+      <button class="act" onclick="lIdx++;renderListen()">Skip →</button>
+    </div>
+    <div id="lFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selLOpt(j){if(lChecked)return;lSel=j;document.querySelectorAll('#lOptsList .gap-opt').forEach((el,k)=>el.classList.toggle('gsel',k===j));document.getElementById('lCheckBtn').disabled=false;}
+function checkListen(){
+  if(lChecked||lSel===null)return;lChecked=true;lTotal++;
+  const item=lItems[lIdx];const co=window._lO[lSel][0];const ok=co===item.ans;if(ok)lScore++;
+  document.getElementById('lCheckBtn').disabled=true;
+  document.querySelectorAll('#lOptsList .gap-opt').forEach((el,j)=>{const o=window._lO[j][0];el.classList.remove('gsel');if(o===item.ans)el.classList.add('gok');else if(j===lSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const fb=document.getElementById('lFb');fb.className=ok?'fb-ok':'fb-no';
+  const ans=item.ans==='—'?'∅ (no article)':'"'+item.ans+'"';
+  fb.textContent=(ok?'✓ Correct! ':'✗ The answer is '+ans+'. ')+item.fb;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{lIdx++;renderListen();};document.querySelector('#listenCont .card').appendChild(nxt);
+}
+
+// ── ERROR CORRECTION ─────────────────────────────────────────
+const ERR=[
+  {a:'She wants to be an engineer.',b:'She wants to be a engineer.',correct:'a',type:'Indefinite article — vowel sound',exp:'"An" before vowel sounds. "Engineer" begins with /e/, so "an engineer" is correct. Always judge by sound, not spelling.'},
+  {a:'The sun rises in the east.',b:'A sun rises in the east.',correct:'a',type:'Definite article — unique referent',exp:'"The sun" — there is only one sun (unique referent). "A sun" would suggest it is one of several, which is absurd.'},
+  {a:'I have few friends in this city.',b:'I have little friends in this city.',correct:'a',type:'Quantifier — count noun',exp:'"Few" goes with plural count nouns (friends). "Little" goes with uncountable nouns (little time, little money).'},
+  {a:'Music is a universal language.',b:'The music is a universal language.',correct:'a',type:'Zero article — abstract generic',exp:'Zero article for abstract nouns used generically. "The music" would refer to specific music. Music in general takes no article.'},
+  {a:'Both the students passed the exam.',b:'Both of students passed the exam.',correct:'a',type:'Predeterminer "both"',exp:'"Both the students" (predeterminer + article) or "Both of the students" — never "both of students" without the article.'},
+  {a:'She is an honest and reliable person.',b:'She is a honest and reliable person.',correct:'a',type:'"An" before silent h',exp:'"An" before "honest" — the h is silent, so "honest" begins with the vowel sound /ɒ/. Same for "an hour", "an heir".'},
+  {a:'I play the piano every morning.',b:'I play piano every morning.',correct:'a',type:'Definite article — musical instrument',exp:'"The" is always required with musical instruments: "play the piano", "play the guitar", "play the violin".'},
+  {a:'Neither candidate was suitable.',b:'Neither candidates were suitable.',correct:'a',type:'Distributive — singular noun',exp:'"Neither" takes a singular noun: "Neither candidate was" — not "Neither candidates were".'},
+  {a:'∅ Doctors need excellent communication skills.',b:'The doctors need excellent communication skills.',correct:'a',type:'Zero article — generic plural',exp:'Zero article for generic plural nouns. "The doctors" would refer to specific, known doctors. ∅ refers to doctors in general.'},
+  {a:'What a wonderful surprise this is!',b:'What wonderful surprise this is!',correct:'a',type:'Exclamative — what + a/an',exp:'"What a" + singular countable noun. "Surprise" is countable and singular, so "a" is required.'},
+  {a:'She gave me very little advice.',b:'She gave me very few advice.',correct:'a',type:'Quantifier — uncountable noun',exp:'"Advice" is an uncountable noun. Use "little" (not "few") with uncountable nouns: "little advice", "little progress".'},
+  {a:'He is the tallest student in the class.',b:'He is a tallest student in the class.',correct:'a',type:'Definite article — superlative',exp:'"The" is always required before superlative adjectives: "the tallest", "the best", "the most interesting". Never "a tallest".'},
+];
+let eItems=[],eIdx=0,eScore=0,eTotal=0,eSel=null,eChecked=false;
+function startErr(){eItems=[...ERR].sort(()=>Math.random()-.5);eIdx=0;eScore=0;eTotal=0;renderErr();}
+function renderErr(){
+  if(eIdx>=eItems.length){const pct=Math.round(eScore/eTotal*100);document.getElementById('errCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${eScore}/${eTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=70?'Well done!':'Keep practising.'}</div><button class="act" onclick="startErr()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=eItems[eIdx];eSel=null;eChecked=false;
+  const prog=Math.round(eIdx/eItems.length*100);
+  const opts=[{label:item.a,val:'a'},{label:item.b,val:'b'}].sort(()=>Math.random()-.5);window._eO=opts;
+  document.getElementById('errCont').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${eIdx+1}/${eItems.length} · Score: ${eScore}/${eTotal}</span>
+      <button class="act" onclick="startErr()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:12px">One sentence uses a determiner incorrectly. Choose the <strong style="color:var(--color-text-primary)">correct</strong> version.</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px" id="eOptsList">${opts.map((o,i)=>`<button class="gap-opt" id="eopt_${i}" onclick="selEOpt(${i})" style="font-size:15px">${o.label}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" id="eCheckBtn" onclick="checkErr()" disabled>Check</button>
+      <button class="act" onclick="eIdx++;renderErr()">Skip →</button>
+    </div>
+    <div id="eFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selEOpt(i){if(eChecked)return;eSel=i;document.querySelectorAll('#eOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('eCheckBtn').disabled=false;}
+function checkErr(){
+  if(eChecked||eSel===null)return;eChecked=true;eTotal++;
+  const item=eItems[eIdx];const chosen=window._eO[eSel];const ok=chosen.val===item.correct;if(ok)eScore++;
+  document.getElementById('eCheckBtn').disabled=true;
+  document.querySelectorAll('#eOptsList .gap-opt').forEach((el,j)=>{const v=window._eO[j];el.classList.remove('gsel');if(v.val===item.correct)el.classList.add('gok');else if(j===eSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const fb=document.getElementById('eFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ Not quite. ')+item.exp;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next question →';nxt.onclick=()=>{eIdx++;renderErr();};document.querySelector('#errCont .card').appendChild(nxt);
+}
+
+// ── NAV ──────────────────────────────────────────────────────
+function showP(i){
+  document.querySelectorAll('.pan').forEach((p,j)=>p.classList.toggle('on',j===i));
+  document.querySelectorAll('.nt').forEach((t,j)=>t.classList.toggle('on',j===i));
+  if(i===0)renderQuote();
+  if(i===1&&!document.getElementById('art0').innerHTML)buildArticles();
+  if(i===2&&!document.getElementById('detContent').innerHTML)buildDet();
+  if(i===3&&!gItems.length)startGap();
+  if(i===4&&!document.getElementById('matchCont').innerHTML)startMatch(0);
+  if(i===5&&!bItems.length)startBuilder();
+  if(i===6&&!lItems.length)startListen();
+  if(i===7&&!eItems.length)startErr();
+  if(i===8)renderGloss();
+}
+window.addEventListener('load',()=>{
+  if(window.speechSynthesis){window.speechSynthesis.getVoices();setTimeout(loadV,500);setTimeout(loadV,1500);}
+  renderQuote();
+});
+</script>
+</body>
+</html>
