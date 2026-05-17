@@ -1,0 +1,556 @@
+
+<style>
+h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary);font-size:15px}
+.w{padding:1.25rem 1.5rem}
+.eyebrow{font-size:11px;font-weight:500;color:#185FA5;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.lesson-h{font-size:24px;font-weight:500;line-height:1.25;margin-bottom:3px}
+.lesson-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:1rem}
+.nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem}
+.nt{padding:7px 13px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nt:hover{background:var(--color-background-secondary)}
+.nt.on{color:#fff;border-color:transparent;font-weight:500}
+.n0.on{background:#185FA5}.n1.on{background:#0F6E56}.n2.on{background:#993C1D}.n3.on{background:#534AB7}.n4.on{background:#854F0B}.n5.on{background:#72243E}
+.pan{display:none}.pan.on{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.1rem 1.4rem;margin-bottom:.9rem}
+.lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;margin-top:10px}
+.lbl:first-child{margin-top:0}
+.formula{font-family:var(--font-mono);font-size:13px;background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;margin-bottom:7px;color:var(--color-text-primary);border-left:3px solid;line-height:1.5}
+.ex-row{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:9px}
+.ex-box{border-radius:12px;padding:9px 13px;font-size:14px;line-height:1.6}
+.ex-pos{background:#EAF3DE;color:#27500A;border:0.5px solid #C0DD97}
+.ex-neg{background:#FCEBEB;color:#791F1F;border:0.5px solid #F7C1C1}
+.ex-tag{font-size:11px;font-weight:500;display:block;margin-bottom:2px}
+.tip-box{background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;font-size:14px;color:var(--color-text-secondary);margin-top:9px;display:flex;gap:8px;align-items:flex-start;line-height:1.6}
+.badge{display:inline-block;font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px}
+.signal{font-size:12px;padding:3px 10px;border-radius:20px;background:var(--color-background-secondary);color:var(--color-text-secondary);border:0.5px solid var(--color-border-tertiary);display:inline-block;margin:2px}
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:1rem}
+.ov-card{border-radius:14px;padding:10px 12px;cursor:pointer;border:0.5px solid transparent;transition:opacity .15s}
+.ov-card:hover{opacity:.8}
+.ov-name{font-size:12px;font-weight:500;margin-bottom:2px}
+.ov-use{font-size:11px;line-height:1.35}
+.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1rem 1.3rem;margin-bottom:1rem;border-left:3px solid #185FA5}
+.gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:15px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
+.gap-opt:hover:not(.gsel):not(.gok):not(.gbad):not(.gdim){background:var(--color-background-secondary)}
+.gap-opt.gsel{border-color:#185FA5;background:#E6F1FB;color:#0C447C;font-weight:500}
+.gap-opt.gok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:500;cursor:default;pointer-events:none}
+.gap-opt.gbad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F;cursor:default;pointer-events:none}
+.gap-opt.gdim{opacity:.4;cursor:default;pointer-events:none}
+.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #185FA5;background:#185FA5;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn:hover{background:#0c4577}
+.check-btn:disabled{opacity:.4;cursor:default}
+.act{font-size:13px;padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act:hover{background:var(--color-background-secondary)}
+.mi{padding:10px 13px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;cursor:pointer;line-height:1.5;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
+.mi:hover:not([disabled]){background:var(--color-background-secondary)}
+.mi.pk{border-color:#185FA5;background:#E6F1FB;color:#0C447C}
+.mi.mt{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.mi.bd{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:10px;overflow:hidden}
+.pb{height:5px;border-radius:20px;background:#185FA5;transition:width .3s}
+.fb-ok{background:#EAF3DE;color:#27500A;font-size:14px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.fb-no{background:#FCEBEB;color:#791F1F;font-size:14px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.ex-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.time-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.tt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
+.tt.on{color:#fff;border-color:transparent;font-weight:500}
+.tt-past.on{background:#185FA5}.tt-present.on{background:#0F6E56}.tt-future.on{background:#993C1D}
+</style>
+
+<div class="w">
+<h2 class="sr-only">English verb tenses — interactive lesson with all 12 tenses, gap fill, matching, and error correction.</h2>
+
+<div class="nav">
+  <button class="nt n0 on" onclick="showP(0)">Home</button>
+  <button class="nt n1" onclick="showP(1)">Tenses</button>
+  <button class="nt n2" onclick="showP(2)">Gap fill</button>
+  <button class="nt n3" onclick="showP(3)">Matching</button>
+  <button class="nt n4" onclick="showP(4)">Error correction</button>
+</div>
+
+<!-- HOME -->
+<div id="p0" class="pan on">
+  <div class="eyebrow">Interactive lesson</div>
+  <div class="lesson-h">English verb tenses</div>
+  <div class="lesson-sub">All 12 tenses across past, present, and future — formulas, uses, and practice</div>
+  <div class="quote-box" id="quoteBox"></div>
+  <div class="card">
+    <div class="lbl">What this lesson covers</div>
+    <p style="font-size:15px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">English has <span style="font-weight:500;color:var(--color-text-primary)">12 tenses</span> formed by combining three time frames — <span style="font-weight:500;color:#185FA5">past</span>, <span style="font-weight:500;color:#0F6E56">present</span>, and <span style="font-weight:500;color:#993C1D">future</span> — with four aspects: simple, continuous, perfect, and perfect continuous. Each combination expresses a distinct relationship between an action and time.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:10px">
+      <div style="background:#E6F1FB;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:700;color:#0C447C">4</div><div style="font-size:11px;color:#0C447C;font-weight:500;margin-top:2px">Past tenses</div></div>
+      <div style="background:#E1F5EE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:700;color:#085041">4</div><div style="font-size:11px;color:#085041;font-weight:500;margin-top:2px">Present tenses</div></div>
+      <div style="background:#FAECE7;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:700;color:#712B13">4</div><div style="font-size:11px;color:#712B13;font-weight:500;margin-top:2px">Future tenses</div></div>
+      <div style="background:#EEEDFE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:700;color:#3C3489">4</div><div style="font-size:11px;color:#3C3489;font-weight:500;margin-top:2px">Aspects</div></div>
+    </div>
+    <div class="lbl">The four aspects</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:4px">
+      <div style="background:#EEEDFE;border-radius:12px;padding:8px 12px"><div style="font-size:12px;font-weight:500;color:#3C3489;margin-bottom:2px">Simple</div><div style="font-size:13px;color:#534AB7">Completed or habitual actions</div></div>
+      <div style="background:#FAEEDA;border-radius:12px;padding:8px 12px"><div style="font-size:12px;font-weight:500;color:#633806;margin-bottom:2px">Continuous</div><div style="font-size:13px;color:#854F0B">Actions in progress / temporary</div></div>
+      <div style="background:#E1F5EE;border-radius:12px;padding:8px 12px"><div style="font-size:12px;font-weight:500;color:#085041;margin-bottom:2px">Perfect</div><div style="font-size:13px;color:#0F6E56">Actions with relevance to another time</div></div>
+      <div style="background:#FBEAF0;border-radius:12px;padding:8px 12px"><div style="font-size:12px;font-weight:500;color:#72243E;margin-bottom:2px">Perfect continuous</div><div style="font-size:13px;color:#993C1D">Duration up to a point in time</div></div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px">
+    <div class="card" style="cursor:pointer;margin-bottom:0;padding:.9rem 1rem" onclick="showP(1)"><div style="font-size:20px;margin-bottom:5px">📖</div><div style="font-size:13px;font-weight:500;margin-bottom:2px">Tenses</div><div style="font-size:12px;color:var(--color-text-secondary)">All 12 tenses with examples</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0;padding:.9rem 1rem" onclick="showP(2)"><div style="font-size:20px;margin-bottom:5px">✏️</div><div style="font-size:13px;font-weight:500;margin-bottom:2px">Gap fill</div><div style="font-size:12px;color:var(--color-text-secondary)">Choose the correct form</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0;padding:.9rem 1rem" onclick="showP(3)"><div style="font-size:20px;margin-bottom:5px">🔀</div><div style="font-size:13px;font-weight:500;margin-bottom:2px">Matching</div><div style="font-size:12px;color:var(--color-text-secondary)">Match tense to function</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0;padding:.9rem 1rem" onclick="showP(4)"><div style="font-size:20px;margin-bottom:5px">🔍</div><div style="font-size:13px;font-weight:500;margin-bottom:2px">Error correction</div><div style="font-size:12px;color:var(--color-text-secondary)">Find and fix the mistake</div></div>
+  </div>
+</div>
+
+<!-- TENSES -->
+<div id="p1" class="pan">
+  <div class="eyebrow">English verb tenses</div>
+  <div class="lesson-h">Tenses</div>
+  <div class="lesson-sub">Select a time frame, then explore each aspect — click a card to expand its full detail</div>
+  <div class="time-tabs">
+    <button class="tt tt-past on" onclick="setTime('past',this)">Past</button>
+    <button class="tt tt-present" onclick="setTime('present',this)">Present</button>
+    <button class="tt tt-future" onclick="setTime('future',this)">Future</button>
+  </div>
+  <div class="ov-grid" id="ovGrid"></div>
+  <div id="tenseDetail" style="display:none"></div>
+</div>
+
+<!-- GAP FILL -->
+<div id="p2" class="pan">
+  <div class="eyebrow">English verb tenses</div>
+  <div class="lesson-h">Gap fill</div>
+  <div class="lesson-sub">Choose the correct verb form to complete each sentence</div>
+  <div id="gapCont"></div>
+</div>
+
+<!-- MATCHING -->
+<div id="p3" class="pan">
+  <div class="eyebrow">English verb tenses</div>
+  <div class="lesson-h">Matching</div>
+  <div class="lesson-sub">Match each sentence to the tense it illustrates</div>
+  <div id="matchCont"></div>
+</div>
+
+<!-- ERROR CORRECTION -->
+<div id="p4" class="pan">
+  <div class="eyebrow">English verb tenses</div>
+  <div class="lesson-h">Error correction</div>
+  <div class="lesson-sub">One sentence has a grammar error — choose the correct version</div>
+  <div id="errCont"></div>
+</div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────
+const TENSES={
+  past:{
+    color:'#185FA5',light:'#E6F1FB',border:'#85B7EB',text:'#0C447C',
+    aspects:{
+      simple:{
+        label:'Past simple',formula:'Subject + verb-ed (or irregular past)',fl:'#7F77DD',
+        bg:'#EEEDFE',col:'#3C3489',
+        desc:'Use the past simple for <strong>completed actions at a specific time in the past</strong>. The action is finished and does not connect to the present.',
+        uses:['Completed action','Specific past time','Series of past events','Past habit'],
+        signals:['yesterday','last week/month/year','in 2010','ago','when I was young','once','finally'],
+        ex_pos:[{tag:'Completed action',s:'She <strong>visited</strong> Paris last summer.'},{tag:'Series of events',s:'He <strong>woke up</strong>, <strong>showered</strong>, and <strong>left</strong>.'}],
+        ex_neg:[{tag:'Ongoing action ✗',s:'She <strong>was living</strong> here for years. ✗ (use: lived)'}],
+        tip:'For regular verbs add -ed. Watch out for irregular verbs: go → went, buy → bought, take → took.'
+      },
+      continuous:{
+        label:'Past continuous',formula:'Subject + was/were + verb-ing',fl:'#BA7517',
+        bg:'#FAEEDA',col:'#633806',
+        desc:'Use the past continuous for an action <strong>in progress at a specific moment in the past</strong>, often as background to another event, or to describe two parallel ongoing actions.',
+        uses:['Action in progress in the past','Background to a shorter event','Two parallel past actions','Interrupted past action'],
+        signals:['at 6pm yesterday','when','while','all day','this time last week'],
+        ex_pos:[{tag:'In progress when...',s:'I <strong>was reading</strong> when the phone rang.'},{tag:'Two parallel actions',s:'She <strong>was cooking</strong> while he <strong>was setting</strong> the table.'}],
+        ex_neg:[{tag:'Completed result ✗',s:'I <strong>was finishing</strong> the report. ✗ (use: finished)'}],
+        tip:'"When" usually signals the short interrupting event (past simple). "While" usually signals the longer background action (past continuous).'
+      },
+      perfect:{
+        label:'Past perfect',formula:'Subject + had + past participle',fl:'#1D9E75',
+        bg:'#E1F5EE',col:'#085041',
+        desc:'Use the past perfect to show that <strong>one past action happened before another past action</strong>. It is the "past of the past" — use it to sequence events clearly.',
+        uses:['Action before another past action','3rd conditional','Reported speech','Explaining cause of a past state'],
+        signals:['before','after','by the time','already','just','never','when (before another past event)'],
+        ex_pos:[{tag:'Before another event',s:'By the time I arrived, she <strong>had left</strong>.'},{tag:'Explaining a past state',s:'He was tired because he <strong>hadn\'t slept</strong> well.'}],
+        ex_neg:[{tag:'Same time level ✗',s:'After she <strong>had arrived</strong>, we ate. ✗ ("After" makes order clear — use past simple)'}],
+        tip:'You only need past perfect when the time order would otherwise be unclear. If "before/after/when" makes the sequence obvious, past simple alone is often fine.'
+      },
+      'perfect-cont':{
+        label:'Past perfect continuous',formula:'Subject + had been + verb-ing',fl:'#D4537E',
+        bg:'#FBEAF0',col:'#72243E',
+        desc:'Use the past perfect continuous to show <strong>how long an action had been in progress before a past moment or event</strong>. The focus is on duration and ongoing nature.',
+        uses:['Duration up to a past point','Cause visible in the past','Background activity before a past event','Emphasise ongoing effort'],
+        signals:['for + duration','how long','since','all morning/week','before','when'],
+        ex_pos:[{tag:'Duration before past event',s:'She <strong>had been waiting</strong> for two hours when he arrived.'},{tag:'Visible past result',s:'His eyes were red — he <strong>had been crying</strong>.'}],
+        ex_neg:[{tag:'Completed result ✗',s:'They <strong>had been building</strong> the bridge. ✗ (use: had built, if completed)'}],
+        tip:'Compare: "He had read 50 pages" (focuses on result) vs "He had been reading for hours" (focuses on ongoing duration).'
+      }
+    }
+  },
+  present:{
+    color:'#0F6E56',light:'#E1F5EE',border:'#5DCAA5',text:'#085041',
+    aspects:{
+      simple:{
+        label:'Present simple',formula:'Subject + base verb (add -s/-es for he/she/it)',fl:'#7F77DD',
+        bg:'#EEEDFE',col:'#3C3489',
+        desc:'Use the present simple for <strong>facts, habits, routines, and states</strong> — things that are generally or always true, not specifically happening right now.',
+        uses:['Habits and routines','Permanent facts / truths','Timetables and schedules','States (know, love, believe)'],
+        signals:['always','usually','often','sometimes','never','every day/week','on Mondays'],
+        ex_pos:[{tag:'Habit',s:'She <strong>drinks</strong> coffee every morning.'},{tag:'General truth',s:'Water <strong>boils</strong> at 100°C.'}],
+        ex_neg:[{tag:'Right-now action ✗',s:'I <strong>am walking</strong> — I\'m busy! ✗ (use: present continuous)'}],
+        tip:'Stative verbs (know, want, need, believe, own) almost never use the continuous form — even when describing a current state: "I know the answer." ✓'
+      },
+      continuous:{
+        label:'Present continuous',formula:'Subject + am/is/are + verb-ing',fl:'#BA7517',
+        bg:'#FAEEDA',col:'#633806',
+        desc:'Use the present continuous for actions <strong>happening right now, around now, or for temporary situations</strong>. Also used for annoying habits and future arrangements.',
+        uses:['Action happening now','Temporary situation','Changing / developing situation','Arranged future event','Annoying habit (always + -ing)'],
+        signals:['now','right now','at the moment','currently','today','this week','Look! Listen!'],
+        ex_pos:[{tag:'Happening now',s:'She <strong>is talking</strong> on the phone.'},{tag:'Future arrangement',s:'We <strong>are meeting</strong> the client tomorrow.'}],
+        ex_neg:[{tag:'State verb ✗',s:'I <strong>am knowing</strong> the answer. ✗ (use: know)'}],
+        tip:'"Always" + present continuous = an annoying or surprising habit: "He\'s always forgetting his keys!" This is more critical than the neutral present simple.'
+      },
+      perfect:{
+        label:'Present perfect',formula:'Subject + have/has + past participle',fl:'#1D9E75',
+        bg:'#E1F5EE',col:'#085041',
+        desc:'Use the present perfect to <strong>connect the past to the present</strong>: a past action that has current relevance, an experience in your life so far, or a recently completed action.',
+        uses:['Life experience (ever/never)','Finished action with present result','Recent news','Unfinished time period (today/this year)'],
+        signals:['ever','never','already','yet','just','recently','so far','this week','since','for'],
+        ex_pos:[{tag:'Life experience',s:'Have you ever <strong>tried</strong> sushi?'},{tag:'Present result',s:'She <strong>has broken</strong> her leg. (She can\'t walk now)'}],
+        ex_neg:[{tag:'Specific finished time ✗',s:'I <strong>have seen</strong> him yesterday. ✗ (use: saw)'}],
+        tip:'Never use present perfect with a finished time expression (yesterday, last year, in 2010). Those take past simple.'
+      },
+      'perfect-cont':{
+        label:'Present perfect continuous',formula:'Subject + have/has been + verb-ing',fl:'#D4537E',
+        bg:'#FBEAF0',col:'#72243E',
+        desc:'Use the present perfect continuous to emphasise <strong>how long an action has been in progress</strong>, or to explain a present situation through an ongoing recent activity.',
+        uses:['Duration up to now','Ongoing activity (recently / still)','Explain a present state','Emphasise effort / process'],
+        signals:['for + time','since','all day/week','how long','lately','recently'],
+        ex_pos:[{tag:'Duration',s:'I <strong>have been studying</strong> for three hours.'},{tag:'Explains present state',s:'You look tired — have you been working all night?'}],
+        ex_neg:[{tag:'Completed number/amount ✗',s:'She <strong>has been writing</strong> ten emails. ✗ (use: has written)'}],
+        tip:'Compare: "I\'ve read the report" (completed — focus on result) vs "I\'ve been reading the report" (ongoing — focus on process/duration).'
+      }
+    }
+  },
+  future:{
+    color:'#993C1D',light:'#FAECE7',border:'#F0997B',text:'#712B13',
+    aspects:{
+      simple:{
+        label:'Future simple (will)',formula:'Subject + will + base verb',fl:'#7F77DD',
+        bg:'#EEEDFE',col:'#3C3489',
+        desc:'Use <em>will</em> for <strong>spontaneous decisions, predictions, promises, offers, and facts about the future</strong>. Also use <em>be going to</em> for plans already decided and evidence-based predictions.',
+        uses:['Spontaneous decision','Promise / offer / threat','Prediction (no evidence)','Future fact'],
+        signals:['probably','I think / I believe','maybe / perhaps','I promise','I\'ll (on the spot)'],
+        ex_pos:[{tag:'Spontaneous decision',s:'"It\'s cold." — "I <strong>\'ll close</strong> the window."'},{tag:'Prediction',s:'I think it <strong>will snow</strong> tonight.'}],
+        ex_neg:[{tag:'Pre-planned intention ✗',s:'I <strong>will go</strong> to Paris next month. ✗ (if booked → use: going to)'}],
+        tip:'<em>Will</em> = decided at the moment of speaking. <em>Be going to</em> = decided before speaking. Both can predict, but <em>going to</em> + evidence means the speaker can see it coming.'
+      },
+      continuous:{
+        label:'Future continuous',formula:'Subject + will be + verb-ing',fl:'#BA7517',
+        bg:'#FAEEDA',col:'#633806',
+        desc:'Use the future continuous for an action <strong>in progress at a specific moment in the future</strong>, or to describe something that will happen as part of a normal routine or expected course of events.',
+        uses:['Action in progress at a future moment','Expected / routine future event','Polite question about plans'],
+        signals:['at this time tomorrow','at 8pm tonight','in two hours','this time next week'],
+        ex_pos:[{tag:'In progress at future moment',s:'This time tomorrow I <strong>\'ll be flying</strong> to Tokyo.'},{tag:'Polite enquiry',s:'<strong>Will you be using</strong> the car tonight?'}],
+        ex_neg:[{tag:'Single future event ✗',s:'I <strong>will be going</strong> to the shop later. ✗ (use: will go)'}],
+        tip:'Use the future continuous for polite enquiries — "Will you be attending the meeting?" sounds softer than "Will you attend?"'
+      },
+      perfect:{
+        label:'Future perfect',formula:'Subject + will have + past participle',fl:'#1D9E75',
+        bg:'#E1F5EE',col:'#085041',
+        desc:'Use the future perfect to talk about <strong>an action that will be completed before a specific point in the future</strong>. You are looking back from a future moment at something already done.',
+        uses:['Completed before a future deadline','Achievement by a future point','Assumption about the past'],
+        signals:['by + future time','by then','by the time','before'],
+        ex_pos:[{tag:'Completed by a deadline',s:'I <strong>will have finished</strong> the report by Friday.'},{tag:'Assumption',s:'Don\'t call at 9 — she <strong>will have gone</strong> to bed.'}],
+        ex_neg:[{tag:'No deadline ✗',s:'I <strong>will have written</strong> a novel. ✗ (needs a "by" deadline)'}],
+        tip:'Think of it as: "Looking back from [future point], this action is done." The key word is almost always "by".'
+      },
+      'perfect-cont':{
+        label:'Future perfect continuous',formula:'Subject + will have been + verb-ing',fl:'#D4537E',
+        bg:'#FBEAF0',col:'#72243E',
+        desc:'Use the future perfect continuous to emphasise <strong>the duration of an ongoing action up to a specific point in the future</strong>. It is the rarest of the twelve tenses and focuses on length of time, not completion.',
+        uses:['Duration up to a future point','Emphasise ongoing effort','Explain a future state'],
+        signals:['for + duration','by + future time','by then'],
+        ex_pos:[{tag:'Duration to future point',s:'By July, I <strong>will have been learning</strong> Polish for two years.'},{tag:'Explains a future state',s:'She\'ll be tired — she <strong>will have been travelling</strong> all day.'}],
+        ex_neg:[{tag:'Completed result ✗',s:'By Monday I <strong>will have been finishing</strong> the project. ✗ (use: will have finished)'}],
+        tip:'This tense is rare in everyday speech. You\'ll mostly see it used to highlight impressive or exhausting durations: "By retirement, he will have been teaching for 35 years."'
+      }
+    }
+  }
+};
+
+const ASPECT_KEYS=['simple','continuous','perfect','perfect-cont'];
+const ASPECT_LABELS={simple:'Simple',continuous:'Continuous',perfect:'Perfect','perfect-cont':'Perfect continuous'};
+
+// ── QUOTES ─────────────────────────────────────────────────────
+const QUOTES=[
+  {text:'"I <strong>have always imagined</strong> that Paradise will be a kind of library."',author:'Jorge Luis Borges',tense:'Present perfect',hi:'have always imagined'},
+  {text:'"By the time you read this, I <strong>will have been gone</strong> for a long while."',author:'literary example',tense:'Future perfect continuous',hi:'will have been gone'},
+  {text:'"She <strong>was standing</strong> at the window when I first noticed her."',author:'literary example',tense:'Past continuous',hi:'was standing'},
+  {text:'"He <strong>had lived</strong> alone for so many years that silence <strong>had become</strong> his only companion."',author:'literary example',tense:'Past perfect',hi:'had lived'},
+  {text:'"I <strong>am reading</strong> — or rather, I <strong>have been reading</strong> — for most of my adult life."',author:'adapted',tense:'Present continuous / Present perfect continuous',hi:'am reading'},
+  {text:'"Time <strong>flies</strong>. It <strong>does not walk</strong>, it <strong>does not stop</strong>."',author:'adapted proverb',tense:'Present simple',hi:'flies'},
+  {text:'"By next year, she <strong>will have studied</strong> medicine for six long years."',author:'literary example',tense:'Future perfect',hi:'will have studied'},
+  {text:'"They <strong>had been arguing</strong> all evening when the storm finally broke."',author:'literary example',tense:'Past perfect continuous',hi:'had been arguing'},
+  {text:'"This time tomorrow, I <strong>will be flying</strong> over the Atlantic."',author:'adapted',tense:'Future continuous',hi:'will be flying'},
+  {text:'"I <strong>think</strong>, therefore I <strong>am</strong>."',author:'René Descartes',tense:'Present simple',hi:'think'},
+  {text:'"She <strong>has never returned</strong> to the city where she <strong>was born</strong>."',author:'literary example',tense:'Present perfect / Past simple',hi:'has never returned'},
+  {text:'"He <strong>is going to resign</strong> — you can see it in his eyes."',author:'literary example',tense:'Future (going to)',hi:'is going to resign'},
+];
+let qOrder=[...Array(QUOTES.length).keys()].sort(()=>Math.random()-.5);
+let qIdx2=0;
+function renderQuote(){
+  const q=QUOTES[qOrder[qIdx2%qOrder.length]];qIdx2++;
+  let txt=q.text.replace(q.hi,`<span style="background:#E6F1FB;color:#0C447C;font-weight:500;padding:1px 6px;border-radius:6px">${q.hi}</span>`);
+  document.getElementById('quoteBox').innerHTML=`
+    <div style="font-family:var(--font-serif);font-size:15px;line-height:1.8;color:var(--color-text-primary);margin-bottom:8px">${txt}</div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <div style="font-size:12px;color:var(--color-text-secondary)">— ${q.author}</div>
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${q.tense}</span>
+      <button class="act" onclick="renderQuote()" style="font-size:12px;padding:4px 12px;margin-left:auto"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> New quote</button>
+    </div>`;
+}
+
+// ── TENSES TAB ─────────────────────────────────────────────────
+let curTime='past',selTense=null;
+function setTime(t,el){
+  curTime=t;selTense=null;
+  document.querySelectorAll('.tt').forEach(b=>b.classList.remove('on'));
+  if(el)el.classList.add('on');
+  document.getElementById('tenseDetail').style.display='none';
+  renderOvGrid();
+}
+function renderOvGrid(){
+  const td=TENSES[curTime];
+  document.getElementById('ovGrid').innerHTML=ASPECT_KEYS.map(a=>{
+    const d=td.aspects[a];
+    return`<div class="ov-card" id="ovc_${a}" style="background:${d.bg};border-color:${td.border}" onclick="selTenseCard('${a}')">
+      <div class="ov-name" style="color:${d.col}">${d.label}</div>
+      <div class="ov-use" style="color:${d.col};opacity:.7;font-size:11px">${ASPECT_LABELS[a]}</div>
+    </div>`;
+  }).join('');
+}
+function selTenseCard(a){
+  selTense=selTense===a?null:a;
+  document.querySelectorAll('.ov-card[id]').forEach(c=>{c.style.outline=c.id==='ovc_'+selTense?'2px solid #185FA5':'none';});
+  const detail=document.getElementById('tenseDetail');
+  if(!selTense){detail.style.display='none';return;}
+  const td=TENSES[curTime];const d=td.aspects[a];
+  detail.innerHTML=`<div class="card">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap">
+      <span style="font-size:16px;font-weight:500">${d.label}</span>
+      <span class="badge" style="background:${d.bg};color:${d.col}">${ASPECT_LABELS[a]}</span>
+    </div>
+    <div class="lbl">Formula</div>
+    <div class="formula" style="border-color:${d.fl}">${d.formula}</div>
+    <div class="lbl">When to use it</div>
+    <p style="font-size:15px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:8px">${d.desc}</p>
+    <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px">
+      ${d.uses.map(u=>`<span style="background:${d.bg};color:${d.col};font-size:13px;padding:3px 11px;border-radius:20px;border:0.5px solid ${td.border}">${u}</span>`).join('')}
+    </div>
+    <div class="lbl">Time signals</div>
+    <div style="margin-bottom:10px">${d.signals.map(s=>`<span class="signal">${s}</span>`).join('')}</div>
+    <div class="lbl">Examples</div>
+    <div class="ex-row">
+      <div>${d.ex_pos.map(e=>`<div class="ex-box ex-pos" style="margin-bottom:6px"><span class="ex-tag" style="color:#3B6D11">${e.tag}</span>${e.s}</div>`).join('')}</div>
+      <div>${d.ex_neg.map(e=>`<div class="ex-box ex-neg" style="margin-bottom:6px"><span class="ex-tag" style="color:#A32D2D">${e.tag}</span>${e.s}</div>`).join('')}</div>
+    </div>
+    <div class="tip-box"><i class="ti ti-bulb" aria-hidden="true" style="font-size:16px;flex-shrink:0;color:${td.color}"></i><span>${d.tip}</span></div>
+  </div>`;
+  detail.style.display='block';
+  detail.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ── GAP FILL ──────────────────────────────────────────────────
+const GAP_POOL=[
+  {s:'She ___ to work by bus yesterday.',blank:'went',opts:['goes','went','has gone','was going'],tense:'Past simple',fb:'Past simple — a completed action at a specific past time (yesterday).'},
+  {s:'I ___ dinner when the lights went out.',blank:'was cooking',opts:['cooked','was cooking','had cooked','cook'],tense:'Past continuous',fb:'Past continuous — an action in progress interrupted by a shorter past event.'},
+  {s:'By the time I arrived, she ___ already.',blank:'had left',opts:['left','leaves','had left','was leaving'],tense:'Past perfect',fb:'Past perfect — the leaving happened before the arrival (another past event).'},
+  {s:'She was exhausted. She ___ all day.',blank:'had been working',opts:['worked','was working','had worked','had been working'],tense:'Past perfect continuous',fb:'Past perfect continuous — ongoing activity over a duration that explains a past state.'},
+  {s:'The shop ___ at 9 am every day.',blank:'opens',opts:['open','opens','is opening','has opened'],tense:'Present simple',fb:'Present simple — a daily routine / schedule. Third person singular adds -s.'},
+  {s:'Shh! The baby ___.',blank:'is sleeping',opts:['sleeps','slept','is sleeping','has slept'],tense:'Present continuous',fb:'Present continuous — action happening right now (Shh! = right at this moment).'},
+  {s:'I can\'t find my keys. I think I ___ them.',blank:'have lost',opts:['lose','lost','have lost','had lost'],tense:'Present perfect',fb:'Present perfect — a past action with a present result (can\'t find them now).'},
+  {s:'She\'s exhausted. She ___ since 6 am.',blank:'has been working',opts:['works','worked','has worked','has been working'],tense:'Present perfect continuous',fb:'Present perfect continuous — ongoing activity from a past point up to now, explaining a present state.'},
+  {s:'"The phone is ringing." — "I ___ get it!"',blank:"'ll",opts:["'m going to","'m going to get","'ll","would"],tense:'Future simple (will)',fb:'Future simple (will) — a spontaneous decision made right now, not pre-planned.'},
+  {s:'This time next week, we ___ on the beach.',blank:'will be sitting',opts:['sit','will sit','will be sitting','are sitting'],tense:'Future continuous',fb:'Future continuous — an action in progress at a specific future moment (this time next week).'},
+  {s:'By the time you arrive, I ___ cooking.',blank:'will have finished',opts:['finish','will finish','will have finished','am finishing'],tense:'Future perfect',fb:'Future perfect — completed before another future point (your arrival).'},
+  {s:'By next month, they ___ on this bridge for three years.',blank:'will have been working',opts:['work','will work','will have worked','will have been working'],tense:'Future perfect continuous',fb:'Future perfect continuous — duration of ongoing activity up to a future point.'},
+  {s:'We ___ three films last weekend.',blank:'watched',opts:['watch','are watching','watched','had watched'],tense:'Past simple',fb:'Past simple — a specific, finished past event.'},
+  {s:'While she ___, he slipped out quietly.',blank:'was sleeping',opts:['slept','sleeps','was sleeping','had been sleeping'],tense:'Past continuous',fb:'Past continuous after "while" = the longer background action.'},
+  {s:'He couldn\'t pay because he ___ his wallet.',blank:'had forgotten',opts:['forgot','was forgetting','had forgotten','has forgotten'],tense:'Past perfect',fb:'Past perfect — explains the cause of a past situation (couldn\'t pay).'},
+  {s:'___ you ever been to New Zealand?',blank:'Have',opts:['Did','Have','Are','Were'],tense:'Present perfect',fb:'Present perfect with "ever" — asking about a life experience up to now.'},
+  {s:'More and more people ___ online these days.',blank:'are shopping',opts:['shop','are shopping','shopped','have shopped'],tense:'Present continuous',fb:'Present continuous — a changing / developing trend around now.'},
+  {s:'Look at those clouds! It ___ rain.',blank:"'s going to",opts:["'ll","'s going to","is raining","rains"],tense:'Future (going to)',fb:'"Be going to" for a prediction based on present evidence (the clouds you can see).'},
+];
+
+let gItems=[],gIdx=0,gScore=0,gTotal=0,gSel=null,gChecked=false;
+function startGap(){gItems=[...GAP_POOL].sort(()=>Math.random()-.5);gIdx=0;gScore=0;gTotal=0;renderGap();}
+function renderGap(){
+  if(gIdx>=gItems.length){const pct=Math.round(gScore/gTotal*100);document.getElementById('gapCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${gScore}/${gTotal}</div><div style="font-size:15px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=70?'Well done!':'Review the Tenses tab and try again.'}</div><button class="act" onclick="startGap()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=gItems[gIdx];gSel=null;gChecked=false;
+  const prog=Math.round(gIdx/gItems.length*100);
+  const opts=[...item.opts].sort(()=>Math.random()-.5);window._gOpts=opts;
+  const sh=item.s.replace(item.blank,`<span style="display:inline-block;min-width:90px;border-bottom:2px solid #185FA5;color:#185FA5;font-weight:500;text-align:center;padding:0 4px" id="blankSpan">___</span>`);
+  document.getElementById('gapCont').innerHTML=`
+    <div class="card">
+      <div class="ex-hdr">
+        <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.tense}</span>
+        <span style="font-size:13px;color:var(--color-text-secondary)">${gIdx+1} / ${gItems.length} · Score: ${gScore}/${gTotal}</span>
+        <button class="act" onclick="startGap()" style="margin-left:auto"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+      </div>
+      <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+      <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:8px">Choose the correct verb form, then press Check.</div>
+      <div style="font-size:16px;line-height:1.8;margin-bottom:14px;background:var(--color-background-secondary);border-radius:12px;padding:11px 14px">${sh}</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="gOptsList">
+        ${opts.map((o,i)=>`<button class="gap-opt" id="gopt_${i}" onclick="selGOpt(${i})">${o}</button>`).join('')}
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="check-btn" id="gCheckBtn" onclick="checkGap()" disabled>Check</button>
+        <button class="act" onclick="gIdx++;renderGap()">Skip →</button>
+      </div>
+      <div id="gFb" style="margin-top:0"></div>
+    </div>`;
+}
+function selGOpt(i){if(gChecked)return;gSel=i;document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('gCheckBtn').disabled=false;}
+function checkGap(){
+  if(gChecked||gSel===null)return;gChecked=true;gTotal++;
+  const item=gItems[gIdx];const chosen=window._gOpts[gSel];const ok=chosen===item.blank;
+  if(ok)gScore++;document.getElementById('gCheckBtn').disabled=true;
+  document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>{const w=window._gOpts[j];el.classList.remove('gsel');if(w===item.blank)el.classList.add('gok');else if(j===gSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const sp=document.getElementById('blankSpan');if(sp){sp.textContent=item.blank;sp.style.color=ok?'#27500A':'#791F1F';sp.style.borderBottomColor=ok?'#C0DD97':'#F7C1C1';}
+  const fb=document.getElementById('gFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ The answer is "'+item.blank+'". ')+item.fb;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next question →';nxt.onclick=()=>{gIdx++;renderGap();};document.querySelector('#gapCont .card').appendChild(nxt);
+}
+
+// ── MATCHING ──────────────────────────────────────────────────
+const MATCH_SETS=[
+  {instr:'Match each sentence to the tense it illustrates.',
+   pairs:[
+     {left:'She visited Paris last summer.',right:'Past simple'},
+     {left:'I was reading when the phone rang.',right:'Past continuous'},
+     {left:'By the time I arrived, she had left.',right:'Past perfect'},
+     {left:'His eyes were red — he had been crying.',right:'Past perfect continuous'},
+     {left:'Water boils at 100°C.',right:'Present simple'},
+     {left:'She is talking on the phone right now.',right:'Present continuous'},
+     {left:'Have you ever tried sushi?',right:'Present perfect'},
+   ]},
+  {instr:'Match each sentence to the tense it illustrates.',
+   pairs:[
+     {left:'I have been studying for three hours.',right:'Present perfect continuous'},
+     {left:'"The phone\'s ringing." — "I\'ll get it!"',right:'Future simple (will)'},
+     {left:'This time tomorrow I\'ll be flying to Tokyo.',right:'Future continuous'},
+     {left:'I will have finished the report by Friday.',right:'Future perfect'},
+     {left:'By July I will have been learning Polish for two years.',right:'Future perfect continuous'},
+     {left:'Look at those clouds — it\'s going to rain!',right:'Future (going to)'},
+     {left:'She has broken her leg. (She can\'t walk now.)',right:'Present perfect'},
+   ]},
+  {instr:'Match each sentence to the tense — focus on aspect and time signal.',
+   pairs:[
+     {left:'"While she was cooking, he set the table."  — the underlined verb is: was cooking',right:'Past continuous'},
+     {left:'He couldn\'t pay because he had forgotten his wallet.',right:'Past perfect'},
+     {left:'She\'s exhausted — she has been working since 6 am.',right:'Present perfect continuous'},
+     {left:'Don\'t wait up — the concert will have ended by midnight.',right:'Future perfect'},
+     {left:'By next month they will have been working on the bridge for 3 years.',right:'Future perfect continuous'},
+     {left:'The train to Warsaw leaves at 14:30.',right:'Present simple'},
+     {left:'We are meeting the client tomorrow.',right:'Present continuous'},
+   ]},
+];
+let mSet=0,mPicked=null,mMatched=[],mScore=0,mAttempts=0,mRight=[];
+function startMatch(si){
+  mSet=si!==undefined?si:mSet;
+  const set=MATCH_SETS[mSet];mPicked=null;mMatched=[];mScore=0;mAttempts=0;
+  const rights=[...set.pairs].sort(()=>Math.random()-.5);mRight=rights;
+  document.getElementById('matchCont').innerHTML=`
+    <div class="card">
+      <div class="ex-hdr">
+        <div style="font-size:13px;color:var(--color-text-secondary)">Round ${mSet+1} of ${MATCH_SETS.length}</div>
+        ${MATCH_SETS.map((_,i)=>`<button class="act" onclick="startMatch(${i})" style="${i===mSet?'background:#E6F1FB;border-color:#85B7EB;color:#0C447C':''}">Round ${i+1}</button>`).join('')}
+        <button class="act" onclick="startMatch(mSet)"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i></button>
+      </div>
+      <p style="font-size:15px;color:var(--color-text-secondary);margin-bottom:5px">${set.instr}</p>
+      <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">Matched: <strong id="mP">0</strong>/${set.pairs.length} &nbsp;·&nbsp; Attempts: <strong id="mA">0</strong></div>
+      <div style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:9px;margin-bottom:9px">
+        <div style="display:flex;flex-direction:column;gap:6px" id="mL">${set.pairs.map((p,i)=>`<button class="mi" id="ml_${i}" onclick="mPL(${i})">${p.left}</button>`).join('')}</div>
+        <div style="display:flex;flex-direction:column;gap:6px" id="mR">${rights.map((r,i)=>`<button class="mi" id="mr_${i}" onclick="mPR(${i})">${r.right}</button>`).join('')}</div>
+      </div>
+      <div id="mFb" style="font-size:14px;min-height:18px"></div>
+    </div>`;
+}
+function mPL(i){if(mMatched.some(m=>m.l===i))return;mPicked=i;document.querySelectorAll('#mL .mi').forEach((el,j)=>{if(!mMatched.some(m=>m.l===j))el.classList.toggle('pk',j===i);});}
+function mPR(i){
+  if(mPicked===null)return;const set=MATCH_SETS[mSet];if(mMatched.some(m=>m.r===i))return;
+  mAttempts++;document.getElementById('mA').textContent=mAttempts;
+  const ok=mRight[i].left===set.pairs[mPicked].left;
+  if(ok){document.getElementById('ml_'+mPicked).classList.remove('pk');document.getElementById('ml_'+mPicked).classList.add('mt');document.getElementById('mr_'+i).classList.add('mt');mMatched.push({l:mPicked,r:i});mScore++;document.getElementById('mP').textContent=mScore;document.getElementById('mFb').style.color='#27500A';document.getElementById('mFb').textContent=mScore===set.pairs.length?`All ${set.pairs.length} matched in ${mAttempts} attempt${mAttempts===1?'':'s'}!`:'Correct!';mPicked=null;document.querySelectorAll('#mL .mi').forEach(el=>el.classList.remove('pk'));}
+  else{document.getElementById('mr_'+i).classList.add('bd');document.getElementById('ml_'+mPicked).classList.add('bd');document.getElementById('mFb').style.color='#791F1F';document.getElementById('mFb').textContent='Not a match — try again.';setTimeout(()=>{const l=document.getElementById('ml_'+mPicked),r=document.getElementById('mr_'+i);if(l)l.classList.remove('bd');if(r)r.classList.remove('bd');},700);}
+}
+
+// ── ERROR CORRECTION ──────────────────────────────────────────
+const ERR_POOL=[
+  {a:'I have seen him yesterday.',b:'I saw him yesterday.',correct:'b',tense:'Past simple',exp:'Use past simple (not present perfect) with a finished time expression like "yesterday".'},
+  {a:'She is knowing the answer.',b:'She knows the answer.',correct:'b',tense:'Present simple',exp:'Stative verbs like "know" don\'t take the continuous form. Use present simple.'},
+  {a:'When we got to the cinema, the film had already started.',b:'When we got to the cinema, the film already started.',correct:'a',tense:'Past perfect',exp:'The film starting happened before our arrival — past perfect is needed to show the earlier action.'},
+  {a:'I will go to Paris next month — I\'ve already booked.',b:'I\'m going to go to Paris next month — I\'ve already booked.',correct:'b',tense:'Future (going to)',exp:'When a future plan is already decided and booked, use "be going to", not "will".'},
+  {a:'She had been waiting for two hours when he arrived.',b:'She was waiting for two hours when he arrived.',correct:'a',tense:'Past perfect continuous',exp:'Past perfect continuous expresses the duration of an action up to a past moment. "Was waiting" doesn\'t convey the duration as clearly.'},
+  {a:'By Friday, I\'ll finish the report.',b:'By Friday, I\'ll have finished the report.',correct:'b',tense:'Future perfect',exp:'"By Friday" signals a deadline before which the action will be complete — this requires the future perfect.'},
+  {a:'More and more people shop online these days.',b:'More and more people are shopping online these days.',correct:'b',tense:'Present continuous',exp:'"These days" with a changing trend calls for the present continuous, not the present simple.'},
+  {a:'While she was cooking, he set the table.',b:'While she cooked, he was setting the table.',correct:'a',tense:'Past continuous',exp:'"While" + a longer background action → past continuous. The shorter completed action uses past simple.'},
+  {a:'He couldn\'t pay because he forgot his wallet.',b:'He couldn\'t pay because he had forgotten his wallet.',correct:'b',tense:'Past perfect',exp:'The forgetting happened before "couldn\'t pay" — past perfect correctly shows the earlier cause.'},
+  {a:'I\'ve been studying English since five years.',b:'I\'ve been studying English for five years.',correct:'b',tense:'Present perfect continuous',exp:'Use "for" with a duration (five years). Use "since" with a starting point (since 2019).'},
+  {a:'She was working here for three years before she left.',b:'She had been working here for three years before she left.',correct:'b',tense:'Past perfect continuous',exp:'Duration of an action up to a past point uses past perfect continuous, not past continuous.'},
+  {a:'"The phone is ringing." "I\'m going to get it."',b:'"The phone is ringing." "I\'ll get it."',correct:'b',tense:'Future simple (will)',exp:'A spontaneous decision made at the moment of speaking uses "will", not "going to".'},
+];
+let eItems=[],eIdx=0,eScore=0,eTotal=0,eSel=null,eChecked=false;
+function startErr(){eItems=[...ERR_POOL].sort(()=>Math.random()-.5);eIdx=0;eScore=0;eTotal=0;renderErr();}
+function renderErr(){
+  if(eIdx>=eItems.length){const pct=Math.round(eScore/eTotal*100);document.getElementById('errCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${eScore}/${eTotal}</div><div style="font-size:15px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=70?'Well done!':'Keep practising.'}</div><button class="act" onclick="startErr()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=eItems[eIdx];eSel=null;eChecked=false;
+  const prog=Math.round(eIdx/eItems.length*100);
+  const opts=[{label:item.a,val:'a'},{label:item.b,val:'b'}].sort(()=>Math.random()-.5);window._eOpts=opts;
+  document.getElementById('errCont').innerHTML=`
+    <div class="card">
+      <div class="ex-hdr">
+        <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.tense}</span>
+        <span style="font-size:13px;color:var(--color-text-secondary)">${eIdx+1} / ${eItems.length} · Score: ${eScore}/${eTotal}</span>
+        <button class="act" onclick="startErr()" style="margin-left:auto"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+      </div>
+      <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+      <div style="font-size:15px;color:var(--color-text-secondary);margin-bottom:12px">One of these sentences has a grammar error. Choose the <strong style="color:var(--color-text-primary)">correct</strong> version.</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px" id="eOptsList">
+        ${opts.map((o,i)=>`<button class="gap-opt" id="eopt_${i}" onclick="selEOpt(${i})" style="font-size:15px">${o.label}</button>`).join('')}
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="check-btn" id="eCheckBtn" onclick="checkErr()" disabled>Check</button>
+        <button class="act" onclick="eIdx++;renderErr()">Skip →</button>
+      </div>
+      <div id="eFb" style="margin-top:0"></div>
+    </div>`;
+}
+function selEOpt(i){if(eChecked)return;eSel=i;document.querySelectorAll('#eOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('eCheckBtn').disabled=false;}
+function checkErr(){
+  if(eChecked||eSel===null)return;eChecked=true;eTotal++;
+  const item=eItems[eIdx];const chosen=window._eOpts[eSel];const ok=chosen.val===item.correct;
+  if(ok)eScore++;document.getElementById('eCheckBtn').disabled=true;
+  document.querySelectorAll('#eOptsList .gap-opt').forEach((el,j)=>{const v=window._eOpts[j];el.classList.remove('gsel');if(v.val===item.correct)el.classList.add('gok');else if(j===eSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const fb=document.getElementById('eFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.innerHTML=(ok?'✓ Correct! ':'✗ Not quite. ')+item.exp;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next question →';nxt.onclick=()=>{eIdx++;renderErr();};document.querySelector('#errCont .card').appendChild(nxt);
+}
+
+// ── NAV ───────────────────────────────────────────────────────
+function showP(i){
+  document.querySelectorAll('.pan').forEach((p,j)=>p.classList.toggle('on',j===i));
+  document.querySelectorAll('.nt').forEach((t,j)=>t.classList.toggle('on',j===i));
+  if(i===0){renderQuote();if(!document.getElementById('quoteBox').dataset.init){document.getElementById('quoteBox').dataset.init='1';}}
+  if(i===1&&!document.getElementById('ovGrid').innerHTML){setTime('past',document.querySelector('.tt-past'));}
+  if(i===2&&!gItems.length)startGap();
+  if(i===3&&!document.getElementById('matchCont').innerHTML)startMatch(0);
+  if(i===4&&!eItems.length)startErr();
+}
+
+// Init
+renderQuote();
+setTime('past',null);
+document.querySelector('.tt-past').classList.add('on');
+</script>
