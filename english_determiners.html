@@ -813,7 +813,7 @@ function renderListen(){
   if(lIdx>=lItems.length){const pct=Math.round(lScore/lTotal*100);document.getElementById('listenCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${lScore}/${lTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect article sense!':pct>=70?'Well done!':'Review the Articles tab and try again.'}</div><button class="act" onclick="startListen()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
   const item=lItems[lIdx];lSel=null;lChecked=false;
   const prog=Math.round(lIdx/lItems.length*100);
-  const shuf=[...item.opts.entries()].sort(()=>Math.random()-.5);window._lO=shuf;
+  const shuf=[...item.opts].sort(()=>Math.random()-.5);window._lO=shuf;
   document.getElementById('listenCont').innerHTML=`<div class="card">
     <div class="ex-hdr">
       <span style="font-size:13px;color:var(--color-text-secondary)">${lIdx+1}/${lItems.length} · Score: ${lScore}/${lTotal}</span>
@@ -826,7 +826,7 @@ function renderListen(){
       <div style="margin-top:8px"><button class="audio-btn" onclick="speak('${item.say.replace(/'/g,"\\'")}',0.55,this)">🐢 Slow</button></div>
       <div style="margin-top:10px;font-size:14px;font-style:italic;color:var(--color-text-secondary);background:var(--color-background-secondary);border-radius:14px;padding:9px 14px">${item.text}</div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="lOptsList">${shuf.map(([oi,o],j)=>`<button class="gap-opt" id="lopt_${j}" onclick="selLOpt(${j})">${disp(o)}</button>`).join('')}</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="lOptsList">${shuf.map((o,j)=>`<button class="gap-opt" id="lopt_${j}" onclick="selLOpt(${j})">${disp(o)}</button>`).join('')}</div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
       <button class="check-btn" id="lCheckBtn" onclick="checkListen()" disabled>Check</button>
       <button class="act" onclick="lIdx++;renderListen()">Skip →</button>
@@ -837,9 +837,9 @@ function renderListen(){
 function selLOpt(j){if(lChecked)return;lSel=j;document.querySelectorAll('#lOptsList .gap-opt').forEach((el,k)=>el.classList.toggle('gsel',k===j));document.getElementById('lCheckBtn').disabled=false;}
 function checkListen(){
   if(lChecked||lSel===null)return;lChecked=true;lTotal++;
-  const item=lItems[lIdx];const co=window._lO[lSel][0];const ok=co===item.ans;if(ok)lScore++;
+  const item=lItems[lIdx];const chosen=window._lO[lSel];const ok=chosen===item.ans;if(ok)lScore++;
   document.getElementById('lCheckBtn').disabled=true;
-  document.querySelectorAll('#lOptsList .gap-opt').forEach((el,j)=>{const o=window._lO[j][0];el.classList.remove('gsel');if(o===item.ans)el.classList.add('gok');else if(j===lSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  document.querySelectorAll('#lOptsList .gap-opt').forEach((el,j)=>{const o=window._lO[j];el.classList.remove('gsel');if(o===item.ans)el.classList.add('gok');else if(j===lSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
   const fb=document.getElementById('lFb');fb.className=ok?'fb-ok':'fb-no';
   const ans=item.ans==='—'?'∅ (no article)':'"'+item.ans+'"';
   fb.textContent=(ok?'✓ Correct! ':'✗ The answer is '+ans+'. ')+item.fb;
