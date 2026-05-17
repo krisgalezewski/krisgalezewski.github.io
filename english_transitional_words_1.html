@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English transitional words & phrases</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary)}
+.w{padding:1.5rem}
+.nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
+.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nt:hover{background:var(--color-background-secondary)}
+.nt.on{color:#fff;border-color:transparent;font-weight:500}
+.n0.on{background:#534AB7}.n1.on{background:#0F6E56}.n2.on{background:#185FA5}.n3.on{background:#854F0B}.n4.on{background:#993C1D}.n5.on{background:#72243E}.n6.on{background:#3B6D11}.n7.on{background:#712B13}.n8.on{background:#2d7a6b}
+.pan{display:none}.pan.on{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:.9rem}
+.lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
+.lbl:first-child{margin-top:0}
+.tip-box{background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;font-size:13px;color:var(--color-text-secondary);display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px}
+.warn-box{background:#FAEEDA;border-radius:14px;padding:10px 14px;font-size:13px;color:#633806;display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px;border:0.5px solid #E8C080}
+.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act:hover{background:var(--color-background-secondary)}
+.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #534AB7;background:#534AB7;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn:hover{background:#3C3489}
+.check-btn:disabled{opacity:.4;cursor:default}
+.gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
+.gap-opt:hover:not(.gsel):not(.gok):not(.gbad):not(.gdim){background:var(--color-background-secondary)}
+.gap-opt.gsel{border-color:#534AB7;background:#EEEDFE;color:#3C3489;font-weight:500}
+.gap-opt.gok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:500;cursor:default;pointer-events:none}
+.gap-opt.gbad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F;cursor:default;pointer-events:none}
+.gap-opt.gdim{opacity:.38;cursor:default;pointer-events:none}
+.fb-ok{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.fb-no{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.ex-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:20px;background:#534AB7;transition:width .3s}
+.mi{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
+.mi:hover{background:var(--color-background-secondary)}
+.mi.pk{border-color:#534AB7;background:#EEEDFE;color:#3C3489}
+.mi.mt{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.mi.bd{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.piece{padding:7px 13px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;cursor:pointer;color:var(--color-text-primary);display:inline-block;margin:3px;transition:all .15s}
+.piece:hover{background:var(--color-background-secondary)}
+.piece.used{opacity:.3;cursor:default;pointer-events:none}
+.piece.sel{border-color:#534AB7;background:#EEEDFE;color:#3C3489;font-weight:500}
+.slot{display:inline-flex;align-items:center;justify-content:center;min-width:80px;padding:5px 10px;border-radius:12px;border:1.5px dashed var(--color-border-secondary);font-size:13px;margin:2px;cursor:pointer;min-height:34px;color:var(--color-text-secondary);background:var(--color-background-secondary);transition:all .15s}
+.slot.fl{border-style:solid;border-color:#AFA9EC;background:#EEEDFE;color:#3C3489}
+.slot.cs{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.slot.ws{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.slot.fx{border-style:solid;border-color:var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-secondary);cursor:default}
+.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #534AB7}
+.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
+.audio-btn:hover{background:#EEEDFE;border-color:#AFA9EC;color:#534AB7}
+.audio-btn.playing{background:#EEEDFE;border-color:#534AB7;color:#534AB7;font-weight:500}
+.acc-hdr{display:flex;align-items:center;gap:8px;padding:11px 15px;cursor:pointer;border-radius:14px;transition:all .15s}
+.acc-hdr:hover{background:var(--color-background-secondary)}
+.acc-body{display:none;padding:0 15px 14px;font-size:14px;color:var(--color-text-secondary);line-height:1.75}
+.acc-body.on{display:block}
+.sub-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
+.st{padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.st:hover{background:var(--color-background-secondary)}
+.st.on{background:#534AB7;color:#fff;border-color:#534AB7;font-weight:500}
+.spanel{display:none}.spanel.on{display:block}
+.chip{display:inline-block;font-size:12.5px;padding:3px 11px;border-radius:20px;margin:2px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);background:var(--color-background-secondary);cursor:pointer;transition:all .15s}
+.chip:hover{background:#EEEDFE;border-color:#AFA9EC;color:#3C3489}
+.chip.chi-sel{background:#EEEDFE;border-color:#534AB7;color:#3C3489;font-weight:500}
+.nuance-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.nuance-box{border-radius:14px;padding:10px 13px;font-size:13.5px;line-height:1.6}
+.eyebrow{font-size:11px;font-weight:500;color:#534AB7;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.lesson-h{font-size:26px;font-weight:500;color:var(--color-text-primary);line-height:1.25;margin-bottom:4px}
+.lesson-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:1.25rem}
+.ex-pos{background:#EAF3DE;color:#27500A;border:0.5px solid #C0DD97}
+.ex-neg{background:#FCEBEB;color:#791F1F;border:0.5px solid #F7C1C1}
+.ex-tag{font-size:10.5px;font-weight:700;display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.05em}
+@media(max-width:500px){.nuance-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<h2 class="sr-only">English transitional words and phrases — interactive lesson</h2>
+<div class="w">
+
+<div class="nav">
+  <button class="nt n0 on" onclick="showP(0)">Home</button>
+  <button class="nt n1" onclick="showP(1)">Categories</button>
+  <button class="nt n2" onclick="showP(2)">Nuance explorer</button>
+  <button class="nt n3" onclick="showP(3)">Gap fill</button>
+  <button class="nt n4" onclick="showP(4)">Matching</button>
+  <button class="nt n5" onclick="showP(5)">Common mistakes</button>
+  <button class="nt n6" onclick="showP(6)">Rewriting</button>
+  <button class="nt n7" onclick="showP(7)">Error correction</button>
+  <button class="nt n8" onclick="showP(8)">My glossary</button>
+</div>
+
+<!-- HOME -->
+<div id="p0" class="pan on">
+  <div class="eyebrow">Interactive lesson · Writing & grammar</div>
+  <div class="lesson-h">Transitional words &amp; phrases</div>
+  <div class="lesson-sub">The connectives that give your writing and speech coherence, flow, and precision</div>
+  <div class="quote-box" id="quoteBox"></div>
+  <div class="card">
+    <div class="lbl">What is a transitional word or phrase?</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">Transitional words and phrases — also called <span style="font-weight:500;color:var(--color-text-primary)">connectives</span> or <span style="font-weight:500;color:var(--color-text-primary)">discourse markers</span> — signal the logical relationship between ideas. They tell the reader or listener <em>how</em> one thought connects to the next: is the next idea a contrast, a consequence, an example, an addition? Without them, even well-formed sentences feel disconnected. With the wrong ones, meaning can become confused or misleading.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:10px">
+      <div style="background:#EEEDFE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:500;color:#3C3489">9</div><div style="font-size:12px;font-weight:500;color:#3C3489;margin-top:2px">Categories</div></div>
+      <div style="background:#EAF3DE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:500;color:#27500A">100+</div><div style="font-size:12px;font-weight:500;color:#27500A;margin-top:2px">Expressions</div></div>
+      <div style="background:#FAEEDA;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:500;color:#633806">3</div><div style="font-size:12px;font-weight:500;color:#633806;margin-top:2px">Register levels</div></div>
+      <div style="background:#FCEBEB;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:500;color:#791F1F">⚠</div><div style="font-size:12px;font-weight:500;color:#791F1F;margin-top:2px">Common mistakes</div></div>
+    </div>
+    <div class="tip-box"><i class="ti ti-bulb" aria-hidden="true" style="font-size:16px;flex-shrink:0;color:#534AB7"></i><span>The most important skill is not knowing <em>many</em> transitional phrases — it is knowing which one is <em>right</em> for the relationship between your ideas. Choosing "however" when you mean "therefore" doesn't just sound wrong — it changes the meaning entirely.</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px">
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(1)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-category" aria-hidden="true" style="color:#0F6E56"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Categories</div><div style="font-size:12px;color:var(--color-text-secondary)">All 9 with expressions & examples</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(2)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-zoom-in" aria-hidden="true" style="color:#185FA5"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Nuance explorer</div><div style="font-size:12px;color:var(--color-text-secondary)">Subtle differences side by side</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(3)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-writing" aria-hidden="true" style="color:#854F0B"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Gap fill</div><div style="font-size:12px;color:var(--color-text-secondary)">Choose the right connective</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(4)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-arrows-exchange" aria-hidden="true" style="color:#993C1D"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Matching</div><div style="font-size:12px;color:var(--color-text-secondary)">Match phrase to function</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(5)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-alert-triangle" aria-hidden="true" style="color:#72243E"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Common mistakes</div><div style="font-size:12px;color:var(--color-text-secondary)">Why they go wrong</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(6)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-pencil" aria-hidden="true" style="color:#3B6D11"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Rewriting</div><div style="font-size:12px;color:var(--color-text-secondary)">Replace weak connectives</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(7)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-search" aria-hidden="true" style="color:#712B13"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Error correction</div><div style="font-size:12px;color:var(--color-text-secondary)">Spot the wrong connective</div></div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<div id="p1" class="pan">
+  <div class="eyebrow">Transitional words &amp; phrases</div>
+  <div class="lesson-h">Categories</div>
+  <div class="lesson-sub">Click any category to expand it — with all key expressions, register notes, grammar rules, and examples</div>
+  <div id="catContent"></div>
+</div>
+
+<!-- NUANCE EXPLORER -->
+<div id="p2" class="pan">
+  <div class="eyebrow">Transitional words &amp; phrases</div>
+  <div class="lesson-h">Nuance explorer</div>
+  <div class="lesson-sub">Select a pair to compare — see the subtle differences that make one choice right and another wrong</div>
+  <div class="sub-tabs" id="nuanceTabs"></div>
+  <div id="nuanceContent"></div>
+</div>
+
+<!-- GAP FILL -->
+<div id="p3" class="pan">
+  <div class="eyebrow">Transitional words &amp; phrases</div>
+  <div class="lesson-h">Gap fill</div>
+  <div class="lesson-sub">Choose the transitional word or phrase that best completes each sentence — pay attention to logic, register, and grammar</div>
+  <div id="gapCont"></div>
+</div>
+
+<!-- MATCHING -->
+<div id="p4" class="pan">
+  <div class="eyebrow">Transitional words &amp; phrases</div>
+  <div class="lesson-h">Matching</div>
+  <div class="lesson-sub">Match each transitional expression to its logical function</div>
+  <div id="matchCont"></div>
+</div>
+
+<!-- COMMON MISTAKES -->
+<div id="p5" class="pan">
+  <div class="eyebrow">Transitional words &amp; phrases</div>
+  <div class="lesson-h">Common mistakes</div>
+  <div class="lesson-sub">These errors appear even at advanced level — click each one to see why it's wrong and how to fix it</div>
+  <div id="mistakeContent"></div>
+</div>
+
+<!-- REWRITING -->
+<div id="p6" class="pan">
+  <div class="eyebrow">Transitional words &amp; phrases</div>
+  <div class="lesson-h">Rewriting exercise</div>
+  <div class="lesson-sub">The underlined connective is weak, wrong, or misused — choose a better alternative from the options</div>
+  <div id="rewriteCont"></div>
+</div>
+
+<!-- ERROR CORRECTION -->
+<div id="p7" class="pan">
+  <div class="eyebrow">Transitional words &amp; phrases</div>
+  <div class="lesson-h">Error correction</div>
+  <div class="lesson-sub">One sentence uses a transitional expression incorrectly — choose the correct version</div>
+  <div id="errCont"></div>
+</div>
+
+<!-- GLOSSARY -->
+<div id="p8" class="pan">
+  <div class="eyebrow">Transitional words &amp; phrases</div>
+  <div class="lesson-h">My glossary</div>
+  <div class="lesson-sub">Transitional expressions you have saved for review — browse the Categories tab and tap Save on any word</div>
+  <div id="glossCont"></div>
+</div>
+
+</div>
+<script>
+// ── VOICE ─────────────────────────────────────────────────────
+let bVoice=null;
+function loadV(){
+  const vs=window.speechSynthesis.getVoices();if(!vs.length)return;
+  bVoice=vs.find(v=>v.lang==='en-GB'&&/female|fiona|kate|serena|moira|karen|victoria|claire/i.test(v.name))
+    ||vs.find(v=>v.lang==='en-GB'&&!/male|daniel|oliver|arthur/i.test(v.name))
+    ||vs.find(v=>v.lang==='en-GB')||vs.find(v=>v.lang.startsWith('en-GB'))||vs.find(v=>v.lang.startsWith('en'));
+}
+if(window.speechSynthesis){window.speechSynthesis.onvoiceschanged=loadV;loadV();}
+function speak(txt,rate,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();if(!bVoice)loadV();
+  const u=new SpeechSynthesisUtterance(txt);u.lang='en-GB';u.rate=rate||0.84;u.pitch=1.07;
+  if(bVoice)u.voice=bVoice;
+  if(btn){document.querySelectorAll('.audio-btn').forEach(b=>b.classList.remove('playing'));btn.classList.add('playing');u.onend=()=>btn.classList.remove('playing');}
+  window.speechSynthesis.speak(u);
+}
+
+// ── QUOTES ────────────────────────────────────────────────────
+const QUOTES=[
+  {q:'"The world is full of suffering; <em>nevertheless</em>, it is also full of the overcoming of it."',a:'Helen Keller (adapted)',t:'Concession & contrast — nevertheless'},
+  {q:'"I think, <em>therefore</em> I am."',a:'René Descartes',t:'Result / consequence — therefore'},
+  {q:'"It was the best of times; <em>it was also</em> the worst of times."',a:'Charles Dickens (adapted)',t:'Addition — also'},
+  {q:'"First, know the rules. <em>Then</em>, know when to break them."',a:'adapted proverb',t:'Sequence — then'},
+  {q:'"<em>In other words</em>, simplicity is the ultimate sophistication."',a:'adapted Leonardo da Vinci',t:'Clarification — in other words'},
+  {q:'"She was exhausted. <em>Even so</em>, she kept going."',a:'literary example',t:'Concession — even so'},
+  {q:'"<em>On the one hand</em>, we need progress. <em>On the other hand</em>, we must protect what we have."',a:'political discourse example',t:'Contrast — on the one hand… on the other hand'},
+  {q:'"He was brilliant. <em>That said</em>, brilliance alone is never enough."',a:'literary example',t:'Concession — that said'},
+  {q:'"<em>As a result</em>, the whole team had to start again from the beginning."',a:'business English example',t:'Result / consequence — as a result'},
+  {q:'"<em>For instance</em>, consider what happens when two cultures meet for the first time."',a:'academic example',t:'Example / illustration — for instance'},
+  {q:'"The evidence was clear. <em>In spite of this</em>, the jury remained divided."',a:'legal English example',t:'Concession — in spite of this'},
+  {q:'"<em>Not only</em> did she arrive late, <em>but</em> she also forgot her notes."',a:'literary example',t:'Addition — not only… but also'},
+];
+let qOrd=[...Array(QUOTES.length).keys()].sort(()=>Math.random()-.5),qI=0;
+function renderQuote(){
+  const q=QUOTES[qOrd[qI%qOrd.length]];qI++;
+  document.getElementById('quoteBox').innerHTML=`
+    <div style="font-style:italic;font-size:15px;line-height:1.8;color:var(--color-text-primary);margin-bottom:8px">${q.q}</div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span style="font-size:12px;color:var(--color-text-secondary)">— ${q.a}</span>
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${q.t}</span>
+      <button class="act" onclick="renderQuote()" style="margin-left:auto;font-size:12px;padding:4px 12px"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> New quote</button>
+    </div>`;
+}
+
+// ── CATEGORIES DATA ───────────────────────────────────────────
+const CATS=[
+  {id:'add',name:'Addition',icon:'➕',col:{bg:'#EAF3DE',tc:'#27500A',brd:'#A8D88A'},
+   desc:'Addition connectives introduce information that builds on, reinforces, or expands what has already been said. They signal that more of the same kind of information is coming.',
+   groups:[
+     {label:'Neutral / general',words:['and','also','too','as well','in addition','additionally','besides','furthermore','moreover','what is more']},
+     {label:'Emphatic / formal',words:['not only… but also','not only… but… as well','on top of that','above and beyond that','over and above this']},
+     {label:'Listing in sequence',words:['first of all','firstly','secondly','thirdly','finally','last but not least','to begin with','to start with']},
+   ],
+   grammar:'<strong>Also</strong> goes mid-sentence ("She <em>also</em> speaks French."). <strong>Furthermore / Moreover</strong> go at the start of a new sentence or clause and need a comma. <strong>Too / as well</strong> go at the end ("She speaks French, <em>too</em>.").',
+   examples:[
+     {tag:'Adding a point',s:'The report was late. <strong>Furthermore</strong>, it contained several factual errors.',audio:'The report was late. Furthermore, it contained several factual errors.'},
+     {tag:'Emphatic addition',s:'<strong>Not only</strong> did she miss the meeting, <strong>but she also</strong> failed to send an apology.',audio:'Not only did she miss the meeting, but she also failed to send an apology.'},
+     {tag:'Listing',s:'<strong>First of all</strong>, we need to agree on the budget. <strong>Secondly</strong>, we must set a timeline.',audio:'First of all, we need to agree on the budget. Secondly, we must set a timeline.'},
+   ],
+   tip:'Avoid overusing "also" — it is weak in formal writing. Prefer "furthermore" or "moreover" when adding a point that strengthens or intensifies the previous one. "Moreover" implies the new point is even more significant.'},
+
+  {id:'cont',name:'Contrast & concession',icon:'⚡',col:{bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB'},
+   desc:'Contrast connectives signal that the next idea opposes or qualifies the previous one. Concession connectives acknowledge an opposing point before continuing with the main argument.',
+   groups:[
+     {label:'Direct contrast',words:['but','however','on the other hand','in contrast','by contrast','conversely','whereas','while','unlike','instead']},
+     {label:'Concession (surprising despite)',words:['although','even though','though','despite','in spite of','nevertheless','nonetheless','even so','that said','all the same','yet','still']},
+     {label:'Limiting / qualifying',words:['however','that said','admittedly','granted','to be fair','it must be admitted that','while it is true that']},
+   ],
+   grammar:'<strong>However</strong> starts a new sentence/clause and needs a comma after it. <strong>Although / even though</strong> introduce a subordinate clause (not followed by a comma when mid-sentence). <strong>Despite / in spite of</strong> are prepositions — they need a noun or gerund, not a clause: "Despite <em>being</em> tired" ✓ not "Despite <em>she was</em> tired" ✗.',
+   examples:[
+     {tag:'Direct contrast',s:'He worked hard. <strong>However</strong>, he failed to meet the deadline.',audio:'He worked hard. However, he failed to meet the deadline.'},
+     {tag:'Concession',s:'<strong>Although</strong> the evidence was strong, the jury was not convinced.',audio:'Although the evidence was strong, the jury was not convinced.'},
+     {tag:'Despite + gerund',s:'<strong>Despite working</strong> through the night, she did not finish in time.',audio:'Despite working through the night, she did not finish in time.'},
+   ],
+   tip:'"However" and "but" both show contrast — but "however" is more formal and cannot join two clauses with a comma alone. "But" joins clauses directly. "Nevertheless" and "nonetheless" mean roughly the same thing but "nonetheless" is slightly more formal.'},
+
+  {id:'caus',name:'Cause & reason',icon:'🔍',col:{bg:'#FBEAF0',tc:'#72243E',brd:'#E8A8C8'},
+   desc:'These connectives explain why something happened or introduce the reason for a situation or action.',
+   groups:[
+     {label:'Introducing reason (clause)',words:['because','since','as','given that','seeing that','on the grounds that','inasmuch as']},
+     {label:'Introducing reason (noun/phrase)',words:['because of','due to','owing to','as a result of','on account of','in view of','thanks to']},
+     {label:'Formal / written',words:['given that','in light of','on the basis of','for this reason','for these reasons']},
+   ],
+   grammar:'<strong>Because / since / as</strong> introduce clauses. <strong>Because of / due to / owing to</strong> introduce noun phrases only. "Due to" is sometimes restricted to "caused by" contexts in formal style — "owing to" is safer as a general alternative. <strong>Since</strong> and <strong>as</strong> sound less emphatic than "because" — they suggest the reason is already known.',
+   examples:[
+     {tag:'Clause',s:'She stayed home <strong>because</strong> she was unwell.',audio:'She stayed home because she was unwell.'},
+     {tag:'Noun phrase',s:'The match was postponed <strong>due to</strong> heavy rainfall.',audio:'The match was postponed due to heavy rainfall.'},
+     {tag:'Formal',s:'<strong>In light of</strong> the new evidence, the committee reconvened.',audio:'In light of the new evidence, the committee reconvened.'},
+   ],
+   tip:'"As" and "since" as cause connectives imply the reason is already known or obvious: "As you know, the deadline is tomorrow." Using "because" makes the reason more prominent and explicit. Never say "The reason is because…" — it is redundant. Say "The reason is that…"'},
+
+  {id:'res',name:'Result & consequence',icon:'➡️',col:{bg:'#FAEEDA',tc:'#633806',brd:'#E8C080'},
+   desc:'These connectives show that what follows is the result, effect, or consequence of what preceded it.',
+   groups:[
+     {label:'Common / neutral',words:['so','therefore','thus','as a result','consequently','hence','for this reason','which means that']},
+     {label:'Formal / academic',words:['therefore','thus','hence','consequently','as a consequence','it follows that','accordingly','this led to']},
+     {label:'Informal / spoken',words:['so','that\'s why','which is why','and that\'s how']},
+   ],
+   grammar:'<strong>Therefore / thus / hence / consequently</strong> go at the start of a sentence or after a semicolon, followed by a comma. <strong>So</strong> joins clauses directly. <strong>Hence</strong> is very formal and sometimes used without "that": "Hence the problem." <strong>Thus</strong> is common in academic English and can modify an adjective: "thus making it…"',
+   examples:[
+     {tag:'Result',s:'The funding was cut. <strong>As a result</strong>, the project was cancelled.',audio:'The funding was cut. As a result, the project was cancelled.'},
+     {tag:'Formal',s:'The data was incomplete; <strong>consequently</strong>, the conclusions must be treated with caution.',audio:'The data was incomplete; consequently, the conclusions must be treated with caution.'},
+     {tag:'Informal',s:'She studied every day, <strong>so</strong> she was well prepared.',audio:'She studied every day, so she was well prepared.'},
+   ],
+   tip:'"Therefore" signals a logical conclusion; "consequently" signals a more direct practical result. "Thus" often signals a logical deduction and is very common in academic writing. Avoid starting a sentence with "So" in formal writing.'},
+
+  {id:'cond',name:'Condition & supposition',icon:'🔀',col:{bg:'#EEEDFE',tc:'#3C3489',brd:'#AFA9EC'},
+   desc:'Conditional connectives introduce a condition on which the main statement depends, or propose a hypothetical situation.',
+   groups:[
+     {label:'Real conditions',words:['if','provided that','providing that','as long as','on condition that','so long as','in the event that','should (formal inversion)']},
+     {label:'Hypothetical / unreal',words:['if','were… to','should… happen to','supposing','assuming (that)','in the hypothetical case that']},
+     {label:'Negative condition',words:['unless','if… not','but for','had it not been for','without']},
+   ],
+   grammar:'<strong>Provided that / as long as</strong> are more emphatic than "if" — they stress that the condition is essential. <strong>Unless</strong> = "if… not" — never use both: "Unless she doesn\'t come" ✗. "Should" at the start of a clause is a formal inversion: "Should you require assistance, please call us." = "If you should require…"',
+   examples:[
+     {tag:'Condition',s:'<strong>Provided that</strong> the weather holds, the event will go ahead.',audio:'Provided that the weather holds, the event will go ahead.'},
+     {tag:'Formal inversion',s:'<strong>Should</strong> you have any questions, please do not hesitate to contact us.',audio:'Should you have any questions, please do not hesitate to contact us.'},
+     {tag:'Negative',s:'<strong>Unless</strong> the report is submitted today, the deadline will be missed.',audio:'Unless the report is submitted today, the deadline will be missed.'},
+   ],
+   tip:'"Provided that" and "on condition that" are more restrictive than "if" — they imply a strict requirement. Use them when the condition is non-negotiable. Never use "unless" with a negative: "Unless you don\'t agree" is wrong — "unless" already contains the negative.'},
+
+  {id:'purp',name:'Purpose & intention',icon:'🎯',col:{bg:'#E1F5EE',tc:'#085041',brd:'#5DCAA5'},
+   desc:'Purpose connectives explain the aim, goal, or intention behind an action.',
+   groups:[
+     {label:'Common',words:['to','in order to','so as to','so that','in order that','with the aim of','with a view to','for the purpose of']},
+     {label:'Negative purpose',words:['so as not to','in order not to','to avoid','to prevent','lest (formal)']},
+     {label:'Spoken / informal',words:['to','so','so that']},
+   ],
+   grammar:'<strong>To / in order to / so as to</strong> are followed by the infinitive. <strong>So that / in order that</strong> are followed by a clause (often with "can / could / will / would / may / might"). <strong>With a view to / with the aim of</strong> are followed by a gerund (-ing form). <strong>Lest</strong> is formal/literary and is followed by should or the subjunctive.',
+   examples:[
+     {tag:'Infinitive',s:'She arrived early <strong>in order to</strong> get a good seat.',audio:'She arrived early in order to get a good seat.'},
+     {tag:'Clause',s:'He lowered his voice <strong>so that</strong> no one else could hear.',audio:'He lowered his voice so that no one else could hear.'},
+     {tag:'Gerund',s:'The company restructured <strong>with a view to</strong> increasing efficiency.',audio:'The company restructured with a view to increasing efficiency.'},
+   ],
+   tip:'"In order to" is more formal than plain "to" and is preferred in written English when the purpose needs emphasis. "So as to" is slightly more formal than "in order to" in negative contexts: "so as not to disturb" sounds more careful than "in order not to disturb".'},
+
+  {id:'illu',name:'Example & illustration',icon:'💡',col:{bg:'#EAF3DE',tc:'#27500A',brd:'#A8D88A'},
+   desc:'These connectives introduce specific examples, evidence, or illustrations that support a general claim.',
+   groups:[
+     {label:'General',words:['for example','for instance','such as','like','as an example','to illustrate','to give an example']},
+     {label:'Specifying / particularising',words:['in particular','particularly','specifically','namely','that is to say','that is (i.e.)','especially','notably','above all']},
+     {label:'Evidence-based',words:['as shown by','as demonstrated by','as evidenced by','as illustrated by','according to','based on']},
+   ],
+   grammar:'<strong>For example / for instance</strong> introduce a new sentence or clause and are followed by a comma. <strong>Such as / like</strong> are prepositions embedded mid-sentence and do not take commas in all contexts. <strong>Namely</strong> introduces a complete and exhaustive list. <strong>i.e.</strong> means "that is to say" (clarification); <strong>e.g.</strong> means "for example" (illustration) — these are often confused.',
+   examples:[
+     {tag:'General example',s:'Many European cities, <strong>for example</strong> Amsterdam and Lisbon, have invested heavily in cycling infrastructure.',audio:'Many European cities, for example Amsterdam and Lisbon, have invested heavily in cycling infrastructure.'},
+     {tag:'Specifying',s:'One skill stands out <strong>in particular</strong>: the ability to listen.',audio:'One skill stands out in particular: the ability to listen.'},
+     {tag:'Namely',s:'Only two students passed, <strong>namely</strong> Anna and James.',audio:'Only two students passed, namely Anna and James.'},
+   ],
+   tip:'"i.e." and "e.g." are not interchangeable. "e.g." (exempli gratia) = for example — use when giving one or more examples from a larger set. "i.e." (id est) = that is — use when giving a complete clarification or rephrasing. After "i.e.", no other items should be added.'},
+
+  {id:'summ',name:'Summary & conclusion',icon:'✅',col:{bg:'#FAEEDA',tc:'#633806',brd:'#E8C080'},
+   desc:'These connectives signal that what follows is a summary, conclusion, or final point drawn from the preceding discussion.',
+   groups:[
+     {label:'Summarising',words:['in summary','in brief','in short','to summarise','to sum up','in a nutshell','overall','all in all','on the whole','taken together']},
+     {label:'Concluding / drawing inference',words:['in conclusion','to conclude','finally','therefore','thus','hence','it can be concluded that','this suggests that','this demonstrates that']},
+     {label:'Restating / emphasising final point',words:['above all','most importantly','crucially','ultimately','in the final analysis','when all is said and done']},
+   ],
+   grammar:'<strong>In conclusion / in summary</strong> signal the final paragraph or statement — avoid using them mid-argument. <strong>Overall / on the whole</strong> can appear more flexibly. <strong>To sum up</strong> is slightly more informal than "in summary". Do not use "finally" to introduce a result — use it only for the last item in a list or the closing point.',
+   examples:[
+     {tag:'Summary',s:'<strong>In brief</strong>, the project failed because of poor planning and inadequate resources.',audio:'In brief, the project failed because of poor planning and inadequate resources.'},
+     {tag:'Conclusion',s:'<strong>In conclusion</strong>, the evidence strongly supports the hypothesis.',audio:'In conclusion, the evidence strongly supports the hypothesis.'},
+     {tag:'Emphasis',s:'<strong>Above all</strong>, we must remember that this affects real people\'s lives.',audio:'Above all, we must remember that this affects real people\'s lives.'},
+   ],
+   tip:'Avoid ending every piece of writing with "In conclusion, …" in a mechanical way — it can sound formulaic. Consider "Taken together, these findings suggest…" or "Ultimately, …" for more sophisticated conclusions. "In a nutshell" is informal — avoid it in academic or business writing.'},
+
+  {id:'clar',name:'Clarification & reformulation',icon:'🔄',col:{bg:'#FCEBEB',tc:'#791F1F',brd:'#F7C1C1'},
+   desc:'These connectives introduce a restatement, clarification, or alternative phrasing of something just said — helping the reader or listener understand more clearly.',
+   groups:[
+     {label:'Rephrasing / clarifying',words:['in other words','that is to say','to put it another way','to put it differently','what I mean is','what this means is','or rather','more precisely']},
+     {label:'Correcting or qualifying',words:['or rather','to be more precise','strictly speaking','to be exact','or to be more accurate','in fact','actually']},
+     {label:'Emphasising truth',words:['in fact','indeed','as a matter of fact','in reality','as it happens','it is worth noting that','it should be noted that']},
+   ],
+   grammar:'<strong>In other words</strong> restates the same idea more simply or clearly. <strong>Or rather</strong> corrects or refines what was just said: "She was disappointed — or rather, devastated." <strong>In fact / indeed</strong> introduce something true that may be surprising or more extreme than expected — not merely a restatement.',
+   examples:[
+     {tag:'Rephrasing',s:'The treatment is non-invasive. <strong>In other words</strong>, no surgery is required.',audio:'The treatment is non-invasive. In other words, no surgery is required.'},
+     {tag:'Correcting',s:'He seemed happy — <strong>or rather</strong>, he seemed to want us to think he was happy.',audio:'He seemed happy — or rather, he seemed to want us to think he was happy.'},
+     {tag:'Emphasising truth',s:'The problem is serious. <strong>In fact</strong>, it is far worse than we initially thought.',audio:'The problem is serious. In fact, it is far worse than we initially thought.'},
+   ],
+   tip:'"In fact" does not simply mean "also" or "and". It introduces something that is true and often surprising, more extreme, or contrary to expectation. Misusing it to add neutral information weakens your writing. "Indeed" is similar but more formal and more emphatically confirmatory.'},
+];
+
+let openCat=null;
+let glossary=[];
+
+function safeW(w){return w.replace(/'/g,"\\'").replace(/"/g,'&quot;');}
+
+function buildCats(){
+  document.getElementById('catContent').innerHTML=CATS.map((c,i)=>`
+    <div class="card" style="margin-bottom:.75rem;padding:0">
+      <div class="acc-hdr" onclick="toggleCat(${i})" style="border-radius:20px">
+        <span style="font-size:18px">${c.icon}</span>
+        <span style="background:${c.col.bg};color:${c.col.tc};font-size:13px;font-weight:600;padding:4px 12px;border-radius:20px;border:0.5px solid ${c.col.brd}">${c.name}</span>
+        <i class="ti ti-chevron-down" id="catarr_${i}" style="font-size:16px;color:var(--color-text-secondary);margin-left:auto;transition:transform .2s"></i>
+      </div>
+      <div class="acc-body" id="catbody_${i}" style="padding:0 15px 15px">
+        <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:10px">${c.desc}</p>
+        ${c.groups.map(g=>`
+          <div class="lbl">${g.label}</div>
+          <div style="margin-bottom:8px">${g.words.map(w=>`<span class="chip" onclick="speakChip('${safeW(w)}',this)" title="Click to hear">🔊 ${w}</span>`).join('')}</div>`).join('')}
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0 10px">
+          <span style="font-size:11px;font-weight:600;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em">Save to glossary:</span>
+          <select id="gSel_${i}" style="font-size:13px;padding:4px 9px;border-radius:10px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary)">
+            ${c.groups.flatMap(g=>g.words).map(w=>`<option value="${w.replace(/"/g,'&quot;')}">${w}</option>`).join('')}
+          </select>
+          <button class="act" id="gBtn_${i}" style="font-size:12px;padding:4px 12px" onclick="saveToGloss(${i})">🔖 Save</button>
+        </div>
+        <div class="lbl">Grammar &amp; position notes</div>
+        <div style="background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;font-size:13.5px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:10px">${c.grammar}</div>
+        <div class="lbl">Examples — click 🔊 to hear</div>
+        ${c.examples.map(e=>`
+          <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:14px;padding:9px 13px;margin-bottom:7px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap">
+              <span style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:${c.col.tc}">${e.tag}</span>
+              <button class="audio-btn" style="margin-left:auto" onclick="speak('${e.audio.replace(/'/g,"\\'")}',0.82,this)">🔊 Hear</button>
+            </div>
+            <div style="font-size:14px;color:var(--color-text-secondary);line-height:1.65;font-style:italic">${e.s}</div>
+          </div>`).join('')}
+        <div class="tip-box"><i class="ti ti-bulb" aria-hidden="true" style="font-size:16px;flex-shrink:0;color:${c.col.tc}"></i><span>${c.tip}</span></div>
+      </div>
+    </div>`).join('');
+}
+
+function toggleCat(i){
+  const b=document.getElementById('catbody_'+i),a=document.getElementById('catarr_'+i);
+  const op=b.classList.contains('on');b.classList.toggle('on',!op);a.style.transform=op?'':'rotate(180deg)';
+}
+
+function speakChip(w,el){
+  speak(w,0.82,null);
+  const orig=el.style.cssText;
+  el.style.background='#EEEDFE';el.style.borderColor='#534AB7';el.style.color='#3C3489';
+  setTimeout(()=>{el.style.background='';el.style.borderColor='';el.style.color='';},900);
+}
+
+function saveToGloss(catIdx){
+  const sel=document.getElementById('gSel_'+catIdx);
+  if(!sel)return;
+  const word=sel.value;
+  const cat=CATS[catIdx];
+  const key=catIdx+'|'+word;
+  if(!glossary.find(g=>g.key===key)){
+    glossary.push({key,word,catName:cat.name,catCol:cat.col,catIcon:cat.icon});
+    const btn=document.getElementById('gBtn_'+catIdx);
+    if(btn){const orig=btn.textContent;btn.textContent='✓ Saved!';setTimeout(()=>{btn.textContent=orig;},1300);}
+    renderGloss();
+  }
+}
+
+function removeGloss(key){
+  glossary=glossary.filter(g=>g.key!==key);
+  renderGloss();
+}
+
+function renderGloss(){
+  const cont=document.getElementById('glossCont');if(!cont)return;
+  if(!glossary.length){
+    cont.innerHTML=`<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)">
+      <i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px;color:var(--color-text-secondary)"></i>
+      <div style="margin-bottom:10px">No expressions saved yet.</div>
+      <div style="font-size:13px">Open the <button class="act" onclick="showP(1)" style="font-size:13px;padding:4px 12px">Categories</button> tab, expand any category, pick a word from the dropdown, and tap Save.</div>
+    </div>`;return;
+  }
+  cont.innerHTML=`<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">${glossary.length} expression${glossary.length===1?'':'s'} saved</div>`
+    +glossary.map(g=>`
+      <div class="card" style="margin-bottom:8px;display:flex;align-items:center;gap:12px;padding:1rem 1.25rem">
+        <div style="font-size:20px;flex-shrink:0">${g.catIcon}</div>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:15px;font-weight:500;margin-bottom:5px;color:var(--color-text-primary)">${g.word}</div>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="background:${g.catCol.bg};color:${g.catCol.tc};font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px;border:0.5px solid ${g.catCol.brd}">${g.catName}</span>
+            <button class="audio-btn" onclick="speakChip('${safeW(g.word)}',this)" style="font-size:12px">🔊 Hear</button>
+          </div>
+        </div>
+        <button class="act" style="font-size:12px;flex-shrink:0" onclick="removeGloss('${g.key.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')"><i class="ti ti-x" style="font-size:13px;vertical-align:-2px"></i></button>
+      </div>`).join('');
+}
+
+// ── NUANCE EXPLORER ───────────────────────────────────────────
+const NUANCE_PAIRS=[
+  {tab:'however vs nevertheless',
+   a:{word:'however',col:{bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB'},
+     desc:'Introduces a contrasting point. Very common in both formal and semi-formal writing. Focuses on simple opposition between two ideas.',
+     dos:['"The plan was approved. However, its implementation proved difficult."','"She tried hard. However, she didn\'t succeed."'],
+     donts:['"However she tried hard, she didn\'t succeed." ✗ — not a subordinating conjunction'],
+     note:'Cannot join two clauses directly. Must come at the start of a new sentence or after a semicolon, followed by a comma.'},
+   b:{word:'nevertheless',col:{bg:'#EEEDFE',tc:'#3C3489',brd:'#AFA9EC'},
+     desc:'Signals that something is true despite a significant obstacle or opposing fact. Slightly more emphatic and formal than "however" — implies the contrast is striking or unexpected.',
+     dos:['"The evidence was overwhelming. Nevertheless, the jury acquitted him."','"It was raining heavily. Nevertheless, they pressed on."'],
+     donts:['"The plan is good, nevertheless it has flaws." ✗ — needs semicolon or new sentence'],
+     note:'Interchangeable with "nonetheless" in most contexts. "Nonetheless" is very slightly more formal.'},
+   quiz:{q:'Which fits best? "The surgery was risky. ___, she decided to go ahead."',ans:'nevertheless',opts:['however','nevertheless'],fb:'"Nevertheless" is the stronger choice here — the risk was significant, making her decision all the more striking. "However" would also be grammatically correct but less emphatic.'}},
+
+  {tab:'although vs despite',
+   a:{word:'although',col:{bg:'#EAF3DE',tc:'#27500A',brd:'#A8D88A'},
+     desc:'A subordinating conjunction that introduces a concessive clause. The clause it introduces has a subject and a finite verb.',
+     dos:['"Although it was raining, they played on."','"She succeeded, although the odds were against her."'],
+     donts:['"Although the rain, they played on." ✗ — "although" needs a full clause, not a noun phrase'],
+     note:'Can come before or after the main clause. When it comes first, a comma separates the two clauses.'},
+   b:{word:'despite',col:{bg:'#FAEEDA',tc:'#633806',brd:'#E8C080'},
+     desc:'A preposition — it is followed by a noun phrase or gerund, never a full clause. Equivalent in meaning to "although" but with different grammar.',
+     dos:['"Despite the rain, they played on."','"Despite feeling exhausted, she continued."'],
+     donts:['"Despite it was raining, they played on." ✗ — "despite" cannot introduce a clause with a subject and verb'],
+     note:'Always followed by a noun, pronoun, or -ing form. "Despite the fact that" bridges this rule — it allows a full clause: "Despite the fact that it was raining…"'},
+   quiz:{q:'Which is grammatically correct? "___ working very long hours, she remained calm."',ans:'Despite',opts:['Although','Despite'],fb:'"Despite" + gerund (-ing) is correct. "Although" needs a subject: "Although she worked very long hours, she remained calm."'}},
+
+  {tab:'therefore vs consequently',
+   a:{word:'therefore',col:{bg:'#FAEEDA',tc:'#633806',brd:'#E8C080'},
+     desc:'Signals a logical conclusion or inference drawn from the previous statement. Very common in academic, legal, and formal writing. The result follows logically.',
+     dos:['"The evidence is insufficient. Therefore, we cannot proceed."','"She had no alibi; therefore, she became the prime suspect."'],
+     donts:['"Therefore she left." ✗ in formal writing — needs a comma after it'],
+     note:'Implies the result is a logical deduction. Can appear mid-sentence: "We cannot, therefore, proceed."'},
+   b:{word:'consequently',col:{bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB'},
+     desc:'Signals that what follows is a direct, often practical, outcome or effect. Slightly more cause-and-effect focused than "therefore". The result actually happened.',
+     dos:['"The pipe burst. Consequently, the entire floor was flooded."','"Staff were cut; consequently, workloads increased dramatically."'],
+     donts:['"Therefore the flood happened." — sounds odd if the connection is physical/factual rather than logical'],
+     note:'"Consequently" implies something actually followed as a chain of events. "Therefore" implies a logical conclusion you are drawing.'},
+   quiz:{q:'"Two staff members were ill. ___, the meeting was postponed."',ans:'Consequently',opts:['Therefore','Consequently'],fb:'"Consequently" fits best — the postponement is a practical, real-world outcome. "Therefore" would suggest a logical deduction, which is less natural here.'}},
+
+  {tab:'in addition vs moreover',
+   a:{word:'in addition',col:{bg:'#EAF3DE',tc:'#27500A',brd:'#A8D88A'},
+     desc:'Introduces a further point that adds to what has been said. Neutral and widely used across all registers. Does not imply the new point is more important.',
+     dos:['"The hotel has a pool. In addition, it offers free breakfast."','"In addition to the cost, we must consider the time involved."'],
+     donts:['"In addition, but the pool is closed." ✗ — do not combine with contrast connectives'],
+     note:'"In addition to" (preposition) can precede a noun or gerund: "In addition to the cost…" / "In addition to being expensive…"'},
+   b:{word:'moreover',col:{bg:'#EEEDFE',tc:'#3C3489',brd:'#AFA9EC'},
+     desc:'Adds a further point that is more important, more extreme, or more surprising than the previous one. Implies escalation. Formal register.',
+     dos:['"The plan is expensive. Moreover, it carries significant risks."','"The data is unreliable. Moreover, the methodology itself is flawed."'],
+     donts:['"The hotel has a pool. Moreover, it offers free breakfast." — no escalation — use "in addition"'],
+     note:'Use "moreover" only when the new point genuinely intensifies or escalates the previous argument. If the points are simply equal additions, "furthermore" or "in addition" is better.'},
+   quiz:{q:'"The candidate was underqualified. ___, she had lied on her application."',ans:'Moreover',opts:['In addition','Moreover'],fb:'"Moreover" is correct — lying on an application is not just another point; it is a more serious and escalating issue. "In addition" would work grammatically but would fail to convey the escalation.'}},
+
+  {tab:'for example vs namely',
+   a:{word:'for example',col:{bg:'#EAF3DE',tc:'#27500A',brd:'#A8D88A'},
+     desc:'Introduces one or more instances from a larger set to illustrate a general claim. The set is not exhausted — more examples could exist.',
+     dos:['"Many languages use tones, for example Mandarin and Vietnamese."','"Some foods are high in omega-3s, for example salmon, mackerel, and walnuts."'],
+     donts:['"The only two students who passed were, for example, Anna and James." ✗ — if the set IS exhausted, use "namely"'],
+     note:'Can be abbreviated as "e.g." in formal writing. Always followed by a comma. The list of examples is never complete — there could always be more.'},
+   b:{word:'namely',col:{bg:'#FBEAF0',tc:'#72243E',brd:'#E8A8C8'},
+     desc:'Introduces a complete, exhaustive specification of what was just mentioned. Everything in the list is included — nothing is left out.',
+     dos:['"Only two students passed, namely Anna and James."','"The committee has three members, namely the chair, the treasurer, and the secretary."'],
+     donts:['"Many languages use tones, namely Mandarin and Vietnamese." ✗ — there are many more tone languages; the list is not complete'],
+     note:'Use "namely" only when your list is complete and definitive. It should be possible to replace "namely" with "that is to say" or "specifically".'},
+   quiz:{q:'"The prize was shared by two competitors, ___ the Polish and the Spanish teams."',ans:'namely',opts:['for example','namely'],fb:'"Namely" is correct — there are exactly two competitors sharing the prize, and the list is complete and exhaustive.'}},
+
+  {tab:'because vs since vs as',
+   a:{word:'because',col:{bg:'#FBEAF0',tc:'#72243E',brd:'#E8A8C8'},
+     desc:'The most explicit and emphatic cause connective. The reason it introduces is the main focus of the clause — often new information for the reader.',
+     dos:['"She left early because she had a train to catch."','"The project failed because of poor planning."'],
+     donts:['"The reason is because she was tired." ✗ — "the reason is that…" is correct'],
+     note:'Use "because" when the reason is the most important piece of information in the sentence, or when the reader does not already know it.'},
+   b:{word:'since / as',col:{bg:'#FAEEDA',tc:'#633806',brd:'#E8C080'},
+     desc:'"Since" and "as" both introduce a reason that is assumed to be already known or obvious. They are weaker than "because" and less emphatic.',
+     dos:['"Since you\'re already here, you might as well stay for dinner."','"As the deadline has passed, late submissions will not be accepted."'],
+     donts:['"She left early as she had a train to catch." — technically correct but odd if the reason is new information; use "because" instead'],
+     note:'"Since" can also indicate time ("since 2010") — avoid ambiguity. "As" can also mean "while" — context usually clarifies. Both are more formal than "because" in written English.'},
+   quiz:{q:'"___ the report was incomplete, the committee asked for a revision."',ans:'Since',opts:['Because','Since'],fb:'Both are grammatically correct here, but "Since" is the better choice — the incompleteness is treated as a known, established fact that the committee is acting on. "Because" would make the reason sound like new or surprising information.'}},
+];
+
+let selNuance=0;
+function buildNuance(){
+  const tabs=document.getElementById('nuanceTabs');
+  tabs.innerHTML=NUANCE_PAIRS.map((p,i)=>`<button class="st${i===0?' on':''}" onclick="setNuance(${i},this)">${p.tab}</button>`).join('');
+  renderNuance(0);
+}
+function setNuance(i,el){
+  selNuance=i;document.querySelectorAll('#nuanceTabs .st').forEach(t=>t.classList.remove('on'));el.classList.add('on');
+  renderNuance(i);
+}
+function renderNuance(i){
+  const p=NUANCE_PAIRS[i];
+  const side=s=>`<div style="flex:1;min-width:0">
+    <div style="background:${s.col.bg};color:${s.col.tc};font-size:15px;font-weight:700;padding:6px 14px;border-radius:20px;display:inline-block;margin-bottom:9px;border:0.5px solid ${s.col.brd}">${s.word}</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:8px">${s.desc}</p>
+    <div class="lbl">✓ Use it when</div>
+    ${s.dos.map(d=>`<div style="background:#EAF3DE;color:#27500A;font-size:13px;border-radius:10px;padding:7px 11px;margin-bottom:5px;font-style:italic;border:0.5px solid #C0DD97">${d}</div>`).join('')}
+    <div class="lbl">✗ Avoid when</div>
+    ${s.donts.map(d=>`<div style="background:#FCEBEB;color:#791F1F;font-size:13px;border-radius:10px;padding:7px 11px;margin-bottom:5px;font-style:italic;border:0.5px solid #F7C1C1">${d}</div>`).join('')}
+    <div class="tip-box" style="margin-top:8px"><i class="ti ti-info-circle" aria-hidden="true" style="font-size:15px;flex-shrink:0;color:${s.col.tc}"></i><span>${s.note}</span></div>
+  </div>`;
+  const q=p.quiz;const qOpts=[...q.opts].sort(()=>Math.random()-.5);
+  document.getElementById('nuanceContent').innerHTML=`
+    <div class="card">
+      <div class="lbl" style="margin-top:0">Side-by-side comparison</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:1rem">${side(p.a)}${side(p.b)}</div>
+      <div style="background:var(--color-background-secondary);border-radius:14px;padding:1rem 1.2rem">
+        <div class="lbl" style="margin-top:0">Quick quiz — which is correct here?</div>
+        <div style="font-size:15px;font-style:italic;margin-bottom:10px;color:var(--color-text-primary)">${q.q}</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px" id="nqOpts">${qOpts.map((o,j)=>`<button class="gap-opt" id="nqo_${j}" onclick="checkNQ(${j},'${o}','${q.ans}')" style="width:auto;padding:8px 18px;flex:0 0 auto">${o}</button>`).join('')}</div>
+        <div id="nqFb" style="font-size:13px;min-height:14px"></div>
+      </div>
+    </div>`;
+}
+function checkNQ(j,chosen,ans){
+  const ok=chosen===ans;
+  document.querySelectorAll('#nqOpts .gap-opt').forEach((el,k)=>{el.classList.remove('gsel');const w=el.textContent.trim();if(w===ans)el.classList.add('gok');else if(k===j&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const fb=document.getElementById('nqFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ Not quite. ')+NUANCE_PAIRS[selNuance].quiz.fb;
+}
+
+// ── GAP FILL ─────────────────────────────────────────────────
+const GAP=[
+  {s:'The project ran over budget; ___, it was delivered three months late.',blank:'furthermore',opts:['furthermore','however','therefore','despite'],type:'Addition — escalation',fb:'"Furthermore" adds a point that escalates the problem (late AND over budget). "Therefore" would imply the lateness caused the budget problem, which reverses the logic.'},
+  {s:'She had studied the subject for years. ___, she made several basic mistakes.',blank:'Nevertheless',opts:['Nevertheless','Therefore','Furthermore','As a result'],type:'Concession — surprising contrast',fb:'"Nevertheless" signals that despite the years of study, mistakes still happened — a surprising and emphatic contrast. "Therefore" would mean the opposite.'},
+  {s:'The medicine must be taken with food ___ avoid stomach irritation.',blank:'so as to',opts:['so as to','despite','in order that','because of'],type:'Purpose — infinitive',fb:'"So as to" + infinitive expresses negative purpose ("so as to avoid"). "In order that" would need a clause with a modal verb.'},
+  {s:'___ the heavy rain, the outdoor ceremony went ahead.',blank:'Despite',opts:['Despite','Although','Because','Therefore'],type:'Concession — preposition',fb:'"Despite" + noun phrase. "Although" would need a full clause: "Although it rained heavily, the ceremony went ahead."'},
+  {s:'He failed the test. ___, he was not discouraged.',blank:'Even so',opts:['Even so','As a result','Furthermore','In addition'],type:'Concession — even so',fb:'"Even so" = despite that / nevertheless. It signals he persisted despite failing. "As a result" would mean failure caused him to be undiscouraged, which is illogical.'},
+  {s:'Many factors affect productivity — ___, sleep quality, diet, and stress levels.',blank:'for instance',opts:['for instance','namely','in other words','however'],type:'Example — partial list',fb:'"For instance" introduces a non-exhaustive list of examples. "Namely" would imply these are the only factors — but there are many more.'},
+  {s:'The deadline has been extended. ___, all teams should take advantage of the extra time.',blank:'Accordingly',opts:['Accordingly','Nevertheless','In other words','Despite'],type:'Result — formal',fb:'"Accordingly" = in response to this / therefore (formal). It signals that the extended deadline logically calls for action.'},
+  {s:'She spoke quietly ___ she wouldn\'t wake the baby.',blank:'so that',opts:['so that','in order to','because','although'],type:'Purpose — clause',fb:'"So that" introduces a purpose clause with a subject and verb. "In order to" would need an infinitive without a subject: "in order not to wake…"'},
+  {s:'The new policy has had some positive effects. ___, there have been some serious unintended consequences.',blank:'That said',opts:['That said','Furthermore','As a result','In brief'],type:'Concession — balanced argument',fb:'"That said" = having said that / however. It acknowledges the positives before introducing a qualification — very useful in balanced academic writing.'},
+  {s:'___ you require further assistance, do not hesitate to contact our support team.',blank:'Should',opts:['Should','Unless','Despite','In order that'],type:'Condition — formal inversion',fb:'"Should you require" is a formal conditional inversion (= "If you should require"). It is very common in business and formal correspondence.'},
+  {s:'The results were disappointing; ___, the team decided to continue.',blank:'nonetheless',opts:['nonetheless','consequently','for instance','in other words'],type:'Concession — nonetheless',fb:'"Nonetheless" = despite this / nevertheless. The team continued despite the disappointing results. "Consequently" would mean the disappointing results caused them to continue, which doesn\'t make sense.'},
+  {s:'The company restructured ___ reducing operating costs.',blank:'with a view to',opts:['with a view to','so that','despite','in order that'],type:'Purpose — gerund',fb:'"With a view to" + gerund (-ing). It expresses strategic purpose. "So that" and "in order that" need a clause with a subject.'},
+  {s:'Two candidates were shortlisted, ___ Dr Chen and Professor Malik.',blank:'namely',opts:['namely','for instance','such as','in brief'],type:'Example — exhaustive list',fb:'"Namely" introduces a complete and definitive list. There are exactly two candidates and both are named. "For instance" would imply there are more candidates not named.'},
+  {s:'The economy grew rapidly. ___, inequality also increased.',blank:'However',opts:['However','Therefore','In addition','Since'],type:'Contrast',fb:'"However" signals that the rising inequality contrasts with — and qualifies — the positive news about growth. "In addition" would make it sound like a further positive.'},
+  {s:'She worked through the night, ___ she was able to submit the report on time.',blank:'and as a result',opts:['and as a result','although','in spite of this','that said'],type:'Result',fb:'"As a result" signals that working through the night caused the on-time submission. The other options all imply contrast or concession, which would reverse the logic.'},
+  {s:'The data is unclear. ___, we cannot draw any firm conclusions at this stage.',blank:'Therefore',opts:['Therefore','Nevertheless','In addition','Despite'],type:'Conclusion / logical inference',fb:'"Therefore" signals a logical conclusion drawn from the evidence. The unclear data logically means we cannot conclude anything firm.'},
+  {s:'___ the meeting ran over time, the most important agenda items were not discussed.',blank:'As',opts:['As','Despite','Furthermore','Consequently'],type:'Cause — known reason',fb:'"As" introduces a reason treated as already known or obvious context. "Because" would also work but would make the reason sound more like new information.'},
+  {s:'The medication has side effects. ___, patients are advised to consult their doctor first.',blank:'For this reason',opts:['For this reason','In other words','Even so','In addition'],type:'Result / reason',fb:'"For this reason" = therefore / as a result. The side effects are the reason for consulting a doctor. "Even so" would mean they should consult a doctor despite the side effects, which changes the logic.'},
+];
+let gItems=[],gIdx=0,gScore=0,gTotal=0,gSel=null,gChecked=false;
+function startGap(){gItems=[...GAP].sort(()=>Math.random()-.5);gIdx=0;gScore=0;gTotal=0;renderGap();}
+function renderGap(){
+  if(gIdx>=gItems.length){const pct=Math.round(gScore/gTotal*100);document.getElementById('gapCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${gScore}/${gTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=70?'Well done!':'Review the Categories and Nuance explorer tabs.'}</div><button class="act" onclick="startGap()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=gItems[gIdx];gSel=null;gChecked=false;
+  const prog=Math.round(gIdx/gItems.length*100);
+  const opts=[...item.opts].sort(()=>Math.random()-.5);window._gO=opts;
+  const sh=item.s.replace(item.blank,`<span style="display:inline-block;min-width:100px;border-bottom:2px solid #534AB7;color:#534AB7;font-weight:500;text-align:center;padding:0 4px" id="blankSpan">___</span>`);
+  document.getElementById('gapCont').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${gIdx+1}/${gItems.length} · Score: ${gScore}/${gTotal}</span>
+      <button class="act" onclick="startGap()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:9px">Choose the transitional word or phrase that best fits the logic of the sentence.</div>
+    <div style="font-size:16px;line-height:1.9;margin-bottom:14px;background:var(--color-background-secondary);border-radius:14px;padding:11px 14px;font-style:italic">${sh}</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="gOptsList">${opts.map((o,i)=>`<button class="gap-opt" id="gopt_${i}" onclick="selGOpt(${i})">${o}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" id="gCheckBtn" onclick="checkGap()" disabled>Check</button>
+      <button class="act" onclick="gIdx++;renderGap()">Skip →</button>
+    </div>
+    <div id="gFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selGOpt(i){if(gChecked)return;gSel=i;document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('gCheckBtn').disabled=false;}
+function checkGap(){
+  if(gChecked||gSel===null)return;gChecked=true;gTotal++;
+  const item=gItems[gIdx];const chosen=window._gO[gSel];const ok=chosen===item.blank;if(ok)gScore++;
+  document.getElementById('gCheckBtn').disabled=true;
+  document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>{const w=window._gO[j];el.classList.remove('gsel');if(w===item.blank)el.classList.add('gok');else if(j===gSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const sp=document.getElementById('blankSpan');if(sp){sp.textContent=item.blank;sp.style.color=ok?'#27500A':'#791F1F';sp.style.borderBottomColor=ok?'#C0DD97':'#F7C1C1';}
+  const fb=document.getElementById('gFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ The answer is "'+item.blank+'". ')+item.fb;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next question →';nxt.onclick=()=>{gIdx++;renderGap();};document.querySelector('#gapCont .card').appendChild(nxt);
+}
+
+// ── MATCHING ─────────────────────────────────────────────────
+const MATCH_SETS=[
+  {instr:'Match each transitional expression to its logical function.',
+   pairs:[
+     {left:'furthermore',right:'Adds a more important or stronger point'},
+     {left:'nevertheless',right:'Concedes an obstacle but continues with the main point'},
+     {left:'consequently',right:'Introduces a real-world outcome or effect'},
+     {left:'in other words',right:'Rephrases or clarifies what was just said'},
+     {left:'provided that',right:'Introduces a strict condition'},
+     {left:'in contrast',right:'Highlights a direct opposition between two things'},
+     {left:'namely',right:'Introduces a complete, exhaustive list or specification'},
+   ]},
+  {instr:'Match each sentence to the type of transition it contains.',
+   pairs:[
+     {left:'"The project failed. As a result, funding was withdrawn."',right:'Result / consequence'},
+     {left:'"Although the data was incomplete, the conclusions were sound."',right:'Concession'},
+     {left:'"She left early in order to catch the last train."',right:'Purpose'},
+     {left:'"He was late; moreover, he was unprepared."',right:'Escalating addition'},
+     {left:'"The report is clear, i.e. no further explanation is needed."',right:'Clarification / reformulation'},
+     {left:'"Due to the storm, the event was cancelled."',right:'Cause / reason'},
+     {left:'"In brief, the experiment was a failure."',right:'Summary / conclusion'},
+   ]},
+  {instr:'Match each pair — choose the expression that fits the logical relationship.',
+   pairs:[
+     {left:'"She was poor. ___, she was happy." (surprising contrast)',right:'Nevertheless'},
+     {left:'"It rained. ___, the match was cancelled." (direct result)',right:'As a result'},
+     {left:'"He works nights. ___, he works weekends." (stronger addition)',right:'Moreover'},
+     {left:'"___ she was ill, she came to work." (concession clause)',right:'Although'},
+     {left:'"She left ___ not to disturb anyone." (negative purpose)',right:'so as'},
+     {left:'"___ the cost, we proceeded." (concession noun phrase)',right:'Despite'},
+     {left:'"He spoke ___ everyone could hear." (purpose clause)',right:'so that'},
+   ]},
+];
+let mSet=0,mPicked=null,mMatched=[],mScore=0,mAttempts=0,mRight=[];
+function startMatch(si){
+  mSet=si!==undefined?si:mSet;const set=MATCH_SETS[mSet];mPicked=null;mMatched=[];mScore=0;mAttempts=0;
+  const rights=[...set.pairs].sort(()=>Math.random()-.5);mRight=rights;
+  document.getElementById('matchCont').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="font-size:13px;color:var(--color-text-secondary)">Round ${mSet+1}/${MATCH_SETS.length}</span>
+      ${MATCH_SETS.map((_,i)=>`<button class="act" onclick="startMatch(${i})" style="${i===mSet?'background:#EEEDFE;border-color:#AFA9EC;color:#3C3489':''}">Round ${i+1}</button>`).join('')}
+      <button class="act" onclick="startMatch(mSet)"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i></button>
+    </div>
+    <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:6px">${set.instr}</p>
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:11px">Matched: <strong id="mP">0</strong>/${set.pairs.length} · Attempts: <strong id="mA">0</strong></div>
+    <div style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:8px">
+      <div style="display:flex;flex-direction:column;gap:6px" id="mL">${set.pairs.map((p,i)=>`<button class="mi" id="ml_${i}" onclick="mPL(${i})" style="font-size:13px">${p.left}</button>`).join('')}</div>
+      <div style="display:flex;flex-direction:column;gap:6px" id="mR">${rights.map((r,i)=>`<button class="mi" id="mr_${i}" onclick="mPR(${i})" style="font-size:13px">${r.right}</button>`).join('')}</div>
+    </div>
+    <div id="mFb" style="font-size:13px;min-height:18px;margin-top:8px"></div>
+  </div>`;
+}
+function mPL(i){if(mMatched.some(m=>m.l===i))return;mPicked=i;document.querySelectorAll('#mL .mi').forEach((el,j)=>{if(!mMatched.some(m=>m.l===j))el.classList.toggle('pk',j===i);});}
+function mPR(i){
+  if(mPicked===null)return;const set=MATCH_SETS[mSet];if(mMatched.some(m=>m.r===i))return;
+  mAttempts++;document.getElementById('mA').textContent=mAttempts;
+  const ok=mRight[i].left===set.pairs[mPicked].left;
+  if(ok){['ml_'+mPicked,'mr_'+i].forEach(id=>{const el=document.getElementById(id);if(el){el.classList.remove('pk');el.classList.add('mt');}});mMatched.push({l:mPicked,r:i});mScore++;document.getElementById('mP').textContent=mScore;document.getElementById('mFb').style.color='#27500A';document.getElementById('mFb').textContent=mScore===set.pairs.length?`All ${set.pairs.length} matched in ${mAttempts} attempt${mAttempts===1?'':'s'}!`:'✓ Correct!';mPicked=null;document.querySelectorAll('#mL .mi').forEach(el=>el.classList.remove('pk'));}
+  else{['ml_'+mPicked,'mr_'+i].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.add('bd');});document.getElementById('mFb').style.color='#791F1F';document.getElementById('mFb').textContent='✗ Not a match — try again.';setTimeout(()=>{['ml_'+mPicked,'mr_'+i].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('bd');});},700);}
+}
+
+// ── COMMON MISTAKES ───────────────────────────────────────────
+const MISTAKES=[
+  {title:'"The reason is because…"',wrong:'The reason she left is because she was bored.',right:'The reason she left is that she was bored.',type:'Redundancy',exp:'"Reason" already implies cause, so adding "because" creates a logical redundancy. "The reason is that…" is always the correct form. You can also say "She left because she was bored." or "The reason for her leaving was boredom."',audio:'The reason she left is that she was bored.'},
+  {title:'"Despite she was tired…"',wrong:'Despite she was tired, she continued.',right:'Despite being tired, she continued. / Although she was tired, she continued.',type:'Grammar — despite + gerund',exp:'"Despite" is a preposition. It must be followed by a noun or gerund (-ing), never a subject + verb clause. Use "despite + gerund" or replace with "although / even though" + clause.',audio:'Despite being tired, she continued.'},
+  {title:'"However she tried hard…"',wrong:'However she tried hard, she failed.',right:'However hard she tried, she failed. / Although she tried hard, she failed.',type:'Grammar — however as adverb vs connective',exp:'When "however" means "no matter how", it functions as an adverb modifying an adjective: "however hard", "however difficult". As a discourse connective (= but), it comes at the start of a new sentence: "She tried hard. However, she failed."',audio:'However hard she tried, she failed.'},
+  {title:'"Unless you don\'t pay…"',wrong:'Unless you don\'t pay, we will cancel your subscription.',right:'Unless you pay, we will cancel your subscription.',type:'Double negative with unless',exp:'"Unless" already contains the negative — it means "if… not". Adding "don\'t" creates a double negative that reverses the intended meaning. "Unless you pay" = "If you don\'t pay". Simply remove the negative from the verb.',audio:'Unless you pay, we will cancel your subscription.'},
+  {title:'Starting a sentence with "So" in formal writing',wrong:'The data was inconclusive. So we need more research.',right:'The data was inconclusive. Therefore, further research is required.',type:'Register — informal connective in formal writing',exp:'"So" as a result connective is fine in spoken and informal English, but weak in formal written contexts. Replace with "therefore", "consequently", "as a result", or "for this reason" in academic, business, and professional writing.',audio:'The data was inconclusive. Therefore, further research is required.'},
+  {title:'"In spite of" + clause',wrong:'In spite of the project was delayed, we delivered on budget.',right:'In spite of the delay, we delivered on budget. / Although the project was delayed, we delivered on budget.',type:'Grammar — in spite of + noun',exp:'"In spite of" is a preposition phrase and must be followed by a noun or gerund, not a clause. "In spite of the fact that + clause" is possible: "In spite of the fact that the project was delayed…"',audio:'In spite of the delay, we delivered on budget.'},
+  {title:'Confusing "in addition" and "moreover"',wrong:'The hotel has a pool. Moreover, it has a gym.',right:'The hotel has a pool. In addition, it has a gym. / The hotel has a pool. Furthermore, it also has a gym.',type:'Nuance — addition vs escalation',exp:'"Moreover" implies the next point is more significant or extreme than the previous one. A gym is not more important than a pool — these are equal additions. Use "in addition", "also", or "furthermore" for equal additions.',audio:'The hotel has a pool. In addition, it has a gym.'},
+  {title:'Confusing "i.e." and "e.g."',wrong:'Many languages have tones, i.e. Mandarin and Vietnamese.',right:'Many languages have tones, e.g. Mandarin and Vietnamese.',type:'Abbreviation confusion',exp:'"i.e." (id est) = that is to say — use when restating or completely specifying. "e.g." (exempli gratia) = for example — use when giving a non-exhaustive selection. Mandarin and Vietnamese are examples from a larger set, so "e.g." is correct.',audio:'Many languages have tones, for example Mandarin and Vietnamese.'},
+  {title:'"Finally" used to mean "as a result"',wrong:'She worked hard. Finally, she was promoted.',right:'She worked hard. As a result, she was promoted. / She worked hard and was eventually promoted.',type:'Meaning confusion',exp:'"Finally" means "at last" (after a long time or at the end of a list). It does NOT mean "as a result" or "consequently". If you want to express that hard work caused a promotion, use "as a result", "consequently", or "and so".)',audio:'She worked hard. As a result, she was promoted.'},
+  {title:'Using "although" and "but" together',wrong:'Although she studied hard, but she still failed.',right:'Although she studied hard, she still failed. / She studied hard, but she still failed.',type:'Conjunction doubling',exp:'Never use "although" and "but" together in the same sentence — they both express contrast and one cancels the other out. Choose one: either the subordinate clause structure (although…) or the compound sentence structure (…but…).',audio:'Although she studied hard, she still failed.'},
+];
+
+function buildMistakes(){
+  document.getElementById('mistakeContent').innerHTML=MISTAKES.map((m,i)=>`
+    <div class="card" style="margin-bottom:.75rem;padding:0">
+      <div class="acc-hdr" onclick="toggleMistake(${i})" style="border-radius:20px">
+        <span style="background:#FCEBEB;color:#791F1F;font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;border:0.5px solid #F7C1C1">${m.type}</span>
+        <span style="font-size:14px;font-weight:500;margin-left:4px">${m.title}</span>
+        <i class="ti ti-chevron-down" id="marr_${i}" style="font-size:16px;color:var(--color-text-secondary);margin-left:auto;transition:transform .2s"></i>
+      </div>
+      <div class="acc-body" id="mbody_${i}" style="padding:0 15px 14px">
+        <div class="nuance-row">
+          <div class="nuance-box ex-neg"><span class="ex-tag">✗ Wrong</span>${m.wrong}</div>
+          <div class="nuance-box ex-pos"><span class="ex-tag">✓ Correct</span>${m.right}</div>
+        </div>
+        <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:8px">${m.exp}</p>
+        <button class="audio-btn" onclick="speak('${m.audio.replace(/'/g,"\\'")}',0.82,this)">🔊 Hear the correct version</button>
+      </div>
+    </div>`).join('');
+}
+function toggleMistake(i){
+  const b=document.getElementById('mbody_'+i),a=document.getElementById('marr_'+i);
+  const op=b.classList.contains('on');b.classList.toggle('on',!op);a.style.transform=op?'':'rotate(180deg)';
+}
+
+// ── REWRITING ─────────────────────────────────────────────────
+const REWRITE=[
+  {s:'She was <u>very tired but</u> she continued working.',prompt:'The underlined part signals contrast but reads as clumsy. Choose a more sophisticated connective.',blank:'Exhausted as she was,',opts:['Exhausted as she was,','However, she','Despite, she','Although, she'],type:'Concession — elevated register',fb:'"Exhausted as she was" is a concessive adjective inversion — a sophisticated structure meaning "although she was exhausted". It elevates the register significantly.'},
+  {s:'The results were good. <u>Also</u>, the team worked very hard.',prompt:'"Also" is weak here — the second point is more impressive than the first. Choose a stronger connective.',blank:'Moreover',opts:['Moreover','Additionally','As well','Furthermore'],type:'Addition — escalation',fb:'"Moreover" signals that the team\'s effort is an even more notable point than the good results. "Furthermore" also works here. "Additionally" and "as well" don\'t imply escalation.'},
+  {s:'<u>Because of</u> she missed the train, she arrived late.',prompt:'This sentence is grammatically wrong. Choose the correct form.',blank:'Because',opts:['Because','Due to','Owing to','As a result of'],type:'Cause — clause vs noun phrase',fb:'"Because" introduces a full clause (she missed the train). "Because of / due to / owing to / as a result of" introduce noun phrases only: "Because of her missed train…"'},
+  {s:'The company invested in training. <u>So</u>, productivity improved.',prompt:'"So" is too informal for a business report. Choose a more formal alternative.',blank:'As a result',opts:['As a result','Consequently','Therefore','Hence'],type:'Result — formal register',fb:'All four alternatives are more formal than "so". "As a result" and "consequently" focus on practical outcomes. "Therefore" suggests a logical conclusion. "Hence" is the most formal and slightly archaic.'},
+  {s:'She left without saying goodbye. This was <u>because of</u> she was angry.',prompt:'The grammar is wrong. "Because of" cannot introduce a clause.',blank:'because',opts:['because','due to the fact that','owing to','as a result of'],type:'Cause — preposition vs conjunction',fb:'"Because" introduces a clause with a subject and verb. "Due to the fact that" also works (though verbose). "Due to / owing to / as a result of" need a noun phrase.'},
+  {s:'<u>In spite of</u> he worked hard, he failed.',prompt:'This is grammatically incorrect. Fix the connective.',blank:'Although',opts:['Although','In spite of his hard work,','Despite working hard,','Even so,'],type:'Concession — grammar fix',fb:'"Although" + clause ✓. "In spite of his hard work," + main clause ✓. "Despite working hard," + main clause ✓. "In spite of" cannot directly introduce a subject + verb clause.'},
+];
+let rItems=[],rIdx=0,rScore=0,rTotal=0,rSel=null,rChecked=false;
+function startRewrite(){rItems=[...REWRITE].sort(()=>Math.random()-.5);rIdx=0;rScore=0;rTotal=0;renderRewrite();}
+function renderRewrite(){
+  if(rIdx>=rItems.length){const pct=Math.round(rScore/rTotal*100);document.getElementById('rewriteCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${rScore}/${rTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect choices!':pct>=70?'Well done!':'Review the Categories and Common mistakes tabs.'}</div><button class="act" onclick="startRewrite()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=rItems[rIdx];rSel=null;rChecked=false;
+  const prog=Math.round(rIdx/rItems.length*100);
+  const opts=[...item.opts].sort(()=>Math.random()-.5);window._rO=opts;
+  document.getElementById('rewriteCont').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${rIdx+1}/${rItems.length} · Score: ${rScore}/${rTotal}</span>
+      <button class="act" onclick="startRewrite()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:16px;font-style:italic;line-height:1.8;margin-bottom:8px;background:var(--color-background-secondary);border-radius:14px;padding:11px 14px">${item.s}</div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:12px">${item.prompt}</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="rOptsList">${opts.map((o,i)=>`<button class="gap-opt" id="ropt_${i}" onclick="selROpt(${i})">${o}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" id="rCheckBtn" onclick="checkRewrite()" disabled>Check</button>
+      <button class="act" onclick="rIdx++;renderRewrite()">Skip →</button>
+    </div>
+    <div id="rFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selROpt(i){if(rChecked)return;rSel=i;document.querySelectorAll('#rOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('rCheckBtn').disabled=false;}
+function checkRewrite(){
+  if(rChecked||rSel===null)return;rChecked=true;rTotal++;
+  const item=rItems[rIdx];const chosen=window._rO[rSel];const ok=chosen===item.blank;if(ok)rScore++;
+  document.getElementById('rCheckBtn').disabled=true;
+  document.querySelectorAll('#rOptsList .gap-opt').forEach((el,j)=>{const w=window._rO[j];el.classList.remove('gsel');if(w===item.blank)el.classList.add('gok');else if(j===rSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const fb=document.getElementById('rFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ The best choice is "'+item.blank+'". ')+item.fb;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{rIdx++;renderRewrite();};document.querySelector('#rewriteCont .card').appendChild(nxt);
+}
+
+// ── ERROR CORRECTION ─────────────────────────────────────────
+const ERR=[
+  {a:'She worked hard. Therefore, she was promoted.',b:'She worked hard. So, she was promoted.',correct:'a',type:'Register — formal vs informal',exp:'"Therefore" is appropriate in formal written English. Starting a sentence with "So," is informal and should be avoided in business and academic writing.'},
+  {a:'Despite being exhausted, she gave an excellent presentation.',b:'Despite she was exhausted, she gave an excellent presentation.',correct:'a',type:'Grammar — despite + gerund',exp:'"Despite" must be followed by a noun or gerund, never a full clause with a subject and verb. "Despite being exhausted" ✓. "Despite she was exhausted" ✗.'},
+  {a:'The reason she resigned is that she received a better offer.',b:'The reason she resigned is because she received a better offer.',correct:'a',type:'Redundancy — the reason is that',exp:'"The reason is because" is redundant — "reason" already implies cause. Always use "the reason is that…"'},
+  {a:'Although she studied hard, she still failed.',b:'Although she studied hard, but she still failed.',correct:'a',type:'Conjunction doubling',exp:'"Although" and "but" both express contrast — you cannot use both in one sentence. Choose one structure or the other.'},
+  {a:'Unless you confirm by Friday, we will cancel your reservation.',b:'Unless you don\'t confirm by Friday, we will cancel your reservation.',correct:'a',type:'Double negative with unless',exp:'"Unless" already means "if… not". Adding "don\'t" creates a double negative that reverses the meaning. Remove the negative from the verb.'},
+  {a:'Many cities have invested in cycling infrastructure, for example Amsterdam and Copenhagen.',b:'Many cities have invested in cycling infrastructure, namely Amsterdam and Copenhagen.',correct:'a',type:'Example vs exhaustive list',exp:'"For example" is correct because Amsterdam and Copenhagen are examples from a larger set — there are many other such cities. "Namely" would imply these are the only cities in the world that have done so.'},
+  {a:'The data was incomplete; consequently, the study had to be repeated.',b:'The data was incomplete, consequently the study had to be repeated.',correct:'a',type:'Punctuation — conjunctive adverb',exp:'Conjunctive adverbs (consequently, however, therefore, moreover) must be preceded by a semicolon or start a new sentence. A comma alone creates a comma splice.'},
+  {a:'She arrived early so that she could choose her seat.',b:'She arrived early so as to she could choose her seat.',correct:'a',type:'Purpose — so that vs so as to',exp:'"So that" introduces a purpose clause with a subject and verb. "So as to" is followed by a bare infinitive (no subject): "so as to choose her seat". Never mix the two forms.'},
+  {a:'In spite of the heavy rain, the match continued.',b:'In spite of it rained heavily, the match continued.',correct:'a',type:'Grammar — in spite of + noun phrase',exp:'"In spite of" is a prepositional phrase — it must be followed by a noun or gerund. "In spite of the heavy rain" ✓. To use a clause, say "In spite of the fact that it rained heavily…"'},
+  {a:'He spoke quietly so as not to wake the baby.',b:'He spoke quietly in order to not wake the baby.',correct:'a',type:'Negative purpose — so as not to',exp:'"So as not to" is the correct negative purpose structure. "In order not to" is also correct, but "in order to not" splits the infinitive awkwardly and is best avoided.'},
+  {a:'The meeting was long. Moreover, it was completely unproductive.',b:'The meeting was long. Moreover, it had a coffee break.',correct:'a',type:'Nuance — moreover requires escalation',exp:'"Moreover" should introduce a point that is more significant or extreme than the previous one. A coffee break is not more noteworthy than the meeting being long — it doesn\'t escalate. Use "also" or "in addition" for equal additions.'},
+  {a:'In conclusion, the evidence suggests that further research is needed.',b:'In conclusion, however, the evidence suggests that further research is needed.',correct:'a',type:'Connective collision',exp:'Using "in conclusion" and "however" together is contradictory — "in conclusion" closes an argument while "however" introduces a contrast or qualification. Choose one logical function for the opening of your final statement.'},
+];
+let eItems=[],eIdx=0,eScore=0,eTotal=0,eSel=null,eChecked=false;
+function startErr(){eItems=[...ERR].sort(()=>Math.random()-.5);eIdx=0;eScore=0;eTotal=0;renderErr();}
+function renderErr(){
+  if(eIdx>=eItems.length){const pct=Math.round(eScore/eTotal*100);document.getElementById('errCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${eScore}/${eTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=70?'Well done!':'Review Common mistakes and Categories.'}</div><button class="act" onclick="startErr()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=eItems[eIdx];eSel=null;eChecked=false;
+  const prog=Math.round(eIdx/eItems.length*100);
+  const opts=[{label:item.a,val:'a'},{label:item.b,val:'b'}].sort(()=>Math.random()-.5);window._eO=opts;
+  document.getElementById('errCont').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${eIdx+1}/${eItems.length} · Score: ${eScore}/${eTotal}</span>
+      <button class="act" onclick="startErr()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:12px">One sentence uses a transitional expression incorrectly — choose the <strong style="color:var(--color-text-primary)">correct</strong> version.</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px" id="eOptsList">${opts.map((o,i)=>`<button class="gap-opt" id="eopt_${i}" onclick="selEOpt(${i})" style="font-size:15px;font-style:italic">${o.label}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" id="eCheckBtn" onclick="checkErr()" disabled>Check</button>
+      <button class="act" onclick="eIdx++;renderErr()">Skip →</button>
+    </div>
+    <div id="eFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selEOpt(i){if(eChecked)return;eSel=i;document.querySelectorAll('#eOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('eCheckBtn').disabled=false;}
+function checkErr(){
+  if(eChecked||eSel===null)return;eChecked=true;eTotal++;
+  const item=eItems[eIdx];const chosen=window._eO[eSel];const ok=chosen.val===item.correct;if(ok)eScore++;
+  document.getElementById('eCheckBtn').disabled=true;
+  document.querySelectorAll('#eOptsList .gap-opt').forEach((el,j)=>{const v=window._eO[j];el.classList.remove('gsel');if(v.val===item.correct)el.classList.add('gok');else if(j===eSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const fb=document.getElementById('eFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ Not quite. ')+item.exp;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next question →';nxt.onclick=()=>{eIdx++;renderErr();};document.querySelector('#errCont .card').appendChild(nxt);
+}
+
+// ── NAV ──────────────────────────────────────────────────────
+function showP(i){
+  document.querySelectorAll('.pan').forEach((p,j)=>p.classList.toggle('on',j===i));
+  document.querySelectorAll('.nt').forEach((t,j)=>t.classList.toggle('on',j===i));
+  if(i===0)renderQuote();
+  if(i===1&&!document.getElementById('catContent').innerHTML)buildCats();
+  if(i===2&&!document.getElementById('nuanceTabs').innerHTML)buildNuance();
+  if(i===3&&!gItems.length)startGap();
+  if(i===4&&!document.getElementById('matchCont').innerHTML)startMatch(0);
+  if(i===5&&!document.getElementById('mistakeContent').innerHTML)buildMistakes();
+  if(i===6&&!rItems.length)startRewrite();
+  if(i===7&&!eItems.length)startErr();
+  if(i===8)renderGloss();
+}
+window.addEventListener('load',()=>{
+  if(window.speechSynthesis){window.speechSynthesis.getVoices();setTimeout(loadV,500);setTimeout(loadV,1500);}
+  renderQuote();
+});
+</script>
+</body>
+</html>
