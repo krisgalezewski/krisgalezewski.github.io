@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English sentences & clauses</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary)}
+.w{padding:1.5rem}
+.nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
+.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
+.nt:hover{background:var(--color-background-secondary)}
+.nt.on{color:#fff;border-color:transparent;font-weight:500}
+.n0.on{background:#534AB7}.n1.on{background:#0F6E56}.n2.on{background:#185FA5}.n3.on{background:#854F0B}.n4.on{background:#993C1D}.n5.on{background:#72243E}.n6.on{background:#3B6D11}.n7.on{background:#712B13}.n8.on{background:#2d7a6b}
+.pan{display:none}.pan.on{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+.lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
+.lbl:first-child{margin-top:0}
+.tip-box{background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;font-size:13px;color:var(--color-text-secondary);display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px}
+.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act:hover{background:var(--color-background-secondary)}
+.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #534AB7;background:#534AB7;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn:hover{background:#3C3489}
+.check-btn:disabled{opacity:.4;cursor:default}
+.gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
+.gap-opt:hover:not(.gsel):not(.gok):not(.gbad):not(.gdim){background:var(--color-background-secondary)}
+.gap-opt.gsel{border-color:#534AB7;background:#EEEDFE;color:#3C3489;font-weight:500}
+.gap-opt.gok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:500;cursor:default;pointer-events:none}
+.gap-opt.gbad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F;cursor:default;pointer-events:none}
+.gap-opt.gdim{opacity:.38;cursor:default;pointer-events:none}
+.fb-ok{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.fb-no{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.ex-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:20px;background:#534AB7;transition:width .3s}
+.mi{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
+.mi:hover{background:var(--color-background-secondary)}
+.mi.pk{border-color:#7F77DD;background:#EEEDFE;color:#3C3489}
+.mi.mt{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.mi.bd{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.piece{padding:7px 13px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;cursor:pointer;color:var(--color-text-primary);display:inline-block;margin:3px;transition:all .15s}
+.piece:hover{background:var(--color-background-secondary)}
+.piece.used{opacity:.3;cursor:default;pointer-events:none}
+.piece.sel{border-color:#534AB7;background:#EEEDFE;color:#3C3489;font-weight:500}
+.slot{display:inline-flex;align-items:center;justify-content:center;min-width:72px;padding:5px 10px;border-radius:12px;border:1.5px dashed var(--color-border-secondary);font-size:13px;margin:2px;cursor:pointer;min-height:34px;color:var(--color-text-secondary);background:var(--color-background-secondary);transition:all .15s}
+.slot.fl{border-style:solid;border-color:#AFA9EC;background:#EEEDFE;color:#3C3489}
+.slot.cs{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.slot.ws{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.slot.fx{border-style:solid;border-color:var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-secondary);cursor:default}
+.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #7F77DD}
+.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
+.audio-btn:hover{background:#EEEDFE;border-color:#AFA9EC;color:#3C3489}
+.audio-btn.playing{background:#EEEDFE;border-color:#534AB7;color:#3C3489;font-weight:500}
+.struct-row{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-bottom:10px;margin-top:6px}
+.struct-pill{display:inline-flex;align-items:center;padding:6px 13px;border-radius:20px;font-size:13.5px;font-weight:500;cursor:pointer;border:0.5px solid transparent;transition:all .15s}
+.struct-pill:hover{filter:brightness(.92)}
+.struct-pill.active{outline:2px solid #534AB7;outline-offset:2px}
+.conn-sep{font-size:14px;color:var(--color-text-secondary);padding:0 3px;align-self:center}
+.pop-box{background:var(--color-background-primary);border:0.5px solid var(--color-border-secondary);border-radius:14px;padding:10px 14px;font-size:13px;line-height:1.6;margin-top:8px;color:var(--color-text-secondary);display:none}
+.pop-box.on{display:block}
+.acc-hdr{display:flex;align-items:center;gap:8px;padding:11px 14px;cursor:pointer;transition:all .15s}
+.acc-hdr:hover{background:var(--color-background-secondary)}
+.acc-body{display:none;padding:0 14px 12px;font-size:14px;color:var(--color-text-secondary);line-height:1.7}
+.acc-body.on{display:block}
+.ov-card{border-radius:16px;padding:11px 13px;cursor:pointer;border:0.5px solid transparent;margin-bottom:8px;transition:all .15s}
+.ov-card:hover{opacity:.85}
+.eyebrow{font-size:11px;font-weight:500;color:#534AB7;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.lesson-h{font-size:26px;font-weight:500;color:var(--color-text-primary);line-height:1.25;margin-bottom:4px}
+.lesson-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:1.25rem}
+</style>
+</head>
+<body>
+<h2 class="sr-only">English sentences and clauses — interactive lesson covering all four sentence types, eight clause types, gap fill, matching, sentence builder, listening, and error correction.</h2>
+<div class="w">
+
+<div class="nav">
+  <button class="nt n0 on" onclick="showP(0)">Home</button>
+  <button class="nt n1" onclick="showP(1)">Sentence types</button>
+  <button class="nt n2" onclick="showP(2)">Clauses</button>
+  <button class="nt n3" onclick="showP(3)">Gap fill</button>
+  <button class="nt n4" onclick="showP(4)">Matching</button>
+  <button class="nt n5" onclick="showP(5)">Builder</button>
+  <button class="nt n6" onclick="showP(6)">Listening</button>
+  <button class="nt n7" onclick="showP(7)">Error correction</button>
+  <button class="nt n8" onclick="showP(8)">My glossary</button>
+</div>
+
+<div id="p0" class="pan on">
+  <div class="eyebrow">Interactive lesson · Grammar</div>
+  <div class="lesson-h">English sentences &amp; clauses</div>
+  <div class="lesson-sub">Simple, compound, complex and compound-complex sentences — and all the clauses that build them</div>
+  <div class="quote-box" id="quoteBox"></div>
+  <div class="card">
+    <div class="lbl">What this lesson covers</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">Every English sentence is built from <span style="font-weight:500;color:var(--color-text-primary)">clauses</span>. Understanding how clauses combine lets you write with greater precision, variety, and sophistication. This lesson covers all four sentence structures and eight clause types used in English.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:10px">
+      <div style="background:#EEEDFE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:500;color:#3C3489">4</div><div style="font-size:12px;font-weight:500;color:#3C3489;margin-top:2px">Sentence types</div></div>
+      <div style="background:#E1F5EE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:500;color:#085041">8+</div><div style="font-size:12px;font-weight:500;color:#085041;margin-top:2px">Clause types</div></div>
+      <div style="background:#E6F1FB;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:500;color:#0C447C">2</div><div style="font-size:12px;font-weight:500;color:#0C447C;margin-top:2px">Core clause roles</div></div>
+      <div style="background:#FAEEDA;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:500;color:#633806">∞</div><div style="font-size:12px;font-weight:500;color:#633806;margin-top:2px">Combinations</div></div>
+    </div>
+    <div class="tip-box"><i class="ti ti-bulb" aria-hidden="true" style="font-size:16px;flex-shrink:0;color:#534AB7"></i><span>The key distinction in English grammar is between <span style="font-weight:500;color:var(--color-text-primary)">independent (main) clauses</span> — which can stand alone as sentences — and <span style="font-weight:500;color:var(--color-text-primary)">dependent (subordinate) clauses</span>, which cannot. Everything else builds from there.</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px">
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(1)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-layout-columns" aria-hidden="true" style="color:#0F6E56"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Sentence types</div><div style="font-size:12px;color:var(--color-text-secondary)">Simple, compound, complex</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(2)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-link" aria-hidden="true" style="color:#185FA5"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Clauses</div><div style="font-size:12px;color:var(--color-text-secondary)">All clause types explained</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(3)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-writing" aria-hidden="true" style="color:#854F0B"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Gap fill</div><div style="font-size:12px;color:var(--color-text-secondary)">Conjunctions & connectors</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(4)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-arrows-exchange" aria-hidden="true" style="color:#993C1D"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Matching</div><div style="font-size:12px;color:var(--color-text-secondary)">Sentence to type</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(5)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-puzzle" aria-hidden="true" style="color:#72243E"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Builder</div><div style="font-size:12px;color:var(--color-text-secondary)">Construct complex sentences</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(6)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-ear" aria-hidden="true" style="color:#3B6D11"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Listening</div><div style="font-size:12px;color:var(--color-text-secondary)">Identify structure by ear</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(7)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-search" aria-hidden="true" style="color:#712B13"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Error correction</div><div style="font-size:12px;color:var(--color-text-secondary)">Fix punctuation & structure</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(8)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-bookmark" aria-hidden="true" style="color:#2d7a6b"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">My glossary</div><div style="font-size:12px;color:var(--color-text-secondary)">Save types to review</div></div>
+  </div>
+</div>
+
+<div id="p1" class="pan">
+  <div class="eyebrow">Sentences &amp; clauses</div>
+  <div class="lesson-h">Sentence types</div>
+  <div class="lesson-sub">Click a card to expand — then click each highlighted part of the structure formula to learn what it means</div>
+  <div id="stContent"></div>
+</div>
+
+<div id="p2" class="pan">
+  <div class="eyebrow">Sentences &amp; clauses</div>
+  <div class="lesson-h">Clause types</div>
+  <div class="lesson-sub">Click any clause type to expand its explanation and examples</div>
+  <div id="clauseContent"></div>
+</div>
+
+<div id="p3" class="pan">
+  <div class="eyebrow">Sentences &amp; clauses</div>
+  <div class="lesson-h">Gap fill</div>
+  <div class="lesson-sub">Choose the correct conjunction, connector, or relative pronoun, then press Check</div>
+  <div id="gapCont"></div>
+</div>
+
+<div id="p4" class="pan">
+  <div class="eyebrow">Sentences &amp; clauses</div>
+  <div class="lesson-h">Matching</div>
+  <div class="lesson-sub">Match each sentence to its structural type or clause category</div>
+  <div id="matchCont"></div>
+</div>
+
+<div id="p5" class="pan">
+  <div class="eyebrow">Sentences &amp; clauses</div>
+  <div class="lesson-h">Sentence builder</div>
+  <div class="lesson-sub">Tap a tile then tap the empty slot to place it — build grammatically correct complex sentences</div>
+  <div id="builderCont"></div>
+</div>
+
+<div id="p6" class="pan">
+  <div class="eyebrow">Sentences &amp; clauses</div>
+  <div class="lesson-h">Listening exercise</div>
+  <div class="lesson-sub">Listen to each sentence and identify its structural type</div>
+  <div id="listeningCont"></div>
+</div>
+
+<div id="p7" class="pan">
+  <div class="eyebrow">Sentences &amp; clauses</div>
+  <div class="lesson-h">Error correction</div>
+  <div class="lesson-sub">One sentence has a structural or punctuation error — choose the correct version</div>
+  <div id="errCont"></div>
+</div>
+
+<div id="p8" class="pan">
+  <div class="eyebrow">Sentences &amp; clauses</div>
+  <div class="lesson-h">My glossary</div>
+  <div class="lesson-sub">Sentence types and clause types you have saved — click 🔖 Save on any card to add it here</div>
+  <div id="glossCont"></div>
+</div>
+
+</div>
+<script>
+// ── GLOSSARY ──────────────────────────────────────────────────
+let gloss=[];
+function safeQ(s){return"'"+String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;')+"'";}
+function isGlossed(type,key){return gloss.some(g=>g.k===type+'::'+key);}
+function toggleGloss(type,key,label,detail){
+  const k=type+'::'+key;
+  if(gloss.some(g=>g.k===k))gloss=gloss.filter(g=>g.k!==k);
+  else gloss.push({k,type,key,label,detail});
+  renderGloss();
+  document.querySelectorAll('[data-glosskey="'+k+'"]').forEach(btn=>{
+    btn.textContent=isGlossed(type,key)?'🔖 Saved':'🔖 Save';
+  });
+}
+function renderGloss(){
+  const cont=document.getElementById('glossCont');if(!cont)return;
+  if(!gloss.length){
+    cont.innerHTML='<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px"></i><div style="margin-bottom:8px">Nothing saved yet.</div><div style="font-size:13px">Open Sentence types or Clauses and click 🔖 Save on any card.</div></div>';
+    return;
+  }
+  const TCOL={st:{bg:'#EEEDFE',tc:'#3C3489'},cl:{bg:'#E6F1FB',tc:'#0C447C'}};
+  const TLABEL={st:'Sentence type',cl:'Clause type'};
+  cont.innerHTML='<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">'+gloss.length+' item'+(gloss.length!==1?'s':'')+' saved</div>'
+    +gloss.map(g=>{
+      const tc=TCOL[g.type]||{bg:'#EAF3DE',tc:'#27500A'};
+      return '<div class="card" style="margin-bottom:8px;padding:1rem 1.25rem">'
+        +'<div style="display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap">'
+        +'<div style="flex:1;min-width:0">'
+        +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap">'
+        +'<span style="font-size:15px;font-weight:700;color:var(--color-text-primary)">'+g.label+'</span>'
+        +'<span style="background:'+tc.bg+';color:'+tc.tc+';font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px">'+(TLABEL[g.type]||g.type)+'</span>'
+        +'<button class="audio-btn" onclick="speak('+safeQ(g.label+'. '+g.detail.replace(/<[^>]+>/g,'').substring(0,120))+',0.84,this)" style="font-size:11px;padding:3px 8px">🔊 Hear</button>'
+        +'</div>'
+        +'<div style="font-size:13px;color:var(--color-text-secondary);line-height:1.65">'+g.detail+'</div>'
+        +'</div>'
+        +'<button class="act" style="font-size:12px;flex-shrink:0" onclick="toggleGloss('+safeQ(g.type)+','+safeQ(g.key)+','+safeQ(g.label)+','+safeQ(g.detail)+')" title="Remove"><i class="ti ti-x" style="font-size:13px;vertical-align:-2px"></i></button>'
+        +'</div></div>';
+    }).join('');
+}
+
+
+function loadV(){const vs=window.speechSynthesis?window.speechSynthesis.getVoices():[];if(!vs.length)return;bVoice=vs.find(v=>v.lang==='en-GB'&&/female|fiona|kate|serena|moira|karen|victoria|claire/i.test(v.name))||vs.find(v=>v.lang==='en-GB'&&!/male|daniel|oliver|arthur/i.test(v.name))||vs.find(v=>v.lang==='en-GB')||vs.find(v=>v.lang.startsWith('en-GB'))||vs.find(v=>v.lang.startsWith('en'));}
+if(window.speechSynthesis){window.speechSynthesis.onvoiceschanged=loadV;loadV();}
+function speak(txt,rate,btn){if(!window.speechSynthesis)return;window.speechSynthesis.cancel();if(!bVoice)loadV();const u=new SpeechSynthesisUtterance(txt);u.lang='en-GB';u.rate=rate||0.84;u.pitch=1.05;if(bVoice)u.voice=bVoice;if(btn){document.querySelectorAll('.audio-btn').forEach(b=>b.classList.remove('playing'));btn.classList.add('playing');u.onend=()=>btn.classList.remove('playing');}window.speechSynthesis.speak(u);}
+
+const QUOTES=[
+  {text:'"<mark>Although the world is full of suffering</mark>, it is also full of the overcoming of it."',author:'Helen Keller',type:'Complex sentence — concessive adverbial clause',hi:'Although the world is full of suffering'},
+  {text:'"The pen is mightier than the sword, <mark>and</mark> science is more powerful than either."',author:'Edward Bulwer-Lytton (adapted)',type:'Compound sentence — coordinating conjunction "and"',hi:'and'},
+  {text:'"I think, <mark>therefore</mark> I am."',author:'René Descartes',type:'Compound sentence — conjunctive adverb',hi:'therefore'},
+  {text:'"<mark>Whoever fights monsters</mark> should see to it that he does not become one."',author:'Friedrich Nietzsche',type:'Complex sentence — nominal relative clause as subject',hi:'Whoever fights monsters'},
+  {text:'"She did not speak, <mark>nor did she move</mark>."',author:'literary example',type:'Compound sentence — negative coordination',hi:'nor did she move'},
+  {text:'"It was the best of times; it was the worst of times."',author:'Charles Dickens',type:'Compound sentence — semicolon coordination',hi:'it was the worst of times'},
+  {text:'"<mark>When she finally spoke</mark>, her voice was barely a whisper."',author:'literary example',type:'Complex sentence — temporal adverbial clause',hi:'When she finally spoke'},
+  {text:'"The man <mark>who tells no lies</mark> is the only man whose truth really matters."',author:'adapted',type:'Complex sentence — defining relative clause',hi:'who tells no lies'},
+  {text:'"He spoke <mark>as if he had seen the very face of time</mark>."',author:'literary example',type:'Complex sentence — manner adverbial clause',hi:'as if he had seen the very face of time'},
+  {text:'"<mark>Not only did she arrive late</mark>, but she also forgot her notes."',author:'literary example',type:'Compound sentence — correlative conjunction',hi:'Not only did she arrive late'},
+  {text:'"She smiled, <mark>which surprised everyone in the room</mark>."',author:'literary example',type:'Complex sentence — non-defining relative clause',hi:'which surprised everyone in the room'},
+  {text:'"The fact <mark>that he had lied</mark> troubled her more than the lie itself."',author:'literary example',type:'Complex sentence — nominal appositive that-clause',hi:'that he had lied'},
+];
+let qOrd=[...Array(QUOTES.length).keys()].sort(()=>Math.random()-.5),qI=0;
+function renderQuote(){
+  const q=QUOTES[qOrd[qI%qOrd.length]];qI++;
+  let txt=q.text.replace(/<mark>/g,'<span style="background:#EEEDFE;color:#3C3489;font-weight:500;padding:1px 6px;border-radius:6px">').replace(/<\/mark>/g,'</span>');
+  document.getElementById('quoteBox').innerHTML=`
+    <div style="font-family:var(--font-serif);font-size:15px;line-height:1.8;color:var(--color-text-primary);margin-bottom:8px">${txt}</div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span style="font-size:12px;color:var(--color-text-secondary)">— ${q.author}</span>
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${q.type}</span>
+      <button class="audio-btn" onclick="speak(${safeQ(q.text.replace(/<[^>]+>/g,'').replace(/[""]/g,'\"'))},0.84,this)" style="font-size:12px">🔊 Hear it</button>
+      <button class="act" onclick="renderQuote()" style="font-size:12px;padding:4px 12px;margin-left:auto"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> New quote</button>
+    </div>`;
+}
+
+const ST=[
+  {id:'simple',name:'Simple sentence',col:{bg:'#EEEDFE',brd:'#AFA9EC',tc:'#3C3489'},
+   formula:[
+     {text:'[ Subject ]',id:'sf_s',info:'The subject performs the action or is described by the predicate. A simple sentence can have a compound subject: "The teacher and her students worked together."'},
+     {text:'+',plain:true},
+     {text:'[ Predicate ]',id:'sf_p',info:'The predicate contains the main verb plus any objects or complements. A compound predicate has two or more verbs: "She arrived, sat down, and opened her book."'},
+   ],
+   desc:'A simple sentence contains exactly one independent (main) clause. It must have a subject and a verb. Despite the name, simple sentences can carry complex ideas and include phrases (participial, prepositional, appositive) that extend their meaning.',
+   uses:['Making direct statements','Commands and exclamations','Contrasting with longer sentences for rhythm and emphasis','Short, emphatic conclusions'],
+   signals:['No subordinating conjunctions introducing dependent clauses','No coordinating conjunctions between two full clauses','Can have compound subjects or compound predicates'],
+   examples:['The dog barked.','Exhausted after the long journey, she sat down on the nearest bench.','The teacher and her students worked through the night.'],
+   caution:'A simple sentence can feel very complex. "Having spent years researching the matter, the professor finally published her findings." — this is still one clause, despite its rich content.',
+  },
+  {id:'compound',name:'Compound sentence',col:{bg:'#E1F5EE',brd:'#5DCAA5',tc:'#085041'},
+   formula:[
+     {text:'[ Main clause ]',id:'cf_mc1',info:'A complete independent clause with its own subject and verb. It could stand alone as a sentence on its own.'},
+     {text:'+',plain:true},
+     {text:'FANBOYS / ; / conjunctive adverb',id:'cf_cj',info:'FANBOYS = For, And, Nor, But, Or, Yet, So — the seven coordinating conjunctions. Alternatively, use a semicolon alone, or a semicolon + conjunctive adverb (however, therefore, moreover, nevertheless…) + comma.'},
+     {text:'+',plain:true},
+     {text:'[ Main clause ]',id:'cf_mc2',info:'A second independent clause, grammatically equal to the first. Both clauses carry equal weight in a compound sentence — neither is subordinate to the other.'},
+   ],
+   desc:'A compound sentence joins two or more independent clauses that are grammatically equal. They are connected by a coordinating conjunction (FANBOYS), a semicolon alone, or a semicolon + conjunctive adverb + comma.',
+   uses:['Showing equal relationships between ideas','Contrasting two facts of equal weight','Adding a closely related idea','Showing result or logical consequence'],
+   signals:['For · And · Nor · But · Or · Yet · So (FANBOYS)','Semicolons between two complete clauses','However, therefore, moreover, nevertheless, furthermore (conjunctive adverbs)'],
+   examples:['She studied hard, but she still found the exam difficult.','The night was cold; the stars were extraordinary.','He missed the bus; however, he managed to find a taxi.'],
+   caution:'A comma splice — joining two independent clauses with only a comma — is one of the most common English errors: "She was tired, she went home." ✗ Fix with a conjunction, semicolon, or by making one clause subordinate.',
+  },
+  {id:'complex',name:'Complex sentence',col:{bg:'#FAEEDA',brd:'#EF9F27',tc:'#633806'},
+   formula:[
+     {text:'[ Subordinate clause ],',id:'cx_sub_first',info:'When the subordinate clause LEADS the sentence, it must be followed by a comma before the main clause. Example: "Although she was tired, she continued."'},
+     {text:'[ Main clause ]',id:'cx_mc',info:'The independent clause that anchors the sentence. The subordinate clause depends on this for its complete meaning.'},
+     {text:'OR',plain:true},
+     {text:'[ Main clause ]',id:'cx_mc2',info:'When the main clause comes first, no comma is needed before the following subordinate clause. Example: "She continued although she was tired."'},
+     {text:'[ Subordinate clause ]',id:'cx_sub_last',info:'When the subordinate clause follows the main clause, no comma is normally needed. Exception: contrast clauses (although, whereas, while) sometimes take a comma even at the end.'},
+   ],
+   desc:'A complex sentence contains one independent clause and at least one dependent (subordinate) clause. The subordinate clause performs a grammatical role: adverbial, adjectival (relative), or nominal.',
+   uses:['Showing time, cause, condition, concession, purpose','Adding relative (adjective) clauses to identify or describe nouns','Using nominal clauses as subjects or objects','Expressing nuanced logical relationships between ideas'],
+   signals:['Although, because, when, if, since, unless, whereas, while, after, before, until, so that','Who, which, that, whose, whom (relative pronouns)','What, that, whether, how, why (nominal/wh-clauses)'],
+   examples:['Although she was exhausted, she finished the report. (subordinate clause first → comma)','The book that she recommended changed my life. (defining relative)','What she said surprised everyone. (nominal subject clause)'],
+   caution:'When the subordinate clause comes before the main clause, always use a comma: "Because she was tired, she left." No comma when it follows: "She left because she was tired."',
+  },
+  {id:'cc',name:'Compound-complex sentence',col:{bg:'#FBEAF0',brd:'#ED93B1',tc:'#72243E'},
+   formula:[
+     {text:'[ Main clause ]',id:'cc_mc1',info:'The first independent clause. Could stand alone as a sentence on its own.'},
+     {text:'+',plain:true},
+     {text:'FANBOYS / ;',id:'cc_cj',info:'The coordinating conjunction or semicolon that joins the two main clauses — the "compound" component. This connects two clauses of equal weight.'},
+     {text:'+',plain:true},
+     {text:'[ Main clause ]',id:'cc_mc2',info:'The second independent clause — also complete on its own.'},
+     {text:'+',plain:true},
+     {text:'[ Subordinate clause ]',id:'cc_sub',info:'The subordinate clause creates the "complex" dimension. It is dependent on one of the main clauses and cannot stand alone as a sentence.'},
+   ],
+   desc:'A compound-complex sentence has at least two independent clauses AND at least one subordinate clause. It is the most structurally varied type, widely used in formal writing, literature, and academic prose.',
+   uses:['Academic and formal writing','Showing complex, layered logical relationships','Literary and narrative prose with varied rhythm','Balancing multiple related ideas with nuance'],
+   signals:['Both coordinating conjunctions (FANBOYS) and subordinating conjunctions present','Two or more independent clause cores with at least one dependent clause','Combination of semicolons and subordinating connectors'],
+   examples:['Although she was nervous, she gave the speech confidently, and the audience applauded.','He had studied the maps carefully, but when the moment came, he still felt lost.'],
+   caution:'Compound-complex sentences are powerful but demand care. Mix them with simple sentences to control rhythm and emphasis. Avoid piling up more than two subordinate clauses in a single sentence.',
+  },
+];
+let openST=null,curPop=null;
+function buildST(){
+  document.getElementById('stContent').innerHTML=ST.map((s,i)=>`
+    <div class="card" style="padding:0;overflow:hidden;margin-bottom:.8rem">
+      <div class="acc-hdr" style="background:${s.col.bg};border-radius:20px 20px 0 0" onclick="toggleST(${i})">
+        <span style="font-size:15px;font-weight:500;color:${s.col.tc};flex:1">${s.name}</span>
+        <i class="ti ti-chevron-down" id="starr_${i}" aria-hidden="true" style="font-size:16px;color:${s.col.tc};transition:transform .2s"></i>
+      </div>
+      <div id="stBody_${i}" style="display:none;padding:14px 16px 16px">
+        <div class="lbl">Structure — click each part to learn what it means</div>
+        <div class="struct-row" id="structRow_${i}">
+          ${s.formula.map(f=>f.plain?`<span class="conn-sep">${f.text}</span>`:`<span class="struct-pill" id="${f.id}" style="background:${s.col.bg};color:${s.col.tc};border-color:${s.col.brd}" onclick="togglePop('${f.id}',${i})">${f.text}</span>`).join('')}
+        </div>
+        <div class="pop-box" id="popBox_${i}"></div>
+        <div class="lbl">When to use it</div>
+        <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:8px">${s.desc}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px">
+          ${s.uses.map(u=>`<span style="background:${s.col.bg};color:${s.col.tc};font-size:12.5px;padding:3px 10px;border-radius:20px;border:0.5px solid ${s.col.brd}">${u}</span>`).join('')}
+        </div>
+        <div class="lbl">Key signals and connectors</div>
+        <div style="margin-bottom:10px">${s.signals.map(sg=>`<span style="font-size:12px;padding:3px 9px;border-radius:20px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);display:inline-block;margin:2px">${sg}</span>`).join('')}</div>
+        <div class="lbl">Examples</div>
+        ${s.examples.map(e=>`<div style="background:var(--color-background-secondary);border-radius:10px;padding:8px 12px;font-size:14px;font-style:italic;color:var(--color-text-secondary);margin-bottom:5px;display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap"><span style="flex:1">${e}</span><button class="audio-btn" onclick="speak(${safeQ(e)},0.82,this)" style="font-size:11px;padding:3px 8px;flex-shrink:0">🔊</button></div>`).join('')}
+        <div class="tip-box" style="margin-top:8px"><i class="ti ti-alert-circle" aria-hidden="true" style="font-size:16px;flex-shrink:0;color:${s.col.tc}"></i><span>${s.caution}</span></div>
+        <div style="margin-top:10px;text-align:right"><button class="act" data-glosskey="st::${s.id}" style="font-size:12px" onclick="toggleGloss('st',${safeQ(s.id)},${safeQ(s.name)},${safeQ(s.desc+' · Examples: '+s.examples.join(' / '))})">${'🔖 Save'}</button></div>
+      </div>
+    </div>`).join('');
+}
+function toggleST(i){
+  const body=document.getElementById('stBody_'+i),arr=document.getElementById('starr_'+i);
+  if(openST===i){body.style.display='none';arr.style.transform='';openST=null;curPop=null;}
+  else{
+    if(openST!==null){document.getElementById('stBody_'+openST).style.display='none';document.getElementById('starr_'+openST).style.transform='';}
+    body.style.display='block';arr.style.transform='rotate(180deg)';openST=i;curPop=null;
+  }
+}
+function togglePop(fid,stIdx){
+  const s=ST[stIdx];const f=s.formula.find(x=>x.id===fid);if(!f)return;
+  const box=document.getElementById('popBox_'+stIdx);
+  if(curPop===fid){box.classList.remove('on');curPop=null;document.querySelectorAll('.struct-pill').forEach(p=>p.classList.remove('active'));return;}
+  document.querySelectorAll('.struct-pill').forEach(p=>p.classList.remove('active'));
+  document.getElementById(fid)?.classList.add('active');
+  box.innerHTML=`<strong style="color:var(--color-text-primary)">${f.text}:</strong> ${f.info}`;
+  box.classList.add('on');curPop=fid;
+}
+
+const CLAUSES=[
+  {title:'Main (independent) clause',col:{bg:'#EEEDFE',tc:'#3C3489'},
+   desc:'A main clause contains a subject and a finite verb and can stand alone as a complete sentence. Every sentence must have at least one main clause.',
+   points:['Must contain a subject and a finite verb','Can stand alone as a grammatically complete sentence','Can be simple ("She slept.") or extended with many phrases and modifiers'],
+   exs:['"The cat sat on the mat." — the whole sentence is one main clause.','"She studied hard" in "She studied hard, and she passed." — one of two main clauses.']},
+  {title:'Subordinate (dependent) clause',col:{bg:'#E6F1FB',tc:'#0C447C'},
+   desc:'A subordinate clause has a subject and verb but cannot stand alone — it depends on a main clause for its meaning. Introduced by subordinating conjunctions or relative pronouns.',
+   points:['Cannot stand alone as a sentence','Always part of a complex or compound-complex sentence','Performs a grammatical role: noun, adjective (relative), or adverb (adverbial)'],
+   exs:['"Although she was tired" — needs a main clause to complete its meaning.','"that he had lied" in "The fact that he had lied troubled her." — nominal appositive clause.']},
+  {title:'Adverbial clause',col:{bg:'#E1F5EE',tc:'#085041'},
+   desc:'An adverbial clause modifies the main verb or whole main clause, expressing time, reason, condition, concession, purpose, result, manner, or comparison.',
+   points:['Introduced by: when, while, because, since, although, if, unless, so that, as if, whereas…','When it leads the sentence, use a comma after it','Expresses: Time | Cause | Condition | Concession | Purpose | Result | Manner | Comparison'],
+   exs:['"Because she was exhausted, she went straight to bed." — reason adverbial','"Although he trained daily, he never reached his potential." — concession','"She speaks as if she were a native." — manner adverbial']},
+  {title:'Relative (adjective) clause',col:{bg:'#FAEEDA',tc:'#633806'},
+   desc:'A relative clause modifies a noun or pronoun. Introduced by relative pronouns (who, whom, whose, which, that) or adverbs (where, when, why). Two types: defining and non-defining.',
+   points:['Defining: no commas; essential to identify the noun ("The man who called was a doctor.")',
+     'Non-defining: commas required; adds non-essential extra information ("My mother, who lives in Paris, visits once a year.")',
+     '"That" is only used in defining clauses; "which" is used in non-defining clauses'],
+   exs:['"The book that she wrote sold a million copies." — defining (no commas)','"London, which I visit every year, never fails to surprise me." — non-defining (commas required)','"This is the town where she grew up." — relative adverb "where"']},
+  {title:'Nominal (noun) clause',col:{bg:'#FBEAF0',tc:'#72243E'},
+   desc:'A nominal clause performs the grammatical role of a noun — it can be the subject, object, complement, or appositive. Introduced by that, whether, if, or wh-words.',
+   points:['As subject: "What he said was unexpected."','As object: "She knows that she is right."','As subject complement: "The problem is that we have no time."','As appositive: "The idea that language shapes thought is contested."'],
+   exs:['"Whether she comes is uncertain." — nominal clause as subject','"I wonder how they managed." — nominal clause as object of "wonder"','"The fact that he had lied troubled her." — nominal appositive clause']},
+  {title:'Participial phrase / clause',col:{bg:'#EAF3DE',tc:'#27500A'},
+   desc:'Uses a present (-ing) or past (-ed/-en) participle to modify a noun or the whole main clause. Not a finite clause, but functions like one — essential in complex writing.',
+   points:['Present participle (-ing): "Running to catch the bus, she dropped her bag."','Past participle (-ed/-en): "Exhausted by the journey, he fell asleep immediately."','The implied subject must match the main clause subject — otherwise it is a dangling modifier','Perfect participle (having + past participle) shows the action happened before the main clause'],
+   exs:['"Having finished her work, she allowed herself a rest." — perfect participial','"Shocked by the news, the audience fell silent." — past participial','"Smiling broadly, he greeted each guest in turn." — present participial']},
+  {title:'Infinitive clause',col:{bg:'#F1EFE8',tc:'#444441'},
+   desc:'Uses to + bare infinitive and functions as a noun, adjective, or adverb. Can have its own subject (introduced by for).',
+   points:['As noun/subject: "To understand grammar is to understand thought."','As adjective: "She had no time to waste."','As adverb of purpose: "He left early to catch the first train."','With its own subject: "It is important for everyone to contribute."'],
+   exs:['"To succeed, you must be willing to fail." — adverbial (purpose)','"The best way to learn is by doing." — adjectival infinitive','"I want you to listen carefully." — infinitive with raised subject']},
+  {title:'Appositive phrase / clause',col:{bg:'#E6F1FB',tc:'#0C447C'},
+   desc:'An appositive renames or further identifies the noun it follows. Can be a noun phrase, a that-clause, or a nominal clause. Non-essential appositives take commas; essential ones do not.',
+   points:['Non-restrictive (commas): "My sister, a doctor, lives in Edinburgh."','Restrictive (no commas): "The poet Keats died very young."','That-clause appositive follows abstract nouns: claim, fact, idea, belief, news, suggestion','Common pattern: "The idea / fact / claim / news + that + clause"'],
+   exs:['"The capital of France, Paris, is a world-class city." — noun phrase appositive','"The idea that language shapes thought is contested." — that-clause appositive','"The news that he had resigned shocked everyone." — nominal that-clause']},
+];
+let openClause=null;
+function buildClauses(){
+  document.getElementById('clauseContent').innerHTML=CLAUSES.map((c,i)=>`
+    <div class="card" style="padding:0;overflow:hidden;margin-bottom:.7rem">
+      <div class="acc-hdr" style="background:${c.col.bg};border-radius:20px 20px 0 0" onclick="toggleClause(${i})">
+        <span style="font-size:14px;font-weight:500;color:${c.col.tc};flex:1">${c.title}</span>
+        <i class="ti ti-chevron-down" id="carr_${i}" aria-hidden="true" style="font-size:15px;color:${c.col.tc};transition:transform .2s"></i>
+      </div>
+      <div class="acc-body" id="cbody_${i}" style="padding:10px 14px 14px">
+        <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:8px">${c.desc}</p>
+        <ul style="font-size:13.5px;color:var(--color-text-secondary);padding-left:1.2rem;margin-bottom:10px;line-height:1.85">${c.points.map(p=>`<li>${p}</li>`).join('')}</ul>
+        <div class="lbl">Examples</div>
+        ${c.exs.map(e=>`<div style="background:var(--color-background-secondary);border-radius:8px;padding:7px 12px;font-size:14px;color:var(--color-text-secondary);margin-bottom:5px;font-style:italic;display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap"><span style="flex:1">${e}</span><button class="audio-btn" onclick="speak(${safeQ(e.replace(/^"|"$/g,''))},0.82,this)" style="font-size:11px;padding:3px 8px;flex-shrink:0">🔊</button></div>`).join('')}
+        <div style="margin-top:10px;text-align:right"><button class="act" data-glosskey="cl::${c.title}" style="font-size:12px" onclick="toggleGloss('cl',${safeQ(c.title)},${safeQ(c.title)},${safeQ(c.desc+' · '+c.points.join(' · '))})">${'🔖 Save'}</button></div>
+      </div>
+    </div>`).join('');
+}
+function toggleClause(i){const b=document.getElementById('cbody_'+i),a=document.getElementById('carr_'+i);const on=b.classList.contains('on');b.classList.toggle('on',!on);a.style.transform=on?'':'rotate(180deg)';}
+
+const GAP_POOL=[
+  {s:'She left the party early ___ she had an early meeting.',blank:'because',opts:['although','because','whereas','despite'],type:'Adverbial — reason',fb:'"Because" introduces a reason/cause clause. "Although" introduces a concessive clause — it would require the opposite logic.'},
+  {s:'He passed the exam ___ he barely studied.',blank:'even though',opts:['so that','even though','because','whenever'],type:'Adverbial — concession',fb:'"Even though" (= although) introduces a concessive clause — the result is surprising given the circumstances.'},
+  {s:'The scientist ___ discovery changed medicine was awarded the Nobel Prize.',blank:'whose',opts:['who','which','whose','that'],type:'Relative clause — possessive',fb:'"Whose" is the possessive relative pronoun. The discovery belongs to the scientist, so we need "whose".'},
+  {s:'I wonder ___ she managed to finish the project on time.',blank:'how',opts:['that','which','how','what'],type:'Nominal clause — indirect question',fb:'"How" introduces an indirect question acting as the object of "wonder".'},
+  {s:'___ she had finished her homework, she allowed herself to watch television.',blank:'Once',opts:['Despite','Once','Whereas','So that'],type:'Adverbial — time',fb:'"Once" introduces a temporal clause meaning "as soon as / after".'},
+  {s:'The idea ___ we are alone in the universe has been increasingly challenged.',blank:'that',opts:['which','what','that','who'],type:'Nominal — appositive that-clause',fb:'"That" introduces a nominal appositive clause expanding the abstract noun "idea". "Which" would introduce a relative clause about the noun itself.'},
+  {s:'She trained daily ___ she would be ready for the competition.',blank:'so that',opts:['although','so that','whereas','despite'],type:'Adverbial — purpose',fb:'"So that" introduces a purpose clause — the training serves the goal of readiness.'},
+  {s:'The city ___ she grew up has changed beyond recognition.',blank:'where',opts:['which','that','where','what'],type:'Relative clause — place adverb',fb:'"Where" is a relative adverb modifying a place noun ("city"). "Which" would require a verb: "the city which / that she described".'},
+  {s:'"It was a difficult decision, ___ I have no regrets."',blank:'but',opts:['however','but','therefore','despite'],type:'Compound — coordinating conjunction',fb:'"But" is the coordinating conjunction (FANBOYS). "However" is a conjunctive adverb and would need a semicolon before it.'},
+  {s:'___ the rain poured down, the match continued.',blank:'Although',opts:['Because','Despite','Although','For'],type:'Adverbial — concession',fb:'"Although" introduces a concessive clause. "Despite" is a preposition and needs a noun phrase or gerund, not a full clause.'},
+  {s:'Tell me ___ you heard about this.',blank:'where',opts:['which','that','what','where'],type:'Nominal clause — wh-object',fb:'"Where" introduces an indirect question clause as the object of "tell". It asks about a place.'},
+  {s:'She works hard; ___, she succeeds.',blank:'consequently',opts:['although','consequently','despite','whereas'],type:'Compound — conjunctive adverb',fb:'"Consequently" is a conjunctive adverb showing result. It follows a semicolon and is itself followed by a comma.'},
+  {s:'___ he says matters very little at this point.',blank:'What',opts:['That','Which','What','Whether'],type:'Nominal clause — subject',fb:'"What" introduces a nominal relative clause functioning as the subject of "matters". It means "the thing that".'},
+  {s:'The report ___ she had worked so hard on was never published.',blank:'that',opts:['who','whose','that','where'],type:'Relative clause — defining',fb:'"That" is used in defining relative clauses modifying a thing. "Which" is also acceptable here. "Who" is only for people.'},
+];
+let gItems=[],gIdx=0,gScore=0,gTotal=0,gSel=null,gChecked=false;
+function startGap(){gItems=[...GAP_POOL].sort(()=>Math.random()-.5);gIdx=0;gScore=0;gTotal=0;renderGap();}
+function renderGap(){
+  if(gIdx>=gItems.length){const pct=Math.round(gScore/gTotal*100);document.getElementById('gapCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${gScore}/${gTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=70?'Well done!':'Review the clause types and try again.'}</div><button class="act" onclick="startGap()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=gItems[gIdx];gSel=null;gChecked=false;
+  const prog=Math.round(gIdx/gItems.length*100);
+  const opts=[...item.opts].sort(()=>Math.random()-.5);window._gO=opts;
+  const sh=item.s.replace(item.blank,`<span style="display:inline-block;min-width:100px;border-bottom:2px solid #7F77DD;color:#534AB7;font-weight:500;text-align:center;padding:0 4px" id="blankSpan">___</span>`);
+  document.getElementById('gapCont').innerHTML=`
+    <div class="card">
+      <div class="ex-hdr">
+        <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+        <span style="font-size:13px;color:var(--color-text-secondary)">${gIdx+1} / ${gItems.length} · Score: ${gScore}/${gTotal}</span>
+        <button class="act" onclick="startGap()" style="margin-left:auto"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+      </div>
+      <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+      <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:9px">Choose the correct connector or relative pronoun, then press Check.</div>
+      <div style="font-size:16px;line-height:1.9;margin-bottom:14px;background:var(--color-background-secondary);border-radius:12px;padding:11px 14px;font-style:italic">${sh}</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="gOptsList">
+        ${opts.map((o,i)=>`<button class="gap-opt" id="gopt_${i}" onclick="selGOpt(${i})">${o}</button>`).join('')}
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="check-btn" id="gCheckBtn" onclick="checkGap()" disabled>Check</button>
+        <button class="act" onclick="gIdx++;renderGap()">Skip →</button>
+      </div>
+      <div id="gFb" style="margin-top:0"></div>
+    </div>`;
+}
+function selGOpt(i){if(gChecked)return;gSel=i;document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('gCheckBtn').disabled=false;}
+function checkGap(){
+  if(gChecked||gSel===null)return;gChecked=true;gTotal++;
+  const item=gItems[gIdx];const chosen=window._gO[gSel];const ok=chosen===item.blank;
+  if(ok)gScore++;document.getElementById('gCheckBtn').disabled=true;
+  document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>{const w=window._gO[j];el.classList.remove('gsel');if(w===item.blank)el.classList.add('gok');else if(j===gSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const sp=document.getElementById('blankSpan');if(sp){sp.textContent=item.blank;sp.style.color=ok?'#27500A':'#791F1F';sp.style.borderBottomColor=ok?'#C0DD97':'#F7C1C1';}
+  const fb=document.getElementById('gFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ The answer is "'+item.blank+'". ')+item.fb;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next question →';nxt.onclick=()=>{gIdx++;renderGap();};document.querySelector('#gapCont .card').appendChild(nxt);
+}
+
+const MATCH_SETS=[
+  {instr:'Match each sentence to its structural type.',
+   pairs:[
+     {left:'The child laughed.',right:'Simple sentence'},
+     {left:'She worked hard, but she missed the deadline.',right:'Compound sentence'},
+     {left:'Although it was raining, they went for a walk.',right:'Complex sentence'},
+     {left:'He was tired; nevertheless, he completed the task.',right:'Compound sentence (conjunctive adverb)'},
+     {left:'Because she had studied carefully, she passed, and her parents were delighted.',right:'Compound-complex sentence'},
+     {left:'Running towards the station, he realised he had missed the train.',right:'Simple sentence (participial phrase)'},
+     {left:'What she said was completely unexpected.',right:'Complex sentence (nominal subject clause)'},
+   ]},
+  {instr:'Match each underlined clause to its clause type.',
+   pairs:[
+     {left:'"I know [that she will come]."',right:'Nominal clause (object)'},
+     {left:'"[Although he was nervous,] he spoke clearly."',right:'Adverbial clause (concession)'},
+     {left:'"The man [who called yesterday] is my uncle."',right:'Defining relative clause'},
+     {left:'"[What matters most] is honesty."',right:'Nominal clause (subject)'},
+     {left:'"She left [so that she could catch the train]."',right:'Adverbial clause (purpose)'},
+     {left:'"My brother, [who lives in Berlin,] visits every summer."',right:'Non-defining relative clause'},
+     {left:'"The city [where she was born] has changed completely."',right:'Relative clause (adverb where)'},
+   ]},
+  {instr:'Identify the grammatical role or error in each item.',
+   pairs:[
+     {left:'"Because it was late." (standalone)',right:'Fragment — subordinate clause without a main clause'},
+     {left:'"He ran, she walked." (comma only)',right:'Comma splice error'},
+     {left:'"She finished her work; she relaxed."',right:'Correct compound sentence (semicolon)'},
+     {left:'"The fact that he lied was upsetting."',right:'Nominal appositive that-clause'},
+     {left:'"Having finished the report, she submitted it."',right:'Perfect participial phrase'},
+     {left:'"To succeed, you need persistence."',right:'Infinitive clause of purpose (adverbial)'},
+     {left:'"London, which I love dearly, never bores me."',right:'Non-defining relative clause (commas required)'},
+   ]},
+];
+let mSet=0,mPicked=null,mMatched=[],mScore=0,mAttempts=0,mRight=[];
+function startMatch(si){
+  mSet=si!==undefined?si:mSet;const set=MATCH_SETS[mSet];mPicked=null;mMatched=[];mScore=0;mAttempts=0;
+  const rights=[...set.pairs].sort(()=>Math.random()-.5);mRight=rights;
+  document.getElementById('matchCont').innerHTML=`
+    <div class="card">
+      <div class="ex-hdr">
+        <span style="font-size:13px;color:var(--color-text-secondary)">Round ${mSet+1} of ${MATCH_SETS.length}</span>
+        ${MATCH_SETS.map((_,i)=>`<button class="act" onclick="startMatch(${i})" style="${i===mSet?'background:#EEEDFE;border-color:#AFA9EC;color:#3C3489':''}">Round ${i+1}</button>`).join('')}
+        <button class="act" onclick="startMatch(mSet)"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i></button>
+      </div>
+      <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:5px">${set.instr}</p>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:12px">Matched: <strong id="mP">0</strong>/${set.pairs.length} &nbsp;·&nbsp; Attempts: <strong id="mA">0</strong></div>
+      <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:8px;margin-bottom:8px">
+        <div style="display:flex;flex-direction:column;gap:6px" id="mL">${set.pairs.map((p,i)=>`<button class="mi" id="ml_${i}" onclick="mPL(${i})" style="font-size:13px">${p.left}</button>`).join('')}</div>
+        <div style="display:flex;flex-direction:column;gap:6px" id="mR">${rights.map((r,i)=>`<button class="mi" id="mr_${i}" onclick="mPR(${i})" style="font-size:13px">${r.right}</button>`).join('')}</div>
+      </div>
+      <div id="mFb" style="font-size:13px;min-height:18px"></div>
+    </div>`;
+}
+function mPL(i){if(mMatched.some(m=>m.l===i))return;mPicked=i;document.querySelectorAll('#mL .mi').forEach((el,j)=>{if(!mMatched.some(m=>m.l===j))el.classList.toggle('pk',j===i);});}
+function mPR(i){
+  if(mPicked===null)return;const set=MATCH_SETS[mSet];if(mMatched.some(m=>m.r===i))return;
+  mAttempts++;document.getElementById('mA').textContent=mAttempts;
+  const ok=mRight[i].left===set.pairs[mPicked].left;
+  if(ok){document.getElementById('ml_'+mPicked).classList.remove('pk');document.getElementById('ml_'+mPicked).classList.add('mt');document.getElementById('mr_'+i).classList.add('mt');mMatched.push({l:mPicked,r:i});mScore++;document.getElementById('mP').textContent=mScore;document.getElementById('mFb').style.color='#27500A';document.getElementById('mFb').textContent=mScore===set.pairs.length?`All ${set.pairs.length} matched in ${mAttempts} attempt${mAttempts===1?'':'s'}!`:'✓ Correct!';mPicked=null;document.querySelectorAll('#mL .mi').forEach(el=>el.classList.remove('pk'));}
+  else{document.getElementById('mr_'+i).classList.add('bd');document.getElementById('ml_'+mPicked).classList.add('bd');document.getElementById('mFb').style.color='#791F1F';document.getElementById('mFb').textContent='✗ Not a match — try again.';setTimeout(()=>{const l=document.getElementById('ml_'+mPicked),r=document.getElementById('mr_'+i);if(l)l.classList.remove('bd');if(r)r.classList.remove('bd');},700);}
+}
+
+const BUILDER_POOL=[
+  {type:'Complex sentence — concessive adverbial clause',desc:'Combine a concessive adverbial clause with a main clause.',
+   slots:['___','she was exhausted,','she continued to work.'],fixed:[1,2],blanks:{0:{ans:'Although',opts:['Although','Because','So that','When']}},
+   tiles:['Although','Because','So that','When'],
+   note:'"Although" introduces a concessive adverbial clause. The comma after the subordinate clause is essential when it leads the sentence.'},
+  {type:'Complex sentence — defining relative clause',desc:'Add the correct relative clause element to identify which scientist is meant.',
+   slots:['The scientist','___','the cure','won a Nobel Prize.'],fixed:[0,2,3],blanks:{1:{ans:'who discovered',opts:['who discovered','which discovered','whose discovered','where discovered']}},
+   tiles:['who discovered','which discovered','whose discovered','where discovered'],
+   note:'"Who" is the correct relative pronoun for a person. No commas — this is a defining relative clause (it tells us which scientist).'},
+  {type:'Compound sentence — coordinating conjunction',desc:'Join two independent clauses with the correct coordinating conjunction.',
+   slots:['She studied hard','___','she still failed.'],fixed:[0,2],blanks:{1:{ans:', yet',opts:[', yet',', so',', for','; although']}},
+   tiles:[', yet',', so',', for','; although'],
+   note:'"Yet" (= nevertheless) is the correct FANBOYS conjunction for an unexpected contrast. Note the comma before it. "Although" is a subordinating conjunction — not FANBOYS.'},
+  {type:'Complex sentence — purpose adverbial clause',desc:'Add a purpose clause to explain why she left early.',
+   slots:['She left the party early','___.'],fixed:[0],blanks:{1:{ans:'so that she could rest',opts:['so that she could rest','although she was tired','because she had left','which she could rest']}},
+   tiles:['so that she could rest','although she was tired','because she had left','which she could rest'],
+   note:'"So that" introduces a purpose clause. When the subordinate clause follows the main clause, no comma is normally needed.'},
+  {type:'Non-defining relative clause',desc:'Insert the non-defining relative clause — remember the commas on both sides!',
+   slots:['My colleague','___','has just been promoted.'],fixed:[0,2],blanks:{1:{ans:',who lives in Edinburgh,',opts:[',who lives in Edinburgh,',',which lives in Edinburgh,','who lives in Edinburgh',',that lives in Edinburgh,']}},
+   tiles:[',who lives in Edinburgh,',',which lives in Edinburgh,','who lives in Edinburgh',',that lives in Edinburgh,'],
+   note:'Non-defining relative clauses require commas on both sides. "Who" is correct for a person. "That" cannot be used in non-defining clauses.'},
+  {type:'Compound-complex sentence',desc:'Build a compound-complex sentence using the correct elements.',
+   slots:['___','he continued working,','___','his colleagues had already left.'],fixed:[1],blanks:{0:{ans:'Although it was late,',opts:['Although it was late,','Because he was late,','While he had left,','Since they came,']},3:{ans:'and',opts:['and','but','or','so']}},
+   tiles:['Although it was late,','Because he was late,','While he had left,','Since they came,','and','but','or','so'],
+   note:'"Although" introduces the subordinate clause (complex part); "and" is the coordinating conjunction joining the two main clauses (compound part).'},
+];
+let bItems=[],bIdx=0,bScore=0,bTotal=0,bSel=null,bChecked=false,bPlaced={};
+function startBuilder(){bItems=[...BUILDER_POOL].sort(()=>Math.random()-.5);bIdx=0;bScore=0;bTotal=0;renderBuilder();}
+function renderBuilder(){
+  if(bIdx>=bItems.length){const pct=Math.round(bScore/bTotal*100);document.getElementById('builderCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${bScore}/${bTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect structure!':pct>=70?'Well done!':'Review sentence types and try again.'}</div><button class="act" onclick="startBuilder()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=bItems[bIdx];bPlaced={};bSel=null;bChecked=false;
+  const prog=Math.round(bIdx/bItems.length*100);
+  const slotsHtml=item.slots.map((s,i)=>{if(item.fixed.includes(i))return`<span class="slot fx">${s}</span>`;return`<span class="slot" id="bslot_${i}" onclick="cBSlot(${i})"></span>`;}).join('<span style="color:var(--color-text-secondary);font-size:11px;padding:0 1px">▸</span>');
+  const allTiles=[...new Set(Object.values(item.blanks).flatMap(b=>b.opts))].sort(()=>Math.random()-.5);
+  window._bTiles=allTiles;
+  document.getElementById('builderCont').innerHTML=`
+    <div class="card">
+      <div class="ex-hdr">
+        <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+        <span style="font-size:13px;color:var(--color-text-secondary)">${bIdx+1} / ${bItems.length} · Score: ${bScore}/${bTotal}</span>
+        <button class="act" onclick="startBuilder()" style="margin-left:auto"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+      </div>
+      <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+      <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:8px"><strong style="color:var(--color-text-primary)">${item.desc}</strong> — tap a tile, then tap the empty slot.</div>
+      <div style="display:flex;flex-wrap:wrap;gap:3px;align-items:center;min-height:42px;padding:8px 10px;background:var(--color-background-secondary);border-radius:12px;margin-bottom:8px" id="bSlotRow">${slotsHtml}</div>
+      <div id="bFb" style="font-size:13px;min-height:14px;margin-bottom:8px"></div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px">Tile bank:</div>
+      <div id="bTileBank" style="display:flex;flex-wrap:wrap">${allTiles.map((t,i)=>`<span class="piece" id="bt_${i}" onclick="cBTile(${i})">${t}</span>`).join('')}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+        <button class="check-btn" onclick="checkBuilder()">Check</button>
+        <button class="act" onclick="clearBuilder()"><i class="ti ti-x" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Clear</button>
+        <button class="act" onclick="bIdx++;renderBuilder()">Skip →</button>
+      </div>
+    </div>`;
+}
+function cBTile(i){if(bChecked)return;document.querySelectorAll('.piece').forEach(t=>t.classList.remove('sel'));if(bSel===i){bSel=null;return;}bSel=i;document.getElementById('bt_'+i).classList.add('sel');}
+function cBSlot(s){
+  if(bChecked)return;
+  if(bSel===null){if(bPlaced[s]!==undefined){const w=bPlaced[s];delete bPlaced[s];window._bTiles.forEach((t,ti)=>{const el=document.getElementById('bt_'+ti);if(el&&el.classList.contains('used')&&t===w&&!Object.values(bPlaced).includes(t))el.classList.remove('used');});rBSlots();}return;}
+  const w=window._bTiles[bSel];if(bPlaced[s]!==undefined){const old=bPlaced[s];delete bPlaced[s];window._bTiles.forEach((t,ti)=>{const el=document.getElementById('bt_'+ti);if(el&&t===old&&el.classList.contains('used'))el.classList.remove('used');});}
+  bPlaced[s]=w;document.getElementById('bt_'+bSel).classList.add('used');document.getElementById('bt_'+bSel).classList.remove('sel');bSel=null;rBSlots();
+}
+function rBSlots(){const item=bItems[bIdx];Object.keys(item.blanks).map(Number).forEach(si=>{const el=document.getElementById('bslot_'+si);if(!el)return;if(bPlaced[si]!==undefined){el.textContent=bPlaced[si];el.className='slot fl';}else{el.textContent='';el.className='slot';}});}
+function checkBuilder(){
+  if(bChecked)return;const item=bItems[bIdx];const bks=Object.keys(item.blanks).map(Number);
+  if(bks.some(k=>bPlaced[k]===undefined)){document.getElementById('bFb').textContent='Fill all empty slots before checking.';document.getElementById('bFb').style.color='#791F1F';return;}
+  bChecked=true;bTotal++;let allOk=true;
+  bks.forEach(k=>{const el=document.getElementById('bslot_'+k);const ok=bPlaced[k]===item.blanks[k].ans;if(!ok)allOk=false;if(el)el.classList.add(ok?'cs':'ws');});
+  if(allOk)bScore++;
+  const fb=document.getElementById('bFb');fb.className=allOk?'fb-ok':'fb-no';
+  fb.innerHTML=allOk?'✓ Correct! '+item.note:'✗ Not quite. Correct: <em>'+bks.map(k=>item.blanks[k].ans).join(' / ')+'</em>. '+item.note;
+  document.querySelectorAll('#builderCont .check-btn').forEach(b=>{b.textContent='Next →';b.onclick=()=>{bIdx++;renderBuilder();};});
+}
+function clearBuilder(){if(bChecked)return;const item=bItems[bIdx];bPlaced={};bSel=null;document.querySelectorAll('.piece').forEach(el=>el.classList.remove('sel','used'));Object.keys(item.blanks).map(Number).forEach(k=>{const el=document.getElementById('bslot_'+k);if(el){el.textContent='';el.className='slot';}});document.getElementById('bFb').textContent='';}
+
+const LISTEN_POOL=[
+  {text:'Although the meeting had been scheduled for weeks, only three people turned up.',say:'Although the meeting had been scheduled for weeks, only three people turned up.',opts:['Simple sentence','Compound sentence','Complex sentence — concessive adverbial clause','Compound-complex sentence'],ans:2,fb:'Complex sentence. "Although the meeting had been scheduled for weeks" is a concessive adverbial clause; "only three people turned up" is the main clause.'},
+  {text:'She worked late every evening; consequently, she missed her children\'s bedtime.',say:"She worked late every evening; consequently, she missed her children's bedtime.",opts:['Simple sentence','Compound sentence — conjunctive adverb','Complex sentence','Fragment'],ans:1,fb:'Compound sentence. Two independent clauses joined by a semicolon + conjunctive adverb ("consequently") + comma. No subordinate clauses.'},
+  {text:'The woman who designed this building trained in Tokyo.',say:'The woman who designed this building trained in Tokyo.',opts:['Simple sentence with participial phrase','Compound sentence','Complex sentence — defining relative clause','Compound-complex sentence'],ans:2,fb:'Complex sentence. "Who designed this building" is a defining relative clause modifying "the woman". No commas — it is essential to identify which woman.'},
+  {text:'Having finished her coffee, she picked up her coat and left.',say:'Having finished her coffee, she picked up her coat and left.',opts:['Complex sentence','Simple sentence — participial phrase + compound predicate','Compound sentence','Fragment'],ans:1,fb:'Simple sentence. "Having finished her coffee" is a participial phrase (not a finite clause). The main clause has a compound predicate: "picked up her coat and left".'},
+  {text:'What she said at the meeting surprised everyone but pleased the manager.',say:'What she said at the meeting surprised everyone but pleased the manager.',opts:['Complex sentence — nominal subject clause','Simple sentence','Compound sentence','Complex sentence — adverbial clause'],ans:0,fb:'Complex sentence. "What she said at the meeting" is a nominal relative clause functioning as the subject.'},
+  {text:'He was brilliant, but he was also unreliable, so the team struggled without strong leadership.',say:'He was brilliant, but he was also unreliable, so the team struggled without strong leadership.',opts:['Simple sentence','Complex sentence','Compound sentence — three independent clauses','Compound-complex sentence'],ans:2,fb:'Compound sentence. Three independent clauses joined by "but" and "so" (both FANBOYS). No subordinate clauses are present.'},
+  {text:'Because she had not slept in two days, she made errors, and her supervisor noticed immediately.',say:'Because she had not slept in two days, she made errors, and her supervisor noticed immediately.',opts:['Complex sentence','Compound sentence','Compound-complex sentence','Simple sentence'],ans:2,fb:'Compound-complex sentence. "Because she had not slept in two days" is the subordinate adverbial clause; "she made errors" and "her supervisor noticed immediately" are two main clauses joined by "and".'},
+  {text:'The report that she submitted last Friday has already been approved.',say:'The report that she submitted last Friday has already been approved.',opts:['Simple sentence','Complex sentence — defining relative clause','Compound sentence','Compound-complex sentence'],ans:1,fb:'Complex sentence. "That she submitted last Friday" is a defining relative clause modifying "the report". No commas — the clause is essential.'},
+];
+let lItems=[],lIdx=0,lScore=0,lTotal=0,lSel=null,lChecked=false;
+function startListening(){lItems=[...LISTEN_POOL].sort(()=>Math.random()-.5);lIdx=0;lScore=0;lTotal=0;renderListening();}
+function renderListening(){
+  if(lIdx>=lItems.length){const pct=Math.round(lScore/lTotal*100);document.getElementById('listeningCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${lScore}/${lTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect ear for structure!':pct>=70?'Well done!':'Review sentence types and listen again.'}</div><button class="act" onclick="startListening()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=lItems[lIdx];lSel=null;lChecked=false;
+  const prog=Math.round(lIdx/lItems.length*100);
+  const opts=[...item.opts.entries()].sort(()=>Math.random()-.5);window._lO=opts;
+  document.getElementById('listeningCont').innerHTML=`
+    <div class="card">
+      <div class="ex-hdr">
+        <span style="font-size:13px;color:var(--color-text-secondary)">${lIdx+1} / ${lItems.length} · Score: ${lScore}/${lTotal}</span>
+        <button class="act" onclick="startListening()" style="margin-left:auto"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+      </div>
+      <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+      <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px">Listen to the sentence and identify its structural type.</div>
+      <div style="text-align:center;margin-bottom:14px">
+        <button class="audio-btn" style="font-size:14px;padding:10px 20px" onclick="speak('${item.say.replace(/'/g,"\\'")}',0.82,this)"><i class="ti ti-volume" aria-hidden="true" style="font-size:15px;vertical-align:-2px;margin-right:4px"></i>Hear the sentence</button>
+        <div style="margin-top:8px"><button class="audio-btn" onclick="speak('${item.say.replace(/'/g,"\\'")}',0.55,this)"><i class="ti ti-player-pause" aria-hidden="true" style="font-size:13px;vertical-align:-2px;margin-right:4px"></i>Slow</button></div>
+        <div style="margin-top:10px;font-size:14px;font-style:italic;color:var(--color-text-secondary);background:var(--color-background-secondary);border-radius:12px;padding:9px 14px">${item.text}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="lOptsList">
+        ${opts.map(([oi,o],j)=>`<button class="gap-opt" id="lopt_${j}" onclick="selLOpt(${j})">${o}</button>`).join('')}
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="check-btn" id="lCheckBtn" onclick="checkListening()" disabled>Check</button>
+        <button class="act" onclick="lIdx++;renderListening()">Skip →</button>
+      </div>
+      <div id="lFb" style="margin-top:0"></div>
+    </div>`;
+}
+function selLOpt(j){if(lChecked)return;lSel=j;document.querySelectorAll('#lOptsList .gap-opt').forEach((el,k)=>el.classList.toggle('gsel',k===j));document.getElementById('lCheckBtn').disabled=false;}
+function checkListening(){
+  if(lChecked||lSel===null)return;lChecked=true;lTotal++;
+  const item=lItems[lIdx];const co=window._lO[lSel][0];const ok=co===item.ans;if(ok)lScore++;
+  document.getElementById('lCheckBtn').disabled=true;
+  document.querySelectorAll('#lOptsList .gap-opt').forEach((el,j)=>{const o=window._lO[j][0];el.classList.remove('gsel');if(o===item.ans)el.classList.add('gok');else if(j===lSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const fb=document.getElementById('lFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ Not quite. ')+item.fb;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{lIdx++;renderListening();};document.querySelector('#listeningCont .card').appendChild(nxt);
+}
+
+const ERR_POOL=[
+  {a:'Because she was tired, she went to bed.',b:'Because she was tired. She went to bed.',correct:'a',type:'Fragment error',exp:'"Because she was tired." is a fragment — a subordinate clause that cannot stand alone. Always attach an adverbial clause to a main clause.'},
+  {a:'She was tired; she went to bed.',b:'She was tired, she went to bed.',correct:'a',type:'Comma splice',exp:'"She was tired, she went to bed." is a comma splice — two independent clauses joined only by a comma. Fix with a semicolon, a conjunction, or make one clause subordinate.'},
+  {a:'The man who called was my uncle.',b:'The man, who called, was my uncle.',correct:'a',type:'Relative clause punctuation',exp:'No commas — this is a defining relative clause. Commas would make it non-defining, implying "the man" is already identified from context — which changes the meaning.'},
+  {a:'My sister, who lives in Paris, visits every year.',b:'My sister who lives in Paris visits every year.',correct:'a',type:'Non-defining relative clause',exp:'Commas are required for non-defining relative clauses (non-essential information). Without commas, it sounds defining — implying you have more than one sister.'},
+  {a:'Although she studied hard, she failed the exam.',b:'Although she studied hard. She failed the exam.',correct:'a',type:'Adverbial clause fragment',exp:'"Although she studied hard." is a fragment. An adverbial clause introduced by "although" must be attached to a main clause.'},
+  {a:'He not only worked hard but also inspired others.',b:'He not only worked hard, but also inspired others.',correct:'a',type:'Correlative conjunction punctuation',exp:'No comma is needed when "not only…but also" connects parallel verb phrases. A comma is only added when connecting two independent clauses.'},
+  {a:'What matters is honesty.',b:'That matters is honesty.',correct:'a',type:'Nominal clause — wh-word vs that',exp:'"What" is correct — it functions as subject of the nominal clause AND carries the meaning "the thing that". "That matters" would need an antecedent noun.'},
+  {a:'Having finished the report, she submitted it.',b:'Having finished the report, it was submitted by her.',correct:'a',type:'Dangling modifier',exp:'In option b, "Having finished the report" has no logical subject — "it" (the report) cannot finish itself. The subject of the main clause must be the implied subject of the participial phrase.'},
+  {a:'She is the person who designed the bridge.',b:'She is the person which designed the bridge.',correct:'a',type:'Relative pronoun — who vs which',exp:'"Who" is used for people; "which" is used for things. Never use "which" to refer to a person.'},
+  {a:'The news that he had resigned shocked everyone.',b:'The news which he had resigned shocked everyone.',correct:'a',type:'Nominal appositive that-clause',exp:'Abstract nouns like "news", "fact", "idea" take "that" to introduce a nominal appositive clause. "Which" would introduce a relative clause modifying "news" as a noun.'},
+  {a:'She works hard; therefore, she succeeds.',b:'She works hard, therefore she succeeds.',correct:'a',type:'Conjunctive adverb punctuation',exp:'Conjunctive adverbs (therefore, however, moreover) must be preceded by a semicolon. A comma alone creates a comma splice.'},
+  {a:'He asked whether she would attend.',b:'He asked that whether she would attend.',correct:'a',type:'Nominal clause — indirect question',exp:'"Whether" alone introduces the indirect question as object of "asked". Adding "that" before "whether" is grammatically incorrect.'},
+];
+let eItems=[],eIdx=0,eScore=0,eTotal=0,eSel=null,eChecked=false;
+function startErr(){eItems=[...ERR_POOL].sort(()=>Math.random()-.5);eIdx=0;eScore=0;eTotal=0;renderErr();}
+function renderErr(){
+  if(eIdx>=eItems.length){const pct=Math.round(eScore/eTotal*100);document.getElementById('errCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${eScore}/${eTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=70?'Well done!':'Keep practising.'}</div><button class="act" onclick="startErr()"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=eItems[eIdx];eSel=null;eChecked=false;
+  const prog=Math.round(eIdx/eItems.length*100);
+  const opts=[{label:item.a,val:'a'},{label:item.b,val:'b'}].sort(()=>Math.random()-.5);window._eO=opts;
+  document.getElementById('errCont').innerHTML=`
+    <div class="card">
+      <div class="ex-hdr">
+        <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+        <span style="font-size:13px;color:var(--color-text-secondary)">${eIdx+1} / ${eItems.length} · Score: ${eScore}/${eTotal}</span>
+        <button class="act" onclick="startErr()" style="margin-left:auto"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+      </div>
+      <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+      <div style="font-size:15px;color:var(--color-text-secondary);margin-bottom:12px">One sentence has a structural or punctuation error. Choose the <strong style="color:var(--color-text-primary)">correct</strong> version.</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px" id="eOptsList">
+        ${opts.map((o,i)=>`<button class="gap-opt" id="eopt_${i}" onclick="selEOpt(${i})" style="font-size:15px;font-style:italic">${o.label}</button>`).join('')}
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="check-btn" id="eCheckBtn" onclick="checkErr()" disabled>Check</button>
+        <button class="act" onclick="eIdx++;renderErr()">Skip →</button>
+      </div>
+      <div id="eFb" style="margin-top:0"></div>
+    </div>`;
+}
+function selEOpt(i){if(eChecked)return;eSel=i;document.querySelectorAll('#eOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('eCheckBtn').disabled=false;}
+function checkErr(){
+  if(eChecked||eSel===null)return;eChecked=true;eTotal++;
+  const item=eItems[eIdx];const chosen=window._eO[eSel];const ok=chosen.val===item.correct;
+  if(ok)eScore++;document.getElementById('eCheckBtn').disabled=true;
+  document.querySelectorAll('#eOptsList .gap-opt').forEach((el,j)=>{const v=window._eO[j];el.classList.remove('gsel');if(v.val===item.correct)el.classList.add('gok');else if(j===eSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const fb=document.getElementById('eFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.innerHTML=(ok?'✓ Correct! ':'✗ Not quite. ')+item.exp;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next question →';nxt.onclick=()=>{eIdx++;renderErr();};document.querySelector('#errCont .card').appendChild(nxt);
+}
+
+function showP(i){
+  document.querySelectorAll('.pan').forEach((p,j)=>p.classList.toggle('on',j===i));
+  document.querySelectorAll('.nt').forEach((t,j)=>t.classList.toggle('on',j===i));
+  if(i===0)renderQuote();
+  if(i===1&&!document.getElementById('stContent').innerHTML)buildST();
+  if(i===2&&!document.getElementById('clauseContent').innerHTML)buildClauses();
+  if(i===3&&!gItems.length)startGap();
+  if(i===4&&!document.getElementById('matchCont').innerHTML)startMatch(0);
+  if(i===5&&!bItems.length)startBuilder();
+  if(i===6&&!lItems.length)startListening();
+  if(i===7&&!eItems.length)startErr();
+  if(i===8)renderGloss();
+}
+window.addEventListener('load',()=>{
+  if(window.speechSynthesis){window.speechSynthesis.getVoices();setTimeout(loadV,600);}
+  renderQuote();buildST();
+});
+</script>
+</body>
+</html>
