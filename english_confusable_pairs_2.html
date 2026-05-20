@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Confusable Pairs — Interactive Lesson</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary)}
+.w{padding:1.5rem}
+.nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
+.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nt:hover{background:var(--color-background-secondary)}
+.nt.on{color:#fff;border-color:transparent;font-weight:500}
+.n0.on{background:#534AB7}.n1.on{background:#0F6E56}.n2.on{background:#185FA5}.n3.on{background:#854F0B}.n4.on{background:#993C1D}.n5.on{background:#72243E}.n6.on{background:#3B6D11}.n7.on{background:#712B13}.n8.on{background:#2d7a6b}.n9.on{background:#7a3b2e}.n10.on{background:#4a3b8c}
+.pan{display:none}.pan.on{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:.9rem}
+.lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
+.lbl:first-child{margin-top:0}
+.tip-box{background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;font-size:13px;color:var(--color-text-secondary);display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px}
+.warn-box{background:#FAEEDA;border-radius:14px;padding:10px 14px;font-size:13px;color:#633806;display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px;border:0.5px solid #E8C080}
+.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act:hover{background:var(--color-background-secondary)}
+.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #534AB7;background:#534AB7;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn:hover{background:#3C3489}
+.check-btn:disabled{opacity:.4;cursor:default}
+.gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
+.gap-opt:hover:not(.gsel):not(.gok):not(.gbad):not(.gdim){background:var(--color-background-secondary)}
+.gap-opt.gsel{border-color:#534AB7;background:#EEEDFE;color:#3C3489;font-weight:500}
+.gap-opt.gok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:500;cursor:default;pointer-events:none}
+.gap-opt.gbad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F;cursor:default;pointer-events:none}
+.gap-opt.gdim{opacity:.38;cursor:default;pointer-events:none}
+.fb-ok{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.fb-no{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.ex-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:20px;background:#534AB7;transition:width .3s}
+.mi{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
+.mi:hover{background:var(--color-background-secondary)}
+.mi.pk{border-color:#534AB7;background:#EEEDFE;color:#3C3489}
+.mi.mt{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.mi.bd{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #534AB7}
+.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
+.audio-btn:hover{background:#EEEDFE;border-color:#AFA9EC;color:#534AB7}
+.audio-btn.playing{background:#EEEDFE;border-color:#534AB7;color:#534AB7;font-weight:500}
+.acc-hdr{display:flex;align-items:center;gap:8px;padding:11px 15px;cursor:pointer;border-radius:14px;transition:all .15s}
+.acc-hdr:hover{background:var(--color-background-secondary)}
+.acc-body{display:none;padding:0 15px 14px;font-size:14px;color:var(--color-text-secondary);line-height:1.75}
+.acc-body.on{display:block}
+.sub-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
+.st{padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.st:hover{background:var(--color-background-secondary)}
+.st.on{background:#534AB7;color:#fff;border-color:#534AB7;font-weight:500}
+.spanel{display:none}.spanel.on{display:block}
+.eyebrow{font-size:11px;font-weight:500;color:#534AB7;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.lesson-h{font-size:26px;font-weight:500;color:var(--color-text-primary);line-height:1.25;margin-bottom:4px}
+.lesson-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:1.25rem}
+.ex-pos{background:#EAF3DE;color:#27500A;border:0.5px solid #C0DD97;border-radius:12px;padding:8px 13px;font-size:14px;line-height:1.6;margin-bottom:5px}
+.ex-neg{background:#FCEBEB;color:#791F1F;border:0.5px solid #F7C1C1;border-radius:12px;padding:8px 13px;font-size:14px;line-height:1.6;margin-bottom:5px}
+.ex-tag{font-size:10.5px;font-weight:700;display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.05em}
+.confuse-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.confuse-box{border-radius:14px;padding:11px 14px;font-size:13.5px;line-height:1.6}
+.srch{width:100%;padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:14px;font-family:var(--font-sans);margin-bottom:10px}
+.srch:focus{outline:none;border-color:#AFA9EC}
+.pair-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:18px;padding:1rem 1.25rem;margin-bottom:.75rem}
+.pair-badge{font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;display:inline-block;margin-right:4px;margin-bottom:3px}
+.mini-ex{background:var(--color-background-secondary);border-radius:10px;padding:7px 12px;font-size:13px;font-style:italic;line-height:1.6;margin-top:5px;color:var(--color-text-primary)}
+.grammar-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:1px 7px;border-radius:20px;margin-right:4px}
+@media(max-width:520px){.confuse-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<h2 class="sr-only">English Confusable Pairs — interactive lesson</h2>
+<div class="w">
+<div class="nav">
+  <button class="nt n0 on" onclick="showP(0)">Home</button>
+  <button class="nt n1" onclick="showP(1)">Verb pairs</button>
+  <button class="nt n2" onclick="showP(2)">Prepositions</button>
+  <button class="nt n3" onclick="showP(3)">Articles &amp; determiners</button>
+  <button class="nt n4" onclick="showP(4)">Adjective pairs</button>
+  <button class="nt n5" onclick="showP(5)">Connectors</button>
+  <button class="nt n6" onclick="showP(6)">Modal verbs</button>
+  <button class="nt n7" onclick="showP(7)">Nouns &amp; register</button>
+  <button class="nt n8" onclick="showP(8)">Choice quiz</button>
+  <button class="nt n9" onclick="showP(9)">Gap fill</button>
+  <button class="nt n10" onclick="showP(10)">My glossary</button>
+</div>
+
+<!-- HOME -->
+<div id="p0" class="pan on">
+  <div class="eyebrow">Interactive lesson · Grammar &amp; vocabulary</div>
+  <div class="lesson-h">English Confusable Pairs</div>
+  <div class="lesson-sub">The words and structures that look similar, feel similar — but mean something completely different</div>
+  <div class="quote-box" id="quoteBox"></div>
+  <div class="card">
+    <div class="lbl">Why confusable pairs matter</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">Even advanced learners make systematic errors with pairs like <strong style="color:var(--color-text-primary)">do / make</strong>, <strong style="color:var(--color-text-primary)">since / for</strong>, or <strong style="color:var(--color-text-primary)">mustn't / don't have to</strong>. These are not vocabulary problems — they are <strong style="color:var(--color-text-primary)">system problems</strong>. Learning the underlying logic of each pair removes dozens of errors at once.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:10px">
+      <div style="background:#EEEDFE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:19px;font-weight:600;color:#3C3489">14</div><div style="font-size:11px;font-weight:500;color:#3C3489;margin-top:2px">Verb pairs</div></div>
+      <div style="background:#EAF3DE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:19px;font-weight:600;color:#27500A">11</div><div style="font-size:11px;font-weight:500;color:#27500A;margin-top:2px">Preposition pairs</div></div>
+      <div style="background:#E6F1FB;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:19px;font-weight:600;color:#0C447C">7</div><div style="font-size:11px;font-weight:500;color:#0C447C;margin-top:2px">Determiner pairs</div></div>
+      <div style="background:#FAEEDA;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:19px;font-weight:600;color:#633806">60+</div><div style="font-size:11px;font-weight:500;color:#633806;margin-top:2px">Total pairs</div></div>
+    </div>
+    <div class="tip-box"><i class="ti ti-bulb" aria-hidden="true" style="font-size:16px;flex-shrink:0;color:#534AB7"></i><span>The key to mastering confusable pairs is understanding the <strong>underlying rule</strong>, not just memorising examples. Each section below gives you the logic first, then the examples.</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px">
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(1)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-arrows-exchange" style="color:#534AB7"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Verb pairs</div><div style="font-size:12px;color:var(--color-text-secondary)">do/make, say/tell, bring/take…</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(2)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-location" style="color:#0F6E56"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Prepositions</div><div style="font-size:12px;color:var(--color-text-secondary)">in/at/on, since/for, by/until…</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(3)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-letter-a" style="color:#185FA5"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Articles &amp; determiners</div><div style="font-size:12px;color:var(--color-text-secondary)">a/the/∅, few/a few, each/every…</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(4)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-sparkles" style="color:#854F0B"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Adjective pairs</div><div style="font-size:12px;color:var(--color-text-secondary)">-ed vs -ing, sensible/sensitive…</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(5)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-link" style="color:#993C1D"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Connectors</div><div style="font-size:12px;color:var(--color-text-secondary)">although/despite, so/so that…</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(6)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-chevrons-right" style="color:#72243E"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Modal verbs</div><div style="font-size:12px;color:var(--color-text-secondary)">must/have to, mustn't/needn't…</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(7)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-books" style="color:#3B6D11"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Nouns &amp; register</div><div style="font-size:12px;color:var(--color-text-secondary)">advice, big/large/great, ask/demand…</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(8)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-puzzle" style="color:#712B13"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Choice quiz</div><div style="font-size:12px;color:var(--color-text-secondary)">Pick the correct word</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(9)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-writing" style="color:#2d7a6b"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Gap fill</div><div style="font-size:12px;color:var(--color-text-secondary)">Complete the sentence</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(10)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-bookmark" style="color:#4a3b8c"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">My glossary</div><div style="font-size:12px;color:var(--color-text-secondary)">Save pairs to review</div></div>
+  </div>
+</div>
+
+<!-- VERB PAIRS -->
+<div id="p1" class="pan">
+  <div class="eyebrow">Confusable pairs</div>
+  <div class="lesson-h">Verb pairs &amp; collocations</div>
+  <div class="lesson-sub">Select a pair — click 🔊 to hear any example, 🔖 to save to your glossary</div>
+  <div class="sub-tabs" id="verbTabs"></div>
+  <div id="verbContent"></div>
+</div>
+
+<!-- PREPOSITIONS -->
+<div id="p2" class="pan">
+  <div class="eyebrow">Confusable pairs</div>
+  <div class="lesson-h">Prepositions</div>
+  <div class="lesson-sub">Select a pair — study the rule, then the examples</div>
+  <div class="sub-tabs" id="prepTabs"></div>
+  <div id="prepContent"></div>
+</div>
+
+<!-- ARTICLES & DETERMINERS -->
+<div id="p3" class="pan">
+  <div class="eyebrow">Confusable pairs</div>
+  <div class="lesson-h">Articles &amp; determiners</div>
+  <div class="lesson-sub">Select a pair — the article system is one of the hardest things in English</div>
+  <div class="sub-tabs" id="artTabs"></div>
+  <div id="artContent"></div>
+</div>
+
+<!-- ADJECTIVE PAIRS -->
+<div id="p4" class="pan">
+  <div class="eyebrow">Confusable pairs</div>
+  <div class="lesson-h">Adjective pairs</div>
+  <div class="lesson-sub">Select a pair — many of these are false friends or spelling traps</div>
+  <div class="sub-tabs" id="adjTabs"></div>
+  <div id="adjContent"></div>
+</div>
+
+<!-- CONJUNCTIONS & CONNECTORS -->
+<div id="p5" class="pan">
+  <div class="eyebrow">Confusable pairs</div>
+  <div class="lesson-h">Conjunctions &amp; connectors</div>
+  <div class="lesson-sub">Select a pair — grammar class determines how they connect ideas</div>
+  <div class="sub-tabs" id="conjTabs"></div>
+  <div id="conjContent"></div>
+</div>
+
+<!-- MODAL VERBS -->
+<div id="p6" class="pan">
+  <div class="eyebrow">Confusable pairs</div>
+  <div class="lesson-h">Modal verbs</div>
+  <div class="lesson-sub">Select a pair — modals express subtly different degrees of obligation, possibility, and permission</div>
+  <div class="sub-tabs" id="modTabs"></div>
+  <div id="modContent"></div>
+</div>
+
+<!-- NOUNS & REGISTER -->
+<div id="p7" class="pan">
+  <div class="eyebrow">Confusable pairs</div>
+  <div class="lesson-h">Nouns, register &amp; structural traps</div>
+  <div class="lesson-sub">Select a category — uncountable nouns, register differences, and word-order traps</div>
+  <div class="sub-tabs" id="nounTabs"></div>
+  <div id="nounContent"></div>
+</div>
+
+<!-- CHOICE QUIZ -->
+<div id="p8" class="pan">
+  <div class="eyebrow">Confusable pairs</div>
+  <div class="lesson-h">Choice quiz</div>
+  <div class="lesson-sub">Choose the correct word for each sentence — covers all sections</div>
+  <div id="choiceCont"></div>
+</div>
+
+<!-- GAP FILL -->
+<div id="p9" class="pan">
+  <div class="eyebrow">Confusable pairs</div>
+  <div class="lesson-h">Gap fill</div>
+  <div class="lesson-sub">Choose the correct word or phrase to complete each sentence</div>
+  <div id="gapCont"></div>
+</div>
+
+<!-- GLOSSARY -->
+<div id="p10" class="pan">
+  <div class="eyebrow">Confusable pairs</div>
+  <div class="lesson-h">My glossary</div>
+  <div class="lesson-sub">Pairs you have saved — click 🔖 Save on any pair card to add it here</div>
+  <div id="glossCont"></div>
+</div>
+
+</div>
+<script>
+// ── GLOSSARY ──────────────────────────────────────────────────
+let gloss=[];
+function glossKey(type,key){return type+'::'+key;}
+function isGlossed(type,key){return gloss.some(g=>g.k===glossKey(type,key));}
+function toggleGloss(type,key,label,detail){
+  const k=glossKey(type,key);
+  if(gloss.some(g=>g.k===k))gloss=gloss.filter(g=>g.k!==k);
+  else gloss.push({k,type,key,label,detail});
+  renderGloss();
+  document.querySelectorAll('[data-glosskey="'+k+'"]').forEach(btn=>{
+    btn.textContent=isGlossed(type,key)?'🔖 Saved':'🔖 Save';
+  });
+}
+function renderGloss(){
+  const cont=document.getElementById('glossCont');if(!cont)return;
+  if(!gloss.length){cont.innerHTML='<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px"></i><div style="margin-bottom:8px">Nothing saved yet.</div><div style="font-size:13px">Click 🔖 Save on any pair card to add it here.</div></div>';return;}
+  const TLABEL={verb:'Verb pair',prep:'Preposition',art:'Article/Determiner',adj:'Adjective pair',conj:'Connector',mod:'Modal verb',noun:'Noun/Register'};
+  const TCOL={verb:{bg:'#EEEDFE',tc:'#3C3489'},prep:{bg:'#EAF3DE',tc:'#27500A'},art:{bg:'#E6F1FB',tc:'#0C447C'},adj:{bg:'#FAEEDA',tc:'#633806'},conj:{bg:'#FCEBEB',tc:'#791F1F'},mod:{bg:'#FBEAF0',tc:'#72243E'},noun:{bg:'#EAF3DE',tc:'#27500A'}};
+  cont.innerHTML='<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">'+gloss.length+' pair'+(gloss.length!==1?'s':'')+' saved</div>'
+    +gloss.map(g=>{
+      const tc=TCOL[g.type]||{bg:'#F1EFE8',tc:'#4a4845'};
+      return'<div class="card" style="margin-bottom:8px;padding:1rem 1.25rem">'
+        +'<div style="display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap">'
+        +'<div style="flex:1;min-width:0">'
+        +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap">'
+        +'<span style="font-size:15px;font-weight:700;color:var(--color-text-primary)">'+g.label+'</span>'
+        +'<span style="background:'+tc.bg+';color:'+tc.tc+';font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px">'+(TLABEL[g.type]||g.type)+'</span>'
+        +'<button class="audio-btn" onclick="speak('+safeQ(g.label)+',0.87,this)" style="font-size:11px;padding:3px 8px">🔊 Hear</button>'
+        +'</div>'
+        +'<div style="font-size:13px;color:var(--color-text-secondary);line-height:1.65">'+g.detail+'</div>'
+        +'</div>'
+        +'<button class="act" style="font-size:12px;flex-shrink:0" onclick="toggleGloss('+safeQ(g.type)+','+safeQ(g.key)+','+safeQ(g.label)+','+safeQ(g.detail)+')"><i class="ti ti-x" style="font-size:13px;vertical-align:-2px"></i></button>'
+        +'</div></div>';
+    }).join('');
+}
+
+// ── VOICE ─────────────────────────────────────────────────────
+let bVoice=null;
+function loadV(){
+  const vs=window.speechSynthesis.getVoices();if(!vs.length)return;
+  bVoice=vs.find(v=>v.lang==='en-GB'&&/female|fiona|kate|serena|moira|karen|victoria|claire/i.test(v.name))
+    ||vs.find(v=>v.lang==='en-GB'&&!/male|daniel|oliver|arthur/i.test(v.name))
+    ||vs.find(v=>v.lang==='en-GB')||vs.find(v=>v.lang.startsWith('en-GB'))||vs.find(v=>v.lang.startsWith('en'));
+}
+if(window.speechSynthesis){window.speechSynthesis.onvoiceschanged=loadV;loadV();}
+function speak(txt,rate,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();if(!bVoice)loadV();
+  const u=new SpeechSynthesisUtterance(txt);u.lang='en-GB';u.rate=rate||0.87;u.pitch=1.07;
+  if(bVoice)u.voice=bVoice;
+  if(btn){document.querySelectorAll('.audio-btn').forEach(b=>b.classList.remove('playing'));btn.classList.add('playing');u.onend=()=>btn.classList.remove('playing');}
+  window.speechSynthesis.speak(u);
+}
+function safeQ(s){return"'"+String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;')+"'";}
+
+// ── QUOTES ────────────────────────────────────────────────────
+const QUOTES=[
+  {q:'I made a mistake, but I did my best under the circumstances.',key:'do vs make',hi:'made,did'},
+  {q:'She told me a secret, but I cannot say a word about it.',key:'say vs tell',hi:'told,say'},
+  {q:'Take this letter with you when you go, and bring me back the reply.',key:'bring vs take / come vs go',hi:'Take,go,bring'},
+  {q:'I heard the music, but I was not really listening.',key:'hear vs listen',hi:'heard,listening'},
+  {q:'I lent him my notes, but he forgot to borrow them back.',key:'lend vs borrow',hi:'lent,borrow'},
+  {q:'She has been studying English for three years since she moved here.',key:'since vs for',hi:'for,since'},
+  {q:'Despite the rain, she went out without an umbrella.',key:'despite vs although',hi:'Despite'},
+  {q:'You must not smoke in here, but you do not have to wear a mask outside.',key:'mustn\'t vs don\'t have to',hi:'must,have,to'},
+  {q:'The film was interesting, but I was not particularly interested.',key:'-ed vs -ing adjectives',hi:'interesting,interested'},
+  {q:'She eventually found the answer after years of research.',key:'eventually vs finally',hi:'eventually'},
+];
+let qOrd=[...Array(QUOTES.length).keys()].sort(()=>Math.random()-.5),qI=0;
+function renderQuote(){
+  const q=QUOTES[qOrd[qI%qOrd.length]];qI++;
+  const hiWords=q.hi.split(',').map(w=>w.trim().toLowerCase());
+  let disp=q.q;
+  hiWords.forEach(hw=>{
+    disp=disp.replace(new RegExp('\\b('+hw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')\\b','gi'),
+      m=>`<span style="background:#EEEDFE;color:#3C3489;font-weight:600;padding:1px 6px;border-radius:6px">${m}</span>`);
+  });
+  document.getElementById('quoteBox').innerHTML=`
+    <div style="font-style:italic;font-size:15px;line-height:1.8;color:var(--color-text-primary);margin-bottom:6px">${disp}</div>
+    <div style="font-size:12.5px;color:var(--color-text-secondary);margin-bottom:8px;line-height:1.6">📚 Focus pair: <strong>${q.key}</strong></div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <button class="audio-btn" onclick="speak(${safeQ(q.q)},0.84,this)" style="font-size:12px">🔊 Hear it</button>
+      <button class="act" onclick="renderQuote()" style="margin-left:auto;font-size:12px;padding:4px 12px"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> New quote</button>
+    </div>`;
+}
+
+// ── PAIR RENDERER ─────────────────────────────────────────────
+function renderPairSection(tabsId,contentId,data,typeKey){
+  const tabs=document.getElementById(tabsId);
+  const cont=document.getElementById(contentId);
+  tabs.innerHTML=data.map((d,i)=>`<button class="st${i===0?' on':''}" onclick="showPair(${safeQ(contentId)},${i},${safeQ(JSON.stringify(data).replace(/'/g,"&#39;"))},${safeQ(typeKey)},this)">${d.pair}</button>`).join('');
+  renderPairCard(cont,data[0],typeKey);
+}
+function showPair(contentId,idx,dataStr,typeKey,btn){
+  const data=JSON.parse(dataStr.replace(/&#39;/g,"'"));
+  document.querySelectorAll('#'+contentId).forEach(()=>{});
+  btn.closest('.sub-tabs').querySelectorAll('.st').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderPairCard(document.getElementById(contentId),data[idx],typeKey);
+}
+function renderPairCard(cont,d,typeKey){
+  const glKey=typeKey+'::'+d.pair;
+  const saved=isGlossed(typeKey,d.pair);
+  const colMap={verb:{bg:'#EEEDFE',tc:'#3C3489',brd:'#AFA9EC'},prep:{bg:'#EAF3DE',tc:'#27500A',brd:'#A8D88A'},art:{bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB'},adj:{bg:'#FAEEDA',tc:'#633806',brd:'#E8C080'},conj:{bg:'#FCEBEB',tc:'#791F1F',brd:'#F7C1C1'},mod:{bg:'#FBEAF0',tc:'#72243E',brd:'#E8A8C8'},noun:{bg:'#EAF3DE',tc:'#27500A',brd:'#A8D88A'}};
+  const col=colMap[typeKey]||colMap.verb;
+  let html=`<div class="pair-card">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+      <span style="font-size:22px;font-weight:700;color:${col.tc}">${d.pair}</span>
+      <button class="audio-btn" onclick="speak(${safeQ(d.pair)},0.82,this)">🔊 Hear</button>
+      <button class="act" data-glosskey="${glKey}" style="font-size:12px;margin-left:auto" onclick="toggleGloss(${safeQ(typeKey)},${safeQ(d.pair)},${safeQ(d.pair)},${safeQ(d.rule)})">${saved?'🔖 Saved':'🔖 Save'}</button>
+    </div>
+    <div style="font-size:13.5px;font-weight:600;color:var(--color-text-primary);margin-bottom:6px">${d.rule}</div>`;
+  if(d.tip){html+=`<div class="tip-box" style="margin-bottom:10px"><i class="ti ti-bulb" style="font-size:15px;flex-shrink:0;color:${col.tc}"></i><span>${d.tip}</span></div>`;}
+  if(d.warn){html+=`<div class="warn-box" style="margin-bottom:10px"><i class="ti ti-alert-triangle" style="font-size:15px;flex-shrink:0;color:#854F0B"></i><span>${d.warn}</span></div>`;}
+  d.items.forEach(item=>{
+    html+=`<div style="background:${col.bg};border:0.5px solid ${col.brd};border-radius:14px;padding:10px 14px;margin-bottom:8px">
+      <div style="font-size:14px;font-weight:700;color:${col.tc};margin-bottom:3px">${item.word}</div>
+      <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:5px">${item.meaning}</div>`;
+    if(item.grammar){html+=`<div style="margin-bottom:5px"><span class="grammar-tag" style="background:${col.bg};color:${col.tc};border:0.5px solid ${col.brd}">${item.grammar}</span></div>`;}
+    item.exs.forEach(ex=>{
+      html+=`<div class="mini-ex">${ex.replace(/\*([^*]+)\*/g,`<strong style="color:${col.tc}">$1</strong>`)}`;
+      html+=` <button class="audio-btn" onclick="speak(${safeQ(ex.replace(/\*([^*]+)\*/g,'$1'))},0.84,this)" style="font-size:11px;padding:2px 7px;margin-left:4px;vertical-align:middle">🔊</button></div>`;
+    });
+    html+=`</div>`;
+  });
+  if(d.confusable){
+    html+=`<div class="lbl" style="margin-top:10px">⚡ Common error</div>`;
+    html+=`<div class="confuse-grid">`;
+    d.confusable.forEach(c=>{
+      const ok=c.type==='correct';
+      html+=`<div class="confuse-box" style="background:${ok?'#EAF3DE':'#FCEBEB'};border:0.5px solid ${ok?'#C0DD97':'#F7C1C1'}">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:${ok?'#27500A':'#791F1F'};margin-bottom:4px">${ok?'✓ Correct':'✗ Wrong'}</div>
+        <div style="font-size:13.5px;font-style:italic;color:${ok?'#27500A':'#791F1F'}">${c.s}</div>
+        ${c.note?`<div style="font-size:12px;margin-top:4px;color:${ok?'#27500A':'#791F1F'}">${c.note}</div>`:''}
+      </div>`;
+    });
+    html+=`</div>`;
+  }
+  html+=`</div>`;
+  cont.innerHTML=html;
+}
+
+// ── VERB PAIRS DATA ───────────────────────────────────────────
+const VERB_PAIRS=[
+  {pair:'do vs make',
+   rule:'DO = activities, tasks, duties. MAKE = producing, creating, causing a result.',
+   tip:'A useful shortcut: if you could say "produce" or "cause", use make. If you could say "perform" or "carry out", use do.',
+   warn:'These are collocations — there is no perfect logic. You must learn them as fixed expressions.',
+   items:[
+     {word:'DO',meaning:'Activities, duties, work — nothing is produced',grammar:'do homework / do the washing-up / do a course / do business / do damage / do your best / do someone a favour',exs:['She *does* her homework at the kitchen table every evening.','Could you *do* me a favour and pick up some milk?','He *did* a lot of damage to the relationship.']},
+     {word:'MAKE',meaning:'Creating, producing, causing — a result or object exists',grammar:'make a mistake / make a decision / make a suggestion / make a noise / make an effort / make a phone call / make money / make a bed / make friends',exs:['She *made* a terrible mistake in the final report.','Please *make* less noise — people are sleeping.','He finally *made* a decision after weeks of hesitation.']},
+   ],
+   confusable:[{type:'correct',s:'She did her best to make a good impression.',note:'do + effort; make + result'},{type:'wrong',s:'She made her best to do a good impression.',note:'"Make your best" and "do an impression" are both wrong.'}]},
+
+  {pair:'say vs tell',
+   rule:'SAY = the words themselves (what). TELL = to an audience (whom).',
+   tip:'TELL always needs a person as object: tell someone something. SAY does not need a person but can be followed by "to someone".',
+   warn:null,
+   items:[
+     {word:'SAY',meaning:'What the words are — focus on content',grammar:'say something / say that / say a word / say yes/no / say hello / say sorry',exs:['She *said* that she would be late.','He *said* goodbye and walked out the door.','What did she *say* to you?']},
+     {word:'TELL',meaning:'Who hears it — focus on the audience',grammar:'tell someone / tell someone something / tell someone to do / tell a story / tell a lie / tell the truth / tell the time',exs:['She *told* me that she would be late.','He *told* a brilliant story at the dinner.','*Tell* me the truth — what really happened?']},
+   ],
+   confusable:[{type:'correct',s:'She said that she was tired.',note:'No person needed after say'},{type:'wrong',s:'She told that she was tired.',note:'"Tell" needs a person: told me/him/us that she was tired.'}]},
+
+  {pair:'bring vs take',
+   rule:'BRING = movement towards the speaker or listener. TAKE = movement away from the speaker or listener.',
+   tip:'Think of it this way: if you are at home and someone is coming to visit, you say "bring something". If you are leaving to go somewhere, you "take something".',
+   warn:'The confusion arises because in some languages one word covers both directions.',
+   items:[
+     {word:'BRING',meaning:'Towards the speaker/listener — coming here',grammar:'bring something here / bring someone with you (to where the speaker is)',exs:['Please *bring* your passport to the interview tomorrow.',`Don't forget to *bring* an umbrella — it's going to rain.`,'Can you *bring* me a glass of water?']},
+     {word:'TAKE',meaning:'Away from the speaker/listener — going there',grammar:'take something somewhere / take someone somewhere (away from here)',exs:['*Take* this letter to the post office on your way out.','She *took* her laptop to the café to work.','*Take* a jacket — it gets cold in the evenings.']},
+   ],
+   confusable:[{type:'correct',s:'Take this to my office, then bring me back the signed copy.',note:'Take = away from here; bring = towards me'},{type:'wrong',s:'Bring this to my office, then take me back the signed copy.'}]},
+
+  {pair:'come vs go',
+   rule:'COME = movement towards the speaker/listener. GO = movement away from the current position.',
+   tip:'The speaker\'s position determines the choice. "Come here" = towards me. "Go there" = away from me.',
+   warn:null,
+   items:[
+     {word:'COME',meaning:'Towards the speaker or where the listener will be',grammar:'come here / come to a place (the speaker is or will be there)',exs:['*Come* in! The door is open.','Are you *coming* to the party tonight? (speaker is going too)','She *came* to my office to discuss the proposal.']},
+     {word:'GO',meaning:'Away from the current position, towards somewhere else',grammar:'go somewhere / go to a place (the speaker is not there)',exs:['I need to *go* to the dentist tomorrow.','He *went* home at five.','Shall we *go* to the cinema?']},
+   ],
+   confusable:[{type:'correct',s:`I'm going to your place now — shall I come in when I arrive?`},{type:'wrong',s:`I'm coming to your place now — shall I go in when I arrive?`}]},
+
+  {pair:'look vs see vs watch',
+   rule:'SEE = passive (happens without trying). LOOK = active attention directed at something static. WATCH = active attention over time (for movement).',
+   tip:'You see something without planning to. You look at a painting. You watch a film. The key distinction is passive vs active, and momentary vs extended.',
+   warn:null,
+   items:[
+     {word:'SEE',meaning:'Passive — happens naturally, without effort',grammar:'see something (no effort) / see a film (= go to the cinema)',exs:['I *saw* something move in the corner of my eye.','Did you *see* the game last night?','I can *see* the tower from here.']},
+     {word:'LOOK (at)',meaning:'Active, directed attention — at something still',grammar:'look at something / look for something / look out of the window',exs:['*Look* at this photograph — do you recognise anyone?','She *looked* at him without saying a word.','He *looked* at the menu for five minutes before deciding.']},
+     {word:'WATCH',meaning:'Active attention over time — at something moving',grammar:'watch TV / watch a match / watch someone do something',exs:['They *watched* the match from the terraces.','She *watched* him walk away in silence.','He *watches* too much television.']},
+   ],
+   confusable:[{type:'correct',s:'I looked at the painting carefully, then I watched the artist add another layer.',note:'static vs moving'},{type:'wrong',s:'I watched the painting carefully, then I looked the artist add another layer.'}]},
+
+  {pair:'hear vs listen',
+   rule:'HEAR = passive perception (it happens to you). LISTEN = active, intentional attention.',
+   tip:'The same logic as see/watch. You cannot "try to hear" — you either hear or you do not. Listening requires conscious effort.',
+   warn:null,
+   items:[
+     {word:'HEAR',meaning:'Passive — sounds reach your ears without effort',grammar:'hear something / hear someone doing / hear that (= be told)',exs:['I *heard* a strange noise downstairs at midnight.','Have you *heard* the news? She got the job!','I could *hear* them arguing through the wall.']},
+     {word:'LISTEN (to)',meaning:'Active — you focus your attention on sound',grammar:'listen to something/someone / listen carefully',exs:['*Listen* to this — it is amazing.','She *listens* to podcasts during her commute.','He was not really *listening* — he kept checking his phone.']},
+   ],
+   confusable:[{type:'correct',s:`I was listening to the radio when I heard a loud bang.`,note:'listening = deliberate; heard = sudden passive'},{type:'wrong',s:`I was hearing the radio when I listened to a loud bang.`}]},
+
+  {pair:'know vs meet',
+   rule:'KNOW = ongoing state (you have information or are acquainted). MEET = the event of first encounter.',
+   tip:'You "meet" someone once, then you "know" them. "Do you know her?" means: are you acquainted? "Have you met her?" means: has that introduction happened?',
+   warn:null,
+   items:[
+     {word:'KNOW',meaning:'An ongoing state — you are acquainted or have knowledge',grammar:'know someone (= be acquainted) / know something (= have information)',exs:['I *know* her from university — we studied together.','Do you *know* how to get to the station?','She *knew* the answer immediately.']},
+     {word:'MEET',meaning:'The event of an encounter — first or scheduled',grammar:'meet someone (first time) / meet someone (arranged encounter)',exs:['I *met* her for the first time at the conference.','Where shall we *meet* tomorrow?','Nice to *meet* you — I have heard a lot about you.']},
+   ],
+   confusable:[{type:'correct',s:`Nice to meet you! I've heard so much about you. Do you know my colleague?`},{type:'wrong',s:`Nice to know you! I've heard so much about you. Do you meet my colleague?`}]},
+
+  {pair:'lend vs borrow',
+   rule:'LEND = you give something (temporarily). BORROW = you receive something (temporarily).',
+   tip:'Direction is everything. The library lends books. Readers borrow them. You can never "borrow someone something" — only lend.',
+   warn:'"Borrow me your pen" is a common error. Only LEND takes an indirect object: "Lend me your pen."',
+   items:[
+     {word:'LEND',meaning:'You give something temporarily (you own it, they use it)',grammar:'lend something to someone / lend someone something',exs:['Could you *lend* me your charger for five minutes?','The bank agreed to *lend* them the money.','She *lent* him her notes before the exam.']},
+     {word:'BORROW',meaning:'You receive something temporarily (they own it, you use it)',grammar:'borrow something (from someone)',exs:['Can I *borrow* your pen for a moment?','She *borrowed* the book from the library.','He *borrowed* money from several people.']},
+   ],
+   confusable:[{type:'correct',s:'Can I borrow your umbrella? I will lend it back to you tomorrow.',note:'"Lend back" = return it to them'},{type:'wrong',s:'Can I lend your umbrella? I will borrow it back to you tomorrow.'}]},
+
+  {pair:'rise vs raise',
+   rule:'RISE = intransitive (no object — the thing moves on its own). RAISE = transitive (needs an object — you move something).',
+   tip:'Rise is like fall — it happens on its own. Raise is like lift — you do it to something.',
+   warn:'This is the same intransitive/transitive distinction as lie vs lay. Rise/rose/risen. Raise/raised/raised.',
+   items:[
+     {word:'RISE',meaning:'Go up on its own — intransitive (no object)',grammar:'rise / rose / risen — prices, temperature, sun',exs:['Prices *rose* by 4% last year.','The sun *rises* in the east.','Her voice *rose* with excitement.']},
+     {word:'RAISE',meaning:'Lift or increase something — transitive (has an object)',grammar:'raise something — raise prices, raise a question, raise funds, raise children',exs:['The company *raised* its prices by 4%.','She *raised* her hand to ask a question.','They *raised* three children in that house.']},
+   ],
+   confusable:[{type:'correct',s:'Taxes rose because the government raised them.',note:'rose = intransitive; raised = transitive'},{type:'wrong',s:'Taxes raised because the government rose them.'}]},
+
+  {pair:'lie vs lay',
+   rule:'LIE = intransitive (the subject rests on a surface). LAY = transitive (you place something on a surface).',
+   tip:'Lay is often confused with the past tense of lie (which is "lay"!). This is the most confusing verb pair in English.',
+   warn:'"Lay" (past of lie): She lay on the beach yesterday. "Laid" (past of lay): She laid the book on the table. The overlap of forms is what causes confusion.',
+   items:[
+     {word:'LIE',meaning:'Rest on a surface — intransitive (no object)',grammar:'lie / lay (past) / lain — the subject is horizontal',exs:['The cat *lies* on the sofa every afternoon.','She *lay* in bed thinking about the conversation.','He had *lain* there for hours before someone found him.']},
+     {word:'LAY',meaning:'Place something — transitive (needs an object)',grammar:'lay / laid / laid — you put something somewhere',exs:['*Lay* the book on the table, please.','She *laid* her coat on the chair.','They *laid* the foundations of the new building.']},
+   ],
+   confusable:[{type:'correct',s:'She lay on the bed and laid her phone on the nightstand.',note:'lay (past of lie) + laid (past of lay)'},{type:'wrong',s:'She lied on the bed and layed her phone on the nightstand.'}]},
+
+  {pair:'hope vs wish vs want',
+   rule:'WANT = desire (any tense). HOPE = positive expectation about possible future. WISH = regret about reality or contrary-to-fact desire.',
+   tip:'Wish requires a past tense or would for present/future: "I wish I knew." Hope takes a present or future: "I hope it works." Want is neutral desire.',
+   warn:'"I wish I would go" is wrong. Use "I wish I could go" (ability) or "I wish I were going" (hypothetical).',
+   items:[
+     {word:'WANT',meaning:'General desire — real and possible or not',grammar:'want + infinitive / want something',exs:['I *want* to learn Japanese.','She *wants* a new laptop.','What do you *want* to eat?']},
+     {word:'HOPE',meaning:'Positive expectation about something possible',grammar:'hope + infinitive / hope + that-clause (present/future verb)',exs:['I *hope* to see you at the conference.','She *hopes* the weather will improve.','I *hope* you are feeling better.']},
+     {word:'WISH',meaning:'Regret or desire for something contrary to reality',grammar:'wish + past simple (present) / wish + past perfect (past regret) / wish + would (other person)',exs:['I *wish* I spoke French fluently. (I don\'t)','She *wished* she had studied harder. (She didn\'t)','I *wish* you would stop interrupting me.']},
+   ],
+   confusable:[{type:'correct',s:'I wish I could come, but I hope you have a wonderful time without me.',note:'wish = contrary to fact; hope = genuine expectation'},{type:'wrong',s:'I wish I can come, but I hope you would have a wonderful time.'}]},
+
+  {pair:'find out vs know vs learn vs study',
+   rule:'STUDY = the process. LEARN = acquire and retain knowledge. KNOW = the resulting state. FIND OUT = discover information.',
+   tip:'These are sequential: you study, you learn (as a result), and then you know. You find out = you discover a specific piece of information.',
+   warn:'You cannot "find out" general knowledge — only specific facts. "I found out her name" ✓. "I found out grammar" ✗.',
+   items:[
+     {word:'STUDY',meaning:'The deliberate process of learning',grammar:'study a subject / study for an exam',exs:['She *studied* medicine for six years.','I need to *study* for my exam tonight.']},
+     {word:'LEARN',meaning:'Successfully acquire knowledge or a skill',grammar:'learn + noun / learn + infinitive / learn how to',exs:['She *learned* three languages as a child.','He is *learning* to play the guitar.','Did you *learn* anything useful at the conference?']},
+     {word:'KNOW',meaning:'The resulting state of having knowledge',grammar:'know + noun / know + that / know + how to',exs:['She *knows* five languages.','Do you *know* how to change a tyre?','I *knew* the answer immediately.']},
+     {word:'FIND OUT',meaning:'Discover a specific piece of information',grammar:'find out + what/when/who/that',exs:['I *found out* that the flight had been cancelled.','Can you *find out* what time the meeting starts?','She *found out* about the problem too late.']},
+   ],
+   confusable:[{type:'correct',s:'He studied hard and eventually learned that he had found out he already knew the answer.'},{type:'wrong',s:'He studied hard and eventually knew that he had learned he already found the answer.'}]},
+
+  {pair:'teach vs learn',
+   rule:'TEACH = to give knowledge or instruction to someone else (you are the agent). LEARN = to acquire knowledge or a skill yourself (you are the receiver).',
+   tip:'The key difference is direction: a teacher teaches, a student learns. You cannot teach yourself in the same way — you learn by yourself. Note: you teach someone something, but you learn something (not learn someone).',
+   warn:'"She learned me how to drive" is a very common error. The correct form is "She taught me how to drive." TEACH takes a person as its indirect object; LEARN does not.',
+   items:[
+     {word:'TEACH',meaning:'Give instruction or knowledge to someone — you are the agent',grammar:'teach someone something / teach someone how to / teach a subject / teacher → taught → taught',exs:['She *teaches* English at a secondary school in Warsaw.','My father *taught* me how to ride a bike when I was five.','He has been *teaching* mathematics for over twenty years.']},
+     {word:'LEARN',meaning:'Acquire knowledge or a skill — you are the receiver',grammar:'learn something / learn how to / learn from / learn + that-clause → learned / learnt',exs:['She *learned* Spanish in just eighteen months.','I *am learning* how to code in the evenings.','Children *learn* best when they are engaged and motivated.']},
+   ],
+   confusable:[{type:'correct',s:'She taught me how to cook, and I learned very quickly.',note:'teach = give instruction; learn = acquire the skill'},{type:'wrong',s:'She learned me how to cook, and I taught very quickly.',note:'"Learned me" is always wrong. Use "taught me". You teach someone, but someone learns.'}]},
+
+
+  {pair:'remember vs remind',
+   rule:'REMEMBER = you yourself recall something. REMIND = someone else causes you to recall (they are the agent).',
+   tip:'You cannot remind yourself without an object (person). Remind always needs a person: "Remind me to call her."',
+   warn:'The construction differs: remember + -ing (past) vs remember + infinitive (future/intention). "I remember meeting her" (I met her — I recall). "Remember to call her" (don\'t forget to call).',
+   items:[
+     {word:'REMEMBER',meaning:'You recall something yourself',grammar:'remember + -ing (recall past) / remember + to-inf (don\'t forget)',exs:['I *remember* seeing her at the party.','*Remember* to lock the door.','I suddenly *remembered* his name.']},
+     {word:'REMIND',meaning:'Someone/something causes you to recall',grammar:'remind someone to do / remind someone of / remind someone that',exs:['Can you *remind* me to call the dentist?','This song *reminds* me of my childhood.','She *reminded* him that the deadline was Friday.']},
+   ],
+   confusable:[{type:'correct',s:'Remind me to call her — I never remember on my own.',note:'remind = someone else triggers recall'},{type:'wrong',s:'Remember me to call her — I never remind on my own.'}]},
+
+  {pair:'used to vs be used to vs get used to',
+   rule:'USED TO = a past habit that stopped. BE USED TO = accustomed to (state). GET USED TO = become accustomed to (process).',
+   tip:'The key test: is the "to" a particle (before infinitive) or a preposition (before noun/-ing)? Used to do ≠ be used to doing.',
+   warn:'"I am used to work here" is wrong. After be/get used to, use -ing or a noun: "I am used to working here."',
+   items:[
+     {word:'USED TO + infinitive',meaning:'A past habit or state that no longer exists',grammar:'used to + base verb (past only — no present form)',exs:['She *used to* live in Paris, but she moved to Berlin.','I *used to* cycle to work every day.','There *used to* be a cinema on this street.']},
+     {word:'BE USED TO + -ing / noun',meaning:'Accustomed to — it is familiar, no longer strange',grammar:'am/is/are/was used to + noun / -ing',exs:['She *is used to* working long hours.','He *was used to* the noise — he grew up near the airport.','Are you *used to* the cold weather yet?']},
+     {word:'GET USED TO + -ing / noun',meaning:'Become accustomed to — the process of adapting',grammar:'get/got used to + noun / -ing',exs:['It took me months to *get used to* driving on the left.','She is slowly *getting used to* the new software.','You will *get used to* it eventually.']},
+   ],
+   confusable:[{type:'correct',s:'I used to hate early mornings, but I am getting used to waking up at 6am.'},{type:'wrong',s:'I used to hate early mornings, but I am getting used to wake up at 6am.'}]},
+];
+
+// ── PREPOSITION PAIRS DATA ─────────────────────────────────────
+const PREP_PAIRS=[
+  {pair:'to vs for',
+   rule:'TO = direction, recipient, destination. FOR = purpose, benefit, duration, reason.',
+   tip:'When giving or sending, use TO for the recipient. Use FOR when something benefits or serves someone: "This is for you" (benefit) vs "I gave this to you" (transfer).',
+   warn:null,
+   items:[
+     {word:'TO',meaning:'Direction, movement, recipient, or result',grammar:'go to / give to / send to / speak to / listen to',exs:['She gave the report *to* her manager.','We drove *to* the airport in silence.','I am looking forward *to* seeing you.']},
+     {word:'FOR',meaning:'Purpose, benefit, duration, reason',grammar:'work for / ask for / wait for / leave for (purpose/reason)',exs:['She bought flowers *for* her mother.','I waited *for* two hours.','What is this tool used *for*?']},
+   ],
+   confusable:[{type:'correct',s:'I bought this gift for you. I will give it to you later.',note:'for = benefit; to = recipient'},{type:'wrong',s:'I bought this gift to you. I will give it for you later.'}]},
+
+  {pair:'in vs at vs on (place)',
+   rule:'AT = exact point. ON = surface. IN = enclosed space or area.',
+   tip:'Think of three containers: AT is a pin on a map, ON is a flat surface, IN is a 3D enclosed space.',
+   warn:'Some phrases are fixed and must be memorised: "at home", "at work", "in bed", "in hospital", "on a bus/train", "on holiday".',
+   items:[
+     {word:'AT',meaning:'Exact point — address, building, event',grammar:'at school / at work / at the station / at 20 Baker Street / at the meeting',exs:['She works *at* the hospital on Mondays.','I will meet you *at* the main entrance.','He is *at* a conference in Berlin.']},
+     {word:'ON',meaning:'Surface — floor, street name, island, transport',grammar:'on the table / on the floor / on Oxford Street / on a bus/train/plane',exs:['The keys are *on* the kitchen counter.','She lives *on* Park Avenue.','I saw him *on* the bus this morning.']},
+     {word:'IN',meaning:'Inside — enclosed space, city, country, room',grammar:'in a room / in the city / in England / in a car / in bed',exs:['She lives *in* Berlin.','The report is *in* the third drawer.','He waited *in* the car while she went inside.']},
+   ],
+   confusable:[{type:'correct',s:'She is at school, sitting in her classroom, working at her desk.',note:'at = institution; in = enclosed room; at = point/surface'},{type:'wrong',s:'She is in school, sitting at her classroom, working on her desk.'}]},
+
+  {pair:'in vs at vs on (time)',
+   rule:'AT = precise time. ON = days and dates. IN = longer periods (months, years, seasons).',
+   tip:'AT is the sharpest/most precise (a specific clock time). ON is medium (a specific day). IN is the broadest (a period).',
+   warn:'"In the morning/afternoon/evening" but "at night". "On Monday morning" (specific day + time). These must be memorised.',
+   items:[
+     {word:'AT',meaning:'Clock times and fixed points',grammar:'at 9am / at midnight / at noon / at Christmas / at the weekend',exs:['The meeting starts *at* 9 o\'clock.','They always arrive *at* Christmas.','She woke up *at* midnight.']},
+     {word:'ON',meaning:'Specific days and dates',grammar:'on Monday / on 15 June / on my birthday / on New Year\'s Day',exs:['The report is due *on* Friday.','She was born *on* 3 March 1990.','What are you doing *on* Saturday evening?']},
+     {word:'IN',meaning:'Months, years, seasons, centuries, longer periods',grammar:'in January / in 2024 / in the summer / in the 20th century / in the morning',exs:['She graduated *in* 2022.','The project began *in* April.','It is quieter *in* the evenings.']},
+   ],
+   confusable:[{type:'correct',s:'She will arrive on Monday at 9am. The meeting is in the morning.',note:'on + day; at + time; in + part of day'},{type:'wrong',s:'She will arrive in Monday on 9am. The meeting is at the morning.'}]},
+
+  {pair:'by vs until',
+   rule:'BY = a deadline — the action must be complete at or before this time. UNTIL = duration — the action continues up to this time.',
+   tip:'BY answers "when must it be done?". UNTIL answers "how long will it continue?".',
+   warn:null,
+   items:[
+     {word:'BY',meaning:'Deadline — not later than this point',grammar:'finish/complete/send/submit + by + time',exs:['Please submit your report *by* 5pm on Friday.','I need an answer *by* tomorrow morning.','Can you be ready *by* 8?']},
+     {word:'UNTIL',meaning:'Duration — continuing up to this point',grammar:'wait/stay/work/continue + until + time',exs:['She worked *until* midnight to finish the project.','We stayed *until* the last guest had left.','I will wait *until* you are ready.']},
+   ],
+   confusable:[{type:'correct',s:'I need this done by Monday. Can you work until Sunday?',note:'by = deadline; until = duration'},{type:'wrong',s:'I need this done until Monday. Can you work by Sunday?'}]},
+
+  {pair:'since vs for',
+   rule:'SINCE = point in time (when it started). FOR = duration (how long it has lasted).',
+   tip:'Test: replace with a specific date or time — if it works, use SINCE. Replace with a length of time — if it works, use FOR.',
+   warn:'Both are used with the present perfect. "I have lived here since 2018 / for six years." Not with simple past (in most cases).',
+   items:[
+     {word:'SINCE',meaning:'A point in time — when the period began',grammar:'since + year / date / event / clause',exs:['She has worked here *since* 2018.','I have not seen him *since* the conference.','Things have changed *since* she became manager.']},
+     {word:'FOR',meaning:'A duration — how long the period has lasted',grammar:'for + length of time',exs:['She has worked here *for* six years.','I have known him *for* a decade.','They have been waiting *for* two hours.']},
+   ],
+   confusable:[{type:'correct',s:'She has been learning English for three years, since she moved to London.',note:'for = duration; since = starting point'},{type:'wrong',s:'She has been learning English since three years, for she moved to London.'}]},
+
+  {pair:'in vs into / on vs onto',
+   rule:'IN/ON = state (where something already is). INTO/ONTO = movement (entering a space or landing on a surface).',
+   tip:'Adding "-to" signals movement. The fish IS in the water. The fish jumped INTO the water.',
+   warn:'In spoken English "into" and "in" are sometimes used interchangeably, but in writing this distinction is expected.',
+   items:[
+     {word:'IN / ON',meaning:'Static — already there',grammar:'in the box / on the table (no movement implied)',exs:['The documents are *in* the filing cabinet.','The keys are *on* the counter.','She was sitting *on* the bench.']},
+     {word:'INTO / ONTO',meaning:'Movement — entering or landing',grammar:'walk into / fall onto / put into / jump onto',exs:['She walked *into* the room.','He put the letter *into* the envelope.','The cat jumped *onto* the table.']},
+   ],
+   confusable:[{type:'correct',s:'She went into the garden and sat on the grass.',note:'into = movement; on = state'},{type:'wrong',s:'She went in the garden and sat onto the grass.'}]},
+
+  {pair:'between vs among',
+   rule:'BETWEEN = exactly two (or distinct, named items). AMONG = more than two (a group, a mass).',
+   tip:'Between you and me = two people. Among friends = a group. However, "between" is correct even with many items if they are individually distinct: "There are differences between English, French, and Spanish."',
+   warn:null,
+   items:[
+     {word:'BETWEEN',meaning:'Two things — or named/distinct multiple items',grammar:'between A and B / between several named things',exs:['The agreement was *between* France and Germany.','*Between* the three options, I prefer the first.','*Between* you and me, I think he is wrong.']},
+     {word:'AMONG',meaning:'Three or more — a group, a mass, a crowd',grammar:'among a group / among friends / among the crowd',exs:['She felt comfortable *among* friends.','The prize was divided *among* all the participants.','He disappeared *among* the crowd.']},
+   ],
+   confusable:[{type:'correct',s:'Among the many candidates, the choice was between the two finalists.',note:'among = group; between = two'},{type:'wrong',s:'Between the many candidates, the choice was among the two finalists.'}]},
+
+  {pair:'during vs while',
+   rule:'DURING = preposition (followed by a noun). WHILE = conjunction (followed by a clause with a subject and verb).',
+   tip:'If you can say "during the time that X happened", you can use either. But DURING must be followed by a noun. WHILE must be followed by a full clause.',
+   warn:'"During she was sleeping" is wrong. "While she was sleeping" is correct. "During the meeting" is correct.',
+   items:[
+     {word:'DURING',meaning:'Preposition — followed by a noun (group)',grammar:'during + noun phrase',exs:['She fell asleep *during* the lecture.','The power went out *during* the storm.','He checked his phone several times *during* the meeting.']},
+     {word:'WHILE',meaning:'Conjunction — followed by subject + verb',grammar:'while + subject + verb (often continuous)',exs:['She fell asleep *while* the professor was lecturing.','*While* I was cooking, he set the table.','He checked his phone *while* she was speaking.']},
+   ],
+   confusable:[{type:'correct',s:'During the match, while the players were resting, the coach spoke to them.',note:'during + noun; while + clause'},{type:'wrong',s:'While the match, during the players were resting, the coach spoke.'}]},
+
+  {pair:'despite vs although',
+   rule:'DESPITE/IN SPITE OF = preposition (followed by a noun or -ing). ALTHOUGH/EVEN THOUGH = conjunction (followed by a clause).',
+   tip:'The most classic grammar test: "Despite she worked hard" is wrong. "Despite working hard" or "Although she worked hard" are both correct.',
+   warn:'"However" is an adverb — it connects two separate sentences and requires a semicolon or full stop before it.',
+   items:[
+     {word:'DESPITE / IN SPITE OF',meaning:'Preposition — followed by a noun or gerund',grammar:'despite + noun / -ing phrase',exs:['*Despite* the rain, she went for a run.','*In spite of* working overtime, she missed the deadline.','*Despite* his experience, he struggled with the task.']},
+     {word:'ALTHOUGH / EVEN THOUGH',meaning:'Conjunction — followed by subject + verb',grammar:'although + subject + verb',exs:['*Although* it was raining, she went for a run.','*Even though* she worked overtime, she missed the deadline.','*Although* he is experienced, he struggled.']},
+   ],
+   confusable:[{type:'correct',s:'Although the project was difficult, they completed it. Despite the difficulties, they succeeded.',note:'although + clause; despite + noun'},{type:'wrong',s:'Despite the project was difficult, they completed it. Although the difficulties, they succeeded.'}]},
+
+  {pair:'beside vs besides',
+   rule:'BESIDE = next to (location). BESIDES = in addition to / apart from.',
+   tip:'A single letter makes a huge difference. "Sit beside me" (next to me). "Besides, I have other plans" (in addition).',
+   warn:null,
+   items:[
+     {word:'BESIDE',meaning:'Next to — physical position',grammar:'sit beside / stand beside / place beside',exs:['She sat *beside* him throughout the ceremony.','The café is *beside* the post office.','Put your bag *beside* the door.']},
+     {word:'BESIDES',meaning:'In addition to — or "moreover / anyway"',grammar:'besides + noun/pronoun / besides, + clause',exs:['*Besides* English, she speaks German and Polish.','I do not want to go — *besides*, I am too tired.','*Besides* the cost, there is also the question of time.']},
+   ],
+   confusable:[{type:'correct',s:'Besides, she was sitting beside him, which made the situation awkward.',note:'besides = moreover; beside = next to'},{type:'wrong',s:'Beside, she was sitting besides him, which made the situation awkward.'}]},
+
+  {pair:'above vs over / below vs under',
+   rule:'ABOVE/BELOW = higher/lower in position (not necessarily covering). OVER/UNDER = directly above/below, or covering/movement.',
+   tip:'OVER implies contact or coverage: "a blanket over the bed." ABOVE implies simply higher: "the picture above the fireplace." UNDER often implies being covered or in a state.',
+   warn:null,
+   items:[
+     {word:'ABOVE / BELOW',meaning:'Higher or lower in position — no contact',grammar:'above/below sea level / above/below average / the apartment above',exs:['The temperature is ten degrees *above* average.','She lives in the apartment *above* mine.','*Below* the surface, the water is cold.']},
+     {word:'OVER / UNDER',meaning:'Directly above/below, covering, or movement',grammar:'over/under a bridge / jump over / run under / a bridge over the river',exs:['She wore a jacket *over* her dress.','The dog hid *under* the table.','The plane flew *over* the city.']},
+   ],
+   confusable:[{type:'correct',s:'The temperature above zero was just over five degrees. She put a blanket over the child sleeping under the stars.',note:'above = position; over = covering'},{type:'wrong',s:'The temperature over zero was just above five degrees.'}]},
+];
+
+// ── ARTICLES & DETERMINERS DATA ────────────────────────────────
+const ART_PAIRS=[
+  {pair:'a vs the vs ∅',
+   rule:'A/AN = first mention or one of many. THE = shared/known referent. ∅ (no article) = uncountable nouns in general or plural generics.',
+   tip:'THE signals: both speaker and listener know which one. A/AN signals: we are introducing it, or it is one of many. ∅ signals: we are speaking about a concept in general.',
+   warn:'"The life is beautiful" (wrong) — life in general takes no article. "Life is beautiful" (correct). Proper nouns mostly take no article: England, not "the England".',
+   items:[
+     {word:'A / AN',meaning:'One (of many) — first mention — classification',grammar:'a + singular countable noun (first mention or any one)',exs:['She bought *a* new laptop.','He is *an* engineer.','I need *a* word with you.']},
+     {word:'THE',meaning:'Specific — shared knowledge — unique',grammar:'the + noun (known to both speaker and listener)',exs:['She bought *the* laptop she had been saving for.','Can you close *the* door?','*The* sun rises in the east.']},
+     {word:'∅ (no article)',meaning:'General — uncountable — plural generics',grammar:'∅ + uncountable noun / ∅ + plural noun (in general)',exs:['*Music* has the power to change moods.','She drinks *coffee* every morning.','*Children* need consistency and love.']},
+   ],
+   confusable:[{type:'correct',s:'I bought a car last week. The car is red. Cars are expensive.',note:'a = first mention; the = known referent; ∅ = general'},{type:'wrong',s:'I bought the car last week. A car is red. The cars are expensive.'}]},
+
+  {pair:'some vs any',
+   rule:'SOME = positive statements and offers. ANY = negative statements, questions, and conditionals.',
+   tip:'Use SOME in offers (Would you like some tea?) because you expect a yes. Use ANY in questions where the answer is genuinely unknown.',
+   warn:'"Is there some milk left?" sounds like you expect yes. "Is there any milk left?" is neutral. Both can be correct but with different implications.',
+   items:[
+     {word:'SOME',meaning:'Positive statements, offers, requests',grammar:'some + uncountable / some + plural noun',exs:['There is *some* milk in the fridge.','Would you like *some* coffee?','I need *some* help with this.']},
+     {word:'ANY',meaning:'Negatives, questions, conditionals',grammar:'any + uncountable / any + plural noun (negative/question/if)',exs:['There is not *any* milk left.','Do you have *any* questions?','If you find *any* errors, let me know.']},
+   ],
+   confusable:[{type:'correct',s:'I have some ideas, but I do not have any concrete plans yet.'},{type:'wrong',s:'I have any ideas, but I do not have some concrete plans yet.'}]},
+
+  {pair:'few vs a few / little vs a little',
+   rule:'FEW / LITTLE (without "a") = almost none — negative. A FEW / A LITTLE = some, enough — positive.',
+   tip:'The "a" changes the meaning completely. "Few people came" (disappointing — almost nobody). "A few people came" (reassuring — some did).',
+   warn:'FEW = with countable nouns. LITTLE = with uncountable nouns. This is a separate distinction from the "a" question.',
+   items:[
+     {word:'FEW / LITTLE',meaning:'Almost none — negative implication',grammar:'few + countable plural / little + uncountable',exs:['*Few* people voted — it was a poor turnout.','She has *little* patience for excuses.','There is *little* evidence to support this.']},
+     {word:'A FEW / A LITTLE',meaning:'Some — positive, sufficient',grammar:'a few + countable plural / a little + uncountable',exs:['*A few* people came — enough for a good discussion.','Could I have *a little* more time?','She knows *a few* words of Japanese.']},
+   ],
+   confusable:[{type:'correct',s:'A few students passed, but few had actually studied the full syllabus.',note:'a few = some; few = very small number, negative'},{type:'wrong',s:'Few students passed, but a few had actually studied the full syllabus.'}]},
+
+  {pair:'each vs every',
+   rule:'EACH = individual focus — one by one. EVERY = collective — all together as a group.',
+   tip:'EACH can refer to two items; EVERY requires three or more. EACH is often used with "of": "each of the students". EVERY is not used with "of".',
+   warn:'"Every two days" = each alternate day (fixed expression). "Each two days" is non-standard. Use "every other day" instead.',
+   items:[
+     {word:'EACH',meaning:'Individual — one by one, separately',grammar:'each + singular noun / each of the + plural noun',exs:['She shook hands with *each* person in the room.','*Each* student received a certificate.','*Each* of the questions was answered correctly.']},
+     {word:'EVERY',meaning:'All — together, collectively',grammar:'every + singular noun (three or more)',exs:['She calls home *every* evening.','*Every* student must register by Friday.','He reads *every* book she recommends.']},
+   ],
+   confusable:[{type:'correct',s:'Every student received a book. Each student then had to write their name in it.',note:'every = collective; each = individual action'},{type:'wrong',s:'Each student received a book. Every student then had to write their name in it.'}]},
+
+  {pair:'either vs neither / both',
+   rule:'BOTH = two (positive). EITHER = one of two (positive or negative). NEITHER = not one of two (negative).',
+   tip:'BOTH takes a plural verb. EITHER and NEITHER take singular verbs (formally). NEITHER is already negative — do not add "not".',
+   warn:'"Neither of them are" is common in informal speech, but formally it should be "Neither of them is".',
+   items:[
+     {word:'BOTH',meaning:'Two — the two together (positive)',grammar:'both + plural noun / both of the + plural',exs:['*Both* options are acceptable.','She speaks *both* French and German.','I liked *both* of the candidates.']},
+     {word:'EITHER',meaning:'One or the other of two',grammar:'either + singular / either of the + plural',exs:['You can use *either* entrance.','I do not like *either* option.','*Either* day works for me.']},
+     {word:'NEITHER',meaning:'Not one and not the other',grammar:'neither + singular / neither of the + plural',exs:['*Neither* candidate was selected.','*Neither* of them spoke during the meeting.','*Neither* option is ideal.']},
+   ],
+   confusable:[{type:'correct',s:'Neither team scored, which was a result that pleased neither manager.',note:'neither = not either of two'},{type:'wrong',s:'Neither team scored, which was a result that did not please neither manager.'}]},
+
+  {pair:'much vs many / less vs fewer',
+   rule:'MUCH/LESS = uncountable nouns. MANY/FEWER = countable nouns.',
+   tip:'"Less than ten items" is very common but widely criticised: the formal rule demands "fewer than ten items" (countable). "Less" is correct for uncountable: "less time, less money, less traffic".',
+   warn:'"Much" is mostly used in negatives and questions; in positive statements, use "a lot of": "She has a lot of work" (not "much work", unless formal).',
+   items:[
+     {word:'MUCH / LESS',meaning:'Uncountable nouns',grammar:'much + uncountable (negatives/questions) / less + uncountable',exs:['There is not *much* time left.','She earns *less* money than her colleagues.','How *much* coffee do you drink?']},
+     {word:'MANY / FEWER',meaning:'Countable plural nouns',grammar:'many + countable plural / fewer + countable plural',exs:['There are not *many* options.','*Fewer* students enrolled this year.','How *many* people attended?']},
+   ],
+   confusable:[{type:'correct',s:'Fewer people came, so we had less food to worry about.',note:'fewer = countable; less = uncountable'},{type:'wrong',s:'Less people came, so we had fewer food to worry about.'}]},
+
+  {pair:'make someone do vs make something done',
+   rule:'ACTIVE: make + person + base verb (no "to"). PASSIVE: make + thing + past participle.',
+   tip:'This is a structural trap, not just a vocabulary one. "I made her cry" (active — no infinitive marker). "The decision was made clear" (passive — past participle).',
+   warn:null,
+   items:[
+     {word:'make + person + base verb',meaning:'Causative active — force someone to do',grammar:'make + object + infinitive (no to)',exs:['She *made him apologise* immediately.','What *made you change* your mind?','The teacher *made the students redo* the exercise.']},
+     {word:'make + thing + adjective/past participle',meaning:'Causative passive / result',grammar:'make + thing + adjective',exs:['She *made the situation clear*.','This *makes me nervous*.','Please *make sure everything is ready*.']},
+   ],
+   confusable:[{type:'correct',s:'She made them work harder and made the process more efficient.',note:'make + person + base verb; make + thing + adjective'},{type:'wrong',s:'She made them to work harder and made the process to be more efficient.'}]},
+];
+
+// ── ADJECTIVE PAIRS DATA ───────────────────────────────────────
+const ADJ_PAIRS=[
+  {pair:'-ed vs -ing adjectives',
+   rule:'-ING adjectives describe what causes a feeling. -ED adjectives describe how a person (or thing) feels.',
+   tip:'Test: if the subject causes the feeling, use -ing. If the subject experiences the feeling, use -ed.',
+   warn:'"The film is bored" is almost always wrong — films cause feelings, they do not feel them. "The film is boring."',
+   items:[
+     {word:'-ING adjectives',meaning:'Causing a feeling — describes the thing itself',grammar:'boring, interesting, exciting, tiring, confusing, shocking, disappointing',exs:['The lecture was *boring* — I nearly fell asleep.','She found the novel *interesting* and read it in one day.','The result was *shocking*.']},
+     {word:'-ED adjectives',meaning:'Experiencing a feeling — describes the person',grammar:'bored, interested, excited, tired, confused, shocked, disappointed',exs:['I was *bored* during the lecture.','She was *interested* in the proposal.','He looked *confused* by the instructions.']},
+   ],
+   confusable:[{type:'correct',s:'The film was exciting, but I was not particularly excited by the ending.',note:'-ing = the film causes excitement; -ed = my state'},{type:'wrong',s:'The film was excited, but I was not particularly exciting by the ending.'}]},
+
+  {pair:'economic vs economical',
+   rule:'ECONOMIC = relating to the economy or economics (subject area). ECONOMICAL = using resources carefully, not wasteful.',
+   tip:'"Economic crisis" relates to the national economy. "An economical car" uses little fuel. The difference is subject area vs personal thrift.',
+   warn:null,
+   items:[
+     {word:'ECONOMIC',meaning:'Relating to the economy, finance, or economics',grammar:'economic policy / economic growth / economic crisis / economic analysis',exs:['The government announced new *economic* reforms.','*Economic* growth slowed last quarter.','She wrote her thesis on *economic* inequality.']},
+     {word:'ECONOMICAL',meaning:'Using resources efficiently — not wasteful',grammar:'economical with / economical car / economical solution',exs:['This car is very *economical* — it uses almost no fuel.','She was *economical* with words: brief but precise.','The *economical* solution saved the company thousands.']},
+   ],
+   confusable:[{type:'correct',s:'The economic situation means we need to be more economical with our resources.',note:'economic = economy-related; economical = efficient'},{type:'wrong',s:'The economical situation means we need to be more economic with our resources.'}]},
+
+  {pair:'historic vs historical',
+   rule:'HISTORIC = famous, important — a landmark event. HISTORICAL = relating to history, concerned with the past.',
+   tip:'A historic moment is one that will be remembered. A historical document is one from or about the past.',
+   warn:null,
+   items:[
+     {word:'HISTORIC',meaning:'Famous, significant — likely to be remembered by history',grammar:'a historic moment / a historic decision / a historic occasion',exs:['The signing of the agreement was *a historic moment*.','The team\'s victory was *historic*.','This is *a historic* day for the country.']},
+     {word:'HISTORICAL',meaning:'Relating to history — from or about the past',grammar:'historical records / historical evidence / a historical novel',exs:['She found *historical* records in the archive.','The film is based on *historical* events.','*Historical* evidence suggests otherwise.']},
+   ],
+   confusable:[{type:'correct',s:'The historian found historical documents that described a historic battle.',note:'historical = about the past; historic = significant'},{type:'wrong',s:'The historian found historic documents that described a historical battle.'}]},
+
+  {pair:'sensible vs sensitive',
+   rule:'SENSIBLE = showing good practical judgement. SENSITIVE = easily affected by emotions or external stimuli.',
+   tip:'A sensible person makes wise decisions. A sensitive person is easily hurt or keenly aware.',
+   warn:null,
+   items:[
+     {word:'SENSIBLE',meaning:'Practical, reasonable, showing good judgement',grammar:'a sensible decision / sensible advice / sensible shoes',exs:['She made the *sensible* decision to leave early.','It would be *sensible* to save some money first.','Wear *sensible* shoes on the hike.']},
+     {word:'SENSITIVE',meaning:'Easily affected — emotionally or physically',grammar:'sensitive to / sensitive about / sensitive skin / sensitive topic',exs:['He is *sensitive* about criticism.','She has *sensitive* skin — she cannot use most perfumes.','This is a *sensitive* topic that requires careful handling.']},
+   ],
+   confusable:[{type:'correct',s:'It is sensible to avoid sensitive subjects when meeting someone for the first time.',note:'sensible = wise; sensitive = easily affected'},{type:'wrong',s:'It is sensitive to avoid sensible subjects when meeting someone for the first time.'}]},
+
+  {pair:'actual vs currently',
+   rule:'ACTUAL = real, as opposed to imagined or theoretical. CURRENTLY = at the present time.',
+   tip:'"Actual" is a classic false friend. In many languages the equivalent word means "current". In English, "actual" does NOT mean "current".',
+   warn:'"The actual situation" = the real situation (not the imagined one). NOT "the present situation". For "present/current", use CURRENTLY or CURRENT.',
+   items:[
+     {word:'ACTUAL',meaning:'Real — in reality, as opposed to supposed or theoretical',grammar:'the actual figure / the actual problem / in actual fact',exs:['The *actual* cost was far higher than the estimate.','What is the *actual* situation on the ground?','In *actual* fact, the opposite is true.']},
+     {word:'CURRENTLY / CURRENT',meaning:'At this moment — at the present time',grammar:'currently working / the current situation / currently available',exs:['She is *currently* working on the third chapter.','The *current* government has different priorities.','What is the *current* exchange rate?']},
+   ],
+   confusable:[{type:'correct',s:'The current policy is not working. The actual cost of the programme has been much higher.',note:'current = now; actual = real/true'},{type:'wrong',s:'The actual policy is not working. The current cost of the programme has been much higher.'}]},
+
+  {pair:'eventually vs finally vs at last',
+   rule:'EVENTUALLY = after a long time (neutral). FINALLY = after a long wait — can be neutral or impatient. AT LAST = after a long wait — strongly emotional/relieved.',
+   tip:'"Eventually" focuses on the long process. "Finally" can be used in lists (first...then...finally) or after a wait. "At last" is always emotional.',
+   warn:null,
+   items:[
+     {word:'EVENTUALLY',meaning:'After a long process — neutral',grammar:'eventually + clause (things that take time)',exs:['She *eventually* found the answer after months of research.','All rivers *eventually* reach the sea.','He *eventually* accepted the offer.']},
+     {word:'FINALLY',meaning:'After a long wait — or last in a sequence',grammar:'finally + clause / first...then...finally',exs:['She *finally* received a reply after three weeks.','First, mix the ingredients. Then bake. *Finally*, decorate.','We *finally* agreed on a date.']},
+     {word:'AT LAST',meaning:'After a very long wait — relief or frustration expressed',grammar:'at last + clause (strongly emotional)',exs:['*At last* — I have been waiting for an hour!','She *at last* found a solution.','*At last*, the rain has stopped!']},
+   ],
+   confusable:[{type:'correct',s:'After hours of searching, she eventually found her keys. At last! she said.',note:'eventually = neutral process; at last = emotional'},{type:'wrong',s:'After hours of searching, she at last found her keys (neutral context).'}]},
+
+  {pair:'alone vs lonely',
+   rule:'ALONE = physical state — no one else is present (neutral). LONELY = emotional feeling — a feeling of sadness at being without company.',
+   tip:'You can be alone without feeling lonely (enjoying solitude). You can feel lonely even when surrounded by people.',
+   warn:null,
+   items:[
+     {word:'ALONE',meaning:'Without other people — a physical fact, neutral',grammar:'be alone / live alone / stand alone / alone + in a place',exs:['She prefers to work *alone*.','He was *alone* in the office at midnight.','Living *alone* gives her more freedom.']},
+     {word:'LONELY',meaning:'Feeling sad about being without company',grammar:'feel lonely / be lonely / a lonely existence',exs:['She felt *lonely* despite being surrounded by colleagues.','Moving to a new city can be *lonely*.','He had a *lonely* childhood.']},
+   ],
+   confusable:[{type:'correct',s:'She lives alone but never feels lonely — she has a rich inner life.',note:'alone = physical fact; lonely = emotional feeling'},{type:'wrong',s:'She lives lonely but never feels alone — she has a rich inner life.'}]},
+
+  {pair:'hardly vs barely vs scarcely',
+   rule:'All three = almost not / almost nothing. They are synonyms but with slightly different registers. HARDLY = most common. SCARCELY = most formal.',
+   tip:'These three words are NEGATIVE in meaning — they do not need an additional "not". "I can hardly hear" NOT "I can\'t hardly hear".',
+   warn:'"I can\'t hardly" is a double negative and is non-standard. These words already contain negation.',
+   items:[
+     {word:'HARDLY / BARELY / SCARCELY',meaning:'Almost not — very little of something',grammar:'can hardly / barely / scarcely + base verb. Inversion in formal use.',exs:['I could *hardly* hear him over the noise.','She had *barely* started when the alarm rang.','There was *scarcely* any evidence left.','*Hardly had* she arrived when the meeting began.']},
+   ],
+   confusable:[{type:'correct',s:'She had hardly eaten anything and could barely keep her eyes open.',note:'no double negative needed'},{type:'wrong',s:'She had not hardly eaten anything and could not barely keep her eyes open.'}]},
+];
+
+// ── CONJUNCTIONS & CONNECTORS DATA ────────────────────────────
+const CONJ_PAIRS=[
+  {pair:'although vs despite vs however',
+   rule:'ALTHOUGH = conjunction (clause). DESPITE = preposition (noun/-ing). HOWEVER = adverb (joins sentences, needs punctuation).',
+   tip:'All three express contrast, but they follow different grammar. Mixing them up is one of the most common writing errors.',
+   warn:'"Despite that she worked hard" is wrong. "Despite the fact that she worked hard" (with "the fact that") is a workaround.',
+   items:[
+     {word:'ALTHOUGH / EVEN THOUGH',meaning:'Conjunction — followed by full clause',grammar:'although + subject + verb',exs:['*Although* she worked hard, she did not pass.','*Even though* it was cold, they sat outside.']},
+     {word:'DESPITE / IN SPITE OF',meaning:'Preposition — followed by noun or -ing',grammar:'despite + noun / -ing',exs:['*Despite* her hard work, she did not pass.','*In spite of* the cold, they sat outside.']},
+     {word:'HOWEVER',meaning:'Adverb — joins two sentences, not clauses',grammar:'sentence. However, sentence.',exs:['She worked hard. *However*, she did not pass.','The plan looked good. *However*, it had serious flaws.']},
+   ],
+   confusable:[{type:'correct',s:'Although the results were poor, she did not give up. Despite the setbacks, she persevered. However, she did ask for extra support.',note:'three different structures'},{type:'wrong',s:'Despite the results were poor... / However the results were poor, she...'}]},
+
+  {pair:'because vs because of vs due to',
+   rule:'BECAUSE = conjunction (clause). BECAUSE OF = preposition (noun). DUE TO = preposition (noun), more formal, used after "be".',
+   tip:'If you can replace it with "as a result of", use "because of" or "due to". If you need a full clause, use "because".',
+   warn:'"Due to" is sometimes considered incorrect at the start of a sentence (as "owing to" is preferred), but this distinction is becoming less rigid in practice.',
+   items:[
+     {word:'BECAUSE',meaning:'Conjunction — full clause follows',grammar:'because + subject + verb',exs:['She left early *because* she had an appointment.','He was promoted *because* he worked exceptionally hard.']},
+     {word:'BECAUSE OF',meaning:'Preposition — noun/pronoun/-ing follows',grammar:'because of + noun / pronoun',exs:['She left early *because of* her appointment.','He was promoted *because of* his hard work.']},
+     {word:'DUE TO',meaning:'Formal preposition — used after a form of "be" ideally',grammar:'due to + noun phrase',exs:['The delay was *due to* adverse weather.','*Due to* increased demand, prices have risen.']},
+   ],
+   confusable:[{type:'correct',s:'The flight was delayed due to fog. Passengers were angry because they had waited for hours.',note:'due to + noun; because + clause'},{type:'wrong',s:'The flight was delayed because of the fog was thick. / The flight was delayed due to the fog was thick.'}]},
+
+  {pair:'so vs so that',
+   rule:'SO = result (what happened as a consequence). SO THAT = purpose (the intended reason for doing something).',
+   tip:'"She studied so that she would pass" — the purpose. "She studied, so she passed" — the result. SO THAT often includes a modal (would, could, can).',
+   warn:null,
+   items:[
+     {word:'SO (result)',meaning:'Result — what happened because of something',grammar:'clause, so clause',exs:['She studied hard, *so* she passed.','It was raining, *so* we stayed inside.','He was tired, *so* he went to bed.']},
+     {word:'SO THAT (purpose)',meaning:'Purpose — the intended reason for doing something',grammar:'clause so that + subject + modal + verb',exs:['She studied hard *so that* she would pass.','She kept notes *so that* she could revise later.','He wrote it down *so that* he would not forget.']},
+   ],
+   confusable:[{type:'correct',s:'She saved money so that she could buy a car. She saved enough, so she bought one.',note:'so that = purpose; so = result'},{type:'wrong',s:'She saved money so she would be able to buy a car. She saved enough so that she bought one.'}]},
+
+  {pair:'unless vs if not',
+   rule:'UNLESS = if not (exception). They are largely interchangeable, but UNLESS cannot be used with all negative constructions.',
+   tip:'"Unless it rains" = "if it does not rain". However, in complex or hypothetical sentences, "if not" is safer. UNLESS cannot be followed by a negative verb: "Unless you do not come" is wrong — use "Unless you come".',
+   warn:'"Unless you don\'t come" is a double negative — wrong. UNLESS already contains negation.',
+   items:[
+     {word:'UNLESS',meaning:'Except if — introduces a condition that prevents the result',grammar:'unless + positive clause (no NOT needed)',exs:['I will not go *unless* you come with me.','*Unless* she calls, we will assume she is late.','Do not call *unless* it is urgent.']},
+     {word:'IF NOT',meaning:'In all other cases — slightly more flexible',grammar:'if + not + condition',exs:['*If* she does *not* call, we will assume she is late.','*If* it is *not* urgent, please email instead.','Go ahead *if* there are no objections.']},
+   ],
+   confusable:[{type:'correct',s:`Unless she calls, assume she is late. (= If she doesn't call, assume she is late.)`},{type:'wrong',s:'Unless she does not call, assume she is late. (double negative)'}]},
+
+  {pair:'while vs whereas',
+   rule:'WHILE = at the same time / during which time. WHEREAS = contrast (shows a difference between two facts).',
+   tip:'WHILE can be ambiguous — it can mean simultaneous time OR contrast. WHEREAS is always contrast and is therefore clearer for academic writing.',
+   warn:null,
+   items:[
+     {word:'WHILE (time)',meaning:'Simultaneous — happening at the same time',grammar:'while + subject + verb (often continuous)',exs:['She cooked *while* he set the table.','I listen to podcasts *while* I commute.','*While* she was speaking, he was checking his phone.']},
+     {word:'WHILE / WHEREAS (contrast)',meaning:'Contrast — two different facts',grammar:'whereas/while + clause, clause',exs:['*Whereas* she prefers coffee, he drinks only tea.','*While* the north has grown rapidly, the south has stagnated.','*Whereas* the first model was expensive, the new one is affordable.']},
+   ],
+   confusable:[{type:'correct',s:'While I was cooking, I realised that whereas I enjoy baking, my sister prefers cooking.','note':'while = time; whereas = contrast'},{type:'wrong',s:'Whereas I was cooking, I realised that while I enjoy baking, my sister prefers cooking.'}]},
+
+  {pair:'still vs yet vs already',
+   rule:'STILL = continuing (expected to have stopped). YET = not yet happened (expected soon, used in negatives/questions). ALREADY = sooner than expected.',
+   tip:'Position matters: STILL goes before the main verb (or after "be"). YET goes at the end. ALREADY goes before the main verb or at the end in AmE.',
+   warn:null,
+   items:[
+     {word:'STILL',meaning:'Continuing — something that was expected to change',grammar:'still + main verb / be + still',exs:['She is *still* waiting for a reply.','He *still* does not understand.','Are they *still* together?']},
+     {word:'YET',meaning:'Not happened so far — but expected (negative/question)',grammar:'not yet / yet? (at the end of sentence)',exs:['She has not replied *yet*.','Have you finished *yet*?','Is it ready *yet*?']},
+     {word:'ALREADY',meaning:'Sooner than expected — (positive, sometimes surprised)',grammar:'already + past participle / at end in AmE',exs:['She has *already* replied — incredible!','He *already* knew the answer.','Is it finished *already*?']},
+   ],
+   confusable:[{type:'correct',s:`He still hasn't finished, and she's already moved on to the next stage. Have you eaten yet?`},{type:'wrong',s:`He already hasn't finished, and she's still moved on. Have you eaten still?`}]},
+
+  {pair:'even vs even if vs even though',
+   rule:'EVEN = emphasiser (used with comparatives and superlatives). EVEN IF = hypothetical concession. EVEN THOUGH = real concession.',
+   tip:'EVEN IF deals with imagined or possible situations. EVEN THOUGH deals with facts that are true.',
+   warn:null,
+   items:[
+     {word:'EVEN',meaning:'Emphasiser — surprising or extreme case',grammar:'even + adjective/adverb/comparative',exs:['She works *even* harder than before.','*Even* he admitted it was a mistake.','This is *even* better than I expected.']},
+     {word:'EVEN IF',meaning:'Hypothetical — whether or not something happens',grammar:'even if + subject + verb (imagined)',exs:['I would not go *even if* you paid me.','*Even if* she apologises, I will not forget.','She will succeed *even if* it takes years.']},
+     {word:'EVEN THOUGH',meaning:'Real concession — despite a fact that is true',grammar:'even though + clause (this is actually true)',exs:['*Even though* she was tired, she kept working.','He enjoyed the film *even though* the reviews were poor.','*Even though* it was expensive, she bought it.']},
+   ],
+   confusable:[{type:'correct',s:'Even though she was nervous, she delivered an even better presentation than last time, even if nobody noticed.',note:'even though = real; even if = hypothetical; even = emphasiser'},{type:'wrong',s:'Even if she was nervous (but she was), she delivered an even though better presentation.'}]},
+];
+
+// ── MODAL VERBS DATA ──────────────────────────────────────────
+const MOD_PAIRS=[
+  {pair:'can vs could vs be able to',
+   rule:'CAN = present ability/permission. COULD = past ability, polite requests, or conditional. BE ABLE TO = all tenses, after modals.',
+   tip:'After another modal (might, will, should), only BE ABLE TO works. "She might be able to help" — not "she might can help".',
+   warn:null,
+   items:[
+     {word:'CAN',meaning:'Present ability / permission / possibility',grammar:'can + base verb',exs:['She *can* speak three languages.','*Can* I open the window?','It *can* get very cold here in winter.']},
+     {word:'COULD',meaning:'Past ability / polite request / conditional / weaker possibility',grammar:'could + base verb',exs:['She *could* read at age four.','*Could* you pass the salt, please?','You *could* try calling her.']},
+     {word:'BE ABLE TO',meaning:'All tenses — especially after other modals',grammar:'am/was/will be able to / might/should be able to',exs:['I *will be able to* help you tomorrow.','She *was able to* solve it quickly.','He *might be able to* attend.']},
+   ],
+   confusable:[{type:'correct',s:'She could swim well as a child. Now she can race competitively. She might be able to compete internationally.',note:'past / present / after modal'},{type:'wrong',s:'She might can compete internationally.'}]},
+
+  {pair:'must vs have to vs need to',
+   rule:'MUST = internal obligation (the speaker decides). HAVE TO = external obligation (rules, circumstances). NEED TO = necessity.',
+   tip:'The negative forms are COMPLETELY DIFFERENT: MUSTN\'T = forbidden. DON\'T HAVE TO = not necessary (free choice).',
+   warn:'This is one of the most important distinctions in English modal verbs. Confusing them can completely reverse your meaning.',
+   items:[
+     {word:'MUST',meaning:'Internal obligation — you impose it on yourself or others',grammar:'must + base verb (strong, personal)',exs:['I *must* remember to call her — it is important.','You *must* read this book — it is incredible.','She *must* be home by midnight.']},
+     {word:'HAVE TO',meaning:'External obligation — rules, circumstances, someone else requires it',grammar:'have to + base verb',exs:['I *have to* wear a uniform — it is the company rule.','She *has to* submit it by Friday (the deadline).','He *had to* redo the whole report.']},
+     {word:'NEED TO',meaning:'Necessity — something is required',grammar:'need to + base verb / do not need to + base verb',exs:['You *need to* bring ID to the interview.','She does not *need to* attend all the meetings.','Do we *need to* book in advance?']},
+   ],
+   confusable:[{type:'correct',s:`You mustn't use your phone here (it's forbidden). You don't have to stay for the whole meeting (it's optional).`,note:'mustn\'t = forbidden; don\'t have to = not necessary'},{type:'wrong',s:`You don't have to use your phone here (= it's forbidden). You mustn't stay for the whole meeting (= it's optional).`}]},
+
+  {pair:'mustn\'t vs don\'t have to',
+   rule:'MUSTN\'T = prohibition — you are forbidden to do this. DON\'T HAVE TO = no obligation — you can choose.',
+   tip:'This is the most dangerous confusable pair in the modal system. The meanings are completely opposite.',
+   warn:'Mixing these up can give completely the wrong instruction: "You mustn\'t do it" vs "You don\'t have to do it" are opposites.',
+   items:[
+     {word:"MUSTN'T",meaning:'Prohibition — it is forbidden / not allowed',grammar:"mustn't + base verb",exs:["You *mustn't* smoke in here — it's not allowed.",'Passengers *mustn\'t* open the emergency doors.','You *mustn\'t* tell anyone — it\'s a surprise.']},
+     {word:"DON'T / DOESN'T HAVE TO",meaning:'No obligation — it is optional / not necessary',grammar:"don't have to + base verb",exs:["You *don't have to* come if you're busy.",`She *doesn't have to* wear a uniform — it's not required.`,'We *do not have to* decide today.']},
+   ],
+   confusable:[{type:'correct',s:`Guests mustn't bring their own alcohol (it's prohibited). But they don't have to wear formal dress (it's optional).`},{type:'wrong',s:`Guests don't have to bring their own alcohol (sounds like it's allowed but not required). Guests mustn't wear formal dress (sounds like it's forbidden).`}]},
+
+  {pair:'should vs ought to vs had better',
+   rule:'SHOULD = advice (mild). OUGHT TO = moral duty (slightly stronger than should). HAD BETTER = strong advice with implied consequence.',
+   tip:'HAD BETTER implies "or else something bad will happen". It is NOT a comparative or past — "had better" is always present/future in meaning.',
+   warn:'"You had better not be late" = a warning. It is much stronger than "you should not be late".',
+   items:[
+     {word:'SHOULD',meaning:'Mild advice or recommendation',grammar:'should + base verb',exs:['You *should* get more sleep.','She *should* call before she visits.','We *should* check the data again.']},
+     {word:'OUGHT TO',meaning:'Moral obligation — slightly stronger, more formal',grammar:'ought to + base verb',exs:['You *ought to* apologise.','She *ought to* have told us earlier.','They *ought to* know the risks.']},
+     {word:'HAD BETTER',meaning:'Strong advice — warning of consequence',grammar:'had better + base verb / had better not + base verb',exs:["You *had better* leave now or you'll miss the train.",'She *had better* not be late — the boss is watching.','We *had better* double-check everything.']},
+   ],
+   confusable:[{type:'correct',s:'You should exercise more. In fact, you had better start now — the doctor gave a serious warning.',note:'should = mild advice; had better = serious warning'},{type:'wrong',s:'You had better exercise more (just a friendly suggestion).'}]},
+
+  {pair:'may vs might',
+   rule:'MAY = higher probability / formal permission. MIGHT = lower probability / slightly more tentative.',
+   tip:'In practice, MAY and MIGHT are often interchangeable for possibility. For permission, only MAY is standard: "May I come in?" (not "Might I come in?")',
+   warn:'"Might have" = past possibility (something that did not happen or you are unsure about). "May have" = past possibility (you think it probably happened).',
+   items:[
+     {word:'MAY',meaning:'Higher probability / formal permission',grammar:'may + base verb / may I?',exs:['She *may* arrive before us — she left earlier.','*May* I ask a question?','The results *may* be published next month.']},
+     {word:'MIGHT',meaning:'Lower probability / tentative / past unreal',grammar:'might + base verb / might have + past participle',exs:['She *might* come, but I would not count on it.','He *might have* missed the train — I am not sure.','You *might* want to double-check that.']},
+   ],
+   confusable:[{type:'correct',s:'You may leave early today. She might join us later if she finishes in time.',note:'may = permission; might = tentative possibility'},{type:'wrong',s:'You might leave early today (= perhaps, not permission). She may join us later (permission is not the right reading).'}]},
+];
+
+// ── NOUNS & REGISTER DATA ─────────────────────────────────────
+const NOUN_PAIRS=[
+  {pair:'Uncountable nouns',
+   rule:'ADVICE, INFORMATION, NEWS, FURNITURE, LUGGAGE, RESEARCH, KNOWLEDGE, HOMEWORK are all uncountable — they have no plural and cannot take "a".',
+   tip:'Say "a piece of advice" or "some advice", never "an advice". Say "a piece of news", not "a news".',
+   warn:'"Informations", "advices", "furnitures", "luggages" are all wrong. These nouns are uncountable in English, even if the equivalent in your language is countable.',
+   items:[
+     {word:'ADVICE / INFORMATION / NEWS',meaning:'Uncountable — cannot be pluralised',grammar:'some advice / a piece of advice / this advice',exs:['She gave me some useful *advice*.',"That's good *news*.",'I need more *information* before I can decide.']},
+     {word:'FURNITURE / LUGGAGE / EQUIPMENT',meaning:'Uncountable — cannot be pluralised',grammar:'some furniture / a piece of furniture / this luggage',exs:['They bought some new *furniture* for the office.','Please do not leave *luggage* unattended.','All the *equipment* was checked before use.']},
+     {word:'HOMEWORK / HOUSEWORK / RESEARCH / WORK',meaning:'Uncountable — cannot be pluralised',grammar:'a lot of homework / some research / much work',exs:['She has a lot of *homework* this week.','He published three papers based on his *research*.',`I've got a lot of *work* to do today.`]},
+   ],
+   confusable:[{type:'correct',s:'She gave me a piece of advice and some important information.',note:'piece of = countable way to quantify uncountable nouns'},{type:'wrong',s:'She gave me an advice and some important informations.'}]},
+
+  {pair:'work vs a job / travel vs a trip',
+   rule:'WORK = uncountable (the activity). A JOB = countable (a specific employment). TRAVEL = uncountable. A TRIP / JOURNEY = countable.',
+   tip:'"Work" as a noun is always uncountable. "Job" is countable. Similarly, "travel" (the concept) vs "a journey/trip" (a specific one).',
+   warn:null,
+   items:[
+     {word:'WORK (uncountable)',meaning:'The activity or effort — general',grammar:'some work / a lot of work / hard work',exs:['She has done a lot of *work* on the project.','Finding *work* in this sector is difficult.','He is still at *work*.']},
+     {word:'A JOB (countable)',meaning:'A specific position of employment',grammar:'a job / two jobs / apply for a job',exs:['She applied for *a job* at the company.','He has *two jobs* to make ends meet.','Did she get *the job*?']},
+     {word:'TRAVEL / A TRIP / A JOURNEY',meaning:'travel = uncountable concept / trip & journey = countable',grammar:'travel (uncountable) / a short trip / a long journey',exs:['*Travel* broadens the mind.','She took *a trip* to Vienna last month.','*The journey* took four hours.']},
+   ],
+   confusable:[{type:'correct',s:'Travel can be tiring. Her last trip was a long journey. Finding work after the trip was hard, but she got a good job.',note:'travel = general; trip = specific; work = general; job = specific'},{type:'wrong',s:'A travel can be tiring. Her last travel was long. Finding a work was hard.'}]},
+
+  {pair:'big vs large vs great vs major',
+   rule:'All mean "not small" but in different contexts. GREAT = importance or impressiveness. LARGE = physical size (formal). BIG = general (informal). MAJOR = significant, key.',
+   tip:'A "great" achievement is impressive. A "large" building is physically big. A "big" problem is a general problem. A "major" problem is a key/significant one.',
+   warn:null,
+   items:[
+     {word:'BIG / LARGE',meaning:'Physical size or general importance (informal/formal)',grammar:'a big problem (informal) / a large building (formal)',exs:['It was *a big* decision for the whole family.','The company owns *a large* office complex.','This is *a large* portion of the budget.']},
+     {word:'GREAT',meaning:'Impressive, remarkable, famous — high quality or importance',grammar:'a great achievement / a great writer / great difficulty',exs:['She made *a great* contribution to the field.','It was *a great* experience.','He was *a great* leader.']},
+     {word:'MAJOR',meaning:'Very significant, key, primary',grammar:'a major problem / a major decision / major cities',exs:['This is *a major* concern for the committee.','She underwent *major* surgery.','*Major* cities are affected by the new policy.']},
+   ],
+   confusable:[{type:'correct',s:'She made a major contribution — a great achievement — to the large organisation.',note:'major = significant; great = impressive; large = size'},{type:'wrong',s:'She made a great contribution — a major achievement — to the big organisation.'}]},
+
+  {pair:'childish vs childlike',
+   rule:'CHILDISH = negative — immature, silly for an adult. CHILDLIKE = neutral/positive — innocent, natural, open like a child.',
+   tip:'Connotation is everything here. "A childish argument" = immature. "A childlike wonder" = appealing innocence.',
+   warn:null,
+   items:[
+     {word:'CHILDISH',meaning:'Negative — immature, inappropriately like a child',grammar:'childish behaviour / a childish argument / childish response',exs:["His *childish* outburst embarrassed everyone in the meeting.",'Stop being so *childish*!','It was a *childish* reaction to a serious situation.']},
+     {word:'CHILDLIKE',meaning:'Neutral/positive — innocent, natural, endearing',grammar:'childlike wonder / childlike enthusiasm / childlike curiosity',exs:['She has a *childlike* enthusiasm for learning.','His *childlike* wonder at the world never disappeared.','There is something *childlike* and sincere about her art.']},
+   ],
+   confusable:[{type:'correct',s:'Her childlike curiosity is an asset; his childish tantrums are a liability.',note:'childlike = positive innocence; childish = negative immaturity'},{type:'wrong',s:'Her childish curiosity is an asset; his childlike tantrums are a liability.'}]},
+
+  {pair:'suggest + -ing / look forward to + -ing',
+   rule:'SUGGEST + -ING: never "suggest to do". LOOK FORWARD TO + -ING: the "to" is a preposition, not infinitive marker.',
+   tip:'These are classic structural traps. "I suggest to go" is wrong. "I suggest going" or "I suggest that we go". "Looking forward to see you" is wrong — the "to" is a preposition.',
+   warn:'"I am looking forward to meeting you" = correct. "I am looking forward to meet you" = very common error. The to here is NOT the infinitive to.',
+   items:[
+     {word:'SUGGEST + -ing / that-clause',meaning:'Never + to-infinitive',grammar:'suggest + -ing / suggest + that + subject + verb',exs:['She *suggested going* by train.',"I *suggest that* we postpone the meeting.",'He *suggested taking* a different approach.']},
+     {word:'LOOK FORWARD TO + -ing',meaning:'"to" is a preposition — must be followed by noun or -ing',grammar:'look forward to + noun / -ing',exs:['I *look forward to meeting* you.','She *looked forward to the weekend*.','We are *looking forward to seeing* the results.']},
+     {word:'IT\'S WORTH + -ing',meaning:'Never + to-infinitive',grammar:"it's worth + -ing / worth + noun",exs:["*It's worth reading* the full report.",'Is it *worth visiting* the museum?',"*It's worth the effort.*"]},
+   ],
+   confusable:[{type:'correct',s:'She suggested going early. I look forward to meeting you there.'},{type:'wrong',s:'She suggested to go early. I look forward to meet you there.'}]},
+
+  {pair:'famous vs notorious vs well-known',
+   rule:'FAMOUS = positive or neutral — widely recognised. NOTORIOUS = negative — known for something bad. WELL-KNOWN = neutral — simply widely known.',
+   tip:'A famous chef, a notorious criminal. Using "notorious" for something positive sounds sarcastic in English.',
+   warn:null,
+   items:[
+     {word:'FAMOUS',meaning:'Widely known — positive or neutral',grammar:'famous for / famous as',exs:['She is *famous* for her research on climate.','Paris is *famous* for its architecture.']},
+     {word:'NOTORIOUS',meaning:'Widely known — specifically for something bad',grammar:'notorious for + noun/-ing',exs:['He is *notorious* for missing deadlines.','The company became *notorious* for poor customer service.']},
+     {word:'WELL-KNOWN',meaning:'Simply widely known — completely neutral',grammar:'well-known for / a well-known fact',exs:["It's a *well-known* fact that sleep deprivation affects performance.",'She is *well-known* in academic circles.']},
+   ],
+   confusable:[{type:'correct',s:'The restaurant is famous for its pasta. Its owner is, however, somewhat notorious for his temper.',note:'famous = positive; notorious = negative'},{type:'wrong',s:'The restaurant is notorious for its pasta. (implies something bad about the pasta)'}]},
+
+  {pair:'let vs allow vs permit',
+   rule:'LET + object + base verb (no "to"). ALLOW / PERMIT + object + to-infinitive.',
+   tip:'LET does NOT take "to" after the object. "Let her go" not "let her to go". Allow and permit both need "to": "allow her to go".',
+   warn:'PERMIT is more formal than ALLOW. In passive: "She was allowed/permitted to leave" (not "she was let to leave").',
+   items:[
+     {word:'LET',meaning:'Allow informally — followed by bare infinitive',grammar:'let + object + base verb (NO to)',exs:['She *let* him *use* her laptop.','Will they *let* us *stay* a bit longer?','*Let* me *explain*.']},
+     {word:'ALLOW / PERMIT',meaning:'Allow formally — followed by to-infinitive',grammar:'allow/permit + object + to + base verb',exs:['She *allowed* him *to use* her laptop.','Are guests *permitted to use* the pool?','The new rules *allow* employees *to work* remotely.']},
+   ],
+   confusable:[{type:'correct',s:'She let him use the car. The school allows students to bring their own devices.',note:'let + bare infinitive; allow + to-infinitive'},{type:'wrong',s:'She let him to use the car. The school lets students to bring their own devices.'}]},
+];
+
+// ── BUILD SECTION WITH TABS ────────────────────────────────────
+function buildSection(tabsId,contentId,data,typeKey){
+  const tabs=document.getElementById(tabsId);
+  const cont=document.getElementById(contentId);
+  if(!tabs||tabs.innerHTML)return;
+  tabs.innerHTML=data.map((d,i)=>`<button class="st${i===0?' on':''}" data-idx="${i}" onclick="switchPair(this,'${contentId}','${typeKey}')">${d.pair}</button>`).join('');
+  window['_pdata_'+contentId]=data;
+  renderPairCard(cont,data[0],typeKey);
+}
+function switchPair(btn,contentId,typeKey){
+  btn.closest('.sub-tabs').querySelectorAll('.st').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  const data=window['_pdata_'+contentId];
+  renderPairCard(document.getElementById(contentId),data[parseInt(btn.dataset.idx)],typeKey);
+}
+
+// ── CHOICE QUIZ DATA ──────────────────────────────────────────
+const CHOICE_Q=[
+  {q:'She ___ a terrible mistake in her first week on the job.',opts:['did','made','had','took'],correct:'made',cat:'do vs make',exp:'"Make a mistake" is a fixed collocation. Do = activities/tasks; make = create/cause a result.'},
+  {q:'Can you ___ me what time the meeting starts?',opts:['say','tell','speak','ask'],correct:'tell',cat:'say vs tell',exp:'"Tell someone something" — tell always needs a person as its object. "Say" does not: "say what time" (no person).'},
+  {q:'Please ___ your laptop to the interview — we will need it.',opts:['take','bring','carry','fetch'],correct:'bring',cat:'bring vs take',exp:'The speaker is at the interview location. Movement towards the speaker = bring.'},
+  {q:'She has been studying medicine ___ five years.',opts:['since','for','during','from'],correct:'for',cat:'since vs for',exp:'"For" = duration (five years). "Since" = a point in time (since 2019). Five years is a length of time, not a starting point.'},
+  {q:'You ___ park here — it is a fire exit.',opts:["mustn't","don't have to","shouldn't","needn't"],correct:"mustn't",cat:"mustn't vs don't have to",exp:'"Mustn\'t" = prohibition — it is forbidden. "Don\'t have to" = not necessary — a completely different meaning.'},
+  {q:'___ the rain, they decided to hold the event outdoors.',opts:['Although','Despite','However','Even though'],correct:'Despite',cat:'despite vs although',exp:'"Despite" is a preposition and is followed by a noun (the rain). "Although" needs a full clause: "Although it was raining".'},
+  {q:'The film was ___ — I could not stop watching.',opts:['bored','boring','boredom','boredly'],correct:'boring',cat:'-ed vs -ing adjectives',exp:'-ing adjectives describe what causes a feeling. The film causes boredom, so it is "boring". "Bored" describes how a person feels.'},
+  {q:'She ___ speaks slowly — she is always rushing.',opts:['rarely','scarcely','hardly','barely'],correct:'rarely',cat:'adverbs of degree/frequency',exp:'"Rarely" = infrequently (frequency adverb). "Hardly/barely/scarcely" = almost not (degree). "She speaks slowly rarely" = she seldom does it.'},
+  {q:'I ___ to working in an open-plan office now.',opts:['used','am used','get used','was used'],correct:'am used',cat:'be used to',exp:'"Am used to" = accustomed to (present state). "Used to" = past habit. "Get used to" = process of adapting.'},
+  {q:'Could you ___ me to call the dentist tomorrow?',opts:['remember','remind','recall','memorise'],correct:'remind',cat:'remember vs remind',exp:'"Remind" = you cause someone else to remember. "Remember" = you yourself recall. The subject (you) acts on another person (me).'},
+  {q:'___ students passed the exam — the result was very disappointing.',opts:['A few','Few','Little','A little'],correct:'Few',cat:'few vs a few',exp:'"Few" (without "a") = almost none — negative implication. The sentence says "disappointing", confirming a negative meaning.'},
+  {q:'She made the ___ to invest in renewable energy.',opts:['decision','decisive','decidedly','decide'],correct:'decision',cat:'noun form',exp:'After "made the", a noun is required. "Decision" is the noun from "decide". "Decisive" is an adjective.'},
+  {q:'The delay was ___ unexpected technical difficulties.',opts:['because','because of','due to','owing'],correct:'due to',cat:'because vs because of vs due to',exp:'"Due to" + noun phrase is correct here. "Because" needs a full clause (because there were difficulties). "Because of" would also work here.'},
+  {q:'She studied hard ___ she would pass the exam.',opts:['so','so that','because','therefore'],correct:'so that',cat:'so vs so that',exp:'"So that" = purpose (the intended reason). "So" = result. She studied in order to pass = purpose = so that.'},
+  {q:'___ the meeting, she took detailed notes.',opts:['During','While','Whereas','Although'],correct:'During',cat:'during vs while',exp:'"During" is a preposition followed by a noun (the meeting). "While" needs a full clause: "while the meeting was taking place".'},
+  {q:'He ___ to London before he moved there permanently.',opts:['used to travel','was used to travelling','got used to travelling','is used to travel'],correct:'used to travel',cat:'used to vs be used to',exp:'"Used to + infinitive" = a past habit that no longer exists. He travelled before but does not travel (to visit) now because he lives there.'},
+  {q:'Please ___ the car — the car park is that way.',opts:['bring','take','carry','fetch'],correct:'take',cat:'bring vs take',exp:'The speaker is here (not in the car park). Movement away from the speaker = take.'},
+  {q:'You ___ to stay for the whole session — feel free to leave early.',opts:["mustn't","don't have to","had better not","shouldn't"],correct:"don't have to",cat:"mustn't vs don't have to",exp:'"Don\'t have to" = no obligation / optional. "Mustn\'t" would mean you are forbidden to stay — the opposite meaning.'},
+  {q:'She ___ him to explain his decision.',opts:['made','let','allowed','had'],correct:'allowed',cat:'let vs allow',exp:'"Allow" + object + to-infinitive. "Let" takes a bare infinitive (without "to"): "She let him explain." Here "to explain" requires "allowed".'},
+  {q:'Between the three candidates, ___ was selected.',opts:['neither','none','both','any'],correct:'none',cat:'between vs among / neither vs none',exp:'With three or more people, use "none" (not "neither"). "Neither" is only for two options.'},
+  {q:'She ___ the answer immediately — she had seen the problem before.',opts:['knew','found out','learned','studied'],correct:'knew',cat:'know vs find out vs learn',exp:'"Knew" = she already had the knowledge in a state. "Found out" = she discovered something new. The sentence says "she had seen it before" — it was already known.'},
+  {q:'Could you ___ me your pen for a moment?',opts:['borrow','lend','loan','rent'],correct:'lend',cat:'lend vs borrow',exp:'"Lend" = give temporarily (you give your pen). "Borrow" = receive temporarily. You cannot "borrow someone something" — lend takes an indirect object.'},
+  {q:'___ the budget was tight, they completed the project on time.',opts:['Despite','Although','However','In spite'],correct:'Although',cat:'although vs despite',exp:'"Although" is a conjunction followed by a full clause (the budget was tight). "Despite" would need a noun: "Despite the tight budget".'},
+  {q:'Please submit the report ___ Friday.',opts:['until','by','during','for'],correct:'by',cat:'by vs until',exp:'"By" = deadline — the report must be complete no later than Friday. "Until Friday" = it would continue up to Friday — wrong meaning for a submission.'},
+  {q:'He ___ listen to classical music but now he prefers jazz.',opts:['used to','was used to','got used to','is used to'],correct:'used to',cat:'used to',exp:'"Used to + infinitive" = a past habit that no longer continues. He no longer listens to classical music — the habit stopped.'},
+];
+
+let cItems=[],cIdx=0,cScore=0,cTotal=0,cSel=null,cChecked=false;
+function startChoice(){cItems=[...CHOICE_Q].sort(()=>Math.random()-.5);cIdx=0;cScore=0;cTotal=0;renderChoice();}
+function renderChoice(){
+  if(cIdx>=cItems.length){const pct=Math.round(cScore/cTotal*100);document.getElementById('choiceCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${cScore}/${cTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=80?'Excellent!':pct>=60?'Well done!':'Review the pairs and try again.'}</div><button class="act" onclick="startChoice()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=cItems[cIdx];cSel=null;cChecked=false;
+  const prog=Math.round(cIdx/cItems.length*100);
+  const opts=[...item.opts].sort(()=>Math.random()-.5);window._cO=opts;
+  document.getElementById('choiceCont').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.cat}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${cIdx+1}/${cItems.length} · Score: ${cScore}/${cTotal}</span>
+      <button class="act" onclick="startChoice()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:9px">Choose the correct word to complete the sentence.</div>
+    <div style="font-size:16px;line-height:1.95;margin-bottom:14px;background:var(--color-background-secondary);border-radius:14px;padding:11px 14px;font-style:italic">${item.q.replace('___',`<span style="display:inline-block;min-width:80px;border-bottom:2px solid #534AB7;color:#534AB7;font-weight:500;text-align:center;padding:0 4px" id="cBlank">___</span>`)}</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="cOptsList">${opts.map((o,i)=>`<button class="gap-opt" id="copt_${i}" onclick="selCOpt(${i})">${o}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" id="cCheckBtn" onclick="checkChoice()" disabled>Check</button>
+      <button class="act" onclick="cIdx++;renderChoice()">Skip →</button>
+    </div>
+    <div id="cFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selCOpt(i){if(cChecked)return;cSel=i;document.querySelectorAll('#cOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('cCheckBtn').disabled=false;}
+function checkChoice(){
+  if(cChecked||cSel===null)return;cChecked=true;cTotal++;
+  const item=cItems[cIdx];const chosen=window._cO[cSel];const ok=chosen===item.correct;if(ok)cScore++;
+  document.getElementById('cCheckBtn').disabled=true;
+  document.querySelectorAll('#cOptsList .gap-opt').forEach((el,j)=>{const w=window._cO[j];el.classList.remove('gsel');if(w===item.correct)el.classList.add('gok');else if(j===cSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const sp=document.getElementById('cBlank');if(sp){sp.textContent=item.correct;sp.style.color=ok?'#27500A':'#791F1F';sp.style.borderBottomColor=ok?'#C0DD97':'#F7C1C1';}
+  const fb=document.getElementById('cFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ The answer is "'+item.correct+'". ')+item.exp;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next question →';nxt.onclick=()=>{cIdx++;renderChoice();};document.querySelector('#choiceCont .card').appendChild(nxt);
+}
+
+// ── GAP FILL DATA ─────────────────────────────────────────────
+const GAP_Q=[
+  {s:'She has been working here ___ she graduated from university.',blank:'since',opts:['since','for','during','from'],cat:'since vs for',exp:'"Since" + a point in time (she graduated = a specific past event). "For" = duration: "for three years".'},
+  {s:'I ___ study for hours every night, but now I just read for twenty minutes.',blank:'used to',opts:['used to','am used to','get used to','was used to'],cat:'used to',exp:'"Used to + infinitive" = a past habit that stopped. The habit of studying for hours has stopped.'},
+  {s:'The company raised its prices, but sales ___ significantly.',blank:'rose',opts:['raised','rose','risen','were raised'],cat:'rise vs raise',exp:'"Rose" is the past tense of "rise" (intransitive — sales went up on their own). "Raised" is transitive — you raise something.'},
+  {s:'___ studying all night, she still could not solve the problem.',blank:'Despite',opts:['Despite','Although','However','Even though'],cat:'despite vs although',exp:'"Despite" is a preposition followed by a noun or -ing. "Despite studying" = "despite the fact that she studied". "Although" would need a full clause.'},
+  {s:'You ___ tell him — it is supposed to be a surprise.',blank:"mustn't",opts:["mustn't","don't have to","needn't","hadn't better"],cat:"mustn't vs don't have to",exp:'"Mustn\'t" = prohibition/forbidden. Telling him would ruin the surprise — it is not allowed. "Don\'t have to" would mean it is optional, not forbidden.'},
+  {s:'She saved her money ___ she could buy a new laptop.',blank:'so that',opts:['so','so that','because','in order'],cat:'so vs so that',exp:'"So that" + subject + modal = purpose. She saved with the intention/purpose of buying. "So" expresses result.'},
+  {s:'I ___ meeting you next week.',blank:'look forward to',opts:['look forward to','am looking forward to','look forward','am looking forward'],cat:'look forward to + -ing',exp:'"I am looking forward to" is the standard present continuous form. The "to" is a preposition — it is followed by "meeting" (-ing), not "meet".'},
+  {s:'He ___ the solution long before anyone else — he had studied the topic for years.',blank:'knew',opts:['knew','found out','learned','studied'],cat:'know vs find out',exp:'"Knew" = he had the knowledge (state). "Found out" = he discovered something new. Since he had studied for years, he was not discovering anything new.'},
+  {s:'There was ___ evidence to support the theory — the researchers were very disappointed.',blank:'little',opts:['little','a little','few','a few'],cat:'little vs a little',exp:'"Little" (without "a") = almost none — negative. The researchers were disappointed, confirming a negative result. "A little" would be positive (some evidence existed).'},
+  {s:'Could you ___ me your notes before the exam?',blank:'lend',opts:['lend','borrow','loan','take'],cat:'lend vs borrow',exp:'"Lend me" = give them temporarily (they own the notes, you use them). You cannot "borrow me something" — borrow does not take an indirect object.'},
+  {s:'The temperature ___ to a record high, forcing the organisers to postpone the event.',blank:'rose',opts:['raised','rose','was raised','has risen'],cat:'rise vs raise',exp:'"Rose" is intransitive — the temperature moved up on its own. "Raised" is transitive — someone would have to raise the temperature.'},
+  {s:'She ___ him the truth, even though she knew it would hurt.',blank:'told',opts:['said','told','spoke','talked'],cat:'say vs tell',exp:'"Told" + person + noun clause. "Tell" always takes a person as object. "Said the truth" is wrong — you "tell the truth", not "say the truth".'},
+  {s:'___ the cold, they spent the afternoon walking along the beach.',blank:'Despite',opts:['Despite','Although','However','While'],cat:'despite vs although',exp:'"Despite" + noun (the cold). "Although it was cold" would also be correct — but not "Although the cold".'},
+  {s:'This car is more ___ — it uses far less fuel than the old model.',blank:'economical',opts:['economic','economical','economy','economically'],cat:'economic vs economical',exp:'"Economical" = efficient, not wasteful (uses less fuel). "Economic" relates to the national economy.'},
+  {s:'I ___ seeing you at the conference — it was a complete surprise.',blank:'remember',opts:['remember','remind','recall','memorise'],cat:'remember vs remind',exp:'"Remember" = you yourself recall. There is no other person who caused you to remember — the subject acts alone.'},
+  {s:'She spoke ___ her manager ___ asking for a day off.',blank:'to / about',opts:['to / about','with / for','at / of','about / from'],cat:'to vs for / about',exp:'"Speak to someone" (recipient) + "about something" (topic). This is a collocation: speak to + person, speak about + topic.'},
+  {s:'He ___ there for two hours before anyone noticed.',blank:'had been sitting',opts:['had been sitting','has been sitting','was sitting','sat'],cat:'past perfect continuous',exp:'The context implies before another past event (before anyone noticed) — past perfect continuous is needed for duration before another past event.'},
+  {s:'The lecture was ___ — I could barely keep my eyes open.',blank:'boring',opts:['bored','boring','boringly','boredom'],cat:'-ed vs -ing adjectives',exp:'"Boring" = causes boredom (the lecture causes the feeling). "Bored" describes the listener\'s state.'},
+  {s:'She ___ going to the coast for the weekend.',blank:'suggested',opts:['suggested','proposed going','said','suggested to go'],cat:'suggest + -ing',exp:'"Suggested going" = correct. Never "suggested to go". Suggest is followed by -ing or a that-clause.'},
+  {s:'___ students applied this year than last — it was the highest number ever.',blank:'More',opts:['More','Much more','Less','Fewer'],cat:'many vs much / more vs fewer',exp:'"More" (comparative) + countable noun (students). "Fewer" is the comparative of "few" but works for reductions. Here the number increased, so "more" is correct.'},
+];
+
+let gItems=[],gIdx=0,gScore=0,gTotal=0,gSel=null,gChecked=false;
+function startGap(){gItems=[...GAP_Q].sort(()=>Math.random()-.5);gIdx=0;gScore=0;gTotal=0;renderGap();}
+function renderGap(){
+  if(gIdx>=gItems.length){const pct=Math.round(gScore/gTotal*100);document.getElementById('gapCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${gScore}/${gTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=80?'Excellent!':pct>=60?'Well done!':'Review the pairs and try again.'}</div><button class="act" onclick="startGap()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=gItems[gIdx];gSel=null;gChecked=false;
+  const prog=Math.round(gIdx/gItems.length*100);
+  const opts=[...item.opts].sort(()=>Math.random()-.5);window._gO=opts;
+  const sh=item.s.replace('___',`<span style="display:inline-block;min-width:110px;border-bottom:2px solid #534AB7;color:#534AB7;font-weight:500;text-align:center;padding:0 4px" id="blankSpan">___</span>`);
+  document.getElementById('gapCont').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.cat}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${gIdx+1}/${gItems.length} · Score: ${gScore}/${gTotal}</span>
+      <button class="act" onclick="startGap()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:9px">Choose the correct word or phrase to complete the sentence.</div>
+    <div style="font-size:16px;line-height:1.95;margin-bottom:14px;background:var(--color-background-secondary);border-radius:14px;padding:11px 14px;font-style:italic">${sh}</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="gOptsList">${opts.map((o,i)=>`<button class="gap-opt" id="gopt_${i}" onclick="selGOpt(${i})">${o}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" id="gCheckBtn" onclick="checkGap()" disabled>Check</button>
+      <button class="act" onclick="gIdx++;renderGap()">Skip →</button>
+    </div>
+    <div id="gFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selGOpt(i){if(gChecked)return;gSel=i;document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('gCheckBtn').disabled=false;}
+function checkGap(){
+  if(gChecked||gSel===null)return;gChecked=true;gTotal++;
+  const item=gItems[gIdx];const chosen=window._gO[gSel];const ok=chosen===item.blank;if(ok)gScore++;
+  document.getElementById('gCheckBtn').disabled=true;
+  document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>{const w=window._gO[j];el.classList.remove('gsel');if(w===item.blank)el.classList.add('gok');else if(j===gSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const sp=document.getElementById('blankSpan');if(sp){sp.textContent=item.blank;sp.style.color=ok?'#27500A':'#791F1F';sp.style.borderBottomColor=ok?'#C0DD97':'#F7C1C1';}
+  const fb=document.getElementById('gFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ The answer is "'+item.blank+'". ')+item.exp;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next question →';nxt.onclick=()=>{gIdx++;renderGap();};document.querySelector('#gapCont .card').appendChild(nxt);
+}
+
+// ── NAV ──────────────────────────────────────────────────────
+function showP(i){
+  document.querySelectorAll('.pan').forEach((p,j)=>p.classList.toggle('on',j===i));
+  document.querySelectorAll('.nt').forEach((t,j)=>t.classList.toggle('on',j===i));
+  if(i===0)renderQuote();
+  if(i===1)buildSection('verbTabs','verbContent',VERB_PAIRS,'verb');
+  if(i===2)buildSection('prepTabs','prepContent',PREP_PAIRS,'prep');
+  if(i===3)buildSection('artTabs','artContent',ART_PAIRS,'art');
+  if(i===4)buildSection('adjTabs','adjContent',ADJ_PAIRS,'adj');
+  if(i===5)buildSection('conjTabs','conjContent',CONJ_PAIRS,'conj');
+  if(i===6)buildSection('modTabs','modContent',MOD_PAIRS,'mod');
+  if(i===7)buildSection('nounTabs','nounContent',NOUN_PAIRS,'noun');
+  if(i===8&&!cItems.length)startChoice();
+  if(i===9&&!gItems.length)startGap();
+  if(i===10)renderGloss();
+}
+window.addEventListener('load',()=>{
+  if(window.speechSynthesis){window.speechSynthesis.getVoices();setTimeout(loadV,500);setTimeout(loadV,1500);}
+  renderQuote();
+});
+</script>
+</body>
+</html>
