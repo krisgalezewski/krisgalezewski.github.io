@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cleft Sentences — Interactive Lesson</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary)}
+.w{padding:1.5rem}
+.nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
+.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nt:hover{background:var(--color-background-secondary)}
+.nt.on{color:#fff;border-color:transparent;font-weight:500}
+.n0.on{background:#534AB7}.n1.on{background:#0F6E56}.n2.on{background:#185FA5}.n3.on{background:#854F0B}.n4.on{background:#993C1D}.n5.on{background:#72243E}.n6.on{background:#3B6D11}.n7.on{background:#712B13}.n8.on{background:#4a3b8c}
+.pan{display:none}.pan.on{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:.9rem}
+.lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
+.lbl:first-child{margin-top:0}
+.tip-box{background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;font-size:13px;color:var(--color-text-secondary);display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px}
+.warn-box{background:#FAEEDA;border-radius:14px;padding:10px 14px;font-size:13px;color:#633806;display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px;border:0.5px solid #E8C080}
+.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act:hover{background:var(--color-background-secondary)}
+.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #534AB7;background:#534AB7;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn:hover{background:#3C3489}
+.check-btn:disabled{opacity:.4;cursor:default}
+.gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
+.gap-opt:hover:not(.gsel):not(.gok):not(.gbad):not(.gdim){background:var(--color-background-secondary)}
+.gap-opt.gsel{border-color:#534AB7;background:#EEEDFE;color:#3C3489;font-weight:500}
+.gap-opt.gok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:500;cursor:default;pointer-events:none}
+.gap-opt.gbad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F;cursor:default;pointer-events:none}
+.gap-opt.gdim{opacity:.38;cursor:default;pointer-events:none}
+.fb-ok{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.fb-no{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.ex-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:20px;background:#534AB7;transition:width .3s}
+.mi{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
+.mi:hover{background:var(--color-background-secondary)}
+.mi.pk{border-color:#534AB7;background:#EEEDFE;color:#3C3489}
+.mi.mt{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.mi.bd{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #534AB7}
+.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
+.audio-btn:hover{background:#EEEDFE;border-color:#AFA9EC;color:#534AB7}
+.audio-btn.playing{background:#EEEDFE;border-color:#534AB7;color:#534AB7;font-weight:500}
+.eyebrow{font-size:11px;font-weight:500;color:#534AB7;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.lesson-h{font-size:26px;font-weight:500;color:var(--color-text-primary);line-height:1.25;margin-bottom:4px}
+.lesson-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:1.25rem}
+.ex-pos{background:#EAF3DE;color:#27500A;border:0.5px solid #C0DD97;border-radius:12px;padding:8px 13px;font-size:14px;line-height:1.6;margin-bottom:5px}
+.ex-neg{background:#FCEBEB;color:#791F1F;border:0.5px solid #F7C1C1;border-radius:12px;padding:8px 13px;font-size:14px;line-height:1.6;margin-bottom:5px}
+.ex-tag{font-size:10.5px;font-weight:700;display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.05em}
+/* type cards */
+.type-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-bottom:1rem}
+.type-card{border-radius:14px;padding:10px 14px;border:0.5px solid;cursor:pointer;transition:all .15s}
+.type-card:hover{opacity:.85;transform:translateY(-1px)}
+.tc-name{font-size:13px;font-weight:600;margin-bottom:3px}
+.tc-sub{font-size:11px;line-height:1.4}
+.type-detail{border-radius:20px;border:0.5px solid var(--color-border-tertiary);padding:1.25rem 1.5rem;margin-bottom:1rem;display:none;background:var(--color-background-primary)}
+.type-detail.on{display:block}
+/* formula */
+.formula{font-family:var(--font-mono);font-size:13px;background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;border-left:3px solid;margin-bottom:6px;line-height:1.6;color:var(--color-text-primary)}
+/* examples bank */
+.cat-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
+.cf{padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:12px;cursor:pointer;transition:all .15s}
+.cf:hover{background:var(--color-background-secondary)}
+.cf.on{background:#534AB7;color:#fff;border-color:#534AB7;font-weight:500}
+/* quiz opts */
+.opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5;margin-bottom:7px}
+.opt:hover:not(:disabled){background:var(--color-background-secondary)}
+.opt.correct{background:#EAF3DE;border-color:#C0DD97;color:#27500A;font-weight:500;cursor:default;pointer-events:none}
+.opt.wrong{background:#FCEBEB;border-color:#F7C1C1;color:#791F1F;cursor:default;pointer-events:none}
+.opt:disabled{cursor:default}
+/* jigsaw */
+.piece{padding:7px 13px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;transition:all .15s;color:var(--color-text-primary);display:inline-block;margin:3px}
+.piece:hover{background:var(--color-background-secondary)}
+.piece.used{opacity:.3;cursor:default;pointer-events:none}
+.piece.sel{border-color:#534AB7;background:#EEEDFE;color:#3C3489}
+.slot{display:inline-flex;align-items:center;justify-content:center;min-width:76px;padding:5px 11px;border-radius:12px;border:1.5px dashed var(--color-border-secondary);font-size:13px;margin:3px;cursor:pointer;min-height:34px;color:var(--color-text-secondary);background:var(--color-background-secondary);transition:all .15s}
+.slot.filled{border-style:solid;border-color:#AFA9EC;background:#EEEDFE;color:#3C3489}
+.slot.cs{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.slot.ws{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+/* glossary remove btn */
+.rm-btn{font-size:12px;padding:3px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-secondary);transition:all .15s;white-space:nowrap}
+.rm-btn:hover{background:#FCEBEB;border-color:#F7C1C1;color:#791F1F}
+@media(max-width:520px){.type-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<h2 class="sr-only">Cleft sentences — interactive lesson covering all six types with examples, quiz, matching game, and jigsaw exercise.</h2>
+<div class="w">
+<div class="nav">
+  <button class="nt n0 on" onclick="showP(0)">Home</button>
+  <button class="nt n1" onclick="showP(1)">Types A–Z</button>
+  <button class="nt n2" onclick="showP(2)">Examples bank</button>
+  <button class="nt n3" onclick="showP(3)">Quiz</button>
+  <button class="nt n4" onclick="showP(4)">Matching</button>
+  <button class="nt n5" onclick="showP(5)">Jigsaw</button>
+  <button class="nt n8" onclick="showP(6)">My glossary</button>
+</div>
+
+<!-- HOME -->
+<div id="p0" class="pan on">
+  <div class="eyebrow">Interactive lesson · Advanced grammar</div>
+  <div class="lesson-h">Cleft sentences</div>
+  <div class="lesson-sub">Six ways to split a sentence and move the spotlight exactly where you want it</div>
+  <div class="quote-box" id="quoteBox"></div>
+  <div class="card">
+    <div class="lbl">What is a cleft sentence?</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">A cleft sentence splits a simple sentence into two clauses in order to <strong style="color:var(--color-text-primary)">focus on one particular element</strong>. The focused element is highlighted — it receives special emphasis — while the rest of the information is pushed into a relative or that-clause. Clefts are common in both spoken and formal written English.</p>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">Compare: <em>"Maria found the key."</em> → <strong style="color:var(--color-text-primary)">"It was Maria who found the key."</strong> (focus on Maria) → <strong style="color:var(--color-text-primary)">"What Maria found was the key."</strong> (focus on the key). Same meaning — different spotlight.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:10px">
+      <div style="background:#EEEDFE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:19px;font-weight:600;color:#3C3489">6</div><div style="font-size:11px;font-weight:500;color:#3C3489;margin-top:2px">Cleft types</div></div>
+      <div style="background:#EAF3DE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:19px;font-weight:600;color:#27500A">36</div><div style="font-size:11px;font-weight:500;color:#27500A;margin-top:2px">Worked examples</div></div>
+      <div style="background:#E6F1FB;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:19px;font-weight:600;color:#0C447C">17</div><div style="font-size:11px;font-weight:500;color:#0C447C;margin-top:2px">Quiz questions</div></div>
+      <div style="background:#FAEEDA;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:19px;font-weight:600;color:#633806">3</div><div style="font-size:11px;font-weight:500;color:#633806;margin-top:2px">Exercise types</div></div>
+    </div>
+    <div class="tip-box"><i class="ti ti-bulb" aria-hidden="true" style="font-size:16px;flex-shrink:0;color:#534AB7"></i><span>Every cleft has a plain non-cleft equivalent with the same meaning. The cleft changes <strong>what is emphasised</strong>, not what is said. Mastering clefts transforms your writing from informative to persuasive and precise.</span></div>
+  </div>
+  <div class="card">
+    <div class="lbl">Cleft vs non-cleft — side by side</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+      <div style="background:#E1F5EE;color:#085041;border:0.5px solid #5DCAA5;border-radius:12px;padding:8px 13px;font-size:14px;line-height:1.6"><span style="font-size:10.5px;font-weight:700;display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.05em">Plain sentence</span>John gave Maria a book at Christmas.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div class="ex-pos"><span class="ex-tag">It-cleft — focus on subject</span>It was <u>John</u> who gave Maria a book at Christmas.</div>
+        <div class="ex-pos"><span class="ex-tag">It-cleft — focus on object</span>It was <u>a book</u> that John gave Maria at Christmas.</div>
+        <div class="ex-pos"><span class="ex-tag">Wh-cleft — focus on object</span>What John gave Maria was <u>a book</u>.</div>
+        <div class="ex-pos"><span class="ex-tag">It-cleft — focus on time</span>It was <u>at Christmas</u> that John gave Maria a book.</div>
+      </div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px">
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(1)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-layout-grid" style="color:#0F6E56"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Types A–Z</div><div style="font-size:12px;color:var(--color-text-secondary)">All six types explained</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(2)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-books" style="color:#185FA5"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Examples bank</div><div style="font-size:12px;color:var(--color-text-secondary)">Plain vs cleft, filterable</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(3)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-puzzle" style="color:#854F0B"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Quiz</div><div style="font-size:12px;color:var(--color-text-secondary)">17 questions, all types</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(4)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-arrows-exchange" style="color:#993C1D"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Matching</div><div style="font-size:12px;color:var(--color-text-secondary)">3 rounds of sentence halves</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(5)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-stack" style="color:#72243E"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Jigsaw</div><div style="font-size:12px;color:var(--color-text-secondary)">Build clefts from pieces</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(6)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-bookmark" style="color:#4a3b8c"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">My glossary</div><div style="font-size:12px;color:var(--color-text-secondary)">Save types to review</div></div>
+  </div>
+</div>
+
+<!-- TYPES A-Z -->
+<div id="p1" class="pan">
+  <div class="eyebrow">Cleft sentences</div>
+  <div class="lesson-h">Types A–Z</div>
+  <div class="lesson-sub">Click any type card to see its formula, uses, tip, and worked examples — click 🔖 Save to add it to your glossary</div>
+  <div class="type-grid" id="typeGrid"></div>
+  <div class="type-detail" id="typeDetail"></div>
+</div>
+
+<!-- EXAMPLES BANK -->
+<div id="p2" class="pan">
+  <div class="eyebrow">Cleft sentences</div>
+  <div class="lesson-h">Examples bank</div>
+  <div class="lesson-sub">Filter by cleft type — click 🔊 to hear any sentence</div>
+  <div class="cat-filter" id="exFilter">
+    <button class="cf on" onclick="filterExs('all',this)">All</button>
+    <button class="cf" onclick="filterExs('it',this)">It-cleft</button>
+    <button class="cf" onclick="filterExs('wh',this)">Wh-cleft</button>
+    <button class="cf" onclick="filterExs('rev',this)">Reversed wh-cleft</button>
+    <button class="cf" onclick="filterExs('all-focus',this)">All-cleft</button>
+    <button class="cf" onclick="filterExs('there',this)">There-cleft</button>
+    <button class="cf" onclick="filterExs('neg',this)">Negative cleft</button>
+  </div>
+  <div id="exBank"></div>
+</div>
+
+<!-- QUIZ -->
+<div id="p3" class="pan">
+  <div class="eyebrow">Cleft sentences</div>
+  <div class="lesson-h">Quiz</div>
+  <div class="lesson-sub">Choose the correct answer — 17 questions covering all six types</div>
+  <div id="quizArea"></div>
+</div>
+
+<!-- MATCHING -->
+<div id="p4" class="pan">
+  <div class="eyebrow">Cleft sentences</div>
+  <div class="lesson-h">Matching</div>
+  <div class="lesson-sub">Click a sentence opening on the left, then its matching ending on the right — three rounds of increasing difficulty</div>
+  <div id="matchContainer"></div>
+</div>
+
+<!-- JIGSAW -->
+<div id="p5" class="pan">
+  <div class="eyebrow">Cleft sentences</div>
+  <div class="lesson-h">Jigsaw</div>
+  <div class="lesson-sub">Click a piece from the word bank, then click a slot to place it — build the cleft sentence in the correct order</div>
+  <div id="jigContainer"></div>
+</div>
+
+<!-- GLOSSARY -->
+<div id="p6" class="pan">
+  <div class="eyebrow">Cleft sentences</div>
+  <div class="lesson-h">My glossary</div>
+  <div class="lesson-sub">Types you have saved — click ✕ to remove any item</div>
+  <div id="glossCont"></div>
+</div>
+
+</div>
+<script>
+// ── GLOSSARY ──────────────────────────────────────────────────
+let gloss=[];
+function isGlossed(id){return gloss.some(g=>g.id===id);}
+function toggleGloss(id){
+  if(isGlossed(id)){gloss=gloss.filter(g=>g.id!==id);}
+  else{
+    const t=TYPES.find(x=>x.id===id);
+    if(t)gloss.push({id,name:t.name,short:t.short,formula:t.formula,tip:t.tip,col:t.col});
+  }
+  renderGloss();
+  // update all save buttons for this type
+  document.querySelectorAll('[data-gid="'+id+'"]').forEach(btn=>{
+    btn.textContent=isGlossed(id)?'🔖 Saved':'🔖 Save';
+  });
+}
+function renderGloss(){
+  const cont=document.getElementById('glossCont');if(!cont)return;
+  if(!gloss.length){
+    cont.innerHTML='<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px"></i><div style="margin-bottom:8px">Nothing saved yet.</div><div style="font-size:13px">Open any type in <strong>Types A–Z</strong> and click 🔖 Save.</div></div>';
+    return;
+  }
+  cont.innerHTML='<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">'+gloss.length+' type'+(gloss.length!==1?'s':'')+' saved</div>'
+    +gloss.map(g=>{
+      const C=g.col;
+      return`<div class="card" style="margin-bottom:8px;padding:1rem 1.25rem">
+        <div style="display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap">
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap">
+              <span style="font-size:15px;font-weight:700;color:var(--color-text-primary)">${g.name}</span>
+              <span style="background:${C.bg};color:${C.tc};border:0.5px solid ${C.brd};font-size:11px;font-weight:600;padding:2px 9px;border-radius:20px">${g.short}</span>
+              <button class="audio-btn" onclick="speak(${safeQ(g.name)},0.87,this)" style="font-size:11px;padding:3px 8px">🔊 Hear</button>
+            </div>
+            <div style="font-family:var(--font-mono);font-size:12px;background:var(--color-background-secondary);border-radius:10px;padding:7px 11px;border-left:3px solid ${C.brd};line-height:1.55;margin-bottom:7px">${g.formula}</div>
+            <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.65">💡 ${g.tip}</div>
+          </div>
+          <button class="rm-btn" onclick="removeGloss('${g.id}')">✕</button>
+        </div>
+      </div>`;
+    }).join('');
+}
+function removeGloss(id){
+  gloss=gloss.filter(g=>g.id!==id);
+  document.querySelectorAll('[data-gid="'+id+'"]').forEach(btn=>{btn.textContent='🔖 Save';});
+  renderGloss();
+}
+
+// ── VOICE ─────────────────────────────────────────────────────
+let bVoice=null;
+function loadV(){
+  const vs=window.speechSynthesis.getVoices();if(!vs.length)return;
+  bVoice=vs.find(v=>v.lang==='en-GB'&&/female|fiona|kate|serena|moira|karen|victoria|claire/i.test(v.name))
+    ||vs.find(v=>v.lang==='en-GB'&&!/male|daniel|oliver|arthur/i.test(v.name))
+    ||vs.find(v=>v.lang==='en-GB')||vs.find(v=>v.lang.startsWith('en-GB'))||vs.find(v=>v.lang.startsWith('en'));
+}
+if(window.speechSynthesis){window.speechSynthesis.onvoiceschanged=loadV;loadV();}
+function speak(txt,rate,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();if(!bVoice)loadV();
+  const u=new SpeechSynthesisUtterance(txt.replace(/<[^>]+>/g,'').replace(/\u00a0/g,' '));
+  u.lang='en-GB';u.rate=rate||0.87;u.pitch=1.07;
+  if(bVoice)u.voice=bVoice;
+  if(btn){document.querySelectorAll('.audio-btn').forEach(b=>b.classList.remove('playing'));btn.classList.add('playing');u.onend=()=>btn.classList.remove('playing');}
+  window.speechSynthesis.speak(u);
+}
+function safeQ(s){return"'"+String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;')+"'";}
+
+// ── QUOTES ────────────────────────────────────────────────────
+const QUOTES=[
+  {q:'It was her calm manner that persuaded the committee to reconsider their decision.',key:'It-cleft',hi:'It was,that'},
+  {q:'What the investigation revealed was a systematic failure of oversight.',key:'Wh-cleft',hi:'What,was'},
+  {q:'All she did was listen — and that was enough.',key:'All-cleft',hi:'All,was'},
+  {q:'It was not luck but hard work that brought success.',key:'Negative cleft',hi:'not,but,that'},
+  {q:'A rest is what she needs.',key:'Reversed wh-cleft',hi:'is what'},
+  {q:'There was one thing that worried the inspectors: the silence.',key:'There-cleft',hi:'There was,that'},
+  {q:'It was at midnight that they finally reached an agreement.',key:'It-cleft (time)',hi:'It was,that'},
+];
+let qOrd=[...Array(QUOTES.length).keys()].sort(()=>Math.random()-.5),qI=0;
+function renderQuote(){
+  const q=QUOTES[qOrd[qI%qOrd.length]];qI++;
+  const hiPhrases=q.hi.split(',').map(w=>w.trim().toLowerCase());
+  let disp=q.q;
+  hiPhrases.forEach(hw=>{
+    disp=disp.replace(new RegExp('('+hw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),
+      m=>`<span style="background:#EEEDFE;color:#3C3489;font-weight:600;padding:1px 6px;border-radius:6px">${m}</span>`);
+  });
+  document.getElementById('quoteBox').innerHTML=`
+    <div style="font-style:italic;font-size:15px;line-height:1.8;color:var(--color-text-primary);margin-bottom:6px">${disp}</div>
+    <div style="font-size:12.5px;color:var(--color-text-secondary);margin-bottom:8px">📚 Type: <strong>${q.key}</strong></div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <button class="audio-btn" onclick="speak(${safeQ(q.q)},0.84,this)" style="font-size:12px">🔊 Hear it</button>
+      <button class="act" onclick="renderQuote()" style="margin-left:auto;font-size:12px;padding:4px 12px"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> New example</button>
+    </div>`;
+}
+
+// ── DATA ──────────────────────────────────────────────────────
+const TYPES=[
+  {id:'it',name:'It-cleft',short:'It was X who/that…',cat:'it',
+   col:{bg:'#EEEDFE',brd:'#AFA9EC',tc:'#3C3489',sc:'#534AB7'},fl:'#534AB7',
+   formula:'It + be + [FOCUSED ELEMENT] + who/that + rest of sentence',
+   desc:'The most common cleft. Puts the focused element right after "it is/was" and introduces the background clause with <strong>who</strong> (for people) or <strong>that</strong> (for things, places, times, reasons). The tense of "be" matches the tense of the original verb.',
+   uses:['Emphasise subject, object, time, place, or reason','Correct a misconception','Introduce new information as the most important element','Contrast two pieces of information'],
+   tip:'Use "who" when the focused element is a person; use "that" for everything else. "Which" is also possible in formal writing instead of "that".',
+   examples:[
+     {plain:'She lost her keys yesterday.',cleft:'It was <u>her keys</u> that she lost yesterday.',focus:'object'},
+     {plain:'The storm caused the accident.',cleft:'It was <u>the storm</u> that caused the accident.',focus:'subject'},
+     {plain:'He left because he was angry.',cleft:'It was <u>because he was angry</u> that he left.',focus:'reason'},
+     {plain:'They met in Rome.',cleft:'It was <u>in Rome</u> that they met.',focus:'place'},
+     {plain:'Sarah solved the problem.',cleft:'It was <u>Sarah</u> who solved the problem.',focus:'subject (person)'},
+     {plain:'They finished at midnight.',cleft:'It was <u>at midnight</u> that they finished.',focus:'time'}
+   ]},
+  {id:'wh',name:'Wh-cleft',short:'What X does is…',cat:'wh',
+   col:{bg:'#E1F5EE',brd:'#5DCAA5',tc:'#085041',sc:'#0F6E56'},fl:'#0F6E56',
+   formula:'What/Where/Why/When/How + subject + verb + be + [FOCUSED ELEMENT]',
+   desc:'Also called a <strong>pseudo-cleft</strong>. A wh-word introduces a nominal relative clause which acts as the subject; "be" links it to the focused element. The focus comes at the end — making it ideal for <strong>announcing new information</strong> or building to a conclusion.',
+   uses:['Announce a new piece of information at the end','Build suspense towards the focus','Emphasise an action or state','Formal and academic writing'],
+   tip:'"What" is by far the most common wh-word here. "Where", "when", "why", and "how" also work but are more restricted. The wh-clause is the subject, so use a singular verb with "be".',
+   examples:[
+     {plain:'She needs a rest.',cleft:'What she needs is <u>a rest</u>.',focus:'object'},
+     {plain:'He did something surprising — he apologised.',cleft:'What he did was <u>apologise</u>.',focus:'action'},
+     {plain:'The company requires better communication.',cleft:'What the company requires is <u>better communication</u>.',focus:'object'},
+     {plain:'We want to understand the cause.',cleft:'What we want to understand is <u>the cause</u>.',focus:'object'},
+     {plain:'She went to Paris for inspiration.',cleft:'Where she went for inspiration was <u>Paris</u>.',focus:'place'},
+     {plain:"He failed because he didn't prepare.",cleft:"Why he failed was <u>that he didn't prepare</u>.",focus:'reason'}
+   ]},
+  {id:'rev',name:'Reversed wh-cleft',short:'X is what/where…',cat:'rev',
+   col:{bg:'#FAEEDA',brd:'#EF9F27',tc:'#633806',sc:'#854F0B'},fl:'#854F0B',
+   formula:'[FOCUSED ELEMENT] + be + what/where/when/why/how + subject + verb',
+   desc:'The reverse of the wh-cleft: the focused element comes <strong>first</strong>, and the wh-clause follows. This structure is used when the focus is already known or expected and the speaker wants to <strong>confirm, explain, or define</strong> it. Also called an "inverted pseudo-cleft".',
+   uses:['Define or explain something established in context','Confirm or echo a previously mentioned idea','Emphasise the focus by placing it first','Spoken and informal written English'],
+   tip:'Because the focus comes first, this type is better for known or assumed information — the opposite of the standard wh-cleft. It often has a confirmatory or explanatory tone.',
+   examples:[
+     {plain:'She needs a rest.',cleft:'<u>A rest</u> is what she needs.',focus:'object — confirming'},
+     {plain:'He did something — he apologised.',cleft:'<u>Apologise</u> was what he did.',focus:'action — defining'},
+     {plain:'Patience is the key virtue here.',cleft:'<u>Patience</u> is what this job requires.',focus:'object — explaining'},
+     {plain:'He went to London.',cleft:'<u>London</u> is where he went.',focus:'place — confirming'},
+     {plain:'They failed to communicate.',cleft:'<u>Failing to communicate</u> is what caused the breakdown.',focus:'cause — explaining'},
+     {plain:"She needs support.",cleft:"<u>Support</u> is what she's asking for.",focus:'object — clarifying'}
+   ]},
+  {id:'all-focus',name:'All-cleft',short:'All X did was…',cat:'all-focus',
+   col:{bg:'#FAECE7',brd:'#F0997B',tc:'#712B13',sc:'#993C1D'},fl:'#993C1D',
+   formula:'All + subject + verb + be + [FOCUSED ELEMENT / bare infinitive]',
+   desc:'A variant of the wh-cleft using <strong>"all"</strong> instead of "what". It emphasises that the focused element is the <strong>only</strong> thing — the sole action, desire, or requirement. It often uses a bare infinitive (without "to") in the focused position.',
+   uses:['Minimise or limit an action ("only did X")','Emphasise simplicity or exclusivity','Spoken emphasis and understatement','Respond to exaggeration or over-complication'],
+   tip:'The verb after "all" is most naturally "do/did" or "want/wanted". The focused element after "be" is usually a bare infinitive: "All he did was <u>laugh</u>" — not "to laugh".',
+   examples:[
+     {plain:'He just smiled.',cleft:'All he did was <u>smile</u>.',focus:'sole action — minimising'},
+     {plain:'She wants to leave.',cleft:'All she wants is <u>to leave</u>.',focus:'sole desire'},
+     {plain:'They asked one question.',cleft:'All they did was <u>ask one question</u>.',focus:'sole action'},
+     {plain:'He needed a signature.',cleft:'All he needed was <u>a signature</u>.',focus:'sole requirement'},
+     {plain:'I want to sleep.',cleft:'All I want is <u>to sleep</u>.',focus:'sole desire'},
+     {plain:'She did one thing — she listened.',cleft:'All she did was <u>listen</u>.',focus:'sole action — appreciative'}
+   ]},
+  {id:'there',name:'There-cleft',short:'There is one thing…',cat:'there',
+   col:{bg:'#E6F1FB',brd:'#85B7EB',tc:'#0C447C',sc:'#185FA5'},fl:'#185FA5',
+   formula:'There + be + [FOCUSED NOUN PHRASE] + that/who + rest of sentence',
+   desc:'Uses existential <strong>"there"</strong> to introduce the focus. The focused noun phrase is new and existentially introduced, then further described by a relative clause. Less common than it-clefts, but useful for presenting something as uniquely existing.',
+   uses:['Introduce something as uniquely existing','Highlight one exceptional thing or person','Formal and literary registers','Present a problem or quality as the defining one'],
+   tip:'"There-clefts" are closest in meaning to it-clefts but carry a more existential flavour — the sense that "this one thing exists and matters". They are less common in everyday speech.',
+   examples:[
+     {plain:'One person impressed me — the keynote speaker.',cleft:'There was <u>one person</u> who truly impressed me: the keynote speaker.',focus:'subject — existential introduction'},
+     {plain:'One thing worried me — the silence.',cleft:'There was <u>one thing</u> that worried me: the silence.',focus:'object — introducing concern'},
+     {plain:'Something I want to mention is the cost.',cleft:'There is <u>something</u> I want to mention: the cost.',focus:'introducing a topic'},
+     {plain:'One quality defines her — her resilience.',cleft:'There is <u>one quality</u> that defines her: resilience.',focus:'defining quality'},
+     {plain:'One reason stands out — the timing.',cleft:'There is <u>one reason</u> this matters: the timing.',focus:'reason — foregrounding'},
+     {plain:'A moment changed everything.',cleft:'There was <u>a moment</u> that changed everything.',focus:'moment — narrative'}
+   ]},
+  {id:'neg',name:'Negative cleft',short:'It is not X but Y…',cat:'neg',
+   col:{bg:'#FBEAF0',brd:'#ED93B1',tc:'#72243E',sc:'#993556'},fl:'#993556',
+   formula:'It + be + not + [REJECTED ELEMENT] + but + [CORRECT ELEMENT] + that/who + rest',
+   desc:'A negative cleft <strong>denies one element and asserts the correct one</strong>. It first rules out the wrong information, then introduces the right information as the true focus. Highly effective for correction and contrast.',
+   uses:['Explicitly correct a misunderstanding','Contrast two competing ideas','Emphasise what is true by first stating what is not','Formal argument, debate, and academic prose'],
+   tip:'The structure "It is not X but Y that…" is the classic form. You can also use "It is not X that… — it is Y that…" as two separate sentences for extra dramatic effect.',
+   examples:[
+     {plain:'Hard work, not luck, brought success.',cleft:'It was not <u>luck</u> but <u>hard work</u> that brought success.',focus:'correcting the cause'},
+     {plain:'The manager, not the team, made the error.',cleft:'It was not <u>the team</u> but <u>the manager</u> who made the error.',focus:'correcting the subject'},
+     {plain:'She left on Friday, not Thursday.',cleft:'It was not <u>Thursday</u> but <u>Friday</u> that she left.',focus:'correcting the time'},
+     {plain:'He needs rest, not advice.',cleft:'It is not <u>advice</u> but <u>rest</u> that he needs.',focus:'correcting the object'},
+     {plain:'The data, not the theory, is wrong.',cleft:'It is not <u>the theory</u> but <u>the data</u> that is wrong.',focus:'correcting the subject'},
+     {plain:'She was inspired by art, not money.',cleft:'It was not <u>money</u> but <u>art</u> that inspired her.',focus:'correcting the cause'}
+   ]}
+];
+
+const TYPE_COL_MAP={it:{bg:'#EEEDFE',brd:'#AFA9EC',tc:'#3C3489'},wh:{bg:'#E1F5EE',brd:'#5DCAA5',tc:'#085041'},rev:{bg:'#FAEEDA',brd:'#EF9F27',tc:'#633806'},'all-focus':{bg:'#FAECE7',brd:'#F0997B',tc:'#712B13'},there:{bg:'#E6F1FB',brd:'#85B7EB',tc:'#0C447C'},neg:{bg:'#FBEAF0',brd:'#ED93B1',tc:'#72243E'}};
+
+// ── TYPE GRID & DETAIL ────────────────────────────────────────
+let selType=null;
+function renderTypeGrid(){
+  document.getElementById('typeGrid').innerHTML=TYPES.map(t=>`
+    <div class="type-card" id="tc_${t.id}" style="background:${t.col.bg};border-color:${t.col.brd}" onclick="selectType('${t.id}')">
+      <div class="tc-name" style="color:${t.col.tc}">${t.name}</div>
+      <div class="tc-sub" style="color:${t.col.sc}">${t.short}</div>
+    </div>`).join('');
+}
+function selectType(id){
+  const wasOpen=selType===id;
+  selType=wasOpen?null:id;
+  document.querySelectorAll('.type-card').forEach(c=>c.style.outline='');
+  const detail=document.getElementById('typeDetail');
+  if(!selType){detail.classList.remove('on');return;}
+  document.getElementById('tc_'+id).style.outline='2px solid #534AB7';
+  const t=TYPES.find(x=>x.id===id);
+  const C=TYPE_COL_MAP[t.cat];
+  const saved=isGlossed(id);
+  detail.innerHTML=`
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px">
+      <span style="font-size:18px;font-weight:700;color:${C.tc}">${t.name}</span>
+      <span style="background:${C.bg};color:${C.tc};border:0.5px solid ${C.brd};font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px">${t.short}</span>
+      <button class="audio-btn" onclick="speak(${safeQ(t.name+'. '+t.formula)},0.82,this)">🔊 Hear</button>
+      <button class="act" data-gid="${id}" style="font-size:12px;margin-left:auto" onclick="toggleGloss('${id}')">${saved?'🔖 Saved':'🔖 Save'}</button>
+    </div>
+    <div class="lbl">Formula</div>
+    <div class="formula" style="border-color:${t.fl}">${t.formula}</div>
+    <div class="lbl">When to use it</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">${t.desc}</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+      ${t.uses.map(u=>`<span style="background:${C.bg};color:${C.tc};font-size:12px;padding:3px 10px;border-radius:20px;border:0.5px solid ${C.brd}">${u}</span>`).join('')}
+    </div>
+    <div class="lbl">Tip</div>
+    <div class="tip-box" style="margin-bottom:12px"><i class="ti ti-bulb" style="font-size:15px;flex-shrink:0;color:${t.fl}"></i><span>${t.tip}</span></div>
+    <div class="lbl">Examples — plain vs cleft</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+      ${t.examples.map(e=>`
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div style="background:#E1F5EE;color:#085041;border:0.5px solid #5DCAA5;border-radius:12px;padding:8px 13px;font-size:14px;line-height:1.6">
+            <span class="ex-tag">Plain</span>${e.plain}
+            <button class="audio-btn" onclick="speak(${safeQ(e.plain)},0.84,this)" style="font-size:11px;padding:2px 7px;margin-left:4px;vertical-align:middle">🔊</button>
+          </div>
+          <div style="background:${C.bg};color:${C.tc};border:0.5px solid ${C.brd};border-radius:12px;padding:8px 13px;font-size:14px;line-height:1.6">
+            <span class="ex-tag" style="color:${C.tc}">Cleft — ${e.focus}</span>${e.cleft}
+            <button class="audio-btn" onclick="speak(${safeQ(e.cleft.replace(/<[^>]+>/g,''))},0.84,this)" style="font-size:11px;padding:2px 7px;margin-left:4px;vertical-align:middle">🔊</button>
+          </div>
+        </div>`).join('')}
+    </div>`;
+  detail.classList.add('on');
+  detail.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ── EXAMPLES BANK ─────────────────────────────────────────────
+function filterExs(cat,el){
+  document.querySelectorAll('#exFilter .cf').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');renderExBank(cat);
+}
+function renderExBank(cat){
+  const list=cat==='all'?TYPES:TYPES.filter(t=>t.cat===cat);
+  document.getElementById('exBank').innerHTML=list.map(t=>{
+    const C=TYPE_COL_MAP[t.cat];
+    return`<div class="card" style="margin-bottom:.8rem">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+        <span style="font-size:15px;font-weight:600;color:${C.tc}">${t.name}</span>
+        <span style="background:${C.bg};color:${C.tc};border:0.5px solid ${C.brd};font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px">${t.short}</span>
+        <button class="audio-btn" style="margin-left:auto" onclick="speak(${safeQ(t.formula.replace(/<[^>]+>/g,''))},0.82,this)">🔊 Formula</button>
+      </div>
+      <div class="formula" style="border-color:${t.fl};margin-bottom:10px">${t.formula}</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        ${t.examples.map(e=>`
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div style="background:#E1F5EE;color:#085041;border:0.5px solid #5DCAA5;border-radius:12px;padding:8px 13px;font-size:13.5px;line-height:1.6">
+              <span class="ex-tag">Plain — ${e.focus}</span>${e.plain}
+              <button class="audio-btn" onclick="speak(${safeQ(e.plain)},0.84,this)" style="font-size:11px;padding:2px 7px;margin-left:4px;vertical-align:middle">🔊</button>
+            </div>
+            <div style="background:${C.bg};color:${C.tc};border:0.5px solid ${C.brd};border-radius:12px;padding:8px 13px;font-size:13.5px;line-height:1.6">
+              <span class="ex-tag" style="color:${C.tc}">Cleft</span>${e.cleft}
+              <button class="audio-btn" onclick="speak(${safeQ(e.cleft.replace(/<[^>]+>/g,''))},0.84,this)" style="font-size:11px;padding:2px 7px;margin-left:4px;vertical-align:middle">🔊</button>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── QUIZ ──────────────────────────────────────────────────────
+const QUIZ=[
+  {q:'"___ Maria who found the missing document." — which cleft type is this?',opts:['It-cleft','Wh-cleft','All-cleft','There-cleft'],ans:0,fb:'It-cleft: "It was + focused element (Maria) + who + rest". "Who" is used because the focus is a person.'},
+  {q:'"What the committee needs ___ a clear strategy."',opts:['is','are','was','were'],ans:0,fb:'Wh-cleft: the wh-clause acts as a singular subject, so the verb "be" is singular — "is".'},
+  {q:'Which sentence correctly focuses on the TIME using an it-cleft?',opts:['It was the conference where they met.','It was at the conference that they met.','It was the conference who they met at.','What they met was the conference.'],ans:1,fb:'It-cleft for place/time uses "that", not "where" or "who". "It was at the conference that…" is correct.'},
+  {q:'"All she did was ___." — which form is correct in the focus position?',opts:['to cry','crying','cry','cried'],ans:2,fb:'All-cleft: after "All + subject + did + was", use a bare infinitive — no "to". So: "All she did was cry."'},
+  {q:'"___ is what this project requires." — what type of cleft is this?',opts:['It-cleft','Reversed wh-cleft','There-cleft','Negative cleft'],ans:1,fb:'Reversed wh-cleft: the focused element comes first, then "be + what + clause". Used to confirm or explain.'},
+  {q:'Which sentence is a correct negative cleft correcting a misconception?',opts:['It was not John but Peter who called.','It was not John who called but Peter did.','Not John but Peter was who called.','It was John not Peter that called.'],ans:0,fb:'"It was not X but Y who/that…" is the standard negative cleft structure.'},
+  {q:'"There was ___ thing that worried the inspectors: the ventilation."',opts:['a','one','the','some'],ans:1,fb:'There-cleft: "There was one thing that…" — "one" highlights singularity and existential uniqueness.'},
+  {q:'"What he ___  was apologise to the whole team."',opts:['does','did','had','is'],ans:1,fb:'Wh-cleft in past tense: "What he did was apologise." The tense of the wh-clause matches the context.'},
+  {q:'Complete the it-cleft: "It was ___ that the breakthrough finally occurred."',opts:['in the laboratory','the laboratory','laboratory','at laboratory'],ans:0,fb:'It-cleft for place: the focused element is a prepositional phrase — "in the laboratory". "That" follows.'},
+  {q:'"It is not money but ___ that motivates her." — what word class fills the gap?',opts:['She loves passion','passion','passionately','passionate'],ans:1,fb:'Negative cleft: both the rejected and the correct element must be parallel noun phrases. "Passion" (noun) matches "money" (noun).'},
+  {q:'Which cleft best corrects: "I thought you wanted advice." — "No, I just need support."',opts:['"What I need is support."','"It is advice that I need."','"There is one thing — advice."','"All I did was need advice."'],ans:0,fb:'Wh-cleft ("What I need is support") corrects and announces the true focus at the end — ideal for correction.'},
+  {q:'"___ one quality that defines a great leader: integrity." — which cleft?',opts:['It is','There is','What is','All is'],ans:1,fb:'There-cleft: "There is one quality that…" — introduces the focus as a uniquely existing entity.'},
+  {q:'In a wh-cleft, the focused element appears…',opts:['at the beginning','after the wh-word','at the end, after "be"','in the middle'],ans:2,fb:'Standard wh-cleft: wh-clause (subject) + be + focused element. The focus lands at the END of the sentence.'},
+  {q:'"___ is where she found her inspiration." — what is "Paris" in this sentence?',opts:['Subject of the wh-clause','Focused element of a reversed wh-cleft','Object of an it-cleft','Background information'],ans:1,fb:'"Paris is where she found her inspiration" is a reversed wh-cleft. Paris is the focused element, placed first.'},
+  {q:'Which sentence uses an all-cleft correctly?',opts:['All he wanted was rest.','All he wanted was to resting.','All he wanted was rested.','All he wanted is have rest.'],ans:0,fb:'"All he wanted was rest" — noun in focus position. Also correct: "All he wanted was to rest" (infinitive with "to" is fine when "want" is the verb).'},
+  {q:'"What struck everyone was ___ of the performance."',opts:['the quality','that the quality','a quality','its quality was'],ans:0,fb:'Wh-cleft: after "was", the focused element is a noun phrase. "The quality of the performance" — no "that" needed here.'},
+  {q:'A reversed wh-cleft is most naturally used to…',opts:['Introduce brand-new information','Confirm or explain something already established','Deny a misconception','Introduce an existential focus'],ans:1,fb:'Reversed wh-cleft puts the focus first — best for confirming, defining, or explaining something already in context.'}
+];
+let qIdx=0,qScore=0,qTotal=0,qAns=false,quizItems=[];
+function buildQuiz(){
+  quizItems=[...QUIZ].sort(()=>Math.random()-.5);
+  qIdx=0;qScore=0;qTotal=0;qAns=false;renderQ();
+}
+function renderQ(){
+  if(qIdx>=quizItems.length){
+    const pct=Math.round(qScore/quizItems.length*100);
+    document.getElementById('quizArea').innerHTML=`<div class="card" style="text-align:center;padding:2rem">
+      <div style="font-size:22px;font-weight:500;margin-bottom:8px">${qScore}/${quizItems.length}</div>
+      <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect! Every question correct.':pct>=75?'Great work!':'Review the Types A–Z tab and try again.'}</div>
+      <button class="act" onclick="buildQuiz()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;
+    return;
+  }
+  const q=quizItems[qIdx];
+  const prog=Math.round(qIdx/quizItems.length*100);
+  const opts=[...q.opts.entries()].sort(()=>Math.random()-.5);window._qO=opts;
+  document.getElementById('quizArea').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="font-size:13px;color:var(--color-text-secondary)">Question ${qIdx+1} / ${quizItems.length} · Score: ${qScore}/${qTotal}</span>
+      <button class="act" onclick="buildQuiz()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <p style="font-size:15px;line-height:1.65;margin-bottom:14px;color:var(--color-text-primary)">${q.q.replace('___','<span style="display:inline-block;border-bottom:2px solid #534AB7;min-width:90px;color:#534AB7;font-style:italic;padding:0 4px">___</span>')}</p>
+    <div id="qopts" style="display:flex;flex-direction:column;gap:0">${opts.map(([oi,o],j)=>`<button class="opt" id="qo_${j}" onclick="ansQ(${j})">${o}</button>`).join('')}</div>
+    <div class="fb" id="qfb" style="display:none"></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+      <button class="act" id="qnxt" style="display:none" onclick="nxtQ()">Next →</button>
+    </div>
+  </div>`;
+  qAns=false;
+}
+function ansQ(j){
+  if(qAns)return;qAns=true;qTotal++;
+  const q=quizItems[qIdx];const chosen=window._qO[j][0];const ok=chosen===q.ans;if(ok)qScore++;
+  document.querySelectorAll('#qopts .opt').forEach((b,i)=>{
+    b.disabled=true;const oi=window._qO[i][0];
+    if(oi===q.ans)b.classList.add('correct');else if(i===j&&!ok)b.classList.add('wrong');
+  });
+  const fb=document.getElementById('qfb');
+  fb.className='fb '+(ok?'fb-ok':'fb-no');fb.style.display='block';
+  fb.textContent=(ok?'✓ Correct! ':'✗ Not quite. ')+q.fb;
+  document.getElementById('qnxt').style.display='inline-block';
+}
+function nxtQ(){qIdx++;renderQ();}
+
+// ── MATCHING ──────────────────────────────────────────────────
+const MATCH_SETS=[
+  {instr:'Match each cleft opening (left) with the sentence continuation that fits its grammar and meaning.',
+   pairs:[
+     {left:'It was the CEO',right:'who announced the restructuring plan to the board.'},
+     {left:'What the report reveals',right:'is a significant gap between expectation and reality.'},
+     {left:'All she did',right:'was hand in her resignation and walk out.'},
+     {left:'It was not the deadline',right:'but the lack of resources that caused the delay.'},
+     {left:'There was one moment',right:'that changed the entire direction of the investigation.'},
+     {left:'A clear plan',right:'is what the project has been missing from the start.'},
+     {left:'It was in the final chapter',right:'that the author revealed the true identity of the narrator.'}
+   ]},
+  {instr:'Each sentence ending on the right belongs with exactly one opening on the left. Use context and grammar — no cleft labels appear on the right.',
+   pairs:[
+     {left:'What the scientists discovered',right:'was an entirely new species of deep-sea organism.'},
+     {left:'It was her calm manner',right:'that persuaded the committee to reconsider their decision.'},
+     {left:'Listening carefully',right:'is what distinguishes a great doctor from a merely good one.'},
+     {left:'It was not ambition',right:'but fear that drove him to such extreme measures.'},
+     {left:'All he wanted',right:'was for someone to acknowledge what he had achieved.'},
+     {left:'There is one thing',right:'I have never been able to forgive: the betrayal of trust.'},
+     {left:'Why the experiment failed',right:'was that the temperature was never properly controlled.'}
+   ]},
+  {instr:'A more challenging round — the sentence endings are longer and require close reading of both grammar and context.',
+   pairs:[
+     {left:'It was only after the verdict',right:'that the full weight of the evidence became clear to the public.'},
+     {left:'What the protesters demanded',right:'was not compensation but a genuine public apology from the company.'},
+     {left:'Transparency and accountability',right:'are what the citizens of this country have a right to expect.'},
+     {left:'It was not the quantity of work',right:'but the quality of thinking behind it that impressed the examiners.'},
+     {left:'All the new legislation does',right:'is shift the burden of proof from the state to the individual.'},
+     {left:'There was one factor',right:'that the analysts had consistently underestimated: public sentiment.'},
+     {left:'Where the real problem lies',right:'is in the failure to communicate expectations clearly from the outset.'}
+   ]}
+];
+let mSet=0,mPicked=null,mMatched=[],mScore=0,mAttempts=0,mRight=[];
+function startMatch(si){
+  mSet=si!==undefined?si:mSet;
+  const set=MATCH_SETS[mSet];
+  mPicked=null;mMatched=[];mScore=0;mAttempts=0;
+  const rights=[...set.pairs].sort(()=>Math.random()-.5);mRight=rights;
+  document.getElementById('matchContainer').innerHTML=`
+    <div class="card" style="margin-bottom:.8rem">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px">
+        <span style="font-size:13px;color:var(--color-text-secondary);flex:1">Round ${mSet+1} of ${MATCH_SETS.length}</span>
+        ${MATCH_SETS.map((_,i)=>`<button class="act" onclick="startMatch(${i})" style="${i===mSet?'background:#EEEDFE;border-color:#AFA9EC;color:#3C3489':''}">Round ${i+1}</button>`).join('')}
+        <button class="act" onclick="startMatch(mSet)"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i></button>
+      </div>
+      <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:6px">${set.instr}</p>
+      <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:14px">Matched: <strong id="mP">0</strong>/${set.pairs.length} &nbsp;·&nbsp; Attempts: <strong id="mA">0</strong></div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);gap:10px">
+        <div style="display:flex;flex-direction:column;gap:7px" id="mL">${set.pairs.map((p,i)=>`<button class="mi" id="ml_${i}" onclick="mPL(${i})">${p.left}</button>`).join('')}</div>
+        <div style="display:flex;flex-direction:column;gap:7px" id="mR">${rights.map((r,i)=>`<button class="mi" id="mr_${i}" onclick="mPR(${i})" style="font-size:12px;line-height:1.5">${r.right}</button>`).join('')}</div>
+      </div>
+      <div id="mFb" style="font-size:13px;min-height:18px;margin-top:10px"></div>
+    </div>`;
+}
+function mPL(i){
+  if(mMatched.some(m=>m.l===i))return;
+  mPicked=i;
+  document.querySelectorAll('#mL .mi').forEach((el,j)=>{if(!mMatched.some(m=>m.l===j))el.classList.toggle('pk',j===i);});
+}
+function mPR(i){
+  if(mPicked===null)return;
+  const set=MATCH_SETS[mSet];
+  if(mMatched.some(m=>m.r===i))return;
+  mAttempts++;document.getElementById('mA').textContent=mAttempts;
+  const ok=mRight[i].left===set.pairs[mPicked].left;
+  if(ok){
+    document.getElementById('ml_'+mPicked).classList.remove('pk');
+    document.getElementById('ml_'+mPicked).classList.add('mt');
+    document.getElementById('mr_'+i).classList.add('mt');
+    mMatched.push({l:mPicked,r:i});mScore++;
+    document.getElementById('mP').textContent=mScore;
+    const fb=document.getElementById('mFb');fb.style.color='#27500A';
+    fb.textContent=mScore===set.pairs.length?`All ${set.pairs.length} pairs matched in ${mAttempts} attempt${mAttempts===1?'':'s'}!`:'✓ Correct match!';
+    mPicked=null;document.querySelectorAll('#mL .mi').forEach(el=>el.classList.remove('pk'));
+  }else{
+    document.getElementById('mr_'+i).classList.add('bd');
+    document.getElementById('ml_'+mPicked).classList.add('bd');
+    const fb=document.getElementById('mFb');fb.style.color='#791F1F';fb.textContent='✗ Not a match — try again.';
+    setTimeout(()=>{
+      const l=document.getElementById('ml_'+mPicked);const r=document.getElementById('mr_'+i);
+      if(l)l.classList.remove('bd');if(r)r.classList.remove('bd');
+    },700);
+  }
+}
+
+// ── JIGSAW ────────────────────────────────────────────────────
+const JIGSAW_POOL=[
+  {type:'It-cleft',pieces:['It was','her dedication','that','impressed the entire selection panel'],answer:['It was','her dedication','that','impressed the entire selection panel']},
+  {type:'Wh-cleft',pieces:['What','the investigation revealed','was','a systematic failure of oversight'],answer:['What','the investigation revealed','was','a systematic failure of oversight']},
+  {type:'All-cleft',pieces:['All','the committee did','was','delay the decision for another six months'],answer:['All','the committee did','was','delay the decision for another six months']},
+  {type:'Reversed wh-cleft',pieces:['Better communication','is','what','this organisation desperately needs'],answer:['Better communication','is','what','this organisation desperately needs']},
+  {type:'It-cleft (person)',pieces:['It was','the junior analyst','who','first spotted the anomaly in the data'],answer:['It was','the junior analyst','who','first spotted the anomaly in the data']},
+  {type:'Negative cleft',pieces:['It was not','inexperience','but','overconfidence that led to the catastrophic error'],answer:['It was not','inexperience','but','overconfidence that led to the catastrophic error']},
+  {type:'There-cleft',pieces:['There was','one question','that','no one in the room dared to ask'],answer:['There was','one question','that','no one in the room dared to ask']},
+  {type:'Wh-cleft (why)',pieces:['Why','the negotiations collapsed','was','that neither side was willing to compromise'],answer:['Why','the negotiations collapsed','was','that neither side was willing to compromise']},
+  {type:'It-cleft (place)',pieces:['It was','in the archive','that','the researchers found the missing correspondence'],answer:['It was','in the archive','that','the researchers found the missing correspondence']},
+  {type:'All-cleft',pieces:['All','she asked for','was','a little more time to review the evidence'],answer:['All','she asked for','was','a little more time to review the evidence']},
+  {type:'Wh-cleft',pieces:['What','the audience remembered most','was','the silence before the final line'],answer:['What','the audience remembered most','was','the silence before the final line']},
+  {type:'Reversed wh-cleft',pieces:['Patience and precision','are','what','the craft of watchmaking demands above all else'],answer:['Patience and precision','are','what','the craft of watchmaking demands above all else']},
+  {type:'It-cleft (time)',pieces:['It was','at that precise moment','that','she understood what had really happened'],answer:['It was','at that precise moment','that','she understood what had really happened']},
+  {type:'Negative cleft',pieces:['It was not','the result','but','the manner of the defeat that shocked everyone'],answer:['It was not','the result','but','the manner of the defeat that shocked everyone']},
+  {type:'There-cleft',pieces:['There is','one aspect','that','the report fails to address: implementation cost'],answer:['There is','one aspect','that','the report fails to address: implementation cost']},
+  {type:'Wh-cleft (where)',pieces:['Where','the film truly excels','is','in its portrayal of moral ambiguity'],answer:['Where','the film truly excels','is','in its portrayal of moral ambiguity']},
+  {type:'All-cleft',pieces:['All','this proposal does','is','create new bureaucracy without solving the underlying problem'],answer:['All','this proposal does','is','create new bureaucracy without solving the underlying problem']},
+  {type:'It-cleft (reason)',pieces:['It was','because of the fog','that','the ferry service was suspended all morning'],answer:['It was','because of the fog','that','the ferry service was suspended all morning']},
+  {type:'Reversed wh-cleft',pieces:['Honesty about limitations','is','what','separates a good scientist from a great one'],answer:['Honesty about limitations','is','what','separates a good scientist from a great one']},
+  {type:'Negative cleft',pieces:['It is not','the price','but','the principle of the matter that concerns us most'],answer:['It is not','the price','but','the principle of the matter that concerns us most']}
+];
+let jItems=[],jIdx=0,jScore=0,jTotal=0,jPlaced=[],jSel=null,jChecked=false;
+function startJig(){
+  jItems=[...JIGSAW_POOL].sort(()=>Math.random()-.5);
+  jIdx=0;jScore=0;jTotal=0;renderJig();
+}
+function renderJig(){
+  if(jIdx>=jItems.length){
+    const pct=Math.round(jScore/jTotal*100);
+    document.getElementById('jigContainer').innerHTML=`<div class="card" style="text-align:center;padding:2rem">
+      <div style="font-size:22px;font-weight:500;margin-bottom:8px">${jScore}/${jTotal}</div>
+      <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect! Every sentence correct.':pct>=75?'Great work!':'Review the Types A–Z tab and try again.'}</div>
+      <button class="act" onclick="startJig()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button>
+    </div>`;return;
+  }
+  const item=jItems[jIdx];
+  jPlaced=new Array(item.pieces.length).fill(null);
+  jSel=null;jChecked=false;
+  const shuffled=[...item.pieces].sort(()=>Math.random()-.5);window._jsh=shuffled;
+  const C=TYPE_COL_MAP[TYPES.find(t=>t.name===item.type||item.type.startsWith(t.name.split(' ')[0]))?.cat||'it'];
+  const prog=Math.round((jIdx/jItems.length)*100);
+  document.getElementById('jigContainer').innerHTML=`
+    <div class="ex-hdr">
+      <span style="font-size:13px;color:var(--color-text-secondary)">Sentence ${jIdx+1} of ${jItems.length} · Score: ${jScore}/${jTotal}</span>
+      <button class="act" onclick="startJig()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div class="card" style="margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+        <span style="font-size:12px;color:var(--color-text-secondary)">Cleft type:</span>
+        <span style="background:${C.bg};color:${C.tc};font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px;border:0.5px solid ${C.brd}">${item.type}</span>
+      </div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">Click a piece from the word bank, then click a slot to place it. Click a filled slot to return the piece.</div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:2px;min-height:44px;margin-bottom:8px" id="jSlots">
+        ${item.pieces.map((_,i)=>`<span class="slot${i===0?' filled':''}" id="s_${i}" onclick="cSlot(${i})">${i===0?'<span style=\'font-weight:600;color:#3C3489\'>'+item.pieces[0]+'</span>':''}</span>${i<item.pieces.length-1?'<span style="color:var(--color-text-secondary);font-size:11px;padding:0 1px">▸</span>':''}`).join('')}
+      </div>
+      <div id="jFb" style="font-size:13px;min-height:16px"></div>
+    </div>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px">Word bank:</div>
+    <div style="display:flex;flex-wrap:wrap;margin-bottom:12px" id="jPieces">
+      ${shuffled.map((p,i)=>`<span class="piece${p===item.pieces[0]?' used':''}" id="pc_${i}" onclick="cPiece(${i})">${p}</span>`).join('')}
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" onclick="checkJig()">Check answer</button>
+      <button class="act" onclick="clearJig()"><i class="ti ti-x" style="font-size:13px;vertical-align:-2px"></i> Clear</button>
+      <button class="act" onclick="skipJig()">Skip →</button>
+    </div>`;
+  jPlaced[0]=item.pieces[0];
+}
+function cPiece(i){
+  if(jChecked)return;
+  const w=window._jsh[i];if(w===jItems[jIdx].pieces[0])return;
+  document.querySelectorAll('.piece').forEach(p=>p.classList.remove('sel'));
+  if(jSel===i){jSel=null;return;}
+  jSel=i;document.getElementById('pc_'+i).classList.add('sel');
+}
+function cSlot(s){
+  if(jChecked||s===0)return;
+  if(jSel===null){
+    if(jPlaced[s]!==null){
+      const w=jPlaced[s];jPlaced[s]=null;
+      window._jsh.forEach((p,pi)=>{const e=document.getElementById('pc_'+pi);if(e&&e.classList.contains('used')&&p===w&&!jPlaced.includes(p))e.classList.remove('used');});
+      rSlots();
+    }return;
+  }
+  const w=window._jsh[jSel];
+  if(jPlaced[s]!==null){
+    const old=jPlaced[s];jPlaced[s]=null;
+    window._jsh.forEach((p,pi)=>{const e=document.getElementById('pc_'+pi);if(e&&p===old&&e.classList.contains('used'))e.classList.remove('used');});
+  }
+  jPlaced[s]=w;
+  document.getElementById('pc_'+jSel).classList.add('used');
+  document.getElementById('pc_'+jSel).classList.remove('sel');
+  jSel=null;rSlots();
+}
+function rSlots(){
+  const item=jItems[jIdx];
+  item.pieces.forEach((_,i)=>{
+    const el=document.getElementById('s_'+i);if(!el)return;
+    if(i===0){el.innerHTML=`<span style='font-weight:600;color:#3C3489'>${item.pieces[0]}</span>`;el.className='slot filled';return;}
+    if(jPlaced[i]){el.textContent=jPlaced[i];el.className='slot filled';}
+    else{el.textContent='';el.className='slot';}
+  });
+}
+function checkJig(){
+  if(jChecked)return;
+  const item=jItems[jIdx];
+  for(let i=1;i<item.pieces.length;i++){if(!jPlaced[i]){const fb=document.getElementById('jFb');fb.textContent='Fill all slots first.';fb.style.color='#791F1F';return;}}
+  jChecked=true;jTotal++;
+  let ok=true;
+  item.pieces.forEach((p,i)=>{if(jPlaced[i]!==p)ok=false;});
+  item.pieces.forEach((p,i)=>{const el=document.getElementById('s_'+i);if(!el)return;el.classList.add(jPlaced[i]===p?'cs':'ws');});
+  const fb=document.getElementById('jFb');
+  if(ok){jScore++;fb.innerHTML='✓ Correct! <span style="font-family:var(--font-mono);font-size:12px">'+item.answer.join(' ')+'</span>';fb.style.color='#27500A';}
+  else{fb.innerHTML='✗ Not quite. Correct order: <span style="font-family:var(--font-mono);font-size:12px">'+item.answer.join(' ▸ ')+'</span>';fb.style.color='#791F1F';}
+  document.querySelectorAll('#jigContainer .check-btn').forEach(b=>{b.textContent='Next →';b.onclick=()=>{jIdx++;renderJig();};});
+}
+function clearJig(){
+  if(jChecked)return;
+  const item=jItems[jIdx];
+  jPlaced=new Array(item.pieces.length).fill(null);jPlaced[0]=item.pieces[0];jSel=null;
+  document.querySelectorAll('.piece').forEach((el,i)=>{el.classList.remove('sel','used');if(window._jsh[i]===item.pieces[0])el.classList.add('used');});
+  rSlots();document.getElementById('jFb').textContent='';
+}
+function skipJig(){jIdx++;renderJig();}
+
+// ── NAV ──────────────────────────────────────────────────────
+function showP(i){
+  document.querySelectorAll('.pan').forEach((p,j)=>p.classList.toggle('on',j===i));
+  document.querySelectorAll('.nt').forEach((t,j)=>t.classList.toggle('on',j===i));
+  if(i===0)renderQuote();
+  if(i===1&&!document.getElementById('typeGrid').innerHTML)renderTypeGrid();
+  if(i===2&&!document.getElementById('exBank').innerHTML)renderExBank('all');
+  if(i===3&&!quizItems.length)buildQuiz();
+  if(i===4&&!document.getElementById('matchContainer').innerHTML)startMatch(0);
+  if(i===5&&!jItems.length)startJig();
+  if(i===6)renderGloss();
+}
+
+window.addEventListener('load',()=>{
+  if(window.speechSynthesis){window.speechSynthesis.getVoices();setTimeout(loadV,500);setTimeout(loadV,1500);}
+  renderQuote();
+});
+</script>
+</body>
+</html>
