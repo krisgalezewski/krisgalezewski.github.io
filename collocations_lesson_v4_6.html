@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Collocations — Interactive Lesson</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary)}
+.w{padding:1.5rem}
+.nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
+.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nt:hover{background:var(--color-background-secondary)}
+.nt.on{color:#fff;border-color:transparent;font-weight:500}
+.n0.on{background:#185FA5}
+.n1.on{background:#5b2d8e}
+.n2.on{background:#0F6E56}
+.n3.on{background:#854F0B}
+.n4.on{background:#7B3FA8}
+.n5.on{background:#993C1D}
+.n6.on{background:#2d7a6b}
+.n7.on{background:#72243E}
+.n8.on{background:#1a5c3a}
+.n9.on{background:#4a3b8c}
+.pan{display:none}.pan.on{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+.lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
+.lbl:first-child{margin-top:0}
+.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #185FA5}
+/* chips */
+.chip{display:inline-block;font-size:12px;padding:3px 10px;border-radius:20px;margin:2px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);cursor:pointer;background:var(--color-background-primary);transition:all .15s}
+.chip:hover,.chip.on{background:#E6F1FB;border-color:#85B7EB;color:#185FA5;font-weight:500}
+.srch{width:100%;padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:14px;font-family:var(--font-sans);margin-bottom:10px}
+.srch:focus{outline:none;border-color:#85B7EB}
+/* collocation cards in grid */
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px;margin-bottom:1rem}
+.tool-card{border-radius:16px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:12px 14px;cursor:pointer;transition:all .15s}
+.tool-card:hover{background:var(--color-background-secondary)}
+.tool-card.sel{border-color:#85B7EB;background:#E6F1FB}
+/* expanded detail panel */
+.detail-box{border-radius:20px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:1.25rem 1.5rem;margin-bottom:1rem;display:none}
+.detail-box.on{display:block}
+/* exercises shared */
+.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act:hover{background:var(--color-background-secondary)}
+.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #185FA5;background:#185FA5;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn:hover{background:#0d3f72}
+.check-btn:disabled{opacity:.4;cursor:default}
+.gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
+.gap-opt:hover:not(.gsel):not(.gok):not(.gbad):not(.gdim){background:var(--color-background-secondary)}
+.gap-opt.gsel{border-color:#185FA5;background:#E6F1FB;color:#0C447C;font-weight:500}
+.gap-opt.gok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:500;cursor:default;pointer-events:none}
+.gap-opt.gbad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F;cursor:default;pointer-events:none}
+.gap-opt.gdim{opacity:.38;cursor:default;pointer-events:none}
+.fb-ok{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.fb-no{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:20px;background:#185FA5;transition:width .3s}
+/* match items */
+.match-col{display:flex;flex-direction:column;gap:7px}
+.match-item{padding:9px 13px;border-radius:12px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13.5px;cursor:pointer;transition:all .15s;line-height:1.5;user-select:none;text-align:left;width:100%}
+.match-item:hover{background:var(--color-background-secondary)}
+.match-item.sel{border-color:#185FA5;background:#E6F1FB;color:#0C447C;font-weight:500}
+.match-item.done-ok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
+.match-item.done-bad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+/* rewrite / para */
+.para-input{width:100%;padding:10px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:14px;resize:vertical;min-height:80px;font-family:var(--font-sans);line-height:1.6}
+.para-input:focus{outline:none;border-color:#85B7EB}
+.tx-ok{background:#EAF3DE;border-color:#C0DD97}
+.tx-no{background:#FCEBEB;border-color:#F7C1C1}
+/* lesson headers */
+.eyebrow{font-size:11px;font-weight:500;color:#185FA5;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.lesson-h{font-size:26px;font-weight:500;color:var(--color-text-primary);line-height:1.25;margin-bottom:4px}
+.lesson-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:1.25rem}
+/* strength pips */
+.spips{display:inline-flex;gap:2px;vertical-align:middle;margin-left:4px}
+.spip{width:9px;height:9px;border-radius:2px;background:var(--color-border-tertiary)}
+.spip.on{background:#185FA5}
+/* err grid */
+.err-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.err-box{border-radius:14px;padding:11px 14px;font-size:13px;line-height:1.6}
+.tip-box{background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;font-size:13px;color:var(--color-text-secondary);display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px}
+/* SR tabs */
+.sr-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
+.sr-tab{padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.sr-tab:hover{background:var(--color-background-secondary)}
+.sr-tab.on{background:#5b2d8e;color:#fff;border-color:#5b2d8e;font-weight:500}
+.sr-pan{display:none}.sr-pan.on{display:block}
+/* continuum bar */
+.continuum{display:flex;align-items:stretch;border-radius:14px;overflow:hidden;margin:12px 0;border:0.5px solid var(--color-border-tertiary)}
+.cont-seg{flex:1;padding:10px 8px;text-align:center;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;line-height:1.4}
+.cont-seg:hover{filter:brightness(.93)}
+/* classify cards */
+.clf-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5;margin-bottom:7px}
+.clf-opt:hover:not(.gsel):not(.gok):not(.gbad):not(.gdim){background:var(--color-background-secondary)}
+.clf-opt.gsel{border-color:#5b2d8e;background:#f0eafe;color:#3b1d72;font-weight:500}
+.clf-opt.gok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:500;cursor:default;pointer-events:none}
+.clf-opt.gbad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F;cursor:default;pointer-events:none}
+.clf-opt.gdim{opacity:.38;cursor:default;pointer-events:none}
+/* reg example rows */
+.reg-row{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:start;font-size:13.5px;line-height:1.65;padding:8px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.reg-row:last-child{border-bottom:none}
+.warn-box{background:#FAEEDA;border-radius:14px;padding:10px 14px;font-size:13px;color:#633806;display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px;border:0.5px solid #E8C080}
+@media(max-width:520px){.err-grid{grid-template-columns:1fr}.tool-grid{grid-template-columns:1fr}.continuum{flex-direction:column}}
+</style>
+</head>
+<body>
+<h2 class="sr-only">English Collocations — interactive lesson</h2>
+<div class="w">
+
+<div class="nav">
+  <button class="nt n0 on" onclick="showP(0)">Home</button>
+  <button class="nt n1" onclick="showP(1)">Strength &amp; register</button>
+  <button class="nt n2" onclick="showP(2)">Browse &amp; search</button>
+  <button class="nt n3" onclick="showP(3)">Gap fill</button>
+  <button class="nt n4" onclick="showP(4)">Matching</button>
+  <button class="nt n5" onclick="showP(5)">Error correction</button>
+  <button class="nt n6" onclick="showP(6)">Choose the word</button>
+  <button class="nt n7" onclick="showP(7)">Rewriting</button>
+  <button class="nt n8" onclick="showP(8)">Classify it</button>
+  <button class="nt n9" onclick="showP(9)">My glossary</button>
+</div>
+
+<!-- HOME -->
+<div id="p0" class="pan on">
+  <div class="eyebrow">Interactive lesson · Advanced vocabulary</div>
+  <div class="lesson-h">English Collocations</div>
+  <div class="lesson-sub">Words that go together — grammar, strength, and register</div>
+  <div class="quote-box" id="quoteBox"></div>
+  <div class="card">
+    <div class="lbl">What is a collocation?</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">A collocation is a combination of two or more words that frequently appear together. You can say <strong style="color:var(--color-text-primary)">heavy rain</strong> but not <em>strong rain</em>. You can <strong style="color:var(--color-text-primary)">make a decision</strong> but not <em>do a decision</em>. There is often no logical rule — the words simply go together by convention and must be learned as whole chunks.</p>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">Collocations cover every grammatical type: <strong style="color:var(--color-text-primary)">verb + noun</strong>, <strong style="color:var(--color-text-primary)">adjective + noun</strong>, <strong style="color:var(--color-text-primary)">adverb + adjective</strong>, <strong style="color:var(--color-text-primary)">adverb + verb</strong>, <strong style="color:var(--color-text-primary)">noun + noun</strong>, and fixed phrases. They also vary in <strong style="color:var(--color-text-primary)">strength</strong> (from weak to fixed) and <strong style="color:var(--color-text-primary)">register</strong> (formal, neutral, informal).</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:10px">
+      <div style="background:#E6F1FB;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:18px;font-weight:600;color:#0C447C">300+</div><div style="font-size:11px;font-weight:500;color:#0C447C;margin-top:2px">Collocations</div></div>
+      <div style="background:#EAF3DE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:18px;font-weight:600;color:#27500A">5</div><div style="font-size:11px;font-weight:500;color:#27500A;margin-top:2px">Gram. types</div></div>
+      <div style="background:#f0eafe;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:18px;font-weight:600;color:#5b2d8e">4</div><div style="font-size:11px;font-weight:500;color:#5b2d8e;margin-top:2px">Strength levels</div></div>
+      <div style="background:#FAEEDA;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:18px;font-weight:600;color:#633806">5</div><div style="font-size:11px;font-weight:500;color:#633806;margin-top:2px">Exercise types</div></div>
+    </div>
+    <div class="tip-box"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:#185FA5"></i><span>Every collocation card has a 🔖 Save button for your glossary. Click any card in Browse &amp; search to see the full entry: definition, usage note, strength, register, and audio examples.</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px">
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(1)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-adjustments" style="color:#5b2d8e"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Strength &amp; register</div><div style="font-size:12px;color:var(--color-text-secondary)">Fixed, strong, weak, formal…</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(2)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-book" style="color:#0F6E56"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Browse &amp; search</div><div style="font-size:12px;color:var(--color-text-secondary)">Explore all collocations</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(3)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-writing" style="color:#854F0B"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Gap fill</div><div style="font-size:12px;color:var(--color-text-secondary)">Choose the correct word</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(4)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-arrows-exchange" style="color:#7B3FA8"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Matching</div><div style="font-size:12px;color:var(--color-text-secondary)">Match the two halves</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(5)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-search" style="color:#993C1D"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Error correction</div><div style="font-size:12px;color:var(--color-text-secondary)">Spot the wrong word</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(6)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-list-check" style="color:#2d7a6b"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Choose the word</div><div style="font-size:12px;color:var(--color-text-secondary)">Pick the best collocation</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(7)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-pencil" style="color:#72243E"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Rewriting</div><div style="font-size:12px;color:var(--color-text-secondary)">Use a better collocation</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(8)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-tag" style="color:#1a5c3a"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Classify it</div><div style="font-size:12px;color:var(--color-text-secondary)">Fixed, strong, or weak?</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(9)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-bookmark" style="color:#4a3b8c"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">My glossary</div><div style="font-size:12px;color:var(--color-text-secondary)">Your saved collocations</div></div>
+  </div>
+</div>
+
+<!-- STRENGTH & REGISTER -->
+<div id="p1" class="pan">
+  <div class="eyebrow">Collocation awareness</div>
+  <div class="lesson-h">Strength &amp; register</div>
+  <div class="lesson-sub">Understanding how fixed a collocation is, and which context it belongs to</div>
+  <div class="sr-tabs">
+    <button class="sr-tab on" onclick="srTab(0,this)">The continuum</button>
+    <button class="sr-tab" onclick="srTab(1,this)">Fixed collocations</button>
+    <button class="sr-tab" onclick="srTab(2,this)">Strong collocations</button>
+    <button class="sr-tab" onclick="srTab(3,this)">Weak collocations</button>
+    <button class="sr-tab" onclick="srTab(4,this)">Register</button>
+    <button class="sr-tab" onclick="srTab(5,this)">Register quiz</button>
+  </div>
+
+  <!-- 0: CONTINUUM -->
+  <div id="srp0" class="sr-pan on">
+    <div class="card">
+      <div class="lbl" style="margin-top:0">From fixed to weak — all collocations sit somewhere on this scale</div>
+      <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:12px">Not all collocations are equally tight. <strong style="color:var(--color-text-primary)">Fixed</strong> collocations cannot be changed at all. <strong style="color:var(--color-text-primary)">Strong</strong> collocations have a small, predictable set of partners. <strong style="color:var(--color-text-primary)">Weak</strong> collocations are more flexible — one word pairs naturally with a wide range of partners. Click any segment to see examples.</p>
+      <div class="continuum" id="srCont">
+        <div class="cont-seg" style="background:#FCEBEB;color:#791F1F" onclick="srShowSeg(0)">🔒 Fixed<br><span style="font-size:10px;font-weight:400;opacity:.8">Cannot be changed</span></div>
+        <div class="cont-seg" style="background:#FAEEDA;color:#633806" onclick="srShowSeg(1)">●●● Strong<br><span style="font-size:10px;font-weight:400;opacity:.8">Few partners</span></div>
+        <div class="cont-seg" style="background:#EAF3DE;color:#27500A" onclick="srShowSeg(2)">●● Medium<br><span style="font-size:10px;font-weight:400;opacity:.8">Some flexibility</span></div>
+        <div class="cont-seg" style="background:#E6F1FB;color:#0C447C" onclick="srShowSeg(3)">● Weak<br><span style="font-size:10px;font-weight:400;opacity:.8">Many partners</span></div>
+      </div>
+      <div id="srSegDetail" style="margin-top:4px"></div>
+      <div class="tip-box" style="margin-top:12px"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:#5b2d8e"></i><span>The strength of a collocation tells you how much freedom you have. With <strong>fixed</strong> collocations you have none at all. With <strong>weak</strong> ones you can often substitute similar words and still sound natural — though native speakers will always prefer the most natural partner.</span></div>
+    </div>
+  </div>
+
+  <!-- 1: FIXED -->
+  <div id="srp1" class="sr-pan">
+    <div class="card">
+      <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:12px"><strong style="color:var(--color-text-primary)">Fixed collocations</strong> are so tightly bound that no word can be substituted. The meaning is often not predictable from the individual words — many are idioms. Even changing one small word breaks them completely.</p>
+      <div class="lbl">Key features</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:8px 0 14px">
+        <div style="background:#FCEBEB;border-radius:12px;padding:10px 13px"><div style="font-size:12px;font-weight:700;color:#791F1F;margin-bottom:3px">🔒 Completely fixed</div><div style="font-size:13px;color:var(--color-text-secondary)">No word can be substituted without destroying the phrase.</div></div>
+        <div style="background:#FCEBEB;border-radius:12px;padding:10px 13px"><div style="font-size:12px;font-weight:700;color:#791F1F;margin-bottom:3px">❓ Often idiomatic</div><div style="font-size:13px;color:var(--color-text-secondary)">The meaning cannot always be guessed from the parts.</div></div>
+        <div style="background:#FCEBEB;border-radius:12px;padding:10px 13px"><div style="font-size:12px;font-weight:700;color:#791F1F;margin-bottom:3px">📖 Must be memorised</div><div style="font-size:13px;color:var(--color-text-secondary)">Learn them as complete, unbreakable chunks.</div></div>
+      </div>
+      <div class="lbl" style="margin-bottom:8px">Examples — click any card for the full entry</div>
+    </div>
+    <div class="tool-grid" id="srGrid1"></div>
+    <div class="detail-box" id="srDet1"></div>
+    <div class="card" style="margin-top:0">
+      <div class="warn-box" style="margin-top:0"><i class="ti ti-alert-triangle" style="font-size:16px;flex-shrink:0;color:#854F0B"></i><span>Testing fixed collocations: if changing even one word makes the phrase sound wrong or meaningless, it is fixed. <em>"She was walking to and back"</em> — immediately wrong. <em>"Mitigating factors"</em> is the only acceptable variation of "mitigating circumstances".</span></div>
+    </div>
+  </div>
+
+  <!-- 2: STRONG -->
+  <div id="srp2" class="sr-pan">
+    <div class="card">
+      <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:12px"><strong style="color:var(--color-text-primary)">Strong collocations</strong> have a small, predictable group of partners. You can sometimes substitute a word and still be understood, but a native speaker would always choose the established partner.</p>
+      <div class="lbl">Key features</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:8px 0 14px">
+        <div style="background:#FAEEDA;border-radius:12px;padding:10px 13px"><div style="font-size:12px;font-weight:700;color:#633806;margin-bottom:3px">🎯 Small set of partners</div><div style="font-size:13px;color:var(--color-text-secondary)">One word naturally attracts just a handful of partners.</div></div>
+        <div style="background:#FAEEDA;border-radius:12px;padding:10px 13px"><div style="font-size:12px;font-weight:700;color:#633806;margin-bottom:3px">⚠️ Often unpredictable</div><div style="font-size:13px;color:var(--color-text-secondary)">"Heavy rain" not "strong rain" — no logical reason.</div></div>
+        <div style="background:#FAEEDA;border-radius:12px;padding:10px 13px"><div style="font-size:12px;font-weight:700;color:#633806;margin-bottom:3px">✅ Most worth learning</div><div style="font-size:13px;color:var(--color-text-secondary)">Strong collocations mark the boundary between fluent and non-fluent.</div></div>
+      </div>
+      <div class="lbl" style="margin-bottom:8px">Examples — click any card for the full entry</div>
+    </div>
+    <div class="tool-grid" id="srGrid2"></div>
+    <div class="detail-box" id="srDet2"></div>
+    <div class="card" style="margin-top:0">
+      <div class="tip-box" style="margin-top:0"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:#5b2d8e"></i><span>Strong collocations are the most useful to memorise because they are the most likely to produce errors. When you learn a new noun, look up which verbs and adjectives it strongly collocates with.</span></div>
+    </div>
+  </div>
+
+  <!-- 3: WEAK -->
+  <div id="srp3" class="sr-pan">
+    <div class="card">
+      <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:12px"><strong style="color:var(--color-text-primary)">Weak collocations</strong> are made up of words that combine freely with a wide range of partners. "Weak" does not mean unimportant — it means the word is flexible. Native speakers still have preferred combinations.</p>
+      <div class="lbl">Key features</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:8px 0 14px">
+        <div style="background:#E6F1FB;border-radius:12px;padding:10px 13px"><div style="font-size:12px;font-weight:700;color:#0C447C;margin-bottom:3px">🔓 Very flexible</div><div style="font-size:13px;color:var(--color-text-secondary)">One word pairs naturally with a wide range of partners.</div></div>
+        <div style="background:#E6F1FB;border-radius:12px;padding:10px 13px"><div style="font-size:12px;font-weight:700;color:#0C447C;margin-bottom:3px">📚 Still worth learning</div><div style="font-size:13px;color:var(--color-text-secondary)">Learners often pick less natural combinations from the full range.</div></div>
+        <div style="background:#E6F1FB;border-radius:12px;padding:10px 13px"><div style="font-size:12px;font-weight:700;color:#0C447C;margin-bottom:3px">🔤 Often predictable</div><div style="font-size:13px;color:var(--color-text-secondary)">Often guessable from the meaning of the individual words.</div></div>
+      </div>
+      <div class="lbl" style="margin-bottom:8px">Examples — click any card for the full entry</div>
+    </div>
+    <div class="tool-grid" id="srGrid3"></div>
+    <div class="detail-box" id="srDet3"></div>
+    <div class="card" style="margin-top:0">
+      <div class="tip-box" style="margin-top:0"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:#5b2d8e"></i><span>When you look up a weak collocation, use a corpus tool (such as Sketch Engine or the Cambridge Dictionary) to find the most natural partners. Even if several options are grammatically possible, one is almost always most frequent.</span></div>
+    </div>
+  </div>
+
+  <!-- 4: REGISTER -->
+  <div id="srp4" class="sr-pan">
+    <div class="card">
+      <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:12px"><strong style="color:var(--color-text-primary)">Register</strong> describes how appropriate a collocation is for a given context — formal (F), neutral (N), or informal (I). The same meaning can often be expressed at all three levels, but using the wrong one sounds jarring.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-bottom:16px">
+        <div style="background:#E6F1FB;border-radius:12px;padding:10px 13px;text-align:center"><div style="font-size:11px;font-weight:700;color:#0C447C;margin-bottom:4px;letter-spacing:.05em">F — FORMAL</div><div style="font-size:12.5px;color:#0C447C;line-height:1.55">Academic writing, legal documents, official notices, formal speeches</div></div>
+        <div style="background:#EAF3DE;border-radius:12px;padding:10px 13px;text-align:center"><div style="font-size:11px;font-weight:700;color:#27500A;margin-bottom:4px;letter-spacing:.05em">N — NEUTRAL</div><div style="font-size:12.5px;color:#27500A;line-height:1.55">Suitable in any context — spoken or written, professional or personal</div></div>
+        <div style="background:#FAEEDA;border-radius:12px;padding:10px 13px;text-align:center"><div style="font-size:11px;font-weight:700;color:#633806;margin-bottom:4px;letter-spacing:.05em">I — INFORMAL</div><div style="font-size:12.5px;color:#633806;line-height:1.55">Conversation, text messages, social media, personal emails</div></div>
+      </div>
+      <div class="lbl">Register comparison — same meaning, different level</div>
+      <div style="margin:10px 0">
+
+        <div class="reg-row">
+          <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">Getting off transport</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">F: alight from a bus</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: get off a bus</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: hop off a bus</span>
+          </div>
+        </div>
+
+        <div class="reg-row">
+          <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">Investigating something</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">F: conduct an investigation into</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: look into</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: dig up info about</span>
+          </div>
+        </div>
+
+        <div class="reg-row">
+          <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">Ending an agreement</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">F: terminate the agreement</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: end the agreement</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: call it off</span>
+          </div>
+        </div>
+
+        <div class="reg-row">
+          <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">Submitting work</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">F: submit an assignment</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: hand in your work</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: hand it in</span>
+          </div>
+        </div>
+
+        <div class="reg-row">
+          <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">Eating something</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: have a snack / bite to eat</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: grab a snack / bite</span>
+          </div>
+        </div>
+
+        <div class="reg-row">
+          <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">Being very happy</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: be delighted</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: be over the moon / chuffed</span>
+          </div>
+        </div>
+
+        <div class="reg-row">
+          <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">Suspending a meeting</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">F: adjourn the meeting</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: pause the meeting</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: take a break from the meeting</span>
+          </div>
+        </div>
+
+        <div class="reg-row">
+          <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">Proposing marriage</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">F: propose marriage</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: ask someone to marry you</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: pop the question</span>
+          </div>
+        </div>
+
+        <div class="reg-row">
+          <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">Asking for a delay</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">F: request an extension</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: ask for more time</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: ask for a bit longer</span>
+          </div>
+        </div>
+
+        <div class="reg-row">
+          <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">A lot of something</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">F: a large number of</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: many / a great deal of</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: tons of / loads of</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="warn-box" style="margin-top:4px"><i class="ti ti-alert-triangle" style="font-size:16px;flex-shrink:0;color:#854F0B"></i><span><strong>Common pitfalls:</strong> Using formal collocations in casual conversation sounds stiff and unnatural. Using informal ones in academic writing or official documents appears unprofessional. Always note the register when you learn a new collocation.</span></div>
+      <div class="tip-box" style="margin-top:8px"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:#5b2d8e"></i><span>A useful signal: words of Latin or Greek origin tend to be more formal (<em>terminate, conduct, alight</em>). Phrasal verbs and short Anglo-Saxon words tend to be more informal (<em>call off, look into, hop off</em>).</span></div>
+    </div>
+  </div>
+
+  <!-- 5: REGISTER QUIZ -->
+  <div id="srp5" class="sr-pan">
+    <div id="regQuizCont"></div>
+  </div>
+</div>
+
+<!-- BROWSE & SEARCH -->
+<div id="p2" class="pan">
+  <div class="eyebrow">Collocations</div>
+  <div class="lesson-h">Browse &amp; search</div>
+  <div class="lesson-sub">Explore all collocations by grammatical type or keyword — click any card for the full entry</div>
+  <input class="srch" id="srchBox" placeholder="Search collocation, function, or example…" oninput="renderBrowse()">
+  <div style="margin-bottom:12px"><div class="lbl">Filter by grammatical type</div><div id="catChips"></div></div>
+  <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:10px" id="browseCount"></div>
+  <div class="tool-grid" id="toolGrid"></div>
+  <div class="detail-box" id="toolDetail"></div>
+</div>
+
+<!-- GAP FILL -->
+<div id="p3" class="pan">
+  <div class="eyebrow">Exercise</div>
+  <div class="lesson-h">Gap fill</div>
+  <div class="lesson-sub">Choose the correct word or phrase to complete the collocation</div>
+  <div id="gapCont"></div>
+</div>
+
+<!-- MATCHING -->
+<div id="p4" class="pan">
+  <div class="eyebrow">Exercise</div>
+  <div class="lesson-h">Matching</div>
+  <div class="lesson-sub">Match the two halves of each collocation — click a left item, then its right-hand partner</div>
+  <div id="matchCont"></div>
+</div>
+
+<!-- ERROR CORRECTION -->
+<div id="p5" class="pan">
+  <div class="eyebrow">Exercise</div>
+  <div class="lesson-h">Error correction</div>
+  <div class="lesson-sub">One sentence uses the wrong word. Choose the correct version</div>
+  <div id="errCont"></div>
+</div>
+
+<!-- CHOOSE THE WORD -->
+<div id="p6" class="pan">
+  <div class="eyebrow">Exercise</div>
+  <div class="lesson-h">Choose the word</div>
+  <div class="lesson-sub">Select the word that forms the most natural collocation</div>
+  <div id="chooseCont"></div>
+</div>
+
+<!-- REWRITING -->
+<div id="p7" class="pan">
+  <div class="eyebrow">Exercise</div>
+  <div class="lesson-h">Rewriting</div>
+  <div class="lesson-sub">Rewrite each sentence using the stronger or more precise collocation given</div>
+  <div id="rewCont"></div>
+</div>
+
+<!-- CLASSIFY IT -->
+<div id="p8" class="pan">
+  <div class="eyebrow">Exercise</div>
+  <div class="lesson-h">Classify it</div>
+  <div class="lesson-sub">Decide whether each collocation is fixed, strong, medium, or weak — and identify its register</div>
+  <div id="clfCont"></div>
+</div>
+
+<!-- GLOSSARY -->
+<div id="p9" class="pan">
+  <div class="eyebrow">My glossary</div>
+  <div class="lesson-h">My glossary</div>
+  <div class="lesson-sub">Collocations you have saved — click ✕ to remove any item</div>
+  <div id="glossCont"></div>
+</div>
+
+</div>
+<script>
+// ── COLLOCATION DATA ──────────────────────────────────────────
+// Each entry: id, phrase, cat, type (grammatical subtype), strength (1-4), reg ('F','N','I'),
+// fn (collocates with / function), def, note, exs[]
+const COLLS=[
+// ══ VERB + NOUN ══
+{id:'vn_make_decision',phrase:'make a decision',cat:'vn',type:'make',strength:3,reg:'N',fn:'Decide after consideration',def:'To choose a course of action; to reach a decision.',note:'"Make" (not "do" or "take") is fixed with "decision". "Come to a decision" is also possible in formal contexts.',exs:['She finally *made a decision* to leave the company after months of deliberation.','It is never easy to *make a decision* when all options seem equally risky.','The committee *made a unanimous decision* to proceed with the project.']},
+{id:'vn_make_mistake',phrase:'make a mistake',cat:'vn',type:'make',strength:3,reg:'N',fn:'Do something incorrectly',def:'To do something wrong or incorrectly; to err.',note:'"Make a mistake" is fixed — "do a mistake" is always wrong. Also: "make an error" (more formal).',exs:['You will *make fewer mistakes* if you read the instructions carefully first.','Everyone *makes mistakes* — what matters is how you respond to them.','He *made a costly mistake* by signing the contract without legal advice.']},
+{id:'vn_make_progress',phrase:'make progress',cat:'vn',type:'make',strength:3,reg:'N',fn:'Advance or improve',def:'To move forward or improve in a task, skill, or situation.',note:'Often qualified: "make significant/rapid/steady/little progress". Cannot be pluralised.',exs:['The negotiations *made slow but steady progress* over several weeks.','She has *made remarkable progress* in her second year of study.','The patient is *making good progress* and should be discharged soon.']},
+{id:'vn_make_effort',phrase:'make an effort',cat:'vn',type:'make',strength:3,reg:'N',fn:'Try hard',def:'To apply energy or work towards achieving something.',note:'"Make an effort" is broader. "Go to a great deal of effort" is more emphatic. "Do your best" is similar but distinct.',exs:['Please *make an effort* to arrive on time — the meeting starts promptly.','He *made a real effort* to understand her point of view before responding.','At least *make an effort* — no one expects perfection from the start.']},
+{id:'vn_make_impression',phrase:'make an impression',cat:'vn',type:'make',strength:3,reg:'N',fn:'Affect how others perceive you',def:'To cause someone to have a particular opinion of you — positive or negative.',note:'Usually qualified: "make a good/bad/lasting/strong impression". The impression is "on" someone.',exs:['She *made an excellent impression* at the interview with her calm, clear answers.','His speech *made a deep impression* on everyone who heard it.','Be careful not to *make a poor impression* by arriving late.']},
+{id:'vn_make_profit',phrase:'make a profit / loss',cat:'vn',type:'make',strength:3,reg:'N',fn:'Financial outcome',def:'To earn more money than you spent (profit) or less (loss).',note:'"Make" is used for both. "Turn a profit" is also possible in informal contexts.',exs:['The company *made a healthy profit* for the third consecutive year.','They *made a substantial loss* following the recall of the defective product.','She *made a small profit* on the sale of the house after fees.']},
+{id:'vn_make_speech',phrase:'make a speech',cat:'vn',type:'make',strength:3,reg:'N',fn:'Deliver a prepared talk',def:'To speak formally in front of an audience.',note:'"Give a speech" is equally common. "Deliver a speech" is more formal. Never "do a speech".',exs:['He *made a moving speech* at the graduation ceremony.','She was asked to *make a speech* at the farewell dinner.','The president *made a short speech* before declaring the summit open.']},
+{id:'vn_make_appointment',phrase:'make an appointment',cat:'vn',type:'make',strength:3,reg:'N',fn:'Schedule a formal meeting',def:'To arrange a time to see a doctor, professional, or official.',note:'In British English: "make an appointment with" (not "take" or "do").',exs:['She *made an appointment* with the consultant for the following week.','Could you *make an appointment* with the solicitor to discuss the contract?','He forgot to *make an appointment* and arrived without notice.']},
+{id:'vn_make_difference',phrase:'make a difference',cat:'vn',type:'make',strength:2,reg:'N',fn:'Have a positive or significant effect',def:'To have a meaningful impact on a situation or person.',note:'Very common in motivational/social contexts. Often: "make a real/big/enormous difference".',exs:['Even small changes in diet can *make a big difference* over time.','Volunteering for just two hours a week can *make a real difference* to someone\'s life.','Her mentoring *made all the difference* to his early career.']},
+{id:'vn_make_complaint',phrase:'make a complaint',cat:'vn',type:'make',strength:3,reg:'N',fn:'Formally express dissatisfaction',def:'To officially state that something is wrong or unsatisfactory.',note:'"Lodge a complaint" is more formal. "Make a complaint about/to" — note the prepositions.',exs:['She *made a formal complaint* to the manager about the standard of service.','He *made a complaint* about the noise to the building management company.','You have every right to *make a complaint* if the terms were not honoured.']},
+{id:'vn_make_payment',phrase:'make a payment',cat:'vn',type:'make',strength:3,reg:'N',fn:'Transfer money formally',def:'To hand over or transfer money in payment for something.',note:'"Make a payment" is standard in financial contexts. Never "do a payment".',exs:['You can *make a payment* securely via the app or by bank transfer.','She forgot to *make the monthly payment* before the end of the billing period.','They *made a deposit* of ten percent to secure the booking.']},
+{id:'vn_make_donation',phrase:'make a donation',cat:'vn',type:'make',strength:3,reg:'N',fn:'Give money to a cause',def:'To give money to a charity, cause, or individual.',note:'Also: "make a contribution". "Give a donation" is less standard.',exs:['The company *made a generous donation* to the local food bank.','You can *make a donation* online, by phone, or by standing order.','He *made an anonymous donation* of two hundred thousand pounds.']},
+{id:'vn_make_suggestion',phrase:'make a suggestion',cat:'vn',type:'make',strength:2,reg:'N',fn:'Propose an idea',def:'To put forward an idea for others to consider.',note:'"Offer a suggestion" is also possible. "Make a proposal" is more formal.',exs:['Could I *make a suggestion*? We might save time by meeting remotely instead.','She *made several useful suggestions* during the brainstorming session.','He *made a suggestion* that was immediately dismissed by the chair.']},
+{id:'vn_make_point',phrase:'make a point',cat:'vn',type:'make',strength:2,reg:'N',fn:'Express an argument or observation',def:'To state something clearly as part of an argument or discussion.',note:'"Make the point that…" introduces a specific argument. "Make a good/valid/key point".',exs:['She *made an excellent point* about the need for clearer communication.','He *made the point that* the deadline was simply too tight.','I just want to *make one more point* before we move on.']},
+{id:'vn_do_research',phrase:'do research',cat:'vn',type:'do',strength:3,reg:'N',fn:'Investigate systematically',def:'To carry out systematic investigation into a subject.',note:'"Carry out/conduct research" are more formal alternatives. "Do a study" is less formal.',exs:['She spent six months *doing research* into the long-term effects of sleep deprivation.','They *did extensive research* before launching the new product.','He is *doing research* on the psychological effects of remote work.']},
+{id:'vn_do_best',phrase:'do your best',cat:'vn',type:'do',strength:3,reg:'N',fn:'Try as hard as possible',def:'To try as hard as you can; to make the maximum effort.',note:'"Do your utmost" is more emphatic and formal. "Give it your all" is informal.',exs:['All I ask is that you *do your best* under the circumstances.','She *did her best* to stay calm, though the pressure was enormous.','Even if you fail, it matters that you *did your best*.']},
+{id:'vn_do_damage',phrase:'do damage',cat:'vn',type:'do',strength:3,reg:'N',fn:'Cause harm',def:'To cause harm, injury, or negative consequences.',note:'"Do serious/significant/irreparable damage". Also: "do harm" (slightly more formal).',exs:['The scandal *did serious damage* to the company\'s reputation.','The storm *did enormous damage* to the coastline overnight.','His careless comments *did a lot of damage* to the working relationship.']},
+{id:'vn_do_business',phrase:'do business',cat:'vn',type:'do',strength:2,reg:'N',fn:'Engage in commercial activity',def:'To carry out commercial or professional transactions.',note:'Usually without an article: "do business with", not "do a business".',exs:['The firm *does business* with clients across more than twenty countries.','It can be difficult to *do business* in markets with very different norms.','She has been *doing business* in the region for fifteen years.']},
+{id:'vn_do_favour',phrase:'do a favour',cat:'vn',type:'do',strength:3,reg:'N',fn:'Help someone',def:'To do something helpful for another person.',note:'"Do me a favour" (British). "Do someone a favour". The American form is "do a favor".',exs:['Could you *do me a favour* and post this letter on your way out?','She *did him a huge favour* by proofreading the report before submission.','He *did her a favour* without being asked and it made all the difference.']},
+{id:'vn_do_harm',phrase:'do harm',cat:'vn',type:'do',strength:3,reg:'N',fn:'Cause injury or damage',def:'To cause damage or have a negative effect.',note:'"Do more harm than good" is a fixed phrase. Compare "do damage" (more specific).',exs:['This policy will *do more harm than good* in the long run.','The drug is safe at low doses and unlikely to *do any harm*.','We must ensure that the intervention does not *do harm* to vulnerable groups.']},
+{id:'vn_do_justice',phrase:'do justice (to)',cat:'vn',type:'do',strength:3,reg:'N',fn:'Represent fairly and fully',def:'To treat or present something in a way that is fair and adequate.',note:'Often used in the negative: "no photograph can do justice to…".',exs:['No description could *do justice to* the sheer scale of the landscape.','The film barely *does justice to* the complexity of the original novel.','I hope my presentation *did justice to* the team\'s hard work.']},
+{id:'vn_take_action',phrase:'take action',cat:'vn',type:'take',strength:3,reg:'N',fn:'Respond to a problem',def:'To do something in response to a situation or problem.',note:'"Take decisive/immediate/urgent action". "Take action against/on something".',exs:['The government must *take decisive action* on the housing crisis.','She knew she had to *take action* before the situation deteriorated further.','We are prepared to *take legal action* if the issue is not resolved.']},
+{id:'vn_take_risk',phrase:'take a risk',cat:'vn',type:'take',strength:3,reg:'N',fn:'Do something that might fail',def:'To do something despite the possibility of failure or harm.',note:'"Take a calculated risk" (deliberate). "Take risks" (general pattern).',exs:['He decided to *take a calculated risk* and launch the product six months early.','You have to *take risks* if you want to grow a business.','She was not prepared to *take a risk* with the children\'s safety.']},
+{id:'vn_take_responsibility',phrase:'take responsibility',cat:'vn',type:'take',strength:3,reg:'N',fn:'Accept duty or fault',def:'To accept that something is your duty or your fault.',note:'"Take responsibility for". "Accept responsibility" is more formal in official contexts.',exs:['She *took full responsibility* for the error and apologised directly.','The manager *took responsibility* publicly without deflecting blame.','It takes courage to *take responsibility* when things go wrong.']},
+{id:'vn_take_notes',phrase:'take notes',cat:'vn',type:'take',strength:3,reg:'N',fn:'Write down key information',def:'To write down key points while listening to someone speak.',note:'"Take note of" (singular) = pay attention to a specific thing.',exs:['She always *takes detailed notes* during lectures to review later.','Could you *take notes* at the meeting while I deal with the call?','He *took notes* throughout the interview but missed the key point.']},
+{id:'vn_take_part',phrase:'take part (in)',cat:'vn',type:'take',strength:3,reg:'N',fn:'Participate',def:'To participate in an activity or event.',note:'"Participate in" is more formal. "Take part in" is neutral and very common.',exs:['Over a thousand students *took part in* the annual competition.','She was initially reluctant to *take part in* the role play.','They were encouraged to *take part in* community events.']},
+{id:'vn_take_opportunity',phrase:'pass up an opportunity',cat:'vn',type:'take',strength:3,reg:'N',fn:'Fail to take a chance',def:'To fail to take advantage of an opportunity.',note:'"Pass up" = miss deliberately. Contrast: "seize an opportunity", "grasp a chance".',exs:['I did not want to *pass up the opportunity* of working in Berlin.','He *passed up the chance* to study at Cambridge — he has always regretted it.','Do not *pass up this opportunity* — it may not come again.']},
+{id:'vn_give_speech',phrase:'give a speech',cat:'vn',type:'give',strength:3,reg:'N',fn:'Deliver a prepared talk',def:'To speak formally before an audience.',note:'"Give a speech" and "make a speech" are both standard. "Deliver a speech" is more formal.',exs:['She *gave an inspiring speech* at the annual awards dinner.','He was nervous about *giving a speech* at the wedding but it went beautifully.','The president *gave a short speech* before opening the new hospital wing.']},
+{id:'vn_give_rise',phrase:'give rise to',cat:'vn',type:'give',strength:3,reg:'F',fn:'Cause or produce',def:'To cause or lead to something, especially something negative or complex.',note:'Formal. Common in academic and journalistic writing.',exs:['The new regulation *gave rise to* considerable confusion across the industry.','The discovery *gave rise to* a number of important new research questions.','Increasing inequality *gives rise to* social tensions that are difficult to manage.']},
+{id:'vn_give_evidence',phrase:'give evidence',cat:'vn',type:'give',strength:3,reg:'F',fn:'Provide testimony',def:'To provide testimony, especially in a formal or legal context.',note:'Formal/legal. "Testify" is the single-word equivalent.',exs:['She was called to *give evidence* at the public inquiry.','He *gave evidence* for three hours before the cross-examination began.','Several witnesses refused to *give evidence* citing personal safety concerns.']},
+{id:'vn_draw_up',phrase:'draw up a contract / list / plan',cat:'vn',type:'draw',strength:3,reg:'F',fn:'Prepare in writing',def:'To prepare an official or detailed document, list, or plan.',note:'Formal. "Draft" is a close synonym. "Draw up" implies careful, official preparation.',exs:['Our solicitor *drew up a contract* for both parties to sign.','She *drew up a detailed plan* for the restructure before presenting it.','Could you *draw up a list* of all outstanding tasks before handing over?']},
+{id:'vn_draw_distinction',phrase:'draw a distinction',cat:'vn',type:'draw',strength:3,reg:'F',fn:'Identify a difference',def:'To identify and explain a difference between two things clearly.',note:'Often: "draw a clear/sharp/important distinction between X and Y".',exs:['The lecturer *drew a clear distinction* between correlation and causation.','It is important to *draw a distinction* between strong and weak collocations.','He *drew a fine distinction* between the two concepts that most people overlook.']},
+{id:'vn_carry_out',phrase:'carry out (research / an investigation)',cat:'vn',type:'carry',strength:3,reg:'F',fn:'Conduct or perform',def:'To conduct or perform something, especially something systematic or planned.',note:'"Carry out" is formal. "Do research" is more informal. Also: "carry out an experiment / a task / a survey".',exs:['Scientists *carried out extensive research* before publishing the results.','An independent team *carried out the investigation* over three months.','She *carried out a detailed survey* of all relevant literature in the field.']},
+{id:'vn_reach_conclusion',phrase:'reach a conclusion / agreement / verdict',cat:'vn',type:'reach',strength:3,reg:'N',fn:'Arrive at a decision',def:'To arrive at a conclusion, agreement, or verdict after deliberation.',note:'"Reach" implies effort or process. Also: "reach a compromise/settlement".',exs:['The jury *reached a verdict* after two and a half days of deliberation.','The two sides finally *reached an agreement* late on Friday evening.','After careful analysis, she *reached the conclusion* that the model was flawed.']},
+{id:'vn_raise_concern',phrase:'raise concerns / awareness',cat:'vn',type:'raise',strength:3,reg:'N',fn:'Bring attention to a problem',def:'To cause people to worry about something, or to make them more conscious of it.',note:'"Raise concerns about". Also: "raise a question", "raise an issue", "raise doubts".',exs:['The report *raised serious concerns* about the long-term sustainability of the scheme.','The campaign *raised awareness* of the dangers of distracted driving.','Several members *raised concerns* about the pace of the restructure.']},
+{id:'vn_arouse_suspicion',phrase:'arouse suspicion / interest / curiosity',cat:'vn',type:'arouse',strength:3,reg:'N',fn:'Cause a feeling or reaction',def:'To cause a feeling — especially suspicion, interest, or curiosity — to develop in someone.',note:'"Arouse" is slightly stronger and more formal than "provoke" for feelings.',exs:['Her unusual behaviour began to *arouse suspicion* among her colleagues.','The documentary *aroused considerable interest* from researchers in the field.','The strange package *aroused the curiosity* of the customs officers.']},
+{id:'vn_provoke_reaction',phrase:'provoke a reaction / controversy / response',cat:'vn',type:'provoke',strength:3,reg:'N',fn:'Cause a strong reaction',def:'To cause a strong, often hostile or unexpected reaction.',note:'"Provoke" implies intensity or conflict. Also: "provoke outrage / debate / criticism".',exs:['The announcement *provoked an immediate reaction* from the opposition.','His remarks *provoked widespread controversy* and calls for his resignation.','The new exhibition *provoked strong reactions* from critics and the public alike.']},
+{id:'vn_withstand_pressure',phrase:'withstand pressure / the impact',cat:'vn',type:'withstand',strength:3,reg:'F',fn:'Resist or endure',def:'To bear or resist something difficult without giving way.',note:'Formal. Common in technical, academic, and journalistic contexts.',exs:['The material must *withstand the pressure* of several tonnes per square metre.','She *withstood intense pressure* to resign and remained in her post.','The bridge is designed to *withstand the impact* of a major earthquake.']},
+{id:'vn_adjourn_meeting',phrase:'adjourn a meeting / trial',cat:'vn',type:'adjourn',strength:4,reg:'F',fn:'Pause and continue later',def:'To formally stop a meeting or trial temporarily, to be continued at another time.',note:'Very strong formal collocation. "Adjourn" almost exclusively takes "meeting" or "trial".',exs:['The chairperson *adjourned the meeting* until the following Thursday.','The judge *adjourned the trial* to allow time to consider the new evidence.','The session was *adjourned* without a clear date for resumption being set.']},
+{id:'vn_hold_meeting',phrase:'hold a meeting / press conference',cat:'vn',type:'hold',strength:3,reg:'N',fn:'Conduct a formal gathering',def:'To organise and conduct a meeting or press conference.',note:'"Hold" implies the speaker is the organiser. "Attend a meeting" = be present as a participant.',exs:['The company *held an emergency press conference* to address the allegations.','We *hold a team meeting* every Monday morning to review priorities.','The inquiry will *hold a series of hearings* over the next three months.']},
+{id:'vn_commit_crime',phrase:'commit a crime / offence / fraud',cat:'vn',type:'commit',strength:4,reg:'N',fn:'Do something illegal',def:'To perform an illegal or morally wrong act.',note:'"Commit" is near-fixed with crime-related nouns. Also: "commit murder / perjury / adultery".',exs:['He *committed fraud* over a period of six years before being caught.','She was charged with *committing an offence* under the 2018 act.','Anyone who *commits a crime* must be prepared to face the consequences.']},
+// ══ ADJECTIVE + NOUN ══
+{id:'an_heavy_rain',phrase:'heavy rain',cat:'an',type:'heavy',strength:3,reg:'N',fn:'Intense or large quantities of rain',def:'Rain that falls heavily and in large quantities.',note:'"Strong rain" is wrong. "Torrential rain" is even stronger and more dramatic.',exs:['*Heavy rain* caused widespread flooding across the southern regions overnight.','The match was abandoned due to *heavy rain* and poor visibility.','Hours of *heavy rain* left roads impassable.']},
+{id:'an_heavy_traffic',phrase:'heavy traffic',cat:'an',type:'heavy',strength:3,reg:'N',fn:'Large volume of vehicles',def:'A large volume of vehicles causing congestion.',note:'"Strong traffic" is wrong. "Dense traffic" is possible but less common.',exs:['*Heavy traffic* on the ring road made the journey twice as long as expected.','She leaves early each day to avoid the *heavy traffic* that builds up from five o\'clock.','The police were managing *heavy traffic* around the stadium.']},
+{id:'an_heavy_workload',phrase:'heavy workload',cat:'an',type:'heavy',strength:3,reg:'N',fn:'Very large amount of work',def:'An excessive or demanding amount of work to complete.',note:'Also: "heavy schedule", "heavy demands". "Strong workload" is wrong.',exs:['She has been managing a *heavy workload* since her colleague went on extended leave.','A sustained *heavy workload* without adequate rest leads to burnout.','The new intake of junior doctors faces a *heavy workload* with little support.']},
+{id:'an_heavy_smoker',phrase:'heavy smoker / drinker',cat:'an',type:'heavy',strength:3,reg:'N',fn:'Someone who smokes or drinks a lot',def:'A person who smokes or drinks frequently and in large quantities.',note:'"Heavy" collocates with both for this meaning. "Heavy user" is also possible.',exs:['He had been a *heavy smoker* for thirty years before finally quitting.','The doctor noted she was a *heavy drinker* and strongly advised her to cut down.','His health deteriorated significantly as a result of being a *heavy smoker*.']},
+{id:'an_heavy_losses',phrase:'heavy losses',cat:'an',type:'heavy',strength:3,reg:'N',fn:'Large financial or human losses',def:'Significant losses — financial, military, or in terms of lives.',note:'"Suffer heavy losses" or "sustain heavy losses". "Strong losses" is wrong.',exs:['The company *suffered heavy losses* after the product was urgently recalled.','The battalion *sustained heavy losses* during the assault on the position.','Investors *experienced heavy losses* during the market crash.']},
+{id:'an_heavy_accent',phrase:'heavy accent',cat:'an',type:'heavy',strength:3,reg:'N',fn:'Very noticeable accent',def:'A strong, very noticeable regional or foreign accent.',note:'"Heavy accent" and "broad accent" are both correct. "Strong accent" is also possible.',exs:['He spoke English fluently despite a *heavy accent* that occasionally caused misunderstandings.','Her *heavy accent* made the opening minutes of her talk difficult to follow.','The character was played with an unconvincingly *heavy accent*.']},
+{id:'an_heavy_burden',phrase:'heavy burden',cat:'an',type:'heavy',strength:3,reg:'N',fn:'Serious responsibility or difficulty',def:'A difficult responsibility, obligation, or problem that is hard to bear.',note:'Can be literal (heavy load) or metaphorical (difficult responsibility).',exs:['Caring alone for a seriously ill family member is a *heavy burden* to carry.','The national debt places a *heavy burden* on future generations.','The *heavy burden* of expectation weighed on her throughout the competition.']},
+{id:'an_heavy_fine',phrase:'heavy fine',cat:'an',type:'heavy',strength:3,reg:'N',fn:'Large financial penalty',def:'A substantial amount of money imposed as a penalty.',note:'"Hefty fine" is informal. "Impose a heavy fine" or "face a heavy fine".',exs:['The company received a *heavy fine* for breaching environmental standards.','Driving without insurance can result in a *heavy fine* and endorsement.','The court imposed a *heavy fine* on the contractor for safety violations.']},
+{id:'an_heavy_snow',phrase:'heavy snow',cat:'an',type:'heavy',strength:3,reg:'N',fn:'Large quantities of falling snow',def:'Snow that falls densely and settles in large amounts.',note:'"Strong snow" is wrong. "Blizzard" is more extreme.',exs:['*Heavy snow* closed several mountain passes for the third time this winter.','The forecast warned of *heavy snow* across northern regions from Thursday.','*Heavy snow* and high winds made the rescue operation extremely dangerous.']},
+{id:'an_strong_argument',phrase:'strong argument',cat:'an',type:'strong',strength:3,reg:'N',fn:'Convincing and well-supported case',def:'A powerful, convincing, and well-evidenced argument.',note:'"Heavy argument" is wrong. "Compelling argument" is a near-synonym.',exs:['She made a *strong argument* for restructuring the department.','It is difficult to counter such a *strong argument* without solid evidence.','The defence presented a *strong argument* that cast doubt on the prosecution\'s case.']},
+{id:'an_strong_wind',phrase:'strong wind',cat:'an',type:'strong',strength:3,reg:'N',fn:'High-velocity wind',def:'Wind blowing with considerable force.',note:'"Heavy wind" is wrong. "Gale-force winds" is more dramatic.',exs:['*Strong winds* brought down trees and caused power cuts across the area.','The sailing event was abandoned due to *strong winds* and rough seas.','She had to lean into the *strong wind* to make any progress.']},
+{id:'an_strong_coffee',phrase:'strong coffee',cat:'an',type:'strong',strength:3,reg:'N',fn:'Intense-flavoured or high-caffeine coffee',def:'Coffee that has a powerful, intense flavour or a high caffeine content.',note:'"Heavy coffee" is wrong. Also: "strong tea". Opposite: "weak coffee".',exs:['He needed a cup of *strong coffee* to get through the long afternoon of meetings.','She prefers *strong coffee* first thing in the morning.','The waiter brought a pot of *strong black coffee* without being asked.']},
+{id:'an_strong_evidence',phrase:'strong evidence',cat:'an',type:'strong',strength:3,reg:'N',fn:'Compelling and credible proof',def:'Evidence that is persuasive, credible, and hard to refute.',note:'"Heavy evidence" is wrong. "Compelling/overwhelming evidence" is even stronger.',exs:['There is *strong evidence* to suggest the policy is having a positive effect.','The prosecution presented *strong evidence* that was difficult for the defence to refute.','Scientists have gathered *strong evidence* linking the two phenomena.']},
+{id:'an_strong_feelings',phrase:'strong feelings',cat:'an',type:'strong',strength:2,reg:'N',fn:'Intense emotions',def:'Emotions that are felt deeply and intensely.',note:'"Heavy feelings" is wrong. "Strong opinions" is a close variant.',exs:['She has *strong feelings* about the way the project has been managed.','He expressed *strong feelings* about the decision, publicly and privately.','The topic always arouses *strong feelings* on both sides of the debate.']},
+{id:'an_strong_performance',phrase:'strong performance',cat:'an',type:'strong',strength:2,reg:'N',fn:'Impressive showing',def:'An impressive, high-quality performance in any context.',note:'Used in business, arts, and sport. "Heavy performance" is wrong.',exs:['The actor delivered a *strong performance* that earned widespread critical praise.','The company produced a *strong financial performance* in a challenging market.','It was a *strong performance* by the team in difficult conditions.']},
+{id:'an_strong_language',phrase:'strong language',cat:'an',type:'strong',strength:3,reg:'N',fn:'Offensive or emphatic language',def:'Language that is considered rude, offensive, or very emphatic.',note:'Near-fixed. Used in broadcast warnings and content advisories.',exs:['This programme contains *strong language* and is unsuitable for younger viewers.','She used *strong language* to convey exactly how serious the situation was.','The report was written in deliberately *strong language* to make its point forcefully.']},
+{id:'an_strong_currency',phrase:'strong currency',cat:'an',type:'strong',strength:2,reg:'N',fn:'High-value currency',def:'A currency that is high in value relative to other currencies.',note:'Also: "weak currency". Economic contexts.',exs:['A *strong currency* makes exports more expensive and less competitive abroad.','The country\'s political stability is partly reflected in its *strong currency*.','The dollar remained a *strong currency* despite pressure from interest rate changes.']},
+{id:'an_deep_sleep',phrase:'deep sleep',cat:'an',type:'deep',strength:3,reg:'N',fn:'Very sound and restful sleep',def:'A sleep so sound that waking is difficult; the deepest phase of sleep.',note:'"Heavy sleep" is not a collocation. "Sound sleep" is a synonym.',exs:['She fell into a *deep sleep* within minutes of lying down.','Even the noise from outside was not enough to disturb his *deep sleep*.','Children need several hours of *deep sleep* each night for healthy development.']},
+{id:'an_deep_breath',phrase:'deep breath',cat:'an',type:'deep',strength:3,reg:'N',fn:'Full, slow inhalation',def:'A slow, full inhalation of air — often taken to calm oneself.',note:'"Take a deep breath" is the fixed phrase. Also figurative: "take a deep breath and think".',exs:['She *took a deep breath* before walking onto the stage.','*Take a deep breath* and think carefully before you respond.','He *took several deep breaths* to control his anger before replying.']},
+{id:'an_deep_concern',phrase:'deep concern',cat:'an',type:'deep',strength:3,reg:'N',fn:'Profound worry',def:'Serious, intense worry about something.',note:'"Heavy concern" is wrong. "Express deep concern" is a common phrase.',exs:['She expressed *deep concern* about the impact of the cuts on public services.','The report raised *deep concerns* among policymakers.','There is *deep concern* within the scientific community about the pace of change.']},
+{id:'an_deep_understanding',phrase:'deep understanding',cat:'an',type:'deep',strength:3,reg:'N',fn:'Thorough, nuanced comprehension',def:'A thorough, nuanced, and sophisticated level of comprehension.',note:'"Heavy understanding" is wrong. Compare "superficial understanding".',exs:['The role requires a *deep understanding* of data privacy legislation.','She has a *deep understanding* of the cultural context that most outsiders lack.','Only someone with a *deep understanding* of the field could appreciate the subtlety.']},
+{id:'an_deep_regret',phrase:'deep regret',cat:'an',type:'deep',strength:3,reg:'F',fn:'Profound sorrow or remorse',def:'Intense sorrow or remorse about something done or not done.',note:'Formal. "It is with deep regret that…" is a standard formal opening in announcements.',exs:['She expressed *deep regret* about the way the matter had been handled.','It is with *deep regret* that we announce the closure of the facility.','He spoke of *deep regret* for the suffering caused.']},
+{id:'an_deep_recession',phrase:'deep recession',cat:'an',type:'deep',strength:3,reg:'N',fn:'Severe economic downturn',def:'A severe economic recession with widespread negative consequences.',note:'Also: "fall into a deep recession", "enter a deep recession".',exs:['The country fell into a *deep recession* following the financial crisis.','Unemployment soared as the economy entered its *deepest recession* in decades.','The policy was designed to prevent a *deep recession* from becoming a depression.']},
+{id:'an_idle_threat',phrase:'idle threat',cat:'an',type:'idle',strength:3,reg:'N',fn:'A threat that will not be carried out',def:'A threat made without any real intention of following through.',note:'Near-fixed. "Vain threat" is less common. "Empty threat" is an informal synonym.',exs:['This is not an *idle threat* — I will report this if it continues.','He said he would resign, but everyone knew it was just an *idle threat*.','The government\'s *idle threats* did little to deter the strikers.']},
+{id:'an_idle_curiosity',phrase:'idle curiosity',cat:'an',type:'idle',strength:3,reg:'N',fn:'Casual interest without purpose',def:'Curiosity that is casual, unfocused, and without a specific goal.',note:'"Out of idle curiosity" is the most common phrase.',exs:['She opened the letter out of *idle curiosity* rather than any real concern.','He asked out of *idle curiosity*, not expecting the answer to matter.','*Idle curiosity* led her to click on the link — and she was glad she did.']},
+{id:'an_vain_hope',phrase:'vain hope',cat:'an',type:'vain',strength:3,reg:'N',fn:'Hope unlikely to be fulfilled',def:'Hope that is unlikely to be realised; wishful thinking.',note:'"Vain" here means "without success". Compare "in vain" (without result).',exs:['He waited in the *vain hope* that she would change her mind.','They held on to the *vain hope* that the company might recover.','She checked her email for the third time, in the *vain hope* of a reply.']},
+{id:'an_vain_attempt',phrase:'vain attempt',cat:'an',type:'vain',strength:3,reg:'N',fn:'An attempt that fails',def:'An attempt or effort that is unsuccessful.',note:'"In a vain attempt to…" introduces a failed action. Also: "prove vain".',exs:['She made a *vain attempt* to explain the misunderstanding.','In a *vain attempt* to stop the bleeding, he tore strips from his shirt.','All their *vain attempts* to secure funding ended in disappointment.']},
+{id:'an_mounting_concern',phrase:'mounting concern / pressure / criticism',cat:'an',type:'mounting',strength:3,reg:'N',fn:'Increasing concern, pressure, or criticism',def:'Concern, pressure, or criticism that is growing steadily.',note:'"Mounting" implies an ongoing and accelerating increase. Also: "mounting evidence".',exs:['There is *mounting concern* among experts about the side effects of the drug.','The government faces *mounting pressure* to act on the housing shortage.','She resigned amid *mounting criticism* of her handling of the crisis.']},
+{id:'an_blond_hair',phrase:'blond hair',cat:'an',type:'colour',strength:4,reg:'N',fn:'Light-coloured hair',def:'Hair that is light yellow in colour — the natural collocation for this shade.',note:'"Yellow hair" is wrong as a natural collocation. "Blond" collocates only with hair.',exs:['She has long *blond hair* that catches the light beautifully.','The child with *blond hair* at the back of the class answered every question.','He recognised her immediately by her distinctive *blond hair*.']},
+{id:'an_auburn_hair',phrase:'auburn hair',cat:'an',type:'colour',strength:4,reg:'N',fn:'Reddish-brown hair',def:'Hair with a rich reddish-brown colour.',note:'Near-fixed: "auburn" collocates only with hair-related nouns (curls, tresses, locks).',exs:['She has *auburn hair* that turns copper in the sunlight.','His *auburn hair* and freckled complexion were very distinctive.','The portrait showed a woman with long *auburn hair* and green eyes.']},
+{id:'an_plain_truth',phrase:'the plain / simple truth',cat:'an',type:'plain',strength:3,reg:'N',fn:'The straightforward fact',def:'The basic, unadorned fact of the matter.',note:'"The plain truth is that…" and "the simple truth is that…" are both used.',exs:['The *plain truth* is that no one was aware of the problem until it was too late.','She told him the *simple truth*: there was no money left in the account.','He had to face the *plain truth* that he had made the wrong decision.']},
+{id:'an_broad_smile',phrase:'broad smile',cat:'an',type:'broad',strength:3,reg:'N',fn:'Wide, open smile',def:'A wide, clearly visible, and warm smile.',note:'"Big smile" is less formal. "Broad" is preferred in literary and descriptive writing.',exs:['She greeted them all with a *broad smile* and an outstretched hand.','He arrived with a *broad smile* and an apology for his lateness.','The photograph showed a young man with a *broad smile* and a sense of ease.']},
+{id:'an_broad_agreement',phrase:'broad agreement',cat:'an',type:'broad',strength:3,reg:'N',fn:'General but not total agreement',def:'Agreement on the main points, though not necessarily on every detail.',note:'"In broad agreement" is the common phrase. Also: "broad consensus".',exs:['There is *broad agreement* that urgent reform is needed, though the details differ.','We are in *broad agreement* as to what should be done next.','The parties reached *broad agreement* on the framework but disagreed on timescales.']},
+{id:'an_broad_hint',phrase:'broad hint',cat:'an',type:'broad',strength:3,reg:'N',fn:'Clear but indirect suggestion',def:'A suggestion that is strong and clear, though not stated directly.',note:'"Drop a broad hint" is the common phrase. Also: "give a broad hint".',exs:['She dropped a *broad hint* that she expected a pay rise after her review.','Despite several *broad hints*, he refused to acknowledge the problem.','He *gave a broad hint* that he might be willing to compromise.']},
+{id:'an_broad_accent',phrase:'broad accent',cat:'an',type:'broad',strength:3,reg:'N',fn:'Strong regional accent',def:'A strong and noticeable regional accent.',note:'"Broad" here means "strong". Compare "heavy accent" (also correct).',exs:['He spoke with a *broad Scottish accent* that was immediately recognisable.','Her *broad accent* gave her away as being from the west of Ireland.','The character was played with an authentic *broad accent* from the region.']},
+{id:'an_inclement_weather',phrase:'inclement weather',cat:'an',type:'inclement',strength:4,reg:'F',fn:'Unpleasant or severe weather (formal)',def:'Unpleasant, cold, and often stormy weather. A very formal, near-fixed collocation.',note:'"Inclement" collocates almost exclusively with "weather". Used in official notices.',exs:['The outdoor ceremony was postponed due to *inclement weather*.','*Inclement weather* is forecast for the entire region from Thursday evening.','The event will proceed regardless of *inclement weather*, so please dress appropriately.']},
+{id:'an_picturesque_village',phrase:'picturesque village / location / town',cat:'an',type:'picturesque',strength:3,reg:'N',fn:'Charmingly attractive, like a painting',def:'Visually charming and attractive, especially in a rural or historic setting.',note:'"Pretty" is the informal equivalent. "Picturesque" collocates with village, location, town, setting, harbour, ruins.',exs:['They spent the weekend in a *picturesque village* nestled in the heart of the mountains.','The hotel is set in a *picturesque location* overlooking the bay.','The walk takes you through *picturesque countryside* that changes with the seasons.']},
+{id:'an_deliriously_happy',phrase:'deliriously happy',cat:'an',type:'delirious',strength:4,reg:'N',fn:'Overwhelmingly happy',def:'"Deliriously" intensifies "happy" to suggest extreme, almost overwhelming joy.',note:'Near-fixed. "Deliriously" is strongly associated with "happy". Not used with sad, content, etc.',exs:['She was *deliriously happy* when she heard she had been accepted.','We were all *deliriously happy* at the news of their engagement.','He looked *deliriously happy* standing there with the trophy.']},
+{id:'an_mitigating_circumstances',phrase:'mitigating circumstances / factors',cat:'an',type:'mitigating',strength:4,reg:'F',fn:'Factors that reduce blame',def:'Circumstances or factors that make an offence or failure seem less serious.',note:'Near-fixed and formal. Legal/official context. "Mitigating" almost exclusively collocates with "circumstances" or "factors".',exs:['The judge took *mitigating circumstances* into account before passing sentence.','Her legal team pointed to several *mitigating factors* in her defence.','Although she was found guilty, the jury felt there were *mitigating circumstances*.']},
+{id:'an_far_reaching',phrase:'far-reaching consequences / effects / changes',cat:'an',type:'far-reaching',strength:3,reg:'N',fn:'Affecting many areas over time',def:'Consequences or changes that affect a wide range of areas or continue over a long period.',note:'"Far-reaching" almost always precedes "consequences", "effects", "implications", or "changes".',exs:['The decision had *far-reaching consequences* for the entire industry.','The reforms will have *far-reaching effects* on the way healthcare is delivered.','Scientists warned of *far-reaching implications* if the trend continued.']},
+// ══ ADVERB COLLOCATIONS ══
+{id:'adv_deeply_committed',phrase:'deeply committed',cat:'adv',type:'deeply',strength:3,reg:'N',fn:'Profoundly dedicated',def:'Very firmly and sincerely dedicated to a cause, person, or principle.',note:'"Deeply" collocates with abstract, emotional, or moral qualities. Not used with "hungry" or "cold".',exs:['She is *deeply committed* to improving outcomes for the most vulnerable.','The organisation remains *deeply committed* to its founding principles.','He is *deeply committed* to the project and works on it every weekend.']},
+{id:'adv_deeply_concerned',phrase:'deeply concerned',cat:'adv',type:'deeply',strength:3,reg:'N',fn:'Very worried',def:'Very seriously worried or troubled about something.',note:'"Express deep concern" is the related noun phrase. Common in official statements.',exs:['We are *deeply concerned* about the long-term implications of this decision.','She was *deeply concerned* by what she had read in the interim report.','The committee is *deeply concerned* about the pace of change.']},
+{id:'adv_deeply_divided',phrase:'deeply divided',cat:'adv',type:'deeply',strength:3,reg:'N',fn:'Profoundly split',def:'Very strongly split between opposing views or groups.',note:'"Deeply divided" implies the split goes to fundamental values, not just preferences.',exs:['Public opinion is *deeply divided* on the question of assisted dying.','The party remains *deeply divided* over its approach to economic reform.','The committee was *deeply divided* and unable to reach a consensus.']},
+{id:'adv_deeply_rooted',phrase:'deeply rooted',cat:'adv',type:'deeply',strength:3,reg:'N',fn:'Firmly embedded over time',def:'Firmly established as part of a culture, tradition, or belief system.',note:'"Deep-rooted" (hyphenated adjective) is also standard.',exs:['The tradition is *deeply rooted* in the cultural identity of the region.','Some biases are *deeply rooted* and persist even in well-intentioned institutions.','The conflict has *deeply rooted* causes that go back several generations.']},
+{id:'adv_deeply_flawed',phrase:'deeply flawed',cat:'adv',type:'deeply',strength:3,reg:'N',fn:'Having serious, fundamental faults',def:'Having very serious problems at a fundamental level.',note:'Strong collocate for "flawed" in academic and critical writing.',exs:['Critics argue the model is *deeply flawed* and needs to be rethought from the ground up.','The reasoning, though superficially convincing, is *deeply flawed*.','The research design was *deeply flawed*, making the conclusions unreliable.']},
+{id:'adv_highly_qualified',phrase:'highly qualified',cat:'adv',type:'highly',strength:3,reg:'N',fn:'Having excellent credentials',def:'Possessing excellent academic or professional qualifications and experience.',note:'"Highly" works with adjectives of quality and evaluation. Not "highly hungry".',exs:['She is *highly qualified* for the role, with two advanced degrees and relevant experience.','Only *highly qualified* candidates will be invited to the second interview stage.','The panel consisted of *highly qualified* specialists from across the discipline.']},
+{id:'adv_highly_unlikely',phrase:'highly unlikely',cat:'adv',type:'highly',strength:3,reg:'N',fn:'Very improbable',def:'Very improbable; having a very low chance of happening.',note:'"Highly" can intensify "unlikely", "probable", "effective", "regarded" — but not "happy" or "sad".',exs:['It is *highly unlikely* that the results will change significantly at this stage.','She considered it *highly unlikely* that anyone would object to the proposal.','A peaceful resolution at this point is *highly unlikely*, analysts say.']},
+{id:'adv_highly_effective',phrase:'highly effective',cat:'adv',type:'highly',strength:3,reg:'N',fn:'Very successful at achieving results',def:'Very successful at producing the desired outcome.',note:'"Highly" + "effective/efficient/regarded/recommended" are all strong collocations.',exs:['The treatment has proved *highly effective* in clinical trials.','This is a *highly effective* strategy for reducing staff turnover.','The system has been *highly effective* at detecting fraud at an early stage.']},
+{id:'adv_highly_regarded',phrase:'highly regarded',cat:'adv',type:'highly',strength:3,reg:'N',fn:'Widely respected and admired',def:'Held in high esteem by others; widely respected.',note:'Often used in professional or academic contexts.',exs:['She is *highly regarded* within the field for her meticulous approach.','The institution is *highly regarded* internationally for its postgraduate programmes.','He is *highly regarded* by his peers and has won numerous awards.']},
+{id:'adv_bitterly_disappointed',phrase:'bitterly disappointed',cat:'adv',type:'bitterly',strength:4,reg:'N',fn:'Deeply and painfully disappointed',def:'Feeling very deep and painful disappointment.',note:'Near-fixed. "Bitterly" strongly collocates with "disappointed". Also: "bitterly regret".',exs:['She was *bitterly disappointed* not to be selected for the final team.','He was *bitterly disappointed* by the verdict and immediately lodged an appeal.','They were all *bitterly disappointed* that the event had to be cancelled.']},
+{id:'adv_utterly_exhausted',phrase:'utterly exhausted',cat:'adv',type:'utterly',strength:3,reg:'N',fn:'Completely drained of energy',def:'Completely and totally drained of physical or mental energy.',note:'"Utterly" works with adjectives implying extremity or totality.',exs:['She was *utterly exhausted* by the time the three-day summit ended.','After three consecutive night shifts, the team was *utterly exhausted*.','He arrived home *utterly exhausted* and fell asleep in the chair.']},
+{id:'adv_utterly_convinced',phrase:'utterly convinced',cat:'adv',type:'utterly',strength:3,reg:'N',fn:'Completely certain',def:'Completely and unshakeably certain about something.',note:'"Utterly" + "convinced/devastated/baffled/wrong" are all strong collocates.',exs:['He was *utterly convinced* he was right, despite all the evidence to the contrary.','She remains *utterly convinced* that the investment will pay off within two years.','The jury was *utterly convinced* by the prosecution\'s final argument.']},
+{id:'adv_intensely_personal',phrase:'intensely personal',cat:'adv',type:'intensely',strength:3,reg:'N',fn:'Very private or deeply felt',def:'Very intimate, private, or deeply felt.',note:'Common in literary and journalistic contexts.',exs:['The article provides an *intensely personal* account of her relationship with her father.','He found the question *intensely personal* and declined to answer it in public.','The memoir is *intensely personal* and reads more like a confession than a narrative.']},
+{id:'adv_flatly_contradict',phrase:'flatly contradict / deny / refuse',cat:'adv',type:'flatly',strength:3,reg:'N',fn:'Completely and without hesitation deny or refuse',def:'To deny, contradict, or refuse something completely and without qualification.',note:'"Flatly" modifies verbs of denial and refusal. One of the strongest adverb + verb collocations.',exs:['She *flatly contradicted* the evidence presented in court.','He *flatly denied* any involvement in the affair.','The board *flatly refused* to consider the proposal without further data.']},
+{id:'adv_burst_into',phrase:'burst into song / tears / laughter',cat:'adv',type:'burst',strength:4,reg:'N',fn:'Suddenly start singing, crying, or laughing',def:'To suddenly and spontaneously start singing, crying, or laughing.',note:'Near-fixed phrasal collocation. "Burst into" + song/tears/laughter/flames.',exs:['As soon as the music started, she *burst into song*.','The child *burst into tears* when she was told the news.','He *burst into laughter* at the most inappropriate moment.']},
+{id:'adv_fail_miserably',phrase:'fail miserably',cat:'adv',type:'fail',strength:3,reg:'N',fn:'Fail completely and badly',def:'To fail in a way that is obvious, complete, and often embarrassing.',note:'"Fail miserably" is a strong collocation. "Fail desperately" is not natural.',exs:['He tried to persuade her but *failed miserably*.','The plan *failed miserably* for reasons no one had anticipated.','She attempted to disguise her disappointment but *failed miserably*.']},
+// ══ NOUN + NOUN ══
+{id:'nn_spate',phrase:'a spate of',cat:'nn',type:'spate',strength:3,reg:'N',fn:'Unusually large number in succession',def:'An unusually large number of similar events happening in rapid succession.',note:'"A spate of" is stronger and more specific than "a series of". Implies rapidity.',exs:['There has been *a spate of* car thefts in the area over the past fortnight.','*A spate of* accidents on that junction prompted demands for new traffic measures.','The summer saw *a spate of* celebrity resignations that shocked the industry.']},
+{id:'nn_barrage',phrase:'a barrage of',cat:'nn',type:'barrage',strength:3,reg:'N',fn:'Large number directed at once',def:'A large number of things — especially questions, insults, or criticism — directed at someone simultaneously.',note:'From military language (artillery barrage). Implies overwhelm and intensity.',exs:['The minister faced *a barrage of questions* from the assembled press.','She was met with *a barrage of criticism* from all sides of the debate.','He unleashed *a barrage of complaints* about the quality of service.']},
+{id:'nn_wave',phrase:'a wave of',cat:'nn',type:'wave',strength:2,reg:'N',fn:'Widespread surge',def:'A sudden, widespread surge of something across a wide area.',note:'"A wave of" is weaker than "a spate" — it collocates with many nouns.',exs:['*A wave of* protests swept through several major cities following the announcement.','There was *a wave of enthusiasm* for the new scheme in its early stages.','*A wave of* nostalgia came over her as she walked through the old neighbourhood.']},
+{id:'nn_stroke_luck',phrase:'a stroke of luck',cat:'nn',type:'stroke',strength:4,reg:'N',fn:'Unexpected piece of good fortune',def:'A sudden and unexpected piece of good fortune.',note:'Near-fixed. "A stroke of luck / genius / inspiration". Not "a stroke of chance".',exs:['By *a stroke of luck* she found her keys at the very bottom of her bag.','It was *a stroke of luck* that they happened to be in the city that weekend.','*A stroke of luck* saved the project when a key investor changed their mind.']},
+{id:'nn_stroke_genius',phrase:'a stroke of genius',cat:'nn',type:'stroke',strength:3,reg:'N',fn:'A sudden brilliant idea',def:'A sudden, brilliant idea or decision.',note:'Also: "a stroke of inspiration". Common in descriptions of creative achievements.',exs:['Casting an unknown in the lead role was *a stroke of genius*.','The marketing campaign was described as *a stroke of genius* by industry observers.','In retrospect, the merger was *a stroke of genius* that changed the company\'s fortunes.']},
+{id:'nn_snippet',phrase:'a snippet of information',cat:'nn',type:'snippet',strength:3,reg:'N',fn:'A small piece of information',def:'A small fragment of information or news.',note:'"A snippet of" + information/news/conversation. Implies brevity and often secrecy.',exs:['She shared *a snippet of information* that turned out to be crucial to the case.','All we had was *a snippet of information* from an anonymous source.','He picked up *a snippet of conversation* that made him suspect something was wrong.']},
+{id:'nn_words_wisdom',phrase:'words of wisdom',cat:'nn',type:'words',strength:3,reg:'N',fn:'Wise and helpful advice',def:'Advice or remarks that are wise and worth remembering.',note:'Often ironic. "A few words of wisdom" is common.',exs:['He offered a few *words of wisdom* before she set off on her journey.','She closed the ceremony with some *words of wisdom* for the graduating class.','Despite his youth, he had *words of wisdom* beyond his years.']},
+{id:'nn_lick_paint',phrase:'a lick of paint',cat:'nn',type:'lick',strength:4,reg:'N',fn:'A coat of paint (informal)',def:'A thin coat of paint; implies only minor work is needed.',note:'Near-fixed informal collocation. Implies understatement.',exs:['All the room needs is *a lick of paint* and it will look as good as new.','The fence is structurally sound — it just needs *a lick of paint*.','With *a lick of paint* and some new furniture, the place could be transformed.']},
+{id:'nn_team_experts',phrase:'a team of experts',cat:'nn',type:'team',strength:3,reg:'N',fn:'A group of specialists',def:'A group of people with specialist knowledge working together.',note:'Also: "a panel of experts", "a body of experts". "Team" implies collaboration.',exs:['*A team of experts* was brought in to assess the structural damage.','She assembled *a team of experts* from across three different universities.','The government appointed *a team of experts* to advise on the regulatory framework.']},
+{id:'nn_body_evidence',phrase:'a body of evidence / work / knowledge',cat:'nn',type:'body',strength:3,reg:'F',fn:'A collection of evidence or knowledge',def:'An accumulated collection of evidence, academic work, or knowledge.',note:'Formal. Common in academic and legal writing.',exs:['There is now a substantial *body of evidence* linking diet and cognitive decline.','He has built an impressive *body of work* over thirty years in the field.','The policy is supported by a growing *body of knowledge* from international research.']},
+{id:'nn_economy_drive',phrase:'an economy drive',cat:'nn',type:'economy',strength:3,reg:'N',fn:'A campaign to reduce spending',def:'A systematic effort to reduce costs and spending.',note:'Common in business and government contexts.',exs:['The government launched *an economy drive* to cut wasteful public spending.','The company\'s *economy drive* led to the cancellation of several projects.','After the recession, every department had to embark on *an economy drive*.']},
+{id:'nn_stock_market',phrase:'the stock market',cat:'nn',type:'stock',strength:4,reg:'N',fn:'Market for trading company shares',def:'The market in which company shares are bought and sold.',note:'Near-fixed compound noun. "Play the stock market" = speculate on share prices.',exs:['She has been *playing the stock market* since she was in her twenties.','The *stock market* fell sharply on news of the unexpected election result.','*Stock market* volatility made investors nervous throughout the quarter.']},
+{id:'nn_source_income',phrase:'a source of income / funding / amusement',cat:'nn',type:'source',strength:2,reg:'N',fn:'Where something comes from',def:'The origin or supply of something — typically money, information, or entertainment.',note:'"Source" is a weak collocation — it appears with a very wide range of nouns.',exs:['Rental income has become her primary *source of income* since she left employment.','The buskers provided *a reliable source of amusement* for passing tourists.','The grant is the only *source of funding* available to the project at this stage.']},
+];
+
+const CATS=[
+  {id:'vn', label:'Verb + noun'},
+  {id:'an', label:'Adj + noun'},
+  {id:'adv', label:'Adverb collocations'},
+  {id:'nn', label:'Noun + noun'},
+];
+
+const CAT_COL={
+  vn:{bg:'#EAF3DE',tc:'#27500A',brd:'#A8D88A',label:'Verb + noun'},
+  an:{bg:'#f0eafe',tc:'#5b2d8e',brd:'#c4a8e8',label:'Adj + noun'},
+  adv:{bg:'#FAEEDA',tc:'#633806',brd:'#E8C080',label:'Adverb'},
+  nn:{bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB',label:'Noun + noun'},
+  sr:{bg:'#e3eef8',tc:'#134878',brd:'#6fa0cc',label:'Strength/Reg'},
+};
+
+// ── GLOSSARY ──────────────────────────────────────────────────
+let glossary=[];
+function isGlossed(id){return glossary.includes(id);}
+function toggleGloss(id){
+  if(glossary.includes(id))glossary=glossary.filter(x=>x!==id);
+  else glossary.push(id);
+  renderGloss();
+  // update all bookmark icons for this id
+  document.querySelectorAll('[data-gid="'+id+'"]').forEach(btn=>{
+    const saved=isGlossed(id);
+    btn.innerHTML=saved?'<i class="ti ti-bookmark-filled"></i>':'<i class="ti ti-bookmark"></i>';
+    btn.title=saved?'Remove from glossary':'Save to glossary';
+    btn.style.color=saved?'#185FA5':'var(--color-text-secondary)';
+  });
+  // update detail panel save button if open
+  const sb=document.getElementById('detailSaveBtn');
+  if(sb&&sb.dataset.id===id){
+    sb.textContent=isGlossed(id)?'🔖 Saved':'🔖 Save';
+  }
+}
+function renderGloss(){
+  const cont=document.getElementById('glossCont');if(!cont)return;
+  if(!glossary.length){cont.innerHTML='<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px"></i><div style="margin-bottom:8px">Nothing saved yet.</div><div style="font-size:13px">Click the 🔖 bookmark icon on any collocation card in Browse &amp; search.</div></div>';return;}
+  const saved=COLLS.filter(c=>glossary.includes(c.id));
+  const by={};saved.forEach(c=>{(by[c.cat]=by[c.cat]||[]).push(c);});
+  let html=`<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:14px">${saved.length} collocation${saved.length!==1?'s':''} saved</div>`;
+  CATS.forEach(cat=>{
+    if(!by[cat.id])return;
+    const cc=CAT_COL[cat.id];
+    html+=`<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:${cc.tc};margin:14px 0 8px;padding-bottom:4px;border-bottom:0.5px solid ${cc.bg}">${cat.label} (${by[cat.id].length})</div>`;
+    by[cat.id].forEach(c=>{
+      html+=`<div class="card" style="margin-bottom:7px;padding:.85rem 1.1rem" id="gc_${c.id}">
+        <div style="display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap">
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;flex-wrap:wrap">
+              <span style="font-size:15px;font-weight:700;color:var(--color-text-primary)">${c.phrase}</span>
+              <span style="background:${cc.bg};color:${cc.tc};font-size:10px;font-weight:700;padding:1px 7px;border-radius:20px">${cc.label}</span>
+              <span style="background:var(--color-background-secondary);color:var(--color-text-secondary);font-size:10px;padding:1px 7px;border-radius:20px">${STRENGTH_LABEL[c.strength]}</span>
+              <button onclick="cSpeak(${safeQ(c.phrase)},this)" style="padding:2px 8px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:11px;color:var(--color-text-secondary)">🔊 Hear</button>
+            </div>
+            <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.6">${c.def}</div>
+            <div style="font-size:13px;font-style:italic;color:var(--color-text-secondary);margin-top:5px;line-height:1.55;border-left:2px solid ${cc.brd};padding-left:8px">${c.exs[0].replace(/\*([^*]+)\*/g,'<strong>$1</strong>')}</div>
+          </div>
+          <button onclick="removeFromGloss('${c.id}')" style="flex-shrink:0;padding:4px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:12px;color:var(--color-text-secondary);transition:all .15s;white-space:nowrap" onmouseover="this.style.background='#FCEBEB';this.style.borderColor='#F7C1C1';this.style.color='#791F1F'" onmouseout="this.style.background='';this.style.borderColor='';this.style.color=''">✕</button>
+        </div>
+      </div>`;
+    });
+  });
+  cont.innerHTML=html;
+}
+function removeFromGloss(id){
+  glossary=glossary.filter(x=>x!==id);
+  // update bookmark icons elsewhere
+  document.querySelectorAll('[data-gid="'+id+'"]').forEach(btn=>{
+    btn.innerHTML='<i class="ti ti-bookmark"></i>';
+    btn.title='Save to glossary';
+    btn.style.color='var(--color-text-secondary)';
+  });
+  const db=document.getElementById('detailSaveBtn');
+  if(db&&db.dataset.id===id)db.textContent='🔖 Save';
+  renderGloss();
+}
+
+// ── VOICE ─────────────────────────────────────────────────────
+let _bVoice=null;
+function loadV(){
+  const vs=window.speechSynthesis?window.speechSynthesis.getVoices():[];if(!vs.length)return;
+  _bVoice=vs.find(v=>v.lang==='en-GB'&&/female|fiona|kate|serena|moira|karen|victoria|claire/i.test(v.name))
+    ||vs.find(v=>v.lang==='en-GB'&&!/male|daniel|oliver|arthur/i.test(v.name))
+    ||vs.find(v=>v.lang==='en-GB')||vs.find(v=>v.lang.startsWith('en-GB'))||vs.find(v=>v.lang.startsWith('en'));
+}
+if(window.speechSynthesis){window.speechSynthesis.onvoiceschanged=loadV;loadV();setTimeout(loadV,600);setTimeout(loadV,1600);}
+function cSpeak(txt,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();if(!_bVoice)loadV();
+  const u=new SpeechSynthesisUtterance(txt.replace(/\*([^*]+)\*/g,'$1'));u.lang='en-GB';u.rate=0.86;u.pitch=1.07;
+  if(_bVoice)u.voice=_bVoice;
+  if(btn){
+    document.querySelectorAll('.spk-on').forEach(b=>{b.classList.remove('spk-on');b.textContent='🔊';});
+    btn.classList.add('spk-on');btn.textContent='🔊…';
+    u.onend=()=>{btn.classList.remove('spk-on');btn.textContent='🔊';};
+  }
+  window.speechSynthesis.speak(u);
+}
+function safeQ(s){return"'"+String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;')+"'";}
+
+// ── QUOTES ─────────────────────────────────────────────────────
+const QUOTES=[
+  {q:'She finally *made a decision* to leave — and she never looked back.',hi:'made a decision'},
+  {q:'By *a stroke of luck* she found the keys just before the locksmith arrived.',hi:'a stroke of luck'},
+  {q:'*Heavy rain* and *strong winds* brought the city to a standstill overnight.',hi:'Heavy rain'},
+  {q:'He *flatly denied* the allegations and *gave rise to* yet more speculation.',hi:'flatly denied'},
+  {q:'The chairperson *adjourned the meeting* amid *mounting concern* from stakeholders.',hi:'adjourned the meeting'},
+  {q:'There is now a strong *body of evidence* linking sleep deprivation to cognitive decline.',hi:'body of evidence'},
+  {q:'She was *bitterly disappointed* but she was also *deeply committed* to the cause.',hi:'bitterly disappointed'},
+];
+let qOrd=[...Array(QUOTES.length).keys()].sort(()=>Math.random()-.5),qI=0;
+function renderQuote(){
+  const q=QUOTES[qOrd[qI%qOrd.length]];qI++;
+  const hi=(q.hi||'').toLowerCase();
+  let disp=q.q.replace(/\*([^*]+)\*/g,'<strong style="background:#E6F1FB;color:#0C447C;padding:1px 6px;border-radius:6px;font-weight:600">$1</strong>');
+  document.getElementById('quoteBox').innerHTML=`
+    <div style="font-size:15px;line-height:1.85;color:var(--color-text-primary);margin-bottom:8px">${disp}</div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <button onclick="cSpeak(${safeQ(q.q)},this)" style="padding:4px 11px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:12px;color:var(--color-text-secondary)">🔊 Hear it</button>
+      <button class="act" onclick="renderQuote()" style="margin-left:auto;font-size:12px;padding:4px 12px"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> New quote</button>
+    </div>`;
+}
+
+// ── STRENGTH PIPS ─────────────────────────────────────────────
+function pipHTML(s){
+  let h='<span class="spips">';
+  for(let i=1;i<=4;i++)h+=`<span class="spip${i<=s?' on':''}"></span>`;
+  return h+'</span>';
+}
+const STRENGTH_LABEL={1:'Weak',2:'Medium',3:'Strong',4:'Fixed'};
+
+// ── BROWSE & SEARCH ───────────────────────────────────────────
+let filterCat='',selId=null;
+function renderChips(){
+  document.getElementById('catChips').innerHTML=
+    `<span class="chip on" onclick="setCat('',this)">All</span>`+
+    CATS.map(c=>`<span class="chip" onclick="setCat('${c.id}',this)">${c.label}</span>`).join('');
+}
+function setCat(c,el){
+  filterCat=c;
+  document.querySelectorAll('#catChips .chip').forEach(x=>x.classList.remove('on'));
+  el.classList.add('on');
+  renderBrowse();
+}
+function renderBrowse(){
+  const q=(document.getElementById('srchBox')||{}).value||'';
+  const ql=q.toLowerCase();
+  const list=COLLS.filter(c=>{
+    if(filterCat&&c.cat!==filterCat)return false;
+    if(ql&&!(c.phrase.toLowerCase().includes(ql)||c.fn.toLowerCase().includes(ql)||c.def.toLowerCase().includes(ql)||c.exs.some(e=>e.toLowerCase().includes(ql))))return false;
+    return true;
+  });
+  document.getElementById('browseCount').textContent=`${list.length} collocation${list.length!==1?'s':''} found`;
+  document.getElementById('toolGrid').innerHTML=list.map(c=>{
+    const cc=CAT_COL[c.cat];const saved=isGlossed(c.id);
+    return`<div class="tool-card${selId===c.id?' sel':''}" id="tc_${c.id}" onclick="selCard('${c.id}')">
+      <div style="display:flex;align-items:flex-start;gap:7px;margin-bottom:5px">
+        <span style="font-size:14px;font-weight:600;flex:1;line-height:1.3">${c.phrase}</span>
+        <span style="background:${cc.bg};color:${cc.tc};font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:20px;white-space:nowrap;flex-shrink:0">${cc.label}</span>
+        <button data-gid="${c.id}" onclick="event.stopPropagation();toggleGloss('${c.id}')" style="border:none;background:none;cursor:pointer;font-size:17px;color:${saved?'#185FA5':'var(--color-text-secondary)'};flex-shrink:0" title="${saved?'Remove from glossary':'Save to glossary'}"><i class="ti ti-bookmark${saved?'-filled':''}"></i></button>
+      </div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:4px">${c.fn} ${pipHTML(c.strength)}</div>
+      <div style="font-size:13px;font-style:italic;color:var(--color-text-secondary);border-left:2px solid ${cc.brd};padding-left:8px;line-height:1.55">${c.exs[0].replace(/\*([^*]+)\*/g,'<strong>$1</strong>')}</div>
+    </div>`;
+  }).join('');
+  if(selId&&!list.find(c=>c.id===selId)){selId=null;document.getElementById('toolDetail').classList.remove('on');}
+}
+function selCard(id){
+  selId=selId===id?null:id;
+  document.querySelectorAll('.tool-card').forEach(c=>c.classList.remove('sel'));
+  const det=document.getElementById('toolDetail');
+  if(!selId){det.classList.remove('on');return;}
+  document.getElementById('tc_'+id)?.classList.add('sel');
+  const c=COLLS.find(x=>x.id===id);
+  const cc=CAT_COL[c.cat];
+  const saved=isGlossed(id);
+  const regCol={F:{bg:'#E6F1FB',tc:'#0C447C',label:'Formal'},N:{bg:'#EAF3DE',tc:'#27500A',label:'Neutral'},I:{bg:'#FAEEDA',tc:'#633806',label:'Informal'}};
+  const rc=regCol[c.reg]||regCol['N'];
+  det.innerHTML=`
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:14px;flex-wrap:wrap">
+      <span style="font-size:18px;font-weight:700">${c.phrase}</span>
+      <span style="background:${cc.bg};color:${cc.tc};font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;border:0.5px solid ${cc.brd}">${cc.label}</span>
+      <span style="background:${rc.bg};color:${rc.tc};font-size:11px;padding:2px 8px;border-radius:20px">${rc.label}</span>
+      <span style="font-size:11px;padding:2px 8px;border-radius:20px;background:var(--color-background-secondary);color:var(--color-text-secondary)">${STRENGTH_LABEL[c.strength]} ${pipHTML(c.strength)}</span>
+      <button id="detailSaveBtn" data-id="${id}" class="act" style="margin-left:auto;font-size:12px" onclick="toggleGloss('${id}');this.textContent=isGlossed('${id}')?'🔖 Saved':'🔖 Save'">${saved?'🔖 Saved':'🔖 Save'}</button>
+    </div>
+    <div class="lbl">Function</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:8px;line-height:1.6">${c.fn}</p>
+    <div class="lbl">Explanation</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px;line-height:1.7">${c.def}</p>
+    <div class="lbl">Usage note</div>
+    <div style="font-size:13px;color:var(--color-text-secondary);background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;margin-bottom:12px;line-height:1.65">${c.note}</div>
+    <div class="lbl">Examples</div>
+    <div style="display:flex;flex-direction:column;gap:7px">
+      ${c.exs.map(e=>`<div style="background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;font-size:14px;font-style:italic;color:var(--color-text-secondary);display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="flex:1;line-height:1.65">${e.replace(/\*([^*]+)\*/g,'<strong style="color:${cc.tc}">$1</strong>')}</span><button onclick="cSpeak(${safeQ(e)},this)" style="flex-shrink:0;padding:3px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:12px;color:var(--color-text-secondary)">🔊</button></div>`).join('')}
+    </div>`;
+  det.classList.add('on');det.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ══════════════════════════════════════════════════════════════
+// EXERCISES
+// ══════════════════════════════════════════════════════════════
+
+// ── GAP FILL ──────────────────────────────────────────────────
+const GAP_Q=[
+  {s:'She *___* a contract and asked both parties to sign it before Friday.',blank:'drew up',hint:'prepare officially in writing',opts:['drew up','wrote up','made up','set up']},
+  {s:'The forecast warned of *___ weather* throughout the coming weekend.',blank:'inclement',hint:'formal: unpleasant and severe',opts:['inclement','heavy','bad','stormy']},
+  {s:'He *___ into tears* as soon as he heard the unexpected news.',blank:'burst',hint:'suddenly start crying',opts:['burst','broke','fell','came']},
+  {s:'There is *mounting ___* about the long-term side effects of the treatment.',blank:'concern',hint:'increasing worry',opts:['concern','worry','fear','doubt']},
+  {s:'She *flatly ___* any involvement in the decision.',blank:'denied',hint:'completely and without hesitation',opts:['denied','rejected','refused','dismissed']},
+  {s:'By *a stroke of ___* she found the missing document at the very last moment.',blank:'luck',hint:'unexpected good fortune',opts:['luck','fortune','chance','fate']},
+  {s:'The committee *___ a conclusion* after three days of deliberation.',blank:'reached',hint:'arrived at a decision',opts:['reached','made','came to','arrived at']},
+  {s:'His remarks *provoked widespread ___* in the days that followed.',blank:'controversy',hint:'strong negative reaction',opts:['controversy','anger','debate','argument']},
+  {s:'The minister was *bitterly ___* by the outcome of the vote.',blank:'disappointed',hint:'deeply and painfully let down',opts:['disappointed','upset','sad','unhappy']},
+  {s:'She did not want to *___ up the opportunity* of working in Japan.',blank:'pass',hint:'fail to take advantage of',opts:['pass','give','turn','miss']},
+  {s:'The investigation was *carried ___ * by an independent team of auditors.',blank:'out',hint:'conducted / performed',opts:['out','on','through','over']},
+  {s:'*A ___ of* violent attacks in the area prompted calls for increased patrols.',blank:'spate',hint:'unusually large number in rapid succession',opts:['spate','wave','series','run']},
+  {s:'She has *___ concerns* about the pace of the changes since the merger.',blank:'raised',hint:'brought attention to a problem',opts:['raised','made','told','spoken']},
+  {s:'The judge took *mitigating ___* into account before passing sentence.',blank:'circumstances',hint:'near-fixed legal collocation',opts:['circumstances','factors','reasons','situations']},
+  {s:'The project will have *far-reaching ___* for the entire sector.',blank:'consequences',hint:'affecting many areas over a long time',opts:['consequences','results','outcomes','effects']},
+];
+let gItems=[],gIdx=0,gScore=0,gTotal=0,gSel=null,gChecked=false;
+function startGap(){gItems=[...GAP_Q].sort(()=>Math.random()-.5);gIdx=0;gScore=0;gTotal=0;renderGap();}
+function renderGap(){
+  if(gIdx>=gItems.length){document.getElementById('gapCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:24px;font-weight:700;color:#185FA5">${gScore}/${gTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin:8px 0 14px">${Math.round(gScore/gTotal*100)>=80?'Excellent!':Math.round(gScore/gTotal*100)>=60?'Good effort — review the Browse section.':'Study the lesson and try again.'}</div><button class="act" onclick="startGap()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=gItems[gIdx];gSel=null;gChecked=false;
+  const prog=Math.round(gIdx/gItems.length*100);
+  const opts=[...item.opts].sort(()=>Math.random()-.5);window._gO=opts;
+  const sh=item.s.replace('*___*',`<span style="display:inline-block;min-width:120px;border-bottom:2px solid #185FA5;color:#185FA5;font-weight:500;text-align:center;padding:0 4px" id="gBlank">___</span>`).replace(/\*([^*]+)\*/g,'<strong>$1</strong>');
+  document.getElementById('gapCont').innerHTML=`<div class="card">
+    <div class="ex-hdr" style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.hint}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${gIdx+1}/${gItems.length} · Score: ${gScore}/${gTotal}</span>
+      <button class="act" onclick="startGap()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px">Choose the correct word or phrase to complete the collocation.</div>
+    <div style="font-size:16px;line-height:2;margin-bottom:14px;background:var(--color-background-secondary);border-radius:14px;padding:11px 14px;font-style:italic">${sh}</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="gOptsList">${opts.map((o,i)=>`<button class="gap-opt" id="gopt_${i}" onclick="selGOpt(${i})">${o}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="check-btn" id="gCheckBtn" onclick="checkGap()" disabled>Check</button><button class="act" onclick="gIdx++;renderGap()">Skip →</button></div>
+    <div id="gFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selGOpt(i){if(gChecked)return;gSel=i;document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('gCheckBtn').disabled=false;}
+function checkGap(){
+  if(gChecked||gSel===null)return;gChecked=true;gTotal++;
+  const item=gItems[gIdx];const chosen=window._gO[gSel];const ok=chosen===item.blank;if(ok)gScore++;
+  document.getElementById('gCheckBtn').disabled=true;
+  document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>{const w=window._gO[j];el.classList.remove('gsel');if(w===item.blank)el.classList.add('gok');else if(j===gSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const sp=document.getElementById('gBlank');if(sp){sp.textContent=item.blank;sp.style.color=ok?'#27500A':'#791F1F';sp.style.borderBottomColor=ok?'#C0DD97':'#F7C1C1';}
+  const fb=document.getElementById('gFb');fb.className=ok?'fb-ok':'fb-no';
+  const full=item.s.replace('*___*','"'+item.blank+'"').replace(/\*([^*]+)\*/g,'$1');
+  fb.innerHTML=(ok?'✓ Correct! ':'✗ The answer is <strong>'+item.blank+'</strong>. ')+'Full collocation: <em>'+full+'</em>';
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{gIdx++;renderGap();};document.querySelector('#gapCont .card').appendChild(nxt);
+}
+
+// ── MATCHING ──────────────────────────────────────────────────
+const MATCH_ROUNDS=[
+  {title:'Match the verb to its noun partner',
+   pairs:[['draw up','a contract'],['pass up','an opportunity'],['withstand','the impact'],['arouse','someone\'s interest'],['adjourn','a meeting'],['give rise to','controversy'],['reach','a conclusion'],['carry out','an investigation']]},
+  {title:'Match the adjective to the noun it collocates with most strongly',
+   pairs:[['inclement','weather'],['mitigating','circumstances'],['auburn','hair'],['idle','threat'],['vain','hope'],['mounting','concern'],['blond','hair'],['picturesque','location']]},
+  {title:'Match the adverb to the word it collocates with',
+   pairs:[['flatly','contradict'],['deliriously','happy'],['bitterly','disappointed'],['utterly','exhausted'],['highly','unlikely'],['deeply','committed'],['intensely','personal'],['fail','miserably']]},
+  {title:'Match the noun phrase to its meaning',
+   pairs:[['a stroke of luck','unexpected good fortune'],['a spate of attacks','unusually large number in succession'],['a barrage of questions','large number at the same time'],['a snippet of information','a small piece of news'],['words of wisdom','helpful wise advice'],['a lick of paint','a thin coat of paint'],['a team of experts','a group of specialists'],['a body of evidence','an accumulated collection of proof']]},
+];
+let mRound=0,mSel={left:null,right:null},mDone=[];
+function startMatch(round){mRound=round%MATCH_ROUNDS.length;mSel={left:null,right:null};mDone=[];renderMatch();}
+function renderMatch(){
+  const r=MATCH_ROUNDS[mRound];
+  const lefts=[...r.pairs].sort(()=>Math.random()-.5);
+  const rights=[...r.pairs].sort(()=>Math.random()-.5);
+  window._mL=lefts;window._mR=rights;
+  document.getElementById('matchCont').innerHTML=`<div class="card">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">Round ${mRound+1} of ${MATCH_ROUNDS.length}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary);flex:1">${r.title}</span>
+      <button class="act" onclick="startMatch(${mRound})"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">Click an item on the left, then its match on the right. Green = correct; red = try again.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div class="match-col">${lefts.map((p,i)=>`<button class="match-item" id="ml_${i}" onclick="selMatch('left',${i})">${p[0]}</button>`).join('')}</div>
+      <div class="match-col">${rights.map((p,i)=>`<button class="match-item" id="mr_${i}" onclick="selMatch('right',${i})">${p[1]}</button>`).join('')}</div>
+    </div>
+    <div id="m-fb" style="margin-top:12px;font-size:13px;color:var(--color-text-secondary)"></div>
+    <div id="m-next" style="margin-top:10px;display:none">
+      <button class="act" onclick="startMatch(${mRound+1})"><i class="ti ti-arrow-right" style="font-size:13px;vertical-align:-2px"></i> ${mRound+1<MATCH_ROUNDS.length?'Next round':'Play again'}</button>
+    </div>
+  </div>`;
+}
+function selMatch(side,idx){
+  mSel[side]=idx;
+  document.querySelectorAll('.match-item').forEach(b=>b.classList.remove('sel'));
+  if(side==='left')document.getElementById('ml_'+idx)?.classList.add('sel');
+  else document.getElementById('mr_'+idx)?.classList.add('sel');
+  if(mSel.left!==null&&mSel.right!==null){
+    const L=window._mL[mSel.left];const R=window._mR[mSel.right];
+    const ok=L[1]===R[1];
+    const lBtn=document.getElementById('ml_'+mSel.left);
+    const rBtn=document.getElementById('mr_'+mSel.right);
+    if(ok){
+      lBtn.classList.replace('sel','done-ok');rBtn.classList.replace('sel','done-ok');
+      const done=document.querySelectorAll('.match-item.done-ok').length/2;
+      if(done===window._mL.length){
+        document.getElementById('m-fb').textContent='✓ All matched!';
+        document.getElementById('m-next').style.display='block';
+      }
+    }else{
+      lBtn.classList.replace('sel','done-bad');rBtn.classList.replace('sel','done-bad');
+      setTimeout(()=>{lBtn.classList.remove('done-bad');rBtn.classList.remove('done-bad');},650);
+    }
+    mSel={left:null,right:null};
+  }
+}
+
+// ── ERROR CORRECTION ──────────────────────────────────────────
+const ERR_Q=[
+  {a:'Exam candidates often make mistakes in their use of collocations.',b:'Exam candidates often do mistakes in their use of collocations.',correct:'a',type:'make vs do',exp:'"Make mistakes" is the fixed collocation. "Do mistakes" is always wrong in English.'},
+  {a:'Heavy rain led to the cancellation of the outdoor concert.',b:'Strong rain led to the cancellation of the outdoor concert.',correct:'a',type:'heavy vs strong',exp:'"Heavy rain" is the natural collocation. "Strong rain" is not used in English.'},
+  {a:'The judge acknowledged mitigating circumstances and reduced the sentence.',b:'The judge acknowledged mitigating situations and reduced the sentence.',correct:'a',type:'Fixed collocation',exp:'"Mitigating circumstances" is a near-fixed formal collocation. "Mitigating situations" is not standard.'},
+  {a:'She flatly denied any involvement in the affair.',b:'She straightly denied any involvement in the affair.',correct:'a',type:'adverb + verb',exp:'"Flatly deny" is the strong adverb + verb collocation. "Straightly deny" does not exist in English.'},
+  {a:'By a stroke of luck she found the documents at the last minute.',b:'By a stroke of chance she found the documents at the last minute.',correct:'a',type:'Fixed noun phrase',exp:'"A stroke of luck" is the fixed expression. "A stroke of chance" is not used.'},
+  {a:'The government launched an economy drive to cut wasteful spending.',b:'The government launched an economy trip to cut wasteful spending.',correct:'a',type:'Compound noun',exp:'"Economy drive" = a campaign to reduce costs. "Economy trip" does not exist as a collocation.'},
+  {a:'He tried to convince her but failed miserably.',b:'He tried to convince her but failed desperately.',correct:'a',type:'adverb + verb',exp:'"Failed miserably" is the strong and natural collocation. "Failed desperately" is not standard.'},
+  {a:'There is broad agreement that urgent action is needed.',b:'There is wide agreement that urgent action is needed.',correct:'a',type:'adj + noun',exp:'"Broad agreement" is the stronger collocation. "Wide agreement" is possible but less natural.'},
+  {a:'The minister was bitterly disappointed by the outcome.',b:'The minister was heavily disappointed by the outcome.',correct:'a',type:'adverb + adj',exp:'"Bitterly disappointed" is the near-fixed collocation. "Heavily disappointed" is not used in English.'},
+  {a:'She passed up the opportunity to work in Singapore.',b:'She missed up the opportunity to work in Singapore.',correct:'a',type:'phrasal verb',exp:'"Pass up" = fail to take advantage of an opportunity. "Miss up" does not exist as a phrasal verb.'},
+  {a:'The chairperson adjourned the meeting until Thursday.',b:'The chairperson postponed the meeting until Thursday.',correct:'a',type:'adj + noun',exp:'"Adjourn" means to pause and continue later. "Postpone" means to move to a different time entirely. The context requires "adjourn".'},
+  {a:'The new policy gave rise to considerable confusion.',b:'The new policy gave start to considerable confusion.',correct:'a',type:'Verb + noun phrase',exp:'"Give rise to" is the fixed phrasal verb meaning to cause something. "Give start to" does not exist.'},
+];
+let eItems=[],eIdx=0,eScore=0,eTotal=0,eSel=null,eChecked=false;
+function startErr(){eItems=[...ERR_Q].sort(()=>Math.random()-.5);eIdx=0;eScore=0;eTotal=0;renderErr();}
+function renderErr(){
+  if(eIdx>=eItems.length){document.getElementById('errCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:24px;font-weight:700;color:#185FA5">${eScore}/${eTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin:8px 0 14px">${Math.round(eScore/eTotal*100)>=80?'Well done!':'Review the Browse section and try again.'}</div><button class="act" onclick="startErr()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=eItems[eIdx];eSel=null;eChecked=false;
+  const prog=Math.round(eIdx/eItems.length*100);
+  const opts=[{label:item.a,val:'a'},{label:item.b,val:'b'}].sort(()=>Math.random()-.5);window._eO=opts;
+  document.getElementById('errCont').innerHTML=`<div class="card">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${eIdx+1}/${eItems.length} · Score: ${eScore}/${eTotal}</span>
+      <button class="act" onclick="startErr()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:12px">One sentence contains a collocation error. Choose the <strong style="color:var(--color-text-primary)">correct</strong> version.</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px" id="eOptsList">${opts.map((o,i)=>`<button class="gap-opt" id="eopt_${i}" onclick="selEOpt(${i})" style="font-size:14.5px">${o.label}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="check-btn" id="eCheckBtn" onclick="checkErr()" disabled>Check</button><button class="act" onclick="eIdx++;renderErr()">Skip →</button></div>
+    <div id="eFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selEOpt(i){if(eChecked)return;eSel=i;document.querySelectorAll('#eOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('eCheckBtn').disabled=false;}
+function checkErr(){
+  if(eChecked||eSel===null)return;eChecked=true;eTotal++;
+  const item=eItems[eIdx];const chosen=window._eO[eSel];const ok=chosen.val===item.correct;if(ok)eScore++;
+  document.getElementById('eCheckBtn').disabled=true;
+  document.querySelectorAll('#eOptsList .gap-opt').forEach((el,j)=>{const v=window._eO[j];el.classList.remove('gsel');if(v.val===item.correct)el.classList.add('gok');else if(j===eSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const fb=document.getElementById('eFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ Not quite. ')+item.exp;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{eIdx++;renderErr();};document.querySelector('#errCont .card').appendChild(nxt);
+}
+
+// ── CHOOSE THE WORD ───────────────────────────────────────────
+const CHOOSE_Q=[
+  {q:'He said he would resign, but everyone knew it was just a(n) ___ threat.',opts:['idle','lazy','vain','empty'],correct:'idle',exp:'"Idle threat" = a threat not intended to be carried out. Near-fixed strong collocation.'},
+  {q:'They rushed her to hospital in the ___ hope of saving her life.',opts:['vain','idle','thin','slim'],correct:'vain',exp:'"Vain hope" = hope unlikely to be fulfilled. "In the vain hope of" is the fixed phrase.'},
+  {q:'There is ___ concern among experts about the side effects of the treatment.',opts:['mounting','climbing','growing','rising'],correct:'mounting',exp:'"Mounting concern" is the strong collocation for concern that is steadily increasing.'},
+  {q:'She spoke with a ___ Scottish accent that was immediately recognisable.',opts:['broad','wide','heavy','strong'],correct:'broad',exp:'"Broad accent" = strong regional accent. A standard collocate for this meaning.'},
+  {q:'The chairperson ___ the meeting until the following Thursday.',opts:['adjourned','postponed','stopped','suspended'],correct:'adjourned',exp:'"Adjourn a meeting" is a very strong, formal collocation meaning to pause and continue later.'},
+  {q:'The minister faced a ___ of questions from the assembled press corps.',opts:['barrage','wave','stream','flood'],correct:'barrage',exp:'"A barrage of questions" = large number directed at someone at the same time. Strong collocation.'},
+  {q:'He tried to explain but ___ miserably.',opts:['failed','fell','lost','dropped'],correct:'failed',exp:'"Failed miserably" is the strong adverb + verb collocation for failing badly and obviously.'},
+  {q:'I did not want to ___ up the chance of studying abroad.',opts:['pass','give','turn','miss'],correct:'pass',exp:'"Pass up a chance / opportunity" = fail to take advantage. Fixed phrasal verb collocation.'},
+  {q:'The article provides an ___ personal account of her years in exile.',opts:['intensely','deeply','utterly','extremely'],correct:'intensely',exp:'"Intensely personal" is the strong adverb + adjective collocation. "Deeply personal" is also possible but less standard.'},
+  {q:'By ___ she was in the right place at exactly the right time.',opts:['a stroke of luck','a piece of luck','a bit of fortune','an act of luck'],correct:'a stroke of luck',exp:'"A stroke of luck" is the fixed noun phrase. "A piece of luck" is possible but weaker.'},
+  {q:'The policy change ___ rise to widespread confusion across the sector.',opts:['gave','caused','led','brought'],correct:'gave',exp:'"Give rise to" is the fixed phrasal verb collocation meaning to cause or produce something.'},
+  {q:'He was ___ happy when he heard he had been awarded the grant.',opts:['deliriously','deeply','incredibly','absolutely'],correct:'deliriously',exp:'"Deliriously happy" is a near-fixed strong collocation. The other adverbs are weaker collocates.'},
+  {q:'The solicitor *___ up* a detailed contract for both parties to review.',opts:['drew','wrote','made','put'],correct:'drew',exp:'"Draw up" = to prepare an official document in writing. Fixed phrasal verb in this context.'},
+  {q:'The two sides ___ an agreement late on Friday after twelve hours of talks.',opts:['reached','made','got','achieved'],correct:'reached',exp:'"Reach an agreement" is the strong collocation. "Make" is possible but less natural here.'},
+  {q:'She has ___ concerns about the pace of the restructure since day one.',opts:['raised','made','told','spoken'],correct:'raised',exp:'"Raise concerns" = bring attention to a problem. "Make concerns" is wrong.'},
+];
+let cItems=[],cIdx=0,cScore=0,cTotal=0,cSel=null,cChecked=false;
+function startChoose(){cItems=[...CHOOSE_Q].sort(()=>Math.random()-.5);cIdx=0;cScore=0;cTotal=0;renderChoose();}
+function renderChoose(){
+  if(cIdx>=cItems.length){document.getElementById('chooseCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:24px;font-weight:700;color:#185FA5">${cScore}/${cTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin:8px 0 14px">${Math.round(cScore/cTotal*100)>=80?'Excellent!':'Review the lesson and try again.'}</div><button class="act" onclick="startChoose()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=cItems[cIdx];cSel=null;cChecked=false;
+  const prog=Math.round(cIdx/cItems.length*100);
+  const opts=[...item.opts].sort(()=>Math.random()-.5);window._cO=opts;
+  const sh=item.q.replace('___',`<span style="display:inline-block;min-width:90px;border-bottom:2px solid #185FA5;color:#185FA5;font-weight:500;text-align:center;padding:0 4px" id="cBlank">___</span>`).replace(/\*([^*]+)\*/g,'<strong>$1</strong>');
+  document.getElementById('chooseCont').innerHTML=`<div class="card">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+      <span style="font-size:13px;color:var(--color-text-secondary)">${cIdx+1}/${cItems.length} · Score: ${cScore}/${cTotal}</span>
+      <button class="act" onclick="startChoose()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px">Choose the word that forms the most natural collocation.</div>
+    <div style="font-size:16px;line-height:2;margin-bottom:14px;background:var(--color-background-secondary);border-radius:14px;padding:11px 14px;font-style:italic">${sh}</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="cOptsList">${opts.map((o,i)=>`<button class="gap-opt" id="copt_${i}" onclick="selCOpt(${i})">${o}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="check-btn" id="cCheckBtn" onclick="checkChoose()" disabled>Check</button><button class="act" onclick="cIdx++;renderChoose()">Skip →</button></div>
+    <div id="cFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selCOpt(i){if(cChecked)return;cSel=i;document.querySelectorAll('#cOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('cCheckBtn').disabled=false;}
+function checkChoose(){
+  if(cChecked||cSel===null)return;cChecked=true;cTotal++;
+  const item=cItems[cIdx];const chosen=window._cO[cSel];const ok=chosen===item.correct;if(ok)cScore++;
+  document.getElementById('cCheckBtn').disabled=true;
+  document.querySelectorAll('#cOptsList .gap-opt').forEach((el,j)=>{const w=window._cO[j];el.classList.remove('gsel');if(w===item.correct)el.classList.add('gok');else if(j===cSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const sp=document.getElementById('cBlank');if(sp){sp.textContent=item.correct;sp.style.color=ok?'#27500A':'#791F1F';sp.style.borderBottomColor=ok?'#C0DD97':'#F7C1C1';}
+  const fb=document.getElementById('cFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ The answer is "'+item.correct+'". ')+item.exp;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{cIdx++;renderChoose();};document.querySelector('#chooseCont .card').appendChild(nxt);
+}
+
+// ── REWRITING ──────────────────────────────────────────────────
+const REW_Q=[
+  {q:'Bad weather led to the cancellation of the event.',target:'inclement weather',hint:'Replace "bad weather" with the formal near-fixed collocation.',answer:'Inclement weather led to the cancellation of the event.'},
+  {q:'Melissa has a strong Scottish accent.',target:'broad accent',hint:'Replace "strong" with the adjective that collocates most naturally with "accent" to mean strong regional.',answer:'Melissa has a broad Scottish accent.'},
+  {q:'We were all very happy when we heard we had won the award.',target:'deliriously happy',hint:'Replace "very happy" with the near-fixed adverb + adjective collocation.',answer:'We were all deliriously happy when we heard we had won the award.'},
+  {q:'Their new home is in a very pretty location.',target:'picturesque location',hint:'Replace "very pretty" with a single adjective that forms a stronger collocation.',answer:'Their new home is in a picturesque location.'},
+  {q:'She said she had nothing to do with the decision.',target:'flatly denied',hint:'Replace the underlined section with the adverb + verb collocation.',answer:'She flatly denied any involvement in the decision.'},
+  {q:'I think we should pause the meeting now and continue it tomorrow.',target:'adjourn the meeting',hint:'Replace "pause" with the formal verb that is strongly associated with meetings.',answer:'I think we should adjourn the meeting and continue it tomorrow.'},
+  {q:'He tried hard to persuade her but did not succeed.',target:'failed miserably',hint:'Replace "did not succeed" with the strong adverb + verb collocation.',answer:'He tried hard to persuade her but failed miserably.'},
+  {q:'She had a big smile on her face when she walked in.',target:'broad smile',hint:'Replace "big" with the adjective that forms a stronger, more literary collocation with "smile".',answer:'She had a broad smile on her face when she walked in.'},
+  {q:'The new policy caused a lot of confusion in the sector.',target:'gave rise to',hint:'Replace "caused" with the formal phrasal verb collocation.',answer:'The new policy gave rise to widespread confusion in the sector.'},
+  {q:'They prepared a contract before the project could start.',target:'drew up a contract',hint:'Replace "prepared" with the verb + particle that means to prepare something official in writing.',answer:'They drew up a contract before the project could start.'},
+];
+let rItems=[],rIdx=0,rRevealed=false;
+function startRew(){rItems=[...REW_Q].sort(()=>Math.random()-.5);rIdx=0;renderRew();}
+function renderRew(){
+  if(rIdx>=rItems.length){document.getElementById('rewCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:18px;font-weight:500;margin-bottom:8px">All rewriting tasks complete.</div><button class="act" onclick="startRew()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=rItems[rIdx];rRevealed=false;
+  document.getElementById('rewCont').innerHTML=`<div class="card">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+      <span style="font-size:13px;color:var(--color-text-secondary)">${rIdx+1}/${rItems.length}</span>
+      <button class="act" onclick="startRew()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px">Rewrite the sentence using the collocation given. Many variations are possible.</div>
+    <div style="font-size:15px;line-height:1.8;margin-bottom:10px;background:var(--color-background-secondary);border-radius:14px;padding:11px 14px;font-style:italic">${item.q}</div>
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:8px">💡 ${item.hint}</div>
+    <div style="font-size:14px;font-weight:500;margin-bottom:12px">Use: <span style="background:#E6F1FB;color:#0C447C;padding:2px 10px;border-radius:20px;font-size:13px">${item.target}</span></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" onclick="revealRew()">Show answer</button>
+      <button class="act" onclick="rIdx++;renderRew()">Next →</button>
+    </div>
+    <div id="rAns" style="margin-top:0"></div>
+  </div>`;
+}
+function revealRew(){
+  if(rRevealed)return;rRevealed=true;
+  const item=rItems[rIdx];
+  const fb=document.getElementById('rAns');
+  fb.className='fb-ok';
+  fb.innerHTML=`<strong>Suggested answer:</strong> <em>${item.answer}</em>`;
+  document.querySelector('#rewCont .check-btn').disabled=true;
+}
+
+// ── SR CONTINUUM DETAIL ───────────────────────────────────────
+const SEG_DATA=[
+  {label:'Fixed',col:'#FCEBEB',tc:'#791F1F',pip:4,
+   desc:'No word can be substituted. The phrase must be learned exactly as it is.',
+   examples:['to and fro','inclement weather','mitigating circumstances','auburn hair','deliriously happy','burst into tears','commit a crime','a stroke of luck']},
+  {label:'Strong',col:'#FAEEDA',tc:'#633806',pip:3,
+   desc:'A small, predictable set of partners. Substituting another word sounds unnatural.',
+   examples:['heavy rain','strong argument','make a decision','flatly deny','bitterly disappointed','give rise to','adjourn a meeting','reach a conclusion']},
+  {label:'Medium',col:'#EAF3DE',tc:'#27500A',pip:2,
+   desc:'Some flexibility — a handful of natural partners, but learners often choose a weaker one.',
+   examples:['strong performance','broad agreement','make a difference','have an impact','wave of enthusiasm','a team of experts','deep understanding','strong feelings']},
+  {label:'Weak',col:'#E6F1FB',tc:'#0C447C',pip:1,
+   desc:'Collocates freely with many partners. Any fluent combination will sound natural.',
+   examples:['broad + many nouns','make + many nouns','source of + many nouns','get + many adjectives']},
+];
+function srShowSeg(i){
+  const d=SEG_DATA[i];
+  document.getElementById('srSegDetail').innerHTML=`
+    <div style="background:${d.col};border-radius:14px;padding:12px 14px;border:0.5px solid ${d.tc}44">
+      <div style="font-size:13px;font-weight:700;color:${d.tc};margin-bottom:6px">${d.label} collocations — ${pipHTML(d.pip)}</div>
+      <div style="font-size:13px;color:${d.tc};margin-bottom:8px;line-height:1.6">${d.desc}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        ${d.examples.map(e=>`<span style="background:var(--color-background-primary);color:${d.tc};border:0.5px solid ${d.tc}55;border-radius:20px;padding:3px 10px;font-size:12.5px;font-weight:500">${e}</span>`).join('')}
+      </div>
+    </div>`;
+}
+
+// ── SR GRIDS (Browse-style cards for Fixed / Strong / Weak tabs) ──
+// IDs of collocations to show in each tab, by strength level
+const SR_FIXED_IDS=[
+  'an_inclement_weather','an_mitigating_circumstances','an_deliriously_happy','an_blond_hair',
+  'an_auburn_hair','adv_burst_into','vn_adjourn_meeting','vn_commit_crime',
+  'nn_lick_paint','nn_stroke_luck','nn_stock_market',
+];
+const SR_STRONG_IDS=[
+  'an_heavy_rain','an_heavy_traffic','an_heavy_workload','an_strong_argument','an_strong_wind',
+  'an_strong_evidence','an_strong_language','an_deep_concern','an_mounting_concern',
+  'an_far_reaching','adv_flatly_contradict','adv_bitterly_disappointed','adv_deeply_committed',
+  'vn_make_decision','vn_make_mistake','vn_draw_up','vn_arouse_suspicion','vn_withstand_pressure',
+  'vn_give_rise','nn_spate','nn_barrage','nn_stroke_genius',
+];
+const SR_WEAK_IDS=[
+  'an_broad_agreement','an_broad_smile','an_broad_hint','an_strong_performance',
+  'an_strong_feelings','an_strong_currency','an_deep_understanding',
+  'vn_make_difference','vn_make_suggestion','vn_do_business','vn_hold_meeting',
+  'nn_wave','nn_source_income','nn_body_evidence',
+];
+
+let srSelId={1:null,2:null,3:null};
+
+function srRenderGrid(tabIdx,ids,gridId,detId){
+  const grid=document.getElementById(gridId);
+  if(!grid||grid.innerHTML)return; // already populated
+  const items=ids.map(id=>COLLS.find(c=>c.id===id)).filter(Boolean);
+  grid.innerHTML=items.map(c=>{
+    const cc=CAT_COL[c.cat];const saved=isGlossed(c.id);
+    const regCol={F:{bg:'#E6F1FB',tc:'#0C447C',label:'Formal'},N:{bg:'#EAF3DE',tc:'#27500A',label:'Neutral'},I:{bg:'#FAEEDA',tc:'#633806',label:'Informal'}};
+    const rc=regCol[c.reg]||regCol['N'];
+    return`<div class="tool-card${srSelId[tabIdx]===c.id?' sel':''}" id="srtc${tabIdx}_${c.id}" onclick="srSelCard(${tabIdx},'${c.id}','${gridId}','${detId}')">
+      <div style="display:flex;align-items:flex-start;gap:7px;margin-bottom:5px">
+        <span style="font-size:14px;font-weight:600;flex:1;line-height:1.3">${c.phrase}</span>
+        <span style="background:${cc.bg};color:${cc.tc};font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:20px;white-space:nowrap;flex-shrink:0">${cc.label}</span>
+        <button data-gid="${c.id}" onclick="event.stopPropagation();toggleGloss('${c.id}')" style="border:none;background:none;cursor:pointer;font-size:17px;color:${saved?'#185FA5':'var(--color-text-secondary)'};flex-shrink:0" title="${saved?'Remove from glossary':'Save to glossary'}"><i class="ti ti-bookmark${saved?'-filled':''}"></i></button>
+      </div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:4px">${c.fn} ${pipHTML(c.strength)}</div>
+      <div style="font-size:13px;font-style:italic;color:var(--color-text-secondary);border-left:2px solid ${cc.brd};padding-left:8px;line-height:1.55">${c.exs[0].replace(/\*([^*]+)\*/g,'<strong>$1</strong>')}</div>
+    </div>`;
+  }).join('');
+}
+
+function srSelCard(tabIdx,id,gridId,detId){
+  srSelId[tabIdx]=srSelId[tabIdx]===id?null:id;
+  // deselect all cards in this grid
+  document.querySelectorAll('#'+gridId+' .tool-card').forEach(el=>el.classList.remove('sel'));
+  const det=document.getElementById(detId);
+  if(!srSelId[tabIdx]){det.classList.remove('on');return;}
+  document.getElementById('srtc'+tabIdx+'_'+id)?.classList.add('sel');
+  const c=COLLS.find(x=>x.id===id);
+  const cc=CAT_COL[c.cat];
+  const saved=isGlossed(id);
+  const regCol={F:{bg:'#E6F1FB',tc:'#0C447C',label:'Formal'},N:{bg:'#EAF3DE',tc:'#27500A',label:'Neutral'},I:{bg:'#FAEEDA',tc:'#633806',label:'Informal'}};
+  const rc=regCol[c.reg]||regCol['N'];
+  det.innerHTML=`
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:14px;flex-wrap:wrap">
+      <span style="font-size:18px;font-weight:700">${c.phrase}</span>
+      <span style="background:${cc.bg};color:${cc.tc};font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;border:0.5px solid ${cc.brd}">${cc.label}</span>
+      <span style="background:${rc.bg};color:${rc.tc};font-size:11px;padding:2px 8px;border-radius:20px">${rc.label}</span>
+      <span style="font-size:11px;padding:2px 8px;border-radius:20px;background:var(--color-background-secondary);color:var(--color-text-secondary)">${STRENGTH_LABEL[c.strength]} ${pipHTML(c.strength)}</span>
+      <button id="srSaveBtn_${tabIdx}" data-id="${id}" class="act" style="margin-left:auto;font-size:12px" onclick="toggleGloss('${id}');this.textContent=isGlossed('${id}')?'🔖 Saved':'🔖 Save'">${saved?'🔖 Saved':'🔖 Save'}</button>
+    </div>
+    <div class="lbl">Function</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:8px;line-height:1.6">${c.fn}</p>
+    <div class="lbl">Explanation</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px;line-height:1.7">${c.def}</p>
+    <div class="lbl">Usage note</div>
+    <div style="font-size:13px;color:var(--color-text-secondary);background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;margin-bottom:12px;line-height:1.65">${c.note}</div>
+    <div class="lbl">Examples</div>
+    <div style="display:flex;flex-direction:column;gap:7px">
+      ${c.exs.map(e=>`<div style="background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;font-size:14px;font-style:italic;color:var(--color-text-secondary);display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="flex:1;line-height:1.65">${e.replace(/\*([^*]+)\*/g,`<strong style="color:${cc.tc}">$1</strong>`)}</span><button onclick="cSpeak(${safeQ(e)},this)" style="flex-shrink:0;padding:3px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:12px;color:var(--color-text-secondary)">🔊</button></div>`).join('')}
+    </div>`;
+  det.classList.add('on');det.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function srTab(i,btn){
+  document.querySelectorAll('.sr-tab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.sr-pan').forEach((p,j)=>p.classList.toggle('on',j===i));
+  if(i===1)srRenderGrid(1,SR_FIXED_IDS,'srGrid1','srDet1');
+  if(i===2)srRenderGrid(2,SR_STRONG_IDS,'srGrid2','srDet2');
+  if(i===3)srRenderGrid(3,SR_WEAK_IDS,'srGrid3','srDet3');
+  if(i===5&&!document.getElementById('regQuizCont').innerHTML)startRegQuiz();
+}
+
+// ── REGISTER QUIZ ─────────────────────────────────────────────
+const REG_QUIZ=[
+  {phrase:'Alight from the bus',correct:'F',exp:'"Alight from" is formal — used in official notices. The neutral equivalent is "get off".'},
+  {phrase:'Grab a snack before the meeting',correct:'I',exp:'"Grab a snack" is informal. The neutral equivalent is "have something to eat".'},
+  {phrase:'Terminate the agreement with three months\' notice',correct:'F',exp:'"Terminate" is formal/legal. The neutral equivalent is "end the agreement".'},
+  {phrase:'Pop the question tonight',correct:'I',exp:'"Pop the question" is informal for proposing marriage. The neutral form is "ask someone to marry you".'},
+  {phrase:'Submit your assignment by Friday',correct:'F',exp:'"Submit an assignment" is formal/academic. The spoken neutral form is "hand in your work".'},
+  {phrase:'Look into the allegations',correct:'N',exp:'"Look into" is neutral. It sits between formal "investigate/conduct an investigation" and informal "dig up info about".'},
+  {phrase:'Conduct an investigation into the matter',correct:'F',exp:'"Conduct an investigation" is formal. The neutral equivalent is "investigate / look into".'},
+  {phrase:'Have something to eat before we start',correct:'N',exp:'"Have something to eat" is neutral — appropriate in most spoken and written contexts.'},
+  {phrase:'Dig up info on the deal',correct:'I',exp:'"Dig up info" is informal. "Investigate" or "look into" are more neutral or formal.'},
+  {phrase:'The committee adjourned the hearing',correct:'F',exp:'"Adjourn" is a formal collocation — strongly associated with official meetings and trials.'},
+  {phrase:'She got off at the next stop',correct:'N',exp:'"Get off" is neutral — natural in everyday spoken English without sounding informal.'},
+  {phrase:'Call off the deal',correct:'I',exp:'"Call off" is informal. The neutral equivalent is "cancel" and the formal equivalent is "withdraw from / terminate".'},
+  {phrase:'Make a suggestion before we proceed',correct:'N',exp:'"Make a suggestion" is neutral — natural in both professional and casual contexts.'},
+  {phrase:'Go on an economy drive to cut costs',correct:'N',exp:'"Economy drive" is a neutral compound noun used in both business writing and conversation.'},
+  {phrase:'There are tons of good reasons',correct:'I',exp:'"Tons of" is informal. The neutral equivalent is "a great number of / many" and the formal is "a large number of".'},
+];
+let rqItems=[],rqIdx=0,rqScore=0,rqTotal=0,rqSel=null,rqChecked=false;
+function startRegQuiz(){rqItems=[...REG_QUIZ].sort(()=>Math.random()-.5);rqIdx=0;rqScore=0;rqTotal=0;renderRegQuiz();}
+function renderRegQuiz(){
+  if(rqIdx>=rqItems.length){
+    document.getElementById('regQuizCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:24px;font-weight:700;color:#5b2d8e">${rqScore}/${rqTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin:8px 0 14px">${Math.round(rqScore/rqTotal*100)>=80?'Excellent!':'Review the Register tab and try again.'}</div><button class="act" onclick="startRegQuiz()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=rqItems[rqIdx];rqSel=null;rqChecked=false;
+  const prog=Math.round(rqIdx/rqItems.length*100);
+  const opts=[
+    {val:'F',label:'Formal',bg:'#E6F1FB',tc:'#0C447C'},
+    {val:'N',label:'Neutral',bg:'#EAF3DE',tc:'#27500A'},
+    {val:'I',label:'Informal',bg:'#FAEEDA',tc:'#633806'},
+  ];
+  document.getElementById('regQuizCont').innerHTML=`<div class="card">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+      <span style="background:#f0eafe;color:#5b2d8e;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">Register quiz</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${rqIdx+1}/${rqItems.length} · Score: ${rqScore}/${rqTotal}</span>
+      <button class="act" onclick="startRegQuiz()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%;background:#5b2d8e"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:12px">What is the register of this collocation or expression?</div>
+    <div style="font-size:18px;font-weight:700;background:var(--color-background-secondary);border-radius:14px;padding:14px 16px;margin-bottom:16px;line-height:1.5" id="rqPhrase">"${item.phrase}"</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:14px">
+      ${opts.map((o,i)=>`<button id="rqopt_${i}" onclick="selRQ(${i})" style="padding:12px 8px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;font-weight:600;color:var(--color-text-secondary);transition:all .15s;text-align:center">${o.label}<br><span style="font-size:10px;font-weight:400;opacity:.7">${o.val==='F'?'Documents / official':o.val==='N'?'Any context':'Conversation / casual'}</span></button>`).join('')}
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button style="padding:9px 22px;border-radius:20px;border:0.5px solid #5b2d8e;background:#5b2d8e;color:#fff;font-size:14px;cursor:pointer" id="rqCheck" onclick="checkRQ()" disabled>Check</button><button class="act" onclick="rqIdx++;renderRegQuiz()">Skip →</button></div>
+    <div id="rqFb" style="margin-top:0"></div>
+  </div>`;
+  window._rqO=opts;
+}
+function selRQ(i){if(rqChecked)return;rqSel=i;
+  for(let j=0;j<3;j++){const b=document.getElementById('rqopt_'+j);if(b){b.style.borderColor='';b.style.background='';b.style.color='var(--color-text-secondary)';}}
+  const sel=document.getElementById('rqopt_'+i);const o=window._rqO[i];
+  if(sel){sel.style.borderColor=o.tc;sel.style.background=o.bg;sel.style.color=o.tc;}
+  document.getElementById('rqCheck').disabled=false;
+}
+function checkRQ(){
+  if(rqChecked||rqSel===null)return;rqChecked=true;rqTotal++;
+  const item=rqItems[rqIdx];const chosen=window._rqO[rqSel];const ok=chosen.val===item.correct;if(ok)rqScore++;
+  document.getElementById('rqCheck').disabled=true;
+  const correct=window._rqO.find(o=>o.val===item.correct);
+  for(let j=0;j<3;j++){
+    const b=document.getElementById('rqopt_'+j);const o=window._rqO[j];
+    if(!b)continue;
+    if(o.val===item.correct){b.style.borderColor='#C0DD97';b.style.background='#EAF3DE';b.style.color='#27500A';}
+    else if(j===rqSel&&!ok){b.style.borderColor='#F7C1C1';b.style.background='#FCEBEB';b.style.color='#791F1F';}
+    else{b.style.opacity='.35';}
+  }
+  const fb=document.getElementById('rqFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.innerHTML=(ok?'✓ Correct! ':'✗ This is <strong>'+correct.label+'</strong>. ')+item.exp;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{rqIdx++;renderRegQuiz();};document.querySelector('#regQuizCont .card').appendChild(nxt);
+}
+
+// ── CLASSIFY IT EXERCISE ──────────────────────────────────────
+const CLF_Q=[
+  // strength questions
+  {phrase:'to and fro',kind:'strength',correct:'Fixed',opts:['Fixed','Strong','Medium','Weak'],
+   exp:'"To and fro" is completely fixed — no word can be substituted. It is an idiom meaning back and forth.'},
+  {phrase:'inclement weather',kind:'strength',correct:'Fixed',opts:['Fixed','Strong','Medium','Weak'],
+   exp:'"Inclement" collocates almost exclusively with "weather". Near-fixed and formal.'},
+  {phrase:'make a decision',kind:'strength',correct:'Strong',opts:['Fixed','Strong','Medium','Weak'],
+   exp:'"Make a decision" is a strong collocation — "make" is the only natural verb here. "Do a decision" is always wrong.'},
+  {phrase:'bitterly disappointed',kind:'strength',correct:'Strong',opts:['Fixed','Strong','Medium','Weak'],
+   exp:'"Bitterly" is strongly — almost exclusively — associated with "disappointed". A near-fixed adverb + adjective collocation.'},
+  {phrase:'heavy rain',kind:'strength',correct:'Strong',opts:['Fixed','Strong','Medium','Weak'],
+   exp:'"Heavy rain" is a strong collocation. "Strong rain" is wrong. The adjective choice is not predictable.'},
+  {phrase:'flatly deny',kind:'strength',correct:'Strong',opts:['Fixed','Strong','Medium','Weak'],
+   exp:'"Flatly" collocates strongly with "deny", "contradict", and "refuse". A small, predictable set of partners.'},
+  {phrase:'broad agreement',kind:'strength',correct:'Medium',opts:['Fixed','Strong','Medium','Weak'],
+   exp:'"Broad agreement" is a medium-strength collocation — natural, but "broad" pairs freely with many other nouns.'},
+  {phrase:'strong performance',kind:'strength',correct:'Medium',opts:['Fixed','Strong','Medium','Weak'],
+   exp:'"Strong performance" is a medium collocation — "strong" works here, but "impressive" or "outstanding" are equally natural.'},
+  {phrase:'source of income',kind:'strength',correct:'Weak',opts:['Fixed','Strong','Medium','Weak'],
+   exp:'"Source" is a weak collocator — it pairs freely with income, funding, inspiration, amusement, information, and many more.'},
+  {phrase:'make a difference',kind:'strength',correct:'Weak',opts:['Fixed','Strong','Medium','Weak'],
+   exp:'"Make a difference" is a commonly used phrase, but "make" is a weak collocator — it pairs with a huge range of nouns.'},
+  {phrase:'a stroke of luck',kind:'strength',correct:'Fixed',opts:['Fixed','Strong','Medium','Weak'],
+   exp:'"A stroke of luck" is a near-fixed expression. "A stroke of chance" is wrong. The noun phrase is essentially fixed.'},
+  {phrase:'deep concern',kind:'strength',correct:'Strong',opts:['Fixed','Strong','Medium','Weak'],
+   exp:'"Deep concern" is a strong collocation. "Heavy concern" is wrong. "Deep" collocates with a specific set of abstract nouns.'},
+  {phrase:'mitigating circumstances',kind:'strength',correct:'Fixed',opts:['Fixed','Strong','Medium','Weak'],
+   exp:'"Mitigating" is near-fixed — it collocates almost exclusively with "circumstances" or "factors" in legal and formal contexts.'},
+  {phrase:'broad hint',kind:'strength',correct:'Medium',opts:['Fixed','Strong','Medium','Weak'],
+   exp:'"Broad hint" is a medium collocation. "Broad" pairs with many nouns, so this is flexible, though "broad" is the preferred word here.'},
+  // register questions
+  {phrase:'alight from a bus',kind:'register',correct:'Formal',opts:['Formal','Neutral','Informal'],
+   exp:'"Alight from" is a formal collocation used in official notices and signs. The neutral equivalent is "get off".'},
+  {phrase:'grab a snack',kind:'register',correct:'Informal',opts:['Formal','Neutral','Informal'],
+   exp:'"Grab a snack" is informal. The neutral equivalent is "have something to eat / have a snack".'},
+  {phrase:'conduct an investigation',kind:'register',correct:'Formal',opts:['Formal','Neutral','Informal'],
+   exp:'"Conduct an investigation" is formal. The neutral equivalent is "investigate" or "look into".'},
+  {phrase:'reach an agreement',kind:'register',correct:'Neutral',opts:['Formal','Neutral','Informal'],
+   exp:'"Reach an agreement" is neutral — natural in professional, journalistic, and everyday contexts.'},
+  {phrase:'terminate the agreement',kind:'register',correct:'Formal',opts:['Formal','Neutral','Informal'],
+   exp:'"Terminate" is formal/legal. "End the agreement" is neutral. "Call it off" is informal.'},
+  {phrase:'do your best',kind:'register',correct:'Neutral',opts:['Formal','Neutral','Informal'],
+   exp:'"Do your best" is neutral — suitable in any context. "Do your utmost" is slightly more formal.'},
+  {phrase:'pop the question',kind:'register',correct:'Informal',opts:['Formal','Neutral','Informal'],
+   exp:'"Pop the question" is informal. The neutral equivalent is "propose" or "ask someone to marry you".'},
+  {phrase:'make a suggestion',kind:'register',correct:'Neutral',opts:['Formal','Neutral','Informal'],
+   exp:'"Make a suggestion" is neutral — natural in both professional emails and face-to-face conversation.'},
+];
+let clfItems=[],clfIdx=0,clfScore=0,clfTotal=0,clfSel=null,clfChecked=false;
+function startClf(){clfItems=[...CLF_Q].sort(()=>Math.random()-.5);clfIdx=0;clfScore=0;clfTotal=0;renderClf();}
+function renderClf(){
+  if(clfIdx>=clfItems.length){
+    const pct=Math.round(clfScore/clfTotal*100);
+    document.getElementById('clfCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:24px;font-weight:700;color:#1a5c3a">${clfScore}/${clfTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin:8px 0 14px">${pct>=80?'Excellent classification skills!':pct>=60?'Good — review Strength &amp; register for the tricky ones.':'Study the Strength &amp; register section and try again.'}</div><button class="act" onclick="startClf()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=clfItems[clfIdx];clfSel=null;clfChecked=false;
+  const prog=Math.round(clfIdx/clfItems.length*100);
+  const isStrength=item.kind==='strength';
+  const colourMap={
+    Fixed:{bg:'#FCEBEB',tc:'#791F1F',brd:'#F7C1C1'},
+    Strong:{bg:'#FAEEDA',tc:'#633806',brd:'#E8C080'},
+    Medium:{bg:'#EAF3DE',tc:'#27500A',brd:'#C0DD97'},
+    Weak:{bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB'},
+    Formal:{bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB'},
+    Neutral:{bg:'#EAF3DE',tc:'#27500A',brd:'#C0DD97'},
+    Informal:{bg:'#FAEEDA',tc:'#633806',brd:'#E8C080'},
+  };
+  window._clfO=item.opts;window._clfMap=colourMap;
+  document.getElementById('clfCont').innerHTML=`<div class="card">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+      <span style="background:${isStrength?'#FAEEDA':'#E6F1FB'};color:${isStrength?'#633806':'#0C447C'};font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${isStrength?'Classify the strength':'Identify the register'}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${clfIdx+1}/${clfItems.length} · Score: ${clfScore}/${clfTotal}</span>
+      <button class="act" onclick="startClf()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%;background:#1a5c3a"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px">${isStrength?'Is this collocation <strong style="color:var(--color-text-primary)">fixed, strong, medium, or weak</strong>?':'What is the <strong style="color:var(--color-text-primary)">register</strong> of this collocation?'}</div>
+    <div style="font-size:21px;font-weight:700;background:var(--color-background-secondary);border-radius:14px;padding:16px 18px;margin-bottom:16px;text-align:center">${item.phrase}</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+      ${item.opts.map((o,i)=>{const cc=colourMap[o]||{bg:'var(--color-background-secondary)',tc:'var(--color-text-primary)',brd:'var(--color-border-secondary)'};
+        return`<button class="clf-opt" id="clfopt_${i}" onclick="selClf(${i})" style="border-color:var(--color-border-secondary)">${o}${isStrength&&o==='Fixed'?' 🔒':isStrength&&o==='Weak'?' (flexible)':''}</button>`;}).join('')}
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button style="padding:9px 22px;border-radius:20px;border:0.5px solid #1a5c3a;background:#1a5c3a;color:#fff;font-size:14px;cursor:pointer" id="clfCheck" onclick="checkClf()" disabled>Check</button><button class="act" onclick="clfIdx++;renderClf()">Skip →</button></div>
+    <div id="clfFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selClf(i){if(clfChecked)return;clfSel=i;
+  document.querySelectorAll('#clfCont .clf-opt').forEach(b=>{b.classList.remove('gsel');});
+  document.getElementById('clfopt_'+i)?.classList.add('gsel');
+  document.getElementById('clfCheck').disabled=false;
+}
+function checkClf(){
+  if(clfChecked||clfSel===null)return;clfChecked=true;clfTotal++;
+  const item=clfItems[clfIdx];const chosen=window._clfO[clfSel];const ok=chosen===item.correct;if(ok)clfScore++;
+  document.getElementById('clfCheck').disabled=true;
+  document.querySelectorAll('#clfCont .clf-opt').forEach((el,j)=>{
+    const w=window._clfO[j];el.classList.remove('gsel');
+    if(w===item.correct)el.classList.add('gok');
+    else if(j===clfSel&&!ok)el.classList.add('gbad');
+    else el.classList.add('gdim');
+  });
+  const fb=document.getElementById('clfFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.innerHTML=(ok?'✓ Correct! ':'✗ This is <strong>'+item.correct+'</strong>. ')+item.exp;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{clfIdx++;renderClf();};document.querySelector('#clfCont .card').appendChild(nxt);
+}
+
+// ── NAV ───────────────────────────────────────────────────────
+function showP(i){
+  document.querySelectorAll('.pan').forEach((p,j)=>p.classList.toggle('on',j===i));
+  document.querySelectorAll('.nt').forEach((t,j)=>t.classList.toggle('on',j===i));
+  if(i===0)renderQuote();
+  if(i===2&&!document.getElementById('catChips').innerHTML){renderChips();renderBrowse();}
+  if(i===3&&!gItems.length)startGap();
+  if(i===4&&!document.getElementById('matchCont').innerHTML)startMatch(0);
+  if(i===5&&!eItems.length)startErr();
+  if(i===6&&!cItems.length)startChoose();
+  if(i===7&&!rItems.length)startRew();
+  if(i===8&&!clfItems.length)startClf();
+  if(i===9)renderGloss();
+}
+window.addEventListener('load',()=>{
+  if(window.speechSynthesis){window.speechSynthesis.getVoices();setTimeout(loadV,500);setTimeout(loadV,1500);}
+  renderQuote();
+});
+</script>
+</body>
+</html>
