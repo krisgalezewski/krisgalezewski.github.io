@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business English in Action — Finance Workflow Lesson</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary)}
+.w{padding:1.5rem}
+.nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
+.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nt:hover{background:var(--color-background-secondary)}
+.nt.on{color:#fff;border-color:transparent;font-weight:500}
+.n0.on{background:#534AB7}.n1.on{background:#0F6E56}.n2.on{background:#185FA5}.n3.on{background:#854F0B}
+.n4.on{background:#993C1D}.n5.on{background:#72243E}.n6.on{background:#3B6D11}.n7.on{background:#712B13}
+.n8.on{background:#2d7a6b}.n9.on{background:#4a3b8c}
+.pan{display:none}.pan.on{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:.9rem}
+.lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
+.lbl:first-child{margin-top:0}
+.tip-box{background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;font-size:13px;color:var(--color-text-secondary);display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px}
+.warn-box{background:#FAEEDA;border-radius:14px;padding:10px 14px;font-size:13px;color:#633806;display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px;border:0.5px solid #E8C080}
+.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act:hover{background:var(--color-background-secondary)}
+.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #534AB7;background:#534AB7;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn:hover{background:#3C3489}
+.check-btn:disabled{opacity:.4;cursor:default}
+.gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
+.gap-opt:hover:not(.gsel):not(.gok):not(.gbad):not(.gdim){background:var(--color-background-secondary)}
+.gap-opt.gsel{border-color:#534AB7;background:#EEEDFE;color:#3C3489;font-weight:500}
+.gap-opt.gok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:500;cursor:default;pointer-events:none}
+.gap-opt.gbad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F;cursor:default;pointer-events:none}
+.gap-opt.gdim{opacity:.38;cursor:default;pointer-events:none}
+.fb-ok{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.fb-no{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.ex-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:20px;background:#534AB7;transition:width .3s}
+.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #534AB7}
+.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
+.audio-btn:hover{background:#EEEDFE;border-color:#AFA9EC;color:#534AB7}
+.audio-btn.playing{background:#EEEDFE;border-color:#534AB7;color:#534AB7;font-weight:500}
+.eyebrow{font-size:11px;font-weight:500;color:#534AB7;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.lesson-h{font-size:26px;font-weight:500;color:var(--color-text-primary);line-height:1.25;margin-bottom:4px}
+.lesson-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:1.25rem}
+.sub-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
+.st{padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.st:hover{background:var(--color-background-secondary)}
+.st.on{background:#534AB7;color:#fff;border-color:#534AB7;font-weight:500}
+.spanel{display:none}.spanel.on{display:block}
+/* vocab popup */
+.hl{cursor:pointer;border-bottom:1.5px dotted;padding-bottom:1px;font-weight:500;transition:all .12s}
+.hl:hover{opacity:.75}
+.hl-noun{color:#0C447C;background:#E6F1FB;border-radius:4px;padding:1px 4px;border-bottom-color:#85B7EB}
+.hl-verb{color:#27500A;background:#EAF3DE;border-radius:4px;padding:1px 4px;border-bottom-color:#A8D88A}
+.hl-adj{color:#633806;background:#FAEEDA;border-radius:4px;padding:1px 4px;border-bottom-color:#E8C080}
+.hl-adv{color:#72243E;background:#FBEAF0;border-radius:4px;padding:1px 4px;border-bottom-color:#ED93B1}
+.hl-phrase{color:#712B13;background:#FAECE7;border-radius:4px;padding:1px 4px;border-bottom-color:#F0997B}
+.hl-grammar{color:#3B6D11;background:#EAF3F0;border-radius:4px;padding:1px 4px;border-bottom-color:#7AC89A}
+/* popup panel */
+.popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.18);z-index:100;align-items:flex-end;justify-content:center}
+.popup-overlay.on{display:flex}
+.popup-box{background:#fff;border-radius:24px 24px 0 0;padding:1.5rem 1.5rem 2rem;width:100%;max-width:560px;max-height:75vh;overflow-y:auto;box-shadow:0 -6px 40px rgba(0,0,0,.22);position:relative}
+.popup-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--color-text-secondary)}
+.popup-close:hover{color:var(--color-text-primary)}
+.popup-word{font-size:21px;font-weight:700;margin-bottom:4px;color:#111}
+.popup-type{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:2px 9px;border-radius:20px;display:inline-block;margin-bottom:10px}
+.popup-def{font-size:14px;color:#2a2a2a;line-height:1.75;margin-bottom:8px}
+.popup-context{font-size:13px;font-style:italic;background:#f2f2f2;border-radius:12px;padding:9px 13px;line-height:1.65;margin-bottom:10px;color:#444}
+/* vocab cards */
+.vcard{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:18px;padding:1rem 1.25rem;margin-bottom:.75rem}
+.vcard-word{font-size:17px;font-weight:700;margin-bottom:3px}
+.vcard-meta{font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.vcard-def{font-size:14px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:6px}
+.vcard-ctx{font-size:13px;font-style:italic;background:var(--color-background-secondary);border-radius:10px;padding:7px 12px;line-height:1.6;color:var(--color-text-secondary)}
+.script-para{font-size:15px;line-height:2;margin-bottom:1.1rem;color:var(--color-text-primary)}
+.script-section{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-secondary);margin:1.4rem 0 .5rem;padding-bottom:4px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.badge{font-size:10px;font-weight:700;padding:1px 7px;border-radius:20px;display:inline-block}
+.ref-link{font-size:11px;cursor:pointer;text-decoration:underline;text-underline-offset:2px;opacity:.7;transition:opacity .15s}
+.ref-link:hover{opacity:1}
+.mi{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
+.mi:hover:not(.pk):not(.mt):not(.bd){background:var(--color-background-secondary)}
+.mi.pk{border-color:#534AB7;background:#EEEDFE;color:#3C3489;font-weight:600}
+.mi.mt{border-color:#27500A;background:#EAF3DE;color:#27500A;font-weight:600;cursor:default;pointer-events:none}
+.mi.bd{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+@media(max-width:520px){.popup-box{border-radius:20px 20px 0 0;padding:1.2rem 1.1rem 2rem}}
+</style>
+</head>
+<body>
+<h2 class="sr-only">Business English in Action — Finance Workflow Lesson</h2>
+<div class="w">
+<div class="nav">
+  <button class="nt n0 on" onclick="showP(0)">Home</button>
+  <button class="nt n1" onclick="showP(1)">The script</button>
+  <button class="nt n2" onclick="showP(2)">Nouns</button>
+  <button class="nt n3" onclick="showP(3)">Verbs</button>
+  <button class="nt n4" onclick="showP(4)">Adjectives</button>
+  <button class="nt n5" onclick="showP(5)">Phrases</button>
+  <button class="nt n6" onclick="showP(6)">Grammar</button>
+  <button class="nt n8" onclick="showP(7)">Exercises</button>
+  <button class="nt n9" onclick="showP(8)">My glossary</button>
+</div>
+
+<!-- HOME -->
+<div id="p0" class="pan on">
+  <div class="eyebrow">Business English in Action</div>
+  <div class="lesson-h">Finance workflow — vocabulary &amp; language</div>
+  <div class="lesson-sub">Real language from a real workplace training session — click any highlighted word in the script to explore it</div>
+  <div class="quote-box" id="quoteBox"></div>
+  <div class="card">
+    <div class="lbl">About this lesson</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">This lesson is based on a real training session in which Kate — a finance professional — explains her order-processing workflow to a new colleague. The language is authentic spoken business English: a mix of <strong style="color:var(--color-text-primary)">technical vocabulary</strong>, <strong style="color:var(--color-text-primary)">idiomatic phrases</strong>, and <strong style="color:var(--color-text-primary)">grammatical structures</strong> typical of professional meetings and hand-overs.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:10px">
+      <div style="background:#E6F1FB;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:19px;font-weight:600;color:#0C447C">12</div><div style="font-size:11px;font-weight:500;color:#0C447C;margin-top:2px">Key nouns</div></div>
+      <div style="background:#EAF3DE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:19px;font-weight:600;color:#27500A">10</div><div style="font-size:11px;font-weight:500;color:#27500A;margin-top:2px">Key verbs</div></div>
+      <div style="background:#FAEEDA;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:19px;font-weight:600;color:#633806">7</div><div style="font-size:11px;font-weight:500;color:#633806;margin-top:2px">Adjectives</div></div>
+      <div style="background:#FAECE7;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:19px;font-weight:600;color:#712B13">10</div><div style="font-size:11px;font-weight:500;color:#712B13;margin-top:2px">Phrases</div></div>
+      <div style="background:#EAF3F0;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:19px;font-weight:600;color:#3B6D11">6</div><div style="font-size:11px;font-weight:500;color:#3B6D11;margin-top:2px">Grammar structures</div></div>
+    </div>
+    <div class="tip-box"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:#534AB7"></i><span>In <strong>The script</strong>, coloured words are clickable — tap any one for the definition, a British audio reading, and a 🔖 Save button. Every item also appears in its own section (Nouns, Verbs, etc.) with a link back to where it appears in the script.</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px">
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(1)"><div style="font-size:20px;margin-bottom:6px">📄</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">The script</div><div style="font-size:12px;color:var(--color-text-secondary)">Full text, all words highlighted</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(2)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-letter-n" style="color:#0C447C"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Nouns</div><div style="font-size:12px;color:var(--color-text-secondary)">renewal, reseller, cadence…</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(3)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-letter-v" style="color:#27500A"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Verbs</div><div style="font-size:12px;color:var(--color-text-secondary)">to reject, to sync, to override…</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(4)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-letter-a" style="color:#633806"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Adjectives</div><div style="font-size:12px;color:var(--color-text-secondary)">self-hosted, tax-exempt, multi-year…</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(5)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-quote" style="color:#712B13"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Phrases</div><div style="font-size:12px;color:var(--color-text-secondary)">weed through, at all costs…</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(6)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-grammar" style="color:#3B6D11"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Grammar</div><div style="font-size:12px;color:var(--color-text-secondary)">conditionals, passive, ellipsis…</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(7)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-writing" style="color:#2d7a6b"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Exercises</div><div style="font-size:12px;color:var(--color-text-secondary)">4 practice activities</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(8)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-bookmark" style="color:#4a3b8c"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">My glossary</div><div style="font-size:12px;color:var(--color-text-secondary)">Your saved items</div></div>
+  </div>
+</div>
+
+<!-- THE SCRIPT -->
+<div id="p1" class="pan">
+  <div class="eyebrow">Business English in Action</div>
+  <div class="lesson-h">The script</div>
+  <div class="lesson-sub">Kate's finance training session — click any coloured word or phrase to explore it</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem">
+    <span style="display:flex;align-items:center;gap:5px;font-size:12px"><span class="hl hl-noun" style="pointer-events:none">noun</span></span>
+    <span style="display:flex;align-items:center;gap:5px;font-size:12px"><span class="hl hl-verb" style="pointer-events:none">verb</span></span>
+    <span style="display:flex;align-items:center;gap:5px;font-size:12px"><span class="hl hl-adj" style="pointer-events:none">adjective</span></span>
+    <span style="display:flex;align-items:center;gap:5px;font-size:12px"><span class="hl hl-phrase" style="pointer-events:none">phrase</span></span>
+    <span style="display:flex;align-items:center;gap:5px;font-size:12px"><span class="hl hl-grammar" style="pointer-events:none">grammar</span></span>
+  </div>
+  <div class="card" id="scriptCard">
+    <div class="script-section">Part 1 — Types of orders</div>
+    <p class="script-para">OK, so I'll start by explaining the types of orders that come through to us. For Tiny, they are either <span class="hl hl-noun" onclick="openPopup('renewal')">renewals</span> — people just renewing their regular orders — or <span class="hl hl-noun" onclick="openPopup('new_order')">new orders</span>, which means a brand new customer. Then we have <span class="hl hl-noun" onclick="openPopup('expansion')">expansions</span>, which is people expanding on what they already have — so it could be more seats that people are using. An <span class="hl hl-noun" onclick="openPopup('upsell')">upsell</span> is when they're either being upsold from <span class="hl hl-adj" onclick="openPopup('self_service')">self-service</span> to <span class="hl hl-adj" onclick="openPopup('sales_assisted')">sales-assisted</span>, or they could have an upsell to what they already have — so maybe they bought one product and now they're adding another.</p>
+
+    <div class="script-section">Part 2 — Processing a renewal</div>
+    <p class="script-para"><span class="hl hl-grammar" onclick="openPopup('passive_submitted')">It comes to you when it's submitted to finance.</span> They can't make any changes to this once it's submitted. So <span class="hl hl-grammar" onclick="openPopup('conditional_errors')">if there's any changes that you find — errors — you have to reject it</span>, send it back to them and have them fix it and <span class="hl hl-verb" onclick="openPopup('resubmit')">resubmit</span> it again.</p>
+    <p class="script-para">The first thing I do is check the <span class="hl hl-noun" onclick="openPopup('subscription_dates')">subscription dates</span> for a renewal, because you want to make sure that the dates aren't overlapping and they have the correct year. So I look at the <span class="hl hl-noun" onclick="openPopup('transaction_tab')">transaction tab</span> and I check out the dates on the contract. This is automatically set up for us and it takes this information to <span class="hl hl-verb" onclick="openPopup('populate')">populate</span> this field, but it has to be under the products field. So if this is empty or blank, you have to <span class="hl hl-verb" onclick="openPopup('reject')">reject</span> it and have them add the dates in.</p>
+    <p class="script-para">I quickly scan the <span class="hl hl-adj" onclick="openPopup('boilerplate')">boilerplate</span> information and the pricing details — it's pretty much the same all the time. If there was any discount terms, additional terms, notes to finance, if this was really long, then I would read it again.</p>
+
+    <div class="script-section">Part 3 — Checking backup documentation</div>
+    <p class="script-para">For us to be able to bill a customer, we need certain things. We need either a signed <span class="hl hl-noun" onclick="openPopup('quote')">quote</span> with them accepting our payment terms, or if the customer emails us saying that they accept our quote with the quote number in it, we can accept that as an email acceptance.</p>
+    <p class="script-para">The other thing is if a customer gives a <span class="hl hl-noun" onclick="openPopup('purchase_order')">purchase order</span> — there are a couple of ways we can accept it. Even though they've accepted our terms in the past, when they have a purchase order, most people's purchase orders say "by accepting our purchase order, you accept our terms." So we need to <span class="hl hl-verb" onclick="openPopup('override')">override</span> that. We can accept the purchase order as long as they reference our quote number on it — because whatever wording we have in our quote <span class="hl hl-verb" onclick="openPopup('supersede')">supersedes</span> whatever they have for terms in their purchase order.</p>
+    <p class="script-para"><span class="hl hl-grammar" onclick="openPopup('conditional_reseller')">If they were a reseller, this would say yes and it would tell you who the reseller was.</span> A <span class="hl hl-noun" onclick="openPopup('reseller')">reseller</span> is a third party that sells our product on to an end user. <span class="hl hl-grammar" onclick="openPopup('conditional_multiyear')">If it was a multi-year deal and we were billing them upfront, this is supposed to be checked off.</span> The <span class="hl hl-adj" onclick="openPopup('net30')">net 30</span> days — that means they have 30 days from the invoice date to pay us.</p>
+
+    <div class="script-section">Part 4 — Tax and address</div>
+    <p class="script-para">It's always important to make sure we get the correct ship-to address because the <span class="hl hl-noun" onclick="openPopup('sales_tax')">sales tax</span> is based on where it's shipped to — because the shipping address is the person that's using the software. We collect <span class="hl hl-noun" onclick="openPopup('vat')">VAT</span> in the EU, but at this point in time we do not collect VAT in the UK, only in the EU. <span class="hl hl-grammar" onclick="openPopup('negation_emphasis')">We do not collect VAT in the UK — only in the EU.</span></p>
+    <p class="script-para">So we try to avoid errors going into NetSuite <span class="hl hl-phrase" onclick="openPopup('at_all_costs')">at all costs</span>. <span class="hl hl-grammar" onclick="openPopup('once_clause')">Once it syncs, you don't want that to happen.</span> If there's an error, you don't want it to go into NetSuite because once it gets into NetSuite you can't fix it in Maxio — you have to fix it there. You could always credit the invoice and start over again, but if you have an invoice with ten lines, it's pretty <span class="hl hl-adj" onclick="openPopup('time_consuming')">time-consuming</span>.</p>
+
+    <div class="script-section">Part 5 — Approving and syncing</div>
+    <p class="script-para">So I'm going to go in and I'm going to approve it. This is where at the top of the page you see the finance approval history. I can approve it here or I can reject it here. <span class="hl hl-grammar" onclick="openPopup('conditional_reject')">If I reject it, it brings up a box and you can put a note in why you're rejecting it.</span></p>
+    <p class="script-para">Now that I approved it, I can go into Maxio and <span class="hl hl-verb" onclick="openPopup('sync')">sync</span> Salesforce right here. It should bring it in on the sales order tab. Here's the portal account email — the <span class="hl hl-noun" onclick="openPopup('portal_email')">portal account email</span>. We process it — I just hover over it and we process it.</p>
+    <p class="script-para">The <span class="hl hl-noun" onclick="openPopup('cadence')">cadence</span> is the primary invoice cadence that is setting up when reminder emails go to the customer. We allow people to pay by credit card for anything five thousand dollars and under. If a customer wants to pay by credit card after the fact and it's over five thousand, I do a Stripe link for them and charge them a three-percent fee.</p>
+
+    <div class="script-section">Part 6 — Committing sales tax and sending the invoice</div>
+    <p class="script-para">I know that it's in a state that we collect in New York, so I am going to <span class="hl hl-verb" onclick="openPopup('commit_tax')">commit sales tax</span> for them. This goes to Avalara and it's showing you the sales tax address. Now you can see the sales taxes are in here and they have a link to go to the sales tax.</p>
+    <p class="script-para">Now I'm going to view the invoice. I go into the BCC and I put in all of the account managers so they all get a copy of it. I send the E-bill — and you can see right now it says your E-bill activity today. <span class="hl hl-phrase" onclick="openPopup('weed_through')">You have to weed through</span> a lot of emails through there because there's a ton of junk. I save all the <span class="hl hl-noun" onclick="openPopup('backup')">backup</span> — the invoice, the email approval, the quote — so when we have an audit, I have all that data right there.</p>
+
+    <div class="script-section">Part 7 — New deals and upsells</div>
+    <p class="script-para">For any upsells or any new deals that come through, I make sure that the <span class="hl hl-noun" onclick="openPopup('portal_email')">portal account email</span> is not already in there. <span class="hl hl-phrase" onclick="openPopup('have_ducks')">Have all our ducks in a row</span> — that's what we want before we approve anything. So say if someone came through and said this is a new deal, I would look at this email and go into Maxio and search by portal account email and paste it in there. <span class="hl hl-grammar" onclick="openPopup('conditional_upsell')">If it's telling me that portal email account's already in use, I know it's not a new customer because it's already being used.</span></p>
+    <p class="script-para">A <span class="hl hl-noun" onclick="openPopup('poc')">proof of concept (POC)</span> means the customer wants to see if the software is going to work for their situation — it's always zero dollars. New deals we're supposed to process within 24 hours. Renewals we're supposed to process within 48 hours. So everyone's always like, <span class="hl hl-phrase" onclick="openPopup('pulls_right')">did you get to this yet?</span> — it's very <span class="hl hl-adj" onclick="openPopup('time_consuming')">time-consuming</span> work and I get <span class="hl hl-phrase" onclick="openPopup('pulled_into')">pulled into</span> meetings on top of it.</p>
+
+    <div class="script-section">Part 8 — Deferred revenue and filing</div>
+    <p class="script-para">I save everything in fiscal year 2026, <span class="hl hl-noun" onclick="openPopup('deferred_revenue')">deferred revenue</span> backup. I get rid of the PDF name and rename it as invoice and save it, then I go into the email that I get and I say "hello all" and I paste it in and just put "has been billed" so everyone knows that it <span class="hl hl-phrase" onclick="openPopup('has_been_billed')">has been billed</span>. If it was a signed quote, I would put "signed quote". And then when we have an audit, I have all that data right there — the invoice, the approval to bill them.</p>
+    <p class="script-para">Once it's closed — once it's Closed Won — it's locked. No one can <span class="hl hl-phrase" onclick="openPopup('touch_it')">touch it</span>. That's how you do renewals. Expansions are pretty much the same — they're basically renewals. There's not much difference.</p>
+  </div>
+</div>
+
+<!-- NOUNS -->
+<div id="p2" class="pan">
+  <div class="eyebrow">Business vocabulary</div>
+  <div class="lesson-h">Key nouns</div>
+  <div class="lesson-sub">Business and finance terms from the script — click 🔊 to hear, 🔖 to save</div>
+  <div id="nounCards"></div>
+</div>
+
+<!-- VERBS -->
+<div id="p3" class="pan">
+  <div class="eyebrow">Business vocabulary</div>
+  <div class="lesson-h">Key verbs</div>
+  <div class="lesson-sub">Action verbs used in professional finance workflows — click 🔊 to hear, 🔖 to save</div>
+  <div id="verbCards"></div>
+</div>
+
+<!-- ADJECTIVES -->
+<div id="p4" class="pan">
+  <div class="eyebrow">Business vocabulary</div>
+  <div class="lesson-h">Adjectives &amp; modifiers</div>
+  <div class="lesson-sub">Descriptive terms from the script — click 🔊 to hear, 🔖 to save</div>
+  <div id="adjCards"></div>
+</div>
+
+<!-- PHRASES -->
+<div id="p5" class="pan">
+  <div class="eyebrow">Business vocabulary</div>
+  <div class="lesson-h">Idioms &amp; phrases</div>
+  <div class="lesson-sub">Informal expressions and fixed phrases from natural spoken business English — click 🔊 to hear, 🔖 to save</div>
+  <div id="phraseCards"></div>
+</div>
+
+<!-- GRAMMAR -->
+<div id="p6" class="pan">
+  <div class="eyebrow">Business vocabulary</div>
+  <div class="lesson-h">Grammar structures</div>
+  <div class="lesson-sub">Patterns worth noticing in authentic spoken professional English — click 🔊 to hear, 🔖 to save</div>
+  <div id="grammarCards"></div>
+</div>
+
+<!-- EXERCISES -->
+<div id="p7" class="pan">
+  <div class="eyebrow">Business English in Action</div>
+  <div class="lesson-h">Exercises</div>
+  <div class="lesson-sub">Four activities to practise the vocabulary and language from Kate's script</div>
+  <div class="sub-tabs">
+    <button class="st on" onclick="exTab(0,this)">1 · Gap fill</button>
+    <button class="st" onclick="exTab(1,this)">2 · Word match</button>
+    <button class="st" onclick="exTab(2,this)">3 · Error correction</button>
+    <button class="st" onclick="exTab(3,this)">4 · Definition quiz</button>
+  </div>
+  <div id="exP0" class="spanel on"><div id="gapCont"></div></div>
+  <div id="exP1" class="spanel"><div id="matchCont"></div></div>
+  <div id="exP2" class="spanel"><div id="errCont"></div></div>
+  <div id="exP3" class="spanel"><div id="defCont"></div></div>
+</div>
+
+<!-- GLOSSARY -->
+<div id="p8" class="pan">
+  <div class="eyebrow">Business English in Action</div>
+  <div class="lesson-h">My glossary</div>
+  <div class="lesson-sub">Items you have saved — click ✕ to remove any item</div>
+  <div id="glossCont"></div>
+</div>
+</div>
+
+<!-- POPUP -->
+<div class="popup-overlay" id="popupOverlay" onclick="closePopup(event)">
+  <div class="popup-box" id="popupBox">
+    <button class="popup-close" onclick="closePopup()"><i class="ti ti-x"></i></button>
+    <div class="popup-word" id="popWord"></div>
+    <div class="popup-type" id="popType"></div>
+    <div class="popup-def" id="popDef"></div>
+    <div class="popup-context" id="popCtx"></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+      <button class="audio-btn" id="popAudio" onclick="speakPopup()">🔊 Hear it</button>
+      <button class="act" id="popSave" style="font-size:12px" onclick="popToggleGloss()">🔖 Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── VOCAB DATA ────────────────────────────────────────────────
+const VOCAB={
+  // NOUNS
+  renewal:{id:'renewal',cat:'noun',word:'renewal',def:'A contract or subscription that is extended for another period after the original term expires. In a SaaS context, the customer simply continues their existing product at the same or renegotiated terms.',ctx:'For Tiny, they are either renewals — people just renewing their regular orders.',scriptRef:'Part 1'},
+  new_order:{id:'new_order',cat:'noun',word:'new order',def:'A purchase from a brand new customer who has no existing relationship or contract with the company. Distinct from a renewal or upsell.',ctx:'New orders means a brand new customer — someone we haven\'t called before.',scriptRef:'Part 1'},
+  expansion:{id:'expansion',cat:'noun',word:'expansion',def:'An increase in the scope of an existing contract — for example, adding more user seats or additional features, without switching to a completely new product.',ctx:'Expansions are people expanding on what they already have — more seats, something like that.',scriptRef:'Part 1'},
+  upsell:{id:'upsell',cat:'noun',word:'upsell (noun) / to upsell (verb)',def:'An upsell occurs when a customer moves to a higher-tier product, adds a new product, or upgrades from self-service to a sales-assisted model. As a verb: "to upsell someone" means to sell them a more valuable product.',ctx:'An upsell is when they\'re being upsold from self-service to sales-assisted, or adding another product.',scriptRef:'Part 1'},
+  subscription_dates:{id:'subscription_dates',cat:'noun',word:'subscription dates',def:'The start and end dates of a customer\'s current subscription period. These must be verified carefully to avoid billing gaps or overlaps.',ctx:'The first thing I do is check the subscription dates for a renewal — you want to make sure the dates aren\'t overlapping.',scriptRef:'Part 2'},
+  transaction_tab:{id:'transaction_tab',cat:'noun',word:'transaction tab',def:'A section within a billing system (here, Maxio) showing the history of all financial transactions for a customer, including renewal dates and invoice records.',ctx:'I go into the transaction tab and check out the dates on the contract.',scriptRef:'Part 2'},
+  quote:{id:'quote',cat:'noun',word:'quote (quotation)',def:'A formal document sent to a potential customer specifying the product, price, terms, and conditions of a proposed sale. A signed quote serves as legal acceptance of those terms.',ctx:'We need either a signed quote with them accepting our payment terms.',scriptRef:'Part 3'},
+  purchase_order:{id:'purchase_order',cat:'noun',word:'purchase order (PO)',def:'A formal document issued by a buyer to a supplier, authorising a purchase. It specifies quantities, prices, and terms. However, a PO\'s own terms may conflict with the supplier\'s quote — which is why the quote number must appear on the PO.',ctx:'If a customer gives a purchase order, there are a couple of ways we can accept it.',scriptRef:'Part 3'},
+  reseller:{id:'reseller',cat:'noun',word:'reseller',def:'A third party (company or individual) that purchases a product from the original supplier and sells it on to an end user, often adding their own margin. The reseller, not the end user, is the direct billing contact.',ctx:'If they were a reseller, this would say yes and tell you who the reseller was.',scriptRef:'Part 3'},
+  sales_tax:{id:'sales_tax',cat:'noun',word:'sales tax',def:'A consumption tax levied on the sale of goods and services, collected by the seller at the point of sale and remitted to the government. In the US, it is determined by the ship-to (delivery) address, not the billing address.',ctx:'The sales tax is based on where it\'s shipped to — the shipping address is the person using the software.',scriptRef:'Part 4'},
+  vat:{id:'vat',cat:'noun',word:'VAT (Value Added Tax)',def:'A consumption tax applied at each stage of production and distribution in many countries, particularly in the EU. Different from US sales tax in that it is applied at multiple points in the supply chain and is included in the listed price.',ctx:'We collect VAT in the EU, but at this point we do not collect VAT in the UK.',scriptRef:'Part 4'},
+  portal_email:{id:'portal_email',cat:'noun',word:'portal account email',def:'The email address associated with a customer\'s account in the customer-facing portal. It is used as a unique identifier — if an email is already in the system, the customer is not new.',ctx:'I make sure the portal account email is not already in there — if it\'s already in use, it\'s not a new customer.',scriptRef:'Parts 5 & 7'},
+  cadence:{id:'cadence',cat:'noun',word:'cadence',def:'In a business context, cadence refers to the regular rhythm or schedule of a recurring activity. Here, the "invoice cadence" determines when automated reminder emails are sent to customers about upcoming and overdue invoices.',ctx:'The cadence is the primary invoice cadence — setting up when reminder emails go to the customer.',scriptRef:'Part 5'},
+  poc:{id:'poc',cat:'noun',word:'proof of concept (POC)',def:'A small-scale trial or pilot that a potential customer undertakes to test whether a product will work in their specific environment. It is typically zero-cost and time-limited.',ctx:'This is a POC — a proof of concept. The customer wants to see if the software will work for their situation.',scriptRef:'Part 7'},
+  backup:{id:'backup',cat:'noun',word:'backup (documentation)',def:'Supporting documents — such as a signed quote, email approval, and purchase order — that prove a transaction was authorised. Required for audit purposes.',ctx:'I save all the backup — the invoice, the email approval, the quote — so when we have an audit, I have all that data.',scriptRef:'Part 6'},
+  deferred_revenue:{id:'deferred_revenue',cat:'noun',word:'deferred revenue',def:'Money received by a company for goods or services not yet fully delivered. In subscription businesses, revenue is "deferred" and recognised gradually over the subscription period rather than all at once when payment is received.',ctx:'I save everything in fiscal year 2026, deferred revenue backup.',scriptRef:'Part 8'},
+  // VERBS
+  resubmit:{id:'resubmit',cat:'verb',word:'to resubmit',def:'To send something again after it has been rejected, corrected, or revised. In this context: sending an order back through the approval workflow after errors have been fixed.',ctx:'You have to reject it, send it back to them and have them fix it and resubmit it again.',scriptRef:'Part 2'},
+  populate:{id:'populate',cat:'verb',word:'to populate (a field)',def:'To automatically fill in data into a form field or system, typically pulled from another source. The opposite of entering data manually.',ctx:'This takes the information to populate this field, but it has to be under the products field.',scriptRef:'Part 2'},
+  reject:{id:'reject',cat:'verb',word:'to reject (an order)',def:'To send an order back to the sender without approving it, usually because of errors, missing information, or discrepancies. The sender must correct and resubmit.',ctx:'If there\'s any changes that you find — errors — you have to reject it and send it back.',scriptRef:'Part 2'},
+  override:{id:'override',cat:'verb',word:'to override',def:'To deliberately set aside or supersede a default rule, condition, or agreement with a higher-priority instruction. Here: using the quote acceptance to override the purchase order\'s own terms.',ctx:'We need to override that — so we can accept the PO as long as they reference our quote number.',scriptRef:'Part 3'},
+  supersede:{id:'supersede',cat:'verb',word:'to supersede',def:'To take the place of something and make it no longer valid or effective. Formal and often used in legal and contractual contexts.',ctx:'Whatever wording we have in our quote supersedes whatever they have for terms in their purchase order.',scriptRef:'Part 3'},
+  sync:{id:'sync',cat:'verb',word:'to sync (synchronise)',def:'To transfer and align data between two systems so that both hold the same, up-to-date information. Here: pushing approved order data from Salesforce into Maxio.',ctx:'Now that I approved it, I can go into Maxio and sync Salesforce right here.',scriptRef:'Part 5'},
+  commit_tax:{id:'commit_tax',cat:'verb',word:'to commit (sales tax)',def:'To finalise and apply the calculated sales tax to an invoice, making it permanent. "Committing" tax sends the transaction to the tax calculation engine (Avalara) and locks the result.',ctx:'I am going to commit sales tax for them — this goes to Avalara and it\'s showing you the sales tax address.',scriptRef:'Part 6'},
+  amend:{id:'amend',cat:'verb',word:'to amend',def:'To make a small correction or addition to a document without replacing it entirely. More formal than "change" or "fix".',ctx:'You have to update the customer — it took me a while to figure out, playing around with it. If I had to amend it, I\'d edit the customer.',scriptRef:'Part 6'},
+  // ADJECTIVES
+  self_service:{id:'self_service',cat:'adj',word:'self-service',def:'A model in which the customer purchases, sets up, and manages the product independently, without assistance from a sales representative. Typically involves lower-cost plans and automated sign-up.',ctx:'An upsell is being upsold from self-service to sales-assisted.',scriptRef:'Part 1'},
+  sales_assisted:{id:'sales_assisted',cat:'adj',word:'sales-assisted',def:'A sales model in which a customer is guided through the purchase by a human sales representative. Contrasted with self-service; typically used for larger or more complex deals.',ctx:'Being upsold from self-service to sales-assisted.',scriptRef:'Part 1'},
+  boilerplate:{id:'boilerplate',cat:'adj',word:'boilerplate (information)',def:'Standardised, reusable text or clauses that appear in the same or very similar form across many different documents. It is not negotiated — it is the default legal/contractual language.',ctx:'This is kind of boilerplate information — the pricing details, the PO terms. It\'s pretty much the same all the time.',scriptRef:'Part 2'},
+  net30:{id:'net30',cat:'adj',word:'net 30 (payment terms)',def:'A payment term meaning the full invoice amount is due within 30 calendar days of the invoice date. "Net" in this context means the total amount owed after any discounts.',ctx:'Payments are net 30 days — they have 30 days from the invoice date to pay us.',scriptRef:'Part 3'},
+  time_consuming:{id:'time_consuming',cat:'adj',word:'time-consuming',def:'Requiring a large amount of time to complete, often implying that the effort is disproportionate or inconvenient. Used in professional contexts to flag inefficiency.',ctx:'If you have an invoice with ten lines, it\'s pretty time-consuming. You\'re starting from the beginning and checking everything all over again.',scriptRef:'Parts 4 & 7'},
+  multi_year:{id:'multi_year',cat:'adj',word:'multi-year (deal)',def:'A contract that covers more than one year. Multi-year deals require careful handling of billing cycles — they may be billed annually or in full upfront.',ctx:'If this was a multi-year deal, say 26 to 28 — if the billing cycle said two years, that means we\'re billing them upfront.',scriptRef:'Part 3'},
+  tax_exempt:{id:'tax_exempt',cat:'adj',word:'tax-exempt',def:'A legal status indicating that an entity is not required to pay a particular tax (e.g. sales tax). Customers claiming tax-exempt status must provide documentation.',ctx:'Then they\'re supposed to tell us if they\'re tax-exempt.',scriptRef:'Part 3'},
+  // PHRASES
+  at_all_costs:{id:'at_all_costs',cat:'phrase',word:'at all costs',def:'An idiom meaning "no matter what effort or sacrifice is required; by any means necessary." Used to stress absolute priority.',ctx:'Once it syncs to NetSuite, we try to avoid errors at all costs.',scriptRef:'Part 4'},
+  weed_through:{id:'weed_through',cat:'phrase',word:'to weed through (something)',def:'To slowly and carefully sort through a large volume of material in order to find what is relevant or useful. Informal; implies the process is tedious.',ctx:'You have to weed through a lot of emails through there — it\'s a ton of junk.',scriptRef:'Part 6'},
+  have_ducks:{id:'have_ducks',cat:'phrase',word:'have all one\'s ducks in a row',def:'An idiom meaning "to be fully organised and prepared, with everything in the correct order." Commonly used in American business English.',ctx:'Chloe\'s usually someone that has all our ducks in a row.',scriptRef:'Part 7'},
+  pulled_into:{id:'pulled_into',cat:'phrase',word:'to be pulled into (something)',def:'To be drawn into a meeting, task, or obligation — often without initially planning to attend. Implies that something external is taking you away from your primary work.',ctx:'I\'m getting pulled into this cash meeting this afternoon.',scriptRef:'Part 7'},
+  has_been_billed:{id:'has_been_billed',cat:'phrase',word:'has been billed',def:'Present perfect passive construction used in business to announce that an invoice has been sent and the customer has been charged. Signals completion of the billing action.',ctx:'I just put "has been billed" so everyone knows that it has been billed.',scriptRef:'Part 8'},
+  touch_it:{id:'touch_it',cat:'phrase',word:'no one can touch it',def:'Informal expression meaning "no one is able to modify, edit, or interfere with something." Here it describes a locked record in the CRM once a deal reaches Closed Won status.',ctx:'Once it\'s Closed Won, it\'s locked — no one can touch it.',scriptRef:'Part 8'},
+  pulls_right:{id:'pulls_right',cat:'phrase',word:'it pulls you right to…',def:'Informal expression meaning "it takes you directly to / it navigates you immediately to." Used when a link or button in a system jumps straight to the relevant record.',ctx:'This link pulls you right to the opportunity — I can go right into it.',scriptRef:'Part 2'},
+  once_it_is_submitted:{id:'once_it_is_submitted',cat:'phrase',word:'once it\'s submitted',def:'A subordinate time clause using "once" to mean "as soon as" or "at the moment when." Common in procedural business language to describe trigger events.',ctx:'They can\'t make any changes to this once it\'s submitted to finance.',scriptRef:'Part 2'},
+  // GRAMMAR
+  passive_submitted:{id:'passive_submitted',cat:'grammar',word:'Passive voice: "it\'s submitted to finance"',def:'The passive voice removes the agent (the person who submits) and focuses on the action and its recipient. In professional instructions, the passive is used to describe processes where the doer is obvious, unimportant, or unknown: "it\'s submitted", "it\'s processed", "it\'s rejected."',ctx:'It comes to you when it\'s submitted to finance. They can\'t make any changes once it\'s submitted.',scriptRef:'Part 2'},
+  conditional_errors:{id:'conditional_errors',cat:'grammar',word:'First conditional: "if there are errors, you have to reject it"',def:'The first conditional (if + present simple, modal + infinitive) describes real, likely situations and their consequences. Kate uses it throughout to explain procedural rules: "if X happens, you must do Y."',ctx:'If there\'s any changes that you find — errors — you have to reject it, send it back to them.',scriptRef:'Part 2'},
+  conditional_reseller:{id:'conditional_reseller',cat:'grammar',word:'Second conditional: "if they were a reseller, this would say yes"',def:'The second conditional (if + past simple, would + infinitive) describes hypothetical or unlikely situations. Kate uses it to explain what different scenarios would look like without those scenarios being currently true.',ctx:'If they were a reseller, this would say yes and it would tell you who the reseller was.',scriptRef:'Part 3'},
+  conditional_multiyear:{id:'conditional_multiyear',cat:'grammar',word:'Mixed conditional: billing cycle explanation',def:'Kate mixes conditional structures fluidly to explain business rules: "if it was a two-year deal and it said two years, that means we\'re billing them upfront" combines a past-referring hypothesis with a present-tense result — a natural pattern in spoken procedural explanation.',ctx:'If it was a multi-year deal and it said two years, that means we\'re billing them upfront. If it was a two-year deal and it said one year, that means we\'re billing them annually.',scriptRef:'Part 3'},
+  negation_emphasis:{id:'negation_emphasis',cat:'grammar',word:'Emphatic negation with "only"',def:'The structure "we do NOT… only…" is used for emphatic correction or clarification. Stressing the negative with intonation on "not" and following with "only" narrows the scope precisely. Common in professional briefings to prevent misunderstanding.',ctx:'We do not collect VAT in the UK — only in the EU.',scriptRef:'Part 4'},
+  once_clause:{id:'once_clause',cat:'grammar',word:'Subordinate clause with "once"',def:'"Once" introduces a time clause meaning "as soon as / from the moment that." It is used in business English to describe irreversible trigger points in a workflow: once something happens, a consequence follows and cannot be undone.',ctx:'Once it syncs, you don\'t want that to happen. Once it gets into NetSuite, you can\'t fix it in Maxio.',scriptRef:'Part 4'},
+  conditional_upsell:{id:'conditional_upsell',cat:'grammar',word:'Reported thought: "I know it\'s not a new customer"',def:'Kate shifts seamlessly between direct speech, reported thought, and procedural instruction. "If it\'s telling me that portal email is already in use, I know it\'s not a new customer" reports her real-time reasoning as she works — a pattern typical of think-aloud professional narration.',ctx:'If it\'s telling me that portal email account\'s already in use, I know it\'s not a new customer because it\'s already being used.',scriptRef:'Part 7'},
+  conditional_reject:{id:'conditional_reject',cat:'grammar',word:'"If I reject it, it brings up a box…" — instructional present tense',def:'Kate uses the present simple tense (not the future) to describe software behaviour: "if I reject it, it brings up a box." This is a common pattern in technical instruction — the present tense describes a reliable, repeatable system action.',ctx:'If I reject it, it brings up a box and you can put a note in why you\'re rejecting it.',scriptRef:'Part 5'},
+};
+
+// grouped for each section
+const NOUNS=['renewal','new_order','expansion','upsell','subscription_dates','transaction_tab','quote','purchase_order','reseller','sales_tax','vat','portal_email','cadence','poc','backup','deferred_revenue'];
+const VERBS=['resubmit','populate','reject','override','supersede','sync','commit_tax','amend'];
+const ADJS=['self_service','sales_assisted','boilerplate','net30','time_consuming','multi_year','tax_exempt'];
+const PHRASES=['at_all_costs','weed_through','have_ducks','pulled_into','has_been_billed','touch_it','pulls_right','once_it_is_submitted'];
+const GRAMMAR=['passive_submitted','conditional_errors','conditional_reseller','conditional_multiyear','negation_emphasis','once_clause','conditional_upsell','conditional_reject'];
+
+const CAT_COL={
+  noun:{bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB',label:'Noun'},
+  verb:{bg:'#EAF3DE',tc:'#27500A',brd:'#A8D88A',label:'Verb'},
+  adj:{bg:'#FAEEDA',tc:'#633806',brd:'#E8C080',label:'Adjective'},
+  phrase:{bg:'#FAECE7',tc:'#712B13',brd:'#F0997B',label:'Phrase / idiom'},
+  grammar:{bg:'#EAF3F0',tc:'#3B6D11',brd:'#7AC89A',label:'Grammar structure'},
+};
+
+// ── GLOSSARY ──────────────────────────────────────────────────
+let gloss=[];
+function isGlossed(id){return gloss.some(g=>g.id===id);}
+function glossKey(id){return id;}
+function toggleGloss(id){
+  if(isGlossed(id)){gloss=gloss.filter(g=>g.id!==id);}
+  else{const v=VOCAB[id];if(v)gloss.push({id,cat:v.cat,word:v.word,def:v.def,ctx:v.ctx,scriptRef:v.scriptRef});}
+  document.querySelectorAll('[data-gid="'+id+'"]').forEach(btn=>{
+    btn.textContent=isGlossed(id)?'🔖 Saved':'🔖 Save';
+  });
+  if(document.getElementById('p7').classList.contains('on'))renderGloss();
+}
+function renderGloss(){
+  const cont=document.getElementById('glossCont');if(!cont)return;
+  if(!gloss.length){
+    cont.innerHTML='<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px"></i><div style="margin-bottom:8px">Nothing saved yet.</div><div style="font-size:13px">Click 🔖 Save on any word in <strong>The script</strong> or in any vocabulary section.</div></div>';
+    return;
+  }
+  const order=['noun','verb','adj','phrase','grammar'];
+  const by={};gloss.forEach(g=>{(by[g.cat]=by[g.cat]||[]).push(g);});
+  let html=`<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">${gloss.length} item${gloss.length!==1?'s':''} saved</div>`;
+  order.forEach(cat=>{
+    if(!by[cat])return;
+    const cc=CAT_COL[cat];
+    html+=`<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:${cc.tc};margin:14px 0 8px;padding-bottom:4px;border-bottom:0.5px solid ${cc.bg}">${cc.label} (${by[cat].length})</div>`;
+    by[cat].forEach(g=>{
+      html+=`<div class="card" style="margin-bottom:8px;padding:1rem 1.25rem">
+        <div style="display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap">
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap">
+              <span style="font-size:15px;font-weight:700;color:var(--color-text-primary)">${g.word}</span>
+              <span style="background:${cc.bg};color:${cc.tc};font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px">${cc.label}</span>
+              <button class="audio-btn" onclick="speak(${safeQ(g.word)},0.87,this)" style="font-size:11px;padding:3px 8px">🔊 Hear</button>
+              <span style="font-size:11px;color:var(--color-text-secondary);cursor:pointer;text-decoration:underline;text-underline-offset:2px" onclick="showP(1)" title="Go to script">📄 ${g.scriptRef}</span>
+            </div>
+            <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:6px">${g.def}</div>
+            <div style="font-size:13px;font-style:italic;background:var(--color-background-secondary);border-radius:10px;padding:7px 12px;line-height:1.6;color:var(--color-text-secondary)">"${g.ctx}"</div>
+          </div>
+          <button onclick="removeGloss('${g.id}')" style="flex-shrink:0;padding:3px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:12px;color:var(--color-text-secondary);transition:all .15s" onmouseover="this.style.background='#FCEBEB';this.style.borderColor='#F7C1C1';this.style.color='#791F1F'" onmouseout="this.style.background='';this.style.borderColor='';this.style.color=''">✕</button>
+        </div>
+      </div>`;
+    });
+  });
+  cont.innerHTML=html;
+}
+function removeGloss(id){
+  gloss=gloss.filter(g=>g.id!==id);
+  document.querySelectorAll('[data-gid="'+id+'"]').forEach(btn=>{btn.textContent='🔖 Save';});
+  renderGloss();
+}
+
+// ── POPUP ─────────────────────────────────────────────────────
+let currentPopupId=null;
+function openPopup(id){
+  const v=VOCAB[id];if(!v)return;
+  currentPopupId=id;
+  const cc=CAT_COL[v.cat];
+  document.getElementById('popWord').textContent=v.word;
+  const pt=document.getElementById('popType');
+  pt.textContent=cc.label;pt.style.background=cc.bg;pt.style.color=cc.tc;
+  document.getElementById('popDef').textContent=v.def;
+  document.getElementById('popCtx').innerHTML='<strong>In the script</strong> ('+v.scriptRef+'): "'+v.ctx+'"';
+  const sb=document.getElementById('popSave');
+  sb.setAttribute('data-gid',id);
+  sb.textContent=isGlossed(id)?'🔖 Saved':'🔖 Save';
+  document.getElementById('popupOverlay').classList.add('on');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>speak(v.word+'. '+v.def.split('.')[0],0.87),200);
+}
+function closePopup(e){
+  if(e&&e.target!==document.getElementById('popupOverlay'))return;
+  document.getElementById('popupOverlay').classList.remove('on');
+  document.body.style.overflow='';
+  window.speechSynthesis&&window.speechSynthesis.cancel();
+}
+document.getElementById('popupBox').addEventListener('click',e=>e.stopPropagation());
+document.querySelector('.popup-close').addEventListener('click',()=>{
+  document.getElementById('popupOverlay').classList.remove('on');
+  document.body.style.overflow='';
+  window.speechSynthesis&&window.speechSynthesis.cancel();
+});
+function speakPopup(){
+  const v=VOCAB[currentPopupId];if(!v)return;
+  speak(v.word+'. '+v.def,0.87,document.getElementById('popAudio'));
+}
+function popToggleGloss(){
+  if(!currentPopupId)return;
+  toggleGloss(currentPopupId);
+  document.getElementById('popSave').textContent=isGlossed(currentPopupId)?'🔖 Saved':'🔖 Save';
+}
+
+// ── VOICE ─────────────────────────────────────────────────────
+let bVoice=null;
+function loadV(){
+  const vs=window.speechSynthesis.getVoices();if(!vs.length)return;
+  bVoice=vs.find(v=>v.lang==='en-GB'&&/female|fiona|kate|serena|moira|karen|victoria|claire/i.test(v.name))
+    ||vs.find(v=>v.lang==='en-GB'&&!/male|daniel|oliver|arthur/i.test(v.name))
+    ||vs.find(v=>v.lang==='en-GB')||vs.find(v=>v.lang.startsWith('en-GB'))||vs.find(v=>v.lang.startsWith('en'));
+}
+if(window.speechSynthesis){window.speechSynthesis.onvoiceschanged=loadV;loadV();}
+function speak(txt,rate,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();if(!bVoice)loadV();
+  const u=new SpeechSynthesisUtterance(String(txt).replace(/<[^>]+>/g,''));
+  u.lang='en-GB';u.rate=rate||0.87;u.pitch=1.07;
+  if(bVoice)u.voice=bVoice;
+  if(btn){document.querySelectorAll('.audio-btn').forEach(b=>b.classList.remove('playing'));btn.classList.add('playing');u.onend=()=>btn.classList.remove('playing');}
+  window.speechSynthesis.speak(u);
+}
+function safeQ(s){return"'"+String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;')+"'";}
+
+// ── QUOTES ────────────────────────────────────────────────────
+const QUOTES=[
+  {q:'If there are any errors, you have to reject it, send it back to them and have them fix it and resubmit it again.',key:'to reject / to resubmit'},
+  {q:'Whatever wording we have in our quote supersedes whatever they have for terms in their purchase order.',key:'to supersede'},
+  {q:'The sales tax is based on where it\'s shipped to — the shipping address is the person that\'s using the software.',key:'sales tax / ship-to address'},
+  {q:'We try to avoid errors going into NetSuite at all costs.',key:'"at all costs" — idiom'},
+  {q:'Once it syncs to NetSuite, you can\'t fix it in Maxio — you have to fix it there.',key:'"once" as a time conjunction'},
+  {q:'You have to weed through a lot of emails through there — there\'s a ton of junk.',key:'"to weed through" — phrasal verb'},
+  {q:'Chloe\'s usually someone that has all our ducks in a row.',key:'"ducks in a row" — idiom'},
+  {q:'The cadence is the primary invoice cadence — setting up when reminder emails go to the customer.',key:'cadence (business noun)'},
+];
+let qI=0,qOrd=[...Array(QUOTES.length).keys()].sort(()=>Math.random()-.5);
+function renderQuote(){
+  const q=QUOTES[qOrd[qI%qOrd.length]];qI++;
+  document.getElementById('quoteBox').innerHTML=`
+    <div style="font-style:italic;font-size:15px;line-height:1.8;color:var(--color-text-primary);margin-bottom:6px">"${q.q}"</div>
+    <div style="font-size:12.5px;color:var(--color-text-secondary);margin-bottom:8px">📚 Focus: <strong>${q.key}</strong></div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <button class="audio-btn" onclick="speak(${safeQ(q.q)},0.84,this)" style="font-size:12px">🔊 Hear it</button>
+      <button class="act" onclick="renderQuote()" style="margin-left:auto;font-size:12px;padding:4px 12px"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> New quote</button>
+    </div>`;
+}
+
+// ── VOCAB SECTION RENDERER ────────────────────────────────────
+function buildVocabSection(ids,containerId){
+  const cont=document.getElementById(containerId);
+  if(!cont||cont.innerHTML)return;
+  cont.innerHTML=ids.map(id=>{
+    const v=VOCAB[id];if(!v)return'';
+    const cc=CAT_COL[v.cat];
+    const saved=isGlossed(id);
+    return`<div class="vcard">
+      <div style="display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap">
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap">
+            <span class="vcard-word" style="color:${cc.tc}">${v.word}</span>
+            <span class="badge" style="background:${cc.bg};color:${cc.tc}">${cc.label}</span>
+            <button class="audio-btn" onclick="speak(${safeQ(v.word)},0.87,this)" style="font-size:11px;padding:3px 8px">🔊 Hear</button>
+            <span style="font-size:11px;color:${cc.tc};opacity:.7;cursor:pointer;font-weight:600" onclick="showP(1)" title="Go to script — ${v.scriptRef}">📄 ${v.scriptRef}</span>
+          </div>
+          <div class="vcard-def">${v.def}</div>
+          <div class="vcard-ctx">"${v.ctx}"</div>
+        </div>
+        <button class="act" data-gid="${id}" style="font-size:12px;flex-shrink:0;margin-top:2px" onclick="toggleGloss('${id}');this.textContent=isGlossed('${id}')?'🔖 Saved':'🔖 Save'">${saved?'🔖 Saved':'🔖 Save'}</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── EXERCISES ─────────────────────────────────────────────────
+function exTab(i,btn){
+  document.querySelectorAll('.st').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
+  document.querySelectorAll('.spanel').forEach((p,j)=>p.classList.toggle('on',j===i));
+  if(i===0&&!document.getElementById('gapCont').innerHTML)startGap();
+  if(i===1&&!document.getElementById('matchCont').innerHTML)startMatch();
+  if(i===2&&!document.getElementById('errCont').innerHTML)startErr();
+  if(i===3&&!document.getElementById('defCont').innerHTML)startDef();
+}
+
+// ── 1. GAP FILL ───────────────────────────────────────────────
+const GAP_Q=[
+  {s:'Once an order is ___ to finance, no one can make any changes to it.',blank:'submitted',opts:['submitted','rejected','synced','populated'],cat:'verb',exp:'"To submit" an order means to send it formally through the approval workflow. "Once it\'s submitted to finance" is a passive construction Kate uses throughout the script.'},
+  {s:'If there are errors in the order, you have to ___ it and send it back.',blank:'reject',opts:['reject','approve','amend','submit'],cat:'verb',exp:'"To reject" an order means to refuse to approve it and return it to the sender for correction. Kate says: "you have to reject it, send it back to them and have them fix it."'},
+  {s:'The system takes the subscription dates and uses them to ___ the correct fields automatically.',blank:'populate',opts:['populate','override','commit','sync'],cat:'verb',exp:'"To populate" a field means to fill it in automatically from a data source. If the field is empty, the dates won\'t carry through correctly.'},
+  {s:'Our quote terms ___ whatever the customer has written in their purchase order.',blank:'supersede',opts:['supersede','reject','override','populate'],cat:'verb',exp:'"To supersede" means to take the place of something and make it no longer valid. Kate says the wording in the quote supersedes the PO\'s terms — a formal, legal usage.'},
+  {s:'We need to ___ the purchase order\'s own terms by getting the customer to reference our quote number.',blank:'override',opts:['override','amend','sync','commit'],cat:'verb',exp:'"To override" means to deliberately set aside a rule or default. Kate uses it when a PO contains conflicting terms that must be nullified by the quote acceptance.'},
+  {s:'The ___ is the schedule that controls when automated reminder emails go out to customers.',blank:'cadence',opts:['cadence','backup','upsell','expansion'],cat:'noun',exp:'"Cadence" in business English means the regular rhythm of a recurring activity. The invoice cadence controls when payment reminders are sent — two weeks before, on due date, 10 days late.'},
+  {s:'A ___ customer is one who already exists in the system and is simply extending their contract for another year.',blank:'renewal',opts:['renewal','new order','upsell','expansion'],cat:'noun',exp:'A "renewal" is when an existing customer continues their subscription. Kate distinguishes it from new orders, expansions, and upsells — all four are different deal types.'},
+  {s:'We try to avoid sending errors into NetSuite ___ .',blank:'at all costs',opts:['at all costs','at first sight','by and large','on the whole'],cat:'phrase',exp:'"At all costs" is an idiom meaning "no matter what effort is required; by any means necessary." Kate uses it to emphasise how important it is to avoid pushing errors into the accounting system.'},
+  {s:'You have to ___ a lot of emails in that finance inbox — there\'s a lot of junk.',blank:'weed through',opts:['weed through','go over','sort out','come across'],cat:'phrase',exp:'"To weed through" something means to slowly sort through a large volume in order to find what is useful. It implies the process is tedious.'},
+  {s:'___ means the customer is using the product on their own server infrastructure, not on our cloud.',blank:'self-hosted',opts:['self-hosted','self-service','sales-assisted','net 30'],cat:'adj',exp:'"Self-hosted" describes software that runs on the customer\'s own servers. Kate contrasts it with cloud-hosted — she always checks that the deployment type is consistent across the quote and the order form.'},
+  {s:'___ information is the standard legal text that appears in the same form across almost all contracts.',blank:'boilerplate',opts:['boilerplate','multi-year','time-consuming','tax-exempt'],cat:'adj',exp:'"Boilerplate" refers to standardised, reusable contract language that is not negotiated. Kate scans it quickly because it rarely changes.'},
+  {s:'___ 30 means the customer has thirty days from the invoice date to make full payment.',blank:'Net',opts:['Net','Gross','Self','Due'],cat:'adj',exp:'"Net 30" is a standard payment term in business English. "Net" here means the total amount due (after any discounts), payable within 30 days. Kate verifies the terms on every order.'},
+];
+let gItems=[],gIdx=0,gScore=0,gTotal=0,gSel=null,gChecked=false;
+function startGap(){gItems=[...GAP_Q].sort(()=>Math.random()-.5);gIdx=0;gScore=0;gTotal=0;renderGap();}
+function renderGap(){
+  const cont=document.getElementById('gapCont');
+  if(gIdx>=gItems.length){cont.innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${gScore}/${gTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${Math.round(gScore/gTotal*100)>=80?'Excellent!':'Review the vocabulary sections and try again.'}</div><button class="act" onclick="startGap()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=gItems[gIdx];gSel=null;gChecked=false;
+  const cc=CAT_COL[item.cat]||CAT_COL.noun;
+  const prog=Math.round(gIdx/gItems.length*100);
+  const opts=[...item.opts].sort(()=>Math.random()-.5);window._gO=opts;
+  const sh=item.s.replace('___',`<span id="blankSpan" style="display:inline-block;min-width:100px;border-bottom:2px solid #534AB7;color:#534AB7;font-weight:600;text-align:center;padding:0 4px">___</span>`);
+  cont.innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="background:${cc.bg};color:${cc.tc};font-size:12px;font-weight:600;padding:2px 9px;border-radius:20px">${cc.label}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${gIdx+1}/${gItems.length} · Score: ${gScore}/${gTotal}</span>
+      <button class="act" onclick="startGap()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:9px">Choose the word or phrase that completes the sentence correctly.</div>
+    <div style="font-size:16px;line-height:2;margin-bottom:14px;background:var(--color-background-secondary);border-radius:14px;padding:11px 14px;font-style:italic">${sh}</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="gOptsList">${opts.map((o,i)=>`<button class="gap-opt" id="gopt_${i}" onclick="selGOpt(${i})">${o}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" id="gCheckBtn" onclick="checkGap()" disabled>Check</button>
+      <button class="act" onclick="gIdx++;renderGap()">Skip →</button>
+    </div>
+    <div id="gFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selGOpt(i){if(gChecked)return;gSel=i;document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('gCheckBtn').disabled=false;}
+function checkGap(){
+  if(gChecked||gSel===null)return;gChecked=true;gTotal++;
+  const item=gItems[gIdx];const chosen=window._gO[gSel];const ok=chosen===item.blank;if(ok)gScore++;
+  document.getElementById('gCheckBtn').disabled=true;
+  document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>{const w=window._gO[j];el.classList.remove('gsel');if(w===item.blank)el.classList.add('gok');else if(j===gSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const sp=document.getElementById('blankSpan');if(sp){sp.textContent=item.blank;sp.style.color=ok?'#27500A':'#791F1F';sp.style.borderBottomColor=ok?'#C0DD97':'#F7C1C1';}
+  const fb=document.getElementById('gFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ The answer is "'+item.blank+'". ')+item.exp;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{gIdx++;renderGap();};document.querySelector('#gapCont .card').appendChild(nxt);
+}
+
+// ── 2. WORD MATCH ─────────────────────────────────────────────
+const MATCH_PAIRS=[
+  {term:'renewal',def:'A customer extending their existing contract for another period'},
+  {term:'upsell',def:'Moving a customer to a higher-tier product or adding a new one'},
+  {term:'purchase order',def:'A buyer\'s formal document authorising a purchase from a supplier'},
+  {term:'to supersede',def:'To take the place of something and make it no longer valid'},
+  {term:'to populate',def:'To fill in a field automatically from a data source'},
+  {term:'cadence',def:'The regular rhythm or schedule of a recurring business activity'},
+  {term:'boilerplate',def:'Standard reusable contract text that appears in the same form every time'},
+  {term:'net 30',def:'Payment terms: the full amount is due within 30 days of the invoice'},
+  {term:'proof of concept',def:'A zero-cost trial to test whether the software suits the customer\'s needs'},
+  {term:'deferred revenue',def:'Money received for services not yet fully delivered — recognised gradually'},
+  {term:'at all costs',def:'No matter what effort is required; by any means necessary'},
+  {term:'to weed through',def:'To slowly sort through a large volume to find what is relevant'},
+];
+let mPairs=[],mPicked=null,mMatched=[],mScore=0,mAttempts=0,mRightCol=[];
+function startMatch(){
+  mPairs=[...MATCH_PAIRS].sort(()=>Math.random()-.5).slice(0,8);
+  mPicked=null;mMatched=[];mScore=0;mAttempts=0;
+  mRightCol=[...mPairs].sort(()=>Math.random()-.5);
+  renderMatch();
+}
+function renderMatch(){
+  document.getElementById('matchCont').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="font-size:13px;color:var(--color-text-secondary)">Matched: <strong id="mP">0</strong>/${mPairs.length} · Attempts: <strong id="mA">0</strong></span>
+      <button class="act" onclick="startMatch()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> New round</button>
+    </div>
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">Click a term on the left, then click its matching definition on the right.</div>
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:10px">
+      <div style="display:flex;flex-direction:column;gap:7px" id="mL">${mPairs.map((p,i)=>`<button class="mi" id="ml_${i}" onclick="mPickL(${i})">${p.term}</button>`).join('')}</div>
+      <div style="display:flex;flex-direction:column;gap:7px" id="mR">${mRightCol.map((p,i)=>`<button class="mi" id="mr_${i}" onclick="mPickR(${i})" style="font-size:12px;line-height:1.5">${p.def}</button>`).join('')}</div>
+    </div>
+    <div id="mFb" style="font-size:13px;min-height:18px;margin-top:10px"></div>
+  </div>`;
+}
+function mPickL(i){if(mMatched.some(m=>m.l===i))return;mPicked=i;document.querySelectorAll('#mL .mi').forEach((el,j)=>{if(!mMatched.some(m=>m.l===j))el.classList.toggle('pk',j===i);});}
+function mPickR(i){
+  if(mPicked===null)return;if(mMatched.some(m=>m.r===i))return;
+  mAttempts++;document.getElementById('mA').textContent=mAttempts;
+  const ok=mRightCol[i].term===mPairs[mPicked].term;
+  if(ok){
+    document.getElementById('ml_'+mPicked).classList.remove('pk');document.getElementById('ml_'+mPicked).classList.add('mt');
+    document.getElementById('mr_'+i).classList.add('mt');
+    mMatched.push({l:mPicked,r:i});mScore++;document.getElementById('mP').textContent=mScore;
+    const fb=document.getElementById('mFb');fb.style.color='#27500A';
+    fb.textContent=mScore===mPairs.length?`All ${mPairs.length} pairs matched in ${mAttempts} attempt${mAttempts===1?'':'s'}!`:'✓ Correct match!';
+    mPicked=null;document.querySelectorAll('#mL .mi').forEach(el=>el.classList.remove('pk'));
+  }else{
+    document.getElementById('mr_'+i).classList.add('bd');document.getElementById('ml_'+mPicked).classList.add('bd');
+    const fb=document.getElementById('mFb');fb.style.color='#791F1F';fb.textContent='✗ Not a match — try again.';
+    setTimeout(()=>{const l=document.getElementById('ml_'+mPicked);const r=document.getElementById('mr_'+i);if(l)l.classList.remove('bd');if(r)r.classList.remove('bd');},700);
+  }
+}
+
+// ── 3. ERROR CORRECTION ───────────────────────────────────────
+const ERR_Q=[
+  {sentence:'If there are any errors, you have to decline it and send it back to them.',wrong:'decline',correct:'reject',exp:'"To reject" is the correct business term for refusing to approve an order and returning it for correction. "Decline" is more natural for refusing an invitation or offer — not for returning a document in a workflow.'},
+  {sentence:'Our quote terms cancel out whatever they have written in their purchase order.',wrong:'cancel out',correct:'supersede',exp:'"To supersede" is the precise legal/contractual term here. It means to formally replace and override a previous agreement. "Cancel out" is informal and suggests mutual negation, which is not what is happening.'},
+  {sentence:'The sales tax is based on where the invoice is sent, not where the software is used.',wrong:'invoice is sent',correct:'it is shipped to (the ship-to address)',exp:'Kate is clear: tax is based on the ship-to address — the location of the person using the software — not the billing address where the invoice goes. These can be different addresses.'},
+  {sentence:'A renewal is when the customer decides to buy a completely new package.',wrong:'completely new package',correct:'extend their existing contract / renew their existing subscription',exp:'A renewal is specifically the continuation of an existing contract, not a new purchase. A new purchase would be a "new order" or an "upsell". Confusing these affects how commission and revenue are recorded.'},
+  {sentence:'We have to avoid errors going into the accounting system by any means.',wrong:'by any means',correct:'at all costs',exp:'"At all costs" is the fixed idiomatic phrase Kate uses. While "by any means" is grammatically similar, "at all costs" is the established idiom in business English for this meaning.'},
+  {sentence:'The cadence is the billing plan that decides how much the customer pays.',wrong:'billing plan / how much the customer pays',correct:'invoice schedule — when reminder emails go out',exp:'The cadence is not about how much — it controls when automated reminder and notification emails are sent (before due, on due date, when overdue). The amount is set by the price on the quote.'},
+  {sentence:'If the portal account email is already in use, you know it must be a new customer.',wrong:'new customer',correct:'not a new customer (an existing customer)',exp:'Kate says the opposite: if the portal email is already in the system, this proves the customer already exists — so they are NOT new. This check is specifically to catch orders incorrectly labelled as "new".'},
+  {sentence:'A proof of concept order always has a small fee so the customer has some commitment.',wrong:'small fee',correct:'no fee — it is always zero dollars',exp:'Kate is explicit: "it\'s a POC — a proof of concept. It\'s zero dollars." There is no fee. The POC exists purely to let the customer test the software in their own environment before committing to a paid contract.'},
+];
+let eItems=[],eIdx=0,eScore=0,eTotal=0,eSel=null,eChecked=false;
+function startErr(){eItems=[...ERR_Q].sort(()=>Math.random()-.5);eIdx=0;eScore=0;eTotal=0;renderErr();}
+function renderErr(){
+  const cont=document.getElementById('errCont');
+  if(eIdx>=eItems.length){cont.innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${eScore}/${eTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${Math.round(eScore/eTotal*100)>=75?'Well done!':'Review the script and vocabulary sections, then try again.'}</div><button class="act" onclick="startErr()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=eItems[eIdx];eSel=null;eChecked=false;
+  const prog=Math.round(eIdx/eItems.length*100);
+  const hi=item.sentence.replace(item.wrong,`<span style="background:#FCEBEB;color:#791F1F;border-radius:4px;padding:1px 5px;font-weight:600;text-decoration:underline wavy #F7C1C1">${item.wrong}</span>`);
+  cont.innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="font-size:13px;color:var(--color-text-secondary)">${eIdx+1}/${eItems.length} · Score: ${eScore}/${eTotal}</span>
+      <button class="act" onclick="startErr()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px">One word or phrase in this sentence is wrong. Can you spot it and choose the correct version?</div>
+    <div style="font-size:16px;line-height:1.9;margin-bottom:14px;background:var(--color-background-secondary);border-radius:14px;padding:11px 14px">${hi}</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="eOptsList">
+      <button class="gap-opt" id="eopt_0" onclick="selErr(0)">The sentence is correct as written.</button>
+      <button class="gap-opt" id="eopt_1" onclick="selErr(1)">The highlighted part is wrong — replace with: <strong>${item.correct}</strong></button>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" id="eCheckBtn" onclick="checkErr()" disabled>Check</button>
+      <button class="act" onclick="eIdx++;renderErr()">Skip →</button>
+    </div>
+    <div id="eFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selErr(i){if(eChecked)return;eSel=i;document.querySelectorAll('#eOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('eCheckBtn').disabled=false;}
+function checkErr(){
+  if(eChecked||eSel===null)return;eChecked=true;eTotal++;
+  const ok=eSel===1;if(ok)eScore++;
+  document.getElementById('eCheckBtn').disabled=true;
+  document.querySelectorAll('#eOptsList .gap-opt').forEach((el,j)=>{el.classList.remove('gsel');if(j===1)el.classList.add('gok');else if(j===eSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const fb=document.getElementById('eFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ The highlighted word/phrase is indeed wrong. ')+eItems[eIdx].exp;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{eIdx++;renderErr();};document.querySelector('#errCont .card').appendChild(nxt);
+}
+
+// ── 4. DEFINITION QUIZ ────────────────────────────────────────
+const DEF_Q=[
+  {def:'A third party that buys a product from the supplier and sells it on to an end user.',answer:'reseller',opts:['reseller','expansion','new order','cadence']},
+  {def:'The process of formally extending a customer\'s existing subscription for another period.',answer:'renewal',opts:['renewal','upsell','resubmit','proof of concept']},
+  {def:'To fill in a form field automatically using data pulled from another part of the system.',answer:'to populate',opts:['to populate','to sync','to commit','to override']},
+  {def:'Payment terms that give the customer 30 days from the invoice date to pay in full.',answer:'net 30',opts:['net 30','boilerplate','deferred revenue','cadence']},
+  {def:'To take the place of a previous rule or agreement and make it no longer valid.',answer:'to supersede',opts:['to supersede','to reject','to amend','to populate']},
+  {def:'Standardised contract language that appears in the same form in almost every document and is not negotiated.',answer:'boilerplate',opts:['boilerplate','self-hosted','tax-exempt','multi-year']},
+  {def:'Revenue that has been received but not yet recognised, because the service has not yet been fully delivered.',answer:'deferred revenue',opts:['deferred revenue','purchase order','sales tax','upsell']},
+  {def:'A zero-cost trial period that allows a potential customer to test the software before committing to a paid contract.',answer:'proof of concept',opts:['proof of concept','expansion','renewal','portal account email']},
+  {def:'To transfer data between two systems so they both hold the same up-to-date information.',answer:'to sync',opts:['to sync','to reject','to override','to populate']},
+  {def:'To deliberately set aside a default rule or conflicting condition using a higher-priority instruction.',answer:'to override',opts:['to override','to supersede','to commit','to resubmit']},
+  {def:'An idiom meaning "no matter what effort or sacrifice is required."',answer:'at all costs',opts:['at all costs','weed through','have all our ducks in a row','pulled into']},
+  {def:'The regular rhythm or schedule that controls when automated emails go out to customers.',answer:'cadence',opts:['cadence','subscription dates','transaction tab','backup']},
+  {def:'A way of describing a conditional situation in spoken business English: the presenter uses the past tense to describe a hypothetical scenario and "would" to describe what would happen.',answer:'second conditional',opts:['second conditional','passive voice','first conditional','reported thought']},
+  {def:'To slowly and carefully sort through a large volume of material in order to find what is relevant or useful.',answer:'to weed through',opts:['to weed through','to pull into','to come across','to flag up']},
+];
+let dItems=[],dIdx=0,dScore=0,dTotal=0,dSel=null,dChecked=false;
+function startDef(){dItems=[...DEF_Q].sort(()=>Math.random()-.5);dIdx=0;dScore=0;dTotal=0;renderDef();}
+function renderDef(){
+  const cont=document.getElementById('defCont');
+  if(dIdx>=dItems.length){cont.innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${dScore}/${dTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${Math.round(dScore/dTotal*100)>=80?'Excellent!':'Review the vocabulary cards and try again.'}</div><button class="act" onclick="startDef()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=dItems[dIdx];dSel=null;dChecked=false;
+  const prog=Math.round(dIdx/dItems.length*100);
+  const opts=[...item.opts].sort(()=>Math.random()-.5);window._dO=opts;
+  cont.innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="font-size:13px;color:var(--color-text-secondary)">${dIdx+1}/${dItems.length} · Score: ${dScore}/${dTotal}</span>
+      <button class="act" onclick="startDef()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px">Which word or phrase matches this definition?</div>
+    <div style="font-size:16px;line-height:1.75;margin-bottom:16px;background:var(--color-background-secondary);border-radius:14px;padding:13px 16px;font-style:italic;color:var(--color-text-primary)">${item.def}</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="dOptsList">${opts.map((o,i)=>`<button class="gap-opt" id="dopt_${i}" onclick="selDef(${i})">${o}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" id="dCheckBtn" onclick="checkDef()" disabled>Check</button>
+      <button class="act" onclick="dIdx++;renderDef()">Skip →</button>
+    </div>
+    <div id="dFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selDef(i){if(dChecked)return;dSel=i;document.querySelectorAll('#dOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('dCheckBtn').disabled=false;}
+function checkDef(){
+  if(dChecked||dSel===null)return;dChecked=true;dTotal++;
+  const item=dItems[dIdx];const chosen=window._dO[dSel];const ok=chosen===item.answer;if(ok)dScore++;
+  document.getElementById('dCheckBtn').disabled=true;
+  document.querySelectorAll('#dOptsList .gap-opt').forEach((el,j)=>{const w=window._dO[j];el.classList.remove('gsel');if(w===item.answer)el.classList.add('gok');else if(j===dSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const fb=document.getElementById('dFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=ok?'✓ Correct!':'✗ The answer is "'+item.answer+'."';
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{dIdx++;renderDef();};document.querySelector('#defCont .card').appendChild(nxt);
+}
+
+// ── NAV ───────────────────────────────────────────────────────
+function showP(i){
+  document.querySelectorAll('.pan').forEach((p,j)=>p.classList.toggle('on',j===i));
+  document.querySelectorAll('.nt').forEach((t,j)=>t.classList.toggle('on',j===i));
+  if(i===0)renderQuote();
+  if(i===2)buildVocabSection(NOUNS,'nounCards');
+  if(i===3)buildVocabSection(VERBS,'verbCards');
+  if(i===4)buildVocabSection(ADJS,'adjCards');
+  if(i===5)buildVocabSection(PHRASES,'phraseCards');
+  if(i===6)buildVocabSection(GRAMMAR,'grammarCards');
+  if(i===7&&!document.getElementById('gapCont').innerHTML)startGap();
+  if(i===8)renderGloss();
+}
+
+window.addEventListener('load',()=>{
+  if(window.speechSynthesis){window.speechSynthesis.getVoices();setTimeout(loadV,500);setTimeout(loadV,1500);}
+  renderQuote();
+});
+</script>
+</body>
+</html>
