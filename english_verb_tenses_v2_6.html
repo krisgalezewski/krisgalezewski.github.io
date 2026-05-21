@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Verb Tenses — Interactive Lesson</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary)}
+.w{padding:1.5rem}
+.nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
+.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nt:hover{background:var(--color-background-secondary)}
+.nt.on{color:#fff;border-color:transparent;font-weight:500}
+.n0.on{background:#185FA5}.n1.on{background:#0F6E56}.n2.on{background:#854F0B}
+.n3.on{background:#993C1D}.n4.on{background:#72243E}.n5.on{background:#534AB7}
+.n6.on{background:#3B6D11}.n7.on{background:#4a3b8c}
+.pan{display:none}.pan.on{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:.9rem}
+.lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
+.lbl:first-child{margin-top:0}
+.tip-box{background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;font-size:13px;color:var(--color-text-secondary);display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px}
+.warn-box{background:#FAEEDA;border-radius:14px;padding:10px 14px;font-size:13px;color:#633806;display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px;border:0.5px solid #E8C080}
+.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act:hover{background:var(--color-background-secondary)}
+.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #185FA5;background:#185FA5;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn:hover{background:#0c4577}
+.check-btn:disabled{opacity:.4;cursor:default}
+.gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
+.gap-opt:hover:not(.gsel):not(.gok):not(.gbad):not(.gdim){background:var(--color-background-secondary)}
+.gap-opt.gsel{border-color:#185FA5;background:#E6F1FB;color:#0C447C;font-weight:500}
+.gap-opt.gok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:500;cursor:default;pointer-events:none}
+.gap-opt.gbad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F;cursor:default;pointer-events:none}
+.gap-opt.gdim{opacity:.38;cursor:default;pointer-events:none}
+.fb-ok{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.fb-no{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.ex-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:20px;background:#185FA5;transition:width .3s}
+.mi{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
+.mi:hover:not(.pk):not(.mt):not(.bd){background:var(--color-background-secondary)}
+.mi.pk{border-color:#185FA5;background:#E6F1FB;color:#0C447C;font-weight:600}
+.mi.mt{border-color:#27500A;background:#EAF3DE;color:#27500A;font-weight:600;cursor:default;pointer-events:none}
+.mi.bd{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #185FA5}
+.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
+.audio-btn:hover{background:#E6F1FB;border-color:#85B7EB;color:#185FA5}
+.audio-btn.playing{background:#E6F1FB;border-color:#185FA5;color:#185FA5;font-weight:500}
+.eyebrow{font-size:11px;font-weight:500;color:#185FA5;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.lesson-h{font-size:26px;font-weight:500;color:var(--color-text-primary);line-height:1.25;margin-bottom:4px}
+.lesson-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:1.25rem}
+/* tense overview grid */
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:1rem}
+.ov-card{border-radius:16px;padding:12px 14px;cursor:pointer;border:0.5px solid transparent;transition:all .15s}
+.ov-card:hover{transform:translateY(-1px);opacity:.88}
+.ov-card.sel{outline:2.5px solid #185FA5}
+.ov-name{font-size:13px;font-weight:600;margin-bottom:3px}
+.ov-use{font-size:11px;line-height:1.35;opacity:.75}
+/* time tabs */
+.time-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
+.tt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.tt:hover{background:var(--color-background-secondary)}
+.tt.on{color:#fff;border-color:transparent;font-weight:500}
+.tt-past.on{background:#185FA5}.tt-present.on{background:#0F6E56}.tt-future.on{background:#993C1D}
+/* formula */
+.formula{font-family:var(--font-mono);font-size:13px;background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;border-left:3px solid;margin-bottom:6px;line-height:1.6;color:var(--color-text-primary)}
+/* time signal chips */
+.signal{font-size:12.5px;font-weight:600;padding:5px 13px;border-radius:20px;display:inline-block;margin:3px;cursor:pointer;transition:all .15s;border:0.5px solid}
+.signal:hover{filter:brightness(.9);transform:translateY(-1px)}
+/* signal popup */
+.sig-popup{background:#fff;border:0.5px solid var(--color-border-tertiary);border-radius:18px;padding:1.1rem 1.3rem;margin-top:8px;box-shadow:0 4px 24px rgba(0,0,0,.13);display:none}
+.sig-popup.on{display:block}
+/* examples */
+.ex-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.ex-box{border-radius:12px;padding:9px 13px;font-size:14px;line-height:1.6}
+.ex-pos{background:#EAF3DE;color:#27500A;border:0.5px solid #C0DD97}
+.ex-neg{background:#FCEBEB;color:#791F1F;border:0.5px solid #F7C1C1}
+.ex-tag{font-size:10.5px;font-weight:700;display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.04em}
+/* tense detail box */
+.tense-detail{border-radius:20px;border:0.5px solid var(--color-border-tertiary);padding:1.25rem 1.5rem;margin-bottom:1rem;display:none;background:var(--color-background-primary)}
+.tense-detail.on{display:block}
+/* save btn */
+.save-btn{font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-secondary);transition:all .15s;white-space:nowrap}
+.save-btn:hover{background:#E6F1FB;border-color:#85B7EB;color:#185FA5}
+.save-btn.saved{background:#E6F1FB;border-color:#185FA5;color:#185FA5;font-weight:600}
+/* rm btn */
+.rm-btn{font-size:12px;padding:3px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-secondary);transition:all .15s;white-space:nowrap;flex-shrink:0}
+.rm-btn:hover{background:#FCEBEB;border-color:#F7C1C1;color:#791F1F}
+/* sub tabs for exercises */
+.sub-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
+.st{padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
+.st:hover{background:var(--color-background-secondary)}
+.st.on{background:#185FA5;color:#fff;border-color:#185FA5;font-weight:500}
+.spanel{display:none}.spanel.on{display:block}
+/* signals page */
+.sig-cat-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
+.sct{padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
+.sct:hover{background:var(--color-background-secondary)}
+.sct.on{color:#fff;border-color:transparent;font-weight:500}
+.sct-past.on{background:#185FA5}.sct-present.on{background:#0F6E56}.sct-future.on{background:#993C1D}
+.sig-card{border-radius:18px;border:0.5px solid var(--color-border-tertiary);padding:1rem 1.25rem;margin-bottom:.75rem;background:var(--color-background-primary);cursor:pointer;transition:all .15s}
+.sig-card:hover{background:var(--color-background-secondary)}
+.sig-detail{border-radius:14px;padding:1rem 1.25rem;margin-top:6px;display:none}
+.sig-detail.on{display:block}
+@media(max-width:520px){.ex-row{grid-template-columns:1fr}.ov-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<h2 class="sr-only">English verb tenses — interactive lesson with all 12 tenses, time signals, and exercises.</h2>
+<div class="w">
+<div class="nav">
+  <button class="nt n0 on" onclick="showP(0)">Home</button>
+  <button class="nt n1" onclick="showP(1)">Tenses</button>
+  <button class="nt n2" onclick="showP(2)">Alternative forms</button>
+  <button class="nt n3" onclick="showP(3)">Future in the past</button>
+  <button class="nt n4" onclick="showP(4)">Aspect contrasts</button>
+  <button class="nt n5" onclick="showP(5)">Stative verbs</button>
+  <button class="nt n6" onclick="showP(6)">Modal perfect</button>
+  <button class="nt n7" onclick="showP(7)">Narrative tenses</button>
+  <button class="nt n2" onclick="showP(8)">Time clauses</button>
+  <button class="nt n3" onclick="showP(9)">Conditionals</button>
+  <button class="nt n4" onclick="showP(10)">Passive voice</button>
+  <button class="nt n5" onclick="showP(11)">Gap fill</button>
+  <button class="nt n6" onclick="showP(12)">Matching</button>
+  <button class="nt n7" onclick="showP(13)">Error correction</button>
+  <button class="nt n0" onclick="showP(14)">My glossary</button>
+</div>
+
+<!-- HOME -->
+<div id="p0" class="pan on">
+  <div class="eyebrow">Interactive lesson · Grammar</div>
+  <div class="lesson-h">English verb tenses</div>
+  <div class="lesson-sub">All 12 tenses, alternative forms, aspect contrasts, grammar structures, and practice exercises</div>
+  <div class="quote-box" id="quoteBox"></div>
+  <div class="card">
+    <div class="lbl">What this lesson covers</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">English has <strong style="color:var(--color-text-primary)">12 tenses</strong> formed by combining three time frames — <strong style="color:#185FA5">past</strong>, <strong style="color:#0F6E56">present</strong>, and <strong style="color:#993C1D">future</strong> — with four aspects: simple, continuous, perfect, and perfect continuous. Each combination expresses a distinct relationship between an action and time.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:10px">
+      <div style="background:#E6F1FB;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:700;color:#0C447C">4</div><div style="font-size:11px;color:#0C447C;font-weight:500;margin-top:2px">Past tenses</div></div>
+      <div style="background:#E1F5EE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:700;color:#085041">4</div><div style="font-size:11px;color:#085041;font-weight:500;margin-top:2px">Present tenses</div></div>
+      <div style="background:#FAECE7;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:700;color:#712B13">4</div><div style="font-size:11px;color:#712B13;font-weight:500;margin-top:2px">Future tenses</div></div>
+      <div style="background:#EEEDFE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:700;color:#3C3489">4</div><div style="font-size:11px;color:#3C3489;font-weight:500;margin-top:2px">Aspects</div></div>
+    </div>
+    <div class="lbl">The four aspects</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:4px">
+      <div style="background:#EEEDFE;border-radius:12px;padding:8px 12px"><div style="font-size:12px;font-weight:600;color:#3C3489;margin-bottom:2px">Simple</div><div style="font-size:13px;color:#534AB7">Completed or habitual actions</div></div>
+      <div style="background:#FAEEDA;border-radius:12px;padding:8px 12px"><div style="font-size:12px;font-weight:600;color:#633806;margin-bottom:2px">Continuous</div><div style="font-size:13px;color:#854F0B">Actions in progress / temporary</div></div>
+      <div style="background:#E1F5EE;border-radius:12px;padding:8px 12px"><div style="font-size:12px;font-weight:600;color:#085041;margin-bottom:2px">Perfect</div><div style="font-size:13px;color:#0F6E56">Actions with relevance to another time</div></div>
+      <div style="background:#FBEAF0;border-radius:12px;padding:8px 12px"><div style="font-size:12px;font-weight:600;color:#72243E;margin-bottom:2px">Perfect continuous</div><div style="font-size:13px;color:#993C1D">Duration up to a point in time</div></div>
+    </div>
+    <div class="tip-box" style="margin-top:12px"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:#185FA5"></i><span>This lesson covers the 12 core tenses plus 9 additional grammar areas. In <strong>Tenses</strong>, click any aspect card to open its full entry. Click any time signal chip to explore it and save it to your glossary. Use the exercises to practise everything.</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px">
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(1)"><div style="font-size:20px;margin-bottom:6px">📖</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Tenses</div><div style="font-size:12px;color:var(--color-text-secondary)">All 12 — formula, uses, time signals</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(2)"><div style="font-size:20px;margin-bottom:6px">🔄</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Alternative forms</div><div style="font-size:12px;color:var(--color-text-secondary)">used to, would, be used to…</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(3)"><div style="font-size:20px;margin-bottom:6px">⏪</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Future in the past</div><div style="font-size:12px;color:var(--color-text-secondary)">was going to, would, was about to…</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(4)"><div style="font-size:20px;margin-bottom:6px">⚖️</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Aspect contrasts</div><div style="font-size:12px;color:var(--color-text-secondary)">Side-by-side trickiest pairs</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(5)"><div style="font-size:20px;margin-bottom:6px">🧠</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Stative verbs</div><div style="font-size:12px;color:var(--color-text-secondary)">know, want, own — no -ing!</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(6)"><div style="font-size:20px;margin-bottom:6px">🔮</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Modal perfect</div><div style="font-size:12px;color:var(--color-text-secondary)">must have, should have…</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(7)"><div style="font-size:20px;margin-bottom:6px">📝</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Narrative tenses</div><div style="font-size:12px;color:var(--color-text-secondary)">Tenses working together in text</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(8)"><div style="font-size:20px;margin-bottom:6px">⏰</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Time clauses</div><div style="font-size:12px;color:var(--color-text-secondary)">when, after, as soon as…</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(9)"><div style="font-size:20px;margin-bottom:6px">❓</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Conditionals</div><div style="font-size:12px;color:var(--color-text-secondary)">Zero to mixed — tense logic</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(10)"><div style="font-size:20px;margin-bottom:6px">🔁</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Passive voice</div><div style="font-size:12px;color:var(--color-text-secondary)">Across all 12 tenses</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(11)"><div style="font-size:20px;margin-bottom:6px">✏️</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Gap fill</div><div style="font-size:12px;color:var(--color-text-secondary)">Choose the correct form</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(12)"><div style="font-size:20px;margin-bottom:6px">🔀</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Matching</div><div style="font-size:12px;color:var(--color-text-secondary)">Match sentence to tense</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(13)"><div style="font-size:20px;margin-bottom:6px">🔍</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Error correction</div><div style="font-size:12px;color:var(--color-text-secondary)">Find and fix the mistake</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(14)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-bookmark" style="color:#4a3b8c"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">My glossary</div><div style="font-size:12px;color:var(--color-text-secondary)">Your saved items</div></div>
+  </div>
+</div>
+
+<!-- TENSES -->
+<div id="p1" class="pan">
+  <div class="eyebrow">English verb tenses</div>
+  <div class="lesson-h">Tenses</div>
+  <div class="lesson-sub">Select a time frame, then click any aspect card to expand its full entry — click 🔖 to save to your glossary</div>
+  <div class="time-tabs">
+    <button class="tt tt-past on" onclick="setTime('past',this)">Past</button>
+    <button class="tt tt-present" onclick="setTime('present',this)">Present</button>
+    <button class="tt tt-future" onclick="setTime('future',this)">Future</button>
+  </div>
+  <div class="ov-grid" id="ovGrid"></div>
+  <div class="tense-detail" id="tenseDetail"></div>
+</div>
+
+
+<!-- ALTERNATIVE FORMS -->
+<div id="p2" class="pan">
+  <div class="eyebrow">Alternative forms</div>
+  <div class="lesson-h">Alternative &amp; equivalent forms</div>
+  <div class="lesson-sub">Forms that express similar meanings to the main tenses — click any card for the full entry with examples and audio</div>
+  <div id="altGrid"></div>
+  <div class="tense-detail" id="altDetail"></div>
+</div>
+
+<!-- FUTURE IN THE PAST -->
+<div id="p3" class="pan">
+  <div class="eyebrow">Future in the past</div>
+  <div class="lesson-h">Future in the past</div>
+  <div class="lesson-sub">Forms used to talk about what was going to happen — plans, expectations, and predictions made at a past moment</div>
+  <div id="fitpGrid"></div>
+  <div class="tense-detail" id="fitpDetail"></div>
+</div>
+
+<!-- ASPECT CONTRASTS -->
+<div id="p4" class="pan">
+  <div class="eyebrow">Aspect contrasts</div>
+  <div class="lesson-h">Aspect contrasts</div>
+  <div class="lesson-sub">The trickiest pairs — same situation, different tense, different meaning. Click any pair to explore</div>
+  <div id="contrastGrid"></div>
+  <div class="tense-detail" id="contrastDetail"></div>
+</div>
+
+<!-- STATIVE VERBS -->
+<div id="p5" class="pan">
+  <div class="eyebrow">Stative verbs</div>
+  <div class="lesson-h">Stative verbs</div>
+  <div class="lesson-sub">Verbs that describe states rather than actions — they almost never take the continuous form</div>
+  <div id="stativeGrid"></div>
+  <div class="tense-detail" id="stativeDetail"></div>
+</div>
+
+<!-- MODAL PERFECT -->
+<div id="p6" class="pan">
+  <div class="eyebrow">Modal perfect</div>
+  <div class="lesson-h">Modal perfect forms</div>
+  <div class="lesson-sub">Modal verbs combined with the perfect aspect — deduction, regret, criticism, and possibility. Click any card to explore</div>
+  <div id="modalGrid"></div>
+  <div class="tense-detail" id="modalDetail"></div>
+</div>
+
+<!-- NARRATIVE TENSES -->
+<div id="p7" class="pan">
+  <div class="eyebrow">Narrative tenses</div>
+  <div class="lesson-h">Narrative tenses in context</div>
+  <div class="lesson-sub">See how past simple, past continuous, and past perfect work together in a real text — click any highlighted verb to understand its role</div>
+  <div id="narrativeArea"></div>
+</div>
+
+<!-- TIME CLAUSES -->
+<div id="p8" class="pan">
+  <div class="eyebrow">Time clauses</div>
+  <div class="lesson-h">Time clauses &amp; tense rules</div>
+  <div class="lesson-sub">After when, after, before, as soon as, by the time — the tense rule that surprises most learners. Click any conjunction to explore</div>
+  <div id="timeClauseGrid"></div>
+  <div class="tense-detail" id="timeClauseDetail"></div>
+</div>
+
+<!-- CONDITIONALS -->
+<div id="p9" class="pan">
+  <div class="eyebrow">Conditionals</div>
+  <div class="lesson-h">Conditionals</div>
+  <div class="lesson-sub">Zero, first, second, third, and two types of mixed — the tense logic behind each type. Click any card to explore</div>
+  <div id="condGrid"></div>
+  <div class="tense-detail" id="condDetail"></div>
+</div>
+
+<!-- PASSIVE VOICE -->
+<div id="p10" class="pan">
+  <div class="eyebrow">Passive voice</div>
+  <div class="lesson-h">Passive voice across tenses</div>
+  <div class="lesson-sub">How to form the passive in all 12 tenses — click any tense card to see the passive formula and examples</div>
+  <div id="passiveGrid"></div>
+  <div class="tense-detail" id="passiveDetail"></div>
+</div>
+
+<!-- GAP FILL -->
+<div id="p11" class="pan">
+  <div class="eyebrow">Exercise</div>
+  <div class="lesson-h">Gap fill</div>
+  <div class="lesson-sub">Choose the correct verb form to complete each sentence</div>
+  <div id="gapCont"></div>
+</div>
+
+<!-- MATCHING -->
+<div id="p12" class="pan">
+  <div class="eyebrow">Exercise</div>
+  <div class="lesson-h">Matching</div>
+  <div class="lesson-sub">Match each sentence to the tense it illustrates — three rounds</div>
+  <div id="matchCont"></div>
+</div>
+
+<!-- ERROR CORRECTION -->
+<div id="p13" class="pan">
+  <div class="eyebrow">Exercise</div>
+  <div class="lesson-h">Error correction</div>
+  <div class="lesson-sub">One sentence has a grammar error — choose the correct version</div>
+  <div id="errCont"></div>
+</div>
+
+<!-- GLOSSARY -->
+<div id="p14" class="pan">
+  <div class="eyebrow">English verb tenses</div>
+  <div class="lesson-h">My glossary</div>
+  <div class="lesson-sub">All your saved items — tenses, signals, forms, and structures — click ✕ to remove any item</div>
+  <div id="glossCont"></div>
+</div>
+</div>
+
+<script>
+// ── VOICE ─────────────────────────────────────────────────────
+let bVoice=null;
+function loadV(){const vs=window.speechSynthesis.getVoices();if(!vs.length)return;bVoice=vs.find(v=>v.lang==='en-GB'&&/female|fiona|kate|serena|moira|karen|victoria|claire/i.test(v.name))||vs.find(v=>v.lang==='en-GB'&&!/male|daniel|oliver|arthur/i.test(v.name))||vs.find(v=>v.lang==='en-GB')||vs.find(v=>v.lang.startsWith('en'));}
+if(window.speechSynthesis){window.speechSynthesis.onvoiceschanged=loadV;loadV();}
+function speak(txt,rate,btn){
+  if(!window.speechSynthesis)return;window.speechSynthesis.cancel();if(!bVoice)loadV();
+  const u=new SpeechSynthesisUtterance(String(txt).replace(/<[^>]+>/g,''));
+  u.lang='en-GB';u.rate=rate||0.87;u.pitch=1.07;if(bVoice)u.voice=bVoice;
+  if(btn){document.querySelectorAll('.audio-btn').forEach(b=>b.classList.remove('playing'));btn.classList.add('playing');u.onend=()=>btn.classList.remove('playing');}
+  window.speechSynthesis.speak(u);
+}
+function safeQ(s){return"'"+String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;')+"'";}
+
+// ── DATA ──────────────────────────────────────────────────────
+const TENSES={
+  past:{
+    color:'#185FA5',light:'#E6F1FB',border:'#85B7EB',text:'#0C447C',
+    aspects:{
+      simple:{label:'Past simple',formula:'Subject + verb-ed / irregular past form',fl:'#7F77DD',bg:'#EEEDFE',col:'#3C3489',
+        desc:'Use the past simple for <strong>completed actions at a specific time in the past</strong>. The action is finished and does not connect to the present.',
+        uses:['Completed action at a specific time','Series of past events','Past habits or states','Narrative sequences'],
+        signals:['yesterday','last week / month / year','in 2010','ago','once','when I was young','finally','at that moment'],
+        ex_pos:[{tag:'Completed action',s:'She <strong>visited</strong> Paris last summer.'},{tag:'Series of events',s:'He <strong>woke up</strong>, <strong>showered</strong>, and <strong>left</strong>.'}],
+        ex_neg:[{tag:'Ongoing action ✗',s:'She <strong>was living</strong> here for years. ✗'}],
+        tip:'For regular verbs add -ed. Watch out for irregular verbs: go → went, buy → bought, take → took. Never use past simple with "yet" or "already" — those take the present perfect.'},
+      continuous:{label:'Past continuous',formula:'Subject + was/were + verb-ing',fl:'#BA7517',bg:'#FAEEDA',col:'#633806',
+        desc:'Use the past continuous for an action <strong>in progress at a specific moment in the past</strong>, often as a background to another event.',
+        uses:['Action in progress at a past moment','Background to a shorter interrupting event','Two parallel ongoing past actions','Setting the scene in a story'],
+        signals:['at 6 pm yesterday','when (+ past simple)','while','all day','this time last week','as'],
+        ex_pos:[{tag:'Background action',s:'I <strong>was reading</strong> when the phone rang.'},{tag:'Parallel actions',s:'She <strong>was cooking</strong> while he <strong>was setting</strong> the table.'}],
+        ex_neg:[{tag:'Completed result ✗',s:'I <strong>was finishing</strong> the report. ✗ (use: finished)'}],
+        tip:'"When" usually signals the short interrupting event (past simple). "While" signals the longer background action (past continuous). Think: the past continuous is the stage; the past simple is what happens on it.'},
+      perfect:{label:'Past perfect',formula:'Subject + had + past participle',fl:'#1D9E75',bg:'#E1F5EE',col:'#085041',
+        desc:'Use the past perfect to show that <strong>one past action happened before another past action</strong> — the "past of the past".',
+        uses:['Action before another past action','Third conditional','Reported speech (backshift)','Explaining cause of a past state'],
+        signals:['before','after','by the time','already','just','never','when (sequencing two past events)'],
+        ex_pos:[{tag:'Before another event',s:'By the time I arrived, she <strong>had left</strong>.'},{tag:'Explaining a past state',s:'He was tired because he <strong>hadn\'t slept</strong> well.'}],
+        ex_neg:[{tag:'Same time level ✗',s:'After she <strong>had arrived</strong>, we ate. ✗ ("After" makes order clear — use past simple.)'}],
+        tip:'You only need the past perfect when the time order would otherwise be unclear. If "before/after/when" already makes the sequence obvious, past simple alone is often acceptable.'},
+      'perfect-cont':{label:'Past perfect continuous',formula:'Subject + had been + verb-ing',fl:'#D4537E',bg:'#FBEAF0',col:'#72243E',
+        desc:'Use the past perfect continuous to show <strong>how long an action had been in progress before a past moment</strong>. Focus is on duration and the ongoing nature of the activity.',
+        uses:['Duration up to a past point','Cause visible at a past moment','Background ongoing activity before a past event','Emphasise effort or persistence'],
+        signals:['for + duration','how long','since','all morning / all week','before','when'],
+        ex_pos:[{tag:'Duration before past event',s:'She <strong>had been waiting</strong> for two hours when he arrived.'},{tag:'Visible past result',s:'His eyes were red — he <strong>had been crying</strong>.'}],
+        ex_neg:[{tag:'Completed result ✗',s:'They <strong>had been building</strong> the bridge. ✗ (use: had built, if finished)'}],
+        tip:'Compare: "He had read 50 pages" (result — 50 pages done) vs "He had been reading for hours" (duration — the process). The continuous form shifts focus from completion to duration.'}
+    }
+  },
+  present:{
+    color:'#0F6E56',light:'#E1F5EE',border:'#5DCAA5',text:'#085041',
+    aspects:{
+      simple:{label:'Present simple',formula:'Subject + base verb (add -s/-es for he/she/it)',fl:'#7F77DD',bg:'#EEEDFE',col:'#3C3489',
+        desc:'Use the present simple for <strong>facts, habits, routines, and states</strong> — things that are generally or always true, not specifically happening right now.',
+        uses:['Habits and routines','Permanent facts and general truths','Timetables and schedules','Stative verbs (know, love, believe)'],
+        signals:['always','usually','often','sometimes','never','every day / week','on Mondays','in general'],
+        ex_pos:[{tag:'Habit',s:'She <strong>drinks</strong> coffee every morning.'},{tag:'General truth',s:'Water <strong>boils</strong> at 100°C.'}],
+        ex_neg:[{tag:'Right-now action ✗',s:'I <strong>am walking</strong> — I\'m busy! ✗ (use: present continuous)'}],
+        tip:'Stative verbs (know, want, need, believe, own, prefer) almost never take the continuous form — even for a current state: "I know the answer." ✓  "I am knowing the answer." ✗'},
+      continuous:{label:'Present continuous',formula:'Subject + am/is/are + verb-ing',fl:'#BA7517',bg:'#FAEEDA',col:'#633806',
+        desc:'Use the present continuous for actions <strong>happening right now, around now, or for temporary situations</strong>. Also used for arranged future events and annoying habits.',
+        uses:['Action happening right now','Temporary situation','Changing or developing trend','Arranged future event','Annoying habit (always + -ing)'],
+        signals:['now','right now','at the moment','currently','today','this week','Look!','Listen!','these days'],
+        ex_pos:[{tag:'Happening now',s:'She <strong>is talking</strong> on the phone.'},{tag:'Future arrangement',s:'We <strong>are meeting</strong> the client tomorrow.'}],
+        ex_neg:[{tag:'State verb ✗',s:'I <strong>am knowing</strong> the answer. ✗ (use: know)'}],
+        tip:'"Always" + present continuous = an annoying or surprising habit: "He\'s always forgetting his keys!" This is more critical or emphatic than the neutral present simple with "always".'},
+      perfect:{label:'Present perfect',formula:'Subject + have/has + past participle',fl:'#1D9E75',bg:'#E1F5EE',col:'#085041',
+        desc:'Use the present perfect to <strong>connect the past to the present</strong>: a past action with a current result, a life experience, or a recently completed action.',
+        uses:['Life experience (ever/never)','Finished action with a present result','Recent news','Unfinished time period (today/this year)'],
+        signals:['ever','never','already','yet','just','recently','so far','this week','since','for'],
+        ex_pos:[{tag:'Life experience',s:'Have you ever <strong>tried</strong> sushi?'},{tag:'Present result',s:'She <strong>has broken</strong> her leg. (She can\'t walk now.)'}],
+        ex_neg:[{tag:'Specific finished time ✗',s:'I <strong>have seen</strong> him yesterday. ✗ (use: saw)'}],
+        tip:'Never use present perfect with a finished time expression (yesterday, last year, in 2010). Those require the past simple. The present perfect must always have some connection to the present moment.'},
+      'perfect-cont':{label:'Present perfect continuous',formula:'Subject + have/has been + verb-ing',fl:'#D4537E',bg:'#FBEAF0',col:'#72243E',
+        desc:'Use the present perfect continuous to emphasise <strong>how long an action has been in progress</strong>, or to explain a current state through a recent ongoing activity.',
+        uses:['Duration up to now','Ongoing activity (still continuing)','Explain a present state','Emphasise effort or process'],
+        signals:['for + time','since','all day / all week','how long','lately','recently'],
+        ex_pos:[{tag:'Duration',s:'I <strong>have been studying</strong> for three hours.'},{tag:'Explains present state',s:'You look tired — have you been working all night?'}],
+        ex_neg:[{tag:'Completed number/amount ✗',s:'She <strong>has been writing</strong> ten emails. ✗ (use: has written)'}],
+        tip:'Compare: "I\'ve read the report" (done — focus on result) vs "I\'ve been reading the report" (ongoing — focus on process and duration). Use the simple form when you want to emphasise the achievement; use the continuous to emphasise the effort.'}
+    }
+  },
+  future:{
+    color:'#993C1D',light:'#FAECE7',border:'#F0997B',text:'#712B13',
+    aspects:{
+      simple:{label:'Future simple (will)',formula:'Subject + will + base verb',fl:'#7F77DD',bg:'#EEEDFE',col:'#3C3489',
+        desc:'Use <em>will</em> for <strong>spontaneous decisions, predictions, promises, offers, and future facts</strong>. Use <em>be going to</em> for pre-planned intentions and evidence-based predictions.',
+        uses:['Spontaneous decision','Promise / offer / threat','Prediction (no evidence)','Future fact'],
+        signals:['probably','I think / I believe','maybe / perhaps','I promise','I\'ll (decided right now)'],
+        ex_pos:[{tag:'Spontaneous decision',s:'"It\'s cold." — "I <strong>\'ll close</strong> the window."'},{tag:'Prediction',s:'I think it <strong>will snow</strong> tonight.'}],
+        ex_neg:[{tag:'Pre-planned intention ✗',s:'I <strong>will go</strong> to Paris next month. ✗ (if booked → use: going to)'}],
+        tip:'<em>Will</em> = decided at the moment of speaking. <em>Be going to</em> = decided before speaking. Both can predict: "will" for open guesses, "going to" when there is visible evidence the speaker can already see.'},
+      continuous:{label:'Future continuous',formula:'Subject + will be + verb-ing',fl:'#BA7517',bg:'#FAEEDA',col:'#633806',
+        desc:'Use the future continuous for an action <strong>in progress at a specific moment in the future</strong>, or for something expected to happen as part of a normal routine.',
+        uses:['Action in progress at a future moment','Expected / routine future event','Polite enquiry about someone\'s plans'],
+        signals:['at this time tomorrow','at 8 pm tonight','in two hours','this time next week'],
+        ex_pos:[{tag:'In progress at future moment',s:'This time tomorrow I <strong>\'ll be flying</strong> to Tokyo.'},{tag:'Polite enquiry',s:'<strong>Will you be using</strong> the car tonight?'}],
+        ex_neg:[{tag:'Single future event ✗',s:'I <strong>will be going</strong> to the shop later. ✗ (use: will go)'}],
+        tip:'The future continuous is ideal for polite enquiries — "Will you be attending the meeting?" is softer and less presumptuous than "Will you attend?" It implies the speaker is not making demands.'},
+      perfect:{label:'Future perfect',formula:'Subject + will have + past participle',fl:'#1D9E75',bg:'#E1F5EE',col:'#085041',
+        desc:'Use the future perfect for <strong>an action that will be completed before a specific point in the future</strong> — looking back from a future moment at something already done.',
+        uses:['Completed before a future deadline','Achievement by a future point','Confident assumption about the past'],
+        signals:['by + future time','by then','by the time','before + future event'],
+        ex_pos:[{tag:'Completed by a deadline',s:'I <strong>will have finished</strong> the report by Friday.'},{tag:'Assumption',s:'Don\'t call at 9 — she <strong>will have gone</strong> to bed.'}],
+        ex_neg:[{tag:'No deadline ✗',s:'I <strong>will have written</strong> a novel. ✗ (needs a "by" deadline)'}],
+        tip:'Think of it as: "Looking back from [future point], this action is already done." The key word is almost always "by". Without a deadline, the future perfect is rarely natural.'},
+      'perfect-cont':{label:'Future perfect continuous',formula:'Subject + will have been + verb-ing',fl:'#D4537E',bg:'#FBEAF0',col:'#72243E',
+        desc:'Use the future perfect continuous to emphasise <strong>the duration of an ongoing action up to a specific point in the future</strong>. It is the rarest of the twelve tenses.',
+        uses:['Duration up to a future point','Emphasise ongoing effort before a future moment','Explain a future state through its cause'],
+        signals:['for + duration','by + future time','by then'],
+        ex_pos:[{tag:'Duration to future point',s:'By July, I <strong>will have been learning</strong> Polish for two years.'},{tag:'Explains future state',s:'She\'ll be tired — she <strong>will have been travelling</strong> all day.'}],
+        ex_neg:[{tag:'Completed result ✗',s:'By Monday I <strong>will have been finishing</strong> the project. ✗ (use: will have finished)'}],
+        tip:'This tense is rare in everyday speech. It highlights impressive or exhausting durations: "By retirement, he will have been teaching for 35 years." The point is always the length of time, not the completion.'}
+    }
+  }
+};
+const ASPECT_KEYS=['simple','continuous','perfect','perfect-cont'];
+const ASPECT_LABELS={simple:'Simple',continuous:'Continuous',perfect:'Perfect','perfect-cont':'Perfect continuous'};
+
+// ── SIGNALS DATA ──────────────────────────────────────────────
+const SIGNALS={
+  past:[
+    {word:'yesterday',tenses:['Past simple'],
+     why:'Refers to a specific completed day in the past — always finished.',
+     examples:['I <strong>met</strong> her yesterday at the conference.','She <strong>didn\'t call</strong> me yesterday.','What did you do yesterday?']},
+    {word:'last week / month / year',tenses:['Past simple'],
+     why:'A finished time period — the action is complete and closed.',
+     examples:['We <strong>visited</strong> Rome last month.','He <strong>started</strong> his new job last year.','They <strong>won</strong> the championship last week.']},
+    {word:'ago',tenses:['Past simple'],
+     why:'"X ago" counts back from now to a finished point — always past simple.',
+     examples:['She <strong>left</strong> ten minutes ago.','I <strong>moved</strong> here three years ago.','He <strong>called</strong> an hour ago.']},
+    {word:'when (+ past simple)',tenses:['Past continuous','Past perfect'],
+     why:'"When" + past simple = the short interrupting event. The background uses past continuous; the earlier event uses past perfect.',
+     examples:['I <strong>was reading</strong> when you called. (background)','By the time she arrived, we <strong>had finished</strong>. (earlier action)','He <strong>had just sat down</strong> when the alarm went off.']},
+    {word:'while',tenses:['Past continuous'],
+     why:'"While" signals two simultaneous actions in progress — both use past continuous.',
+     examples:['She <strong>was cooking</strong> while he <strong>was setting</strong> the table.','While they <strong>were talking</strong>, I <strong>was reading</strong>.','The dog barked while we <strong>were eating</strong>.']},
+    {word:'by the time',tenses:['Past perfect','Future perfect'],
+     why:'Signals that one action was completed before another reference point.',
+     examples:['By the time I arrived, she <strong>had left</strong>. (past perfect)','By the time you read this, I <strong>will have gone</strong>. (future perfect)','By the time the film started, we <strong>had found</strong> our seats.']},
+    {word:'for + duration (past)',tenses:['Past perfect continuous','Past simple'],
+     why:'"For" + duration in a past context signals ongoing activity up to a past point.',
+     examples:['She <strong>had been waiting</strong> for two hours when he arrived.','He <strong>had been working</strong> for the company for ten years before he retired.','They <strong>had been arguing</strong> all evening.']},
+    {word:'already (past)',tenses:['Past perfect'],
+     why:'"Already" in a past narrative signals one action was completed before the moment being described.',
+     examples:['When I got there, she <strong>had already left</strong>.','He <strong>had already eaten</strong> by the time dinner was served.','The film <strong>had already started</strong> when we sat down.']},
+  ],
+  present:[
+    {word:'always / usually / often',tenses:['Present simple'],
+     why:'Frequency adverbs with habitual meaning trigger present simple for routines.',
+     examples:['She <strong>always drinks</strong> coffee in the morning.','He <strong>usually walks</strong> to work.','I <strong>often forget</strong> my umbrella.']},
+    {word:'every day / on Mondays',tenses:['Present simple'],
+     why:'Regular scheduled time expressions = habitual present simple.',
+     examples:['The shop <strong>opens</strong> at 9 am every day.','They <strong>have</strong> a team meeting on Mondays.','She <strong>calls</strong> her mother every Sunday.']},
+    {word:'now / right now / at the moment',tenses:['Present continuous'],
+     why:'Signals the action is happening at this exact moment — present continuous.',
+     examples:['She <strong>is talking</strong> on the phone right now.','I <strong>am writing</strong> an email at the moment.','What are you doing now?']},
+    {word:'currently / these days',tenses:['Present continuous'],
+     why:'Signals a temporary or developing situation around now.',
+     examples:['More people <strong>are working</strong> from home these days.','She <strong>is currently studying</strong> for her exams.','Prices <strong>are rising</strong> rapidly these days.']},
+    {word:'ever / never',tenses:['Present perfect'],
+     why:'"Ever/never" refer to experience in your life up to the present — present perfect.',
+     examples:['Have you <strong>ever tried</strong> skydiving?','I <strong>have never seen</strong> that film.','She <strong>has never been</strong> to Japan.']},
+    {word:'already / yet / just',tenses:['Present perfect'],
+     why:'These signal recently completed actions with present relevance.',
+     examples:['I <strong>have already eaten</strong>.','Have you finished yet?','She <strong>has just called</strong>.']},
+    {word:'since / for (present)',tenses:['Present perfect','Present perfect continuous'],
+     why:'"Since" = from a starting point. "For" = over a duration. Both link past activity to now.',
+     examples:['I <strong>have lived</strong> here since 2018. (present perfect)','She <strong>has been studying</strong> for three hours. (present perfect continuous)','We <strong>haven\'t seen</strong> them since Christmas.']},
+    {word:'lately / recently',tenses:['Present perfect','Present perfect continuous'],
+     why:'Signals recent ongoing or completed activity with present relevance.',
+     examples:['I <strong>haven\'t been sleeping</strong> well lately.','She <strong>has been working</strong> very hard recently.','Have you heard from him recently?']},
+  ],
+  future:[
+    {word:'probably / I think / maybe',tenses:['Future simple (will)'],
+     why:'Open predictions with no evidence — use "will".',
+     examples:['It will <strong>probably rain</strong> tomorrow.','I think she <strong>will like</strong> it.','Maybe they <strong>won\'t come</strong>.']},
+    {word:'at this time tomorrow / this time next week',tenses:['Future continuous'],
+     why:'Signals an action in progress at a specific future moment.',
+     examples:['This time tomorrow I <strong>\'ll be sitting</strong> on the beach.','At this time next week, we <strong>\'ll be flying</strong> home.','At 3 pm tomorrow I <strong>\'ll be presenting</strong> to the board.']},
+    {word:'by + future time / by then',tenses:['Future perfect','Future perfect continuous'],
+     why:'"By" signals a deadline before which something will be complete — or will have been ongoing.',
+     examples:['I <strong>\'ll have finished</strong> by Friday. (future perfect)','By then, she <strong>\'ll have been working</strong> here for a decade. (future perfect continuous)','By the time you arrive, we <strong>\'ll have eaten</strong>.']},
+    {word:'Look! / Listen! (evidence)',tenses:['Future (going to)'],
+     why:'Visible present evidence → prediction with "going to".',
+     examples:['Look at those clouds — it <strong>\'s going to rain</strong>!','Watch out — you <strong>\'re going to fall</strong>!','Listen — she <strong>\'s going to sing</strong>!']},
+    {word:'I promise / I\'ll (on the spot)',tenses:['Future simple (will)'],
+     why:'"Will" for spontaneous decisions and promises made at the moment of speaking.',
+     examples:['I <strong>\'ll help</strong> you with that.','I promise I <strong>\'ll call</strong> you.','Don\'t worry — I <strong>\'ll sort</strong> it out.']},
+    {word:'tomorrow / next week (arranged)',tenses:['Present continuous','Future (going to)'],
+     why:'For fixed arrangements already planned, use present continuous or "going to".',
+     examples:['We <strong>are meeting</strong> the client tomorrow. (arrangement)','She <strong>is going to present</strong> the results next week. (plan)','I <strong>\'m having</strong> dinner with them on Friday.']},
+  ]
+};
+
+// ── QUOTES ────────────────────────────────────────────────────
+const QUOTES=[
+  {text:'"I <strong>have always imagined</strong> that Paradise will be a kind of library."',author:'Jorge Luis Borges',tense:'Present perfect',hi:'have always imagined'},
+  {text:'"By the time you read this, I <strong>will have been gone</strong> for a long while."',author:'Literary example',tense:'Future perfect continuous',hi:'will have been gone'},
+  {text:'"She <strong>was standing</strong> at the window when I first noticed her."',author:'Literary example',tense:'Past continuous',hi:'was standing'},
+  {text:'"He <strong>had lived</strong> alone for so many years that silence <strong>had become</strong> his only companion."',author:'Literary example',tense:'Past perfect',hi:'had lived'},
+  {text:'"Time <strong>flies</strong>. It <strong>does not walk</strong>, it <strong>does not stop</strong>."',author:'Adapted proverb',tense:'Present simple',hi:'flies'},
+  {text:'"By next year, she <strong>will have studied</strong> medicine for six long years."',author:'Literary example',tense:'Future perfect',hi:'will have studied'},
+  {text:'"They <strong>had been arguing</strong> all evening when the storm finally broke."',author:'Literary example',tense:'Past perfect continuous',hi:'had been arguing'},
+  {text:'"This time tomorrow, I <strong>will be flying</strong> over the Atlantic."',author:'Adapted',tense:'Future continuous',hi:'will be flying'},
+  {text:'"I <strong>think</strong>, therefore I <strong>am</strong>."',author:'René Descartes',tense:'Present simple',hi:'think'},
+  {text:'"She <strong>has never returned</strong> to the city where she <strong>was born</strong>."',author:'Literary example',tense:'Present perfect / Past simple',hi:'has never returned'},
+  {text:'"He <strong>is going to resign</strong> — you can see it in his eyes."',author:'Literary example',tense:'Future (going to)',hi:'is going to resign'},
+  {text:'"I <strong>have been reading</strong> — or rather, I <strong>have been trying</strong> to read — all evening."',author:'Adapted',tense:'Present perfect continuous',hi:'have been reading'},
+];
+let qOrd=[...Array(QUOTES.length).keys()].sort(()=>Math.random()-.5),qI=0;
+function renderQuote(){
+  const q=QUOTES[qOrd[qI%qOrd.length]];qI++;
+  let txt=q.text.replace(q.hi,`<span style="background:#E6F1FB;color:#0C447C;font-weight:600;padding:1px 6px;border-radius:6px">${q.hi}</span>`);
+  document.getElementById('quoteBox').innerHTML=`
+    <div style="font-style:italic;font-size:15px;line-height:1.85;color:var(--color-text-primary);margin-bottom:8px">${txt}</div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <div style="font-size:12px;color:var(--color-text-secondary)">— ${q.author}</div>
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${q.tense}</span>
+      <button class="audio-btn" onclick="speak(${safeQ(q.text)},0.84,this)" style="font-size:12px">🔊 Hear it</button>
+      <button class="act" onclick="renderQuote()" style="font-size:12px;padding:4px 12px;margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> New quote</button>
+    </div>`;
+}
+
+// ── GLOSSARY ──────────────────────────────────────────────────
+let gloss=[];
+function isGlossed(id){return gloss.some(g=>g.id===id);}
+function toggleGloss(id,btn){
+  if(isGlossed(id)){gloss=gloss.filter(g=>g.id!==id);}
+  else{
+    const [time,asp]=id.split('::');
+    const d=TENSES[time]&&TENSES[time].aspects[asp];
+    if(d)gloss.push({id,time,asp,label:d.label,formula:d.formula,tip:d.tip,col:TENSES[time].color,bg:d.bg,tc:d.col,fl:d.fl});
+  }
+  document.querySelectorAll('[data-gid="'+id+'"]').forEach(b=>{b.textContent=isGlossed(id)?'🔖 Saved':'🔖 Save';b.classList.toggle('saved',isGlossed(id));});
+  if(document.getElementById('p14').classList.contains('on'))renderGloss();
+}
+function removeGloss(id){
+  gloss=gloss.filter(g=>g.id!==id);
+  document.querySelectorAll('[data-gid="'+id+'"]').forEach(b=>{b.textContent='🔖 Save';b.classList.remove('saved');});
+  renderGloss();
+}
+const TIME_ORDER=['past','present','future'];
+const TIME_LABELS={past:'Past tenses',present:'Present tenses',future:'Future tenses'};
+const TIME_COLS={past:{bg:'#E6F1FB',tc:'#0C447C'},present:{bg:'#E1F5EE',tc:'#085041'},future:{bg:'#FAECE7',tc:'#712B13'}};
+function renderGloss(){
+  const cont=document.getElementById('glossCont');if(!cont)return;
+  if(!gloss.length){cont.innerHTML='<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px"></i><div style="margin-bottom:8px">Nothing saved yet.</div><div style="font-size:13px">Open any tense in <strong>Tenses</strong> and click 🔖 Save. Click any time signal chip and click 🔖 Save.</div></div>';return;}
+  let html=`<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">${gloss.length} item${gloss.length!==1?'s':''} saved</div>`;
+  // split into tenses and signals
+  const tensesG=gloss.filter(g=>g.type!=='signal');
+  const signalsG=gloss.filter(g=>g.type==='signal');
+  const byTime={};tensesG.forEach(g=>{(byTime[g.time]=byTime[g.time]||[]).push(g);});
+  TIME_ORDER.forEach(t=>{
+    if(!byTime[t])return;
+    const tc=TIME_COLS[t];
+    html+=`<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:${tc.tc};margin:14px 0 8px;padding-bottom:4px;border-bottom:0.5px solid ${tc.bg}">${TIME_LABELS[t]} (${byTime[t].length})</div>`;
+    byTime[t].forEach(g=>{
+      html+=`<div class="card" style="margin-bottom:8px;padding:1rem 1.25rem">
+        <div style="display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap">
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap">
+              <span style="font-size:15px;font-weight:700;color:var(--color-text-primary)">${g.label}</span>
+              <span style="background:${g.bg};color:${g.tc};font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px">${g.asp.replace('-cont',' cont.')}</span>
+              <button class="audio-btn" onclick="speak(${safeQ(g.label+'. '+g.formula)},0.87,this)" style="font-size:11px;padding:3px 8px">🔊 Hear</button>
+            </div>
+            <div style="font-family:var(--font-mono);font-size:12px;background:var(--color-background-secondary);border-radius:10px;padding:7px 11px;border-left:3px solid ${g.fl};margin-bottom:7px;line-height:1.5">${g.formula}</div>
+            <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.65">💡 ${g.tip}</div>
+          </div>
+          <button class="rm-btn" onclick="removeGloss('${g.id}')">✕</button>
+        </div>
+      </div>`;
+    });
+  });
+  const extraG=gloss.filter(g=>g.type==='extra');
+  if(extraG.length){
+    html+=`<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#854F0B;margin:14px 0 8px;padding-bottom:4px;border-bottom:0.5px solid #FAEEDA">Forms &amp; structures (${extraG.length})</div>`;
+    extraG.forEach(g=>{
+      html+=`<div class="card" style="margin-bottom:8px;padding:1rem 1.25rem">
+        <div style="display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap">
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap">
+              <span style="font-size:15px;font-weight:700;color:var(--color-text-primary)">${g.label}</span>
+              <button class="audio-btn" onclick="speak(${safeQ(g.label)},0.87,this)" style="font-size:11px;padding:3px 8px">🔊 Hear</button>
+            </div>
+            ${g.formula?`<div style="font-family:var(--font-mono);font-size:12px;background:var(--color-background-secondary);border-radius:10px;padding:7px 11px;margin-bottom:7px;line-height:1.5">${g.formula}</div>`:''}
+            ${g.tip?`<div style="font-size:13px;color:var(--color-text-secondary);line-height:1.65">💡 ${g.tip}</div>`:''}
+          </div>
+          <button class="rm-btn" onclick="removeGloss('${g.id}')">✕</button>
+        </div>
+      </div>`;
+    });
+  }
+  if(signalsG.length){
+    html+=`<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#534AB7;margin:14px 0 8px;padding-bottom:4px;border-bottom:0.5px solid #EEEDFE">Time signals (${signalsG.length})</div>`;
+    signalsG.forEach(g=>{
+      html+=`<div class="card" style="margin-bottom:8px;padding:1rem 1.25rem">
+        <div style="display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap">
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap">
+              <span style="font-size:15px;font-weight:700;color:${g.col}">${g.word}</span>
+              ${g.tenses.map(t=>`<span style="background:${g.bg};color:${g.tc};border:0.5px solid ${g.brd};font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px">${t}</span>`).join('')}
+              <button class="audio-btn" onclick="speak(${safeQ(g.word)},0.87,this)" style="font-size:11px;padding:3px 8px">🔊 Hear</button>
+            </div>
+            <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:6px">${g.why}</div>
+            ${g.examples.length?`<div style="display:flex;flex-direction:column;gap:4px">${g.examples.slice(0,2).map(ex=>`<div style="font-size:12.5px;font-style:italic;background:var(--color-background-secondary);border-radius:8px;padding:5px 10px;line-height:1.55;color:var(--color-text-secondary)">${ex}</div>`).join('')}</div>`:''}
+          </div>
+          <button class="rm-btn" onclick="removeGloss('${g.id}')">✕</button>
+        </div>
+      </div>`;
+    });
+  }
+  cont.innerHTML=html;
+}
+
+// ── SIGNAL GLOSSARY ──────────────────────────────────────────
+function toggleSignalGloss(word,dataStr,timeKey,btn){
+  const gid='signal::'+word;
+  if(isGlossed(gid)){gloss=gloss.filter(g=>g.id!==gid);}
+  else{
+    let data;try{data=JSON.parse(dataStr);}catch(e){data={word,why:'',tenses:[],examples:[]};}
+    const td=TENSES[timeKey]||TENSES.past;
+    gloss.push({id:gid,type:'signal',word:data.word,why:data.why,tenses:data.tenses,examples:data.examples,col:td.color,bg:td.light,tc:td.text,brd:td.border});
+  }
+  document.querySelectorAll('[data-gid="'+gid+'"]').forEach(b=>{b.textContent=isGlossed(gid)?'🔖 Saved':'🔖 Save';b.classList.toggle('saved',isGlossed(gid));});
+  if(document.getElementById('p14').classList.contains('on'))renderGloss();
+}
+
+// ── TENSES TAB ────────────────────────────────────────────────
+let curTime='past',selTense=null;
+function setTime(t,el){
+  curTime=t;selTense=null;
+  document.querySelectorAll('.tt').forEach(b=>b.classList.remove('on'));if(el)el.classList.add('on');
+  document.getElementById('tenseDetail').classList.remove('on');
+  renderOvGrid();
+}
+function renderOvGrid(){
+  const td=TENSES[curTime];
+  document.getElementById('ovGrid').innerHTML=ASPECT_KEYS.map(a=>{
+    const d=td.aspects[a];
+    return`<div class="ov-card${selTense===a?' sel':''}" id="ovc_${a}" style="background:${d.bg};border-color:${td.border}" onclick="selTenseCard('${a}')">
+      <div class="ov-name" style="color:${d.col}">${d.label}</div>
+      <div class="ov-use" style="color:${d.col};font-size:11px">${ASPECT_LABELS[a]}</div>
+    </div>`;
+  }).join('');
+}
+function selTenseCard(a){
+  selTense=selTense===a?null:a;
+  document.querySelectorAll('.ov-card').forEach(c=>c.classList.remove('sel'));
+  const detail=document.getElementById('tenseDetail');
+  if(!selTense){detail.classList.remove('on');return;}
+  document.getElementById('ovc_'+a)?.classList.add('sel');
+  const td=TENSES[curTime];const d=td.aspects[a];
+  const gid=curTime+'::'+a;const saved=isGlossed(gid);
+  detail.innerHTML=`
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+      <span style="font-size:18px;font-weight:700;color:${d.col}">${d.label}</span>
+      <span style="background:${d.bg};color:${d.col};font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;border:0.5px solid ${td.border}">${ASPECT_LABELS[a]}</span>
+      <button class="save-btn${saved?' saved':''}" data-gid="${gid}" style="margin-left:auto" onclick="toggleGloss('${gid}',this)">${saved?'🔖 Saved':'🔖 Save'}</button>
+    </div>
+    <div class="lbl">Formula</div>
+    <div class="formula" style="border-color:${d.fl}">${d.formula}</div>
+    <div class="lbl">When to use it</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:8px">${d.desc}</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+      ${d.uses.map(u=>`<span style="background:${d.bg};color:${d.col};font-size:12px;padding:3px 10px;border-radius:20px;border:0.5px solid ${td.border}">${u}</span>`).join('')}
+    </div>
+    <div class="lbl">Time signals — click any to explore</div>
+    <div style="margin-bottom:10px">${d.signals.map(s=>`<span class="signal" style="background:${d.bg};color:${d.col};border-color:${td.border}" onclick="showSignalInline(${safeQ(s)},this,${safeQ(curTime)})">${s}</span>`).join('')}</div>
+    <div class="sig-popup" id="inlineSigPopup"></div>
+    <div class="lbl">Examples</div>
+    <div class="ex-row">
+      <div>${d.ex_pos.map(e=>`<div class="ex-box ex-pos" style="margin-bottom:6px">
+        <span class="ex-tag" style="color:#3B6D11">${e.tag}</span>${e.s}
+        <button class="audio-btn" onclick="speak(${safeQ(e.s)},0.84,this)" style="font-size:11px;padding:2px 7px;margin-top:5px;display:inline-flex">🔊</button>
+      </div>`).join('')}</div>
+      <div>${d.ex_neg.map(e=>`<div class="ex-box ex-neg" style="margin-bottom:6px">
+        <span class="ex-tag" style="color:#A32D2D">${e.tag}</span>${e.s}
+      </div>`).join('')}</div>
+    </div>
+    <div class="tip-box"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:${td.color}"></i><span>${d.tip}</span></div>`;
+  detail.classList.add('on');
+  detail.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function showSignalInline(sig,el,timeCtx){
+  const box=document.getElementById('inlineSigPopup');
+  // close if same chip clicked again
+  if(box._lastSig===sig&&box.classList.contains('on')){box.classList.remove('on');box._lastSig=null;return;}
+  box._lastSig=sig;
+  let found=null,foundTime=null;
+  Object.entries(SIGNALS).forEach(([t,arr])=>arr.forEach(s=>{if(!found&&(s.word===sig||s.word.startsWith(sig.split(' ')[0])||sig.startsWith(s.word.split(' ')[0]))){found=s;foundTime=t;}}));
+  const td=TENSES[timeCtx||foundTime||'past'];
+  if(!found){
+    box.innerHTML=`<div style="font-size:13px;color:var(--color-text-secondary);padding:8px">No extra detail found for "<strong>${sig}</strong>".</div>`;
+    box.classList.add('on');return;
+  }
+  const gid='signal::'+found.word;const sv=isGlossed(gid);
+  box.innerHTML=`
+    <div style="display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+      <div style="flex:1;min-width:0">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap">
+          <span style="font-size:15px;font-weight:700;color:${td.color}">${found.word}</span>
+          ${found.tenses.map(t=>`<span style="background:${td.light};color:${td.text};border:0.5px solid ${td.border};font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600">${t}</span>`).join('')}
+          <button class="audio-btn" onclick="speak(${safeQ(found.word)},0.87,this)" style="font-size:11px;padding:3px 8px">🔊 Hear</button>
+        </div>
+        <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:8px">${found.why}</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          ${found.examples.map(ex=>`<div style="font-size:13px;font-style:italic;background:var(--color-background-secondary);border-radius:10px;padding:7px 11px;line-height:1.6;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="flex:1">${ex}</span>
+            <button class="audio-btn" onclick="speak(${safeQ(ex)},0.84,this)" style="font-size:11px;padding:2px 7px">🔊</button>
+          </div>`).join('')}
+        </div>
+      </div>
+      <button class="save-btn${sv?' saved':''}" data-gid="${gid}" onclick="toggleSignalGloss(${safeQ(found.word)},${safeQ(JSON.stringify(found))},${safeQ(foundTime||timeCtx||'past')},this)">${sv?'🔖 Saved':'🔖 Save'}</button>
+    </div>`;
+  box.classList.add('on');
+  box.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ── TIME SIGNALS TAB ──────────────────────────────────────────
+let curSigCat='past';
+function setSigCat(cat,el){
+  curSigCat=cat;
+  document.querySelectorAll('.sct').forEach(b=>b.classList.remove('on'));if(el)el.classList.add('on');
+  renderSigList();
+}
+function renderSigList(){
+  const td=TENSES[curSigCat];
+  const arr=SIGNALS[curSigCat]||[];
+  document.getElementById('sigList').innerHTML=arr.map((s,i)=>`
+    <div class="sig-card" id="sc_${i}" onclick="toggleSigCard(${i})">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="font-size:16px;font-weight:700;color:${td.color}">${s.word}</span>
+        ${s.tenses.map(t=>`<span style="background:${td.light};color:${td.text};font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;border:0.5px solid ${td.border}">${t}</span>`).join('')}
+        <button class="audio-btn" style="margin-left:auto;font-size:11px;padding:3px 8px" onclick="event.stopPropagation();speak(${safeQ(s.word)},0.87,this)">🔊 Hear</button>
+        <i class="ti ti-chevron-down" id="sarr_${i}" style="font-size:14px;color:var(--color-text-secondary);transition:transform .2s"></i>
+      </div>
+      <div class="sig-detail" id="sd_${i}" style="background:${td.light};border-radius:12px;padding:10px 13px">
+        <div style="font-size:13px;color:${td.text};line-height:1.65;margin-bottom:8px">${s.why}</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          ${s.examples.map(ex=>`<div style="font-size:13.5px;font-style:italic;background:rgba(255,255,255,.7);border-radius:10px;padding:8px 12px;line-height:1.65;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="flex:1;color:${td.text}">${ex}</span>
+            <button class="audio-btn" onclick="event.stopPropagation();speak(${safeQ(ex)},0.84,this)" style="font-size:11px;padding:2px 7px;color:${td.text};border-color:${td.border}88">🔊</button>
+          </div>`).join('')}
+        </div>
+      </div>
+    </div>`).join('');
+}
+function toggleSigCard(i){
+  const det=document.getElementById('sd_'+i);const arr=document.getElementById('sarr_'+i);
+  const open=det.classList.contains('on');
+  det.classList.toggle('on',!open);
+  if(arr)arr.style.transform=open?'':'rotate(180deg)';
+}
+
+// ── GAP FILL ──────────────────────────────────────────────────
+const GAP_POOL=[
+  // ── Core 12 tenses ──────────────────────────────────────────
+  {s:'She ___ to work by bus yesterday.',blank:'went',opts:['goes','went','has gone','was going'],tense:'Past simple',fb:'Past simple — a completed action at a specific past time ("yesterday").'},
+  {s:'I ___ dinner when the lights went out.',blank:'was cooking',opts:['cooked','was cooking','had cooked','cook'],tense:'Past continuous',fb:'Past continuous — an action in progress interrupted by a shorter past event.'},
+  {s:'By the time I arrived, she ___ already.',blank:'had left',opts:['left','leaves','had left','was leaving'],tense:'Past perfect',fb:'Past perfect — the leaving happened before the arrival. It is the "past before the past".'},
+  {s:'She was exhausted. She ___ all day.',blank:'had been working',opts:['worked','was working','had worked','had been working'],tense:'Past perfect continuous',fb:'Past perfect continuous — ongoing activity over a duration that explains a past state.'},
+  {s:'The shop ___ at 9 am every day.',blank:'opens',opts:['open','opens','is opening','has opened'],tense:'Present simple',fb:'Present simple — a daily routine or schedule. Third person singular adds -s.'},
+  {s:'Shh! The baby ___.',blank:'is sleeping',opts:['sleeps','slept','is sleeping','has slept'],tense:'Present continuous',fb:'Present continuous — action happening right now.'},
+  {s:"I can't find my keys. I think I ___ them.",blank:'have lost',opts:['lose','lost','have lost','had lost'],tense:'Present perfect',fb:'Present perfect — a past action with a present result (can\'t find them now).'},
+  {s:"She's exhausted. She ___ since 6 am.",blank:'has been working',opts:['works','worked','has worked','has been working'],tense:'Present perfect continuous',fb:'Present perfect continuous — ongoing activity from a past point up to now, explaining a present state.'},
+  {s:'"The phone is ringing." — "I ___ get it!"',blank:"'ll",opts:["'m going to","'m going to get","'ll","would"],tense:'Future simple (will)',fb:'Future simple — a spontaneous decision made at the moment of speaking.'},
+  {s:'This time next week, we ___ on the beach.',blank:'will be sitting',opts:['sit','will sit','will be sitting','are sitting'],tense:'Future continuous',fb:'Future continuous — an action in progress at a specific future moment.'},
+  {s:'By the time you arrive, I ___ cooking.',blank:'will have finished',opts:['finish','will finish','will have finished','am finishing'],tense:'Future perfect',fb:'Future perfect — completed before another future point. The key word is "by".'},
+  {s:'By next month, they ___ on this bridge for three years.',blank:'will have been working',opts:['work','will work','will have worked','will have been working'],tense:'Future perfect continuous',fb:'Future perfect continuous — the duration of an ongoing activity up to a future point.'},
+  // ── Alternative forms ────────────────────────────────────────
+  {s:'When I was a child, I ___ to school on foot every day.',blank:'used to walk',opts:['walked','used to walk','was walking','had walked'],tense:'used to',fb:'"Used to" expresses a past habit that no longer exists. It implies a contrast with the present — I no longer walk to school.'},
+  {s:'Every summer, we ___ drive to the coast and stay in the same cottage.',blank:'would',opts:['used to','would','were','did'],tense:'would (narrative habit)',fb:'"Would" replaces "used to" for past repeated actions in a narrative context. Note: it cannot replace "used to" for past states.'},
+  {s:'She ___ working night shifts — she does it every week.',blank:'is used to',opts:['used to','is used to','gets used to','was about to'],tense:'be used to',fb:'"Is used to" + -ing = accustomed to, familiar with. The "to" here is a preposition, so the verb must be in -ing form.'},
+  {s:'I am slowly ___ the new schedule.',blank:'getting used to',opts:['used to','being used to','getting used to','get used to'],tense:'get used to',fb:'"Getting used to" = the process of becoming accustomed. It describes the transition, not the achieved state.'},
+  {s:'Sit down — the concert ___ start.',blank:'is about to',opts:['is going to','is about to','will','is used to'],tense:'be about to',fb:'"Is about to" = the action will happen within moments. It is far more immediate than "going to".'},
+  // ── Future in the past ───────────────────────────────────────
+  {s:'We ___ go to Rome, but the trip was cancelled at the last minute.',blank:'were going to',opts:['would','were going to','were about to','were supposed to'],tense:'Future in the past — was/were going to',fb:'"Were going to" = a past intention that (usually) did not happen. It implies a plan that was made and then abandoned.'},
+  {s:'She said she ___ call me that evening.',blank:'would',opts:['will','would','was about to','was going to'],tense:'Future in the past — would (reported speech)',fb:'"Would" is the past form of "will" in reported speech. Direct: "I will call you." → Reported: "She said she would call me."'},
+  {s:'I ___ sign the contract when I noticed the error.',blank:'was about to',opts:['was going to','was supposed to','would','was about to'],tense:'Future in the past — was about to',fb:'"Was about to" = on the verge of doing something at a past moment — often interrupted. Perfect for dramatic past narrative.'},
+  {s:'The meeting ___ start at ten, but the manager arrived late.',blank:'was supposed to',opts:['was going to','was about to','would','was supposed to'],tense:'Future in the past — was supposed to',fb:'"Was supposed to" = an external expectation or arrangement that was not fulfilled. Implies someone else expected or arranged it.'},
+  // ── Stative verbs ────────────────────────────────────────────
+  {s:'I ___ what you mean — there is no need to explain.',blank:'understand',opts:['am understanding','understand','am knowing','understood'],tense:'Stative verbs',fb:'"Understand" is a stative verb (mental state) — it describes a state, not an action. Stative verbs never take the continuous form in standard English.'},
+  {s:'This coffee ___ wonderful — what is it?',blank:'tastes',opts:['is tasting','tastes','is tasted','taste'],tense:'Stative verbs — senses',fb:'"Taste" is stative when describing an involuntary perception (the flavour). "The coffee tastes wonderful" = a state. "The chef is tasting the coffee" = a deliberate action (dynamic use).'},
+  {s:'She ___ a house in the south of France.',blank:'owns',opts:['is owning','owns','is having','owned'],tense:'Stative verbs — possession',fb:'"Own" is a possession verb — always stative, never continuous. "She owns" not "she is owning".'},
+  // ── Modal perfect ────────────────────────────────────────────
+  {s:'She isn\'t here — she ___ already.',blank:'must have left',opts:['should have left','must have left','might leave','could leave'],tense:'Modal perfect — must have',fb:'"Must have left" = strong logical deduction about a past event. The speaker is almost certain, based on the evidence.'},
+  {s:'I ___ harder — the exam was much more difficult than I expected.',blank:'should have studied',opts:['must have studied','could study','should have studied','might have studied'],tense:'Modal perfect — should have',fb:'"Should have studied" = past regret or self-criticism. The action would have been the right thing to do, but it didn\'t happen.'},
+  {s:'We ___ — we had a faster team, but we made too many errors.',blank:'could have won',opts:['must have won','should have won','could have won','might win'],tense:'Modal perfect — could have',fb:'"Could have won" = a past possibility that was not realised. The ability or opportunity existed but was not used.'},
+  // ── Time clauses ─────────────────────────────────────────────
+  {s:'I\'ll call you as soon as I ___ the results.',blank:'get',opts:['will get','get','am getting','got'],tense:'Time clauses',fb:'After time conjunctions (as soon as, when, after, before, until), use present simple — never "will" — for future meaning. "As soon as I get" ✓ not "as soon as I will get" ✗.'},
+  {s:'Make sure you read the contract before you ___.',blank:'sign',opts:['will sign','sign','are going to sign','would sign'],tense:'Time clauses',fb:'After "before" in a future time clause, use present simple. "Before you sign" ✓ — not "before you will sign" ✗. This rule applies to all time conjunctions.'},
+  // ── Conditionals ─────────────────────────────────────────────
+  {s:'If you ___ water to 100°C, it boils.',blank:'heat',opts:['heated','heat','would heat','will heat'],tense:'Zero conditional',fb:'Zero conditional: If + present simple, + present simple. Used for general truths and scientific facts.'},
+  {s:'If it ___, I\'ll take an umbrella.',blank:'rains',opts:['will rain','rained','rains','would rain'],tense:'First conditional',fb:'First conditional: If + present simple, + will + base verb. Never use "will" in the if-clause. "If it rains" ✓ not "if it will rain" ✗.'},
+  {s:'If I ___ more time, I would learn Japanese.',blank:'had',opts:['have','had','would have','will have'],tense:'Second conditional',fb:'Second conditional: If + past simple, + would + base verb. Used for hypothetical or unlikely situations. "If I had" (not "if I would have").'},
+  {s:'If I had studied harder, I ___ the exam.',blank:'would have passed',opts:['would pass','will have passed','would have passed','had passed'],tense:'Third conditional',fb:'Third conditional: If + past perfect, + would have + past participle. Entirely imaginary — refers to a past that did not happen.'},
+  {s:'If he ___ more patient, he wouldn\'t have lost his temper yesterday.',blank:'were',opts:['had been','were','was','would be'],tense:'Mixed conditional (2→3)',fb:'Mixed conditional (2→3): If + past simple (permanent trait), + would have + past participle (past result). "If he were more patient" = a present characteristic that would have changed a past event.'},
+  {s:'If I had taken that job offer, I ___ in London right now.',blank:'would be',opts:['would have been','would be','had been','will be'],tense:'Mixed conditional (3→2)',fb:'Mixed conditional (3→2): If + past perfect (past condition), + would + base verb (present result). "Would be" not "would have been" — the result is in the present moment.'},
+  // ── Passive voice ────────────────────────────────────────────
+  {s:'The report ___ by the director yesterday.',blank:'was approved',opts:['approved','has been approved','was approved','is approved'],tense:'Passive — past simple',fb:'Past simple passive: was/were + past participle. "Was approved" = completed past action in the passive. The agent ("by the director") is optional.'},
+  {s:'The new bridge ___ at the moment — it should be ready by spring.',blank:'is being built',opts:['is built','was built','is being built','has been built'],tense:'Passive — present continuous',fb:'Present continuous passive: am/is/are + being + past participle. "Is being built" = an ongoing process happening right now.'},
+  {s:'The contract ___ yet — we are still negotiating.',blank:"hasn't been signed",opts:["wasn't signed","isn't signing","hasn't been signed","won't be signed"],tense:'Passive — present perfect',fb:'Present perfect passive: have/has + been + past participle. "Hasn\'t been signed" = not done yet, with present relevance.'},
+];
+let gItems=[],gIdx=0,gScore=0,gTotal=0,gSel=null,gChecked=false;
+function startGap(){gItems=[...GAP_POOL].sort(()=>Math.random()-.5);gIdx=0;gScore=0;gTotal=0;renderGap();}
+function renderGap(){
+  const cont=document.getElementById('gapCont');
+  if(gIdx>=gItems.length){const pct=Math.round(gScore/gTotal*100);cont.innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${gScore}/${gTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=70?'Well done!':'Review the Tenses tab and try again.'}</div><button class="act" onclick="startGap()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=gItems[gIdx];gSel=null;gChecked=false;
+  const prog=Math.round(gIdx/gItems.length*100);
+  const opts=[...item.opts].sort(()=>Math.random()-.5);window._gO=opts;
+  const sh=item.s.replace('___',`<span id="blankSpan" style="display:inline-block;min-width:90px;border-bottom:2px solid #185FA5;color:#185FA5;font-weight:600;text-align:center;padding:0 4px">___</span>`);
+  cont.innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.tense}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${gIdx+1}/${gItems.length} · Score: ${gScore}/${gTotal}</span>
+      <button class="act" onclick="startGap()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:8px">Choose the correct verb form, then press Check.</div>
+    <div style="font-size:16px;line-height:1.9;margin-bottom:14px;background:var(--color-background-secondary);border-radius:14px;padding:11px 14px">${sh}</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px" id="gOptsList">${opts.map((o,i)=>`<button class="gap-opt" id="gopt_${i}" onclick="selGOpt(${i})">${o}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" id="gCheckBtn" onclick="checkGap()" disabled>Check</button>
+      <button class="act" onclick="gIdx++;renderGap()">Skip →</button>
+    </div>
+    <div id="gFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selGOpt(i){if(gChecked)return;gSel=i;document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('gCheckBtn').disabled=false;}
+function checkGap(){
+  if(gChecked||gSel===null)return;gChecked=true;gTotal++;
+  const item=gItems[gIdx];const chosen=window._gO[gSel];const ok=chosen===item.blank;if(ok)gScore++;
+  document.getElementById('gCheckBtn').disabled=true;
+  document.querySelectorAll('#gOptsList .gap-opt').forEach((el,j)=>{const w=window._gO[j];el.classList.remove('gsel');if(w===item.blank)el.classList.add('gok');else if(j===gSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const sp=document.getElementById('blankSpan');if(sp){sp.textContent=item.blank;sp.style.color=ok?'#27500A':'#791F1F';sp.style.borderBottomColor=ok?'#C0DD97':'#F7C1C1';}
+  const fb=document.getElementById('gFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ The answer is "'+item.blank+'". ')+item.fb;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{gIdx++;renderGap();};document.querySelector('#gapCont .card').appendChild(nxt);
+}
+
+// ── MATCHING ──────────────────────────────────────────────────
+const MATCH_SETS=[
+  {instr:'Round 1 — Match each sentence to the tense or form it illustrates.',
+   pairs:[
+     {left:'She visited Paris last summer.',right:'Past simple'},
+     {left:'I was reading when the phone rang.',right:'Past continuous'},
+     {left:'By the time I arrived, she had left.',right:'Past perfect'},
+     {left:'Water boils at 100°C.',right:'Present simple'},
+     {left:'Have you ever tried sushi?',right:'Present perfect'},
+     {left:'This time tomorrow I\'ll be flying to Tokyo.',right:'Future continuous'},
+     {left:'I will have finished the report by Friday.',right:'Future perfect'},
+   ]},
+  {instr:'Round 2 — Match each sentence to the tense or form it illustrates.',
+   pairs:[
+     {left:'I have been studying for three hours.',right:'Present perfect continuous'},
+     {left:'"The phone\'s ringing." — "I\'ll get it!"',right:'Future simple (will)'},
+     {left:'By July I will have been learning Polish for two years.',right:'Future perfect continuous'},
+     {left:'Look at those clouds — it\'s going to rain!',right:'Future (going to)'},
+     {left:'His eyes were red — he had been crying.',right:'Past perfect continuous'},
+     {left:'She has broken her leg. (She can\'t walk now.)',right:'Present perfect'},
+     {left:'She is talking on the phone right now.',right:'Present continuous'},
+   ]},
+  {instr:'Round 3 — Alternative forms, future in the past, and stative verbs.',
+   pairs:[
+     {left:'When I was young, I used to cycle to school.',right:'used to'},
+     {left:'Every evening, he would sit by the fire and read.',right:'would (narrative habit)'},
+     {left:'She is used to working under pressure.',right:'be used to + -ing'},
+     {left:'I\'m slowly getting used to the new system.',right:'get used to + -ing'},
+     {left:'She was about to leave when the phone rang.',right:'was about to'},
+     {left:'She said she would call me that evening.',right:'would (reported speech)'},
+     {left:'The flight was supposed to land at noon.',right:'was supposed to'},
+   ]},
+  {instr:'Round 4 — Modal perfect forms and passive voice.',
+   pairs:[
+     {left:'She isn\'t here — she must have left already.',right:'must have (deduction)'},
+     {left:'I should have studied harder for that exam.',right:'should have (regret)'},
+     {left:'We could have won — we had a better team.',right:'could have (missed opportunity)'},
+     {left:'You needn\'t have brought food — there was plenty.',right:'needn\'t have (unnecessary action)'},
+     {left:'The report was approved by the director yesterday.',right:'Passive — past simple'},
+     {left:'The bridge is being built at the moment.',right:'Passive — present continuous'},
+     {left:'The contract has been signed.',right:'Passive — present perfect'},
+   ]},
+  {instr:'Round 5 — Conditionals and time clauses.',
+   pairs:[
+     {left:'If you heat water to 100°C, it boils.',right:'Zero conditional'},
+     {left:'If it rains, I\'ll take an umbrella.',right:'First conditional'},
+     {left:'If I had more time, I would learn Japanese.',right:'Second conditional'},
+     {left:'If I had studied harder, I would have passed.',right:'Third conditional'},
+     {left:'If I had taken that job, I would be in London now.',right:'Mixed conditional (3→2)'},
+     {left:'If she were more careful, she wouldn\'t have made that mistake.',right:'Mixed conditional (2→3)'},
+     {left:'I\'ll call you as soon as I get the results.',right:'Time clause (as soon as + present simple)'},
+   ]},
+];
+let mSet=0,mPicked=null,mMatched=[],mScore=0,mAttempts=0,mRight=[];
+function startMatch(si){
+  mSet=si!==undefined?si:mSet;
+  const set=MATCH_SETS[mSet];mPicked=null;mMatched=[];mScore=0;mAttempts=0;
+  const rights=[...set.pairs].sort(()=>Math.random()-.5);mRight=rights;
+  document.getElementById('matchCont').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="font-size:13px;color:var(--color-text-secondary)">Round ${mSet+1} of ${MATCH_SETS.length}</span>
+      ${MATCH_SETS.map((_,i)=>`<button class="act" onclick="startMatch(${i})" style="${i===mSet?'background:#E6F1FB;border-color:#85B7EB;color:#0C447C':''}">Round ${i+1}</button>`).join('')}
+      <button class="act" onclick="startMatch(mSet)"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i></button>
+    </div>
+    <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">${set.instr}</p>
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">Matched: <strong id="mP">0</strong>/${set.pairs.length} &nbsp;·&nbsp; Attempts: <strong id="mA">0</strong></div>
+    <div style="display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:9px">
+      <div style="display:flex;flex-direction:column;gap:6px" id="mL">${set.pairs.map((p,i)=>`<button class="mi" id="ml_${i}" onclick="mPL(${i})">${p.left}</button>`).join('')}</div>
+      <div style="display:flex;flex-direction:column;gap:6px" id="mR">${rights.map((r,i)=>`<button class="mi" id="mr_${i}" onclick="mPR(${i})" style="font-size:12px">${r.right}</button>`).join('')}</div>
+    </div>
+    <div id="mFb" style="font-size:13px;min-height:18px;margin-top:10px"></div>
+  </div>`;
+}
+function mPL(i){if(mMatched.some(m=>m.l===i))return;mPicked=i;document.querySelectorAll('#mL .mi').forEach((el,j)=>{if(!mMatched.some(m=>m.l===j))el.classList.toggle('pk',j===i);});}
+function mPR(i){
+  if(mPicked===null)return;const set=MATCH_SETS[mSet];if(mMatched.some(m=>m.r===i))return;
+  mAttempts++;document.getElementById('mA').textContent=mAttempts;
+  const ok=mRight[i].left===set.pairs[mPicked].left;
+  if(ok){
+    document.getElementById('ml_'+mPicked).classList.remove('pk');document.getElementById('ml_'+mPicked).classList.add('mt');document.getElementById('mr_'+i).classList.add('mt');
+    mMatched.push({l:mPicked,r:i});mScore++;document.getElementById('mP').textContent=mScore;
+    const fb=document.getElementById('mFb');fb.style.color='#27500A';fb.textContent=mScore===set.pairs.length?`All ${set.pairs.length} matched in ${mAttempts} attempt${mAttempts===1?'':'s'}!`:'✓ Correct match!';
+    mPicked=null;document.querySelectorAll('#mL .mi').forEach(el=>el.classList.remove('pk'));
+  }else{
+    document.getElementById('mr_'+i).classList.add('bd');document.getElementById('ml_'+mPicked).classList.add('bd');
+    const fb=document.getElementById('mFb');fb.style.color='#791F1F';fb.textContent='✗ Not a match — try again.';
+    setTimeout(()=>{const l=document.getElementById('ml_'+mPicked),r=document.getElementById('mr_'+i);if(l)l.classList.remove('bd');if(r)r.classList.remove('bd');},700);
+  }
+}
+
+// ── ERROR CORRECTION ──────────────────────────────────────────
+const ERR_POOL=[
+  // Core tenses
+  {a:'I have seen him yesterday.',b:'I saw him yesterday.',correct:'b',tense:'Past simple',exp:'Use past simple (not present perfect) with a finished time expression like "yesterday". Present perfect cannot be used with a specific past time.'},
+  {a:'She is knowing the answer.',b:'She knows the answer.',correct:'b',tense:'Stative verbs',exp:'"Know" is a stative verb — it describes a state, not an action, so it never takes the continuous form. Other stative verbs: want, need, believe, own.'},
+  {a:'When we got to the cinema, the film had already started.',b:'When we got to the cinema, the film already started.',correct:'a',tense:'Past perfect',exp:'The film starting happened before our arrival — past perfect correctly shows the earlier action. "Already" reinforces the sequence.'},
+  {a:"I will go to Paris next month — I've already booked.",b:"I'm going to go to Paris next month — I've already booked.",correct:'b',tense:'Future (going to)',exp:'When a future plan is already decided (booked), use "be going to", not "will". "Will" is for spontaneous decisions.'},
+  {a:'She had been waiting for two hours when he arrived.',b:'She was waiting for two hours when he arrived.',correct:'a',tense:'Past perfect continuous',exp:'Past perfect continuous expresses the full duration of an action up to a past moment. "Was waiting" does not convey the two-hour duration before his arrival.'},
+  {a:"By Friday, I'll finish the report.",b:"By Friday, I'll have finished the report.",correct:'b',tense:'Future perfect',exp:'"By Friday" signals a deadline before which the action must be complete — this requires the future perfect, not future simple.'},
+  {a:'More and more people shop online these days.',b:'More and more people are shopping online these days.',correct:'b',tense:'Present continuous',exp:'"These days" signals a changing or developing trend — present continuous. Present simple would suggest a permanent habitual fact.'},
+  {a:'While she was cooking, he set the table.',b:'While she cooked, he was setting the table.',correct:'a',tense:'Past continuous / Past simple',exp:'"While" + longer background action → past continuous. The shorter completed event uses past simple. "She was cooking" is the background; "he set the table" is the event.'},
+  {a:"He couldn't pay because he forgot his wallet.",b:"He couldn't pay because he had forgotten his wallet.",correct:'b',tense:'Past perfect',exp:'The forgetting happened before "couldn\'t pay" — past perfect correctly shows the earlier cause in the sequence.'},
+  {a:"I've been studying English since five years.",b:"I've been studying English for five years.",correct:'b',tense:'Present perfect continuous',exp:'Use "for" with a duration (five years). Use "since" with a starting point (since 2019, since Monday). Never "since five years".'},
+  {a:'"The phone is ringing." "I\'m going to get it."',b:'"The phone is ringing." "I\'ll get it."',correct:'b',tense:'Future simple (will)',exp:'A spontaneous decision made at the moment of speaking uses "will", not "going to". You cannot have pre-planned to answer this specific call.'},
+  // Alternative forms
+  {a:'I use to go swimming every Saturday as a child.',b:'I used to go swimming every Saturday as a child.',correct:'b',tense:'used to',exp:'"Used to" (not "use to") is the correct form in positive sentences. Only in questions and negatives does "use to" appear: "Did you use to…?" / "I didn\'t use to…"'},
+  {a:'She is used to get up early — she\'s done it for years.',b:'She is used to getting up early — she\'s done it for years.',correct:'b',tense:'be used to',exp:'"Be used to" is followed by a verb in -ing form (or a noun) because "to" is a preposition here, not part of an infinitive. "Is used to getting" ✓ not "is used to get" ✗.'},
+  {a:'He would be very tall when he was young.',b:'He used to be very tall when he was young.',correct:'b',tense:'used to vs would',exp:'"Would" cannot replace "used to" with stative verbs (be, have, know, etc.). "Would" is only used for repeated past actions, not past states. Use "used to" for both actions and states.'},
+  // Future in the past
+  {a:'We were about to go to Rome, but the trip was cancelled.',b:'We were going to go to Rome, but the trip was cancelled.',correct:'b',tense:'Future in the past',exp:'Both are possible, but "were going to" is more natural for a planned intention that was cancelled. "Were about to" implies something was about to happen at that very moment — not a planned trip.'},
+  {a:'The meeting was supposed to starting at ten.',b:'The meeting was supposed to start at ten.',correct:'b',tense:'was supposed to',exp:'"Was supposed to" is always followed by a bare infinitive (base verb without "to"). "Supposed to start" ✓ — not "supposed to starting" ✗.'},
+  // Stative verbs
+  {a:'I am having a car — it\'s a red one.',b:'I have a car — it\'s a red one.',correct:'b',tense:'Stative verbs — have',exp:'"Have" meaning "possess" is stative — never use the continuous. "I have a car" ✓. However, "have" is dynamic (continuous possible) in other meanings: "I\'m having breakfast" ✓ / "I\'m having a great time" ✓.'},
+  {a:'This soup is tasting wonderful.',b:'This soup tastes wonderful.',correct:'b',tense:'Stative verbs — taste',exp:'"Taste" is stative when describing a flavour (involuntary perception). "The soup tastes wonderful" ✓. The continuous is only used for a deliberate tasting action: "The chef is tasting the soup" ✓.'},
+  // Modal perfect
+  {a:'She must leave already — the lights are off.',b:'She must have left already — the lights are off.',correct:'b',tense:'Modal perfect — must have',exp:'"Must have" + past participle is used for deductions about the past. "Must leave" is present/future. If the evidence (lights off) is present, the deduction about the past requires "must have left".'},
+  {a:'I should study harder for that exam — I failed it.',b:'I should have studied harder for that exam — I failed it.',correct:'b',tense:'Modal perfect — should have',exp:'"Should have" + past participle expresses past regret or criticism. The action didn\'t happen. "Should study" is present/future advice, not past regret.'},
+  // Time clauses
+  {a:"I'll call you when I will arrive.",b:"I'll call you when I arrive.",correct:'b',tense:'Time clauses',exp:'After time conjunctions (when, after, before, as soon as, until), never use "will". Use present simple for future meaning. "When I arrive" ✓ — not "when I will arrive" ✗.'},
+  {a:"Don't say anything until she will ask.",b:"Don't say anything until she asks.",correct:'b',tense:'Time clauses — until',exp:'After "until", use present simple for future meaning. "Until she asks" ✓ — not "until she will ask" ✗. This applies to all time conjunctions.'},
+  // Conditionals
+  {a:'If I would have more time, I\'d travel more.',b:'If I had more time, I\'d travel more.',correct:'b',tense:'Second conditional',exp:'In the if-clause of a second conditional, use past simple — never "would". "If I had" ✓ — not "if I would have" ✗. "Would" only appears in the result clause.'},
+  {a:'If I had taken that job, I would have been in London now.',b:'If I had taken that job, I would be in London now.',correct:'b',tense:'Mixed conditional (3→2)',exp:'Mixed conditional (3→2): past perfect in the if-clause, "would + base verb" in the result clause — because the result is in the present moment. "Would be in London now" ✓ — not "would have been" which would make it a pure third conditional.'},
+  {a:'If she had been more careful, she wouldn\'t have made that mistake.',b:'If she were more careful, she wouldn\'t have made that mistake.',correct:'b',tense:'Mixed conditional (2→3)',exp:'Mixed conditional (2→3): the condition refers to a permanent present characteristic ("if she were more careful" = a general trait), so past simple is used in the if-clause. Past perfect ("had been") would turn it into a pure third conditional.'},
+  // Passive
+  {a:'The report approved by the committee last week.',b:'The report was approved by the committee last week.',correct:'b',tense:'Passive — past simple',exp:'The passive always requires an auxiliary verb. Past simple passive: was/were + past participle. "Was approved" ✓ — you cannot drop "was".'},
+];
+let eItems=[],eIdx=0,eScore=0,eTotal=0,eSel=null,eChecked=false;
+function startErr(){eItems=[...ERR_POOL].sort(()=>Math.random()-.5);eIdx=0;eScore=0;eTotal=0;renderErr();}
+function renderErr(){
+  const cont=document.getElementById('errCont');
+  if(eIdx>=eItems.length){const pct=Math.round(eScore/eTotal*100);cont.innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${eScore}/${eTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=70?'Well done!':'Review the Tenses tab and try again.'}</div><button class="act" onclick="startErr()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=eItems[eIdx];eSel=null;eChecked=false;
+  const prog=Math.round(eIdx/eItems.length*100);
+  const opts=[{label:item.a,val:'a'},{label:item.b,val:'b'}].sort(()=>Math.random()-.5);window._eO=opts;
+  cont.innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.tense}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${eIdx+1}/${eItems.length} · Score: ${eScore}/${eTotal}</span>
+      <button class="act" onclick="startErr()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:12px">One of these sentences has a grammar error. Choose the <strong style="color:var(--color-text-primary)">correct</strong> version.</div>
+    <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:12px" id="eOptsList">
+      ${opts.map((o,i)=>`<button class="gap-opt" id="eopt_${i}" onclick="selEOpt(${i})">${o.label}
+        <button class="audio-btn" onclick="event.stopPropagation();speak(${safeQ(o.label)},0.87,this)" style="font-size:11px;padding:2px 7px;margin-left:6px;vertical-align:middle">🔊</button>
+      </button>`).join('')}
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="check-btn" id="eCheckBtn" onclick="checkErr()" disabled>Check</button>
+      <button class="act" onclick="eIdx++;renderErr()">Skip →</button>
+    </div>
+    <div id="eFb" style="margin-top:0"></div>
+  </div>`;
+}
+function selEOpt(i){if(eChecked)return;eSel=i;document.querySelectorAll('#eOptsList .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('eCheckBtn').disabled=false;}
+function checkErr(){
+  if(eChecked||eSel===null)return;eChecked=true;eTotal++;
+  const item=eItems[eIdx];const chosen=window._eO[eSel];const ok=chosen.val===item.correct;if(ok)eScore++;
+  document.getElementById('eCheckBtn').disabled=true;
+  document.querySelectorAll('#eOptsList .gap-opt').forEach((el,j)=>{const v=window._eO[j];el.classList.remove('gsel');if(v.val===item.correct)el.classList.add('gok');else if(j===eSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const fb=document.getElementById('eFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.innerHTML=(ok?'✓ Correct! ':'✗ Not quite. ')+item.exp;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{eIdx++;renderErr();};document.querySelector('#errCont .card').appendChild(nxt);
+}
+
+// ── NAV ───────────────────────────────────────────────────────
+function showP(i){
+  document.querySelectorAll('.pan').forEach((p,j)=>p.classList.toggle('on',j===i));
+  document.querySelectorAll('.nt').forEach((t,j)=>t.classList.toggle('on',j===i));
+  if(i===0)renderQuote();
+  if(i===1&&!document.getElementById('ovGrid').innerHTML){setTime('past',document.querySelector('.tt-past'));}
+  if(i===2&&!document.getElementById('altGrid').innerHTML)renderAltGrid();
+  if(i===3&&!document.getElementById('fitpGrid').innerHTML)renderFitpGrid();
+  if(i===4&&!document.getElementById('contrastGrid').innerHTML)renderContrastGrid();
+  if(i===5&&!document.getElementById('stativeGrid').innerHTML)renderStativeGrid();
+  if(i===6&&!document.getElementById('modalGrid').innerHTML)renderModalGrid();
+  if(i===7&&!document.getElementById('narrativeArea').innerHTML)renderNarrative();
+  if(i===8&&!document.getElementById('timeClauseGrid').innerHTML)renderTimeClauseGrid();
+  if(i===9&&!document.getElementById('condGrid').innerHTML)renderCondGrid();
+  if(i===10&&!document.getElementById('passiveGrid').innerHTML)renderPassiveGrid();
+  if(i===11&&!gItems.length)startGap();
+  if(i===12&&!document.getElementById('matchCont').innerHTML)startMatch(0);
+  if(i===13&&!eItems.length)startErr();
+  if(i===14)renderGloss();
+}
+
+
+// ── GENERIC GRID RENDERER ─────────────────────────────────────
+function renderGenericGrid(items,gridId,detailId,selKey){
+  window[selKey]=window[selKey]||null;
+  document.getElementById(gridId).innerHTML=items.map((it,i)=>`
+    <div class="ov-card${window[selKey]===i?' sel':''}" style="background:${it.bg};border-color:${it.brd}" onclick="${selKey}Sel(${i},'${gridId}','${detailId}')">
+      <div class="ov-name" style="color:${it.tc}">${it.label}</div>
+      <div class="ov-use" style="color:${it.tc};font-size:11px;opacity:.75">${it.sub||''}</div>
+    </div>`).join('');
+}
+function genericSel(idx,items,gridId,detailId,selKey,buildFn){
+  const was=window[selKey]===idx;window[selKey]=was?null:idx;
+  document.querySelectorAll('#'+gridId+' .ov-card').forEach((c,i)=>c.classList.toggle('sel',i===window[selKey]));
+  const det=document.getElementById(detailId);
+  if(window[selKey]===null){det.classList.remove('on');return;}
+  det.innerHTML=buildFn(items[idx]);
+  det.classList.add('on');det.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function exRow(pos,neg,tc,brd){
+  return`<div class="ex-row">
+    <div>${pos.map(e=>`<div class="ex-box ex-pos" style="margin-bottom:6px"><span class="ex-tag" style="color:#3B6D11">${e.tag}</span>${e.s}<button class="audio-btn" onclick="speak(${safeQ(e.s)},0.84,this)" style="font-size:11px;padding:2px 7px;margin-top:5px;display:inline-flex">🔊</button></div>`).join('')}</div>
+    <div>${neg.map(e=>`<div class="ex-box ex-neg" style="margin-bottom:6px"><span class="ex-tag" style="color:#A32D2D">${e.tag}</span>${e.s}</div>`).join('')}</div>
+  </div>`;
+}
+function detailHeader(it,gid){
+  const sv=isGlossed(gid);
+  return`<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+    <span style="font-size:18px;font-weight:700;color:${it.tc}">${it.label}</span>
+    <span style="background:${it.bg};color:${it.tc};font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;border:0.5px solid ${it.brd}">${it.sub||''}</span>
+    <button class="audio-btn" onclick="speak(${safeQ(it.label)},0.87,this)">🔊 Hear</button>
+    <button class="save-btn${sv?' saved':''}" data-gid="${gid}" style="margin-left:auto" onclick="toggleExtraGloss('${gid}',${safeQ(it.label)},${safeQ(it.formula||it.desc||'')},${safeQ(it.tip||'')},this)">${sv?'🔖 Saved':'🔖 Save'}</button>
+  </div>`;
+}
+function useBadges(uses,bg,tc,brd){return`<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">${uses.map(u=>`<span style="background:${bg};color:${tc};font-size:12px;padding:3px 10px;border-radius:20px;border:0.5px solid ${brd}">${u}</span>`).join('')}</div>`;}
+
+// ── EXTRA GLOSSARY (for new sections) ─────────────────────────
+function toggleExtraGloss(gid,label,formula,tip,btn){
+  if(isGlossed(gid)){gloss=gloss.filter(g=>g.id!==gid);}
+  else{gloss.push({id:gid,type:'extra',label,formula,tip});}
+  document.querySelectorAll('[data-gid="'+gid+'"]').forEach(b=>{b.textContent=isGlossed(gid)?'🔖 Saved':'🔖 Save';b.classList.toggle('saved',isGlossed(gid));});
+  if(document.getElementById('p14').classList.contains('on'))renderGloss();
+}
+
+// ── 1. ALTERNATIVE FORMS ──────────────────────────────────────
+const ALT_FORMS=[
+  {id:'used_to',label:'used to + infinitive',sub:'Past habit (no longer true)',bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB',
+   formula:'Subject + used to + base verb',
+   desc:'Expresses a <strong>past habit or state that no longer exists</strong>. The action was repeated or true in the past, but is not true now. There is always an implied contrast with the present.',
+   uses:['Past repeated action no longer done','Past state no longer true','Contrasting past and present'],
+   signals:['when I was young','in those days','back then','as a child','no longer','anymore'],
+   ex_pos:[{tag:'Past habit',s:'She <strong>used to walk</strong> to school every day.'},{tag:'Past state',s:'He <strong>used to be</strong> very shy.'}],
+   ex_neg:[{tag:'Present habit ✗',s:'I <strong>use to</strong> go to the gym. ✗ (no present tense of "used to")'}],
+   tip:'"Used to" has no present form. For present habits use "usually" + present simple. Question: "Did you use to…?" Negative: "didn\'t use to…"',
+   confusable:[{a:'used to + infinitive',b:'be used to + -ing',note:'used to swim = past habit / is used to swimming = accustomed to it now'}]},
+  {id:'would_habit',label:'would (narrative habit)',sub:'Past habit in stories',bg:'#EEEDFE',tc:'#3C3489',brd:'#AFA9EC',
+   formula:'Subject + would + base verb (in narrative context)',
+   desc:'In narratives and personal stories, <strong>would</strong> can replace "used to" for past repeated actions — but NOT for past states. It requires an established past time frame.',
+   uses:['Past repeated action in narrative','Nostalgic storytelling','Literary and formal style'],
+   signals:['every day (in narrative)','whenever','in those days','as a child'],
+   ex_pos:[{tag:'Narrative habit',s:'Every summer, we <strong>would drive</strong> to the coast.'},{tag:'Repeated event',s:'Whenever she was upset, she <strong>would play</strong> the piano.'}],
+   ex_neg:[{tag:'State verb ✗',s:'He <strong>would be</strong> very tall. ✗ (use: used to be)'}],
+   tip:'"Would" for past habits only works in a clear narrative past context — you can\'t open a story with it. "Would be / would know / would have" = states: always use "used to" instead.',
+   confusable:[]},
+  {id:'be_used_to',label:'be used to + -ing',sub:'Accustomed / familiar with',bg:'#E1F5EE',tc:'#085041',brd:'#5DCAA5',
+   formula:'Subject + be (am/is/are/was/were) + used to + verb-ing / noun',
+   desc:'Means <strong>accustomed to, familiar with, or no longer finding something difficult</strong>. The verb after "to" is always -ing (or a noun) because "to" is a preposition here, not part of the infinitive.',
+   uses:['Familiarity with a situation','Tolerance of something difficult','Adaptation to new circumstances'],
+   signals:['now','already','still','not yet','by now'],
+   ex_pos:[{tag:'Familiar with',s:'She <strong>is used to working</strong> long hours.'},{tag:'Past familiarity',s:'He <strong>was used to</strong> the noise — he grew up near an airport.'}],
+   ex_neg:[{tag:'Wrong form ✗',s:'I <strong>am used to work</strong> early. ✗ (must be: used to working)'}],
+   tip:'The "to" in "be used to" is a preposition — always follow it with -ing or a noun, never a bare infinitive. Contrast: "I used to swim" (past habit) vs "I am used to swimming" (accustomed now).',
+   confusable:[{a:'I used to drive on the left.',b:'I am used to driving on the left.',note:'used to = I did it in the past (not now) / am used to = I am accustomed to it now'}]},
+  {id:'get_used_to',label:'get used to + -ing',sub:'Becoming accustomed',bg:'#FAEEDA',tc:'#633806',brd:'#E8C080',
+   formula:'Subject + get (get/got/will get) + used to + verb-ing / noun',
+   desc:'Expresses the <strong>process of becoming accustomed</strong> to something — it describes the transition, not the state. Unlike "be used to" (already comfortable), "get used to" = the journey towards comfort.',
+   uses:['Adapting to something new','Process of adjustment','Not yet comfortable but becoming so'],
+   signals:['eventually','slowly','gradually','still','in time'],
+   ex_pos:[{tag:'Process',s:'I\'m slowly <strong>getting used to</strong> the cold weather.'},{tag:'Future adaptation',s:'You\'ll <strong>get used to</strong> waking up early — it just takes time.'}],
+   ex_neg:[{tag:'Completed state ✗',s:'I <strong>got used to</strong> it last week — now it\'s easy. ✓ (correct — completed process)'}],
+   tip:'"Be used to" = I am comfortable (state). "Get used to" = I am becoming comfortable (process). "I got used to it" = the process is now finished.',
+   confusable:[]},
+  {id:'be_about_to',label:'be about to + infinitive',sub:'Immediate future intention',bg:'#FAECE7',tc:'#712B13',brd:'#F0997B',
+   formula:'Subject + be (am/is/are/was/were) + about to + base verb',
+   desc:'Expresses that something is <strong>going to happen very soon — in the immediate future</strong>. The speaker sees the action as imminent, either because it is planned or because it is already underway.',
+   uses:['Immediate future','Action already in motion','Warning or anticipation'],
+   signals:['just','right now','any moment','at that moment (past)'],
+   ex_pos:[{tag:'Immediate future',s:'Sit down — the film <strong>is about to start</strong>.'},{tag:'Past immediate future',s:'She <strong>was about to leave</strong> when the phone rang.'}],
+   ex_neg:[{tag:'Non-immediate ✗',s:'I <strong>am about to go</strong> to Paris next month. ✗ (use: going to — it\'s not immediate)'}],
+   tip:'"About to" means the action will happen within moments. It is much more immediate than "going to". "I was about to call you" = I was on the verge of calling when something stopped me.',
+   confusable:[]},
+];
+let altSel=null;
+function renderAltGrid(){
+  document.getElementById('altGrid').innerHTML=ALT_FORMS.map((it,i)=>`
+    <div class="ov-card${altSel===i?' sel':''}" style="background:${it.bg};border-color:${it.brd}" onclick="altSelCard(${i})">
+      <div class="ov-name" style="color:${it.tc}">${it.label}</div>
+      <div class="ov-use" style="color:${it.tc};font-size:11px;opacity:.75">${it.sub}</div>
+    </div>`).join('');
+}
+function altSelCard(i){
+  altSel=altSel===i?null:i;
+  document.querySelectorAll('#altGrid .ov-card').forEach((c,j)=>c.classList.toggle('sel',j===altSel));
+  const det=document.getElementById('altDetail');
+  if(altSel===null){det.classList.remove('on');return;}
+  const it=ALT_FORMS[i];const gid='alt::'+it.id;
+  det.innerHTML=detailHeader(it,gid)+
+    `<div class="lbl">Formula</div><div class="formula" style="border-color:${it.brd}">${it.formula}</div>
+    <div class="lbl">When to use it</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:8px">${it.desc}</p>`+
+    useBadges(it.uses,it.bg,it.tc,it.brd)+
+    `<div class="lbl">Time signals</div>
+    <div style="margin-bottom:10px">${it.signals.map(s=>`<span class="signal" style="background:${it.bg};color:${it.tc};border-color:${it.brd}">${s}</span>`).join('')}</div>`+
+    (it.confusable.length?`<div class="lbl">Watch the contrast</div>
+    ${it.confusable.map(c=>`<div class="warn-box"><i class="ti ti-arrows-exchange" style="font-size:15px;flex-shrink:0;color:#854F0B"></i><div><div style="font-size:13px;margin-bottom:3px"><strong>${c.a}</strong> vs <strong>${c.b}</strong></div><div style="font-size:12.5px">${c.note}</div></div></div>`).join('')}`:'')
+    +`<div class="lbl">Examples</div>`+exRow(it.ex_pos,it.ex_neg,it.tc,it.brd)
+    +`<div class="tip-box"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:${it.tc}"></i><span>${it.tip}</span></div>`;
+  det.classList.add('on');det.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ── 2. FUTURE IN THE PAST ─────────────────────────────────────
+const FITP_FORMS=[
+  {id:'was_going_to',label:'was / were going to',sub:'Unfulfilled intention or prediction',bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB',
+   formula:'Subject + was/were + going to + base verb',
+   desc:'Describes <strong>a plan, intention, or prediction that existed at a past moment</strong> — often implying it did not happen, or happened differently. It is the past tense of "be going to".',
+   uses:['Past intention (often unfulfilled)','Past prediction (looking forward from past)','Explain why something was expected'],
+   ex_pos:[{tag:'Unfulfilled plan',s:'We <strong>were going to travel</strong> to Japan, but the flights were cancelled.'},{tag:'Past prediction',s:'He <strong>was going to win</strong> — everyone thought so.'}],
+   ex_neg:[{tag:'',s:''}],tip:'"Was going to" often carries a sense of disappointment or surprise — the plan didn\'t happen. "I was going to call you" = I intended to but didn\'t.'},
+  {id:'would_future_past',label:'would (reported/narrative future)',sub:'Future as seen from the past',bg:'#EEEDFE',tc:'#3C3489',brd:'#AFA9EC',
+   formula:'Subject + would + base verb',
+   desc:'In reported speech and narrative, <strong>would</strong> is the past form of "will" — expressing what was then thought to be future. Also used for repeated past actions (see Alternative Forms).',
+   uses:['Reported speech (backshift from will)','Narrative future from a past viewpoint','Predicted future events in the past'],
+   ex_pos:[{tag:'Reported speech',s:'She said she <strong>would call</strong> at noon.'},{tag:'Narrative future',s:'That was the last time I saw him — we <strong>would never meet</strong> again.'}],
+   ex_neg:[{tag:'',s:''}],tip:'In reported speech: "I will finish" → She said she <strong>would</strong> finish. In narrative: "would" describes what turned out to happen next — often with dramatic effect.'},
+  {id:'was_about_to_past',label:'was / were about to',sub:'Imminent action at a past moment',bg:'#E1F5EE',tc:'#085041',brd:'#5DCAA5',
+   formula:'Subject + was/were + about to + base verb',
+   desc:'Describes an action that was <strong>on the verge of happening at a specific past moment</strong> — often interrupted or prevented. It conveys immediacy in a past narrative.',
+   uses:['Action interrupted before it could happen','Building tension in a story','Explaining what was about to occur'],
+   ex_pos:[{tag:'Interrupted',s:'She <strong>was about to sign</strong> the contract when she noticed the mistake.'},{tag:'Imminent',s:'The train <strong>was about to leave</strong> as we ran onto the platform.'}],
+   ex_neg:[{tag:'',s:''}],tip:'"Was about to" is perfect for creating dramatic tension in narratives. It sets up the moment just before something critical happens.'},
+  {id:'was_supposed_to',label:'was / were supposed to',sub:'Expected but didn\'t happen',bg:'#FAEEDA',tc:'#633806',brd:'#E8C080',
+   formula:'Subject + was/were + supposed to + base verb',
+   desc:'Describes something that <strong>was expected, arranged, or required to happen — but often did not</strong>. It carries a sense of obligation, expectation, or broken rule.',
+   uses:['Broken expectation or plan','Past obligation not fulfilled','Reporting what was arranged'],
+   ex_pos:[{tag:'Broken plan',s:'She <strong>was supposed to arrive</strong> at six, but she came at nine.'},{tag:'Obligation',s:'You <strong>were supposed to call</strong> me!'}],
+   ex_neg:[{tag:'',s:''}],tip:'"Supposed to" implies external expectation — someone else arranged it or expected it. Compare: "was going to" (personal intention) vs "was supposed to" (external expectation).'},
+];
+let fitpSel=null;
+function renderFitpGrid(){
+  document.getElementById('fitpGrid').innerHTML=FITP_FORMS.map((it,i)=>`
+    <div class="ov-card${fitpSel===i?' sel':''}" style="background:${it.bg};border-color:${it.brd}" onclick="fitpSelCard(${i})">
+      <div class="ov-name" style="color:${it.tc}">${it.label}</div>
+      <div class="ov-use" style="color:${it.tc};font-size:11px;opacity:.75">${it.sub}</div>
+    </div>`).join('');
+}
+function fitpSelCard(i){
+  fitpSel=fitpSel===i?null:i;
+  document.querySelectorAll('#fitpGrid .ov-card').forEach((c,j)=>c.classList.toggle('sel',j===fitpSel));
+  const det=document.getElementById('fitpDetail');
+  if(fitpSel===null){det.classList.remove('on');return;}
+  const it=FITP_FORMS[i];const gid='fitp::'+it.id;
+  det.innerHTML=detailHeader(it,gid)+
+    `<div class="lbl">Formula</div><div class="formula" style="border-color:${it.brd}">${it.formula}</div>
+    <div class="lbl">When to use it</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:8px">${it.desc}</p>`+
+    useBadges(it.uses,it.bg,it.tc,it.brd)+
+    `<div class="lbl">Examples</div>`+
+    `<div style="display:flex;flex-direction:column;gap:7px;margin-bottom:10px">${it.ex_pos.filter(e=>e.s).map(e=>`<div class="ex-box ex-pos"><span class="ex-tag" style="color:#3B6D11">${e.tag}</span>${e.s}<button class="audio-btn" onclick="speak(${safeQ(e.s)},0.84,this)" style="font-size:11px;padding:2px 7px;margin-top:5px;display:inline-flex">🔊</button></div>`).join('')}</div>`+
+    `<div class="tip-box"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:${it.tc}"></i><span>${it.tip}</span></div>`;
+  det.classList.add('on');det.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ── 3. ASPECT CONTRASTS ───────────────────────────────────────
+const CONTRASTS=[
+  {id:'pp_ps',label:'Present perfect vs Past simple',sub:'The most common confusion',bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB',
+   desc:'Both refer to past events, but <strong>present perfect</strong> connects to the present (relevance, result, unfinished time); <strong>past simple</strong> is purely in the past (finished, specific time).',
+   pairs:[
+     {pp:'I have seen that film.',ps:'I saw that film last night.',note:'"have seen" = general experience, no specific time. "saw" = specific finished occasion.'},
+     {pp:'She has broken her leg.',ps:'She broke her leg in 2019.',note:'"has broken" = still relevant now (she still can\'t walk?). "broke" = finished past event with a date.'},
+     {pp:'Have you eaten?',ps:'Did you eat earlier?',note:'"Have you eaten?" = at any point up to now. "Did you eat?" = asks about a specific past moment.'},
+   ],
+   tip:'Key test: can you add "yesterday", "last year", or "in 2010"? If yes → past simple. If the time is unfinished or the relevance is now → present perfect.'},
+  {id:'pc_ps',label:'Past continuous vs Past simple',sub:'Background vs event',bg:'#FAEEDA',tc:'#633806',brd:'#E8C080',
+   desc:'<strong>Past continuous</strong> = the background (longer, ongoing). <strong>Past simple</strong> = the event that interrupts or happens against that background.',
+   pairs:[
+     {pp:'I was reading a book',ps:'when the phone rang.',note:'"was reading" = long background action. "rang" = short interrupting event.'},
+     {pp:'She was cooking dinner',ps:'while he set the table.',note:'"was cooking" = ongoing background. "set" = completed action.'},
+     {pp:'They were arguing',ps:'when I walked in.',note:'"were arguing" = already in progress. "walked in" = the new event.'},
+   ],
+   tip:'"While" + past continuous = background. "When" + past simple = the interrupting event. Think: the continuous is the stage, the simple is what happens on it.'},
+  {id:'pp_ppc',label:'Present perfect vs Present perfect continuous',sub:'Result vs duration',bg:'#E1F5EE',tc:'#085041',brd:'#5DCAA5',
+   desc:'Both connect past to present. <strong>Present perfect</strong> focuses on completion or result. <strong>Present perfect continuous</strong> focuses on duration and ongoing process.',
+   pairs:[
+     {pp:'I have read the report.',ps:'I have been reading the report.',note:'"have read" = finished — result matters. "have been reading" = the process, possibly ongoing.'},
+     {pp:'She has written three emails.',ps:'She has been writing emails all morning.',note:'"has written" = countable completed result. "has been writing" = duration of the activity.'},
+     {pp:'He has painted the house.',ps:'He has been painting all week.',note:'"has painted" = done! Result visible. "has been painting" = activity in progress / just finished.'},
+   ],
+   tip:'Completed countable result → present perfect simple. Duration, process, or ongoing effort → present perfect continuous.'},
+  {id:'will_going_to',label:'will vs going to',sub:'Spontaneous vs planned',bg:'#FAECE7',tc:'#712B13',brd:'#F0997B',
+   desc:'Both express future, but <strong>will</strong> is for spontaneous decisions, promises, and open predictions; <strong>going to</strong> is for pre-planned intentions and evidence-based predictions.',
+   pairs:[
+     {pp:'"I\'ll get it!" (on hearing phone)',ps:'"I\'m going to answer the phone." (you planned to)',note:'"will" = decided right now. "going to" = intention formed before speaking.'},
+     {pp:'I think it will rain tomorrow.',ps:'Look at those clouds — it\'s going to rain!',note:'"will" = no evidence, just opinion. "going to" = evidence visible now.'},
+     {pp:'"I\'ll help you with that."',ps:'"I\'m going to help you — I planned this."',note:'"will" = spontaneous offer. "going to" = pre-arranged plan.'},
+   ],
+   tip:'Ask: "Was this decision made before or at the moment of speaking?" Before = going to. At the moment = will.'},
+];
+let contrastSel=null;
+function renderContrastGrid(){
+  document.getElementById('contrastGrid').innerHTML=CONTRASTS.map((it,i)=>`
+    <div class="ov-card${contrastSel===i?' sel':''}" style="background:${it.bg};border-color:${it.brd}" onclick="contrastSelCard(${i})">
+      <div class="ov-name" style="color:${it.tc}">${it.label}</div>
+      <div class="ov-use" style="color:${it.tc};font-size:11px;opacity:.75">${it.sub}</div>
+    </div>`).join('');
+}
+function contrastSelCard(i){
+  contrastSel=contrastSel===i?null:i;
+  document.querySelectorAll('#contrastGrid .ov-card').forEach((c,j)=>c.classList.toggle('sel',j===contrastSel));
+  const det=document.getElementById('contrastDetail');
+  if(contrastSel===null){det.classList.remove('on');return;}
+  const it=CONTRASTS[i];const gid='contrast::'+it.id;
+  det.innerHTML=detailHeader(it,gid)+
+    `<p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:12px">${it.desc}</p>
+    <div class="lbl">Side-by-side comparisons</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:12px">
+    ${it.pairs.map(p=>`<div style="background:var(--color-background-secondary);border-radius:14px;padding:11px 14px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px">
+        <div class="ex-box ex-pos" style="margin:0"><button class="audio-btn" onclick="speak(${safeQ(p.pp)},0.84,this)" style="font-size:11px;padding:2px 7px;display:block;margin-bottom:4px">🔊</button>${p.pp}</div>
+        <div class="ex-box" style="margin:0;background:#FAEEDA;color:#633806;border:0.5px solid #E8C080"><button class="audio-btn" onclick="speak(${safeQ(p.ps)},0.84,this)" style="font-size:11px;padding:2px 7px;display:block;margin-bottom:4px">🔊</button>${p.ps}</div>
+      </div>
+      <div style="font-size:12.5px;color:var(--color-text-secondary);font-style:italic">${p.note}</div>
+    </div>`).join('')}
+    </div>
+    <div class="tip-box"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:${it.tc}"></i><span>${it.tip}</span></div>`;
+  det.classList.add('on');det.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ── 4. STATIVE VERBS ──────────────────────────────────────────
+const STATIVE_CATS=[
+  {id:'st_mental',label:'Mental states',sub:'Thought & belief',bg:'#EEEDFE',tc:'#3C3489',brd:'#AFA9EC',
+   verbs:['know','believe','think (opinion)','understand','remember','forget','realise','recognise','suppose','doubt','mean','imagine'],
+   ex_pos:[{tag:'Correct',s:'I <strong>know</strong> the answer.'},{tag:'Correct',s:'She <strong>believes</strong> he is right.'}],
+   ex_neg:[{tag:'Wrong ✗',s:'I <strong>am knowing</strong> the answer. ✗'},{tag:'Wrong ✗',s:'She <strong>is believing</strong> him. ✗'}],
+   tip:'"Think" is stative when expressing an opinion ("I think you\'re right") but dynamic when describing the process ("I\'m thinking about the problem"). Same for "see", "have", and "taste".'},
+  {id:'st_emotion',label:'Emotions & desires',sub:'Feelings & wants',bg:'#FAEEDA',tc:'#633806',brd:'#E8C080',
+   verbs:['love','like','hate','prefer','want','wish','need','fear','envy','adore','detest','mind'],
+   ex_pos:[{tag:'Correct',s:'He <strong>loves</strong> jazz music.'},{tag:'Correct',s:'She <strong>wants</strong> to leave early.'}],
+   ex_neg:[{tag:'Wrong ✗',s:'He <strong>is loving</strong> jazz music. ✗'},{tag:'Wrong ✗',s:'She <strong>is wanting</strong> to leave. ✗'}],
+   tip:'"Love", "hate", and "like" can be used in the continuous in informal contexts for emphasis or temporary feelings: "I\'m loving this song!" — but this is colloquial, not standard.'},
+  {id:'st_senses',label:'Senses & perception',sub:'Involuntary perception',bg:'#E1F5EE',tc:'#085041',brd:'#5DCAA5',
+   verbs:['see','hear','smell','taste','feel','notice','seem','appear','look (seem)'],
+   ex_pos:[{tag:'Correct',s:'The soup <strong>tastes</strong> wonderful.'},{tag:'Correct',s:'It <strong>seems</strong> difficult.'}],
+   ex_neg:[{tag:'Wrong ✗',s:'The soup <strong>is tasting</strong> wonderful. ✗'},{tag:'Wrong ✗',s:'It <strong>is seeming</strong> difficult. ✗'}],
+   tip:'Involuntary perception = stative. Deliberate action = dynamic. "The chef is tasting the soup" ✓ (deliberate action) vs "The soup tastes great" ✓ (stative — the flavour).'},
+  {id:'st_possession',label:'Possession & existence',sub:'Ownership & being',bg:'#FAECE7',tc:'#712B13',brd:'#F0997B',
+   verbs:['have (possess)','own','belong','contain','consist','include','involve','lack','possess','owe'],
+   ex_pos:[{tag:'Correct',s:'She <strong>owns</strong> three cars.'},{tag:'Correct',s:'The box <strong>contains</strong> fragile items.'}],
+   ex_neg:[{tag:'Wrong ✗',s:'She <strong>is owning</strong> three cars. ✗'},{tag:'Wrong ✗',s:'The box <strong>is containing</strong> fragile items. ✗'}],
+   tip:'"Have" can be dynamic when it does not mean possess: "I\'m having breakfast" ✓ / "I\'m having a great time" ✓ — but "I have a car" ✗ → never continuous.'},
+];
+let stativeSel=null;
+function renderStativeGrid(){
+  document.getElementById('stativeGrid').innerHTML=STATIVE_CATS.map((it,i)=>`
+    <div class="ov-card${stativeSel===i?' sel':''}" style="background:${it.bg};border-color:${it.brd}" onclick="stativeSelCard(${i})">
+      <div class="ov-name" style="color:${it.tc}">${it.label}</div>
+      <div class="ov-use" style="color:${it.tc};font-size:11px;opacity:.75">${it.sub}</div>
+    </div>`).join('');
+}
+function stativeSelCard(i){
+  stativeSel=stativeSel===i?null:i;
+  document.querySelectorAll('#stativeGrid .ov-card').forEach((c,j)=>c.classList.toggle('sel',j===stativeSel));
+  const det=document.getElementById('stativeDetail');
+  if(stativeSel===null){det.classList.remove('on');return;}
+  const it=STATIVE_CATS[i];const gid='stative::'+it.id;
+  det.innerHTML=detailHeader(it,gid)+
+    `<div class="lbl">Verbs in this group</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">${it.verbs.map(v=>`<span style="background:${it.bg};color:${it.tc};border:0.5px solid ${it.brd};font-size:13px;font-weight:600;padding:4px 12px;border-radius:20px">${v}</span>`).join('')}</div>
+    <div class="lbl">Examples</div>`+exRow(it.ex_pos,it.ex_neg,it.tc,it.brd)+
+    `<div class="tip-box"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:${it.tc}"></i><span>${it.tip}</span></div>`;
+  det.classList.add('on');det.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ── 5. MODAL PERFECT ──────────────────────────────────────────
+const MODALS=[
+  {id:'must_have',label:'must have + past participle',sub:'Logical deduction (past)',bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB',
+   formula:'Subject + must have + past participle',
+   desc:'Expresses <strong>strong logical deduction about a past event</strong> — the speaker is almost certain something happened based on the evidence.',
+   uses:['Confident deduction about the past','Evidence-based conclusion','Logical reasoning'],
+   ex_pos:[{tag:'Deduction',s:'She isn\'t here — she <strong>must have left</strong> already.'},{tag:'Conclusion',s:'He knows every detail — he <strong>must have read</strong> the whole report.'}],
+   tip:'"Must have done" = I am almost certain this happened. Opposite: "can\'t have done" = I am almost certain this did NOT happen.'},
+  {id:'should_have',label:'should have + past participle',sub:'Regret or criticism (past)',bg:'#FAEEDA',tc:'#633806',brd:'#E8C080',
+   formula:'Subject + should have + past participle',
+   desc:'Expresses <strong>past regret or criticism</strong> — something would have been the right thing to do, but it did not happen. Often implies blame, self-criticism, or disappointment.',
+   uses:['Regret about past action','Criticism of someone\'s past behaviour','Advice about what was correct'],
+   ex_pos:[{tag:'Regret',s:'I <strong>should have studied</strong> harder for the exam.'},{tag:'Criticism',s:'You <strong>should have called</strong> before coming.'}],
+   tip:'"Should have done" = it was the right thing to do, but didn\'t happen. "Shouldn\'t have done" = it was the wrong thing to do, but it did happen.'},
+  {id:'could_have',label:'could have + past participle',sub:'Possibility or missed opportunity',bg:'#E1F5EE',tc:'#085041',brd:'#5DCAA5',
+   formula:'Subject + could have + past participle',
+   desc:'Expresses a <strong>past possibility that was not realised</strong>, or a missed opportunity. It can also criticise someone for not doing something they had the ability to do.',
+   uses:['Missed opportunity','Past possibility','Mild criticism'],
+   ex_pos:[{tag:'Missed opportunity',s:'We <strong>could have won</strong> — we had the better team.'},{tag:'Mild criticism',s:'You <strong>could have told</strong> me earlier!'}],
+   tip:'"Could have done" = it was possible but didn\'t happen. "Could have been worse" = acknowledge something bad but note it wasn\'t as bad as it could have been.'},
+  {id:'might_have',label:'might have + past participle',sub:'Weak possibility (past)',bg:'#EEEDFE',tc:'#3C3489',brd:'#AFA9EC',
+   formula:'Subject + might/may have + past participle',
+   desc:'Expresses a <strong>weak or uncertain possibility about the past</strong> — the speaker is not sure whether something happened or not. Less certain than "must have".',
+   uses:['Uncertain deduction','Weak past possibility','Tentative conclusion'],
+   ex_pos:[{tag:'Uncertain deduction',s:'She <strong>might have missed</strong> the train — I\'m not sure.'},{tag:'Weak possibility',s:'He <strong>may have forgotten</strong> about the meeting.'}],
+   tip:'Certainty scale: must have (90%+ certain) > should have (expected) > could have (possible) > might/may have (uncertain, 50% or less).'},
+  {id:'neednt_have',label:'needn\'t have + past participle',sub:'Unnecessary action (past)',bg:'#FAECE7',tc:'#712B13',brd:'#F0997B',
+   formula:'Subject + needn\'t have + past participle',
+   desc:'Expresses that <strong>something was done, but it turned out to be unnecessary</strong>. The action happened — but it was a waste of effort.',
+   uses:['Action done but unnecessary','Mild surprise or regret about wasted effort'],
+   ex_pos:[{tag:'Unnecessary action',s:'You <strong>needn\'t have brought</strong> food — we had plenty.'},{tag:'Wasted effort',s:'She <strong>needn\'t have worried</strong> — the exam was easy.'}],
+   tip:'"Needn\'t have done" = you did it, but you didn\'t need to. Compare: "didn\'t need to do" = you didn\'t do it because it wasn\'t necessary (or you just didn\'t do it).'},
+];
+let modalSel=null;
+function renderModalGrid(){
+  document.getElementById('modalGrid').innerHTML=MODALS.map((it,i)=>`
+    <div class="ov-card${modalSel===i?' sel':''}" style="background:${it.bg};border-color:${it.brd}" onclick="modalSelCard(${i})">
+      <div class="ov-name" style="color:${it.tc}">${it.label}</div>
+      <div class="ov-use" style="color:${it.tc};font-size:11px;opacity:.75">${it.sub}</div>
+    </div>`).join('');
+}
+function modalSelCard(i){
+  modalSel=modalSel===i?null:i;
+  document.querySelectorAll('#modalGrid .ov-card').forEach((c,j)=>c.classList.toggle('sel',j===modalSel));
+  const det=document.getElementById('modalDetail');
+  if(modalSel===null){det.classList.remove('on');return;}
+  const it=MODALS[i];const gid='modal::'+it.id;
+  det.innerHTML=detailHeader(it,gid)+
+    `<div class="lbl">Formula</div><div class="formula" style="border-color:${it.brd}">${it.formula}</div>
+    <div class="lbl">When to use it</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:8px">${it.desc}</p>`+
+    useBadges(it.uses,it.bg,it.tc,it.brd)+
+    `<div class="lbl">Examples</div>`+
+    `<div style="display:flex;flex-direction:column;gap:7px;margin-bottom:10px">${it.ex_pos.map(e=>`<div class="ex-box ex-pos"><span class="ex-tag" style="color:#3B6D11">${e.tag}</span>${e.s}<button class="audio-btn" onclick="speak(${safeQ(e.s)},0.84,this)" style="font-size:11px;padding:2px 7px;margin-top:5px;display:inline-flex">🔊</button></div>`).join('')}</div>`+
+    `<div class="tip-box"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:${it.tc}"></i><span>${it.tip}</span></div>`;
+  det.classList.add('on');det.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ── 6. NARRATIVE TENSES ───────────────────────────────────────
+const NARRATIVE_TEXT=[
+  {s:'It was a cold November evening.',tense:'past-simple',label:'Past simple',note:'Sets the scene — completed state.',col:'#3C3489',bg:'#EEEDFE'},
+  {s:'The streets were empty and a light rain was falling.',tense:'past-cont',label:'Past continuous',note:'Background — ongoing conditions setting the atmosphere.',col:'#633806',bg:'#FAEEDA'},
+  {s:'Clara had been walking for almost an hour',tense:'past-perf-cont',label:'Past perfect continuous',note:'Duration of ongoing activity before the narrative moment.',col:'#72243E',bg:'#FBEAF0'},
+  {s:'when she finally spotted the café.',tense:'past-simple',label:'Past simple',note:'Event — short action interrupting the background.',col:'#3C3489',bg:'#EEEDFE'},
+  {s:'She had forgotten her umbrella at home,',tense:'past-perf',label:'Past perfect',note:'Action before the narrative — explains her current state.',col:'#085041',bg:'#E1F5EE'},
+  {s:'so her coat was completely soaked.',tense:'past-simple',label:'Past simple',note:'Result state in the past.',col:'#3C3489',bg:'#EEEDFE'},
+  {s:'Inside the café, a few customers were chatting quietly.',tense:'past-cont',label:'Past continuous',note:'Background — ongoing activities of others.',col:'#633806',bg:'#FAEEDA'},
+  {s:'A young man was reading a newspaper in the corner.',tense:'past-cont',label:'Past continuous',note:'Background — describes the scene.',col:'#633806',bg:'#FAEEDA'},
+  {s:'Clara ordered a coffee and sat down.',tense:'past-simple',label:'Past simple',note:'Series of completed narrative events.',col:'#3C3489',bg:'#EEEDFE'},
+  {s:'She had never felt so relieved to be somewhere warm.',tense:'past-perf',label:'Past perfect',note:'Past perfect for a life experience up to that past moment.',col:'#085041',bg:'#E1F5EE'},
+];
+let narSel=null;
+function renderNarrative(){
+  document.getElementById('narrativeArea').innerHTML=`
+    <div class="card">
+      <div class="lbl" style="margin-top:0">Colour key — click any sentence to see its role</div>
+      <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px">
+        <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:600;padding:3px 11px;border-radius:20px;border:0.5px solid #AFA9EC">Past simple</span>
+        <span style="background:#FAEEDA;color:#633806;font-size:12px;font-weight:600;padding:3px 11px;border-radius:20px;border:0.5px solid #E8C080">Past continuous</span>
+        <span style="background:#E1F5EE;color:#085041;font-size:12px;font-weight:600;padding:3px 11px;border-radius:20px;border:0.5px solid #5DCAA5">Past perfect</span>
+        <span style="background:#FBEAF0;color:#72243E;font-size:12px;font-weight:600;padding:3px 11px;border-radius:20px;border:0.5px solid #ED93B1">Past perfect continuous</span>
+      </div>
+      <p style="font-size:16px;line-height:2.4;color:var(--color-text-primary)">
+        ${NARRATIVE_TEXT.map((seg,i)=>`<span class="nar-seg" id="ns_${i}" style="background:${seg.bg};color:${seg.col};border-radius:6px;padding:2px 6px;cursor:pointer;border:1.5px solid ${seg.bg};transition:all .15s;margin:1px;display:inline" onclick="narSel2(${i})">${seg.s}</span>`).join(' ')}
+      </p>
+      <div id="narDetail" style="display:none;margin-top:14px"></div>
+      <button class="audio-btn" style="margin-top:12px" onclick="speak(${safeQ(NARRATIVE_TEXT.map(s=>s.s).join(' '))},0.82,this)">🔊 Hear the full text</button>
+    </div>`;
+}
+function narSel2(i){
+  if(narSel===i){narSel=null;document.querySelectorAll('.nar-seg').forEach(s=>s.style.outline='');document.getElementById('narDetail').style.display='none';return;}
+  narSel=i;
+  document.querySelectorAll('.nar-seg').forEach((s,j)=>s.style.outline=j===i?'2px solid #185FA5':'');
+  const seg=NARRATIVE_TEXT[i];
+  document.getElementById('narDetail').style.display='block';
+  document.getElementById('narDetail').innerHTML=`
+    <div style="background:${seg.bg};border-radius:14px;padding:11px 14px;border:0.5px solid">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap">
+        <span style="font-size:15px;font-style:italic;color:${seg.col}">"${seg.s}"</span>
+        <button class="audio-btn" onclick="speak(${safeQ(seg.s)},0.84,this)" style="font-size:11px;padding:2px 7px">🔊</button>
+      </div>
+      <span style="background:var(--color-background-primary);color:${seg.col};font-size:12px;font-weight:700;padding:2px 9px;border-radius:20px;display:inline-block;margin-bottom:6px">${seg.label}</span>
+      <div style="font-size:13px;color:${seg.col};line-height:1.6">${seg.note}</div>
+    </div>`;
+}
+
+// ── 7. TIME CLAUSES ───────────────────────────────────────────
+const TIME_CONJ=[
+  {id:'when',label:'when',sub:'At the moment that',bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB',
+   formula:'…when + subject + present simple (for future meaning)',
+   desc:'When referring to the future, use <strong>present simple</strong> (not will) in a "when" clause. This is the most common tense error with time clauses.',
+   uses:['Future time clauses','Past events','Simultaneous actions'],
+   ex_pos:[{tag:'Future ✓',s:'I\'ll call you <strong>when I arrive</strong>.'},{tag:'Past ✓',s:'<strong>When she was young</strong>, she lived in Rome.'}],
+   ex_neg:[{tag:'Future ✗',s:'I\'ll call you <strong>when I will arrive</strong>. ✗'}],
+   tip:'Rule: after "when" (and all time conjunctions), use present simple for future meaning. Never use "will" in the when-clause — only in the result clause.'},
+  {id:'after',label:'after',sub:'Following an event',bg:'#EEEDFE',tc:'#3C3489',brd:'#AFA9EC',
+   formula:'…after + subject + present simple / present perfect (for future)',
+   desc:'In future time clauses, "after" takes present simple or present perfect. Present perfect is used when the completion of the first action matters.',
+   uses:['Sequence of future events','When first action must be completed'],
+   ex_pos:[{tag:'Future simple after',s:'I\'ll call you <strong>after I finish</strong>.'},{tag:'Future perfect after',s:'I\'ll tell her <strong>after I\'ve spoken</strong> to him.'}],
+   ex_neg:[{tag:'Wrong ✗',s:'I\'ll call you <strong>after I will finish</strong>. ✗'}],
+   tip:'"After I finish" = general sequence. "After I have finished" = completion matters — I won\'t call until it is fully done.'},
+  {id:'before',label:'before',sub:'Prior to an event',bg:'#E1F5EE',tc:'#085041',brd:'#5DCAA5',
+   formula:'…before + subject + present simple (for future meaning)',
+   desc:'Same rule as "when" and "after": in future time clauses, <strong>present simple</strong> after "before".',
+   uses:['Future sequence','Warning or instruction'],
+   ex_pos:[{tag:'Future ✓',s:'Make sure you read it <strong>before you sign</strong>.'},{tag:'Instruction ✓',s:'Save your work <strong>before you close</strong> the laptop.'}],
+   ex_neg:[{tag:'Wrong ✗',s:'Read it <strong>before you will sign</strong>. ✗'}],
+   tip:'All time conjunctions — when, after, before, as soon as, until, by the time, once — follow the same rule: present simple (or present perfect) for future meaning.'},
+  {id:'as_soon_as',label:'as soon as',sub:'Immediately when',bg:'#FAEEDA',tc:'#633806',brd:'#E8C080',
+   formula:'…as soon as + subject + present simple (for future)',
+   desc:'"As soon as" means <strong>immediately when / at the first moment that</strong>. It implies no delay between the two events.',
+   uses:['Immediate future sequence','Urgency or immediacy'],
+   ex_pos:[{tag:'Future ✓',s:'I\'ll let you know <strong>as soon as I hear</strong> anything.'},{tag:'Urgency ✓',s:'Call me <strong>as soon as you arrive</strong>.'}],
+   ex_neg:[{tag:'Wrong ✗',s:'I\'ll call <strong>as soon as I will know</strong>. ✗'}],
+   tip:'"As soon as" is stronger than "when" — it stresses immediacy. "I\'ll call when I know" (at some point after knowing) vs "I\'ll call as soon as I know" (the moment I know).'},
+  {id:'until',label:'until / till',sub:'Up to a point in time',bg:'#FAECE7',tc:'#712B13',brd:'#F0997B',
+   formula:'…until + subject + present simple (for future)',
+   desc:'"Until" means <strong>up to the point when something changes or happens</strong>. After "until", use present simple for future meaning.',
+   uses:['Duration up to a future point','Condition that ends something'],
+   ex_pos:[{tag:'Future ✓',s:'Wait here <strong>until I come back</strong>.'},{tag:'Negative ✓',s:'Don\'t say anything <strong>until she asks</strong>.'}],
+   ex_neg:[{tag:'Wrong ✗',s:'Wait <strong>until I will come back</strong>. ✗'}],
+   tip:'"Until" is often used with negative main clauses: "Don\'t do X until Y happens." The action is suspended until the condition in the until-clause is met.'},
+];
+let tcSel=null;
+function renderTimeClauseGrid(){
+  document.getElementById('timeClauseGrid').innerHTML=TIME_CONJ.map((it,i)=>`
+    <div class="ov-card${tcSel===i?' sel':''}" style="background:${it.bg};border-color:${it.brd}" onclick="tcSelCard(${i})">
+      <div class="ov-name" style="color:${it.tc}">${it.label}</div>
+      <div class="ov-use" style="color:${it.tc};font-size:11px;opacity:.75">${it.sub}</div>
+    </div>`).join('');
+}
+function tcSelCard(i){
+  tcSel=tcSel===i?null:i;
+  document.querySelectorAll('#timeClauseGrid .ov-card').forEach((c,j)=>c.classList.toggle('sel',j===tcSel));
+  const det=document.getElementById('timeClauseDetail');
+  if(tcSel===null){det.classList.remove('on');return;}
+  const it=TIME_CONJ[i];const gid='tc::'+it.id;
+  det.innerHTML=detailHeader(it,gid)+
+    `<div class="lbl">Rule</div><div class="formula" style="border-color:${it.brd}">${it.formula}</div>
+    <div class="lbl">When to use it</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:8px">${it.desc}</p>`+
+    useBadges(it.uses,it.bg,it.tc,it.brd)+
+    `<div class="lbl">Examples</div>`+exRow(it.ex_pos,it.ex_neg,it.tc,it.brd)+
+    `<div class="tip-box"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:${it.tc}"></i><span>${it.tip}</span></div>`;
+  det.classList.add('on');det.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ── 8. CONDITIONALS ───────────────────────────────────────────
+const CONDS=[
+  {id:'zero',label:'Zero conditional',sub:'Always true — facts & rules',bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB',
+   formula:'If + present simple, + present simple',
+   desc:'Used for <strong>general truths, facts, and rules</strong> — things that are always true when the condition is met. Both clauses use present simple.',
+   uses:['Scientific facts','General rules','Instructions'],
+   ex_pos:[{tag:'Fact',s:'<strong>If you heat</strong> water to 100°C, it <strong>boils</strong>.'},{tag:'Rule',s:'<strong>If it rains</strong>, the match <strong>is cancelled</strong>.'}],
+   ex_neg:[{tag:'',s:''}],tip:'"When" can replace "if" in zero conditionals because the outcome is certain, not just possible.'},
+  {id:'first',label:'First conditional',sub:'Real possibility in the future',bg:'#E1F5EE',tc:'#085041',brd:'#5DCAA5',
+   formula:'If + present simple, + will + base verb',
+   desc:'Used for <strong>real, likely situations in the future</strong>. The condition is genuinely possible; the result will follow if it is met.',
+   uses:['Likely future events','Warnings and threats','Promises and offers'],
+   ex_pos:[{tag:'Likely',s:'<strong>If it rains</strong>, I <strong>\'ll take</strong> an umbrella.'},{tag:'Warning',s:'<strong>If you don\'t hurry</strong>, you <strong>\'ll miss</strong> the train.'}],
+   ex_neg:[{tag:'Wrong ✗',s:'<strong>If it will rain</strong>, I\'ll take an umbrella. ✗'}],tip:'Never use "will" in the if-clause of a first conditional. "If it rains" ✓ — not "if it will rain" ✗.'},
+  {id:'second',label:'Second conditional',sub:'Hypothetical / unlikely',bg:'#FAEEDA',tc:'#633806',brd:'#E8C080',
+   formula:'If + past simple, + would + base verb',
+   desc:'Used for <strong>hypothetical, unlikely, or imaginary situations</strong> — not expected to actually happen. Often used for wishes, advice, and speculation.',
+   uses:['Hypothetical situations','Unlikely possibilities','Giving advice','Wishes'],
+   ex_pos:[{tag:'Hypothetical',s:'<strong>If I had</strong> more time, I <strong>would learn</strong> Japanese.'},{tag:'Advice',s:'<strong>If I were you</strong>, I <strong>\'d apologise</strong>.'}],
+   ex_neg:[{tag:'Wrong ✗',s:'<strong>If I would have</strong> more time, I\'d learn Japanese. ✗'}],tip:'Use "were" (not "was") with all persons in formal/careful writing: "If I were you…" "If she were here…" Both are acceptable in everyday speech.'},
+  {id:'third',label:'Third conditional',sub:'Impossible — past regret',bg:'#FAECE7',tc:'#712B13',brd:'#F0997B',
+   formula:'If + past perfect, + would have + past participle',
+   desc:'Used for <strong>imaginary situations in the past</strong> — the condition did not happen, and the result therefore also did not happen. Often expresses regret or criticism.',
+   uses:['Past regret','Imagining a different past','Criticism of past decisions'],
+   ex_pos:[{tag:'Past regret',s:'<strong>If I had studied</strong> harder, I <strong>would have passed</strong>.'},{tag:'Imagined past',s:'<strong>If she hadn\'t called</strong>, I <strong>would have left</strong>.'}],
+   ex_neg:[{tag:'',s:''}],tip:'The third conditional is entirely in the past and always imaginary — the condition did not happen. Both clauses refer to an impossible alternative history.'},
+  {id:'mixed_3_2',label:'Mixed conditional (3→2)',sub:'Past condition → present result',bg:'#EEEDFE',tc:'#3C3489',brd:'#AFA9EC',
+   formula:'If + past perfect (3rd), + would + base verb (2nd)',
+   desc:'A past imaginary condition leads to a <strong>present imaginary result</strong>. The "if" clause uses the third conditional (past perfect); the result clause uses the second conditional (would + base verb). Used when a past event still has consequences now.',
+   uses:['Past decision with a present consequence','Regret about the past that affects the present','Imagining how life would be different now'],
+   ex_pos:[{tag:'Past → present',s:'<strong>If I had taken</strong> that job, I <strong>would be</strong> living in New York now.'},{tag:'Past → present',s:'<strong>If she hadn\'t missed</strong> that flight, she <strong>would be</strong> home by now.'}],
+   ex_neg:[{tag:'Wrong ✗',s:'<strong>If I had taken</strong> that job, I <strong>would have been</strong> in New York now. ✗ (this is pure 3rd conditional — no present consequence)'}],
+   tip:'The key marker is "now" or a present time reference in the result clause. The condition happened (or didn\'t) in the past; the result is visible in the present moment.'},
+  {id:'mixed_2_3',label:'Mixed conditional (2→3)',sub:'Present condition → past result',bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB',
+   formula:'If + past simple (2nd), + would have + past participle (3rd)',
+   desc:'A present imaginary condition leads to a <strong>past imaginary result</strong>. The "if" clause uses the second conditional (past simple); the result clause uses the third conditional (would have + past participle). Used when a permanent present characteristic would have changed a past event.',
+   uses:['Present quality affecting a past outcome','Criticising someone\'s permanent trait','Imagining how a past event would have gone differently'],
+   ex_pos:[{tag:'Present → past',s:'<strong>If she were</strong> more careful, she <strong>wouldn\'t have made</strong> that mistake.'},{tag:'Present → past',s:'<strong>If he were</strong> a better swimmer, he <strong>would have saved</strong> the child.'}],
+   ex_neg:[{tag:'Wrong ✗',s:'<strong>If she had been</strong> more careful, she <strong>wouldn\'t have made</strong> that mistake. ✗ (this is pure 3rd conditional — refers only to the past)'}],
+   tip:'The key marker is a permanent or current state in the "if" clause ("if she were", "if I were", "if he were") — not a specific past event. The result clause refers to a past occasion that was affected by that trait.'},
+];
+let condSel=null;
+function renderCondGrid(){
+  document.getElementById('condGrid').innerHTML=CONDS.map((it,i)=>`
+    <div class="ov-card${condSel===i?' sel':''}" style="background:${it.bg};border-color:${it.brd}" onclick="condSelCard(${i})">
+      <div class="ov-name" style="color:${it.tc}">${it.label}</div>
+      <div class="ov-use" style="color:${it.tc};font-size:11px;opacity:.75">${it.sub}</div>
+    </div>`).join('');
+}
+function condSelCard(i){
+  condSel=condSel===i?null:i;
+  document.querySelectorAll('#condGrid .ov-card').forEach((c,j)=>c.classList.toggle('sel',j===condSel));
+  const det=document.getElementById('condDetail');
+  if(condSel===null){det.classList.remove('on');return;}
+  const it=CONDS[i];const gid='cond::'+it.id;
+  det.innerHTML=detailHeader(it,gid)+
+    `<div class="lbl">Formula</div><div class="formula" style="border-color:${it.brd}">${it.formula}</div>
+    <div class="lbl">When to use it</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:8px">${it.desc}</p>`+
+    useBadges(it.uses,it.bg,it.tc,it.brd)+
+    `<div class="lbl">Examples</div>`+exRow(it.ex_pos.filter(e=>e.s),it.ex_neg.filter(e=>e.s),it.tc,it.brd)+
+    `<div class="tip-box"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:${it.tc}"></i><span>${it.tip}</span></div>`;
+  det.classList.add('on');det.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ── 9. PASSIVE VOICE ──────────────────────────────────────────
+const PASSIVE_TENSES=[
+  {id:'ps',label:'Past simple passive',sub:'was / were + past participle',bg:'#EEEDFE',tc:'#3C3489',brd:'#AFA9EC',
+   formula:'Subject + was/were + past participle (+ by agent)',
+   active:'The police arrested the suspect.',passive:'The suspect <strong>was arrested</strong> by the police.',
+   uses:['When the agent is unknown','When the action is more important than who did it','Formal and academic writing'],
+   tip:'Omit "by + agent" when the agent is unknown, obvious, or unimportant. "The house was built in 1920" — no agent needed.'},
+  {id:'prs',label:'Present simple passive',sub:'am / is / are + past participle',bg:'#E1F5EE',tc:'#085041',brd:'#5DCAA5',
+   formula:'Subject + am/is/are + past participle (+ by agent)',
+   active:'They make this cheese in France.',passive:'This cheese <strong>is made</strong> in France.',
+   uses:['Describing processes','Scientific writing','General facts about how things are done'],
+   tip:'The present simple passive is very common in academic and scientific writing: "The results are analysed…", "The data is collected…"'},
+  {id:'prc',label:'Present continuous passive',sub:'am / is / are being + past participle',bg:'#FAEEDA',tc:'#633806',brd:'#E8C080',
+   formula:'Subject + am/is/are + being + past participle',
+   active:'They are renovating the building.',passive:'The building <strong>is being renovated</strong>.',
+   uses:['Ongoing process happening now','Temporary situation'],
+   tip:'"Being" is the key marker of continuous passives. "The road is being repaired" = it\'s happening right now.'},
+  {id:'pp',label:'Present perfect passive',sub:'have / has been + past participle',bg:'#FAECE7',tc:'#712B13',brd:'#F0997B',
+   formula:'Subject + have/has + been + past participle',
+   active:'Someone has stolen my bag.',passive:'My bag <strong>has been stolen</strong>.',
+   uses:['Past action with present result','Recent news (no specific time)'],
+   tip:'"Has been done" is very common in announcements and news: "The president has been elected…", "The contract has been signed…"'},
+  {id:'fut',label:'Future simple passive',sub:'will be + past participle',bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB',
+   formula:'Subject + will + be + past participle',
+   active:'They will announce the results tomorrow.',passive:'The results <strong>will be announced</strong> tomorrow.',
+   uses:['Future processes','Formal announcements'],
+   tip:'"Will be done" is used in formal and official contexts: "The new policy will be implemented next year."'},
+  {id:'inf',label:'Passive infinitive',sub:'to be + past participle',bg:'#FBEAF0',tc:'#72243E',brd:'#ED93B1',
+   formula:'Subject + modal/verb + to be + past participle',
+   active:'Someone needs to sign this.',passive:'This needs <strong>to be signed</strong>.',
+   uses:['After modal verbs','After verbs like need, want, expect','Describing obligation or necessity'],
+   tip:'"To be done" appears after modal verbs: "It must be finished", "It should be checked", "It ought to be done" — and after verbs like "need", "want", "expect".'},
+];
+let passiveSel=null;
+function renderPassiveGrid(){
+  document.getElementById('passiveGrid').innerHTML=PASSIVE_TENSES.map((it,i)=>`
+    <div class="ov-card${passiveSel===i?' sel':''}" style="background:${it.bg};border-color:${it.brd}" onclick="passiveSelCard(${i})">
+      <div class="ov-name" style="color:${it.tc}">${it.label}</div>
+      <div class="ov-use" style="color:${it.tc};font-size:11px;opacity:.75">${it.sub}</div>
+    </div>`).join('');
+}
+function passiveSelCard(i){
+  passiveSel=passiveSel===i?null:i;
+  document.querySelectorAll('#passiveGrid .ov-card').forEach((c,j)=>c.classList.toggle('sel',j===passiveSel));
+  const det=document.getElementById('passiveDetail');
+  if(passiveSel===null){det.classList.remove('on');return;}
+  const it=PASSIVE_TENSES[i];const gid='passive::'+it.id;
+  det.innerHTML=detailHeader(it,gid)+
+    `<div class="lbl">Formula</div><div class="formula" style="border-color:${it.brd}">${it.formula}</div>
+    <div class="lbl">Active → Passive</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+      <div style="background:#FAEEDA;color:#633806;border:0.5px solid #E8C080;border-radius:12px;padding:9px 13px;font-size:14px">
+        <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;margin-bottom:4px;color:#854F0B">Active</div>
+        ${it.active}<button class="audio-btn" onclick="speak(${safeQ(it.active)},0.84,this)" style="font-size:11px;padding:2px 7px;margin-top:5px;display:inline-flex">🔊</button>
+      </div>
+      <div style="background:${it.bg};color:${it.tc};border:0.5px solid ${it.brd};border-radius:12px;padding:9px 13px;font-size:14px">
+        <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;margin-bottom:4px;color:${it.tc}">Passive</div>
+        ${it.passive}<button class="audio-btn" onclick="speak(${safeQ(it.passive)},0.84,this)" style="font-size:11px;padding:2px 7px;margin-top:5px;display:inline-flex">🔊</button>
+      </div>
+    </div>`+
+    useBadges(it.uses,it.bg,it.tc,it.brd)+
+    `<div class="tip-box"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:${it.tc}"></i><span>${it.tip}</span></div>`;
+  det.classList.add('on');det.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ── EXTRA GLOSSARY RENDER (appended to renderGloss) ──────────────────────────
+
+window.addEventListener('load',()=>{
+  if(window.speechSynthesis){window.speechSynthesis.getVoices();setTimeout(loadV,500);setTimeout(loadV,1500);}
+  renderQuote();
+  setTime('past',document.querySelector('.tt-past'));
+});
+</script>
+</body>
+</html>
