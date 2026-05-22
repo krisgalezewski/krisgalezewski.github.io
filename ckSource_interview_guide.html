@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CKSource — Technical Product Manager Interview Guide</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary)}
+.w{padding:1.5rem}
+.nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
+.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nt:hover{background:var(--color-background-secondary)}
+.nt.on{color:#fff;border-color:transparent;font-weight:500}
+.n0.on{background:#1a5fa5}.n1.on{background:#0F6E56}.n2.on{background:#854F0B}
+.n3.on{background:#6b2d8e}.n4.on{background:#993C1D}.n5.on{background:#2d7a6b}
+.n6.on{background:#712B13}.n7.on{background:#3B6D11}.n8.on{background:#4a3b8c}
+.pan{display:none}.pan.on{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:.9rem}
+.lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
+.lbl:first-child{margin-top:0}
+.tip-box{background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;font-size:13px;color:var(--color-text-secondary);display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px}
+.warn-box{background:#FAEEDA;border-radius:14px;padding:10px 14px;font-size:13px;color:#633806;display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px;border:0.5px solid #E8C080}
+.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act:hover{background:var(--color-background-secondary)}
+.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #1a5fa5;background:#1a5fa5;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn:hover{background:#134a80}.check-btn:disabled{opacity:.4;cursor:default}
+.gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
+.gap-opt:hover:not(.gsel):not(.gok):not(.gbad):not(.gdim){background:var(--color-background-secondary)}
+.gap-opt.gsel{border-color:#1a5fa5;background:#E6F1FB;color:#0C447C;font-weight:500}
+.gap-opt.gok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:500;cursor:default;pointer-events:none}
+.gap-opt.gbad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F;cursor:default;pointer-events:none}
+.gap-opt.gdim{opacity:.38;cursor:default;pointer-events:none}
+.fb-ok{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.fb-no{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.ex-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:20px;background:#1a5fa5;transition:width .3s}
+.mi{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
+.mi:hover:not(.pk):not(.mt):not(.bd){background:var(--color-background-secondary)}
+.mi.pk{border-color:#1a5fa5;background:#E6F1FB;color:#0C447C;font-weight:600}
+.mi.mt{border-color:#27500A;background:#EAF3DE;color:#27500A;font-weight:600;cursor:default;pointer-events:none}
+.mi.bd{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
+.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #1a5fa5}
+.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
+.audio-btn:hover{background:#E6F1FB;border-color:#85B7EB;color:#1a5fa5}
+.audio-btn.playing{background:#E6F1FB;border-color:#1a5fa5;color:#1a5fa5;font-weight:500}
+.eyebrow{font-size:11px;font-weight:500;color:#1a5fa5;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.lesson-h{font-size:26px;font-weight:500;color:var(--color-text-primary);line-height:1.25;margin-bottom:4px}
+.lesson-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:1.25rem}
+.q-formal{background:#E6F1FB;color:#0C447C;border-radius:12px;padding:10px 13px;font-size:14px;line-height:1.65;margin-bottom:6px;border:0.5px solid #85B7EB}
+.q-semif{background:#EAF3DE;color:#27500A;border-radius:12px;padding:10px 13px;font-size:14px;line-height:1.65;margin-bottom:6px;border:0.5px solid #C0DD97}
+.q-label{font-size:10.5px;font-weight:700;display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
+.sample-ans{background:var(--color-background-secondary);border-radius:12px;padding:10px 13px;font-size:13px;line-height:1.75;color:var(--color-text-secondary);margin-top:6px;display:none;border-left:3px solid var(--color-border-secondary)}
+.sample-ans.on{display:block}
+.cf{padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:12px;cursor:pointer;transition:all .15s}
+.cf:hover{background:var(--color-background-secondary)}
+.cf.on{background:#1a5fa5;color:#fff;border-color:#1a5fa5;font-weight:500}
+.cat-hdr{font-size:13px;font-weight:700;padding:9px 14px;border-radius:14px;margin:14px 0 8px;display:flex;align-items:center;gap:8px}
+.save-btn{font-size:12px;padding:3px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-secondary);transition:all .15s;white-space:nowrap;flex-shrink:0}
+.save-btn:hover{background:#E6F1FB;border-color:#85B7EB;color:#1a5fa5}
+.save-btn.saved{background:#E6F1FB;border-color:#1a5fa5;color:#1a5fa5;font-weight:600}
+.rm-btn{font-size:12px;padding:3px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-secondary);transition:all .15s;white-space:nowrap;flex-shrink:0}
+.rm-btn:hover{background:#FCEBEB;border-color:#F7C1C1;color:#791F1F}
+.reg-f{background:#E6F1FB;color:#0C447C;border:0.5px solid #85B7EB}
+.reg-s{background:#EAF3DE;color:#27500A;border:0.5px solid #C0DD97}
+.rbadge{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;display:inline-block}
+.sub-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
+.st{padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
+.st:hover{background:var(--color-background-secondary)}
+.st.on{background:#1a5fa5;color:#fff;border-color:#1a5fa5;font-weight:500}
+.spanel{display:none}.spanel.on{display:block}
+@media(max-width:520px){.rg-compare{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<h2 class="sr-only">CKSource Technical Product Manager Interview Guide — questions, register, exercises, and glossary</h2>
+<div class="w">
+<div class="nav">
+  <button class="nt n0 on" onclick="showP(0)">Home</button>
+  <button class="nt n1" onclick="showP(1)">Questions</button>
+  <button class="nt n2" onclick="showP(2)">Register guide</button>
+  <button class="nt n3" onclick="showP(3)">Key vocabulary</button>
+  <button class="nt n4" onclick="showP(4)">Category quiz</button>
+  <button class="nt n5" onclick="showP(5)">Register quiz</button>
+  <button class="nt n6" onclick="showP(6)">Gap fill</button>
+  <button class="nt n7" onclick="showP(7)">Matching</button>
+  <button class="nt n8" onclick="showP(8)">My glossary</button>
+</div>
+<!-- HOME -->
+<div id="p0" class="pan on">
+  <div class="eyebrow">CKSource · Interview preparation</div>
+  <div class="lesson-h">Technical Product Manager Interview Guide</div>
+  <div class="lesson-sub">A complete guide to asking the right questions in the right register — designed for interviewers at CKSource</div>
+  <div class="quote-box" id="quoteBox"></div>
+  <div class="card">
+    <div class="lbl">About this lesson</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">This guide supports CKSource interviewers conducting a <strong style="color:var(--color-text-primary)">Technical Product Manager</strong> search. Every question appears in two registers: a <span class="rbadge reg-f">Formal</span> version and a <span class="rbadge reg-s">Semi-formal</span> version — so you can match the tone of your interview. Sample answers show what strong candidates typically say.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:12px">
+      <div style="background:#E6F1FB;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:700;color:#0C447C">6</div><div style="font-size:11px;color:#0C447C;font-weight:500;margin-top:2px">Categories</div></div>
+      <div style="background:#EAF3DE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:700;color:#27500A">42</div><div style="font-size:11px;color:#27500A;font-weight:500;margin-top:2px">Questions</div></div>
+      <div style="background:#EEEDFE;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:700;color:#3C3489">2</div><div style="font-size:11px;color:#3C3489;font-weight:500;margin-top:2px">Registers each</div></div>
+      <div style="background:#FAEEDA;border-radius:14px;padding:10px 12px;text-align:center"><div style="font-size:20px;font-weight:700;color:#633806">4</div><div style="font-size:11px;color:#633806;font-weight:500;margin-top:2px">Exercises</div></div>
+    </div>
+    <div class="lbl">Question categories</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;margin-top:4px">
+      <div style="background:#E6F1FB;border-radius:12px;padding:8px 12px"><div style="font-size:12px;font-weight:600;color:#0C447C;margin-bottom:2px">🔧 Engineering &amp; product</div><div style="font-size:12px;color:#185FA5">Bridging tech and PM</div></div>
+      <div style="background:#EAF3DE;border-radius:12px;padding:8px 12px"><div style="font-size:12px;font-weight:600;color:#27500A;margin-bottom:2px">🤝 Cultural fit</div><div style="font-size:12px;color:#0F6E56">Values, collaboration, team</div></div>
+      <div style="background:#FAEEDA;border-radius:12px;padding:8px 12px"><div style="font-size:12px;font-weight:600;color:#633806;margin-bottom:2px">💼 General PM</div><div style="font-size:12px;color:#854F0B">Strategy, prioritisation, delivery</div></div>
+      <div style="background:#EEEDFE;border-radius:12px;padding:8px 12px"><div style="font-size:12px;font-weight:600;color:#3C3489;margin-bottom:2px">💻 Technology</div><div style="font-size:12px;color:#534AB7">Tech depth and tools</div></div>
+      <div style="background:#FBEAF0;border-radius:12px;padding:8px 12px"><div style="font-size:12px;font-weight:600;color:#72243E;margin-bottom:2px">📊 Data &amp; metrics</div><div style="font-size:12px;color:#993C1D">Evidence-based decisions</div></div>
+      <div style="background:#FAECE7;border-radius:12px;padding:8px 12px"><div style="font-size:12px;font-weight:600;color:#712B13;margin-bottom:2px">🌍 Leadership &amp; growth</div><div style="font-size:12px;color:#993C1D">Vision, influence, development</div></div>
+    </div>
+    <div class="tip-box" style="margin-top:12px"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:#1a5fa5"></i><span>In <strong>Questions</strong>, filter by category and click any card to read the sample answer. Click 🔊 to hear either version aloud. Click 🔖 to save any question to your personal glossary.</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px">
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(1)"><div style="font-size:20px;margin-bottom:6px">❓</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Questions</div><div style="font-size:12px;color:var(--color-text-secondary)">All 42, filterable by category</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(2)"><div style="font-size:20px;margin-bottom:6px">🎯</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Register guide</div><div style="font-size:12px;color:var(--color-text-secondary)">Formal vs semi-formal</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(3)"><div style="font-size:20px;margin-bottom:6px">📚</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Key vocabulary</div><div style="font-size:12px;color:var(--color-text-secondary)">Business and tech terms</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(4)"><div style="font-size:20px;margin-bottom:6px">🏷️</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Category quiz</div><div style="font-size:12px;color:var(--color-text-secondary)">Classify each question</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(5)"><div style="font-size:20px;margin-bottom:6px">🔤</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Register quiz</div><div style="font-size:12px;color:var(--color-text-secondary)">Formal or semi-formal?</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(6)"><div style="font-size:20px;margin-bottom:6px">✏️</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Gap fill</div><div style="font-size:12px;color:var(--color-text-secondary)">Complete the question</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(7)"><div style="font-size:20px;margin-bottom:6px">🔀</div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Matching</div><div style="font-size:12px;color:var(--color-text-secondary)">Match question halves</div></div>
+    <div class="card" style="cursor:pointer;margin-bottom:0" onclick="showP(8)"><div style="font-size:20px;margin-bottom:6px"><i class="ti ti-bookmark" style="color:#4a3b8c"></i></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">My glossary</div><div style="font-size:12px;color:var(--color-text-secondary)">Your saved questions</div></div>
+  </div>
+</div>
+
+<!-- QUESTIONS -->
+<div id="p1" class="pan">
+  <div class="eyebrow">CKSource · Technical PM Interview</div>
+  <div class="lesson-h">Interview questions</div>
+  <div class="lesson-sub">Filter by category — click 💬 to reveal the sample answer — click 🔖 to save to your glossary</div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem" id="catFilter">
+    <button class="cf on" onclick="filterCat('all',this)">All</button>
+    <button class="cf" onclick="filterCat('eng',this)">🔧 Engineering &amp; product</button>
+    <button class="cf" onclick="filterCat('cult',this)">🤝 Cultural fit</button>
+    <button class="cf" onclick="filterCat('pm',this)">💼 General PM</button>
+    <button class="cf" onclick="filterCat('tech',this)">💻 Technology</button>
+    <button class="cf" onclick="filterCat('data',this)">📊 Data &amp; metrics</button>
+    <button class="cf" onclick="filterCat('lead',this)">🌍 Leadership &amp; growth</button>
+  </div>
+  <div id="qList"></div>
+</div>
+
+<!-- REGISTER GUIDE -->
+<div id="p2" class="pan">
+  <div class="eyebrow">Language guidance</div>
+  <div class="lesson-h">Register guide</div>
+  <div class="lesson-sub">Understanding the difference between formal and semi-formal business English in an interview context</div>
+  <div class="card">
+    <div class="lbl">What is register?</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:12px">Register is the level of formality in language. In a job interview, the right register depends on company culture, the seniority of the role, and the dynamic between interviewer and candidate. CKSource operates in a collaborative, engineering-led environment — a <strong style="color:var(--color-text-primary)">semi-formal register</strong> is often more effective than rigidly formal language, but formal English is still important in structured assessment and written communication.</p>
+    <div class="lbl">Side-by-side comparison</div>
+    <div class="rg-compare" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 14px">
+      <div style="background:#E6F1FB;border-radius:14px;padding:12px 14px">
+        <div style="font-size:12px;font-weight:700;color:#0C447C;margin-bottom:8px;letter-spacing:.04em">FORMAL BUSINESS</div>
+        <div style="font-size:13px;color:#0C447C;line-height:1.85">✦ Full sentences, no contractions<br>✦ Latinate vocabulary<br>✦ Passive constructions<br>✦ Hedged, precise language<br>✦ No idioms or phrasal verbs<br>✦ Best for: written briefs, executive panels, HR documentation</div>
+      </div>
+      <div style="background:#EAF3DE;border-radius:14px;padding:12px 14px">
+        <div style="font-size:12px;font-weight:700;color:#27500A;margin-bottom:8px;letter-spacing:.04em">SEMI-FORMAL</div>
+        <div style="font-size:13px;color:#27500A;line-height:1.85">✦ Contractions are natural<br>✦ Direct, Anglo-Saxon vocabulary<br>✦ Active voice preferred<br>✦ Conversational but professional<br>✦ Some idioms acceptable<br>✦ Best for: team interviews, culture conversations, video calls</div>
+      </div>
+    </div>
+    <div class="lbl">Key vocabulary shifts — formal → semi-formal</div>
+    <div style="margin:8px 0">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:5px"><div style="background:#E6F1FB;color:#0C447C;border-radius:10px;padding:6px 11px;font-size:13px"><strong>F:</strong> Could you describe your experience…</div><div style="background:#EAF3DE;color:#27500A;border-radius:10px;padding:6px 11px;font-size:13px"><strong>S:</strong> Can you walk us through…</div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:5px"><div style="background:#E6F1FB;color:#0C447C;border-radius:10px;padding:6px 11px;font-size:13px"><strong>F:</strong> To what extent are you able to…</div><div style="background:#EAF3DE;color:#27500A;border-radius:10px;padding:6px 11px;font-size:13px"><strong>S:</strong> How comfortable are you with…</div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:5px"><div style="background:#E6F1FB;color:#0C447C;border-radius:10px;padding:6px 11px;font-size:13px"><strong>F:</strong> Could you provide an example of a situation in which…</div><div style="background:#EAF3DE;color:#27500A;border-radius:10px;padding:6px 11px;font-size:13px"><strong>S:</strong> Tell us about a time when…</div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:5px"><div style="background:#E6F1FB;color:#0C447C;border-radius:10px;padding:6px 11px;font-size:13px"><strong>F:</strong> Please elaborate on your approach to…</div><div style="background:#EAF3DE;color:#27500A;border-radius:10px;padding:6px 11px;font-size:13px"><strong>S:</strong> Can you say more about how you…</div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:5px"><div style="background:#E6F1FB;color:#0C447C;border-radius:10px;padding:6px 11px;font-size:13px"><strong>F:</strong> What is your perspective on…</div><div style="background:#EAF3DE;color:#27500A;border-radius:10px;padding:6px 11px;font-size:13px"><strong>S:</strong> What do you think about… / What's your take on…</div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:5px"><div style="background:#E6F1FB;color:#0C447C;border-radius:10px;padding:6px 11px;font-size:13px"><strong>F:</strong> utilise / leverage / facilitate</div><div style="background:#EAF3DE;color:#27500A;border-radius:10px;padding:6px 11px;font-size:13px"><strong>S:</strong> use / make use of / help with</div></div>
+    </div>
+    <div class="tip-box"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:#1a5fa5"></i><span>At CKSource, the interview culture is collaborative and direct. Semi-formal register signals confidence and approachability. Switch to formal when discussing compensation, legal matters, or writing to multiple stakeholders simultaneously.</span></div>
+  </div>
+  <div class="card">
+    <div class="lbl">Register signals — what to listen for in candidate answers</div>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">Strong candidates naturally adapt their register to match the interviewer's. Watch for these signals:</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div style="background:#EAF3DE;border-radius:12px;padding:10px 13px"><div style="font-size:12px;font-weight:600;color:#27500A;margin-bottom:5px">✓ Positive signals</div><div style="font-size:13px;color:#27500A;line-height:1.75">Mirrors your register · Uses precise vocabulary · Structures answers (STAR method) · Avoids jargon overload · Concise and specific</div></div>
+      <div style="background:#FCEBEB;border-radius:12px;padding:10px 13px"><div style="font-size:12px;font-weight:600;color:#791F1F;margin-bottom:5px">✗ Watch out for</div><div style="font-size:13px;color:#791F1F;line-height:1.75">Buzzword-heavy vagueness · Over-formal stiffness · Register mismatch · Casual to the point of imprecision · Generic answers</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- KEY VOCABULARY -->
+<div id="p3" class="pan">
+  <div class="eyebrow">Business &amp; technical vocabulary</div>
+  <div class="lesson-h">Key vocabulary</div>
+  <div class="lesson-sub">Terms that appear in TPM interviews — definition, usage note, and example question</div>
+  <div id="vocabList"></div>
+</div>
+
+<!-- CATEGORY QUIZ -->
+<div id="p4" class="pan">
+  <div class="eyebrow">Exercise</div>
+  <div class="lesson-h">Category quiz</div>
+  <div class="lesson-sub">Read each interview question and choose the category it belongs to</div>
+  <div id="catQuizArea"></div>
+</div>
+
+<!-- REGISTER QUIZ -->
+<div id="p5" class="pan">
+  <div class="eyebrow">Exercise</div>
+  <div class="lesson-h">Register quiz</div>
+  <div class="lesson-sub">Is this question formal or semi-formal? Choose your answer and find out why</div>
+  <div id="regQuizArea"></div>
+</div>
+
+<!-- GAP FILL -->
+<div id="p6" class="pan">
+  <div class="eyebrow">Exercise</div>
+  <div class="lesson-h">Gap fill</div>
+  <div class="lesson-sub">Choose the word or phrase that best completes each interview question in its register</div>
+  <div id="gapArea"></div>
+</div>
+
+<!-- MATCHING -->
+<div id="p7" class="pan">
+  <div class="eyebrow">Exercise</div>
+  <div class="lesson-h">Matching</div>
+  <div class="lesson-sub">Match the opening of each question with the correct ending — three rounds</div>
+  <div id="matchArea"></div>
+</div>
+
+<!-- GLOSSARY -->
+<div id="p8" class="pan">
+  <div class="eyebrow">CKSource · Interview guide</div>
+  <div class="lesson-h">My glossary</div>
+  <div class="lesson-sub">Questions you have saved — click ✕ to remove any item</div>
+  <div id="glossCont"></div>
+</div>
+</div>
+<script>
+// ── VOICE ─────────────────────────────────────────────────────
+let bVoice=null;
+function loadV(){const vs=window.speechSynthesis.getVoices();if(!vs.length)return;bVoice=vs.find(v=>v.lang==='en-GB'&&/female|fiona|kate|serena|moira|karen|victoria|claire/i.test(v.name))||vs.find(v=>v.lang==='en-GB'&&!/male|daniel|oliver|arthur/i.test(v.name))||vs.find(v=>v.lang==='en-GB')||vs.find(v=>v.lang.startsWith('en'));}
+if(window.speechSynthesis){window.speechSynthesis.onvoiceschanged=loadV;loadV();}
+function speak(txt,rate,btn){if(!window.speechSynthesis)return;window.speechSynthesis.cancel();if(!bVoice)loadV();const u=new SpeechSynthesisUtterance(String(txt).replace(/<[^>]+>/g,''));u.lang='en-GB';u.rate=rate||0.87;u.pitch=1.07;if(bVoice)u.voice=bVoice;if(btn){document.querySelectorAll('.audio-btn').forEach(b=>b.classList.remove('playing'));btn.classList.add('playing');u.onend=()=>btn.classList.remove('playing');}window.speechSynthesis.speak(u);}
+function safeQ(s){return"'"+String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;')+"'";}
+
+// ── CATEGORY META ─────────────────────────────────────────────
+const CAT_META={
+  eng:{label:'Engineering & product',icon:'🔧',bg:'#E6F1FB',tc:'#0C447C',brd:'#85B7EB'},
+  cult:{label:'Cultural fit',icon:'🤝',bg:'#EAF3DE',tc:'#27500A',brd:'#C0DD97'},
+  pm:{label:'General PM',icon:'💼',bg:'#FAEEDA',tc:'#633806',brd:'#E8C080'},
+  tech:{label:'Technology',icon:'💻',bg:'#EEEDFE',tc:'#3C3489',brd:'#AFA9EC'},
+  data:{label:'Data & metrics',icon:'📊',bg:'#FBEAF0',tc:'#72243E',brd:'#ED93B1'},
+  lead:{label:'Leadership & growth',icon:'🌍',bg:'#FAECE7',tc:'#712B13',brd:'#F0997B'},
+};
+const QUESTIONS=[
+  {id:'ep1',cat:'eng',formal:'Could you describe your experience working at the interface of engineering and product management, and how you have navigated disagreements between the two functions?',semif:'Can you walk us through how you\'ve worked across engineering and product — and what you do when the two sides disagree?',why:'This tests the candidate\'s ability to bridge technical and business thinking without defaulting to one side.',sample:'In my previous role, I sat in on sprint planning and architecture reviews alongside quarterly business reviews. When engineering pushed back on a feature citing technical debt, I learned to reframe the discussion around risk and ROI. I created a shared cost-of-delay framework both sides found credible. The key was treating engineers as co-authors of the product strategy, not just implementers.'},
+  {id:'ep2',cat:'eng',formal:'To what extent are you able to participate meaningfully in technical discussions regarding system architecture or API design?',semif:'How comfortable are you getting into the weeds on things like architecture decisions or API design?',why:'Establishes the candidate\'s technical depth — essential for a TPM at a developer-tools company like CKSource.',sample:'I have a Computer Science background and have shipped features end-to-end. I can read and write API contracts, understand trade-offs between REST and GraphQL, and participate in architecture reviews without slowing engineers down. I\'m not a senior engineer, but I\'m technical enough to spot when scope is underestimated or when a technical choice has product implications.'},
+  {id:'ep3',cat:'eng',formal:'How do you approach the process of translating high-level business requirements into technical specifications that engineering teams can act upon effectively?',semif:'How do you turn a fuzzy business requirement into something the engineering team can actually build from?',why:'Core TPM skill: writing requirements specific enough to be actionable but not so prescriptive they constrain engineering.',sample:'I start by interviewing the business stakeholder to separate what they want from what they need. Then I write a problem statement — not a solution — and validate it with engineering early. I use user stories, acceptance criteria, and sequence diagrams where needed. I always include what is explicitly out of scope, because that saves more time than the specification itself.'},
+  {id:'ep4',cat:'eng',formal:'Could you provide an example of a situation in which you successfully advocated for a technical investment that had no immediate visible business impact?',semif:'Tell us about a time you made the case for paying down technical debt when there was no obvious short-term win.',why:'Reveals whether the candidate can justify engineering-led work to business stakeholders — critical for long-term product health.',sample:'Our logging infrastructure was silently dropping 3% of events. No customer had complained. I modelled the downstream cost: we were making pricing decisions on flawed data, which had led to at least one enterprise renewal being mispriced. I presented it as a revenue risk rather than a technical problem, and it was approved in the next planning cycle.'},
+  {id:'ep5',cat:'eng',formal:'How do you ensure that product roadmap decisions remain technically feasible while still responding to evolving market demands?',semif:'How do you keep the roadmap realistic from an engineering standpoint while staying responsive to what the market needs?',why:'Tests the candidate\'s ability to balance business agility with technical constraint — a daily tension for any TPM.',sample:'I run a lightweight technical feasibility review at the start of every discovery phase — before anything goes on the roadmap. Engineering nominates a representative who gives a rough T-shirt estimate and flags any dependency or risk. Nothing reaches the roadmap that hasn\'t had at least a sanity check from someone who has to build it.'},
+  {id:'ep6',cat:'eng',formal:'In your view, what constitutes an effective working relationship between a Product Manager and an engineering lead?',semif:'What does a really good working relationship between a PM and an engineering lead look like to you?',why:'Reveals the candidate\'s collaboration philosophy and whether it aligns with CKSource\'s engineering-led culture.',sample:'Mutual respect, clear ownership boundaries, and a shared definition of success. The PM owns the \'what and why\', the engineering lead owns the \'how\'. When those boundaries blur — usually under deadline pressure — things go wrong. I also think it\'s important to celebrate engineering wins publicly, not just feature launches.'},
+  {id:'ep7',cat:'eng',formal:'How do you handle a situation in which an engineering team determines that a committed feature is not technically feasible within the agreed timeframe?',semif:'What do you do when engineering tells you something you\'ve committed to can\'t be built in time?',why:'Tests composure, stakeholder management, and the candidate\'s relationship with engineering realism.',sample:'First, I get the full picture — what is the blocker: time, complexity, or dependency? Then I assess the options: scope reduction, phased delivery, or re-negotiating the deadline. I involve stakeholders early and frame it as a trade-off decision, not a failure. The worst thing is to hide it until the last moment.'},
+  {id:'cf1',cat:'cult',formal:'Could you describe the type of working environment in which you perform most effectively, and how you adapt when the environment differs from your preference?',semif:'What kind of work environment brings out the best in you — and how do you cope when it\'s different from that?',why:'CKSource values autonomy and self-organisation. This surfaces whether the candidate can thrive without micromanagement.',sample:'I do my best work when I have clear goals but significant freedom in how I reach them. I\'m comfortable with ambiguity as long as there\'s a shared understanding of what success looks like. When the environment is more prescriptive, I try to understand the reasons behind the structure before pushing back.'},
+  {id:'cf2',cat:'cult',formal:'How do you approach working within a distributed or remote-first team, and what practices do you employ to maintain alignment and trust across time zones?',semif:'What\'s your approach to working with a fully remote or distributed team — what do you actually do to keep everyone aligned?',why:'CKSource is remote-first. This question is essential for assessing whether the candidate has real async-work habits.',sample:'I\'m a strong believer in writing things down. Async communication only works if there\'s a shared source of truth — a good wiki, clear decision logs, and explicit status updates. I also schedule regular one-to-ones with key collaborators across time zones and I\'m deliberate about over-communicating context that would happen naturally in an office.'},
+  {id:'cf3',cat:'cult',formal:'To what extent do you consider yourself aligned with open-source values, and how has that influenced your approach to product development?',semif:'How do you feel about open source — and has it shaped how you think about building products?',why:'CKSource\'s core product (CKEditor) is open source. Alignment with open-source values is a genuine cultural requirement.',sample:'Open source fundamentally changed how I think about user trust. When your product is open, you can\'t hide bad decisions behind a closed API. It forces intellectual honesty. I\'ve contributed to a few open-source projects, and the feedback loop — a highly technical, opinionated community — makes you a much more disciplined product thinker.'},
+  {id:'cf4',cat:'cult',formal:'How do you respond when you fundamentally disagree with a decision made by senior leadership?',semif:'What do you do when you think leadership has got something wrong?',why:'Tests whether the candidate has the confidence to speak up and the judgment to know when and how.',sample:'I believe in disagree and commit — but only after I\'ve made my case clearly and in writing. I raise the concern privately first, with data if I have it. If the decision stands, I commit to it fully. What I try never to do is relitigate a closed decision in front of the team, because that undermines trust in the organisation.'},
+  {id:'cf5',cat:'cult',formal:'How do you approach situations in which you must deliver difficult or unwelcome feedback to a colleague or direct report?',semif:'How do you handle giving tough feedback to someone on your team?',why:'Reveals communication maturity and psychological safety — both critical in CKSource\'s flat structure.',sample:'I make it specific, timely, and private. I describe what I observed, what the impact was, and what I\'d like to see differently. I avoid making it personal. And I always end by asking the other person for their perspective, because sometimes what looks like underperformance has a root cause I haven\'t seen.'},
+  {id:'cf6',cat:'cult',formal:'Could you describe your philosophy regarding work-life balance and how you maintain personal effectiveness over the long term?',semif:'How do you think about work-life balance — and what do you actually do to protect your energy over time?',why:'CKSource cares about sustainable performance. This identifies candidates who are self-aware about burnout risk.',sample:'I treat my energy the way I treat my team\'s — as a finite resource that needs active management. I protect evenings and weekends except in genuine emergencies. I also try to notice early warning signs — reduced decision quality, irritability, lack of curiosity — and act on them before they become a problem.'},
+  {id:'cf7',cat:'cult',formal:'What attracts you specifically to CKSource as an organisation, and how does this role align with your long-term professional objectives?',semif:'What drew you to CKSource specifically, and where does this role fit in your bigger picture?',why:'Filters candidates who have done genuine research from those recycling a generic answer.',sample:'CKSource is in a genuinely interesting space: developer tooling at the intersection of content creation and the open web. The editor-as-a-platform model is compelling from a product architecture perspective. I\'ve followed the shift from CKEditor 4 to 5 — it shows the kind of long-term technical thinking I want to work alongside.'},
+  {id:'pm1',cat:'pm',formal:'Could you describe your approach to product prioritisation when faced with competing stakeholder demands and constrained resources?',semif:'How do you decide what to work on when everyone thinks their thing is most important and you don\'t have capacity to do it all?',why:'Prioritisation is the PM\'s core daily challenge. This reveals the candidate\'s frameworks and judgment.',sample:'I use a combination of RICE scoring — Reach, Impact, Confidence, Effort — and a strategic filter. The framework gives a ranked list; the strategy tells you when to override it. I also involve engineering in the estimate because a feature that looks high-RICE can drop quickly when effort is reassessed. I always sanity-check with: \'Would I be comfortable explaining this decision to a customer?\''},
+  {id:'pm2',cat:'pm',formal:'How do you define and communicate a product vision, and what steps do you take to ensure it is understood and embraced across the organisation?',semif:'How do you build a product vision — and how do you actually get everyone from engineers to sales to believe in it?',why:'Tests strategic communication and the candidate\'s ability to inspire rather than just inform.',sample:'I think of a product vision as a story, not a slide. It needs a problem, a hero (the user), a conflict, and a resolution. I write it in plain language and test it with someone outside the product team — if they understand it in two minutes, it\'s ready. I then embed it in every ritual: kickoffs, all-hands, retrospectives. Repetition is strategy.'},
+  {id:'pm3',cat:'pm',formal:'Could you provide an example of a product decision you made that proved to be incorrect, and what you learned from that experience?',semif:'Tell us about a product call you got wrong — what happened and what did you take from it?',why:'Reveals self-awareness, learning agility, and honesty — qualities that predict performance in complex product environments.',sample:'I pushed for a new onboarding flow based on qualitative feedback from sales that \'customers were confused.\' We shipped it and engagement dropped. The root cause: we\'d optimised for a first-time experience that confused returning users who had developed their own patterns. I learned to segment my user research more carefully and to define success metrics before shipping, not after.'},
+  {id:'pm4',cat:'pm',formal:'How do you approach stakeholder management when working across multiple business units or functional teams with divergent priorities?',semif:'How do you manage stakeholders when different teams all want different things from the product?',why:'Tests political intelligence and the ability to build coalitions without playing favourites.',sample:'I build a stakeholder map at the start of every initiative — who needs to be informed, consulted, and who has a veto. Then I schedule regular touchpoints calibrated to each person\'s need for detail. Most stakeholder conflict is information asymmetry in disguise: people fight over a decision they\'d agree on if they had the same data.'},
+  {id:'pm5',cat:'pm',formal:'How do you manage the tension between delivering long-term strategic value and responding to immediate customer or business needs?',semif:'How do you balance working on the big long-term bets with fixing what\'s hurting customers right now?',why:'Tests strategic vs operational balance — a fundamental tension for any PM in a growth-stage company.',sample:'I think of it as portfolio management. About 70% of capacity goes to committed roadmap items, 20% to reactive needs and tech debt, and 10% to exploratory work. The ratios shift based on company stage. The important thing is to make the allocation explicit so that every reactive request is a conscious trade-off, not a hijack.'},
+  {id:'pm6',cat:'pm',formal:'Could you describe your approach to running discovery and validation before committing engineering resources to a new feature?',semif:'What does your discovery process actually look like before you give engineering the green light on something new?',why:'Tests whether the candidate does real discovery or just validates assumptions they\'ve already made.',sample:'Discovery for me has three stages: problem validation (is this a real problem?), solution exploration (what are all the ways to solve it?), and demand validation (will people actually use this specific solution?). I try to kill ideas as early as possible — the cheapest test is a conversation. The most expensive is a shipped feature nobody uses.'},
+  {id:'pm7',cat:'pm',formal:'How do you approach the writing and maintenance of product specifications or requirements documentation?',semif:'How do you approach writing specs — what goes in, what doesn\'t, and how do you keep them useful over time?',why:'Reveals the candidate\'s writing discipline and their view of documentation as a tool versus a formality.',sample:'A good spec answers three questions: what problem are we solving, who has it, and how will we know we\'ve solved it? I keep specs short — if it needs more than two pages, the problem isn\'t defined clearly enough. I treat specs as living documents until the feature ships, then archive them. Maintaining stale specs is worse than having none.'},
+  {id:'tech1',cat:'tech',formal:'Could you describe your familiarity with web technologies such as JavaScript frameworks, browser rendering models, or content editing APIs?',semif:'How familiar are you with the web tech stack — things like JavaScript frameworks, how browsers work, or content editing APIs?',why:'CKSource builds browser-based editing software. Technical fluency with the web platform is directly relevant.',sample:'I have a solid understanding of the DOM, event handling, and how browsers parse and render content. I\'ve worked closely with teams using React and Vue. I\'ve read through parts of the CKEditor 5 source code and found the plugin architecture elegant — particularly the observable pattern used for data bindings.'},
+  {id:'tech2',cat:'tech',formal:'How do you approach evaluating the build-versus-buy decision when considering third-party integrations or platform dependencies?',semif:'How do you think about build vs buy when it comes to integrations and platform choices?',why:'Tests strategic technical judgment — a core skill for a PM at a company that both builds and integrates.',sample:'Build when it\'s a competitive differentiator or when no existing solution meets the quality bar. Buy or integrate when the problem is solved elsewhere and the switching cost is manageable. The mistake I see most often is building to have control, without accounting for the ongoing cost of ownership. I always ask: \'In two years, would we regret building this ourselves?\''},
+  {id:'tech3',cat:'tech',formal:'How do you assess and communicate technical risk to non-technical stakeholders in a way that enables sound decision-making?',semif:'How do you explain technical risk to people who aren\'t technical — without losing the nuance?',why:'One of the most valuable TPM skills: translating technical uncertainty into business language.',sample:'I use three dimensions: probability, impact, and detectability. I then translate each into business language — not \'the service might return a 503\' but \'customers could lose unsaved work, and we might not know immediately.\' Analogies help. Most non-technical stakeholders are very capable of handling nuanced risk if it\'s described in terms they care about.'},
+  {id:'tech4',cat:'tech',formal:'Could you describe your experience with software development methodologies such as Agile, Scrum, or Kanban, and your view on their relative merits?',semif:'What\'s your experience with Agile and different ways of running engineering teams — and what do you actually think works best?',why:'Tests whether the candidate has real opinions or just certifications.',sample:'I\'m certified in Scrum but I\'ve come to think methodology is less important than culture. Scrum works when teams genuinely inspect and adapt. It becomes theatre when retrospectives are performative and sprint planning is just a ritual. I prefer a Kanban-influenced approach for mature teams and Scrum-like timeboxing for exploratory phases.'},
+  {id:'tech5',cat:'tech',formal:'How do you stay current with developments in the technology landscape relevant to your product domain?',semif:'How do you keep up with what\'s happening in tech — especially things relevant to the products you work on?',why:'Reveals whether the candidate has genuine intellectual curiosity or just follows trends reactively.',sample:'I follow a small number of high-signal sources: specific engineers whose judgment I trust, a few curated newsletters, and the changelogs of products I consider best-in-class. I also try to build things myself occasionally — reading about technology and building with it are very different kinds of understanding.'},
+  {id:'tech6',cat:'tech',formal:'What is your experience with developer-facing products, and how does building for a developer audience differ from building for a general consumer?',semif:'Have you built products for developers before — and what makes that different from building for regular users?',why:'Critical for CKSource: their customers are largely developers integrating CKEditor into their own products.',sample:'Developer products live or die on API quality, documentation, and time-to-first-working-example. Developers don\'t read marketing copy — they read changelogs and API references. They have high tolerance for complexity and very low tolerance for poor documentation. The \'wow moment\' for a developer is the first time their code works as expected, not a beautiful UI.'},
+  {id:'tech7',cat:'tech',formal:'Could you describe your understanding of security and compliance considerations as they relate to product management in a B2B SaaS environment?',semif:'How do you think about security and compliance when building B2B SaaS — what\'s your actual involvement as a PM?',why:'Security is increasingly a product requirement, not just an engineering concern. TPMs need to own it.',sample:'I treat security requirements with the same rigour as functional requirements — they go into the spec, they have acceptance criteria, and they get tested. In a B2B context, compliance requirements like GDPR and SOC 2 often have direct product implications: data residency options, audit logs, access controls. I\'ve learned to involve the security team in discovery, not just in review.'},
+  {id:'data1',cat:'data',formal:'How do you define success metrics for a new product feature, and how do you ensure those metrics are aligned with broader business objectives?',semif:'How do you decide what \'success\' looks like for a new feature — and how do you tie that back to what the business actually cares about?',why:'Tests metric literacy and the ability to connect product outcomes to business outcomes.',sample:'I use an input-output-outcome framework. Outputs are things we shipped. Inputs are user behaviours. Outcomes are business results. A feature is only successful when it drives an outcome, not just an output. I also insist on defining success metrics before shipping — it prevents retroactive goalpost-moving that makes retrospectives useless.'},
+  {id:'data2',cat:'data',formal:'Could you describe your experience with A/B testing and experimentation, including how you design experiments and interpret results?',semif:'Talk us through how you approach A/B testing — how you set up an experiment and what you actually do with the results.',why:'Tests statistical literacy and intellectual honesty in interpreting data.',sample:'I start by stating the hypothesis clearly: \'We believe X will happen if we do Y, as measured by Z.\' Then I calculate the sample size needed to detect a meaningful effect at statistical significance. After the experiment, I look at not just the primary metric but counter-metrics — what moved in the wrong direction? A winning test that tanks another metric is not a win.'},
+  {id:'data3',cat:'data',formal:'How do you balance quantitative data with qualitative user research when making product decisions?',semif:'When do you trust the numbers and when do you trust what you hear from users — and how do you combine the two?',why:'Reveals whether the candidate can use both lenses effectively rather than defaulting to one.',sample:'Quantitative data tells you what is happening; qualitative tells you why. I use analytics to identify anomalies — drops in engagement, unexpected funnel exits — and then use user interviews to explain them. Data without context leads to solving the wrong problem. Anecdote without data leads to building for the loudest voice.'},
+  {id:'data4',cat:'data',formal:'How do you approach the challenge of instrumentation — ensuring that the data you need is being captured in a reliable and interpretable way?',semif:'How involved are you in making sure the right events are being tracked — and how do you make sure the data is actually trustworthy?',why:'Instrumentation is often neglected. This surfaces whether the candidate takes ownership of data quality.',sample:'I treat instrumentation as a first-class requirement — it goes into the spec alongside the feature. Before shipping, I ask: \'If this feature succeeds, what will we see in the data?\' Then I verify those events are being fired correctly in staging. I\'ve been burned by shipping features that worked perfectly but whose data was uninterpretable because we hadn\'t agreed on event naming conventions.'},
+  {id:'data5',cat:'data',formal:'Could you describe a situation in which data analysis led you to a counterintuitive product insight?',semif:'Tell us about a time the data surprised you — and changed what you decided to build.',why:'Tests analytical curiosity and whether the candidate uses data to challenge assumptions.',sample:'We assumed our power users were our most valuable for retention modelling. When we segmented by feature adoption and revenue, we found that moderate users — people who used three or four features regularly — were actually more stable. Power users were also more likely to build their own tooling and churn. We completely rethought our expansion strategy as a result.'},
+  {id:'data6',cat:'data',formal:'How do you approach defining and tracking key performance indicators for a product at different stages of its lifecycle?',semif:'How do you think about KPIs — and do they change depending on where the product is in its lifecycle?',why:'Tests lifecycle awareness: early-stage products need different metrics to mature products.',sample:'In early stages I focus on leading indicators — activation rate, time-to-first-value, return visits. In growth stage, I focus on retention cohorts and expansion revenue. In mature products, I focus on NPS and feature adoption depth. The mistake is carrying early-stage vanity metrics into maturity — monthly active users mean nothing if users aren\'t doing anything valuable.'},
+  {id:'data7',cat:'data',formal:'How do you communicate product performance data to stakeholders who may have varying levels of analytical literacy?',semif:'How do you present data to people who aren\'t data people — without dumbing it down or losing what matters?',why:'Data communication is a core leadership skill. Reveals whether the candidate can translate, not just report.',sample:'I lead with the insight, not the chart. \'We\'re losing 40% of users at the second step\' is more useful than showing a funnel and letting people draw their own conclusions. I then show one chart that supports the insight, and I\'m explicit about what it doesn\'t show. People don\'t resist data — they resist complexity.'},
+  {id:'lead1',cat:'lead',formal:'Could you describe your approach to mentoring or developing junior product team members?',semif:'How do you approach bringing on and developing more junior people in a product team?',why:'CKSource is growing. This surfaces whether the candidate can scale themselves through others.',sample:'I give junior PMs real problems with training wheels rather than toy problems they know don\'t matter. I pair them with a senior engineer for the first discovery cycle so they learn the language of engineering naturally. I also make my own decision-making visible — I annotate my PRDs with the reasoning, not just the conclusions, so people can see how I think.'},
+  {id:'lead2',cat:'lead',formal:'How do you build influence without formal authority in a cross-functional environment?',semif:'How do you get people to follow your lead when you\'re not actually their manager?',why:'PMs rarely have line authority over the people they depend on. Influence without authority is the fundamental PM leadership challenge.',sample:'I build credibility first — by doing what I say I\'ll do, by knowing my domain deeply, and by making other people\'s work easier rather than harder. Influence without authority is basically trust at scale. The moment people see you as someone who understands their constraints and still makes reasonable asks, they start pulling in your direction voluntarily.'},
+  {id:'lead3',cat:'lead',formal:'Could you describe your experience with product strategy formation and how you ensure that strategy translates into executable plans?',semif:'How do you build a product strategy — and how do you make sure it doesn\'t just stay on a slide?',why:'Tests whether the candidate can connect vision to execution — the gap where most product strategies die.',sample:'Strategy that doesn\'t change behaviour isn\'t strategy — it\'s aspiration. I translate strategy into explicit bets: hypotheses about the market that, if true, justify specific investments. Each bet has a named owner, a horizon, and a decision point. At the decision point we assess whether the hypothesis was validated and decide whether to continue, pivot, or stop.'},
+  {id:'lead4',cat:'lead',formal:'How have you contributed to shaping the product culture or working practices of an organisation?',semif:'Have you ever changed how a product team works — what did you do and what came out of it?',why:'Senior TPMs are expected to improve the system, not just operate within it.',sample:'I introduced a product review practice: a monthly open session where any PM presents a current decision for peer critique. It was uncomfortable at first, but within three months it had measurably improved our specs and created a shared vocabulary around prioritisation. It also surfaced a lot of tacit knowledge that had previously lived only in individual PMs\' heads.'},
+  {id:'lead5',cat:'lead',formal:'How do you approach your own professional development, and what areas are you currently focused on improving?',semif:'How do you invest in your own growth — what are you actively working on right now?',why:'Tests self-awareness and growth mindset — particularly important in a fast-moving tech company.',sample:'I\'m currently working on my financial modelling skills — specifically around unit economics and how product decisions affect gross margin. The PMs who have the most influence at C-suite level are those who speak the language of the CFO, not just the language of the user. I\'m also reading more about platform strategy, directly relevant to CKSource\'s position.'},
+  {id:'lead6',cat:'lead',formal:'How do you manage your own decision-making process when faced with significant ambiguity and incomplete information?',semif:'What do you actually do when you have to make a call and you just don\'t have enough information?',why:'Ambiguity tolerance is critical for senior PMs. This surfaces decision-making discipline.',sample:'I distinguish between reversible and irreversible decisions. For reversible ones, I move quickly with whatever information I have and commit to a review date. For irreversible ones, I slow down, name the assumptions I\'m making, and try to gather the minimum data that would change my decision. The discomfort of deciding without complete information is part of the job.'},
+  {id:'lead7',cat:'lead',formal:'What is your perspective on the evolving role of artificial intelligence in product management, and how are you preparing for that shift?',semif:'How do you think AI is changing the PM role — and what are you doing about it?',why:'Tests forward-thinking and whether the candidate has a considered, non-generic view on AI in product work.',sample:'AI is compressing the distance between insight and action — qualitative research synthesis that took a week now takes hours. But it\'s raising the bar for judgment: if everyone has access to the same data, the differentiator is the quality of your questions. I use AI heavily for synthesis and pattern-spotting, but I\'m deliberate about keeping strategic decisions in human hands.'},
+];
+
+// ── VOCABULARY ────────────────────────────────────────────────
+const VOCAB=[
+  {word:'roadmap',def:'A strategic document communicating the planned direction and timeline of a product — what will be built, when, and why.',note:'Avoid treating it as a binding commitment; it is a living plan. Strong candidates distinguish between a roadmap and a delivery schedule.',ex:'"Could you walk us through how you maintain and communicate your product roadmap to engineering and commercial stakeholders?"'},
+  {word:'prioritisation',def:'The process of deciding which features, bugs, or initiatives to work on first, given limited resources and competing demands.',note:'Central PM skill. Often tested with frameworks like RICE, MoSCoW, or Kano. Watch for whether the candidate explains trade-offs or just lists a method.',ex:'"How do you approach prioritisation when two high-impact features are competing for the same engineering capacity?"'},
+  {word:'technical debt',def:'The accumulated cost of shortcuts, outdated code, or deferred maintenance that slows down future development.',note:'Use to test whether the candidate can make a business case for engineering investment. Strong answers translate debt into risk or revenue impact.',ex:'"Can you give an example of a time you successfully advocated for addressing technical debt with no immediate customer-visible benefit?"'},
+  {word:'discovery',def:'The phase of product work where problems are validated and solutions explored before engineering resources are committed.',note:'Strong candidates distinguish discovery from delivery. Listen for a concrete toolkit: interviews, prototypes, experiments — not just "talking to users".',ex:'"What does your discovery process actually look like before you commit to building a new feature?"'},
+  {word:'stakeholder',def:'Any person or group with an interest in or influence over a product decision — including customers, engineering, sales, leadership, and legal.',note:'Tests political intelligence. The best candidates map stakeholders proactively rather than reactively.',ex:'"How do you manage competing stakeholder demands when resources are constrained?"'},
+  {word:'API (Application Programming Interface)',def:'A defined set of rules and protocols that allows different software systems to communicate with each other.',note:'Essential vocabulary for a TPM at CKSource. CKEditor is consumed primarily through APIs — the candidate must understand the developer experience.',ex:'"How comfortable are you reviewing API contracts and participating in API design discussions with your engineering team?"'},
+  {word:'north star metric',def:'A single key metric that best captures the core value a product delivers to its users — used to guide long-term decision-making.',note:'Tests strategic metric literacy. Watch out for candidates who confuse a north star metric with a KPI or a business metric.',ex:'"What would you propose as a north star metric for CKEditor, and how would you justify that choice to the engineering team?"'},
+  {word:'A/B test',def:'A controlled experiment in which two variants of a feature are shown to different user segments to determine which performs better.',note:'Tests statistical and experimental literacy. Push candidates on sample sizes, significance, and what they do when results are inconclusive.',ex:'"Can you walk us through how you design an A/B test and how you interpret the results — especially when they\'re ambiguous?"'},
+  {word:'churn',def:'The rate at which customers stop using a product or service over a given period.',note:'Critical B2B SaaS metric. A TPM should understand the relationship between product quality, value delivery, and churn — and have used data to influence it.',ex:'"How do you use product data to identify and act on leading indicators of customer churn before it shows up in the renewal numbers?"'},
+  {word:'cross-functional',def:'Involving members from multiple different functions — engineering, design, data, sales, legal — working towards a shared goal.',note:'TPMs operate almost entirely in cross-functional environments. Listen for whether the candidate builds genuine relationships or just manages process.',ex:'"How do you build alignment across cross-functional teams when they have genuinely different incentives and competing priorities?"'},
+  {word:'STAR method',def:'A structured framework for answering behavioural interview questions: Situation, Task, Action, Result.',note:'Use this as a prompt when candidate answers are too vague. "Could you use the STAR framework to structure that example?" is a useful formal redirect.',ex:'"Could you use the STAR framework to give us a more structured example of how you handled that situation?"'},
+  {word:'time-to-value',def:'The time it takes for a new user or customer to experience the core benefit of a product for the first time.',note:'A critical metric for developer tools and B2B SaaS. Tests onboarding and activation thinking. CKSource\'s customers are developers who expect fast integration.',ex:'"What steps would you take to reduce the time-to-value for a new developer integrating CKEditor into their application?"'},
+  {word:'open source',def:'Software whose source code is publicly available for anyone to view, modify, and distribute under specified licence terms.',note:'Directly relevant to CKSource. Tests genuine alignment with open-source culture. Listen for community thinking, transparency, and contribution mindset.',ex:'"How has working with or contributing to open-source projects shaped your approach to product development and user trust?"'},
+  {word:'sprint',def:'A fixed-length period — typically two weeks — in Scrum during which a team commits to completing a defined set of work.',note:'Agile vocabulary. Test whether the candidate understands the spirit of sprints, not just the mechanics. Strong PMs enable sprints; weak PMs over-fill them.',ex:'"How involved are you in sprint planning, and how do you balance PM input with engineering autonomy over implementation choices?"'},
+];
+
+// ── GLOSSARY ──────────────────────────────────────────────────
+let gloss=[];
+function isGlossed(id){return gloss.some(g=>g.id===id);}
+function toggleGloss(id){
+  if(isGlossed(id)){gloss=gloss.filter(g=>g.id!==id);}
+  else{const q=QUESTIONS.find(x=>x.id===id);if(q)gloss.push({id,cat:q.cat,formal:q.formal,semif:q.semif,sample:q.sample,why:q.why});}
+  document.querySelectorAll('[data-gid="'+id+'"]').forEach(b=>{b.textContent=isGlossed(id)?'🔖 Saved':'🔖 Save';b.classList.toggle('saved',isGlossed(id));});
+  if(document.getElementById('p8').classList.contains('on'))renderGloss();
+}
+function removeGloss(id){
+  gloss=gloss.filter(g=>g.id!==id);
+  document.querySelectorAll('[data-gid="'+id+'"]').forEach(b=>{b.textContent='🔖 Save';b.classList.remove('saved');});
+  renderGloss();
+}
+function renderGloss(){
+  const cont=document.getElementById('glossCont');if(!cont)return;
+  if(!gloss.length){cont.innerHTML='<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px"></i><div style="margin-bottom:8px">Nothing saved yet.</div><div style="font-size:13px">Open <strong>Questions</strong> and click 🔖 Save on any question card.</div></div>';return;}
+  const by={};gloss.forEach(g=>{(by[g.cat]=by[g.cat]||[]).push(g);});
+  let html=`<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">${gloss.length} question${gloss.length!==1?'s':''} saved</div>`;
+  Object.keys(CAT_META).forEach(cat=>{
+    if(!by[cat])return;
+    const cm=CAT_META[cat];
+    html+=`<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:${cm.tc};margin:14px 0 8px;padding-bottom:4px;border-bottom:0.5px solid ${cm.bg}">${cm.icon} ${cm.label} (${by[cat].length})</div>`;
+    by[cat].forEach(g=>{
+      html+=`<div class="card" style="margin-bottom:8px;padding:1rem 1.25rem"><div style="display:flex;align-items:flex-start;gap:8px"><div style="flex:1;min-width:0">
+        <div style="margin-bottom:8px"><div class="q-label" style="color:#0C447C">Formal</div><div style="font-size:13.5px;color:var(--color-text-primary);line-height:1.6;margin-bottom:5px">${g.formal}</div><button class="audio-btn" onclick="speak(${safeQ(g.formal)},0.87,this)" style="font-size:11px;padding:2px 8px">🔊 Hear</button></div>
+        <div style="margin-bottom:8px"><div class="q-label" style="color:#27500A">Semi-formal</div><div style="font-size:13.5px;color:var(--color-text-primary);line-height:1.6;margin-bottom:5px">${g.semif}</div><button class="audio-btn" onclick="speak(${safeQ(g.semif)},0.87,this)" style="font-size:11px;padding:2px 8px">🔊 Hear</button></div>
+        <div style="font-size:12px;font-style:italic;color:var(--color-text-secondary);background:var(--color-background-secondary);border-radius:10px;padding:6px 11px;line-height:1.6">💡 ${g.why}</div>
+      </div><button class="rm-btn" onclick="removeGloss('${g.id}')">✕</button></div></div>`;
+    });
+  });
+  cont.innerHTML=html;
+}
+
+// ── QUOTES ────────────────────────────────────────────────────
+const QUOTES=[
+  {q:"Can you walk us through how you've worked across engineering and product — and what you do when the two sides disagree?",cat:'Engineering & product'},
+  {q:"How do you decide what to work on when everyone thinks their thing is most important?",cat:'General PM'},
+  {q:"Tell us about a product call you got wrong — what happened and what did you take from it?",cat:'General PM'},
+  {q:"How do you feel about open source — and has it shaped how you think about building products?",cat:'Cultural fit'},
+  {q:"How comfortable are you getting into the weeds on things like architecture decisions or API design?",cat:'Engineering & product'},
+  {q:"When do you trust the numbers and when do you trust what you hear from users?",cat:'Data & metrics'},
+  {q:"How do you get people to follow your lead when you're not actually their manager?",cat:'Leadership & growth'},
+  {q:"How do you think AI is changing the PM role — and what are you doing about it?",cat:'Leadership & growth'},
+];
+let qI=0,qOrd=[...Array(QUOTES.length).keys()].sort(()=>Math.random()-.5);
+function renderQuote(){
+  const q=QUOTES[qOrd[qI%qOrd.length]];qI++;
+  document.getElementById('quoteBox').innerHTML=`
+    <div style="font-style:italic;font-size:15px;line-height:1.8;color:var(--color-text-primary);margin-bottom:7px">"${q.q}"</div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">Category: ${q.cat}</span>
+      <button class="audio-btn" onclick="speak(${safeQ(q.q)},0.84,this)" style="font-size:12px">🔊 Hear it</button>
+      <button class="act" onclick="renderQuote()" style="margin-left:auto;font-size:12px;padding:4px 12px"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> New question</button>
+    </div>`;
+}
+
+// ── QUESTIONS PANEL ───────────────────────────────────────────
+let curCat='all';
+function filterCat(cat,btn){
+  curCat=cat;
+  document.querySelectorAll('#catFilter .cf').forEach(b=>b.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  renderQList();
+}
+function renderQList(){
+  const list=curCat==='all'?QUESTIONS:QUESTIONS.filter(q=>q.cat===curCat);
+  const byCat={};list.forEach(q=>{(byCat[q.cat]=byCat[q.cat]||[]).push(q);});
+  const catOrder=curCat==='all'?Object.keys(CAT_META):[curCat];
+  let html='';
+  catOrder.forEach(cat=>{
+    if(!byCat[cat])return;
+    const cm=CAT_META[cat];
+    html+=`<div class="cat-hdr" style="background:${cm.bg};color:${cm.tc}">${cm.icon} ${cm.label}</div>`;
+    byCat[cat].forEach(q=>{
+      const sv=isGlossed(q.id);
+      html+=`<div class="card" style="margin-bottom:.75rem">
+        <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:8px">
+          <div style="flex:1">
+            <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.6;margin-bottom:7px;font-style:italic">💡 ${q.why}</div>
+            <div class="q-formal"><span class="q-label" style="color:#0C447C">Formal</span>${q.formal}
+              <div style="margin-top:6px"><button class="audio-btn" onclick="speak(${safeQ(q.formal)},0.87,this)" style="font-size:11px;padding:2px 7px">🔊 Hear</button></div>
+            </div>
+            <div class="q-semif"><span class="q-label" style="color:#27500A">Semi-formal</span>${q.semif}
+              <div style="margin-top:6px"><button class="audio-btn" onclick="speak(${safeQ(q.semif)},0.87,this)" style="font-size:11px;padding:2px 7px">🔊 Hear</button></div>
+            </div>
+          </div>
+          <button class="save-btn${sv?' saved':''}" data-gid="${q.id}" onclick="toggleGloss('${q.id}')">${sv?'🔖 Saved':'🔖 Save'}</button>
+        </div>
+        <button class="act" style="font-size:12px;padding:5px 13px" onclick="toggleSample(this)">💬 Show sample answer</button>
+        <div class="sample-ans"><strong style="font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--color-text-secondary)">Sample answer</strong><br><br>${q.sample}</div>
+      </div>`;
+    });
+  });
+  document.getElementById('qList').innerHTML=html||'<p style="color:var(--color-text-secondary);font-size:14px">No questions in this category.</p>';
+}
+function toggleSample(btn){
+  const ans=btn.nextElementSibling;
+  ans.classList.toggle('on',!ans.classList.contains('on'));
+  btn.textContent=ans.classList.contains('on')?'💬 Hide sample answer':'💬 Show sample answer';
+}
+
+// ── VOCABULARY PANEL ──────────────────────────────────────────
+function renderVocab(){
+  document.getElementById('vocabList').innerHTML=VOCAB.map(v=>`
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap">
+        <span style="font-size:16px;font-weight:700;color:var(--color-text-primary)">${v.word}</span>
+        <button class="audio-btn" onclick="speak(${safeQ(v.word)},0.87,this)" style="font-size:11px;padding:2px 7px">🔊</button>
+      </div>
+      <div style="font-size:13.5px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:7px">${v.def}</div>
+      <div style="background:#FAEEDA;border-radius:10px;padding:7px 12px;font-size:12.5px;color:#633806;margin-bottom:7px;line-height:1.6">📌 <strong>Interviewer note:</strong> ${v.note}</div>
+      <div style="background:var(--color-background-secondary);border-radius:10px;padding:7px 12px;font-size:12.5px;font-style:italic;color:var(--color-text-secondary);line-height:1.6">${v.ex}</div>
+    </div>`).join('');
+}
+
+// ── CATEGORY QUIZ ─────────────────────────────────────────────
+const CAT_QUIZ=[
+  {q:"How do you handle it when engineering tells you something you've committed to can't be built in time?",ans:'eng',opts:['eng','cult','pm','tech'],exp:'Engineering & product — it tests how the PM manages the relationship between commitments and technical reality.'},
+  {q:"What kind of work environment brings out the best in you?",ans:'cult',opts:['cult','pm','lead','eng'],exp:'Cultural fit — it directly probes the candidate\'s working style preferences and adaptability to different environments.'},
+  {q:"How do you decide what to work on when everyone thinks their thing is most important?",ans:'pm',opts:['pm','lead','data','eng'],exp:'General PM — prioritisation is the core daily challenge of any product manager.'},
+  {q:"How familiar are you with the web tech stack — things like JavaScript frameworks or content editing APIs?",ans:'tech',opts:['tech','eng','pm','data'],exp:'Technology — it tests specific technical knowledge of the web platform directly relevant to CKSource\'s product.'},
+  {q:"How do you define success metrics for a new feature and connect them to business objectives?",ans:'data',opts:['data','pm','lead','tech'],exp:'Data & metrics — it tests metric literacy and the ability to link product outcomes to business outcomes.'},
+  {q:"How do you build influence without formal authority in a cross-functional environment?",ans:'lead',opts:['lead','cult','pm','eng'],exp:'Leadership & growth — influence without authority is the fundamental PM leadership challenge at senior level.'},
+  {q:"To what extent are you able to participate meaningfully in technical discussions regarding system architecture?",ans:'eng',opts:['eng','tech','pm','lead'],exp:'Engineering & product — it tests the candidate\'s technical depth specifically in an engineering bridge context.'},
+  {q:"What attracted you to CKSource as an organisation, and how does this role align with your long-term objectives?",ans:'cult',opts:['cult','lead','pm','tech'],exp:'Cultural fit — it tests genuine alignment with the company and role, not just generic career ambition.'},
+  {q:"How do you approach A/B testing — how do you set up an experiment and what do you do with the results?",ans:'data',opts:['data','tech','pm','eng'],exp:'Data & metrics — A/B testing is a core analytical practice that lives firmly in the data and experimentation discipline.'},
+  {q:"How do you approach mentoring or developing junior product team members?",ans:'lead',opts:['lead','cult','pm','eng'],exp:'Leadership & growth — developing others is a senior-level responsibility and a distinct skill set from individual contribution.'},
+  {q:"How do you think about build vs buy when it comes to integrations and platform choices?",ans:'tech',opts:['tech','pm','eng','data'],exp:'Technology — the build-versus-buy decision is a strategic technical judgment requiring platform understanding.'},
+  {q:"How do you manage the tension between delivering long-term strategic value and responding to immediate customer needs?",ans:'pm',opts:['pm','lead','data','cult'],exp:'General PM — the tension between strategic and operational work is one of the defining challenges of product management.'},
+];
+let cqItems=[],cqIdx=0,cqScore=0,cqTotal=0,cqSel=null,cqChecked=false;
+function startCatQuiz(){cqItems=[...CAT_QUIZ].sort(()=>Math.random()-.5);cqIdx=0;cqScore=0;cqTotal=0;renderCatQ();}
+function renderCatQ(){
+  const cont=document.getElementById('catQuizArea');
+  if(cqIdx>=cqItems.length){const pct=Math.round(cqScore/cqTotal*100);cont.innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${cqScore}/${cqTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct>=80?'Excellent category awareness!':pct>=60?'Good — review the Questions section for the ones you missed.':'Study each category in the Questions section and try again.'}</div><button class="act" onclick="startCatQuiz()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=cqItems[cqIdx];cqSel=null;cqChecked=false;
+  const prog=Math.round(cqIdx/cqItems.length*100);
+  const opts=item.opts.map(o=>({val:o,label:CAT_META[o].icon+' '+CAT_META[o].label})).sort(()=>Math.random()-.5);window._cqO=opts;
+  cont.innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="font-size:13px;color:var(--color-text-secondary)">${cqIdx+1}/${cqItems.length} · Score: ${cqScore}/${cqTotal}</span>
+      <button class="act" onclick="startCatQuiz()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px">Which category does this interview question belong to?</div>
+    <div style="background:var(--color-background-secondary);border-radius:14px;padding:13px 16px;font-size:15px;line-height:1.75;margin-bottom:14px;font-style:italic">"${item.q}"</div>
+    <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:12px" id="cqOpts">${opts.map((o,i)=>`<button class="gap-opt" id="cqo_${i}" onclick="cqSel2(${i})">${o.label}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px"><button class="check-btn" id="cqCheck" onclick="checkCatQ()" disabled>Check</button><button class="act" onclick="cqIdx++;renderCatQ()">Skip →</button></div>
+    <div id="cqFb" style="margin-top:0"></div>
+  </div>`;
+}
+function cqSel2(i){if(cqChecked)return;cqSel=i;document.querySelectorAll('#cqOpts .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('cqCheck').disabled=false;}
+function checkCatQ(){
+  if(cqChecked||cqSel===null)return;cqChecked=true;cqTotal++;
+  const item=cqItems[cqIdx];const chosen=window._cqO[cqSel];const ok=chosen.val===item.ans;if(ok)cqScore++;
+  document.getElementById('cqCheck').disabled=true;
+  document.querySelectorAll('#cqOpts .gap-opt').forEach((el,j)=>{const v=window._cqO[j];el.classList.remove('gsel');if(v.val===item.ans)el.classList.add('gok');else if(j===cqSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const fb=document.getElementById('cqFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.innerHTML=(ok?'✓ Correct! ':'✗ This belongs to <strong>'+CAT_META[item.ans].icon+' '+CAT_META[item.ans].label+'</strong>. ')+item.exp;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{cqIdx++;renderCatQ();};document.querySelector('#catQuizArea .card').appendChild(nxt);
+}
+
+// ── REGISTER QUIZ ─────────────────────────────────────────────
+const REG_QUIZ=[
+  {q:"Could you describe your experience working at the interface of engineering and product management?",ans:'F',exp:'"Could you describe" is formal — a polite interrogative without contractions. Semi-formal: "Can you walk us through how you\'ve worked across engineering and product?"'},
+  {q:"Can you walk us through how you've handled prioritisation when the team is pulling in different directions?",ans:'S',exp:'"Can you walk us through" is semi-formal — direct and uses a contraction. The phrasal verb "pulling in different directions" is also an idiom, a clear semi-formal marker.'},
+  {q:"To what extent are you able to participate meaningfully in technical discussions regarding architecture?",ans:'F',exp:'"To what extent" and "meaningfully" are formal markers. The Latinate register and distanced phrasing place this firmly in formal territory.'},
+  {q:"What do you actually do to keep the team aligned when you're working across different time zones?",ans:'S',exp:'"Actually" and "you\'re" are semi-formal signals. The question is direct and conversational rather than formally hedged.'},
+  {q:"Could you provide an example of a situation in which data analysis led you to a counterintuitive insight?",ans:'F',exp:'"Could you provide an example of a situation in which" is markedly formal — the embedded nominal clause and precise phrasing are classic formal signals.'},
+  {q:"Tell us about a product call you got wrong — what happened and what did you take from it?",ans:'S',exp:'"Tell us about" and "got wrong" are semi-formal. The idiom "take from it" (meaning learn) and the informal phrasing confirm semi-formal register.'},
+  {q:"What's your take on open source — and has it shaped how you think about building products?",ans:'S',exp:'"What\'s your take on" is a classic semi-formal opener. The contraction and casual phrasing confirm it.'},
+  {q:"In your view, what constitutes an effective working relationship between a Product Manager and an engineering lead?",ans:'F',exp:'"In your view" and "what constitutes" are formal. The nominalisation and distanced framing place this firmly in formal register.'},
+  {q:"How do you invest in your own growth — what are you actively working on right now?",ans:'S',exp:'"Right now" and "actively working on" are conversational. This is semi-formal — professional but approachable.'},
+  {q:"Could you elaborate on how you ensure product roadmap decisions remain technically feasible?",ans:'F',exp:'"Could you elaborate on" is formal. "Ensure" vs "make sure", "technically feasible" vs "realistic from an engineering standpoint" — all formal signals.'},
+  {q:"How do you handle giving tough feedback to someone on your team?",ans:'S',exp:'"Handle" and "tough feedback" are semi-formal. The direct, active phrasing and informal vocabulary confirm it.'},
+  {q:"How do you approach the challenge of instrumentation — ensuring that data is captured in a reliable and interpretable way?",ans:'F',exp:'"Approach the challenge of instrumentation" uses formal nominalisation. "Reliable and interpretable" are Latinate adjectives in an elevated register.'},
+];
+let rqItems=[],rqIdx=0,rqScore=0,rqTotal=0,rqSel=null,rqChecked=false;
+function startRegQuiz(){rqItems=[...REG_QUIZ].sort(()=>Math.random()-.5);rqIdx=0;rqScore=0;rqTotal=0;renderRegQ();}
+function renderRegQ(){
+  const cont=document.getElementById('regQuizArea');
+  if(rqIdx>=rqItems.length){const pct=Math.round(rqScore/rqTotal*100);cont.innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${rqScore}/${rqTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct>=80?'Excellent register awareness!':'Review the Register guide and try again.'}</div><button class="act" onclick="startRegQuiz()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=rqItems[rqIdx];rqSel=null;rqChecked=false;
+  const prog=Math.round(rqIdx/rqItems.length*100);
+  cont.innerHTML=`<div class="card">
+    <div class="ex-hdr"><span style="font-size:13px;color:var(--color-text-secondary)">${rqIdx+1}/${rqItems.length} · Score: ${rqScore}/${rqTotal}</span><button class="act" onclick="startRegQuiz()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button></div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px">Is this question <strong>formal</strong> or <strong>semi-formal</strong>?</div>
+    <div style="background:var(--color-background-secondary);border-radius:14px;padding:13px 16px;font-size:15px;line-height:1.75;margin-bottom:14px;font-style:italic">"${item.q}"</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px">
+      <button class="gap-opt" id="rqF" onclick="rqSel2('F')"><span class="rbadge reg-f">Formal business</span></button>
+      <button class="gap-opt" id="rqS" onclick="rqSel2('S')"><span class="rbadge reg-s">Semi-formal</span></button>
+    </div>
+    <div style="display:flex;gap:8px"><button class="check-btn" id="rqCheck" onclick="checkRegQ()" disabled>Check</button><button class="act" onclick="rqIdx++;renderRegQ()">Skip →</button></div>
+    <div id="rqFb" style="margin-top:0"></div>
+  </div>`;
+}
+function rqSel2(v){if(rqChecked)return;rqSel=v;document.getElementById('rqF').classList.toggle('gsel',v==='F');document.getElementById('rqS').classList.toggle('gsel',v==='S');document.getElementById('rqCheck').disabled=false;}
+function checkRegQ(){
+  if(rqChecked||!rqSel)return;rqChecked=true;rqTotal++;
+  const item=rqItems[rqIdx];const ok=rqSel===item.ans;if(ok)rqScore++;
+  document.getElementById('rqCheck').disabled=true;
+  ['F','S'].forEach(v=>{const b=document.getElementById('rq'+v);b.classList.remove('gsel');if(v===item.ans)b.classList.add('gok');else if(v===rqSel&&!ok)b.classList.add('gbad');else b.classList.add('gdim');});
+  const fb=document.getElementById('rqFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.innerHTML=(ok?'✓ Correct! ':'✗ This is <strong>'+(item.ans==='F'?'Formal':'Semi-formal')+'</strong>. ')+item.exp;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{rqIdx++;renderRegQ();};document.querySelector('#regQuizArea .card').appendChild(nxt);
+}
+
+// ── GAP FILL ──────────────────────────────────────────────────
+const GAP_Q=[
+  {s:'Could you ___ your experience working at the interface of engineering and product management?',blank:'describe',opts:['describe','tell','say','explain'],reg:'F',fb:'"Describe" is the formal choice. "Tell" needs an indirect object. "Explain" is more neutral. "Describe" is the most precise formal verb for this question type.'},
+  {s:"How do you ___ it when engineering tells you something you've committed to can't be built on time?",blank:'handle',opts:['handle','manage','deal with','address'],reg:'S',fb:'"Handle" is direct and semi-formal. "Manage" is slightly more formal. "Deal with" is too informal. "Handle" strikes the right tone for a semi-formal interview question.'},
+  {s:'To what ___ are you able to participate meaningfully in technical discussions regarding architecture?',blank:'extent',opts:['extent','degree','level','point'],reg:'F',fb:'"To what extent" is the standard formal phrase. "To what degree" is also possible. "Level" and "point" are not idiomatic in this construction.'},
+  {s:'Could you ___ an example of a situation in which you successfully advocated for a technical investment?',blank:'provide',opts:['provide','give','share','offer'],reg:'F',fb:'"Provide" is the formal register choice. "Give" is neutral/semi-formal. "Share" is collaborative but semi-formal. "Provide" fits formal interview questions best.'},
+  {s:'How do you ___ success metrics for a new product feature and tie them back to business objectives?',blank:'define',opts:['define','decide','choose','set'],reg:'S',fb:'"Define" is the standard professional verb for establishing metrics. "Set" is also natural. "Decide" and "choose" are vaguer and less precise in this context.'},
+  {s:'What ___ you to CKSource specifically, and where does this role fit in your bigger picture?',blank:'drew',opts:['drew','attracted','brought','made'],reg:'S',fb:'"Drew" is the semi-formal past tense of "draw" — natural and direct. "Attracted" is slightly more formal. "Brought" and "made" are less idiomatic in this construction.'},
+  {s:'Could you ___ on how you ensure product roadmap decisions remain technically feasible?',blank:'elaborate',opts:['elaborate','expand','say more','explain'],reg:'F',fb:'"Elaborate" is a formal verb meaning to develop an answer in more detail. "Expand" is also formal but slightly less elevated. "Say more" is casual/semi-formal. "Explain" is neutral.'},
+  {s:'How do you ___ the tension between delivering long-term value and responding to immediate needs?',blank:'manage',opts:['manage','handle','deal with','balance'],reg:'S',fb:'"Manage" and "balance" are both natural here. "Balance" is arguably more precise — it implies equilibrium. "Deal with" is too informal for this register.'},
+  {s:'In your ___, what constitutes an effective working relationship between a Product Manager and an engineering lead?',blank:'view',opts:['view','opinion','thinking','mind'],reg:'F',fb:'"In your view" is the standard formal opener for soliciting perspective. "In your opinion" is also correct but slightly more casual. "In your thinking" and "in your mind" are informal.'},
+  {s:'How do you ___ current with developments in the technology landscape relevant to your product domain?',blank:'stay',opts:['stay','keep','remain','be'],reg:'S',fb:'"Stay current" is the standard business phrase. "Keep current" is also acceptable. "Remain current" is slightly more formal. "Be current" is not idiomatic in this context.'},
+  {s:'How do you ___ influence without formal authority in a cross-functional environment?',blank:'build',opts:['build','get','gain','create'],reg:'S',fb:'"Build" is the most natural verb here — it implies a deliberate, ongoing process. "Gain" is also correct. "Get" is too informal. "Create" is possible but less idiomatic with "influence".'},
+  {s:'Could you ___ the type of working environment in which you perform most effectively?',blank:'describe',opts:['describe','characterise','explain','outline'],reg:'F',fb:'"Describe" is the most natural formal verb here. "Characterise" is formal but overly academic. "Outline" implies structure rather than a description. "Explain" is more neutral.'},
+];
+let gqItems=[],gqIdx=0,gqScore=0,gqTotal=0,gqSel=null,gqChecked=false;
+function startGap(){gqItems=[...GAP_Q].sort(()=>Math.random()-.5);gqIdx=0;gqScore=0;gqTotal=0;renderGapQ();}
+function renderGapQ(){
+  const cont=document.getElementById('gapArea');
+  if(gqIdx>=gqItems.length){const pct=Math.round(gqScore/gqTotal*100);cont.innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${gqScore}/${gqTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct>=80?'Excellent vocabulary control!':'Review the Register guide and try again.'}</div><button class="act" onclick="startGap()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
+  const item=gqItems[gqIdx];gqSel=null;gqChecked=false;
+  const prog=Math.round(gqIdx/gqItems.length*100);
+  const opts=[...item.opts].sort(()=>Math.random()-.5);window._gqO=opts;
+  const sh=item.s.replace('___',`<span id="blankSpan" style="display:inline-block;min-width:80px;border-bottom:2px solid #1a5fa5;color:#1a5fa5;font-weight:600;text-align:center;padding:0 4px">___</span>`);
+  cont.innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span class="rbadge ${item.reg==='F'?'reg-f':'reg-s'}">${item.reg==='F'?'Formal business':'Semi-formal'}</span>
+      <span style="font-size:13px;color:var(--color-text-secondary)">${gqIdx+1}/${gqItems.length} · Score: ${gqScore}/${gqTotal}</span>
+      <button class="act" onclick="startGap()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:8px">Choose the word that best completes this ${item.reg==='F'?'formal':'semi-formal'} interview question.</div>
+    <div style="font-size:16px;line-height:1.9;margin-bottom:14px;background:var(--color-background-secondary);border-radius:14px;padding:11px 14px;font-style:italic">${sh}</div>
+    <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:12px" id="gqOpts">${opts.map((o,i)=>`<button class="gap-opt" id="gqo_${i}" onclick="gqSel2(${i})">${o}</button>`).join('')}</div>
+    <div style="display:flex;gap:8px"><button class="check-btn" id="gqCheck" onclick="checkGapQ()" disabled>Check</button><button class="act" onclick="gqIdx++;renderGapQ()">Skip →</button></div>
+    <div id="gqFb" style="margin-top:0"></div>
+  </div>`;
+}
+function gqSel2(i){if(gqChecked)return;gqSel=i;document.querySelectorAll('#gqOpts .gap-opt').forEach((el,j)=>el.classList.toggle('gsel',j===i));document.getElementById('gqCheck').disabled=false;}
+function checkGapQ(){
+  if(gqChecked||gqSel===null)return;gqChecked=true;gqTotal++;
+  const item=gqItems[gqIdx];const chosen=window._gqO[gqSel];const ok=chosen===item.blank;if(ok)gqScore++;
+  document.getElementById('gqCheck').disabled=true;
+  document.querySelectorAll('#gqOpts .gap-opt').forEach((el,j)=>{const w=window._gqO[j];el.classList.remove('gsel');if(w===item.blank)el.classList.add('gok');else if(j===gqSel&&!ok)el.classList.add('gbad');else el.classList.add('gdim');});
+  const sp=document.getElementById('blankSpan');if(sp){sp.textContent=item.blank;sp.style.color=ok?'#27500A':'#791F1F';sp.style.borderBottomColor=ok?'#C0DD97':'#F7C1C1';}
+  const fb=document.getElementById('gqFb');fb.className=ok?'fb-ok':'fb-no';
+  fb.textContent=(ok?'✓ Correct! ':'✗ The answer is "'+item.blank+'". ')+item.fb;
+  const nxt=document.createElement('button');nxt.className='act';nxt.style.marginTop='10px';nxt.textContent='Next →';nxt.onclick=()=>{gqIdx++;renderGapQ();};document.querySelector('#gapArea .card').appendChild(nxt);
+}
+
+// ── MATCHING ──────────────────────────────────────────────────
+const MATCH_SETS=[
+  {instr:'Round 1 — Match the formal opening (left) with the correct ending (right).',
+   pairs:[
+     {left:'Could you describe your approach to product prioritisation',right:'when faced with competing stakeholder demands and constrained resources?'},
+     {left:'To what extent are you able to participate meaningfully',right:'in technical discussions regarding system architecture or API design?'},
+     {left:'How do you approach the process of translating',right:'high-level business requirements into specifications that engineering teams can act upon?'},
+     {left:'Could you provide an example of a situation in which',right:'data analysis led you to a counterintuitive product insight?'},
+     {left:'In your view, what constitutes an effective working relationship',right:'between a Product Manager and an engineering lead?'},
+     {left:'How do you manage the tension',right:'between delivering long-term strategic value and responding to immediate customer needs?'},
+   ]},
+  {instr:'Round 2 — Match the semi-formal opening (left) with the correct ending (right).',
+   pairs:[
+     {left:"Can you walk us through how you've worked across engineering and product",right:"— and what you do when the two sides disagree?"},
+     {left:'How comfortable are you getting into the weeds',right:'on things like architecture decisions or API design?'},
+     {left:"Tell us about a time you made the case for paying down technical debt",right:"when there was no obvious short-term win."},
+     {left:"What's your approach to working with a fully remote or distributed team",right:"— what do you actually do to keep everyone aligned?"},
+     {left:'How do you turn a fuzzy business requirement',right:'into something the engineering team can actually build from?'},
+     {left:'What drew you to CKSource specifically,',right:'and where does this role fit in your bigger picture?'},
+   ]},
+  {instr:'Round 3 — Match the formal question (left) with its semi-formal equivalent (right).',
+   pairs:[
+     {left:'Could you elaborate on how you ensure roadmap decisions remain technically feasible?',right:"How do you keep the roadmap realistic from an engineering standpoint?"},
+     {left:'How do you respond when you fundamentally disagree with a decision made by senior leadership?',right:"What do you do when you think leadership has got something wrong?"},
+     {left:'Could you describe a situation in which data analysis led you to a counterintuitive insight?',right:"Tell us about a time the data surprised you and changed what you decided to build."},
+     {left:'How do you approach situations in which you must deliver difficult feedback to a colleague?',right:"How do you handle giving tough feedback to someone on your team?"},
+     {left:'How do you build influence without formal authority in a cross-functional environment?',right:"How do you get people to follow your lead when you're not actually their manager?"},
+     {left:'What is your perspective on the evolving role of artificial intelligence in product management?',right:"How do you think AI is changing the PM role — and what are you doing about it?"},
+   ]},
+];
+let mSet=0,mPicked=null,mMatched=[],mScore=0,mAttempts=0,mRight=[];
+function startMatch(si){
+  mSet=si!==undefined?si:mSet;
+  const set=MATCH_SETS[mSet];mPicked=null;mMatched=[];mScore=0;mAttempts=0;
+  const rights=[...set.pairs].sort(()=>Math.random()-.5);mRight=rights;
+  document.getElementById('matchArea').innerHTML=`<div class="card">
+    <div class="ex-hdr">
+      <span style="font-size:13px;color:var(--color-text-secondary)">Round ${mSet+1} of ${MATCH_SETS.length}</span>
+      ${MATCH_SETS.map((_,i)=>`<button class="act" onclick="startMatch(${i})" style="${i===mSet?'background:#E6F1FB;border-color:#85B7EB;color:#0C447C':''}">Round ${i+1}</button>`).join('')}
+      <button class="act" onclick="startMatch(mSet)"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i></button>
+    </div>
+    <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">${set.instr}</p>
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:10px">Matched: <strong id="mP">0</strong>/${set.pairs.length} &nbsp;·&nbsp; Attempts: <strong id="mA">0</strong></div>
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:9px">
+      <div style="display:flex;flex-direction:column;gap:6px" id="mL">${set.pairs.map((p,i)=>`<button class="mi" id="ml_${i}" onclick="mPL(${i})" style="font-size:12px;line-height:1.5">${p.left}</button>`).join('')}</div>
+      <div style="display:flex;flex-direction:column;gap:6px" id="mR">${rights.map((r,i)=>`<button class="mi" id="mr_${i}" onclick="mPR(${i})" style="font-size:12px;line-height:1.5">${r.right}</button>`).join('')}</div>
+    </div>
+    <div id="mFb" style="font-size:13px;min-height:18px;margin-top:10px"></div>
+  </div>`;
+}
+function mPL(i){if(mMatched.some(m=>m.l===i))return;mPicked=i;document.querySelectorAll('#mL .mi').forEach((el,j)=>{if(!mMatched.some(m=>m.l===j))el.classList.toggle('pk',j===i);});}
+function mPR(i){
+  if(mPicked===null)return;const set=MATCH_SETS[mSet];if(mMatched.some(m=>m.r===i))return;
+  mAttempts++;document.getElementById('mA').textContent=mAttempts;
+  const ok=mRight[i].left===set.pairs[mPicked].left;
+  if(ok){document.getElementById('ml_'+mPicked).classList.remove('pk');document.getElementById('ml_'+mPicked).classList.add('mt');document.getElementById('mr_'+i).classList.add('mt');mMatched.push({l:mPicked,r:i});mScore++;document.getElementById('mP').textContent=mScore;const fb=document.getElementById('mFb');fb.style.color='#27500A';fb.textContent=mScore===set.pairs.length?`All ${set.pairs.length} matched in ${mAttempts} attempt${mAttempts===1?'':'s'}!`:'✓ Correct match!';mPicked=null;document.querySelectorAll('#mL .mi').forEach(el=>el.classList.remove('pk'));}
+  else{document.getElementById('mr_'+i).classList.add('bd');document.getElementById('ml_'+mPicked).classList.add('bd');const fb=document.getElementById('mFb');fb.style.color='#791F1F';fb.textContent='✗ Not a match — try again.';setTimeout(()=>{const l=document.getElementById('ml_'+mPicked),r=document.getElementById('mr_'+i);if(l)l.classList.remove('bd');if(r)r.classList.remove('bd');},700);}
+}
+
+// ── NAV ───────────────────────────────────────────────────────
+function showP(i){
+  document.querySelectorAll('.pan').forEach((p,j)=>p.classList.toggle('on',j===i));
+  document.querySelectorAll('.nt').forEach((t,j)=>t.classList.toggle('on',j===i));
+  if(i===0)renderQuote();
+  if(i===1&&!document.getElementById('qList').innerHTML)renderQList();
+  if(i===3&&!document.getElementById('vocabList').innerHTML)renderVocab();
+  if(i===4&&!cqItems.length)startCatQuiz();
+  if(i===5&&!rqItems.length)startRegQuiz();
+  if(i===6&&!gqItems.length)startGap();
+  if(i===7&&!document.getElementById('matchArea').innerHTML)startMatch(0);
+  if(i===8)renderGloss();
+}
+window.addEventListener('load',()=>{
+  if(window.speechSynthesis){window.speechSynthesis.getVoices();setTimeout(loadV,500);setTimeout(loadV,1500);}
+  renderQuote();
+});
+</script>
+</body>
+</html>
