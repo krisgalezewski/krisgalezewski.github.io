@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Cześć / Xin chào — rozmówki przedszkolne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF6EC;
+    --ink:#2A2420;
+    --muted:#8A7F6E;
+    --red:#E14434;
+    --red-dark:#B92E22;
+    --gold:#F4B740;
+    --gold-dark:#C98F1C;
+    --teal:#1E7F72;
+    --teal-dark:#155E54;
+    --card:#FFFFFF;
+    --card-border:#EDE2CE;
+    --shadow: 0 2px 10px rgba(42,36,32,0.07), 0 1px 2px rgba(42,36,32,0.06);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Nunito',sans-serif;
+    -webkit-tap-highlight-color:transparent;
+    padding-bottom:40px;
+  }
+  h1,h2,h3, .display{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    margin:0;
+  }
+  button{font-family:inherit;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:var(--paper);
+    padding:14px 16px 10px;
+    border-bottom:1px solid var(--card-border);
+  }
+  .title-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:10px;
+  }
+  .title-row h1{
+    font-size:1.35rem;
+    letter-spacing:0.2px;
+  }
+  .title-row h1 .sep{
+    color:var(--muted);
+    font-weight:500;
+    margin:0 4px;
+    font-family:'Nunito',sans-serif;
+  }
+  .subtitle{
+    font-size:0.78rem;
+    color:var(--muted);
+    margin-top:2px;
+    font-weight:600;
+  }
+  .thread{
+    height:5px;
+    border-radius:3px;
+    margin:10px 0 12px;
+    background: linear-gradient(90deg,
+      #ffffff 0%, #ffffff 8%,
+      var(--red) 8%, var(--red) 46%,
+      var(--gold) 54%, var(--gold) 92%,
+      var(--red) 92%, var(--red) 100%);
+    opacity:0.9;
+  }
+
+  /* mode toggle */
+  .mode-toggle{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .mode-btn{
+    border:2px solid var(--card-border);
+    background:var(--card);
+    border-radius:14px;
+    padding:9px 8px;
+    text-align:center;
+    cursor:pointer;
+    transition:transform .12s ease, border-color .12s ease, background .12s ease;
+    line-height:1.15;
+  }
+  .mode-btn .big{
+    display:block;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:0.92rem;
+  }
+  .mode-btn .small{
+    display:block;
+    font-size:0.7rem;
+    color:var(--muted);
+    font-weight:700;
+    margin-top:1px;
+  }
+  .mode-btn.active[data-mode="opiekunka"]{
+    border-color:var(--red);
+    background:#FDECEA;
+  }
+  .mode-btn.active[data-mode="dziecko"]{
+    border-color:var(--gold-dark);
+    background:#FFF4DC;
+  }
+  .mode-btn:active{transform:scale(0.98);}
+
+  /* search */
+  .search-wrap{
+    position:relative;
+  }
+  .search-wrap input{
+    width:100%;
+    padding:11px 14px 11px 38px;
+    border-radius:12px;
+    border:2px solid var(--card-border);
+    font-size:1rem;
+    font-family:'Nunito',sans-serif;
+    background:var(--card) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%238A7F6E" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>') no-repeat 12px center;
+    color:var(--ink);
+  }
+  .search-wrap input:focus{
+    outline:none;
+    border-color:var(--teal);
+  }
+  .search-wrap .clear-btn{
+    position:absolute;
+    right:6px;
+    top:50%;
+    transform:translateY(-50%);
+    border:none;
+    background:none;
+    color:var(--muted);
+    font-size:1.3rem;
+    padding:6px 8px;
+    cursor:pointer;
+    display:none;
+  }
+
+  /* category chips */
+  .chips{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:12px 2px 4px;
+    scrollbar-width:none;
+  }
+  .chips::-webkit-scrollbar{display:none;}
+  .chip{
+    flex:0 0 auto;
+    border:2px solid var(--card-border);
+    background:var(--card);
+    border-radius:999px;
+    padding:8px 14px;
+    font-weight:700;
+    font-size:0.85rem;
+    white-space:nowrap;
+    cursor:pointer;
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .chip.active{
+    background:var(--teal);
+    border-color:var(--teal);
+    color:#fff;
+  }
+  .chip.special{
+    border-color:var(--teal);
+  }
+
+  /* ---------- List ---------- */
+  main{
+    max-width:640px;
+    margin:0 auto;
+    padding:6px 14px 10px;
+  }
+  .result-count{
+    font-size:0.78rem;
+    color:var(--muted);
+    font-weight:700;
+    margin:10px 2px 8px;
+  }
+  .info-banner{
+    background:#EAF3F1;
+    border:1px solid var(--teal);
+    color:var(--teal-dark);
+    font-size:0.82rem;
+    font-weight:700;
+    border-radius:12px;
+    padding:10px 12px;
+    margin:0 2px 12px;
+    line-height:1.4;
+  }
+  .cards{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  @media (min-width:560px){
+    .cards{grid-template-columns:1fr 1fr;}
+  }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:18px;
+    padding:14px;
+    box-shadow:var(--shadow);
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .card-top{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .icon-circle{
+    flex:0 0 auto;
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.5rem;
+    background:#F1E8D8;
+  }
+  .texts{flex:1; min-width:0;}
+  .primary-text{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:1.12rem;
+    line-height:1.25;
+  }
+  .secondary-text{
+    font-size:0.92rem;
+    color:#4B4038;
+    margin-top:2px;
+    font-weight:700;
+  }
+  .pron{
+    font-size:0.8rem;
+    color:var(--muted);
+    font-style:italic;
+    margin-top:1px;
+  }
+  .q-badge{
+    display:inline-block;
+    font-size:0.68rem;
+    font-weight:800;
+    color:#fff;
+    background:var(--teal);
+    border-radius:6px;
+    padding:1px 6px;
+    margin-left:6px;
+    vertical-align:middle;
+  }
+  .card-actions{
+    display:flex;
+    gap:8px;
+    margin-top:2px;
+  }
+  .audio-btn{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    border-radius:12px;
+    border:none;
+    padding:9px 6px;
+    font-weight:800;
+    font-size:0.82rem;
+    cursor:pointer;
+    color:#fff;
+  }
+  .audio-btn.pl{background:var(--red);}
+  .audio-btn.pl:active{background:var(--red-dark);}
+  .audio-btn.vi{background:var(--gold-dark);}
+  .audio-btn.vi:active{background:#a8760e;}
+  .audio-btn.speaking{animation:pulse 0.6s ease infinite;}
+  @keyframes pulse{
+    0%,100%{filter:brightness(1);}
+    50%{filter:brightness(1.18);}
+  }
+  .show-btn{
+    flex:0 0 auto;
+    border:2px solid var(--card-border);
+    background:var(--paper);
+    border-radius:12px;
+    padding:9px 12px;
+    font-size:1.1rem;
+    cursor:pointer;
+  }
+
+  /* answers block */
+  .answers-block{
+    margin-top:2px;
+    padding-top:9px;
+    border-top:1px dashed var(--card-border);
+  }
+  .answers-label{
+    font-size:0.68rem;
+    font-weight:800;
+    color:var(--teal-dark);
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    margin-bottom:5px;
+  }
+  .answer-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:5px 0;
+  }
+  .answer-row + .answer-row{
+    border-top:1px solid #F5EFDF;
+  }
+  .answer-texts{flex:1; min-width:0;}
+  .answer-primary{font-weight:700; font-size:0.86rem; line-height:1.25;}
+  .answer-secondary{font-size:0.76rem; color:var(--muted); font-weight:600;}
+  .answer-speak{
+    border:none;
+    border-radius:50%;
+    width:28px;
+    height:28px;
+    font-size:0.8rem;
+    cursor:pointer;
+    color:#fff;
+    flex:0 0 auto;
+  }
+  .answer-speak.pl{background:var(--red);}
+  .answer-speak.vi{background:var(--gold-dark);}
+
+  .empty-state{
+    text-align:center;
+    padding:50px 20px;
+    color:var(--muted);
+  }
+  .empty-state .emoji{font-size:2.4rem; display:block; margin-bottom:10px;}
+
+  /* ---------- Fullscreen "show" overlay ---------- */
+  .overlay{
+    position:fixed;
+    inset:0;
+    background:var(--paper);
+    z-index:100;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:30px 20px;
+    text-align:center;
+    overflow-y:auto;
+  }
+  .overlay.open{display:flex;}
+  .overlay .big-icon{font-size:5.5rem; margin-bottom:14px;}
+  .overlay .big-text{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:2.4rem;
+    line-height:1.15;
+    max-width:90%;
+  }
+  .overlay .big-sub{
+    font-size:1.15rem;
+    color:var(--muted);
+    font-weight:700;
+    margin-top:10px;
+  }
+  .overlay .big-pron{
+    font-size:1rem;
+    color:var(--muted);
+    font-style:italic;
+    margin-top:4px;
+  }
+  .overlay .overlay-actions{
+    display:flex;
+    gap:12px;
+    margin-top:28px;
+  }
+  .overlay .overlay-actions button{
+    border:none;
+    border-radius:14px;
+    padding:14px 20px;
+    font-weight:800;
+    font-size:1rem;
+    cursor:pointer;
+    color:#fff;
+  }
+  .overlay .close-btn{
+    position:absolute;
+    top:18px;
+    right:18px;
+    border:none;
+    background:var(--card);
+    box-shadow:var(--shadow);
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    font-size:1.3rem;
+    cursor:pointer;
+    color:var(--ink);
+  }
+  .overlay .ov-answers{
+    margin-top:26px;
+    width:100%;
+    max-width:420px;
+    text-align:left;
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:16px;
+    padding:12px 14px;
+  }
+
+  .voice-note{
+    max-width:640px;
+    margin:22px auto 0;
+    padding:0 14px;
+    font-size:0.78rem;
+    color:var(--muted);
+    line-height:1.5;
+  }
+  .voice-note b{color:var(--ink);}
+  #voiceWarning{
+    display:none;
+    background:#FFF4DC;
+    border:1px solid var(--gold);
+    color:#6b4f10;
+    padding:10px 12px;
+    border-radius:12px;
+    font-size:0.8rem;
+    font-weight:700;
+    margin:0 14px 8px;
+    max-width:612px;
+    margin-left:auto;margin-right:auto;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="title-row">
+    <h1>Cześć<span class="sep">/</span>Xin chào</h1>
+  </div>
+  <div class="subtitle">Rozmówki przedszkolne polsko–wietnamskie</div>
+  <div class="thread"></div>
+
+  <div class="mode-toggle">
+    <button class="mode-btn active" data-mode="opiekunka" onclick="setMode('opiekunka')">
+      <span class="big">👩‍🏫 Dla cioci</span>
+      <span class="small">Polski → Wietnamski</span>
+    </button>
+    <button class="mode-btn" data-mode="dziecko" onclick="setMode('dziecko')">
+      <span class="big">👧 Dla dziewczynki</span>
+      <span class="small">Wietnamski → Polski</span>
+    </button>
+  </div>
+
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Szukaj zwrotu, np. toaleta, jeść, boli…" autocomplete="off">
+    <button class="clear-btn" id="clearBtn" onclick="clearSearch()">✕</button>
+  </div>
+
+  <div class="chips" id="chips"></div>
+</header>
+
+<div id="voiceWarning"></div>
+
+<main>
+  <div id="infoBanner"></div>
+  <div class="result-count" id="resultCount"></div>
+  <div class="cards" id="cards"></div>
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <span class="emoji">🔎</span>
+    Nie znaleziono zwrotu. Spróbuj innego słowa.
+  </div>
+</main>
+
+<div class="voice-note">
+  <b>Uwaga:</b> wymowa wietnamska jest zapisana w uproszczony sposób, tak aby ułatwić odczytanie po polsku — nie jest to pełny zapis fonetyczny. Zwroty w kategorii <b>❓</b> mają podpowiedzi najbardziej prawdopodobnych odpowiedzi — to tylko przykłady, dziecko może odpowiedzieć inaczej. Tłumaczenia przygotowano z najlepszą starannością, ale warto poprosić rodziców dziewczynki o sprawdzenie i poprawienie zwrotów, zwłaszcza tych ważnych (np. zdrowotnych). Audio polskie odtwarzane jest przez syntezator mowy telefonu. Audio wietnamskie korzysta z głosu telefonu, jeśli jest zainstalowany, a jeśli nie — automatycznie pobiera nagranie przez internet, więc do zwrotów wietnamskich potrzebne jest połączenie z siecią.
+</div>
+
+<!-- Fullscreen "show & say" overlay -->
+<div class="overlay" id="overlay">
+  <button class="close-btn" onclick="closeOverlay()">✕</button>
+  <div class="big-icon" id="ovIcon">🙂</div>
+  <div class="big-text" id="ovText">—</div>
+  <div class="big-sub" id="ovSub">—</div>
+  <div class="big-pron" id="ovPron"></div>
+  <div class="overlay-actions">
+    <button style="background:var(--red)" onclick="speak(currentOverlayPhrase.pl,'pl-PL',null)">🔊 Polski</button>
+    <button style="background:var(--gold-dark)" onclick="speak(currentOverlayPhrase.vi,'vi-VN',null)">🔊 Wietnamski</button>
+  </div>
+  <div class="ov-answers" id="ovAnswers" style="display:none;"></div>
+</div>
+
+<script>
+/* ============================================================
+   DANE / DATA
+   ============================================================ */
+
+const YES = {pl:'Tak', vi:'Vâng / Dạ', viPron:'wang / za'};
+const NO  = {pl:'Nie', vi:'Không', viPron:'khom'};
+const WAIT = {pl:'Zaraz, poczekaj chwilę', vi:'Chờ một chút nhé', viPron:'cio mot ciut nie'};
+const DONTKNOW = {pl:'Nie wiem', vi:'Con không biết', viPron:'kon khom biet'};
+
+/* ---------- Kategorie ---------- */
+const CATEGORIES_OPIEKUNKA = [
+  {id:'powitania', label:'Powitania', icon:'👋'},
+  {id:'lazienka',  label:'Łazienka',  icon:'🚻'},
+  {id:'jedzenie',  label:'Jedzenie',  icon:'🍽️'},
+  {id:'zabawa',    label:'Zabawa',    icon:'🧸'},
+  {id:'emocje',    label:'Samopoczucie', icon:'💛'},
+  {id:'potrzeby',  label:'Potrzeby',  icon:'🙋'},
+  {id:'czas',      label:'Czas i dzień', icon:'⏰'},
+  {id:'rodzic',    label:'Kontakt z rodzicem', icon:'👪'},
+];
+const CATEGORIES_DZIECKO = [
+  {id:'powitania', label:'Powitania', icon:'👋'},
+  {id:'lazienka',  label:'Łazienka',  icon:'🚻'},
+  {id:'jedzenie',  label:'Jedzenie',  icon:'🍽️'},
+  {id:'zabawa',    label:'Zabawa',    icon:'🧸'},
+  {id:'emocje',    label:'Uczucia',   icon:'💛'},
+  {id:'potrzeby',  label:'Potrzeby',  icon:'🙋'},
+  {id:'czas',      label:'Czas',      icon:'⏰'},
+];
+
+/* ---------- Zwroty CIOCI → DZIECKO (mode: opiekunka) ---------- */
+const PHRASES_OPIEKUNKA = [
+  // Powitania
+  {id:'o-p1', cat:'powitania', icon:'👋', pl:'Dzień dobry', vi:'Xin chào', viPron:'sin cziau'},
+  {id:'o-p2', cat:'powitania', icon:'🙋', pl:'Cześć', vi:'Chào con', viPron:'cziau kon'},
+  {id:'o-p3', cat:'powitania', icon:'👋', pl:'Do widzenia', vi:'Tạm biệt', viPron:'tam biet'},
+  {id:'o-p4', cat:'powitania', icon:'🌙', pl:'Dobranoc', vi:'Chúc ngủ ngon', viPron:'ciuk ngu ngon'},
+  {id:'o-p5', cat:'powitania', icon:'🙏', pl:'Proszę', vi:'Làm ơn', viPron:'lam yn'},
+  {id:'o-p6', cat:'powitania', icon:'🙏', pl:'Dziękuję', vi:'Cảm ơn', viPron:'kam yn'},
+  {id:'o-p7', cat:'powitania', icon:'😔', pl:'Przepraszam', vi:'Xin lỗi', viPron:'sin loi'},
+  {id:'o-p8', cat:'powitania', icon:'✅', pl:'Tak', vi:'Vâng / Dạ', viPron:'wang / za'},
+  {id:'o-p9', cat:'powitania', icon:'❌', pl:'Nie', vi:'Không', viPron:'khom'},
+  {id:'o-p10', cat:'powitania', icon:'👍', pl:'Dobrze, w porządku', vi:'Được rồi', viPron:'dyk zoi'},
+  {id:'o-p11', cat:'powitania', icon:'🙂', pl:'Jak się masz?', vi:'Con khỏe không?', viPron:'kon khoe khom',
+    isQuestion:true, answers:[
+      {pl:'Dobrze, dziękuję', vi:'Con khỏe, cảm ơn', viPron:'kon khoe kam yn'},
+      {pl:'Niezbyt dobrze', vi:'Con không khỏe lắm', viPron:'kon khom khoe lam'},
+    ]},
+  {id:'o-p12', cat:'powitania', icon:'🌞', pl:'Miłego dnia!', vi:'Chúc con một ngày tốt lành!', viPron:'ciuk kon mot ngay tot lan'},
+  {id:'o-p13', cat:'powitania', icon:'👋', pl:'Do jutra!', vi:'Hẹn gặp lại ngày mai!', viPron:'hen gap lai ngay maj'},
+  {id:'o-p14', cat:'powitania', icon:'🏫', pl:'Witaj w przedszkolu!', vi:'Chào mừng con đến trường mầm non!', viPron:'cziau myng kon den tryng mam non'},
+  {id:'o-p15', cat:'powitania', icon:'🤗', pl:'Nie płacz, jestem tutaj', vi:'Đừng khóc, cô ở đây', viPron:'dyng khok, ko y daj'},
+  {id:'o-p16', cat:'powitania', icon:'😊', pl:'Chodź, przywitaj się', vi:'Con chào đi', viPron:'kon cziau di'},
+
+  // Łazienka
+  {id:'o-l1', cat:'lazienka', icon:'🚽', pl:'Chcesz iść do toalety?', vi:'Con có muốn đi vệ sinh không?', viPron:'kon ko muon di ve sin khom',
+    isQuestion:true, answers:[YES,NO]},
+  {id:'o-l2', cat:'lazienka', icon:'❓', pl:'Musisz siku czy kupę?', vi:'Con muốn đi tè hay đi ị?', viPron:'kon muon di te haj di i',
+    isQuestion:true, answers:[
+      {pl:'Siku', vi:'Đi tè', viPron:'di te'},
+      {pl:'Kupę', vi:'Đi ị', viPron:'di i'},
+    ]},
+  {id:'o-l3', cat:'lazienka', icon:'🚪', pl:'Toaleta, łazienka', vi:'Nhà vệ sinh', viPron:'nia ve sin'},
+  {id:'o-l4', cat:'lazienka', icon:'🧼', pl:'Umyj ręce', vi:'Rửa tay đi', viPron:'żua taj di'},
+  {id:'o-l5', cat:'lazienka', icon:'🪥', pl:'Umyj zęby', vi:'Đánh răng đi', viPron:'dań żang di'},
+  {id:'o-l6', cat:'lazienka', icon:'🧴', pl:'Mydło', vi:'Xà phòng', viPron:'sa fong'},
+  {id:'o-l7', cat:'lazienka', icon:'🧻', pl:'Ręcznik', vi:'Khăn tắm', viPron:'khan tam'},
+  {id:'o-l8', cat:'lazienka', icon:'🧻', pl:'Papier toaletowy', vi:'Giấy vệ sinh', viPron:'zaj ve sin'},
+  {id:'o-l9', cat:'lazienka', icon:'💦', pl:'Jesteś mokry/mokra', vi:'Con bị ướt', viPron:'kon bi yt'},
+  {id:'o-l10', cat:'lazienka', icon:'🧽', pl:'Umyjemy ci buzię', vi:'Rửa mặt cho con nhé', viPron:'żua mat czo kon nie'},
+  {id:'o-l11', cat:'lazienka', icon:'💧', pl:'Spuść wodę', vi:'Xả nước đi', viPron:'sa nyk di'},
+  {id:'o-l12', cat:'lazienka', icon:'👖', pl:'Zdejmij majtki', vi:'Cởi quần lót ra', viPron:'koj kłan lot ra'},
+  {id:'o-l13', cat:'lazienka', icon:'👖', pl:'Załóż majtki', vi:'Mặc quần lót vào', viPron:'mak kłan lot wau'},
+  {id:'o-l14', cat:'lazienka', icon:'🧻', pl:'Wytrzyj ręce', vi:'Lau tay đi', viPron:'lau taj di'},
+  {id:'o-l15', cat:'lazienka', icon:'🤲', pl:'Poczekaj, zaraz pomogę', vi:'Chờ cô một chút, cô giúp con', viPron:'cio ko mot ciut, ko zup kon'},
+
+  // Jedzenie
+  {id:'o-j1', cat:'jedzenie', icon:'🍽️', pl:'Jesteś głodny/głodna?', vi:'Con có đói không?', viPron:'kon ko doj khom',
+    isQuestion:true, answers:[YES,NO]},
+  {id:'o-j2', cat:'jedzenie', icon:'🥤', pl:'Chce ci się pić?', vi:'Con có khát nước không?', viPron:'kon ko khat nyk khom',
+    isQuestion:true, answers:[YES,NO]},
+  {id:'o-j3', cat:'jedzenie', icon:'🍚', pl:'Jedz, proszę', vi:'Con ăn đi', viPron:'kon an di'},
+  {id:'o-j4', cat:'jedzenie', icon:'😋', pl:'Smaczne!', vi:'Ngon!', viPron:'ngon'},
+  {id:'o-j5', cat:'jedzenie', icon:'🍞', pl:'Chleb', vi:'Bánh mì', viPron:'bań mi'},
+  {id:'o-j6', cat:'jedzenie', icon:'💧', pl:'Woda', vi:'Nước', viPron:'nyk'},
+  {id:'o-j7', cat:'jedzenie', icon:'🥛', pl:'Mleko', vi:'Sữa', viPron:'sya'},
+  {id:'o-j8', cat:'jedzenie', icon:'🍎', pl:'Owoc', vi:'Trái cây', viPron:'trai kaj'},
+  {id:'o-j9', cat:'jedzenie', icon:'🍲', pl:'Zupa', vi:'Súp', viPron:'sup'},
+  {id:'o-j10', cat:'jedzenie', icon:'❓', pl:'Skończyłaś jeść?', vi:'Con ăn xong chưa?', viPron:'kon an song cziya',
+    isQuestion:true, answers:[YES,NO]},
+  {id:'o-j11', cat:'jedzenie', icon:'🍚', pl:'Chcesz dokładkę?', vi:'Con có muốn ăn thêm không?', viPron:'kon ko muon an them khom',
+    isQuestion:true, answers:[
+      {pl:'Tak, poproszę', vi:'Có ạ', viPron:'ko a'},
+      {pl:'Nie, dziękuję', vi:'Không, cảm ơn', viPron:'khom kam yn'},
+    ]},
+  {id:'o-j12', cat:'jedzenie', icon:'🤔', pl:'Nie lubisz tego?', vi:'Con không thích món này à?', viPron:'kon khom thik mon nay a',
+    isQuestion:true, answers:[YES,NO]},
+  {id:'o-j13', cat:'jedzenie', icon:'🥄', pl:'Spróbuj chociaż trochę', vi:'Con thử một chút nhé', viPron:'kon thy mot ciut nie'},
+  {id:'o-j14', cat:'jedzenie', icon:'🐢', pl:'Jedz powoli', vi:'Ăn từ từ thôi', viPron:'an ty ty thoj'},
+  {id:'o-j15', cat:'jedzenie', icon:'🍳', pl:'Śniadanie', vi:'Bữa sáng', viPron:'bya sang'},
+  {id:'o-j16', cat:'jedzenie', icon:'🍪', pl:'Podwieczorek', vi:'Bữa xế', viPron:'bya se'},
+  {id:'o-j17', cat:'jedzenie', icon:'🍴', pl:'Widelec, łyżka', vi:'Nĩa, thìa', viPron:'nia, thia'},
+
+  // Zabawa
+  {id:'o-z1', cat:'zabawa', icon:'🧸', pl:'Chcesz się bawić?', vi:'Con có muốn chơi không?', viPron:'kon ko muon cioj khom',
+    isQuestion:true, answers:[YES,NO]},
+  {id:'o-z2', cat:'zabawa', icon:'🧩', pl:'Zabawka', vi:'Đồ chơi', viPron:'do cioj'},
+  {id:'o-z3', cat:'zabawa', icon:'⚽', pl:'Piłka', vi:'Quả bóng', viPron:'kła bong'},
+  {id:'o-z4', cat:'zabawa', icon:'🤝', pl:'Chodź ze mną', vi:'Đi với cô nhé', viPron:'di woj ko nie'},
+  {id:'o-z5', cat:'zabawa', icon:'👧🧒', pl:'Baw się razem z innymi', vi:'Chơi cùng nhau nhé', viPron:'cioj kung niau nie'},
+  {id:'o-z6', cat:'zabawa', icon:'🌟', pl:'Ładnie! Super!', vi:'Giỏi lắm!', viPron:'zoi lam'},
+  {id:'o-z7', cat:'zabawa', icon:'🔄', pl:'Teraz twoja kolej', vi:'Đến lượt con', viPron:'den lyt kon'},
+  {id:'o-z8', cat:'zabawa', icon:'🎨', pl:'Rysować, malować', vi:'Vẽ tranh', viPron:'we ciań'},
+  {id:'o-z9', cat:'zabawa', icon:'🧹', pl:'Posprzątajmy zabawki', vi:'Dọn đồ chơi nhé', viPron:'zon do cioj nie'},
+  {id:'o-z10', cat:'zabawa', icon:'🚫', pl:'Nie bij kolegi/koleżanki', vi:'Đừng đánh bạn', viPron:'dyng dań ban'},
+  {id:'o-z11', cat:'zabawa', icon:'🤲', pl:'Podziel się zabawką', vi:'Chia đồ chơi với bạn nhé', viPron:'cia do cioj voj ban nie'},
+  {id:'o-z12', cat:'zabawa', icon:'🏃', pl:'Chcesz pójść na plac zabaw?', vi:'Con có muốn ra sân chơi không?', viPron:'kon ko muon ra san cioj khom',
+    isQuestion:true, answers:[YES,NO]},
+  {id:'o-z13', cat:'zabawa', icon:'⚠️', pl:'Uważaj!', vi:'Cẩn thận!', viPron:'kan than'},
+  {id:'o-z14', cat:'zabawa', icon:'🐢', pl:'Spokojnie, powoli', vi:'Từ từ thôi', viPron:'ty ty thoj'},
+  {id:'o-z15', cat:'zabawa', icon:'🔔', pl:'Skończyliśmy zabawę', vi:'Hết giờ chơi rồi', viPron:'het zio cioj zoi'},
+
+  // Samopoczucie / emocje
+  {id:'o-e1', cat:'emocje', icon:'🙂', pl:'Jak się czujesz?', vi:'Con cảm thấy thế nào?', viPron:'kon kam tej te nau',
+    isQuestion:true, answers:[
+      {pl:'Dobrze', vi:'Con khỏe', viPron:'kon khoe'},
+      {pl:'Źle, coś mnie boli', vi:'Con thấy không khỏe', viPron:'kon tej khom khoe'},
+    ]},
+  {id:'o-e2', cat:'emocje', icon:'🤕', pl:'Czy coś cię boli?', vi:'Con có đau chỗ nào không?', viPron:'kon ko dau cio nau khom',
+    isQuestion:true, answers:[
+      {pl:'Boli mnie brzuch', vi:'Con đau bụng', viPron:'kon dau bung'},
+      {pl:'Boli mnie głowa', vi:'Con đau đầu', viPron:'kon dau dau'},
+      NO,
+    ]},
+  {id:'o-e3', cat:'emocje', icon:'😢', pl:'Jestem smutny/smutna', vi:'Con buồn', viPron:'kon buon'},
+  {id:'o-e4', cat:'emocje', icon:'😄', pl:'Jestem szczęśliwy/a', vi:'Con vui', viPron:'kon wui'},
+  {id:'o-e5', cat:'emocje', icon:'😴', pl:'Jestem zmęczony/a', vi:'Con mệt', viPron:'kon met'},
+  {id:'o-e6', cat:'emocje', icon:'😨', pl:'Boję się', vi:'Con sợ', viPron:'kon sy'},
+  {id:'o-e7', cat:'emocje', icon:'🤗', pl:'Wszystko w porządku, nie martw się', vi:'Không sao đâu', viPron:'khom sau dau'},
+  {id:'o-e8', cat:'emocje', icon:'🫂', pl:'Chcesz przytulenie?', vi:'Con có muốn ôm không?', viPron:'kon ko muon om khom',
+    isQuestion:true, answers:[YES,NO]},
+  {id:'o-e9', cat:'emocje', icon:'🤒', pl:'Jesteś chory/chora?', vi:'Con có bị ốm không?', viPron:'kon ko bi om khom',
+    isQuestion:true, answers:[YES,NO]},
+  {id:'o-e10', cat:'emocje', icon:'😭', pl:'Dlaczego płaczesz?', vi:'Sao con khóc?', viPron:'sau kon khok',
+    isQuestion:true, answers:[
+      {pl:'Tęsknię za mamą', vi:'Con nhớ mẹ', viPron:'kon nio me'},
+      {pl:'Coś mnie boli', vi:'Con bị đau', viPron:'kon bi dau'},
+      {pl:'Jestem zmęczony/a', vi:'Con mệt', viPron:'kon met'},
+    ]},
+  {id:'o-e11', cat:'emocje', icon:'🤗', pl:'Uspokój się, jestem tu', vi:'Bình tĩnh nào, cô ở đây', viPron:'bin tinh nau, ko y daj'},
+  {id:'o-e12', cat:'emocje', icon:'💛', pl:'Wszystko będzie dobrze', vi:'Mọi thứ sẽ ổn thôi', viPron:'moj thy se on thoj'},
+  {id:'o-e13', cat:'emocje', icon:'🗣️', pl:'Powiedz mi, co się stało', vi:'Nói cho cô nghe chuyện gì đã xảy ra', viPron:'noi czo ko ngie ciuen zi da saj ra'},
+  {id:'o-e14', cat:'emocje', icon:'🙆', pl:'Nic się nie stało', vi:'Không có chuyện gì đâu', viPron:'khom ko ciuen zi dau'},
+
+  // Potrzeby
+  {id:'o-pt1', cat:'potrzeby', icon:'👨‍👩‍👧', pl:'Chcę do mamy/taty', vi:'Con muốn gặp mẹ/bố', viPron:'kon muon gap me / bo'},
+  {id:'o-pt2', cat:'potrzeby', icon:'🤲', pl:'Pomogę ci', vi:'Cô giúp con nhé', viPron:'ko zup kon nie'},
+  {id:'o-pt3', cat:'potrzeby', icon:'👉', pl:'Chodź tutaj', vi:'Lại đây', viPron:'lai daj'},
+  {id:'o-pt4', cat:'potrzeby', icon:'🪑', pl:'Usiądź', vi:'Ngồi xuống', viPron:'ngoj suong'},
+  {id:'o-pt5', cat:'potrzeby', icon:'⏳', pl:'Chwileczkę, poczekaj', vi:'Chờ một chút', viPron:'cio mot ciut'},
+  {id:'o-pt6', cat:'potrzeby', icon:'😴', pl:'Chcesz spać?', vi:'Con có muốn ngủ không?', viPron:'kon ko muon ngu khom',
+    isQuestion:true, answers:[YES,NO]},
+  {id:'o-pt7', cat:'potrzeby', icon:'🥶', pl:'Zimno ci?', vi:'Con có lạnh không?', viPron:'kon ko lań khom',
+    isQuestion:true, answers:[YES,NO]},
+  {id:'o-pt8', cat:'potrzeby', icon:'🥵', pl:'Gorąco ci?', vi:'Con có nóng không?', viPron:'kon ko nong khom',
+    isQuestion:true, answers:[YES,NO]},
+  {id:'o-pt9', cat:'potrzeby', icon:'🧥', pl:'Załóż kurtkę', vi:'Mặc áo khoác vào đi', viPron:'mak ał khoak wau di'},
+  {id:'o-pt10', cat:'potrzeby', icon:'⏱️', pl:'Poczekaj na swoją kolej', vi:'Chờ đến lượt con', viPron:'cio den lyt kon'},
+  {id:'o-pt11', cat:'potrzeby', icon:'🤝', pl:'Trzymaj mnie za rękę', vi:'Nắm tay cô nào', viPron:'nam taj ko nau'},
+  {id:'o-pt12', cat:'potrzeby', icon:'🚫', pl:'Nie biegaj', vi:'Đừng chạy', viPron:'dyng ciaj'},
+  {id:'o-pt13', cat:'potrzeby', icon:'🚶', pl:'Chodźmy razem', vi:'Đi cùng cô nào', viPron:'di kung ko nau'},
+  {id:'o-pt14', cat:'potrzeby', icon:'❓', pl:'Potrzebujesz czegoś?', vi:'Con cần gì không?', viPron:'kon kan zi khom',
+    isQuestion:true, answers:[NO, DONTKNOW]},
+
+  // Czas i dzień
+  {id:'o-c1', cat:'czas', icon:'⏰', pl:'Teraz', vi:'Bây giờ', viPron:'baj zio'},
+  {id:'o-c2', cat:'czas', icon:'⏳', pl:'Za chwilę', vi:'Một lát nữa', viPron:'mot lat nya'},
+  {id:'o-c3', cat:'czas', icon:'🌅', pl:'Rano', vi:'Buổi sáng', viPron:'buoj sang'},
+  {id:'o-c4', cat:'czas', icon:'🍽️', pl:'Obiad', vi:'Bữa trưa', viPron:'bya trya'},
+  {id:'o-c5', cat:'czas', icon:'😴', pl:'Czas na drzemkę', vi:'Đến giờ ngủ trưa rồi', viPron:'den zio ngu trya zoj'},
+  {id:'o-c6', cat:'czas', icon:'🏠', pl:'Idziemy do domu', vi:'Về nhà thôi', viPron:'we nia thoj'},
+  {id:'o-c7', cat:'czas', icon:'👪', pl:'Rodzice już idą', vi:'Bố mẹ đến rồi', viPron:'bo me den zoj'},
+  {id:'o-c8', cat:'czas', icon:'⏱️', pl:'Za 5 minut idziemy', vi:'5 phút nữa mình đi nhé', viPron:'nam fut nya min di nie'},
+  {id:'o-c9', cat:'czas', icon:'📅', pl:'Dzisiaj', vi:'Hôm nay', viPron:'hom naj'},
+  {id:'o-c10', cat:'czas', icon:'📅', pl:'Jutro', vi:'Ngày mai', viPron:'ngaj maj'},
+  {id:'o-c11', cat:'czas', icon:'⏳', pl:'Poczekaj chwilę, zaraz zaczynamy', vi:'Chờ một chút, sắp bắt đầu rồi', viPron:'cio mot ciut, sap bat dau zoj'},
+
+  // Kontakt z rodzicem
+  {id:'o-r1', cat:'rodzic', icon:'😊', pl:'Dziś [imię] miała dobry dzień', vi:'Hôm nay con có một ngày tốt', viPron:'hom naj kon ko mot ngaj tot'},
+  {id:'o-r2', cat:'rodzic', icon:'👧', pl:'Dobrze się bawiła z innymi dziećmi', vi:'Con chơi rất vui với các bạn', viPron:'kon cioj rat wui voj kak ban'},
+  {id:'o-r3', cat:'rodzic', icon:'🍽️', pl:'Zjadła cały obiad', vi:'Con đã ăn hết bữa trưa', viPron:'kon da an het bya trya'},
+  {id:'o-r4', cat:'rodzic', icon:'🍽️', pl:'Nie chciała dziś jeść', vi:'Hôm nay con không muốn ăn', viPron:'hom naj kon khom muon an'},
+  {id:'o-r5', cat:'rodzic', icon:'😴', pl:'Spała podczas drzemki', vi:'Con đã ngủ trưa', viPron:'kon da ngu trya'},
+  {id:'o-r6', cat:'rodzic', icon:'😴', pl:'Nie spała podczas drzemki', vi:'Con không ngủ trưa', viPron:'kon khom ngu trya'},
+  {id:'o-r7', cat:'rodzic', icon:'😢', pl:'Płakała rano, ale potem się uspokoiła', vi:'Sáng nay con khóc, nhưng sau đó con đã bình tĩnh lại', viPron:'sang naj kon khok, nyng sau do kon da bin tinh lai'},
+  {id:'o-r8', cat:'rodzic', icon:'😄', pl:'Dzisiaj była wyjątkowo wesoła', vi:'Hôm nay con đặc biệt vui vẻ', viPron:'hom naj kon dak biet wui we'},
+  {id:'o-r9', cat:'rodzic', icon:'🤒', pl:'Miała trochę gorączki', vi:'Con hơi sốt', viPron:'kon hoj sot'},
+  {id:'o-r10', cat:'rodzic', icon:'🤕', pl:'Skarżyła się na ból brzucha', vi:'Con kêu đau bụng', viPron:'kon keu dau bung'},
+  {id:'o-r11', cat:'rodzic', icon:'🤕', pl:'Skarżyła się na ból głowy', vi:'Con kêu đau đầu', viPron:'kon keu dau dau'},
+  {id:'o-r12', cat:'rodzic', icon:'🩹', pl:'Uderzyła się dzisiaj (mały siniak, nic poważnego)', vi:'Hôm nay con bị va nhẹ (vết bầm nhỏ, không nghiêm trọng)', viPron:'hom naj kon bi wa nie, vet bam nio, khom ngiem trong'},
+  {id:'o-r13', cat:'rodzic', icon:'🧥', pl:'Proszę dać dziecku więcej ubrań, jest jej zimno', vi:'Xin cho con mặc thêm quần áo, con bị lạnh', viPron:'sin czo kon mak them kłan ał, kon bi lań'},
+  {id:'o-r14', cat:'rodzic', icon:'👕', pl:'Proszę spakować dziecku zapasowe ubranie', vi:'Xin chuẩn bị thêm quần áo dự phòng cho con', viPron:'sin ciuan bi them kłan ał zy fong czo kon'},
+  {id:'o-r15', cat:'rodzic', icon:'❓', pl:'Czy w domu zachowuje się podobnie?', vi:'Ở nhà con có như vậy không?', viPron:'y nia kon ko nyw wai khom',
+    isQuestion:true, answers:[
+      {pl:'Tak, w domu też', vi:'Ở nhà cũng vậy', viPron:'y nia kung wai'},
+      {pl:'Nie, w domu jest inaczej', vi:'Ở nhà thì khác', viPron:'y nia thi khak'},
+    ]},
+  {id:'o-r16', cat:'rodzic', icon:'📞', pl:'Proszę o kontakt telefoniczny', vi:'Xin liên lạc qua điện thoại', viPron:'sin lien lak kła dien thoaj'},
+  {id:'o-r17', cat:'rodzic', icon:'🗣️', pl:'Czy mogę porozmawiać z Panią osobiście?', vi:'Tôi có thể nói chuyện trực tiếp với chị được không?', viPron:'toj ko te noi ciuen tryk tiep voj ci dyk khom'},
+  {id:'o-r18', cat:'rodzic', icon:'🏥', pl:'Zalecamy wizytę u lekarza', vi:'Chúng tôi khuyên nên đưa con đi khám bác sĩ', viPron:'ciung toj khuyen nen dya kon di kham bak si'},
+  {id:'o-r19', cat:'rodzic', icon:'🗨️', pl:'Zalecamy konsultację z logopedą — dziecko ma trudności z mówieniem', vi:'Chúng tôi khuyên nên cho con gặp chuyên gia trị liệu ngôn ngữ — con gặp khó khăn khi nói', viPron:'ciung toj khuyen nen czo kon gap ciuyen za czi lieu ngon ngy — kon gap kho khan khi noi'},
+  {id:'o-r20', cat:'rodzic', icon:'🧠', pl:'Zalecamy konsultację z psychologiem dziecięcym', vi:'Chúng tôi khuyên nên cho con gặp chuyên gia tâm lý trẻ em', viPron:'ciung toj khuyen nen czo kon gap ciuyen za tam li trże em'},
+  {id:'o-r21', cat:'rodzic', icon:'🙁', pl:'Dziecko wydaje się ostatnio bardzo wycofane/smutne', vi:'Gần đây con có vẻ rất khép kín / buồn', viPron:'gan daj kon ko we rat khep kin / buon'},
+  {id:'o-r22', cat:'rodzic', icon:'🤝', pl:'Dziecko ma trudności w kontaktach z innymi dziećmi', vi:'Con gặp khó khăn khi giao tiếp với các bạn khác', viPron:'kon gap kho khan khi zau tiep voj kak ban khak'},
+  {id:'o-r23', cat:'rodzic', icon:'😌', pl:'To normalne zachowanie w tym wieku, nie ma powodu do niepokoju', vi:'Đây là hành vi bình thường ở độ tuổi này, không có gì phải lo lắng', viPron:'daj la han wi bin thyng y do tuoi naj, khom ko zi faj lo lang'},
+  {id:'o-r24', cat:'rodzic', icon:'🏡', pl:'Proszę porozmawiać z dzieckiem o tym w domu', vi:'Xin hãy nói chuyện với con về việc này ở nhà', viPron:'sin haj noi ciuen voj kon we wiek naj y nia'},
+  {id:'o-r25', cat:'rodzic', icon:'🙏', pl:'Dziękujemy za współpracę', vi:'Cảm ơn sự hợp tác của gia đình', viPron:'kam yn sy hop tak kua za din'},
+];
+
+/* ---------- Zwroty DZIECKO → CIOCIA (mode: dziecko) ---------- */
+const PHRASES_DZIECKO = [
+  // Powitania
+  {id:'d-p1', cat:'powitania', icon:'👋', pl:'Dzień dobry, proszę pani', vi:'Con chào cô ạ', viPron:'kon cziau ko a'},
+  {id:'d-p2', cat:'powitania', icon:'👋', pl:'Do widzenia, wracam do domu', vi:'Con chào cô, con về', viPron:'kon cziau ko, kon we'},
+  {id:'d-p3', cat:'powitania', icon:'🙏', pl:'Dziękuję', vi:'Con cảm ơn cô', viPron:'kon kam yn ko'},
+  {id:'d-p4', cat:'powitania', icon:'😔', pl:'Przepraszam', vi:'Con xin lỗi', viPron:'kon sin loi'},
+  {id:'d-p5', cat:'powitania', icon:'✅', pl:'Tak', vi:'Vâng ạ / Dạ', viPron:'wang a / za'},
+  {id:'d-p6', cat:'powitania', icon:'❌', pl:'Nie', vi:'Không ạ', viPron:'khom a'},
+  {id:'d-p7', cat:'powitania', icon:'💛', pl:'Kocham cię, ciociu', vi:'Con yêu cô', viPron:'kon ieu ko'},
+
+  // Łazienka
+  {id:'d-l1', cat:'lazienka', icon:'🚽', pl:'Chcę do toalety', vi:'Con muốn đi vệ sinh', viPron:'kon muon di ve sin'},
+  {id:'d-l2', cat:'lazienka', icon:'😳', pl:'Zrobiłam siku w majtki', vi:'Con lỡ đi tè ra quần rồi', viPron:'kon ly di te ra kłan zoj'},
+  {id:'d-l3', cat:'lazienka', icon:'❓', pl:'Pomożesz mi w toalecie?', vi:'Cô giúp con đi vệ sinh được không?', viPron:'ko zup kon di ve sin dyk khom',
+    isQuestion:true, answers:[
+      {pl:'Tak, chodź', vi:'Được, đi nào', viPron:'dyk, di nau'},
+      WAIT,
+    ]},
+  {id:'d-l4', cat:'lazienka', icon:'🧼', pl:'Umyję ręce', vi:'Con rửa tay', viPron:'kon żua taj'},
+  {id:'d-l5', cat:'lazienka', icon:'✅', pl:'Skończyłam', vi:'Con xong rồi', viPron:'kon song zoj'},
+  {id:'d-l6', cat:'lazienka', icon:'🧻', pl:'Pomożesz mi wytrzeć ręce?', vi:'Cô lau tay giúp con nhé?', viPron:'ko lau taj zup kon nie',
+    isQuestion:true, answers:[YES, WAIT]},
+
+  // Jedzenie
+  {id:'d-j1', cat:'jedzenie', icon:'🍽️', pl:'Jestem głodna', vi:'Con đói', viPron:'kon doj'},
+  {id:'d-j2', cat:'jedzenie', icon:'🥤', pl:'Chce mi się pić', vi:'Con khát nước', viPron:'kon khat nyk'},
+  {id:'d-j3', cat:'jedzenie', icon:'🙅', pl:'Nie lubię tego', vi:'Con không thích món này', viPron:'kon khom thik mon naj'},
+  {id:'d-j4', cat:'jedzenie', icon:'🍚', pl:'Chcę więcej, proszę', vi:'Con muốn ăn thêm ạ', viPron:'kon muon an them a'},
+  {id:'d-j5', cat:'jedzenie', icon:'🙅', pl:'Już nie chcę jeść', vi:'Con không muốn ăn nữa', viPron:'kon khom muon an nya'},
+  {id:'d-j6', cat:'jedzenie', icon:'😋', pl:'To jest pyszne!', vi:'Món này ngon quá!', viPron:'mon naj ngon kła'},
+  {id:'d-j7', cat:'jedzenie', icon:'❓', pl:'Mogę dostać wody?', vi:'Cô cho con xin nước được không?', viPron:'ko czo kon sin nyk dyk khom',
+    isQuestion:true, answers:[
+      {pl:'Tak, proszę', vi:'Được, đây nè', viPron:'dyk, daj ne'},
+      WAIT,
+    ]},
+
+  // Zabawa
+  {id:'d-z1', cat:'zabawa', icon:'🧸', pl:'Chcę się bawić', vi:'Con muốn chơi', viPron:'kon muon cioj'},
+  {id:'d-z2', cat:'zabawa', icon:'❓', pl:'Możemy się razem bawić?', vi:'Con chơi cùng bạn được không?', viPron:'kon cioj kung ban dyk khom',
+    isQuestion:true, answers:[
+      {pl:'Tak, oczywiście', vi:'Được chứ', viPron:'dyk cy'},
+      WAIT,
+    ]},
+  {id:'d-z3', cat:'zabawa', icon:'🧩', pl:'To moja zabawka', vi:'Đây là đồ chơi của con', viPron:'daj la do cioj kua kon'},
+  {id:'d-z4', cat:'zabawa', icon:'✅', pl:'Skończyłam się bawić', vi:'Con chơi xong rồi', viPron:'kon cioj song zoj'},
+  {id:'d-z5', cat:'zabawa', icon:'❓', pl:'Mogę wziąć tę zabawkę?', vi:'Con lấy đồ chơi này được không?', viPron:'kon laj do cioj naj dyk khom',
+    isQuestion:true, answers:[YES, WAIT]},
+  {id:'d-z6', cat:'zabawa', icon:'🤝', pl:'Zagrasz ze mną?', vi:'Cô chơi với con nhé?', viPron:'ko cioj voj kon nie',
+    isQuestion:true, answers:[YES, WAIT]},
+
+  // Uczucia
+  {id:'d-e1', cat:'emocje', icon:'🤕', pl:'Boli mnie brzuch', vi:'Con đau bụng', viPron:'kon dau bung'},
+  {id:'d-e2', cat:'emocje', icon:'🤕', pl:'Boli mnie głowa', vi:'Con đau đầu', viPron:'kon dau dau'},
+  {id:'d-e3', cat:'emocje', icon:'😢', pl:'Jestem smutna', vi:'Con buồn', viPron:'kon buon'},
+  {id:'d-e4', cat:'emocje', icon:'😄', pl:'Jestem szczęśliwa', vi:'Con vui', viPron:'kon wui'},
+  {id:'d-e5', cat:'emocje', icon:'😴', pl:'Jestem zmęczona', vi:'Con mệt', viPron:'kon met'},
+  {id:'d-e6', cat:'emocje', icon:'😨', pl:'Boję się', vi:'Con sợ', viPron:'kon sy'},
+  {id:'d-e7', cat:'emocje', icon:'🥺', pl:'Tęsknię za mamą', vi:'Con nhớ mẹ', viPron:'kon nio me'},
+  {id:'d-e8', cat:'emocje', icon:'❓', pl:'Przytulisz mnie?', vi:'Cô ôm con được không?', viPron:'ko om kon dyk khom',
+    isQuestion:true, answers:[
+      {pl:'Oczywiście, chodź tutaj', vi:'Được chứ, lại đây nào', viPron:'dyk cy, lai daj nau'},
+      WAIT,
+    ]},
+  {id:'d-e9', cat:'emocje', icon:'🤒', pl:'Nie czuję się dobrze', vi:'Con thấy không khỏe', viPron:'kon tej khom khoe'},
+
+  // Potrzeby
+  {id:'d-pt1', cat:'potrzeby', icon:'❓', pl:'Pomożesz mi?', vi:'Cô giúp con nhé?', viPron:'ko zup kon nie',
+    isQuestion:true, answers:[YES, WAIT]},
+  {id:'d-pt2', cat:'potrzeby', icon:'😴', pl:'Pomóż mi zasnąć', vi:'Giúp con ngủ với', viPron:'zup kon ngu voj'},
+  {id:'d-pt3', cat:'potrzeby', icon:'❓', pl:'Pomożesz mi zasnąć?', vi:'Cô giúp con ngủ được không?', viPron:'ko zup kon ngu dyk khom',
+    isQuestion:true, answers:[
+      {pl:'Tak, chodź', vi:'Được, lại đây', viPron:'dyk, lai daj'},
+      {pl:'Zaraz przyjdę', vi:'Cô đến ngay', viPron:'ko den ngaj'},
+    ]},
+  {id:'d-pt4', cat:'potrzeby', icon:'🫂', pl:'Przytul mnie', vi:'Ôm con đi', viPron:'om kon di'},
+  {id:'d-pt5', cat:'potrzeby', icon:'🥶', pl:'Zimno mi', vi:'Con lạnh', viPron:'kon lań'},
+  {id:'d-pt6', cat:'potrzeby', icon:'🥵', pl:'Gorąco mi', vi:'Con nóng', viPron:'kon nong'},
+  {id:'d-pt7', cat:'potrzeby', icon:'👨‍👩‍👧', pl:'Chcę do mamy', vi:'Con muốn gặp mẹ', viPron:'kon muon gap me'},
+  {id:'d-pt8', cat:'potrzeby', icon:'❓', pl:'Kiedy przyjdzie mama?', vi:'Khi nào mẹ đến?', viPron:'khi nau me den',
+    isQuestion:true, answers:[
+      {pl:'Zaraz, niedługo', vi:'Sắp rồi', viPron:'sap zoj'},
+      {pl:'Po obiedzie', vi:'Sau bữa trưa', viPron:'sau bya trya'},
+    ]},
+  {id:'d-pt9', cat:'potrzeby', icon:'🪑', pl:'Chcę usiąść przy tobie', vi:'Con muốn ngồi cạnh cô', viPron:'kon muon ngoj kanh ko'},
+  {id:'d-pt10', cat:'potrzeby', icon:'🧥', pl:'Pomożesz mi ubrać kurtkę?', vi:'Cô giúp con mặc áo khoác được không?', viPron:'ko zup kon mak ał khoak dyk khom',
+    isQuestion:true, answers:[YES, WAIT]},
+
+  // Czas
+  {id:'d-c1', cat:'czas', icon:'❓', pl:'Kiedy idziemy do domu?', vi:'Khi nào mình về nhà?', viPron:'khi nau min we nia',
+    isQuestion:true, answers:[
+      {pl:'Zaraz, niedługo', vi:'Sắp rồi', viPron:'sap zoj'},
+      {pl:'Po drzemce', vi:'Sau khi ngủ trưa', viPron:'sau khi ngu trya'},
+    ]},
+  {id:'d-c2', cat:'czas', icon:'❓', pl:'Czy teraz jest drzemka?', vi:'Bây giờ là giờ ngủ trưa à?', viPron:'baj zio la zio ngu trya a',
+    isQuestion:true, answers:[YES,NO]},
+  {id:'d-c3', cat:'czas', icon:'❓', pl:'Czy mama już przyszła?', vi:'Mẹ đến chưa?', viPron:'me den cya',
+    isQuestion:true, answers:[
+      {pl:'Jeszcze nie', vi:'Chưa đâu', viPron:'cya dau'},
+      {pl:'Tak, czeka na ciebie', vi:'Có rồi, mẹ đang đợi con', viPron:'ko zoj, me dang doj kon'},
+    ]},
+];
+
+/* ============================================================
+   STAN / STATE
+   ============================================================ */
+let mode = 'opiekunka';
+let activeCat = 'all';
+let query = '';
+let currentOverlayPhrase = null;
+
+function currentCategories(){ return mode === 'opiekunka' ? CATEGORIES_OPIEKUNKA : CATEGORIES_DZIECKO; }
+function currentPhrases(){ return mode === 'opiekunka' ? PHRASES_OPIEKUNKA : PHRASES_DZIECKO; }
+function findPhrase(id){ return currentPhrases().find(p => p.id === id); }
+
+/* ============================================================
+   GŁOSY / VOICES
+   ============================================================ */
+function pickVoice(langPrefix){
+  const voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+  // Wymagamy DOKŁADNEGO dopasowania języka (np. "vi" lub "vi-vn"), nigdy nie
+  // zwracamy głosu z innego języka — to właśnie powodowało czytanie
+  // wietnamskiego tekstu angielskim głosem.
+  const matches = voices.filter(v => {
+    const vLang = v.lang.toLowerCase();
+    return vLang === langPrefix || vLang.startsWith(langPrefix + '-');
+  });
+  if(matches.length === 0) return null;
+  const femaleHints = /female|kobiet|zofia|paulina|ewa|linh|mai|huong|an|hoai|google/i;
+  const female = matches.find(v => femaleHints.test(v.name));
+  return female || matches[0];
+}
+
+let hasLocalViVoice = false;
+function checkViVoice(){
+  hasLocalViVoice = !!pickVoice('vi');
+  const warn = document.getElementById('voiceWarning');
+  // Gdy nie ma lokalnego głosu wietnamskiego, audio VI i tak zadziała
+  // (przez internet), więc pokazujemy tylko spokojną informację, a nie alarm.
+  warn.textContent = hasLocalViVoice
+    ? ''
+    : 'ℹ️ Ten telefon nie ma zainstalowanego głosu wietnamskiego — audio wietnamskie będzie odtwarzane przez internet. Upewnij się, że masz połączenie z siecią.';
+  warn.style.display = hasLocalViVoice ? 'none' : 'block';
+}
+if(window.speechSynthesis){
+  window.speechSynthesis.onvoiceschanged = () => { checkViVoice(); };
+  setTimeout(checkViVoice, 300);
+}
+
+/* Zapasowe audio online (Google Translate TTS) — używane tylko wtedy, gdy
+   telefon nie ma zainstalowanego lokalnego głosu dla danego języka. Dzięki
+   temu wietnamskie zwroty nigdy nie są czytane angielskim głosem: albo mówi
+   prawdziwy głos wietnamski (lokalny), albo pobieramy gotowe nagranie online. */
+let remoteAudio = null;
+function speakRemote(text, langCode, btn){
+  if(remoteAudio){ remoteAudio.pause(); remoteAudio = null; }
+  const url = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=${langCode}&q=${encodeURIComponent(text)}`;
+  const audio = new Audio(url);
+  remoteAudio = audio;
+  if(btn) btn.classList.add('speaking');
+  const stop = () => { if(btn) btn.classList.remove('speaking'); };
+  audio.addEventListener('ended', stop);
+  audio.addEventListener('error', () => {
+    stop();
+    if(langCode === 'vi'){
+      const warn = document.getElementById('voiceWarning');
+      warn.textContent = '⚠️ Nie udało się odtworzyć audio wietnamskiego (brak internetu lub usługa niedostępna). Spróbuj ponownie za chwilę.';
+      warn.style.display = 'block';
+    }
+  });
+  audio.play().catch(() => {
+    stop();
+    if(langCode === 'vi'){
+      const warn = document.getElementById('voiceWarning');
+      warn.textContent = '⚠️ Nie udało się odtworzyć audio wietnamskiego automatycznie — dotknij przycisku 🔊 jeszcze raz.';
+      warn.style.display = 'block';
+    }
+  });
+}
+
+function speak(text, lang, btn){
+  const langCode = lang.split('-')[0];
+  const voice = window.speechSynthesis ? pickVoice(langCode) : null;
+
+  if(voice){
+    // Mamy prawdziwy lokalny głos w tym języku — użyj syntezatora przeglądarki.
+    window.speechSynthesis.cancel();
+    if(remoteAudio){ remoteAudio.pause(); remoteAudio = null; }
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = lang;
+    utter.voice = voice;
+    utter.rate = 0.92;
+    utter.pitch = 1.05;
+    if(btn){
+      btn.classList.add('speaking');
+      utter.onend = () => btn.classList.remove('speaking');
+      utter.onerror = () => btn.classList.remove('speaking');
+    }
+    window.speechSynthesis.speak(utter);
+  } else {
+    // Brak lokalnego głosu w tym języku (typowy przypadek dla wietnamskiego
+    // na wielu telefonach) — NIE czytamy tekstu domyślnym (zwykle angielskim)
+    // głosem, tylko pobieramy nagranie w prawidłowym języku przez internet.
+    if(window.speechSynthesis) window.speechSynthesis.cancel();
+    speakRemote(text, langCode, btn);
+  }
+}
+
+/* ============================================================
+   RENDEROWANIE
+   ============================================================ */
+function setMode(m){
+  mode = m;
+  activeCat = 'all';
+  document.querySelectorAll('.mode-btn').forEach(b=>{
+    b.classList.toggle('active', b.dataset.mode === m);
+  });
+  renderChips();
+  render();
+}
+
+function renderChips(){
+  const wrap = document.getElementById('chips');
+  const allChip = `<div class="chip ${activeCat==='all'?'active':''}" data-cat="all">🔎 Wszystkie</div>`;
+  const chips = currentCategories().map(c =>
+    `<div class="chip ${c.id==='rodzic' ? 'special' : ''} ${activeCat===c.id?'active':''}" data-cat="${c.id}">${c.icon} ${c.label}</div>`
+  ).join('');
+  wrap.innerHTML = allChip + chips;
+}
+document.getElementById('chips').addEventListener('click', (e) => {
+  const chip = e.target.closest('.chip');
+  if(!chip) return;
+  activeCat = chip.dataset.cat;
+  renderChips();
+  render();
+});
+
+function matchesQuery(phrase, q){
+  if(!q) return true;
+  const hay = (phrase.pl + ' ' + phrase.vi).toLowerCase();
+  return hay.includes(q.toLowerCase());
+}
+
+function answerRowHtml(ans, mode){
+  const primary = mode === 'opiekunka' ? ans.vi : ans.pl;
+  const secondary = mode === 'opiekunka' ? ans.pl : ans.vi;
+  return `
+    <div class="answer-row">
+      <div class="answer-texts">
+        <div class="answer-primary">${primary}</div>
+        <div class="answer-secondary">${secondary}${mode==='opiekunka' ? ` (${ans.viPron})` : ''}</div>
+      </div>
+      <button class="answer-speak pl" data-speak-pl="${escapeAttr(ans.pl)}" title="Odtwórz po polsku">🔊</button>
+      <button class="answer-speak vi" data-speak-vi="${escapeAttr(ans.vi)}" title="Odtwórz po wietnamsku">🔊</button>
+    </div>
+  `;
+}
+
+function escapeAttr(str){
+  return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function render(){
+  const banner = document.getElementById('infoBanner');
+  if(mode === 'opiekunka' && activeCat === 'rodzic'){
+    banner.innerHTML = `<div class="info-banner">👪 Te zwroty pomagają przekazać rodzicowi informacje o dniu dziecka — samopoczuciu, jedzeniu, śnie, zachowaniu — oraz zalecić kontakt ze specjalistą, jeśli to potrzebne.</div>`;
+  } else {
+    banner.innerHTML = '';
+  }
+
+  const list = currentPhrases().filter(p => (activeCat==='all' || p.cat===activeCat) && matchesQuery(p, query));
+  const cardsWrap = document.getElementById('cards');
+  const empty = document.getElementById('emptyState');
+  const count = document.getElementById('resultCount');
+
+  const catLabel = currentCategories().find(c=>c.id===activeCat)?.label || 'Wszystkie zwroty';
+  count.textContent = query
+    ? `${list.length} ${list.length===1 ? 'wynik' : 'wyników'} dla „${query}”`
+    : catLabel;
+
+  if(list.length === 0){
+    cardsWrap.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  cardsWrap.innerHTML = list.map(p => {
+    const primary = mode === 'opiekunka' ? p.pl : p.vi;
+    const secondary = mode === 'opiekunka' ? p.vi : p.pl;
+    const pron = mode === 'opiekunka' ? `(wymowa: ${p.viPron})` : '';
+    const qBadge = p.isQuestion ? `<span class="q-badge">❓ pytanie</span>` : '';
+    const answersHtml = (p.isQuestion && p.answers && p.answers.length)
+      ? `<div class="answers-block">
+           <div class="answers-label">Możliwa odpowiedź</div>
+           ${p.answers.map(a => answerRowHtml(a, mode)).join('')}
+         </div>`
+      : '';
+    return `
+      <div class="card" data-id="${p.id}">
+        <div class="card-top">
+          <div class="icon-circle">${p.icon}</div>
+          <div class="texts">
+            <div class="primary-text">${primary}${qBadge}</div>
+            <div class="secondary-text">${secondary}</div>
+            ${pron ? `<div class="pron">${pron}</div>` : ''}
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="audio-btn pl" data-action="speak-pl">🔊 Polski</button>
+          <button class="audio-btn vi" data-action="speak-vi">🔊 Wietnamski</button>
+          <button class="show-btn" data-action="show" title="Pokaż na cały ekran">🔍</button>
+        </div>
+        ${answersHtml}
+      </div>
+    `;
+  }).join('');
+}
+
+/* Delegacja zdarzeń dla kart (unika problemów z cudzysłowami w onclick) */
+document.getElementById('cards').addEventListener('click', (e) => {
+  const speakPlAns = e.target.closest('[data-speak-pl]');
+  if(speakPlAns){ speak(speakPlAns.dataset.speakPl, 'pl-PL', speakPlAns); return; }
+  const speakViAns = e.target.closest('[data-speak-vi]');
+  if(speakViAns){ speak(speakViAns.dataset.speakVi, 'vi-VN', speakViAns); return; }
+
+  const actionBtn = e.target.closest('[data-action]');
+  if(!actionBtn) return;
+  const card = e.target.closest('.card');
+  if(!card) return;
+  const phrase = findPhrase(card.dataset.id);
+  if(!phrase) return;
+  const action = actionBtn.dataset.action;
+  if(action === 'speak-pl') speak(phrase.pl, 'pl-PL', actionBtn);
+  else if(action === 'speak-vi') speak(phrase.vi, 'vi-VN', actionBtn);
+  else if(action === 'show') openOverlay(phrase);
+});
+
+/* ============ WYSZUKIWANIE ============ */
+const searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('input', (e) => {
+  query = e.target.value.trim();
+  document.getElementById('clearBtn').style.display = query ? 'block' : 'none';
+  render();
+});
+function clearSearch(){
+  query = '';
+  searchInput.value = '';
+  document.getElementById('clearBtn').style.display = 'none';
+  render();
+}
+
+/* ============ OVERLAY (pokaż na cały ekran) ============ */
+function openOverlay(p){
+  currentOverlayPhrase = p;
+  const primary = mode === 'opiekunka' ? p.pl : p.vi;
+  const secondary = mode === 'opiekunka' ? p.vi : p.pl;
+  document.getElementById('ovIcon').textContent = p.icon;
+  document.getElementById('ovText').textContent = primary;
+  document.getElementById('ovSub').textContent = secondary;
+  document.getElementById('ovPron').textContent = mode === 'opiekunka' ? `(wymowa: ${p.viPron})` : '';
+
+  const ovAnswers = document.getElementById('ovAnswers');
+  if(p.isQuestion && p.answers && p.answers.length){
+    ovAnswers.style.display = 'block';
+    ovAnswers.innerHTML = `<div class="answers-label">Możliwa odpowiedź</div>` +
+      p.answers.map(a => answerRowHtml(a, mode)).join('');
+  } else {
+    ovAnswers.style.display = 'none';
+    ovAnswers.innerHTML = '';
+  }
+
+  document.getElementById('overlay').classList.add('open');
+  if(mode === 'dziecko'){
+    speak(p.pl, 'pl-PL', null);
+  }
+}
+function closeOverlay(){
+  window.speechSynthesis && window.speechSynthesis.cancel();
+  document.getElementById('overlay').classList.remove('open');
+}
+document.getElementById('overlay').addEventListener('click', (e) => {
+  const speakPlAns = e.target.closest('[data-speak-pl]');
+  if(speakPlAns){ speak(speakPlAns.dataset.speakPl, 'pl-PL', speakPlAns); return; }
+  const speakViAns = e.target.closest('[data-speak-vi]');
+  if(speakViAns){ speak(speakViAns.dataset.speakVi, 'vi-VN', speakViAns); return; }
+});
+
+/* ============ INIT ============ */
+renderChips();
+render();
+</script>
+</body>
+</html>
