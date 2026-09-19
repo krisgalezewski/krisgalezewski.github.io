@@ -232,6 +232,14 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
   transform:scale(calc(1 + var(--on) * .07));
   transition:transform 4s ease-out;
 }
+/* The lesson-artwork panels (full-bleed rounded rect + word blocks, unlike
+   the Games tile's inset line-art motif) render at their raw SVG-unit size
+   instead of being scaled to the viewport when a CSS `transform` sits on
+   the same <svg> element — a rendering quirk with viewBox scaling and
+   root-level transforms together. Panels don't need the hover zoom (their
+   own artwork doesn't benefit from it the way a photo does), so this
+   class disables it and removes the motif-only inset padding. */
+.media svg.lesson-art{padding:0;transform:none;transition:none}
 
 /* ---------- Lens: Videos ---------- */
 .tile--videos .media{flex:none;height:130px}
@@ -314,13 +322,13 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
 
 <!--
   BEFORE YOU LAUNCH — what is still placeholder
-  1. Three links (search this file for "TODO"):
-       Lessons · Courses · Book a lesson
+  1. Two links (search this file for "TODO"):
+       Courses · Book a lesson
      Each currently points at "#TODO-…-url", which does nothing when clicked.
-  2. Two image bands (lesson screenshot, course cover) — no content yet, so
-     they still show a quiet tinted block. Set CONFIG.fallbackImages in the
-     script at the bottom, or add an "image" field to their entries, once
-     you have lesson/course pages to point at.
+  2. One image band (course cover) — no content yet, so it still shows a
+     quiet tinted block. Set CONFIG.fallbackImages in the script at the
+     bottom, or add an "image" field to its entries, once you have a
+     course page to point at.
   3. Live weekly content — already wired, no action needed:
        Games  → loadGameOfWeek()   reads /english-games/ (hidden iframe,
                                     reuses that page's own "game of the
@@ -335,6 +343,11 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
                                         same public key and same date-
                                         seeded pick english-quiz uses, plus
                                         a real question count
+       Lessons  → loadLessonOfWeek()   same date-seeded pick as /lessons/'s
+                                        own Lesson of the Week card, reading
+                                        a local copy of that lesson list (no
+                                        fetch needed, same origin) and
+                                        inlining the matching artwork SVG
      Each falls back to a built-in sample entry if the sibling page/feed/
      table is unreachable, so a hiccup on english-games, english-lens or
      english-quiz never breaks this page.
@@ -374,14 +387,14 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
 
     <!-- Lessons -->
     <section id="lessons" class="tile tile--lessons" data-section="lessons">
-      <p class="label">Lessons · interactive</p>
+      <p class="label">Lessons · lesson of the week</p>
       <div class="head">
         <h2 class="display">The grammar you pretend to know</h2>
         <span class="rule"></span>
       </div>
-      <p class="line" data-field="line"></p>
+      <p class="line"><strong data-field="title"></strong> — <span data-field="line"></span></p>
       <div class="media" data-media><img alt="" decoding="async"></div>
-      <a class="btn stretch" href="/lessons/"><span>Browse lessons</span><span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn stretch" id="lessonsBtn" href="/lessons/"><span>Browse lessons</span><span class="arrow" aria-hidden="true">→</span></a>
     </section>
 
     <!-- Lens: Videos -->
@@ -515,7 +528,7 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       videos:   '',   // Wired separately — see loadVideoOfWeek() below.
       games:    '',   // Wired separately — see loadGameOfWeek() below.
       quizzes:  '',   // Wired separately — see loadQuizOfDay() below.
-      lessons:  '',
+      lessons:  '',  // Wired separately — see loadLessonOfWeek() below.
       courses:  ''
     },
 
@@ -574,9 +587,9 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       { title: 'News vocabulary of the week', meta: '15 questions · B2–C1' }
     ],
     lessons: [
-      { line: '"Used to" vs "would" — past habits, settled in ten minutes.' },
-      { line: 'Articles: a, the, and the terrifying nothing at all.' },
-      { line: 'Reported speech, without the tense panic.' }
+      { title: 'English phrasal verbs', line: '61 high-frequency phrasal verbs — meanings, examples, and practice.' },
+      { title: 'Conditionals', line: 'All 6 conditional types, questions, and inversion — zero to mixed.' },
+      { title: 'Determiners', line: 'Articles, demonstratives, quantifiers, possessives, and more.' }
     ],
     courses: [
       { title: 'Long game, better English', line: 'Eight weeks, built around your goals. Starts whenever you do.' },
@@ -825,6 +838,70 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
     document.body.appendChild(iframe);
   }
   loadGameOfWeek();
+
+  // Lessons tile: same date-seeded pick as /lessons/'s own "Lesson of the
+  // week" card (sum char codes of today's ISO date, mod the list length),
+  // kept as a second copy of that same list here rather than fetched, since
+  // both pages are the same origin and this list changes rarely. Keep this
+  // array in sync with the LESSONS array in /lessons/index.html when a
+  // lesson is added, renamed or reordered there.
+  var LESSON_OF_WEEK_LIST = [
+    { title:'English phrasal verbs', href:'/lessons/english-phrasal-verbs.html', line:'61 high-frequency phrasal verbs — meanings, examples, and practice.', slug:'phrasal-verbs' },
+    { title:'Collocations', href:'/collocations_lesson_v4_6.html', line:'300+ collocations — grammar types, strength, and register, with audio.', slug:'collocations' },
+    { title:'Idioms', href:'/idioms_lesson_v2.html', line:'60 high-frequency idioms — browse, matching, scrambled sentences, and gap fill.', slug:'idioms' },
+    { title:'Word formation', href:'/english_word_formation_11_1.html', line:'Prefixes, suffixes, and word families — build new words from a root.', slug:'word-formation' },
+    { title:'Feelings and Emotions', href:'/feelings_activities.html', line:'Feelings and emotions vocabulary — formal and informal, with five activity types.', slug:'feelings-activities' },
+    { title:'Confusable pairs', href:'/english_confusable_pairs_2_1.html', line:'Commonly confused word pairs — meaning, usage, and practice.', slug:'confusable-pairs' },
+    { title:'Determiners', href:'/english_determiners.html', line:'Articles, demonstratives, quantifiers, possessives, and more.', slug:'determiners' },
+    { title:'Sentences & clauses', href:'/english_sentences_and_clauses_4.html', line:'Sentence types and clause structure — simple, compound, and complex.', slug:'sentences-clauses' },
+    { title:'Inversion & negative adverbials', href:'/inversion_negative_adverbials_7_1.html', line:'Formal inversion after negative adverbials — never, rarely, not only.', slug:'inversion' },
+    { title:'Cleft sentences', href:'/cleft_sentences_interactive_1.html', line:'It-clefts and wh-clefts — emphasising the right part of a sentence.', slug:'cleft-sentences' },
+    { title:'Conditionals', href:'/english_conditionals_v6_2_1.html', line:'All 6 conditional types, questions, and inversion — zero to mixed.', slug:'conditionals' },
+    { title:'Verb tenses', href:'/english_verb_tenses_v2_6.html', line:'English tense and aspect, practice, and common mistakes.', slug:'verb-tenses' },
+    { title:'Pronunciation', href:'/english_pronunciation_v5_1.html', line:'IPA chart, minimal pairs, connected speech, and stress patterns.', slug:'pronunciation' },
+    { title:'Transitional words', href:'/english_transitional_words_1.html', line:'Linking words and phrases for clear, connected writing.', slug:'transitional-words' },
+    { title:'Hedging language', href:'/hedging_language_lesson_6_1.html', line:'Softening claims with grammatical and lexical hedges.', slug:'hedging-language' }
+  ];
+
+  function loadLessonOfWeek() {
+    const sec = sections['lessons'];
+    if (!sec || !LESSON_OF_WEEK_LIST.length) return;
+    const today = new Date().toISOString().slice(0, 10);
+    let seed = 0;
+    for (const ch of today) seed = (seed * 31 + ch.charCodeAt(0)) >>> 0;
+    const pick = LESSON_OF_WEEK_LIST[seed % LESSON_OF_WEEK_LIST.length];
+
+    sec.tile.querySelectorAll('[data-field]').forEach((el) => {
+      if (el.dataset.field === 'title') el.textContent = pick.title;
+      if (el.dataset.field === 'line') el.textContent = pick.line;
+    });
+    const btn = document.getElementById('lessonsBtn');
+    if (btn) {
+      btn.setAttribute('href', pick.href);
+      const label = btn.querySelector('span');
+      if (label) label.textContent = 'Start this lesson';
+    }
+    // Inline the SVG (rather than an <img src>) so the artwork's own
+    // Archivo text renders instead of falling back to Arial/Helvetica —
+    // same reasoning as the Games tile's injected motif above.
+    fetch('/lessons/assets/art/' + pick.slug + '.svg')
+      .then((r) => (r.ok ? r.text() : null))
+      .then((svg) => {
+        if (!svg || !sec.box) return;
+        sec.box.innerHTML = svg;
+        sec.box.removeAttribute('style');
+        sec.box.classList.remove('has-img');
+        sec.box.classList.add('has-art');
+        const svgEl = sec.box.querySelector('svg');
+        if (svgEl) svgEl.classList.add('lesson-art');
+      })
+      .catch(() => { /* keep the tinted placeholder panel */ });
+
+    // One real "lesson of the week" — freeze the tile so a hover doesn't
+    // overwrite it with a sample entry, same as Games/Quizzes above.
+    sec.items = sec.items.slice(0, 1);
+  }
+  loadLessonOfWeek();
 
   // Quizzes tile: same idea as the feeds above, but english-quiz's "quiz of
   // the day" isn't a static file or something rendered in its own page DOM

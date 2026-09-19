@@ -3,26 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>document.documentElement.setAttribute('data-theme','light');</script>
-<title>Feelings &amp; Emotions — Practice Lab</title>
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ev-theme')||'dark')}catch(e){}</script>
+<title>Feelings and Emotions — English Voiced with Kris</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="stylesheet" href="/lessons/assets/lesson-theme.css">
 <script src="/lessons/assets/lesson-shared.js"></script>
 <style>
   :root{
-    --bg: #FBFAF7;
-    --surface: #FFFFFF;
-    --surface-alt: #F3EFFA;
-    --surface-hover: #EAE2F7;
-    --border: #DCD3E8;
-    --border-soft: #E9E3F1;
-    --text: #241B2E;
-    --text-muted: #6B6178;
-    --text-faint: #7A7089;
+    /* Re-pointed at the shared lesson theme (lesson-theme.css) so this
+       page follows the same dark/light toggle as every other lesson,
+       instead of keeping its own fixed light palette. */
+    --bg: var(--ink);
+    --surface: var(--color-background-primary);
+    --surface-alt: var(--color-background-secondary);
+    --surface-hover: var(--color-background-secondary);
+    --border: var(--color-border-secondary);
+    --border-soft: var(--color-border-tertiary);
+    --text: var(--color-text-primary);
+    --text-muted: var(--color-text-secondary);
+    --text-faint: var(--color-text-secondary);
 
+    /* Per-feeling colours stay distinct — they're content (which
+       feeling a card represents), not site chrome. */
     --happy: #D6901E;
     --sad: #3F6BC0;
     --angry: #D0392E;
@@ -32,11 +37,13 @@
     --embarrassed: #C85780;
     --confused: #A5652B;
 
-    --good: #218A50;
-    --bad: #CC3333;
+    /* Correct/incorrect feedback now matches every other lesson's
+       green/red convention instead of its own good/bad greens/reds. */
+    --good: var(--courses-tint);
+    --bad: var(--games-tint);
 
-    --radius: 14px;
-    --radius-sm: 9px;
+    --radius: 10px;
+    --radius-sm: 8px;
     --maxw: 920px;
   }
 
@@ -50,18 +57,18 @@
       radial-gradient(ellipse 900px 500px at 15% -10%, rgba(124,87,214,0.06), transparent 60%),
       radial-gradient(ellipse 700px 500px at 110% 10%, rgba(214,144,30,0.05), transparent 60%);
     color: var(--text);
-    font-family: 'Inter', sans-serif;
+    font-family:var(--font-sans);
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
   }
 
   h1,h2,h3, .display{
-    font-family: 'Fraunces', serif;
+    font-family:var(--font-sans);font-weight:700;
     font-weight: 600;
     letter-spacing: -0.01em;
   }
 
-  .mono{ font-family: 'IBM Plex Mono', monospace; }
+  .mono{ font-family:var(--font-sans); }
 
   a{ color: inherit; }
 
@@ -88,7 +95,7 @@
     padding: 0 6px;
   }
   .brand .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:var(--font-sans);
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -104,7 +111,7 @@
   .moodstrip{
     display:flex;
     height: 7px;
-    border-radius: 6px;
+    border-radius: 8px;
     overflow:hidden;
     margin-top:14px;
     box-shadow: 0 0 0 1px var(--border-soft);
@@ -117,7 +124,7 @@
     gap: 3px;
   }
   nav.navlist .navgroup-label{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:var(--font-sans);
     font-size: 10.5px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -129,7 +136,7 @@
     all: unset;
     cursor:pointer;
     padding: 9px 12px;
-    border-radius: 9px;
+    border-radius: 8px;
     font-size: 14.5px;
     color: var(--text-muted);
     display:flex;
@@ -149,7 +156,7 @@
     box-shadow: inset 3px 0 0 var(--anxious);
   }
   nav.navlist button .count{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:var(--font-sans);
     font-size: 10.5px;
     color: var(--text-faint);
     color: var(--text-faint);
@@ -183,7 +190,7 @@
 
   .section-head{ margin-bottom: 30px; }
   .section-head .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:var(--font-sans);
     font-size: 11.5px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -211,7 +218,7 @@
     padding: 8px 0 10px;
   }
   .hero .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:var(--font-sans);
     font-size: 12px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -249,12 +256,12 @@
     align-items:center;
     gap:8px;
     padding: 7px 13px 7px 10px;
-    border-radius: 999px;
+    border-radius: 8px;
     background: var(--surface);
     border: 1px solid var(--border-soft);
     font-size: 13px;
     color: var(--text-muted);
-    font-family: 'Inter', sans-serif;
+    font-family:var(--font-sans);
     transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
   }
   .legend-chip:hover{
@@ -290,7 +297,7 @@
     background: var(--surface-alt);
   }
   .activity-card .tag{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:var(--font-sans);
     font-size: 10.5px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -335,7 +342,7 @@
     margin-bottom: 16px;
   }
   .filter-row-label{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:var(--font-sans);
     font-size: 10.5px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -349,10 +356,10 @@
     display:flex;
     align-items:center;
     gap:7px;
-    font-family:'Inter', sans-serif;
+    font-family:var(--font-sans);
     font-size: 13px;
     padding: 7px 14px 7px 11px;
-    border-radius: 999px;
+    border-radius: 8px;
     background: var(--surface);
     border: 1px solid var(--border-soft);
     color: var(--text-muted);
@@ -377,17 +384,17 @@
     max-width: 360px;
     background: var(--surface);
     border: 1px solid var(--border-soft);
-    border-radius: 999px;
+    border-radius: 8px;
     padding: 10px 16px;
     color: var(--text);
-    font-family: 'Inter', sans-serif;
+    font-family:var(--font-sans);
     font-size: 13.5px;
   }
   .search-row input:focus{ border-color: var(--anxious); outline: none; }
   .search-row input::placeholder{ color: var(--text-faint); }
 
   .vocab-count{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:var(--font-sans);
     font-size: 12px;
     color: var(--text-faint);
     margin-bottom: 14px;
@@ -428,12 +435,12 @@
     gap:6px;
   }
   .reg-tag{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:var(--font-sans);
     font-size: 9.5px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     padding: 2px 8px;
-    border-radius: 999px;
+    border-radius: 8px;
     border: 1px solid;
   }
   .reg-tag[data-register="formal"]{ color:#3E5F82; border-color: rgba(84,120,158,0.45); background: rgba(84,120,158,0.10); }
@@ -466,7 +473,7 @@
   .modal-box{
     background: var(--surface-alt);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 10px;
     max-width: 440px;
     width:100%;
     padding: 28px 26px 26px;
@@ -535,12 +542,12 @@
     margin-bottom: 16px;
   }
   .modal-catlabel{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:var(--font-sans);
     font-size: 10px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 3px 10px;
-    border-radius: 999px;
+    border-radius: 8px;
     color: #1B1424;
   }
   .modal-def{
@@ -576,7 +583,7 @@
     margin-bottom: 26px;
   }
   .score{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:var(--font-sans);
     font-size: 13px;
     color: var(--text-muted);
     display:flex;
@@ -604,11 +611,11 @@
   .btn{
     all: unset;
     cursor:pointer;
-    font-family:'Inter', sans-serif;
+    font-family:var(--font-sans);
     font-size: 13px;
     font-weight:600;
     padding: 9px 16px;
-    border-radius: 999px;
+    border-radius: 8px;
     background: var(--surface-alt);
     border: 1px solid var(--border);
     color: var(--text);
@@ -643,18 +650,18 @@
     margin-bottom: 10px;
   }
   .qnum{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:var(--font-sans);
     font-size: 11px;
     color: var(--text-faint);
     color: var(--text-faint);
   }
   .catlabel{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:var(--font-sans);
     font-size: 10px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 3px 9px;
-    border-radius: 999px;
+    border-radius: 8px;
     color: #1B1424;
     display: inline-block;
     line-height: 1.5;
@@ -678,10 +685,10 @@
   .opt{
     all:unset;
     cursor:pointer;
-    font-family:'Inter', sans-serif;
+    font-family:var(--font-sans);
     font-size: 14px;
     padding: 9px 15px;
-    border-radius: 9px;
+    border-radius: 8px;
     background: var(--surface-alt);
     border: 1px solid var(--border);
     color: var(--text);
@@ -718,7 +725,7 @@
   }
   @media (max-width: 720px){ .match-wrap{ grid-template-columns: 1fr; } }
   .match-col-label{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:var(--font-sans);
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -731,11 +738,11 @@
     cursor:pointer;
     display:block;
     width:100%;
-    font-family:'Inter', sans-serif;
+    font-family:var(--font-sans);
     font-size: 14.5px;
     padding: 13px 16px;
     margin-bottom: 9px;
-    border-radius: 9px;
+    border-radius: 8px;
     background: var(--surface);
     border: 1px solid var(--border-soft);
     color: var(--text);
@@ -775,7 +782,7 @@
   .builder-answer{
     min-height: 46px;
     border: 1.5px dashed var(--border);
-    border-radius: 9px;
+    border-radius: 8px;
     padding: 8px 10px;
     display:flex;
     flex-wrap:wrap;
@@ -794,10 +801,10 @@
   .tile{
     all:unset;
     cursor:pointer;
-    font-family:'IBM Plex Mono', monospace;
+    font-family:var(--font-sans);
     font-size: 13.5px;
     padding: 7px 12px;
-    border-radius: 7px;
+    border-radius: 8px;
     background: var(--surface-hover);
     border: 1px solid var(--border);
     color: var(--text);
@@ -823,7 +830,7 @@
 
   /* ---------- Error correction ---------- */
   .err-scenario{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:var(--font-sans);
     font-size: 11.5px;
     letter-spacing: 0.04em;
     color: var(--text-faint);
@@ -875,7 +882,7 @@
   /* ---------- Scrollbar ---------- */
   ::-webkit-scrollbar{ width:10px; height:10px; }
   ::-webkit-scrollbar-track{ background: transparent; }
-  ::-webkit-scrollbar-thumb{ background: #C9BEDA; border-radius: 6px; }
+  ::-webkit-scrollbar-thumb{ background: #C9BEDA; border-radius: 8px; }
 
   /* ---------- Responsive ---------- */
   @media (max-width: 880px){
@@ -899,7 +906,7 @@
       white-space:nowrap;
       font-size: 13px;
       padding: 8px 14px;
-      border-radius: 999px;
+      border-radius: 8px;
       background: var(--surface);
       border: 1px solid var(--border-soft);
       color: var(--text-muted);
@@ -925,7 +932,7 @@
 </style>
 </head>
 <body>
-<script>EVLesson.initHeader({category:'Vocabulary'});document.documentElement.setAttribute('data-theme','light');var evTT=document.getElementById('evThemeToggle');if(evTT)evTT.style.display='none';</script>
+<script>EVLesson.initHeader({category:'Vocabulary'});</script>
 
 <div class="mobile-topbar" id="mobileTopbar"></div>
 
@@ -935,7 +942,7 @@
   <aside class="sidebar">
     <div class="brand">
       <span class="eyebrow">Practice Lab · B2–C1</span>
-      <h1>Feelings &amp; Emotions</h1>
+      <h1>Feelings and Emotions</h1>
       <div class="moodstrip">
         <span style="background:var(--happy)"></span>
         <span style="background:var(--surprised)"></span>
