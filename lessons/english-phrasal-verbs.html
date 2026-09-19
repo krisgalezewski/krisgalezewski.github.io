@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ev-theme')||'dark')}catch(e){}</script>
 <title>English phrasal verbs — English Voiced with Kris</title>
 <meta name="description" content="61 high-frequency English phrasal verbs — meanings, examples, grammar, and practice. Free interactive lesson from English Voiced with Kris.">
 <link rel="canonical" href="https://englishvoiced.com/lessons/english-phrasal-verbs.html">
@@ -589,7 +590,7 @@ function checkScram(){
   if(ok){sScore++;fb.innerHTML='✓ Correct!';fb.style.color='#4fb56f';}
   else{fb.innerHTML='✗ Correct sentence: <em>'+item.sentence+'</em>';fb.style.color='#e05a6e';}
   // also offer audio
-  const aBtn=document.createElement('button');aBtn.className='audio-btn';aBtn.style.marginTop='8px';aBtn.innerHTML='🔊 Hear the sentence';aBtn.onclick=()=>speak(item.sentence,0.82,aBtn);
+  const aBtn=document.createElement('button');aBtn.className='audio-btn';aBtn.style.display='inline-flex';aBtn.style.marginTop='10px';aBtn.style.marginBottom='14px';aBtn.innerHTML='🔊 Hear the sentence';aBtn.onclick=()=>speak(item.sentence,0.82,aBtn);
   document.getElementById('sFb').insertAdjacentElement('afterend',aBtn);
   document.querySelectorAll('#scramCont .check-btn').forEach(b=>{b.textContent='Next →';b.onclick=()=>{sIdx++;renderScram();};});
 }

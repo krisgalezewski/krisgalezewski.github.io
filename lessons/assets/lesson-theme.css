@@ -40,17 +40,53 @@
   --ev-accent-tint: var(--lessons-tint);
 }
 
+/* ---------- Light theme override --------------------------------------
+   Toggled by EVLesson's theme-toggle button, which sets
+   <html data-theme="light|dark"> and remembers the choice in
+   localStorage. --ink/--bone intentionally swap meaning here (--ink is
+   always "page background", --bone is always "the color that contrasts
+   with it") so every rule that already reads those two tokens — the
+   logo, the Book a Lesson chip, body{background} — flips correctly with
+   no extra overrides. The six *-tint brand tokens are swapped for
+   darker, higher-contrast versions of themselves, since the pale tints
+   were tuned to sit on a near-black page and wash out on a light one;
+   this alone re-colors nav links, eyebrows and hover states everywhere
+   they're used. Small inline-styled badges elsewhere in a lesson (topic
+   pills, feedback chips) use literal dark-tuned colors rather than these
+   variables, so they stay visually subdued rather than fully adapting —
+   a known, acceptable trade-off rather than an oversight. ------------- */
+:root[data-theme="light"]{
+  --ink:#f7f6f2;
+  --bone:#111114;
+  --body:#3a3a40;
+  --label:#6b6b73;
+  --label-dim:#8a8a90;
+
+  --articles-tint:#0d3f50;
+  --videos-tint:#3a4750;
+  --games-tint:#7a1322;
+  --quizzes-tint:#7c2650;
+  --lessons-tint:#7a540a;
+  --courses-tint:#175a2c;
+
+  --color-text-primary:#17171c;
+  --color-text-secondary:#5c5b66;
+  --color-background-primary:#ffffff;
+  --color-background-secondary:#f1efe9;
+  --color-border-secondary:rgba(0,0,0,.14);
+  --color-border-tertiary:rgba(0,0,0,.09);
+}
+
 *{box-sizing:border-box}
-body{background:var(--ink);color:var(--color-text-primary)}
+body{background:var(--ink);color:var(--color-text-primary);transition:background .15s,color .15s}
 
 /* ---------- Shared header: full site nav, matching the homepage ---------- */
+.ev-lesson-header-wrap{border-bottom:1px solid var(--color-border-tertiary)}
 .ev-lesson-header{
   max-width:calc(var(--wrap) + 56px);margin:0 auto;
   padding:22px 28px 18px;
   display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
   font-family:var(--font-sans);
-  border-bottom:1px solid var(--color-border-tertiary);
-  margin-bottom:1.5rem;
 }
 .ev-lesson-header a{text-decoration:none}
 .ev-lesson-header__logo{display:flex;align-items:baseline;gap:10px}
@@ -63,7 +99,7 @@ body{background:var(--ink);color:var(--color-text-primary)}
   display:flex;align-items:center;gap:18px;flex-wrap:wrap;
   font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;
 }
-.ev-lesson-header__nav a{transition:opacity .15s}
+.ev-lesson-header__nav a{transition:opacity .15s,color .15s}
 .ev-lesson-header__nav a:hover{opacity:.8}
 .ev-lesson-header__nav-articles{color:var(--articles-tint)}
 .ev-lesson-header__nav-videos{color:var(--videos-tint)}
@@ -71,13 +107,30 @@ body{background:var(--ink);color:var(--color-text-primary)}
 .ev-lesson-header__nav-quizzes{color:var(--quizzes-tint)}
 .ev-lesson-header__nav-lessons{color:var(--lessons-tint)}
 .ev-lesson-header__nav-courses{color:var(--courses-tint)}
-.ev-lesson-header__nav-book{color:var(--ink);background:var(--bone);padding:10px 18px;border-radius:8px;font-weight:700}
-.ev-lesson-header__crumb{
-  width:100%;font-size:12px;color:var(--label);margin-top:4px;
-  letter-spacing:normal;text-transform:none;font-weight:400;
+.ev-lesson-header__nav-book{color:var(--ink);background:var(--bone);padding:10px 18px;border-radius:8px;font-weight:700;transition:background .15s,color .15s}
+
+/* ---------- Subbar: category crumb + theme toggle, below the divider ---- */
+.ev-lesson-subbar{
+  max-width:calc(var(--wrap) + 56px);margin:0 auto;
+  padding:14px 28px 4px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-family:var(--font-sans);
 }
-.ev-lesson-header__crumb a{color:var(--label);border-bottom:1px solid transparent}
-.ev-lesson-header__crumb a:hover{color:var(--lessons-tint);border-bottom-color:currentColor}
+.ev-lesson-header__crumb{font-size:13px;color:var(--label)}
+.ev-lesson-header__crumb a{color:var(--label);border-bottom:1px solid transparent;text-decoration:none}
+.ev-lesson-header__crumb a:hover{color:var(--ev-accent-tint);border-bottom-color:currentColor}
+
+.ev-theme-toggle{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:6px 12px;border-radius:8px;
+  border:0.5px solid var(--color-border-secondary);
+  background:var(--color-background-primary);
+  color:var(--color-text-secondary);
+  font-family:var(--font-sans);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+  cursor:pointer;transition:all .15s;
+}
+.ev-theme-toggle:hover{border-color:var(--ev-accent);color:var(--ev-accent-tint)}
+.ev-theme-toggle__dot{width:8px;height:8px;border-radius:50%;background:var(--ev-accent-tint);flex-shrink:0;transition:background .15s}
 
 /* ---------- Glossary print / save-as-PDF ---------------------------------- */
 .ev-gloss-actions{display:flex;justify-content:flex-end;margin-bottom:10px}
@@ -89,6 +142,13 @@ body{background:var(--ink);color:var(--color-text-primary)}
 }
 .ev-gloss-print-btn:hover{background:var(--color-background-secondary);border-color:var(--ev-accent);color:var(--ev-accent-tint)}
 .ev-gloss-print-btn:disabled{opacity:.4;cursor:default}
+
+/* ---------- Light-theme touch-ups for common inline exercise classes ----
+   .fb-ok/.fb-no (correct/incorrect feedback) are defined per lesson but
+   share this naming convention; darken them here so they stay readable
+   on a white background instead of looking washed out. ------------------ */
+:root[data-theme="light"] .fb-ok{background:rgba(28,107,52,.10);color:#175a2c}
+:root[data-theme="light"] .fb-no{background:rgba(143,23,40,.10);color:#7a1322}
 
 /* Printing (or "Save as PDF") shows ONLY the glossary content, nothing else. */
 @media print{

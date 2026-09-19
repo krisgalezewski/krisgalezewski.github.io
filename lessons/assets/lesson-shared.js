@@ -14,35 +14,78 @@
 
   var EVLesson = {};
 
-  // ---- 1) Header --------------------------------------------------------
+  // ---- 1) Header ----------------------------------------------------------
   // Renders the same full site nav as the homepage header, so a student on
   // any lesson page can jump straight to Articles / Videos / Games /
   // Quizzes / Lessons / Courses / Book a Lesson — not just back to the
-  // lessons hub. A small breadcrumb line (category · lesson title) sits
-  // underneath it for orientation within /lessons/.
+  // lessons hub. The divider sits right under the nav; a subbar below it
+  // carries the category crumb (left) and the light/dark toggle (right),
+  // so neither crowds the nav row above.
   EVLesson.initHeader = function (opts) {
     opts = opts || {};
     var crumb = opts.category ? opts.category + ' · ' : '';
-    var header = document.createElement('header');
-    header.className = 'ev-lesson-header';
-    header.innerHTML =
-      '<a class="ev-lesson-header__logo" href="https://englishvoiced.com/" aria-label="English Voiced with Kris — home">' +
-        '<span class="ev-lesson-header__logo-name">English Voiced</span>' +
-        '<span class="ev-lesson-header__logo-by">with Kris</span>' +
-      '</a>' +
-      '<nav class="ev-lesson-header__nav" aria-label="Sections">' +
-        '<a class="ev-lesson-header__nav-articles" href="https://englishvoiced.com/#articles">Lens: Articles</a>' +
-        '<a class="ev-lesson-header__nav-videos"   href="https://englishvoiced.com/#videos">Lens: Videos</a>' +
-        '<a class="ev-lesson-header__nav-games"    href="https://englishvoiced.com/#games">Games</a>' +
-        '<a class="ev-lesson-header__nav-quizzes"  href="https://englishvoiced.com/#quizzes">Quizzes</a>' +
-        '<a class="ev-lesson-header__nav-lessons"  href="/lessons/">Lessons</a>' +
-        '<a class="ev-lesson-header__nav-courses"  href="https://englishvoiced.com/#courses">Courses</a>' +
-        '<a class="ev-lesson-header__nav-book"     href="https://englishvoiced.com/#book">Book a Lesson</a>' +
-      '</nav>' +
+
+    var wrap = document.createElement('div');
+    wrap.className = 'ev-lesson-header-wrap';
+    wrap.innerHTML =
+      '<header class="ev-lesson-header">' +
+        '<a class="ev-lesson-header__logo" href="https://englishvoiced.com/" aria-label="English Voiced with Kris — home">' +
+          '<span class="ev-lesson-header__logo-name">English Voiced</span>' +
+          '<span class="ev-lesson-header__logo-by">with Kris</span>' +
+        '</a>' +
+        '<nav class="ev-lesson-header__nav" aria-label="Sections">' +
+          '<a class="ev-lesson-header__nav-articles" href="https://englishvoiced.com/#articles">Lens: Articles</a>' +
+          '<a class="ev-lesson-header__nav-videos"   href="https://englishvoiced.com/#videos">Lens: Videos</a>' +
+          '<a class="ev-lesson-header__nav-games"    href="https://englishvoiced.com/#games">Games</a>' +
+          '<a class="ev-lesson-header__nav-quizzes"  href="https://englishvoiced.com/#quizzes">Quizzes</a>' +
+          '<a class="ev-lesson-header__nav-lessons"  href="/lessons/">Lessons</a>' +
+          '<a class="ev-lesson-header__nav-courses"  href="https://englishvoiced.com/#courses">Courses</a>' +
+          '<a class="ev-lesson-header__nav-book"     href="https://englishvoiced.com/#book">Book a Lesson</a>' +
+        '</nav>' +
+      '</header>';
+    document.body.insertBefore(wrap, document.body.firstChild);
+
+    var subbar = document.createElement('div');
+    subbar.className = 'ev-lesson-subbar';
+    subbar.innerHTML =
       '<span class="ev-lesson-header__crumb">' +
         '<a href="/lessons/">' + crumb + 'All lessons</a>' +
-      '</span>';
-    document.body.insertBefore(header, document.body.firstChild);
+      '</span>' +
+      '<button class="ev-theme-toggle" id="evThemeToggle" type="button">' +
+        '<span class="ev-theme-toggle__dot" aria-hidden="true"></span>' +
+        '<span class="ev-theme-toggle__label">Dark</span>' +
+      '</button>';
+    wrap.insertAdjacentElement('afterend', subbar);
+
+    EVLesson.initThemeToggle();
+  };
+
+  // ---- 1b) Light / dark theme toggle --------------------------------------
+  // Sets <html data-theme="light|dark">, which lesson-theme.css reads to
+  // swap the token set. Preference is remembered per-browser (localStorage)
+  // so it carries across lessons and visits — there's nothing personal or
+  // session-specific in "prefers a light background", unlike the glossary.
+  EVLesson.initThemeToggle = function () {
+    var STORAGE_KEY = 'ev-theme';
+    var btn = document.getElementById('evThemeToggle');
+    if (!btn) return;
+    var label = btn.querySelector('.ev-theme-toggle__label');
+
+    function apply(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      if (label) label.textContent = theme === 'light' ? 'Light' : 'Dark';
+      btn.setAttribute('aria-label', 'Switch to ' + (theme === 'light' ? 'dark' : 'light') + ' theme');
+    }
+
+    var saved = 'dark';
+    try { saved = localStorage.getItem(STORAGE_KEY) || 'dark'; } catch (e) {}
+    apply(saved);
+
+    btn.addEventListener('click', function () {
+      var next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      apply(next);
+      try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
+    });
   };
 
   // ---- 2) Glossary print / save-as-PDF -----------------------------------
