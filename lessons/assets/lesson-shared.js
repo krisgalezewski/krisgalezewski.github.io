@@ -51,10 +51,10 @@
       '<span class="ev-lesson-header__crumb">' +
         '<a href="/lessons/">' + crumb + 'All lessons</a>' +
       '</span>' +
-      '<button class="ev-theme-toggle" id="evThemeToggle" type="button">' +
-        '<span class="ev-theme-toggle__dot" aria-hidden="true"></span>' +
-        '<span class="ev-theme-toggle__label">Dark</span>' +
-      '</button>';
+      '<div class="ev-theme-toggle" id="evThemeToggle" role="group" aria-label="Page theme">' +
+        '<button type="button" class="ev-theme-toggle__opt" data-theme-opt="dark">Dark</button>' +
+        '<button type="button" class="ev-theme-toggle__opt" data-theme-opt="light">Light</button>' +
+      '</div>';
     wrap.insertAdjacentElement('afterend', subbar);
 
     EVLesson.initThemeToggle();
@@ -62,29 +62,38 @@
 
   // ---- 1b) Light / dark theme toggle --------------------------------------
   // Sets <html data-theme="light|dark">, which lesson-theme.css reads to
-  // swap the token set. Preference is remembered per-browser (localStorage)
+  // swap the token set. Rendered as a two-option segmented switch (both
+  // "Dark" and "Light" always visible, the active one highlighted) rather
+  // than a single button that just states the current mode — so a student
+  // can see at a glance that switching is possible, not just what it's
+  // currently set to. Preference is remembered per-browser (localStorage)
   // so it carries across lessons and visits — there's nothing personal or
   // session-specific in "prefers a light background", unlike the glossary.
   EVLesson.initThemeToggle = function () {
     var STORAGE_KEY = 'ev-theme';
-    var btn = document.getElementById('evThemeToggle');
-    if (!btn) return;
-    var label = btn.querySelector('.ev-theme-toggle__label');
+    var group = document.getElementById('evThemeToggle');
+    if (!group) return;
+    var opts = group.querySelectorAll('.ev-theme-toggle__opt');
 
     function apply(theme) {
       document.documentElement.setAttribute('data-theme', theme);
-      if (label) label.textContent = theme === 'light' ? 'Light' : 'Dark';
-      btn.setAttribute('aria-label', 'Switch to ' + (theme === 'light' ? 'dark' : 'light') + ' theme');
+      opts.forEach(function (opt) {
+        var isOn = opt.getAttribute('data-theme-opt') === theme;
+        opt.classList.toggle('on', isOn);
+        opt.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+      });
     }
 
     var saved = 'dark';
     try { saved = localStorage.getItem(STORAGE_KEY) || 'dark'; } catch (e) {}
     apply(saved);
 
-    btn.addEventListener('click', function () {
-      var next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      apply(next);
-      try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
+    opts.forEach(function (opt) {
+      opt.addEventListener('click', function () {
+        var theme = opt.getAttribute('data-theme-opt');
+        apply(theme);
+        try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) {}
+      });
     });
   };
 

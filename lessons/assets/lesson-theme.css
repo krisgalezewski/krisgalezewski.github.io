@@ -121,16 +121,19 @@ body{background:var(--ink);color:var(--color-text-primary);transition:background
 .ev-lesson-header__crumb a:hover{color:var(--ev-accent-tint);border-bottom-color:currentColor}
 
 .ev-theme-toggle{
-  display:inline-flex;align-items:center;gap:7px;
-  padding:6px 12px;border-radius:8px;
+  display:inline-flex;align-items:center;gap:2px;
+  padding:3px;border-radius:8px;
   border:0.5px solid var(--color-border-secondary);
   background:var(--color-background-primary);
-  color:var(--color-text-secondary);
-  font-family:var(--font-sans);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
-  cursor:pointer;transition:all .15s;
 }
-.ev-theme-toggle:hover{border-color:var(--ev-accent);color:var(--ev-accent-tint)}
-.ev-theme-toggle__dot{width:8px;height:8px;border-radius:50%;background:var(--ev-accent-tint);flex-shrink:0;transition:background .15s}
+.ev-theme-toggle__opt{
+  appearance:none;border:0;background:transparent;margin:0;cursor:pointer;
+  padding:6px 14px;border-radius:6px;
+  font-family:var(--font-sans);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--color-text-secondary);transition:all .15s;
+}
+.ev-theme-toggle__opt:hover{color:var(--color-text-primary)}
+.ev-theme-toggle__opt.on{background:var(--ev-accent-tint);color:#17171c}
 
 /* ---------- Glossary print / save-as-PDF ---------------------------------- */
 .ev-gloss-actions{display:flex;justify-content:flex-end;margin-bottom:10px}
