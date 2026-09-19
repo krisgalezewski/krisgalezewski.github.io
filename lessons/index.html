@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lessons — English Voiced with Kris</title>
+<meta name="description" content="Free interactive English lessons for adults — grammar, vocabulary, pronunciation and practical English, organised by category.">
+<link rel="canonical" href="https://englishvoiced.com/lessons/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/favicon-180.png">
+<meta name="theme-color" content="#08080a">
+<meta name="color-scheme" content="dark">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#08080a;
+  --panel:#111114;
+  --panel-hi:#1a1a1f;
+  --line:rgb(255 255 255 / .12);
+  --text:#f4f1ea;
+  --text-dim:rgb(244 241 234 / .68);
+  --lessons:#c9722b; --lessons-hi:#d98a45; --lessons-tint:#f0b17e;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--text);font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+a{color:inherit}
+
+header.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:baseline;gap:7px;text-decoration:none;font-weight:800;font-size:17px}
+.logo__by{font-weight:500;font-size:12px;color:var(--text-dim)}
+.crumb{font-size:13px;color:var(--text-dim)}
+.crumb a{text-decoration:none;border-bottom:1px solid transparent}
+.crumb a:hover{border-bottom-color:currentColor}
+
+.hero{padding:48px 0 8px}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--lessons-tint);margin-bottom:10px}
+h1{font-family:'Archivo Black',sans-serif;font-weight:400;font-size:clamp(30px,5vw,44px);line-height:1.05;margin:0 0 12px}
+.lead{font-size:16px;line-height:1.6;color:var(--text-dim);max-width:640px;margin:0 0 8px}
+
+.cat{margin-top:52px}
+.cat__head{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.cat__title{font-size:22px;font-weight:700;margin:0}
+.cat__count{font-size:13px;color:var(--text-dim)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+
+.tile{position:relative;display:block;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px 20px;transition:background .15s,transform .15s}
+.tile:hover{background:var(--panel-hi);transform:translateY(-2px)}
+.tile__badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:20px;margin-bottom:10px}
+.tile--ready .tile__badge{background:rgb(217 138 69 / .18);color:var(--lessons-tint)}
+.tile--soon{opacity:.55;cursor:default}
+.tile--soon .tile__badge{background:rgb(255 255 255 / .08);color:var(--text-dim)}
+.tile__title{font-size:16px;font-weight:600;margin-bottom:4px;line-height:1.3}
+.tile__desc{font-size:13px;color:var(--text-dim);line-height:1.5}
+.tile--flag{border-color:rgb(200 90 90 / .5)}
+.tile--flag .tile__badge{background:rgb(200 90 90 / .18);color:#e08a8a}
+
+.note{margin-top:60px;padding:20px 22px;border-radius:16px;background:var(--panel);border:1px solid var(--line);font-size:13.5px;line-height:1.7;color:var(--text-dim)}
+.note strong{color:var(--text)}
+.note ul{margin:8px 0 0;padding-left:20px}
+.note li{margin-bottom:4px}
+
+footer{padding:40px 0 60px;font-size:12px;color:var(--text-dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="bar">
+    <a class="logo" href="https://englishvoiced.com/">English Voiced<span class="logo__by">with Kris</span></a>
+    <span class="crumb"><a href="https://englishvoiced.com/">englishvoiced.com</a> / Lessons</span>
+  </header>
+
+  <div class="hero">
+    <div class="eyebrow">Lessons</div>
+    <h1>Learn by category</h1>
+    <p class="lead">Interactive lessons for adult English learners — grammar, vocabulary, pronunciation and practical everyday English. Each one includes explanations, audio, practice exercises and a personal glossary.</p>
+  </div>
+
+  <div class="cat">
+    <div class="cat__head"><h2 class="cat__title">Vocabulary</h2><span class="cat__count">1 ready · 8 to migrate</span></div>
+    <div class="grid">
+      <a class="tile tile--ready" href="/lessons/english-phrasal-verbs.html">
+        <span class="tile__badge">Ready</span>
+        <div class="tile__title">English phrasal verbs</div>
+        <div class="tile__desc">61 high-frequency phrasal verbs — meanings, examples, and practice.</div>
+      </a>
+      <div class="tile tile--soon"><span class="tile__badge">To migrate</span><div class="tile__title">Collocations</div><div class="tile__desc">collocations_lesson_v4_6.html</div></div>
+      <div class="tile tile--soon"><span class="tile__badge">To migrate</span><div class="tile__title">Idioms</div><div class="tile__desc">idioms_lesson_v2.html</div></div>
+      <div class="tile tile--soon"><span class="tile__badge">To migrate</span><div class="tile__title">Word formation</div><div class="tile__desc">english_word_formation_11_1.html</div></div>
+      <div class="tile tile--soon"><span class="tile__badge">To migrate</span><div class="tile__title">Feelings &amp; activities</div><div class="tile__desc">feelings_activities.html</div></div>
+      <div class="tile tile--flag"><span class="tile__badge">Needs your call</span><div class="tile__title">Confusable pairs</div><div class="tile__desc">3 files on the repo: english_confusable_pairs.html, _2, _2_1 — which is current?</div></div>
+    </div>
+  </div>
+
+  <div class="cat">
+    <div class="cat__head"><h2 class="cat__title">Grammar</h2><span class="cat__count">0 ready · 6 to migrate</span></div>
+    <div class="grid">
+      <div class="tile tile--soon"><span class="tile__badge">To migrate</span><div class="tile__title">Determiners</div><div class="tile__desc">english_determiners.html</div></div>
+      <div class="tile tile--soon"><span class="tile__badge">To migrate</span><div class="tile__title">Sentences &amp; clauses</div><div class="tile__desc">english_sentences_and_clauses_4.html</div></div>
+      <div class="tile tile--soon"><span class="tile__badge">To migrate</span><div class="tile__title">Inversion &amp; negative adverbials</div><div class="tile__desc">inversion_negative_adverbials_7_1.html</div></div>
+      <div class="tile tile--flag"><span class="tile__badge">Needs your call</span><div class="tile__title">Cleft sentences</div><div class="tile__desc">2 files: cleft_sentences_interactive.html and _1 — which is current?</div></div>
+      <div class="tile tile--flag"><span class="tile__badge">Needs your call</span><div class="tile__title">Conditionals</div><div class="tile__desc">2 files: english_conditionals_v6_2.html and _1 — which is current?</div></div>
+      <div class="tile tile--flag"><span class="tile__badge">Needs your call</span><div class="tile__title">Verb tenses</div><div class="tile__desc">2 files: english_verb_tenses_v2.html and _6 — which is current?</div></div>
+    </div>
+  </div>
+
+  <div class="cat">
+    <div class="cat__head"><h2 class="cat__title">Pronunciation</h2><span class="cat__count">0 ready · 1 to migrate</span></div>
+    <div class="grid">
+      <div class="tile tile--flag"><span class="tile__badge">Needs your call</span><div class="tile__title">Pronunciation</div><div class="tile__desc">2 files: english_pronunciation_v5.html and _1 — which is current?</div></div>
+    </div>
+  </div>
+
+  <div class="cat">
+    <div class="cat__head"><h2 class="cat__title">Practical use of English</h2><span class="cat__count">0 ready · 3 to migrate</span></div>
+    <div class="grid">
+      <div class="tile tile--soon"><span class="tile__badge">To migrate</span><div class="tile__title">Job interview language</div><div class="tile__desc">ckSource_interview_guide.html</div></div>
+      <div class="tile tile--soon"><span class="tile__badge">To migrate</span><div class="tile__title">Transitional words</div><div class="tile__desc">english_transitional_words_1.html</div></div>
+      <div class="tile tile--flag"><span class="tile__badge">Needs your call</span><div class="tile__title">Hedging language</div><div class="tile__desc">2 files: hedging_language_lesson_6.html and _1 — which is current?</div></div>
+    </div>
+  </div>
+
+  <div class="cat">
+    <div class="cat__head"><h2 class="cat__title">Uncategorised — need a look</h2><span class="cat__count">2 files</span></div>
+    <div class="grid">
+      <div class="tile tile--flag"><span class="tile__badge">Needs your call</span><div class="tile__title">kate_script_lesson_2.html</div><div class="tile__desc">Not sure what category or audience this is for — a dialogue script?</div></div>
+      <div class="tile tile--flag"><span class="tile__badge">Needs your call</span><div class="tile__title">rozmowki-przedszkolne.html</div><div class="tile__desc">This is Polish-language "preschool conversations" content — doesn't look like it belongs on an adult English-teaching site. Keep, move elsewhere, or remove?</div></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Where this page stands.</strong> This is the pilot round: one lesson (phrasal verbs) has been rebuilt on the shared template below and is live-ready. The other 25 are listed here from what's currently in the repo root, grouped by best guess from their filenames — not yet opened or audited one by one.
+    <ul>
+      <li><strong>8 files</strong> come in duplicate-looking pairs or triples (same topic, different filename suffix) — before I migrate any of them I need to know which version is the current one, so I don't spend time rebuilding a page you've already superseded.</li>
+      <li><strong>2 files</strong> (the interview-script one and the Polish preschool one) don't obviously fit "grammar / vocabulary / pronunciation / practical English" — flagged above rather than guessed at.</li>
+      <li>Once you've sorted the duplicates and the two odd ones out, the remaining ~16 lessons can go through the same treatment as the phrasal-verbs pilot: shared template, content/exercise audit, glossary and audio consistency pass.</li>
+    </ul>
+  </div>
+
+  <footer>English Voiced with Kris</footer>
+</div>
+</body>
+</html>

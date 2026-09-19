@@ -1,0 +1,64 @@
+/* ==========================================================================
+   English Voiced — shared lesson theme
+   Linked by every file in /lessons/. Defines the design tokens the lesson
+   pages already reference (var(--color-text-primary) etc.) but never
+   defined themselves — without this file those variables are blank, which
+   is why cards, panels and borders showed up unstyled on the live site.
+   Also carries the shared header/breadcrumb chrome and print rules.
+   Change something here once; every lesson picks it up.
+   ========================================================================== */
+
+:root{
+  --font-sans: 'Archivo', system-ui, -apple-system, sans-serif;
+
+  --color-text-primary:   #17171c;
+  --color-text-secondary: #5c5b66;
+  --color-background-primary:   #ffffff;
+  --color-background-secondary: #f4f3f8;
+  --color-border-secondary: #e2e0ea;
+  --color-border-tertiary:  #ece9f4;
+
+  --ev-ink: #08080a;
+  --ev-accent: #534AB7; /* matches the lessons' existing purple accent */
+}
+
+/* ---------- Shared header: wordmark + breadcrumb back to /lessons/ ------- */
+.ev-lesson-header{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:14px 1.5rem;border-bottom:1px solid var(--color-border-secondary);
+  font-family:var(--font-sans);
+}
+.ev-lesson-header a{text-decoration:none}
+.ev-lesson-header__logo{
+  display:flex;align-items:baseline;gap:6px;color:var(--ev-ink);font-weight:700;
+  font-size:15px;letter-spacing:-.01em;
+}
+.ev-lesson-header__logo small{font-weight:500;color:var(--color-text-secondary);font-size:12px}
+.ev-lesson-header__sep{color:var(--color-border-secondary)}
+.ev-lesson-header__crumb{
+  font-size:13px;color:var(--color-text-secondary);display:flex;align-items:center;gap:6px;
+}
+.ev-lesson-header__crumb a{color:var(--color-text-secondary);border-bottom:1px solid transparent}
+.ev-lesson-header__crumb a:hover{color:var(--ev-accent);border-bottom-color:var(--ev-accent)}
+
+/* ---------- Glossary print / save-as-PDF ---------------------------------- */
+.ev-gloss-actions{display:flex;justify-content:flex-end;margin-bottom:10px}
+.ev-gloss-print-btn{
+  display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:7px 14px;
+  border-radius:20px;border:0.5px solid var(--color-border-secondary);
+  background:var(--color-background-primary);color:var(--color-text-secondary);cursor:pointer;
+  font-family:var(--font-sans);transition:all .15s;
+}
+.ev-gloss-print-btn:hover{background:#EEEDFE;border-color:#AFA9EC;color:var(--ev-accent)}
+.ev-gloss-print-btn:disabled{opacity:.4;cursor:default}
+
+/* Printing (or "Save as PDF") shows ONLY the glossary content, nothing else. */
+@media print{
+  body.ev-printing-glossary > *:not(.ev-print-root){display:none !important}
+  body.ev-printing-glossary .ev-print-root{display:block !important}
+  .ev-print-root{padding:0 !important}
+  .ev-print-title{font-size:20px;font-weight:700;margin-bottom:2px;font-family:var(--font-sans)}
+  .ev-print-sub{font-size:12px;color:#555;margin-bottom:16px;font-family:var(--font-sans)}
+  .ev-gloss-actions{display:none !important}
+  .audio-btn, .act{display:none !important} /* interactive controls make no sense on paper */
+}
