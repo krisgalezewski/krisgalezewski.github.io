@@ -7,6 +7,9 @@
 <meta name="description" content="Read and watch the news, practise with games and quizzes, then study one-to-one with a teacher. English for adults, from Kris.">
 <meta name="theme-color" content="#08080a">
 <meta name="color-scheme" content="dark">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/favicon-180.png">
 <link rel="canonical" href="https://englishvoiced.com/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="English Voiced with Kris">
@@ -219,6 +222,17 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
 }
 .media.has-img img{display:block}
 
+/* An injected line-art motif (e.g. the Games tile's weekly artwork) has no
+   fill of its own — it's stroked shapes meant to sit on a solid panel, the
+   way it does on its home site. Swap the diagonal placeholder for a plain
+   dark panel behind it instead of layering the motif over the stripes. */
+.media.has-art{background-image:none;background-color:rgb(0 0 0 / .28)}
+.media svg{
+  position:absolute;inset:0;width:100%;height:100%;padding:15%;box-sizing:border-box;
+  transform:scale(calc(1 + var(--on) * .07));
+  transition:transform 4s ease-out;
+}
+
 /* ---------- Lens: Videos ---------- */
 .tile--videos .media{flex:none;height:130px}
 .tile--videos .media img{
@@ -303,12 +317,27 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
   1. Three links (search this file for "TODO"):
        Lessons · Courses · Book a lesson
      Each currently points at "#TODO-…-url", which does nothing when clicked.
-  2. Four image bands (video still, game artwork, lesson screenshot, course cover).
-     They show a quiet tinted block until you set CONFIG.fallbackImages in the
-     script at the bottom, or add an "image" field to the entries in your data.
-  3. Live content. The rotating items come from the JSON files listed in
-     CONFIG.sources (script at the bottom). Until those files exist, each tile
-     rotates through the built-in sample entries.
+  2. Two image bands (lesson screenshot, course cover) — no content yet, so
+     they still show a quiet tinted block. Set CONFIG.fallbackImages in the
+     script at the bottom, or add an "image" field to their entries, once
+     you have lesson/course pages to point at.
+  3. Live weekly content — already wired, no action needed:
+       Games  → loadGameOfWeek()   reads /english-games/ (hidden iframe,
+                                    reuses that page's own "game of the
+                                    week" markup and artwork)
+       Articles → loadArticleOfWeek()  fetches /english-lens/news.json,
+                                        shows editions[0].articles[0]
+       Videos   → loadVideoOfWeek()    fetches /english-lens/videos.json,
+                                        shows editions[0].videos[0] incl.
+                                        its real YouTube thumbnail
+       Quizzes  → loadQuizOfDay()      calls english-quiz's own Supabase
+                                        table (CONFIG.quizFeed) with the
+                                        same public key and same date-
+                                        seeded pick english-quiz uses, plus
+                                        a real question count
+     Each falls back to a built-in sample entry if the sibling page/feed/
+     table is unreachable, so a hiccup on english-games, english-lens or
+     english-quiz never breaks this page.
 -->
 
 <div class="page">
@@ -483,12 +512,34 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
          courses   { title, line, image? }
        "url" and "image" must be absolute (https://…) or start with a single "/". */
     sources: {
-      articles: '/english-lens/data/articles.json',
-      videos:   '/english-lens/data/videos.json',
-      games:    '/english-games/data/games.json',
-      quizzes:  '/english-quiz/data/quizzes.json',
+      articles: '',   // Wired separately — see loadArticleOfWeek() below.
+      videos:   '',   // Wired separately — see loadVideoOfWeek() below.
+      games:    '',   // Wired separately — see loadGameOfWeek() below.
+      quizzes:  '',   // Wired separately — see loadQuizOfDay() below.
       lessons:  '',
       courses:  ''
+    },
+
+    // Same-origin page whose own "game of the week" logic and artwork we reuse
+    // directly, rather than duplicating that rotation/game list here.
+    gameOfWeekPage: '/english-games/',
+
+    // Same-origin JSON feeds. Both already put the current week's pick at
+    // editions[0].articles[0] / editions[0].videos[0] — same shape their own
+    // site reads, so there's nothing to duplicate here either.
+    newsFeed:   '/english-lens/news.json',
+    videosFeed: '/english-lens/videos.json',
+
+    // english-quiz has no static "quiz of the day" file — it queries its own
+    // Supabase table straight from the browser (see /english-quiz/js/index.js)
+    // and picks a title by seeding on today's date, so the pick stays the
+    // same all day. We call the same public table with the same anon key
+    // (Supabase's own docs call the anon key safe to expose client-side —
+    // it's what RLS policies are for) and the same pick formula, so this box
+    // always agrees with what /english-quiz/ itself shows today.
+    quizFeed: {
+      url: 'https://mumvnjyiupzvmcoatwye.supabase.co',
+      anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11bXZuanlpdXB6dm1jb2F0d3llIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyODEzMDMsImV4cCI6MjA5Njg1NzMwM30.JgMQRDkIvGFUvKR_Iwoo91zaPdd5urNig8yc0g0oMRk'
     },
 
     /* One fixed image per tile, used whenever an entry has no "image" of its
@@ -652,6 +703,187 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
     }
   }
   list.forEach(loadSource);
+
+  // Formats: "0:51", "2:37" — matches how Lens: Videos shows durations.
+  function fmtDuration(totalSeconds) {
+    const s = Math.max(0, Math.round(Number(totalSeconds) || 0));
+    return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+  }
+  // Formats an ISO date "2026-09-13" as "13 Sep" — matches Lens: Articles' style.
+  function fmtShortDate(iso) {
+    const d = new Date(iso + 'T00:00:00Z');
+    if (isNaN(d)) return '';
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' });
+  }
+
+  // Articles and Videos tiles: both same-origin feeds already put the
+  // current week's pick at a fixed spot (editions[0].articles[0] /
+  // editions[0].videos[0]) — the exact same place their own sites read it
+  // from — so there's no rotation logic to duplicate, just a fetch and a
+  // field mapping into this tile's shape. Freezes the tile's hover-rotate
+  // afterward (see loadGameOfWeek below) since there's one real pick to show.
+  async function loadFeatured(key, url, transform) {
+    const sec = sections[key];
+    if (!sec || !url) return;
+    try {
+      const signal = typeof AbortSignal !== 'undefined' && AbortSignal.timeout
+        ? AbortSignal.timeout(CONFIG.fetchTimeoutMs) : undefined;
+      const res = await fetch(url, { cache: 'no-cache', signal });
+      if (!res.ok) return;
+      const data = await res.json();
+      const item = transform(data);
+      if (!item) return;
+      sec.items = [item];
+      sec.i = 0;
+      render(sec);
+    } catch (err) {
+      /* Feed missing, changed shape, or unreachable — keep the sample. */
+    }
+  }
+
+  function loadArticleOfWeek() {
+    loadFeatured('articles', CONFIG.newsFeed, (data) => {
+      const a = data && data.editions && data.editions[0] && data.editions[0].articles && data.editions[0].articles[0];
+      if (!a) return null;
+      return {
+        meta: a.source + (a.date ? ' · ' + fmtShortDate(a.date) : ''),
+        title: a.title,
+        vocab: (a.vocabularyB1 || []).map((v) => v.word),
+        thought: a.questionB1 ? '"' + a.questionB1 + '"' : ''
+      };
+    });
+  }
+  loadArticleOfWeek();
+
+  function loadVideoOfWeek() {
+    loadFeatured('videos', CONFIG.videosFeed, (data) => {
+      const v = data && data.editions && data.editions[0] && data.editions[0].videos && data.editions[0].videos[0];
+      if (!v) return null;
+      return {
+        title: v.title,
+        meta: v.channel + (v.durationSeconds != null ? ' · ' + fmtDuration(v.durationSeconds) : ''),
+        image: v.thumbnail
+      };
+    });
+  }
+  loadVideoOfWeek();
+
+  // Games tile: rather than keeping a second copy of the game catalogue and
+  // its weekly-rotation formula here (which would drift out of sync the
+  // moment a game is added on english-games), load that site's own page in
+  // a hidden same-origin iframe and let ITS script pick the week and render
+  // itself, then copy the result — title, blurb, link and the matching
+  // hand-drawn motif SVG — into this tile. Same-origin (both on
+  // englishvoiced.com) so reading the iframe's DOM is allowed.
+  function loadGameOfWeek() {
+    const sec = sections['games'];
+    const url = CONFIG.gameOfWeekPage;
+    if (!sec || !url) return;
+    const iframe = document.createElement('iframe');
+    iframe.setAttribute('aria-hidden', 'true');
+    iframe.setAttribute('tabindex', '-1');
+    iframe.style.cssText = 'position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;left:-9999px;top:-9999px;';
+    const cleanup = () => { if (iframe.parentNode) iframe.remove(); };
+    const timeout = setTimeout(cleanup, CONFIG.fetchTimeoutMs);
+    iframe.addEventListener('load', () => {
+      clearTimeout(timeout);
+      try {
+        const doc = iframe.contentDocument;
+        const root = doc.getElementById('gotw');
+        const art = root && root.querySelector('[data-gotw-art]:not([hidden])');
+        const get = (k) => {
+          const el = root.querySelector('[data-gotw="' + k + '"]');
+          return el ? el.textContent.trim() : '';
+        };
+        const title = root && get('title');
+        const blurb = root && get('blurb');
+        const href = root && root.getAttribute('href');
+        if (title) {
+          sec.tile.querySelectorAll('[data-field]').forEach((el) => {
+            if (el.dataset.field === 'title') el.textContent = title;
+            if (el.dataset.field === 'line') el.textContent = blurb || '';
+          });
+        }
+        if (sec.link && href) sec.link.setAttribute('href', new URL(href, location.origin + url).pathname);
+        if (art && sec.box) {
+          sec.box.innerHTML = art.outerHTML;
+          sec.box.removeAttribute('style');
+          sec.box.classList.remove('has-img');
+          sec.box.classList.add('has-art');
+          const svg = sec.box.querySelector('svg');
+          if (svg) svg.removeAttribute('hidden');
+        }
+        // There's exactly one real "game of the week" — freeze the tile's
+        // hover-rotate (built for cycling sample entries) so a hover doesn't
+        // overwrite this with a fake sample game a moment later.
+        if (title) sec.items = sec.items.slice(0, 1);
+      } catch (err) {
+        /* Structure changed on the games site, or it didn't load — keep the sample. */
+      }
+      cleanup();
+    });
+    iframe.src = url;
+    document.body.appendChild(iframe);
+  }
+  loadGameOfWeek();
+
+  // Quizzes tile: same idea as the feeds above, but english-quiz's "quiz of
+  // the day" isn't a static file or something rendered in its own page DOM
+  // ahead of time — it's picked live in the browser from a Supabase table
+  // (see CONFIG.quizFeed above). So instead of reading a feed or an iframe,
+  // we call that same table with the same public key and the same date-
+  // seeded pick formula english-quiz uses, then add a real question count
+  // for the "meta" line by counting that quiz's rows in the questions table.
+  function loadQuizOfDay() {
+    const sec = sections['quizzes'];
+    const cfg = CONFIG.quizFeed;
+    if (!sec || !cfg || !cfg.url || !cfg.anonKey) return;
+    (async () => {
+      try {
+        const signal = typeof AbortSignal !== 'undefined' && AbortSignal.timeout
+          ? AbortSignal.timeout(CONFIG.fetchTimeoutMs) : undefined;
+        const headers = { apikey: cfg.anonKey, Authorization: 'Bearer ' + cfg.anonKey };
+
+        const qRes = await fetch(
+          cfg.url + '/rest/v1/quizzes?available_for_practice=eq.true&select=id,title,description',
+          { headers, signal }
+        );
+        if (!qRes.ok) return;
+        const quizzes = await qRes.json();
+        if (!Array.isArray(quizzes) || !quizzes.length) return;
+
+        // Same pick as english-quiz's own loadQuizOfTheDay(): seed on
+        // today's date so the pick stays the same all day rather than
+        // changing on every visit.
+        const today = new Date().toISOString().slice(0, 10);
+        let seed = 0;
+        for (const ch of today) seed = (seed * 31 + ch.charCodeAt(0)) >>> 0;
+        const pick = quizzes[seed % quizzes.length];
+        if (!pick || !pick.title) return;
+
+        let meta = '';
+        try {
+          const cRes = await fetch(
+            cfg.url + '/rest/v1/questions?quiz_id=eq.' + encodeURIComponent(pick.id) + '&select=id',
+            { headers: Object.assign({ Prefer: 'count=exact' }, headers), signal }
+          );
+          const total = (cRes.headers.get('content-range') || '').split('/')[1];
+          if (total && total !== '*') meta = total + (total === '1' ? ' question' : ' questions');
+        } catch (err) { /* fall through to description below */ }
+        if (!meta) meta = pick.description || '';
+
+        sec.tile.querySelectorAll('[data-field]').forEach((el) => {
+          if (el.dataset.field === 'title') el.textContent = pick.title;
+          if (el.dataset.field === 'meta') el.textContent = meta;
+        });
+        // One real "quiz of the day" — freeze the tile so nothing overwrites it.
+        sec.items = sec.items.slice(0, 1);
+      } catch (err) {
+        /* Supabase unreachable or the table shape changed — keep the sample. */
+      }
+    })();
+  }
+  loadQuizOfDay();
 
   // Reminder in the console while placeholder links are still in use.
   document.querySelectorAll('a[href^="#TODO"]').forEach((a) => {
