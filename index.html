@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>English Voiced with Kris — English lessons for adults</title>
+<meta name="description" content="Read and watch the news, practise with games and quizzes, then study one-to-one with a teacher. English for adults, from Kris.">
+<meta name="theme-color" content="#08080a">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://englishvoiced.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="English Voiced with Kris">
+<meta property="og:description" content="Find your voice in English. News articles and videos, games, quizzes, lessons and courses, plus one-to-one teaching.">
+<meta property="og:url" content="https://englishvoiced.com/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   English Voiced — home page (mosaic, "Slate & Rose")
+   Plain static CSS. No framework, no build step.
+   ========================================================================== */
+
+/* ---------- Tokens ---------- */
+:root{
+  --wrap:1300px;                     /* content width of header + grid */
+
+  --ink:#08080a;                     /* page */
+  --bone:#f4f1ea;                    /* cards, buttons, logo */
+  --body:#d6d6db;                    /* body text on black */
+  --label:#8b8b93;
+  --label-dim:#6f6f77;
+  --slate:#55555d;                   /* small print on bone cards */
+
+  --articles:#0d3f50;  --articles-hi:#10505f;  --articles-tint:#57a6bd;
+  --videos:#4a5a67;    --videos-hi:#586b7a;    --videos-tint:#9fb2c0;
+  --games:#8f1728;     --games-hi:#a51b2f;     --games-tint:#e05a6e;
+  --quizzes:#9c2f5e;   --quizzes-hi:#b23a6d;   --quizzes-tint:#e086ab;
+  --lessons:#9a6a0b;   --lessons-hi:#b37c0d;   --lessons-tint:#d9a02b;
+  --courses:#1c6b34;   --courses-hi:#22803c;   --courses-tint:#4fb56f;
+}
+
+/* ---------- Base ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ink);color:var(--bone);
+  font-family:'Archivo',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,p{margin:0}
+a{color:var(--bone);text-decoration:none}
+a:hover{opacity:.95}
+a:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.page{background:var(--ink);padding-bottom:32px}
+
+/* Archivo Black has one weight; font-weight:400 stops browsers faking a bold. */
+.display{
+  font-family:'Archivo Black',sans-serif;font-weight:400;
+  text-transform:uppercase;color:#fff;
+}
+.eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--label-dim)}
+
+/* ---------- Header ---------- */
+.bar{
+  max-width:calc(var(--wrap) + 56px);margin:0 auto;padding:22px 28px 18px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+}
+.logo{display:flex;align-items:baseline;gap:10px}
+.logo__name{font-family:'Archivo Black',sans-serif;font-size:17px;letter-spacing:.02em;text-transform:uppercase;color:var(--bone)}
+.logo__by{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--label-dim)}
+.nav{
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+}
+.nav__articles{color:var(--articles-tint)}
+.nav__videos{color:var(--videos-tint)}
+.nav__games{color:var(--games-tint)}
+.nav__quizzes{color:var(--quizzes-tint)}
+.nav__lessons{color:var(--lessons-tint)}
+.nav__courses{color:var(--courses-tint)}
+.nav__book{color:var(--ink);background:var(--bone);padding:10px 18px;border-radius:8px;font-weight:700}
+
+/* ---------- Mosaic grid ---------- */
+.mosaic{
+  max-width:calc(var(--wrap) + 56px);margin:0 auto;padding:0 28px;
+  display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;
+  grid-template-areas:
+    "hero hero hero hero hero hero hero hero less less less less"
+    "vid  vid  vid  art  art  art  art  art  crs  crs  crs  crs"
+    "gam  gam  gam  gam  gam  qz   qz   qz   talk talk talk talk";
+}
+.mosaic > *{min-width:0}
+
+@media (max-width:1040px){
+  .mosaic{
+    grid-template-areas:
+      "hero hero hero hero hero hero hero hero hero hero hero hero"
+      "less less less less less less crs  crs  crs  crs  crs  crs"
+      "vid  vid  vid  vid  vid  art  art  art  art  art  art  art"
+      "gam  gam  gam  gam  gam  gam  gam  qz   qz   qz   qz   qz"
+      "talk talk talk talk talk talk talk talk talk talk talk talk";
+  }
+  .talk{padding-left:0}
+}
+@media (max-width:640px){
+  .mosaic{
+    grid-template-columns:minmax(0,1fr);
+    grid-template-areas:"hero" "less" "crs" "art" "vid" "gam" "qz" "talk";
+  }
+}
+
+/* ---------- Hero (unframed) ---------- */
+.hero{
+  grid-area:hero;padding:10px 26px 10px 0;min-height:320px;
+  display:flex;flex-direction:column;justify-content:center;gap:20px;
+}
+.hero h1{
+  font-size:clamp(44px,13vw,72px);          /* 72px on desktop; scales down so "ENGLISH" fits a phone */
+  line-height:.88;letter-spacing:-.025em;text-wrap:pretty;
+}
+.hero__lead{font-size:16px;line-height:1.55;color:var(--body);max-width:560px}
+.stats{display:flex;gap:28px;flex-wrap:wrap}
+.stats__n{display:block;font-family:'Archivo Black',sans-serif;font-size:24px;line-height:1;color:#fff}
+.stats__l{display:block;margin-top:5px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--label)}
+
+/* ---------- Talk to a human (unframed) ---------- */
+.talk{
+  grid-area:talk;padding:10px 0 10px 26px;min-height:270px;
+  display:flex;flex-direction:column;justify-content:center;gap:16px;
+}
+.talk .display{font-size:38px;line-height:.96}
+.talk__body{font-size:15px;line-height:1.6;color:var(--body);max-width:44ch}
+.talk__btn{align-self:flex-start;background:var(--games);color:#fff;font-weight:700;font-size:14px;padding:14px 24px;border-radius:8px}
+
+/* ==========================================================================
+   Coloured tiles — one shared hover behaviour
+   --------------------------------------------------------------------------
+   Each tile carries a single state variable, --on (0 = resting, 1 = hot).
+   It flips to 1 on mouse hover or keyboard focus, and every effect below is
+   derived from it, so all six tiles behave identically:
+     background lightens · tile lifts · white rule grows · arrow slides in ·
+     image zooms · article panel unfolds
+   ========================================================================== */
+.tile{
+  --on:0;
+  --bg:#000;--bg-hi:#111;--gap:12px;--lbl:.75;
+  position:relative;isolation:isolate;overflow:hidden;
+  display:flex;flex-direction:column;gap:var(--gap);
+  padding:24px;min-height:348px;border-radius:10px;
+  color:#fff;background:var(--bg);
+  transform:translateY(calc(var(--on) * -4px));
+  box-shadow:0 18px 40px rgb(0 0 0 / calc(var(--on) * .45));
+  transition:transform .35s ease,box-shadow .35s ease;
+}
+/* Lighter colour fades in over the base colour (behind the content). */
+.tile::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:var(--bg-hi);opacity:var(--on);transition:opacity .4s ease;
+}
+.tile:focus-visible,
+.tile:has(:focus-visible){--on:1}
+@media (hover:hover){
+  .tile:hover{--on:1}
+}
+
+.tile--lessons {--bg:var(--lessons); --bg-hi:var(--lessons-hi); --lbl:.78;grid-area:less}
+.tile--videos  {--bg:var(--videos);  --bg-hi:var(--videos-hi);  --lbl:.75;grid-area:vid;padding:0;gap:0;min-height:300px}
+.tile--articles{--bg:var(--articles);--bg-hi:var(--articles-hi);--lbl:.72;grid-area:art;--gap:14px}
+.tile--courses {--bg:var(--courses); --bg-hi:var(--courses-hi); --lbl:.78;grid-area:crs}
+.tile--games   {--bg:var(--games);   --bg-hi:var(--games-hi);   --lbl:.72;grid-area:gam;padding:0;gap:0;min-height:250px;flex-direction:row}
+.tile--quizzes {--bg:var(--quizzes); --bg-hi:var(--quizzes-hi); --lbl:.75;grid-area:qz;min-height:298px}
+
+/* Labels, headlines, rule, arrow */
+.label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgb(255 255 255 / var(--lbl))}
+.label--dim{letter-spacing:.14em;color:rgb(255 255 255 / .55)}
+.tile__row{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+
+.tile--articles .display{font-size:34px;line-height:1}
+.tile--videos   .display{font-size:24px;line-height:1}
+.tile--games    .display{font-size:32px;line-height:.98}
+.tile--quizzes  .display{font-size:30px;line-height:.98}
+.tile--lessons  .display{font-size:30px;line-height:1}
+.tile--courses  .display{font-size:30px;line-height:1.02}
+
+.rule{
+  display:block;height:3px;margin-top:8px;border-radius:2px;background:#fff;
+  width:calc(var(--on) * 56px);transition:width .45s cubic-bezier(.2,.8,.2,1);
+}
+.arrow{
+  display:inline-block;opacity:var(--on);
+  transform:translateX(calc((1 - var(--on)) * -6px));
+  transition:transform .3s ease,opacity .3s ease;
+}
+.line{font-size:14px;line-height:1.5;color:rgb(255 255 255 / .9)}
+
+/* Buttons that sit on a tile (white pill, text in the tile's colour) */
+.btn{
+  align-self:flex-start;display:flex;align-items:center;gap:8px;
+  background:#fff;color:var(--bg);font-weight:700;font-size:13px;
+  padding:11px 18px;border-radius:8px;
+}
+.btn--static{margin-top:auto}
+/* Stretched link: the button's link covers the whole tile. */
+.stretch::after{content:"";position:absolute;inset:0}
+
+/* Image bands. Empty until an image is supplied (see CONFIG in the script). */
+.media{
+  position:relative;overflow:hidden;
+  background-color:rgb(0 0 0 / .2);
+  background-image:repeating-linear-gradient(135deg,rgb(255 255 255 / .05) 0 8px,transparent 8px 16px);
+}
+.media img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;
+  transform:scale(calc(1 + var(--on) * .07));
+  transition:transform 4s ease-out;
+}
+.media.has-img img{display:block}
+
+/* ---------- Lens: Videos ---------- */
+.tile--videos .media{flex:none;height:130px}
+.tile--videos .media img{
+  transform-origin:60% 40%;
+  transform:scale(calc(1 + var(--on) * .14)) translate(calc(var(--on) * -3%),calc(var(--on) * -2%));
+  transition-duration:6s;
+}
+.tile__body{flex:1;display:flex;flex-direction:column;gap:9px;padding:20px}
+.vtitle{font-size:13.5px;line-height:1.45;color:rgb(255 255 255 / .92)}
+.vmeta{margin-top:auto;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgb(255 255 255 / .6)}
+
+/* ---------- Lens: Articles ---------- */
+.bone{background:var(--bone);border-radius:8px;overflow:hidden}
+.bone__body{padding:16px 18px}
+.bone__src{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate)}
+.bone__title{margin-top:6px;font-size:19px;font-weight:700;line-height:1.2;color:var(--articles)}
+.vocab{
+  background:var(--articles);overflow:hidden;
+  padding:calc(var(--on) * 12px) 18px calc(var(--on) * 14px);
+  max-height:calc(var(--on) * 170px);
+  opacity:var(--on);
+  transform:translateY(calc((1 - var(--on)) * 14px));
+  transition:max-height .45s ease,padding .45s ease,opacity .35s ease,transform .45s ease;
+}
+.vocab__k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgb(255 255 255 / .6)}
+.vocab__words{margin-top:6px;font-size:13px;line-height:1.5;color:#fff}
+.vocab__q{margin-top:6px;font-size:13px;line-height:1.5;font-style:italic;color:rgb(255 255 255 / .85)}
+.cta-line{margin-top:auto;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#fff}
+
+/* ---------- Lessons + Courses ---------- */
+.tile--lessons .media,
+.tile--courses .media{flex:none;margin-top:auto;border-radius:8px}
+.tile--lessons .media{height:110px}
+.tile--courses .media{height:120px}
+
+/* ---------- Games ---------- */
+.tile__main{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px;padding:24px}
+.media--side{flex:none;align-self:stretch;width:38%;min-width:120px}
+
+/* ---------- Quizzes ---------- */
+.cards{display:flex;gap:10px;flex-wrap:wrap}
+.card{
+  flex:1;min-width:120px;display:flex;flex-direction:column;gap:4px;
+  padding:13px 15px;border-radius:8px;
+  transition:transform .3s ease,background .3s ease;
+}
+.card__k{font-size:9px;letter-spacing:.16em;text-transform:uppercase}
+.card__t{font-size:16px;font-weight:700;line-height:1.1}
+.card--join{background:var(--bone)}
+.card--join .card__k{color:var(--slate)}
+.card--join .card__t{color:var(--quizzes)}
+.card--practice{background:rgb(255 255 255 / .14);border:1px solid rgb(255 255 255 / .28)}
+.card--practice .card__k{color:rgb(255 255 255 / .72)}
+.card--practice .card__t{color:#fff}
+.card:focus-visible{transform:translateY(-3px)}
+@media (hover:hover){
+  .card:hover{transform:translateY(-3px)}
+  .card--practice:hover{background:rgb(255 255 255 / .22)}
+}
+.qotd{margin-top:auto;padding-top:12px;border-top:1px solid rgb(255 255 255 / .22)}
+.qotd__k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgb(255 255 255 / .65)}
+.qotd__t{margin-top:4px;font-size:14px;font-weight:700;color:#fff}
+.qotd__m{margin-top:2px;font-size:12px;color:rgb(255 255 255 / .72)}
+
+/* ---------- Touch devices: nothing essential hides behind hover ---------- */
+@media (hover:none){
+  .vocab{max-height:none;opacity:1;transform:none;padding:12px 18px 14px}
+  .arrow{opacity:1;transform:none}
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+
+<!--
+  BEFORE YOU LAUNCH — what is still placeholder
+  1. Three links (search this file for "TODO"):
+       Lessons · Courses · Book a lesson
+     Each currently points at "#TODO-…-url", which does nothing when clicked.
+  2. Four image bands (video still, game artwork, lesson screenshot, course cover).
+     They show a quiet tinted block until you set CONFIG.fallbackImages in the
+     script at the bottom, or add an "image" field to the entries in your data.
+  3. Live content. The rotating items come from the JSON files listed in
+     CONFIG.sources (script at the bottom). Until those files exist, each tile
+     rotates through the built-in sample entries.
+-->
+
+<div class="page">
+
+  <header class="bar">
+    <a class="logo" href="/" aria-label="English Voiced with Kris — home">
+      <span class="logo__name">English Voiced</span>
+      <span class="logo__by">with Kris</span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a class="nav__articles" href="#articles">Lens: Articles</a>
+      <a class="nav__videos"   href="#videos">Lens: Videos</a>
+      <a class="nav__games"    href="#games">Games</a>
+      <a class="nav__quizzes"  href="#quizzes">Quizzes</a>
+      <a class="nav__lessons"  href="#lessons">Lessons</a>
+      <a class="nav__courses"  href="#courses">Courses</a>
+      <a class="nav__book"     href="#book">Book a Lesson</a>
+    </nav>
+  </header>
+
+  <main class="mosaic">
+
+    <!-- Hero (unframed) -->
+    <section class="hero">
+      <p class="eyebrow">Six ways in · one place</p>
+      <h1 class="display">Find your voice in English</h1>
+      <p class="hero__lead">Read and watch the news, practise with games and quizzes, then study with me. Start anywhere on this page.</p>
+      <div class="stats">
+        <div><span class="stats__n">12+</span><span class="stats__l">Years</span></div>
+        <div><span class="stats__n">1,200+</span><span class="stats__l">Students</span></div>
+        <div><span class="stats__n">24</span><span class="stats__l">Countries</span></div>
+      </div>
+    </section>
+
+    <!-- Lessons -->
+    <section id="lessons" class="tile tile--lessons" data-section="lessons">
+      <p class="label">Lessons · interactive</p>
+      <div class="head">
+        <h2 class="display">The grammar you pretend to know</h2>
+        <span class="rule"></span>
+      </div>
+      <p class="line" data-field="line"></p>
+      <div class="media" data-media><img alt="" decoding="async"></div>
+      <!-- TODO(url): replace "#TODO-lessons-url" with the real Lessons address -->
+      <a class="btn stretch" href="#TODO-lessons-url"><span>Browse lessons</span><span class="arrow" aria-hidden="true">→</span></a>
+    </section>
+
+    <!-- Lens: Videos -->
+    <a id="videos" class="tile tile--videos" href="/english-lens/videos.html" data-section="videos" data-entry-link>
+      <div class="media" data-media><img alt="" decoding="async"></div>
+      <div class="tile__body">
+        <span class="label">Lens: Videos · 5 a week</span>
+        <div class="head">
+          <h2 class="display">Five minutes, one story</h2>
+          <span class="rule"></span>
+        </div>
+        <p class="vtitle" data-field="title"></p>
+        <p class="vmeta" data-field="meta"></p>
+      </div>
+    </a>
+
+    <!-- Lens: Articles -->
+    <a id="articles" class="tile tile--articles" href="/english-lens/" data-section="articles" data-entry-link>
+      <div class="tile__row">
+        <span class="label">Lens: Articles</span>
+        <span class="label label--dim">12 a week · 2 levels</span>
+      </div>
+      <div class="head">
+        <h2 class="display">Read the news, steal the words</h2>
+        <span class="rule"></span>
+      </div>
+      <div class="bone">
+        <div class="bone__body">
+          <p class="bone__src" data-field="meta"></p>
+          <p class="bone__title" data-field="title"></p>
+        </div>
+        <div class="vocab">
+          <p class="vocab__k">Vocabulary &amp; food for thought</p>
+          <p class="vocab__words" data-field="vocab"></p>
+          <p class="vocab__q" data-field="thought"></p>
+        </div>
+      </div>
+      <div class="cta-line"><span>Read today's pick</span><span class="arrow" aria-hidden="true">→</span></div>
+    </a>
+
+    <!-- Courses -->
+    <section id="courses" class="tile tile--courses" data-section="courses">
+      <p class="label">Courses</p>
+      <div class="head">
+        <h2 class="display" data-field="title"></h2>
+        <span class="rule"></span>
+      </div>
+      <p class="line" data-field="line"></p>
+      <div class="media" data-media><img alt="" decoding="async"></div>
+      <!-- TODO(url): replace "#TODO-courses-url" with the real Courses address -->
+      <a class="btn stretch" href="#TODO-courses-url"><span>See courses</span><span class="arrow" aria-hidden="true">→</span></a>
+    </section>
+
+    <!-- Games -->
+    <a id="games" class="tile tile--games" href="/english-games/" data-section="games" data-entry-link>
+      <div class="tile__main">
+        <div class="tile__row">
+          <span class="label">Games</span>
+          <span class="label label--dim" data-day-label></span>
+        </div>
+        <div class="head">
+          <h2 class="display">Play your way to fluency</h2>
+          <span class="rule"></span>
+        </div>
+        <p class="line"><strong data-field="title"></strong> — <span data-field="line"></span></p>
+        <span class="btn btn--static"><span>Play now</span><span class="arrow" aria-hidden="true">→</span></span>
+      </div>
+      <div class="media media--side" data-media><img alt="" decoding="async"></div>
+    </a>
+
+    <!-- Quizzes -->
+    <section id="quizzes" class="tile tile--quizzes" data-section="quizzes">
+      <p class="label">Quizzes</p>
+      <div class="head">
+        <h2 class="display">Find out what stuck</h2>
+        <span class="rule"></span>
+      </div>
+      <div class="cards">
+        <a class="card card--join" href="/english-quiz/play.html">
+          <span class="card__k">Room code?</span>
+          <span class="card__t">Join a quiz</span>
+        </a>
+        <a class="card card--practice" href="/english-quiz/practice.html">
+          <span class="card__k">Anytime</span>
+          <span class="card__t">Self-practice</span>
+        </a>
+      </div>
+      <div class="qotd">
+        <p class="qotd__k">Quiz of the day</p>
+        <p class="qotd__t" data-field="title"></p>
+        <p class="qotd__m" data-field="meta"></p>
+      </div>
+    </section>
+
+    <!-- Talk to a human first (unframed) -->
+    <section id="book" class="talk">
+      <p class="eyebrow">One-to-one</p>
+      <h2 class="display">Talk to a human first</h2>
+      <p class="talk__body">An app can mark your answer. A teacher hears the hesitation, catches the habit you can't hear yourself making, and makes you say the thing you'd normally avoid saying. That's where the jump happens.</p>
+      <!-- TODO(url): replace "#TODO-booking-url" with the real booking link or form -->
+      <a class="talk__btn" href="#TODO-booking-url">Book a lesson →</a>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(() => {
+  'use strict';
+
+  /* ========================================================================
+     CONFIG — the part you are most likely to edit
+     ======================================================================== */
+  const CONFIG = {
+    /* Where each tile's live content comes from. Each source is a JSON file:
+       either an array of entries, or { "items": [ ...entries ] }.
+       Newest first — the first entry is what visitors see before they hover.
+       Leave a source as '' (or if the fetch fails) and the sample entries
+       under SAMPLE are used instead.
+
+       Entry shapes:
+         articles  { meta, title, vocab, thought, url? }   vocab: string or array
+         videos    { title, meta, image?, url? }
+         games     { title, line, image?, url? }
+         quizzes   { title, meta }
+         lessons   { line, image? }
+         courses   { title, line, image? }
+       "url" and "image" must be absolute (https://…) or start with a single "/". */
+    sources: {
+      articles: '/english-lens/data/articles.json',
+      videos:   '/english-lens/data/videos.json',
+      games:    '/english-games/data/games.json',
+      quizzes:  '/english-quiz/data/quizzes.json',
+      lessons:  '',
+      courses:  ''
+    },
+
+    /* One fixed image per tile, used whenever an entry has no "image" of its
+       own. Empty string = show the tinted placeholder band. */
+    fallbackImages: { videos: '', games: '', lessons: '', courses: '' },
+
+    touchRotateMs: 6000,     // touch screens: each tile advances this often
+    fetchTimeoutMs: 4000
+  };
+
+  /* ========================================================================
+     Sample entries — the fallback when a source is missing or unreachable
+     ======================================================================== */
+  const SAMPLE = {
+    articles: [
+      { meta: 'The Economist · B1 / B2–C1', title: 'The Quiet Rise of Repairable Phones', vocab: 'planned obsolescence · to refurbish · a trade-off', thought: '"Would you choose a refurbished phone over a new one?"' },
+      { meta: 'Reuters · B1 / B2–C1', title: 'Night Trains Are Selling Out Across Europe', vocab: 'a sleeper service · to reroute · demand surge', thought: '"Would you swap a two-hour flight for ten hours asleep?"' },
+      { meta: 'BBC · B1 / B2–C1', title: 'The Office Is Now a Place You Visit', vocab: 'hybrid working · to commute · presenteeism', thought: '"How many days in an office is the right number?"' }
+    ],
+    videos: [
+      { title: 'Cities Rethinking the 15-Minute Commute', meta: 'BBC · 4:12' },
+      { title: 'Why Bread Prices Move Before Anything Else', meta: 'Reuters · 3:48' },
+      { title: 'The Sea Wall That Divided a Town', meta: 'BBC · 4:36' }
+    ],
+    games: [
+      { title: 'Synonym Sprint', line: 'beat the clock, steal the word. Sixty seconds, no dictionary.' },
+      { title: 'Phrasal Roulette', line: 'spin it, use it in a sentence. Get out with your dignity.' },
+      { title: 'Odd Word Out', line: 'four words, one impostor. Trust your ear, not your grammar book.' }
+    ],
+    quizzes: [
+      { title: 'Phrasal verbs at work', meta: '12 questions · B2' },
+      { title: 'Collocations: money & time', meta: '10 questions · B1' },
+      { title: 'News vocabulary of the week', meta: '15 questions · B2–C1' }
+    ],
+    lessons: [
+      { line: '"Used to" vs "would" — past habits, settled in ten minutes.' },
+      { line: 'Articles: a, the, and the terrifying nothing at all.' },
+      { line: 'Reported speech, without the tense panic.' }
+    ],
+    courses: [
+      { title: 'Long game, better English', line: 'Eight weeks, built around your goals. Starts whenever you do.' },
+      { title: 'Fluent at work', line: 'Meetings, email, small talk. The English your job actually asks for.' },
+      { title: 'Exam, handled', line: 'B2 and C1 prep with news you\'d read anyway.' }
+    ]
+  };
+
+  /* ========================================================================
+     Wiring
+     ======================================================================== */
+  const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  // Only absolute http(s) URLs or root-relative paths are accepted from data.
+  const safeUrl = (u) =>
+    typeof u === 'string' && /^(https?:\/\/|\/(?!\/))/.test(u.trim()) ? u.trim() : '';
+
+  const sections = {};
+  document.querySelectorAll('[data-section]').forEach((tile) => {
+    const key = tile.dataset.section;
+    if (!SAMPLE[key]) return;
+    const box = tile.querySelector('[data-media]');
+    const img = box ? box.querySelector('img') : null;
+    if (img) {
+      img.addEventListener('load', () => box.classList.add('has-img'));
+      img.addEventListener('error', () => box.classList.remove('has-img'));
+    }
+    sections[key] = {
+      key, tile, box, img,
+      items: SAMPLE[key],
+      i: 0,
+      link: tile.hasAttribute('data-entry-link') ? tile : null,
+      defaultHref: tile.getAttribute('href')
+    };
+  });
+  const list = Object.values(sections);
+
+  function render(sec) {
+    const item = sec.items[sec.i] || {};
+
+    sec.tile.querySelectorAll('[data-field]').forEach((el) => {
+      const v = item[el.dataset.field];
+      el.textContent = Array.isArray(v) ? v.join(' · ') : (v == null ? '' : String(v));
+    });
+
+    // Tiles that are themselves links can point at the specific item.
+    if (sec.link) sec.link.setAttribute('href', safeUrl(item.url) || sec.defaultHref);
+
+    if (sec.img) {
+      const src = safeUrl(item.image) || CONFIG.fallbackImages[sec.key] || '';
+      if (!src) {
+        sec.img.removeAttribute('src');
+        sec.box.classList.remove('has-img');
+      } else if (sec.img.getAttribute('src') !== src) {
+        sec.box.classList.remove('has-img');
+        sec.img.setAttribute('src', src);
+      }
+    }
+  }
+
+  function advance(sec) {
+    if (sec.items.length < 2) return;
+    sec.i = (sec.i + 1) % sec.items.length;
+    render(sec);
+  }
+
+  // First paint: sample entries, immediately.
+  list.forEach(render);
+  document.querySelectorAll('[data-day-label]').forEach((el) => {
+    el.textContent = DAYS[new Date().getDay()] + '\'s pick';
+  });
+
+  // Mouse / pen: each hover-in advances that tile by one.
+  // Keyboard: tabbing into a tile does the same.
+  list.forEach((sec) => {
+    sec.tile.addEventListener('pointerenter', (e) => {
+      if (e.pointerType !== 'touch') advance(sec);
+    });
+    sec.tile.addEventListener('focusin', (e) => {
+      if (sec.tile.contains(e.relatedTarget)) return;
+      if (e.target.matches(':focus-visible')) advance(sec);
+    });
+  });
+
+  // Touch screens have no hover, so tiles rotate on a timer instead — one tile
+  // at a time, staggered. Skipped when the visitor prefers reduced motion.
+  const touchOnly = window.matchMedia('(hover: none)');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let timer = null;
+  let turn = 0;
+  function syncAutoRotate() {
+    clearInterval(timer);
+    timer = null;
+    if (!touchOnly.matches || reduced.matches || !list.length) return;
+    timer = setInterval(() => {
+      if (document.hidden) return;
+      advance(list[turn++ % list.length]);
+    }, Math.round(CONFIG.touchRotateMs / list.length));
+  }
+  touchOnly.addEventListener('change', syncAutoRotate);
+  reduced.addEventListener('change', syncAutoRotate);
+  syncAutoRotate();
+
+  // Live content: swap in the real data when a source responds with something
+  // usable; otherwise the sample entries simply stay.
+  async function loadSource(sec) {
+    const url = CONFIG.sources[sec.key];
+    if (!url) return;
+    try {
+      const signal = typeof AbortSignal !== 'undefined' && AbortSignal.timeout
+        ? AbortSignal.timeout(CONFIG.fetchTimeoutMs) : undefined;
+      const res = await fetch(url, { cache: 'no-cache', signal });
+      if (!res.ok) return;
+      const data = await res.json();
+      const items = (Array.isArray(data) ? data : data && data.items) || [];
+      const clean = items.filter((x) => x && typeof x === 'object');
+      if (!clean.length) return;
+      sec.items = clean;
+      sec.i = 0;
+      render(sec);
+    } catch (err) {
+      /* keep the sample entries */
+    }
+  }
+  list.forEach(loadSource);
+
+  // Reminder in the console while placeholder links are still in use.
+  document.querySelectorAll('a[href^="#TODO"]').forEach((a) => {
+    console.warn('[English Voiced] placeholder link still in use:', a.getAttribute('href'));
+  });
+})();
+</script>
+</body>
+</html>
