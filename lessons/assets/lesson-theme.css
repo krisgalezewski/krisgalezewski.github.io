@@ -133,7 +133,13 @@ body{background:var(--ink);color:var(--color-text-primary);transition:background
   color:var(--color-text-secondary);transition:all .15s;
 }
 .ev-theme-toggle__opt:hover{color:var(--color-text-primary)}
-.ev-theme-toggle__opt.on{background:var(--ev-accent-tint);color:#17171c}
+/* Always a bright, fixed amber chip with dark text — deliberately NOT
+   var(--ev-accent-tint), which darkens in light mode for nav-link
+   contrast on a white page. That darkened value made "Light" nearly
+   unreadable against its own active pill (dark text on a dark pill).
+   A self-contained filled swatch doesn't have that problem, so it can
+   just stay bright + dark-text in both themes. */
+.ev-theme-toggle__opt.on{background:#d9a02b;color:#17171c}
 
 /* ---------- Glossary print / save-as-PDF ---------------------------------- */
 .ev-gloss-actions{display:flex;justify-content:flex-end;margin-bottom:10px}

@@ -523,21 +523,21 @@ function mPR(i){
 
 // ── SCRAMBLED SENTENCES ───────────────────────────────────────
 const SCRAM_POOL=[
-  {sentence:'She took up photography after she retired from her job.',words:['She','took','up','photography','after','she','retired','from','her','job'],pv:'take up'},
+  {sentence:'She took up photography after she retired from her job.',words:['She','took','up','photography','after','she','retired','from','her','job'],altWords:['She','took','photography','up','after','she','retired','from','her','job'],pv:'take up'},
   {sentence:'The project was put off until the end of the month.',words:['The','project','was','put','off','until','the','end','of','the','month'],pv:'put off'},
   {sentence:'I came across this book in a small shop in Prague.',words:['I','came','across','this','book','in','a','small','shop','in','Prague'],pv:'come across'},
   {sentence:'He broke down when he heard the terrible news.',words:['He','broke','down','when','he','heard','the','terrible','news'],pv:'break down'},
   {sentence:'Can you look after my cat while I am away?',words:['Can','you','look','after','my','cat','while','I','am','away'],pv:'look after'},
-  {sentence:'The company set up a new office in Warsaw last year.',words:['The','company','set','up','a','new','office','in','Warsaw','last','year'],pv:'set up'},
-  {sentence:'She gave up sweets for the whole month of January.',words:['She','gave','up','sweets','for','the','whole','month','of','January'],pv:'give up'},
-  {sentence:'They called off the match because of heavy rain.',words:['They','called','off','the','match','because','of','heavy','rain'],pv:'call off'},
-  {sentence:'He turned down the promotion because he did not want to move.',words:['He','turned','down','the','promotion','because','he','did','not','want','to','move'],pv:'turn down'},
+  {sentence:'The company set up a new office in Warsaw last year.',words:['The','company','set','up','a','new','office','in','Warsaw','last','year'],altWords:['The','company','set','a','new','office','up','in','Warsaw','last','year'],pv:'set up'},
+  {sentence:'She gave up sweets for the whole month of January.',words:['She','gave','up','sweets','for','the','whole','month','of','January'],altWords:['She','gave','sweets','up','for','the','whole','month','of','January'],pv:'give up'},
+  {sentence:'They called off the match because of heavy rain.',words:['They','called','off','the','match','because','of','heavy','rain'],altWords:['They','called','the','match','off','because','of','heavy','rain'],pv:'call off'},
+  {sentence:'He turned down the promotion because he did not want to move.',words:['He','turned','down','the','promotion','because','he','did','not','want','to','move'],altWords:['He','turned','the','promotion','down','because','he','did','not','want','to','move'],pv:'turn down'},
   {sentence:'We need to look into the cause of the problem.',words:['We','need','to','look','into','the','cause','of','the','problem'],pv:'look into'},
-  {sentence:'The new policy brought about significant changes in the workplace.',words:['The','new','policy','brought','about','significant','changes','in','the','workplace'],pv:'bring about'},
+  {sentence:'The new policy brought about significant changes in the workplace.',words:['The','new','policy','brought','about','significant','changes','in','the','workplace'],altWords:['The','new','policy','brought','significant','changes','about','in','the','workplace'],pv:'bring about'},
   {sentence:'I always look forward to the weekend.',words:['I','always','look','forward','to','the','weekend'],pv:'look forward to'},
   {sentence:'She came up with a creative solution to the problem.',words:['She','came','up','with','a','creative','solution','to','the','problem'],pv:'come up with'},
   {sentence:'The alarm went off just as we fell asleep.',words:['The','alarm','went','off','just','as','we','fell','asleep'],pv:'go off'},
-  {sentence:'Please put away your phone during the lesson.',words:['Please','put','away','your','phone','during','the','lesson'],pv:'put away'},
+  {sentence:'Please put away your phone during the lesson.',words:['Please','put','away','your','phone','during','the','lesson'],altWords:['Please','put','your','phone','away','during','the','lesson'],pv:'put away'},
   {sentence:'The argument turned into a full-scale dispute by the end of the day.',words:['The','argument','turned','into','a','full-scale','dispute','by','the','end','of','the','day'],pv:'turn into'},
   {sentence:'We set off early to avoid the rush-hour traffic.',words:['We','set','off','early','to','avoid','the','rush-hour','traffic'],pv:'set off'},
   {sentence:'He takes care of his younger siblings every afternoon.',words:['He','takes','care','of','his','younger','siblings','every','afternoon'],pv:'take care of'},
@@ -581,13 +581,20 @@ function cSlot(s){
   sPlaced[s]=w;document.getElementById('sp_'+sSel).classList.add('used');document.getElementById('sp_'+sSel).classList.remove('sel');sSel=null;rSSlots();
 }
 function rSSlots(){sItems[sIdx].words.forEach((_,i)=>{const el=document.getElementById('ss_'+i);if(!el)return;if(sPlaced[i]){el.textContent=sPlaced[i];el.className='slot fl';}else{el.textContent='';el.className='slot';}});}
+function arraysEqual(a,b){return a.length===b.length&&a.every((w,i)=>w===b[i]);}
 function checkScram(){
   if(sChecked)return;const item=sItems[sIdx];
   if(sPlaced.some(p=>p===null)){const fb=document.getElementById('sFb');fb.textContent='Fill all slots first.';fb.style.color='#e05a6e';return;}
-  sChecked=true;sTotal++;let ok=item.words.every((w,i)=>sPlaced[i]===w);
-  item.words.forEach((_,i)=>{const el=document.getElementById('ss_'+i);if(!el)return;el.classList.add(sPlaced[i]===item.words[i]?'cs':'ws');});
+  sChecked=true;sTotal++;
+  // Separable phrasal verbs are correct either joined ("put away your phone")
+  // or split around the object ("put your phone away") — item.altWords, where
+  // present, holds that alternate valid order so both are accepted.
+  const matchesAlt=item.altWords&&arraysEqual(sPlaced,item.altWords);
+  let ok=arraysEqual(sPlaced,item.words)||matchesAlt;
+  const ref=matchesAlt?item.altWords:item.words;
+  item.words.forEach((_,i)=>{const el=document.getElementById('ss_'+i);if(!el)return;el.classList.add(sPlaced[i]===ref[i]?'cs':'ws');});
   const fb=document.getElementById('sFb');
-  if(ok){sScore++;fb.innerHTML='✓ Correct!';fb.style.color='#4fb56f';}
+  if(ok){sScore++;fb.innerHTML='✓ Correct!'+(matchesAlt?' <span style="font-size:12px;color:var(--color-text-secondary);font-weight:400">(the other order works too — separable phrasal verbs can split around the object)</span>':'');fb.style.color='#4fb56f';}
   else{fb.innerHTML='✗ Correct sentence: <em>'+item.sentence+'</em>';fb.style.color='#e05a6e';}
   // also offer audio
   const aBtn=document.createElement('button');aBtn.className='audio-btn';aBtn.style.display='inline-flex';aBtn.style.marginTop='10px';aBtn.style.marginBottom='14px';aBtn.innerHTML='🔊 Hear the sentence';aBtn.onclick=()=>speak(item.sentence,0.82,aBtn);
@@ -647,13 +654,40 @@ function renderPara(){
   </div>`;
 }
 function norm(s){return s.trim().toLowerCase().replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' ');}
+// For a separable two-word phrasal verb, the model answer already writes it
+// joined and correctly conjugated ("called off", "took up"...) — find the
+// particle in the model answer and take the word right before it as the
+// real conjugated verb form. That sidesteps having to guess conjugation
+// ourselves (including irregular verbs like take→took, give→gave), and
+// lets checkPara() accept a split rewrite ("called the concert off") by
+// checking the verb and particle appear anywhere, not just adjacently.
+function pvConjugatedWords(item){
+  const particleBase=item.target.toLowerCase().split(' ')[1];
+  const ansWords=item.answer.replace(/[.,!?;:'"]/g,'').split(/\s+/);
+  const idx=ansWords.findIndex(w=>w.toLowerCase()===particleBase);
+  if(idx<1)return null;
+  return {verb:ansWords[idx-1].toLowerCase(),particle:ansWords[idx].toLowerCase()};
+}
 function checkPara(){
   if(pChecked)return;const item=pItems[pIdx];
   const val=document.getElementById('paraInput').value;
   if(!val.trim()){document.getElementById('paraFb').textContent='Please write a sentence first.';document.getElementById('paraFb').style.color='#e05a6e';return;}
   pChecked=true;pTotal++;
-  const uN=norm(val),aN=norm(item.answer),pvN=item.target.toLowerCase();
-  const ok=uN===aN||(uN.includes(pvN)&&uN.split(' ').length>=aN.split(' ').length-2&&uN.split(' ').length<=aN.split(' ').length+2);
+  const uN=norm(val),aN=norm(item.answer);
+  // Inseparable and three-word verbs ("look into", "put up with") can't
+  // split, so they still need the exact joined phrase.
+  const pvEntry=PVS.find(x=>x.pv===item.target);
+  const pvWords=item.target.toLowerCase().split(' ');
+  let usesTarget;
+  if(pvEntry&&pvEntry.sep&&pvWords.length===2){
+    const conj=pvConjugatedWords(item);
+    usesTarget=conj
+      ? new RegExp('\\b'+conj.verb+'\\b').test(uN)&&new RegExp('\\b'+conj.particle+'\\b').test(uN)
+      : uN.includes(item.target.toLowerCase());
+  }else{
+    usesTarget=uN.includes(item.target.toLowerCase());
+  }
+  const ok=uN===aN||(usesTarget&&uN.split(' ').length>=aN.split(' ').length-2&&uN.split(' ').length<=aN.split(' ').length+2);
   const fb=document.getElementById('paraFb');
   if(ok){pScore++;fb.innerHTML='✓ Great! Model answer: <em>'+item.answer+'</em>';fb.style.color='#4fb56f';}
   else{fb.innerHTML='✗ Not quite. Model answer: <em>'+item.answer+'</em>';fb.style.color='#e05a6e';}
