@@ -3,15 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ev-theme')||'dark')}catch(e){}</script>
 <title>English Collocations — Interactive Lesson</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lessons/assets/lesson-theme.css">
+<script src="/lessons/assets/lesson-shared.js"></script>
 <style>
 h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .w{padding:1.5rem}
 .nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
-.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nt{padding:7px 15px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
 .nt:hover{background:var(--color-background-secondary)}
 .nt.on{color:#fff;border-color:transparent;font-weight:500}
 .n0.on{background:#185FA5}
@@ -25,27 +32,27 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .n8.on{background:#1a5c3a}
 .n9.on{background:#4a3b8c}
 .pan{display:none}.pan.on{display:block}
-.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:1rem}
 .lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
 .lbl:first-child{margin-top:0}
-.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #185FA5}
+.quote-box{background:var(--color-background-secondary);border-radius:10px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #185FA5}
 /* chips */
-.chip{display:inline-block;font-size:12px;padding:3px 10px;border-radius:20px;margin:2px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);cursor:pointer;background:var(--color-background-primary);transition:all .15s}
+.chip{display:inline-block;font-size:12px;padding:3px 10px;border-radius:8px;margin:2px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);cursor:pointer;background:var(--color-background-primary);transition:all .15s}
 .chip:hover,.chip.on{background:#E6F1FB;border-color:#85B7EB;color:#185FA5;font-weight:500}
 .srch{width:100%;padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:14px;font-family:var(--font-sans);margin-bottom:10px}
 .srch:focus{outline:none;border-color:#85B7EB}
 /* collocation cards in grid */
 .tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px;margin-bottom:1rem}
-.tool-card{border-radius:16px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:12px 14px;cursor:pointer;transition:all .15s}
+.tool-card{border-radius:10px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:12px 14px;cursor:pointer;transition:all .15s}
 .tool-card:hover{background:var(--color-background-secondary)}
 .tool-card.sel{border-color:#85B7EB;background:#E6F1FB}
 /* expanded detail panel */
-.detail-box{border-radius:20px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:1.25rem 1.5rem;margin-bottom:1rem;display:none}
+.detail-box{border-radius:8px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:1.25rem 1.5rem;margin-bottom:1rem;display:none}
 .detail-box.on{display:block}
 /* exercises shared */
-.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act{font-size:13px;padding:7px 16px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
 .act:hover{background:var(--color-background-secondary)}
-.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #185FA5;background:#185FA5;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn{padding:9px 22px;border-radius:8px;border:0.5px solid #185FA5;background:#185FA5;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
 .check-btn:hover{background:#0d3f72}
 .check-btn:disabled{opacity:.4;cursor:default}
 .gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
@@ -56,8 +63,8 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .gap-opt.gdim{opacity:.38;cursor:default;pointer-events:none}
 .fb-ok{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
 .fb-no{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
-.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
-.pb{height:5px;border-radius:20px;background:#185FA5;transition:width .3s}
+.pb-w{background:var(--color-background-secondary);border-radius:8px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:8px;background:#185FA5;transition:width .3s}
 /* match items */
 .match-col{display:flex;flex-direction:column;gap:7px}
 .match-item{padding:9px 13px;border-radius:12px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13.5px;cursor:pointer;transition:all .15s;line-height:1.5;user-select:none;text-align:left;width:100%}
@@ -84,7 +91,7 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .tip-box{background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;font-size:13px;color:var(--color-text-secondary);display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px}
 /* SR tabs */
 .sr-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
-.sr-tab{padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.sr-tab{padding:6px 14px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
 .sr-tab:hover{background:var(--color-background-secondary)}
 .sr-tab.on{background:#5b2d8e;color:#fff;border-color:#5b2d8e;font-weight:500}
 .sr-pan{display:none}.sr-pan.on{display:block}
@@ -107,6 +114,7 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 </style>
 </head>
 <body>
+<script>EVLesson.initHeader({category:'Vocabulary'});</script>
 <h2 class="sr-only">English Collocations — interactive lesson</h2>
 <div class="w">
 
@@ -256,88 +264,88 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
         <div class="reg-row">
           <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">Getting off transport</span>
           <div style="display:flex;flex-wrap:wrap;gap:6px">
-            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">F: alight from a bus</span>
-            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: get off a bus</span>
-            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: hop off a bus</span>
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">F: alight from a bus</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">N: get off a bus</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">I: hop off a bus</span>
           </div>
         </div>
 
         <div class="reg-row">
           <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">Investigating something</span>
           <div style="display:flex;flex-wrap:wrap;gap:6px">
-            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">F: conduct an investigation into</span>
-            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: look into</span>
-            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: dig up info about</span>
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">F: conduct an investigation into</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">N: look into</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">I: dig up info about</span>
           </div>
         </div>
 
         <div class="reg-row">
           <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">Ending an agreement</span>
           <div style="display:flex;flex-wrap:wrap;gap:6px">
-            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">F: terminate the agreement</span>
-            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: end the agreement</span>
-            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: call it off</span>
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">F: terminate the agreement</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">N: end the agreement</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">I: call it off</span>
           </div>
         </div>
 
         <div class="reg-row">
           <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">Submitting work</span>
           <div style="display:flex;flex-wrap:wrap;gap:6px">
-            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">F: submit an assignment</span>
-            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: hand in your work</span>
-            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: hand it in</span>
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">F: submit an assignment</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">N: hand in your work</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">I: hand it in</span>
           </div>
         </div>
 
         <div class="reg-row">
           <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">Eating something</span>
           <div style="display:flex;flex-wrap:wrap;gap:6px">
-            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: have a snack / bite to eat</span>
-            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: grab a snack / bite</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">N: have a snack / bite to eat</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">I: grab a snack / bite</span>
           </div>
         </div>
 
         <div class="reg-row">
           <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">Being very happy</span>
           <div style="display:flex;flex-wrap:wrap;gap:6px">
-            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: be delighted</span>
-            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: be over the moon / chuffed</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">N: be delighted</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">I: be over the moon / chuffed</span>
           </div>
         </div>
 
         <div class="reg-row">
           <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">Suspending a meeting</span>
           <div style="display:flex;flex-wrap:wrap;gap:6px">
-            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">F: adjourn the meeting</span>
-            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: pause the meeting</span>
-            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: take a break from the meeting</span>
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">F: adjourn the meeting</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">N: pause the meeting</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">I: take a break from the meeting</span>
           </div>
         </div>
 
         <div class="reg-row">
           <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">Proposing marriage</span>
           <div style="display:flex;flex-wrap:wrap;gap:6px">
-            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">F: propose marriage</span>
-            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: ask someone to marry you</span>
-            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: pop the question</span>
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">F: propose marriage</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">N: ask someone to marry you</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">I: pop the question</span>
           </div>
         </div>
 
         <div class="reg-row">
           <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">Asking for a delay</span>
           <div style="display:flex;flex-wrap:wrap;gap:6px">
-            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">F: request an extension</span>
-            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: ask for more time</span>
-            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: ask for a bit longer</span>
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">F: request an extension</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">N: ask for more time</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">I: ask for a bit longer</span>
           </div>
         </div>
 
         <div class="reg-row">
           <span style="font-size:11px;font-weight:700;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px">A lot of something</span>
           <div style="display:flex;flex-wrap:wrap;gap:6px">
-            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">F: a large number of</span>
-            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">N: many / a great deal of</span>
-            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px">I: tons of / loads of</span>
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">F: a large number of</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">N: many / a great deal of</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:8px">I: tons of / loads of</span>
           </div>
         </div>
 
@@ -418,6 +426,11 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
   <div class="eyebrow">My glossary</div>
   <div class="lesson-h">My glossary</div>
   <div class="lesson-sub">Collocations you have saved — click ✕ to remove any item</div>
+    <div class="ev-gloss-actions">
+    <button class="ev-gloss-print-btn" id="glossPrintBtn" onclick="EVLesson.printGlossary({title:'My collocation glossary', containerId:'#glossCont'})" disabled>
+      <i class="ti ti-printer" aria-hidden="true"></i> Print / Save as PDF
+    </button>
+  </div>
   <div id="glossCont"></div>
 </div>
 
@@ -579,7 +592,7 @@ function toggleGloss(id){
   }
 }
 function renderGloss(){
-  const cont=document.getElementById('glossCont');if(!cont)return;
+  const cont=document.getElementById('glossCont');if(!cont)return;const printBtn=document.getElementById('glossPrintBtn');if(printBtn)printBtn.disabled=!glossary.length;
   if(!glossary.length){cont.innerHTML='<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px"></i><div style="margin-bottom:8px">Nothing saved yet.</div><div style="font-size:13px">Click the 🔖 bookmark icon on any collocation card in Browse &amp; search.</div></div>';return;}
   const saved=COLLS.filter(c=>glossary.includes(c.id));
   const by={};saved.forEach(c=>{(by[c.cat]=by[c.cat]||[]).push(c);});
@@ -594,14 +607,14 @@ function renderGloss(){
           <div style="flex:1;min-width:0">
             <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;flex-wrap:wrap">
               <span style="font-size:15px;font-weight:700;color:var(--color-text-primary)">${c.phrase}</span>
-              <span style="background:${cc.bg};color:${cc.tc};font-size:10px;font-weight:700;padding:1px 7px;border-radius:20px">${cc.label}</span>
-              <span style="background:var(--color-background-secondary);color:var(--color-text-secondary);font-size:10px;padding:1px 7px;border-radius:20px">${STRENGTH_LABEL[c.strength]}</span>
-              <button onclick="cSpeak(${safeQ(c.phrase)},this)" style="padding:2px 8px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:11px;color:var(--color-text-secondary)">🔊 Hear</button>
+              <span style="background:${cc.bg};color:${cc.tc};font-size:10px;font-weight:700;padding:1px 7px;border-radius:8px">${cc.label}</span>
+              <span style="background:var(--color-background-secondary);color:var(--color-text-secondary);font-size:10px;padding:1px 7px;border-radius:8px">${STRENGTH_LABEL[c.strength]}</span>
+              <button onclick="cSpeak(${safeQ(c.phrase)},this)" style="padding:2px 8px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:11px;color:var(--color-text-secondary)">🔊 Hear</button>
             </div>
             <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.6">${c.def}</div>
             <div style="font-size:13px;font-style:italic;color:var(--color-text-secondary);margin-top:5px;line-height:1.55;border-left:2px solid ${cc.brd};padding-left:8px">${c.exs[0].replace(/\*([^*]+)\*/g,'<strong>$1</strong>')}</div>
           </div>
-          <button onclick="removeFromGloss('${c.id}')" style="flex-shrink:0;padding:4px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:12px;color:var(--color-text-secondary);transition:all .15s;white-space:nowrap" onmouseover="this.style.background='#FCEBEB';this.style.borderColor='#F7C1C1';this.style.color='#791F1F'" onmouseout="this.style.background='';this.style.borderColor='';this.style.color=''">✕</button>
+          <button onclick="removeFromGloss('${c.id}')" style="flex-shrink:0;padding:4px 10px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:12px;color:var(--color-text-secondary);transition:all .15s;white-space:nowrap" onmouseover="this.style.background='#FCEBEB';this.style.borderColor='#F7C1C1';this.style.color='#791F1F'" onmouseout="this.style.background='';this.style.borderColor='';this.style.color=''">✕</button>
         </div>
       </div>`;
     });
@@ -662,7 +675,7 @@ function renderQuote(){
   document.getElementById('quoteBox').innerHTML=`
     <div style="font-size:15px;line-height:1.85;color:var(--color-text-primary);margin-bottom:8px">${disp}</div>
     <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-      <button onclick="cSpeak(${safeQ(q.q)},this)" style="padding:4px 11px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:12px;color:var(--color-text-secondary)">🔊 Hear it</button>
+      <button onclick="cSpeak(${safeQ(q.q)},this)" style="padding:4px 11px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:12px;color:var(--color-text-secondary)">🔊 Hear it</button>
       <button class="act" onclick="renderQuote()" style="margin-left:auto;font-size:12px;padding:4px 12px"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> New quote</button>
     </div>`;
 }
@@ -702,7 +715,7 @@ function renderBrowse(){
     return`<div class="tool-card${selId===c.id?' sel':''}" id="tc_${c.id}" onclick="selCard('${c.id}')">
       <div style="display:flex;align-items:flex-start;gap:7px;margin-bottom:5px">
         <span style="font-size:14px;font-weight:600;flex:1;line-height:1.3">${c.phrase}</span>
-        <span style="background:${cc.bg};color:${cc.tc};font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:20px;white-space:nowrap;flex-shrink:0">${cc.label}</span>
+        <span style="background:${cc.bg};color:${cc.tc};font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:8px;white-space:nowrap;flex-shrink:0">${cc.label}</span>
         <button data-gid="${c.id}" onclick="event.stopPropagation();toggleGloss('${c.id}')" style="border:none;background:none;cursor:pointer;font-size:17px;color:${saved?'#185FA5':'var(--color-text-secondary)'};flex-shrink:0" title="${saved?'Remove from glossary':'Save to glossary'}"><i class="ti ti-bookmark${saved?'-filled':''}"></i></button>
       </div>
       <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:4px">${c.fn} ${pipHTML(c.strength)}</div>
@@ -725,9 +738,9 @@ function selCard(id){
   det.innerHTML=`
     <div style="display:flex;align-items:center;gap:9px;margin-bottom:14px;flex-wrap:wrap">
       <span style="font-size:18px;font-weight:700">${c.phrase}</span>
-      <span style="background:${cc.bg};color:${cc.tc};font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;border:0.5px solid ${cc.brd}">${cc.label}</span>
-      <span style="background:${rc.bg};color:${rc.tc};font-size:11px;padding:2px 8px;border-radius:20px">${rc.label}</span>
-      <span style="font-size:11px;padding:2px 8px;border-radius:20px;background:var(--color-background-secondary);color:var(--color-text-secondary)">${STRENGTH_LABEL[c.strength]} ${pipHTML(c.strength)}</span>
+      <span style="background:${cc.bg};color:${cc.tc};font-size:12px;font-weight:600;padding:3px 10px;border-radius:8px;border:0.5px solid ${cc.brd}">${cc.label}</span>
+      <span style="background:${rc.bg};color:${rc.tc};font-size:11px;padding:2px 8px;border-radius:8px">${rc.label}</span>
+      <span style="font-size:11px;padding:2px 8px;border-radius:8px;background:var(--color-background-secondary);color:var(--color-text-secondary)">${STRENGTH_LABEL[c.strength]} ${pipHTML(c.strength)}</span>
       <button id="detailSaveBtn" data-id="${id}" class="act" style="margin-left:auto;font-size:12px" onclick="toggleGloss('${id}');this.textContent=isGlossed('${id}')?'🔖 Saved':'🔖 Save'">${saved?'🔖 Saved':'🔖 Save'}</button>
     </div>
     <div class="lbl">Function</div>
@@ -738,7 +751,7 @@ function selCard(id){
     <div style="font-size:13px;color:var(--color-text-secondary);background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;margin-bottom:12px;line-height:1.65">${c.note}</div>
     <div class="lbl">Examples</div>
     <div style="display:flex;flex-direction:column;gap:7px">
-      ${c.exs.map(e=>`<div style="background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;font-size:14px;font-style:italic;color:var(--color-text-secondary);display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="flex:1;line-height:1.65">${e.replace(/\*([^*]+)\*/g,'<strong style="color:${cc.tc}">$1</strong>')}</span><button onclick="cSpeak(${safeQ(e)},this)" style="flex-shrink:0;padding:3px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:12px;color:var(--color-text-secondary)">🔊</button></div>`).join('')}
+      ${c.exs.map(e=>`<div style="background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;font-size:14px;font-style:italic;color:var(--color-text-secondary);display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="flex:1;line-height:1.65">${e.replace(/\*([^*]+)\*/g,'<strong style="color:${cc.tc}">$1</strong>')}</span><button onclick="cSpeak(${safeQ(e)},this)" style="flex-shrink:0;padding:3px 10px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:12px;color:var(--color-text-secondary)">🔊</button></div>`).join('')}
     </div>`;
   det.classList.add('on');det.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
@@ -775,7 +788,7 @@ function renderGap(){
   const sh=item.s.replace('*___*',`<span style="display:inline-block;min-width:120px;border-bottom:2px solid #185FA5;color:#185FA5;font-weight:500;text-align:center;padding:0 4px" id="gBlank">___</span>`).replace(/\*([^*]+)\*/g,'<strong>$1</strong>');
   document.getElementById('gapCont').innerHTML=`<div class="card">
     <div class="ex-hdr" style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
-      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.hint}</span>
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px">${item.hint}</span>
       <span style="font-size:13px;color:var(--color-text-secondary)">${gIdx+1}/${gItems.length} · Score: ${gScore}/${gTotal}</span>
       <button class="act" onclick="startGap()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
     </div>
@@ -820,7 +833,7 @@ function renderMatch(){
   window._mL=lefts;window._mR=rights;
   document.getElementById('matchCont').innerHTML=`<div class="card">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">Round ${mRound+1} of ${MATCH_ROUNDS.length}</span>
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px">Round ${mRound+1} of ${MATCH_ROUNDS.length}</span>
       <span style="font-size:13px;color:var(--color-text-secondary);flex:1">${r.title}</span>
       <button class="act" onclick="startMatch(${mRound})"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
     </div>
@@ -884,7 +897,7 @@ function renderErr(){
   const opts=[{label:item.a,val:'a'},{label:item.b,val:'b'}].sort(()=>Math.random()-.5);window._eO=opts;
   document.getElementById('errCont').innerHTML=`<div class="card">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
-      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px">${item.type}</span>
       <span style="font-size:13px;color:var(--color-text-secondary)">${eIdx+1}/${eItems.length} · Score: ${eScore}/${eTotal}</span>
       <button class="act" onclick="startErr()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
     </div>
@@ -983,7 +996,7 @@ function renderRew(){
     <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px">Rewrite the sentence using the collocation given. Many variations are possible.</div>
     <div style="font-size:15px;line-height:1.8;margin-bottom:10px;background:var(--color-background-secondary);border-radius:14px;padding:11px 14px;font-style:italic">${item.q}</div>
     <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:8px">💡 ${item.hint}</div>
-    <div style="font-size:14px;font-weight:500;margin-bottom:12px">Use: <span style="background:#E6F1FB;color:#0C447C;padding:2px 10px;border-radius:20px;font-size:13px">${item.target}</span></div>
+    <div style="font-size:14px;font-weight:500;margin-bottom:12px">Use: <span style="background:#E6F1FB;color:#0C447C;padding:2px 10px;border-radius:8px;font-size:13px">${item.target}</span></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
       <button class="check-btn" onclick="revealRew()">Show answer</button>
       <button class="act" onclick="rIdx++;renderRew()">Next →</button>
@@ -1022,7 +1035,7 @@ function srShowSeg(i){
       <div style="font-size:13px;font-weight:700;color:${d.tc};margin-bottom:6px">${d.label} collocations — ${pipHTML(d.pip)}</div>
       <div style="font-size:13px;color:${d.tc};margin-bottom:8px;line-height:1.6">${d.desc}</div>
       <div style="display:flex;flex-wrap:wrap;gap:6px">
-        ${d.examples.map(e=>`<span style="background:var(--color-background-primary);color:${d.tc};border:0.5px solid ${d.tc}55;border-radius:20px;padding:3px 10px;font-size:12.5px;font-weight:500">${e}</span>`).join('')}
+        ${d.examples.map(e=>`<span style="background:var(--color-background-primary);color:${d.tc};border:0.5px solid ${d.tc}55;border-radius:8px;padding:3px 10px;font-size:12.5px;font-weight:500">${e}</span>`).join('')}
       </div>
     </div>`;
 }
@@ -1061,7 +1074,7 @@ function srRenderGrid(tabIdx,ids,gridId,detId){
     return`<div class="tool-card${srSelId[tabIdx]===c.id?' sel':''}" id="srtc${tabIdx}_${c.id}" onclick="srSelCard(${tabIdx},'${c.id}','${gridId}','${detId}')">
       <div style="display:flex;align-items:flex-start;gap:7px;margin-bottom:5px">
         <span style="font-size:14px;font-weight:600;flex:1;line-height:1.3">${c.phrase}</span>
-        <span style="background:${cc.bg};color:${cc.tc};font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:20px;white-space:nowrap;flex-shrink:0">${cc.label}</span>
+        <span style="background:${cc.bg};color:${cc.tc};font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:8px;white-space:nowrap;flex-shrink:0">${cc.label}</span>
         <button data-gid="${c.id}" onclick="event.stopPropagation();toggleGloss('${c.id}')" style="border:none;background:none;cursor:pointer;font-size:17px;color:${saved?'#185FA5':'var(--color-text-secondary)'};flex-shrink:0" title="${saved?'Remove from glossary':'Save to glossary'}"><i class="ti ti-bookmark${saved?'-filled':''}"></i></button>
       </div>
       <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:4px">${c.fn} ${pipHTML(c.strength)}</div>
@@ -1085,9 +1098,9 @@ function srSelCard(tabIdx,id,gridId,detId){
   det.innerHTML=`
     <div style="display:flex;align-items:center;gap:9px;margin-bottom:14px;flex-wrap:wrap">
       <span style="font-size:18px;font-weight:700">${c.phrase}</span>
-      <span style="background:${cc.bg};color:${cc.tc};font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;border:0.5px solid ${cc.brd}">${cc.label}</span>
-      <span style="background:${rc.bg};color:${rc.tc};font-size:11px;padding:2px 8px;border-radius:20px">${rc.label}</span>
-      <span style="font-size:11px;padding:2px 8px;border-radius:20px;background:var(--color-background-secondary);color:var(--color-text-secondary)">${STRENGTH_LABEL[c.strength]} ${pipHTML(c.strength)}</span>
+      <span style="background:${cc.bg};color:${cc.tc};font-size:12px;font-weight:600;padding:3px 10px;border-radius:8px;border:0.5px solid ${cc.brd}">${cc.label}</span>
+      <span style="background:${rc.bg};color:${rc.tc};font-size:11px;padding:2px 8px;border-radius:8px">${rc.label}</span>
+      <span style="font-size:11px;padding:2px 8px;border-radius:8px;background:var(--color-background-secondary);color:var(--color-text-secondary)">${STRENGTH_LABEL[c.strength]} ${pipHTML(c.strength)}</span>
       <button id="srSaveBtn_${tabIdx}" data-id="${id}" class="act" style="margin-left:auto;font-size:12px" onclick="toggleGloss('${id}');this.textContent=isGlossed('${id}')?'🔖 Saved':'🔖 Save'">${saved?'🔖 Saved':'🔖 Save'}</button>
     </div>
     <div class="lbl">Function</div>
@@ -1098,7 +1111,7 @@ function srSelCard(tabIdx,id,gridId,detId){
     <div style="font-size:13px;color:var(--color-text-secondary);background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;margin-bottom:12px;line-height:1.65">${c.note}</div>
     <div class="lbl">Examples</div>
     <div style="display:flex;flex-direction:column;gap:7px">
-      ${c.exs.map(e=>`<div style="background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;font-size:14px;font-style:italic;color:var(--color-text-secondary);display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="flex:1;line-height:1.65">${e.replace(/\*([^*]+)\*/g,`<strong style="color:${cc.tc}">$1</strong>`)}</span><button onclick="cSpeak(${safeQ(e)},this)" style="flex-shrink:0;padding:3px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:12px;color:var(--color-text-secondary)">🔊</button></div>`).join('')}
+      ${c.exs.map(e=>`<div style="background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;font-size:14px;font-style:italic;color:var(--color-text-secondary);display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="flex:1;line-height:1.65">${e.replace(/\*([^*]+)\*/g,`<strong style="color:${cc.tc}">$1</strong>`)}</span><button onclick="cSpeak(${safeQ(e)},this)" style="flex-shrink:0;padding:3px 10px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:12px;color:var(--color-text-secondary)">🔊</button></div>`).join('')}
     </div>`;
   det.classList.add('on');det.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
@@ -1145,7 +1158,7 @@ function renderRegQuiz(){
   ];
   document.getElementById('regQuizCont').innerHTML=`<div class="card">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
-      <span style="background:#f0eafe;color:#5b2d8e;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">Register quiz</span>
+      <span style="background:#f0eafe;color:#5b2d8e;font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px">Register quiz</span>
       <span style="font-size:13px;color:var(--color-text-secondary)">${rqIdx+1}/${rqItems.length} · Score: ${rqScore}/${rqTotal}</span>
       <button class="act" onclick="startRegQuiz()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
     </div>
@@ -1155,7 +1168,7 @@ function renderRegQuiz(){
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:14px">
       ${opts.map((o,i)=>`<button id="rqopt_${i}" onclick="selRQ(${i})" style="padding:12px 8px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;font-weight:600;color:var(--color-text-secondary);transition:all .15s;text-align:center">${o.label}<br><span style="font-size:10px;font-weight:400;opacity:.7">${o.val==='F'?'Documents / official':o.val==='N'?'Any context':'Conversation / casual'}</span></button>`).join('')}
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap"><button style="padding:9px 22px;border-radius:20px;border:0.5px solid #5b2d8e;background:#5b2d8e;color:#fff;font-size:14px;cursor:pointer" id="rqCheck" onclick="checkRQ()" disabled>Check</button><button class="act" onclick="rqIdx++;renderRegQuiz()">Skip →</button></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button style="padding:9px 22px;border-radius:8px;border:0.5px solid #5b2d8e;background:#5b2d8e;color:#fff;font-size:14px;cursor:pointer" id="rqCheck" onclick="checkRQ()" disabled>Check</button><button class="act" onclick="rqIdx++;renderRegQuiz()">Skip →</button></div>
     <div id="rqFb" style="margin-top:0"></div>
   </div>`;
   window._rqO=opts;
@@ -1253,7 +1266,7 @@ function renderClf(){
   window._clfO=item.opts;window._clfMap=colourMap;
   document.getElementById('clfCont').innerHTML=`<div class="card">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
-      <span style="background:${isStrength?'#FAEEDA':'#E6F1FB'};color:${isStrength?'#633806':'#0C447C'};font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${isStrength?'Classify the strength':'Identify the register'}</span>
+      <span style="background:${isStrength?'#FAEEDA':'#E6F1FB'};color:${isStrength?'#633806':'#0C447C'};font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px">${isStrength?'Classify the strength':'Identify the register'}</span>
       <span style="font-size:13px;color:var(--color-text-secondary)">${clfIdx+1}/${clfItems.length} · Score: ${clfScore}/${clfTotal}</span>
       <button class="act" onclick="startClf()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
     </div>
@@ -1264,7 +1277,7 @@ function renderClf(){
       ${item.opts.map((o,i)=>{const cc=colourMap[o]||{bg:'var(--color-background-secondary)',tc:'var(--color-text-primary)',brd:'var(--color-border-secondary)'};
         return`<button class="clf-opt" id="clfopt_${i}" onclick="selClf(${i})" style="border-color:var(--color-border-secondary)">${o}${isStrength&&o==='Fixed'?' 🔒':isStrength&&o==='Weak'?' (flexible)':''}</button>`;}).join('')}
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap"><button style="padding:9px 22px;border-radius:20px;border:0.5px solid #1a5c3a;background:#1a5c3a;color:#fff;font-size:14px;cursor:pointer" id="clfCheck" onclick="checkClf()" disabled>Check</button><button class="act" onclick="clfIdx++;renderClf()">Skip →</button></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button style="padding:9px 22px;border-radius:8px;border:0.5px solid #1a5c3a;background:#1a5c3a;color:#fff;font-size:14px;cursor:pointer" id="clfCheck" onclick="checkClf()" disabled>Check</button><button class="act" onclick="clfIdx++;renderClf()">Skip →</button></div>
     <div id="clfFb" style="margin-top:0"></div>
   </div>`;
 }

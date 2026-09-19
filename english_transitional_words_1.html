@@ -3,27 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ev-theme')||'dark')}catch(e){}</script>
 <title>English transitional words & phrases</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lessons/assets/lesson-theme.css">
+<script src="/lessons/assets/lesson-shared.js"></script>
 <style>
 h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .w{padding:1.5rem}
 .nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
-.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nt{padding:7px 15px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
 .nt:hover{background:var(--color-background-secondary)}
 .nt.on{color:#fff;border-color:transparent;font-weight:500}
 .n0.on{background:#534AB7}.n1.on{background:#0F6E56}.n2.on{background:#185FA5}.n3.on{background:#854F0B}.n4.on{background:#993C1D}.n5.on{background:#72243E}.n6.on{background:#3B6D11}.n7.on{background:#712B13}.n8.on{background:#2d7a6b}
 .pan{display:none}.pan.on{display:block}
-.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:.9rem}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:.9rem}
 .lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
 .lbl:first-child{margin-top:0}
 .tip-box{background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;font-size:13px;color:var(--color-text-secondary);display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px}
 .warn-box{background:#FAEEDA;border-radius:14px;padding:10px 14px;font-size:13px;color:#633806;display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px;border:0.5px solid #E8C080}
-.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act{font-size:13px;padding:7px 16px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
 .act:hover{background:var(--color-background-secondary)}
-.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #534AB7;background:#534AB7;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn{padding:9px 22px;border-radius:8px;border:0.5px solid #534AB7;background:#534AB7;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
 .check-btn:hover{background:#3C3489}
 .check-btn:disabled{opacity:.4;cursor:default}
 .gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
@@ -35,8 +42,8 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .fb-ok{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
 .fb-no{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
 .ex-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
-.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
-.pb{height:5px;border-radius:20px;background:#534AB7;transition:width .3s}
+.pb-w{background:var(--color-background-secondary);border-radius:8px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:8px;background:#534AB7;transition:width .3s}
 .mi{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
 .mi:hover{background:var(--color-background-secondary)}
 .mi.pk{border-color:#534AB7;background:#EEEDFE;color:#3C3489}
@@ -51,8 +58,8 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .slot.cs{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
 .slot.ws{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
 .slot.fx{border-style:solid;border-color:var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-secondary);cursor:default}
-.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #534AB7}
-.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
+.quote-box{background:var(--color-background-secondary);border-radius:10px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #534AB7}
+.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
 .audio-btn:hover{background:#EEEDFE;border-color:#AFA9EC;color:#534AB7}
 .audio-btn.playing{background:#EEEDFE;border-color:#534AB7;color:#534AB7;font-weight:500}
 .acc-hdr{display:flex;align-items:center;gap:8px;padding:11px 15px;cursor:pointer;border-radius:14px;transition:all .15s}
@@ -60,11 +67,11 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .acc-body{display:none;padding:0 15px 14px;font-size:14px;color:var(--color-text-secondary);line-height:1.75}
 .acc-body.on{display:block}
 .sub-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
-.st{padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.st{padding:6px 14px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
 .st:hover{background:var(--color-background-secondary)}
 .st.on{background:#534AB7;color:#fff;border-color:#534AB7;font-weight:500}
 .spanel{display:none}.spanel.on{display:block}
-.chip{display:inline-block;font-size:12.5px;padding:3px 11px;border-radius:20px;margin:2px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);background:var(--color-background-secondary);cursor:pointer;transition:all .15s}
+.chip{display:inline-block;font-size:12.5px;padding:3px 11px;border-radius:8px;margin:2px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);background:var(--color-background-secondary);cursor:pointer;transition:all .15s}
 .chip:hover{background:#EEEDFE;border-color:#AFA9EC;color:#3C3489}
 .chip.chi-sel{background:#EEEDFE;border-color:#534AB7;color:#3C3489;font-weight:500}
 .nuance-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
@@ -79,6 +86,7 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 </style>
 </head>
 <body>
+<script>EVLesson.initHeader({category:'Practical use of English'});</script>
 <h2 class="sr-only">English transitional words and phrases — interactive lesson</h2>
 <div class="w">
 
@@ -184,6 +192,11 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
   <div class="eyebrow">Transitional words &amp; phrases</div>
   <div class="lesson-h">My glossary</div>
   <div class="lesson-sub">Transitional expressions you have saved for review — browse the Categories tab and tap Save on any word</div>
+    <div class="ev-gloss-actions">
+    <button class="ev-gloss-print-btn" id="glossPrintBtn" onclick="EVLesson.printGlossary({title:'My transitional word glossary', containerId:'#glossCont'})" disabled>
+      <i class="ti ti-printer" aria-hidden="true"></i> Print / Save as PDF
+    </button>
+  </div>
   <div id="glossCont"></div>
 </div>
 
@@ -229,7 +242,7 @@ function renderQuote(){
     <div style="font-style:italic;font-size:15px;line-height:1.8;color:var(--color-text-primary);margin-bottom:8px">${q.q}</div>
     <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
       <span style="font-size:12px;color:var(--color-text-secondary)">— ${q.a}</span>
-      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${q.t}</span>
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px">${q.t}</span>
       <button class="act" onclick="renderQuote()" style="margin-left:auto;font-size:12px;padding:4px 12px"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> New quote</button>
     </div>`;
 }
@@ -380,9 +393,9 @@ function safeW(w){return w.replace(/'/g,"\\'").replace(/"/g,'&quot;');}
 function buildCats(){
   document.getElementById('catContent').innerHTML=CATS.map((c,i)=>`
     <div class="card" style="margin-bottom:.75rem;padding:0">
-      <div class="acc-hdr" onclick="toggleCat(${i})" style="border-radius:20px">
+      <div class="acc-hdr" onclick="toggleCat(${i})" style="border-radius:8px">
         <span style="font-size:18px">${c.icon}</span>
-        <span style="background:${c.col.bg};color:${c.col.tc};font-size:13px;font-weight:600;padding:4px 12px;border-radius:20px;border:0.5px solid ${c.col.brd}">${c.name}</span>
+        <span style="background:${c.col.bg};color:${c.col.tc};font-size:13px;font-weight:600;padding:4px 12px;border-radius:8px;border:0.5px solid ${c.col.brd}">${c.name}</span>
         <i class="ti ti-chevron-down" id="catarr_${i}" style="font-size:16px;color:var(--color-text-secondary);margin-left:auto;transition:transform .2s"></i>
       </div>
       <div class="acc-body" id="catbody_${i}" style="padding:0 15px 15px">
@@ -445,7 +458,7 @@ function removeGloss(key){
 }
 
 function renderGloss(){
-  const cont=document.getElementById('glossCont');if(!cont)return;
+  const cont=document.getElementById('glossCont');if(!cont)return;const printBtn=document.getElementById('glossPrintBtn');if(printBtn)printBtn.disabled=!glossary.length;
   if(!glossary.length){
     cont.innerHTML=`<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)">
       <i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px;color:var(--color-text-secondary)"></i>
@@ -460,7 +473,7 @@ function renderGloss(){
         <div style="flex:1;min-width:0">
           <div style="font-size:15px;font-weight:500;margin-bottom:5px;color:var(--color-text-primary)">${g.word}</div>
           <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-            <span style="background:${g.catCol.bg};color:${g.catCol.tc};font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px;border:0.5px solid ${g.catCol.brd}">${g.catName}</span>
+            <span style="background:${g.catCol.bg};color:${g.catCol.tc};font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px;border:0.5px solid ${g.catCol.brd}">${g.catName}</span>
             <button class="audio-btn" onclick="speakChip('${safeW(g.word)}',this)" style="font-size:12px">🔊 Hear</button>
           </div>
         </div>
@@ -562,7 +575,7 @@ function setNuance(i,el){
 function renderNuance(i){
   const p=NUANCE_PAIRS[i];
   const side=s=>`<div style="flex:1;min-width:0">
-    <div style="background:${s.col.bg};color:${s.col.tc};font-size:15px;font-weight:700;padding:6px 14px;border-radius:20px;display:inline-block;margin-bottom:9px;border:0.5px solid ${s.col.brd}">${s.word}</div>
+    <div style="background:${s.col.bg};color:${s.col.tc};font-size:15px;font-weight:700;padding:6px 14px;border-radius:8px;display:inline-block;margin-bottom:9px;border:0.5px solid ${s.col.brd}">${s.word}</div>
     <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:8px">${s.desc}</p>
     <div class="lbl">✓ Use it when</div>
     ${s.dos.map(d=>`<div style="background:#EAF3DE;color:#27500A;font-size:13px;border-radius:10px;padding:7px 11px;margin-bottom:5px;font-style:italic;border:0.5px solid #C0DD97">${d}</div>`).join('')}
@@ -621,7 +634,7 @@ function renderGap(){
   const sh=item.s.replace(item.blank,`<span style="display:inline-block;min-width:100px;border-bottom:2px solid #534AB7;color:#534AB7;font-weight:500;text-align:center;padding:0 4px" id="blankSpan">___</span>`);
   document.getElementById('gapCont').innerHTML=`<div class="card">
     <div class="ex-hdr">
-      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px">${item.type}</span>
       <span style="font-size:13px;color:var(--color-text-secondary)">${gIdx+1}/${gItems.length} · Score: ${gScore}/${gTotal}</span>
       <button class="act" onclick="startGap()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
     </div>
@@ -726,8 +739,8 @@ const MISTAKES=[
 function buildMistakes(){
   document.getElementById('mistakeContent').innerHTML=MISTAKES.map((m,i)=>`
     <div class="card" style="margin-bottom:.75rem;padding:0">
-      <div class="acc-hdr" onclick="toggleMistake(${i})" style="border-radius:20px">
-        <span style="background:#FCEBEB;color:#791F1F;font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;border:0.5px solid #F7C1C1">${m.type}</span>
+      <div class="acc-hdr" onclick="toggleMistake(${i})" style="border-radius:8px">
+        <span style="background:#FCEBEB;color:#791F1F;font-size:12px;font-weight:600;padding:3px 10px;border-radius:8px;border:0.5px solid #F7C1C1">${m.type}</span>
         <span style="font-size:14px;font-weight:500;margin-left:4px">${m.title}</span>
         <i class="ti ti-chevron-down" id="marr_${i}" style="font-size:16px;color:var(--color-text-secondary);margin-left:auto;transition:transform .2s"></i>
       </div>
@@ -764,7 +777,7 @@ function renderRewrite(){
   const opts=[...item.opts].sort(()=>Math.random()-.5);window._rO=opts;
   document.getElementById('rewriteCont').innerHTML=`<div class="card">
     <div class="ex-hdr">
-      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px">${item.type}</span>
       <span style="font-size:13px;color:var(--color-text-secondary)">${rIdx+1}/${rItems.length} · Score: ${rScore}/${rTotal}</span>
       <button class="act" onclick="startRewrite()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
     </div>
@@ -814,7 +827,7 @@ function renderErr(){
   const opts=[{label:item.a,val:'a'},{label:item.b,val:'b'}].sort(()=>Math.random()-.5);window._eO=opts;
   document.getElementById('errCont').innerHTML=`<div class="card">
     <div class="ex-hdr">
-      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px">${item.type}</span>
       <span style="font-size:13px;color:var(--color-text-secondary)">${eIdx+1}/${eItems.length} · Score: ${eScore}/${eTotal}</span>
       <button class="act" onclick="startErr()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
     </div>

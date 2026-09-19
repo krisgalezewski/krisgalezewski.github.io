@@ -3,29 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ev-theme')||'dark')}catch(e){}</script>
 <title>English Verb Tenses — Interactive Lesson</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lessons/assets/lesson-theme.css">
+<script src="/lessons/assets/lesson-shared.js"></script>
 <style>
 h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .w{padding:1.5rem}
 .nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
-.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nt{padding:7px 15px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
 .nt:hover{background:var(--color-background-secondary)}
 .nt.on{color:#fff;border-color:transparent;font-weight:500}
 .n0.on{background:#185FA5}.n1.on{background:#0F6E56}.n2.on{background:#854F0B}
 .n3.on{background:#993C1D}.n4.on{background:#72243E}.n5.on{background:#534AB7}
 .n6.on{background:#3B6D11}.n7.on{background:#4a3b8c}
 .pan{display:none}.pan.on{display:block}
-.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:.9rem}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:.9rem}
 .lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
 .lbl:first-child{margin-top:0}
 .tip-box{background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;font-size:13px;color:var(--color-text-secondary);display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px}
 .warn-box{background:#FAEEDA;border-radius:14px;padding:10px 14px;font-size:13px;color:#633806;display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px;border:0.5px solid #E8C080}
-.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act{font-size:13px;padding:7px 16px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
 .act:hover{background:var(--color-background-secondary)}
-.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #185FA5;background:#185FA5;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn{padding:9px 22px;border-radius:8px;border:0.5px solid #185FA5;background:#185FA5;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
 .check-btn:hover{background:#0c4577}
 .check-btn:disabled{opacity:.4;cursor:default}
 .gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
@@ -37,15 +44,15 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .fb-ok{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
 .fb-no{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
 .ex-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
-.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
-.pb{height:5px;border-radius:20px;background:#185FA5;transition:width .3s}
+.pb-w{background:var(--color-background-secondary);border-radius:8px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:8px;background:#185FA5;transition:width .3s}
 .mi{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
 .mi:hover:not(.pk):not(.mt):not(.bd){background:var(--color-background-secondary)}
 .mi.pk{border-color:#185FA5;background:#E6F1FB;color:#0C447C;font-weight:600}
 .mi.mt{border-color:#27500A;background:#EAF3DE;color:#27500A;font-weight:600;cursor:default;pointer-events:none}
 .mi.bd{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
-.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #185FA5}
-.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
+.quote-box{background:var(--color-background-secondary);border-radius:10px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #185FA5}
+.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
 .audio-btn:hover{background:#E6F1FB;border-color:#85B7EB;color:#185FA5}
 .audio-btn.playing{background:#E6F1FB;border-color:#185FA5;color:#185FA5;font-weight:500}
 .eyebrow{font-size:11px;font-weight:500;color:#185FA5;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
@@ -53,21 +60,21 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .lesson-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:1.25rem}
 /* tense overview grid */
 .ov-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:1rem}
-.ov-card{border-radius:16px;padding:12px 14px;cursor:pointer;border:0.5px solid transparent;transition:all .15s}
+.ov-card{border-radius:10px;padding:12px 14px;cursor:pointer;border:0.5px solid transparent;transition:all .15s}
 .ov-card:hover{transform:translateY(-1px);opacity:.88}
 .ov-card.sel{outline:2.5px solid #185FA5}
 .ov-name{font-size:13px;font-weight:600;margin-bottom:3px}
 .ov-use{font-size:11px;line-height:1.35;opacity:.75}
 /* time tabs */
 .time-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
-.tt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.tt{padding:7px 15px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
 .tt:hover{background:var(--color-background-secondary)}
 .tt.on{color:#fff;border-color:transparent;font-weight:500}
 .tt-past.on{background:#185FA5}.tt-present.on{background:#0F6E56}.tt-future.on{background:#993C1D}
 /* formula */
 .formula{font-family:var(--font-mono);font-size:13px;background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;border-left:3px solid;margin-bottom:6px;line-height:1.6;color:var(--color-text-primary)}
 /* time signal chips */
-.signal{font-size:12.5px;font-weight:600;padding:5px 13px;border-radius:20px;display:inline-block;margin:3px;cursor:pointer;transition:all .15s;border:0.5px solid}
+.signal{font-size:12.5px;font-weight:600;padding:5px 13px;border-radius:8px;display:inline-block;margin:3px;cursor:pointer;transition:all .15s;border:0.5px solid}
 .signal:hover{filter:brightness(.9);transform:translateY(-1px)}
 /* signal popup */
 .sig-popup{background:#fff;border:0.5px solid var(--color-border-tertiary);border-radius:18px;padding:1.1rem 1.3rem;margin-top:8px;box-shadow:0 4px 24px rgba(0,0,0,.13);display:none}
@@ -79,24 +86,24 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .ex-neg{background:#FCEBEB;color:#791F1F;border:0.5px solid #F7C1C1}
 .ex-tag{font-size:10.5px;font-weight:700;display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.04em}
 /* tense detail box */
-.tense-detail{border-radius:20px;border:0.5px solid var(--color-border-tertiary);padding:1.25rem 1.5rem;margin-bottom:1rem;display:none;background:var(--color-background-primary)}
+.tense-detail{border-radius:8px;border:0.5px solid var(--color-border-tertiary);padding:1.25rem 1.5rem;margin-bottom:1rem;display:none;background:var(--color-background-primary)}
 .tense-detail.on{display:block}
 /* save btn */
-.save-btn{font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-secondary);transition:all .15s;white-space:nowrap}
+.save-btn{font-size:12px;padding:4px 12px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-secondary);transition:all .15s;white-space:nowrap}
 .save-btn:hover{background:#E6F1FB;border-color:#85B7EB;color:#185FA5}
 .save-btn.saved{background:#E6F1FB;border-color:#185FA5;color:#185FA5;font-weight:600}
 /* rm btn */
-.rm-btn{font-size:12px;padding:3px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-secondary);transition:all .15s;white-space:nowrap;flex-shrink:0}
+.rm-btn{font-size:12px;padding:3px 10px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-secondary);transition:all .15s;white-space:nowrap;flex-shrink:0}
 .rm-btn:hover{background:#FCEBEB;border-color:#F7C1C1;color:#791F1F}
 /* sub tabs for exercises */
 .sub-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
-.st{padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
+.st{padding:6px 14px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
 .st:hover{background:var(--color-background-secondary)}
 .st.on{background:#185FA5;color:#fff;border-color:#185FA5;font-weight:500}
 .spanel{display:none}.spanel.on{display:block}
 /* signals page */
 .sig-cat-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
-.sct{padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
+.sct{padding:6px 14px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
 .sct:hover{background:var(--color-background-secondary)}
 .sct.on{color:#fff;border-color:transparent;font-weight:500}
 .sct-past.on{background:#185FA5}.sct-present.on{background:#0F6E56}.sct-future.on{background:#993C1D}
@@ -108,6 +115,7 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 </style>
 </head>
 <body>
+<script>EVLesson.initHeader({category:'Grammar'});</script>
 <h2 class="sr-only">English verb tenses — interactive lesson with all 12 tenses, time signals, and exercises.</h2>
 <div class="w">
 <div class="nav">
@@ -294,6 +302,11 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
   <div class="eyebrow">English verb tenses</div>
   <div class="lesson-h">My glossary</div>
   <div class="lesson-sub">All your saved items — tenses, signals, forms, and structures — click ✕ to remove any item</div>
+    <div class="ev-gloss-actions">
+    <button class="ev-gloss-print-btn" id="glossPrintBtn" onclick="EVLesson.printGlossary({title:'My verb tense glossary', containerId:'#glossCont'})" disabled>
+      <i class="ti ti-printer" aria-hidden="true"></i> Print / Save as PDF
+    </button>
+  </div>
   <div id="glossCont"></div>
 </div>
 </div>
@@ -516,7 +529,7 @@ function renderQuote(){
     <div style="font-style:italic;font-size:15px;line-height:1.85;color:var(--color-text-primary);margin-bottom:8px">${txt}</div>
     <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
       <div style="font-size:12px;color:var(--color-text-secondary)">— ${q.author}</div>
-      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${q.tense}</span>
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px">${q.tense}</span>
       <button class="audio-btn" onclick="speak(${safeQ(q.text)},0.84,this)" style="font-size:12px">🔊 Hear it</button>
       <button class="act" onclick="renderQuote()" style="font-size:12px;padding:4px 12px;margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> New quote</button>
     </div>`;
@@ -544,7 +557,7 @@ const TIME_ORDER=['past','present','future'];
 const TIME_LABELS={past:'Past tenses',present:'Present tenses',future:'Future tenses'};
 const TIME_COLS={past:{bg:'#E6F1FB',tc:'#0C447C'},present:{bg:'#E1F5EE',tc:'#085041'},future:{bg:'#FAECE7',tc:'#712B13'}};
 function renderGloss(){
-  const cont=document.getElementById('glossCont');if(!cont)return;
+  const cont=document.getElementById('glossCont');if(!cont)return;const printBtn=document.getElementById('glossPrintBtn');if(printBtn)printBtn.disabled=!glossary.length;
   if(!gloss.length){cont.innerHTML='<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px"></i><div style="margin-bottom:8px">Nothing saved yet.</div><div style="font-size:13px">Open any tense in <strong>Tenses</strong> and click 🔖 Save. Click any time signal chip and click 🔖 Save.</div></div>';return;}
   let html=`<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">${gloss.length} item${gloss.length!==1?'s':''} saved</div>`;
   // split into tenses and signals
@@ -561,7 +574,7 @@ function renderGloss(){
           <div style="flex:1;min-width:0">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap">
               <span style="font-size:15px;font-weight:700;color:var(--color-text-primary)">${g.label}</span>
-              <span style="background:${g.bg};color:${g.tc};font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px">${g.asp.replace('-cont',' cont.')}</span>
+              <span style="background:${g.bg};color:${g.tc};font-size:11px;font-weight:600;padding:2px 8px;border-radius:8px">${g.asp.replace('-cont',' cont.')}</span>
               <button class="audio-btn" onclick="speak(${safeQ(g.label+'. '+g.formula)},0.87,this)" style="font-size:11px;padding:3px 8px">🔊 Hear</button>
             </div>
             <div style="font-family:var(--font-mono);font-size:12px;background:var(--color-background-secondary);border-radius:10px;padding:7px 11px;border-left:3px solid ${g.fl};margin-bottom:7px;line-height:1.5">${g.formula}</div>
@@ -599,7 +612,7 @@ function renderGloss(){
           <div style="flex:1;min-width:0">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap">
               <span style="font-size:15px;font-weight:700;color:${g.col}">${g.word}</span>
-              ${g.tenses.map(t=>`<span style="background:${g.bg};color:${g.tc};border:0.5px solid ${g.brd};font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px">${t}</span>`).join('')}
+              ${g.tenses.map(t=>`<span style="background:${g.bg};color:${g.tc};border:0.5px solid ${g.brd};font-size:11px;font-weight:600;padding:2px 8px;border-radius:8px">${t}</span>`).join('')}
               <button class="audio-btn" onclick="speak(${safeQ(g.word)},0.87,this)" style="font-size:11px;padding:3px 8px">🔊 Hear</button>
             </div>
             <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:6px">${g.why}</div>
@@ -655,7 +668,7 @@ function selTenseCard(a){
   detail.innerHTML=`
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
       <span style="font-size:18px;font-weight:700;color:${d.col}">${d.label}</span>
-      <span style="background:${d.bg};color:${d.col};font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;border:0.5px solid ${td.border}">${ASPECT_LABELS[a]}</span>
+      <span style="background:${d.bg};color:${d.col};font-size:12px;font-weight:600;padding:3px 10px;border-radius:8px;border:0.5px solid ${td.border}">${ASPECT_LABELS[a]}</span>
       <button class="save-btn${saved?' saved':''}" data-gid="${gid}" style="margin-left:auto" onclick="toggleGloss('${gid}',this)">${saved?'🔖 Saved':'🔖 Save'}</button>
     </div>
     <div class="lbl">Formula</div>
@@ -663,7 +676,7 @@ function selTenseCard(a){
     <div class="lbl">When to use it</div>
     <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:8px">${d.desc}</p>
     <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
-      ${d.uses.map(u=>`<span style="background:${d.bg};color:${d.col};font-size:12px;padding:3px 10px;border-radius:20px;border:0.5px solid ${td.border}">${u}</span>`).join('')}
+      ${d.uses.map(u=>`<span style="background:${d.bg};color:${d.col};font-size:12px;padding:3px 10px;border-radius:8px;border:0.5px solid ${td.border}">${u}</span>`).join('')}
     </div>
     <div class="lbl">Time signals — click any to explore</div>
     <div style="margin-bottom:10px">${d.signals.map(s=>`<span class="signal" style="background:${d.bg};color:${d.col};border-color:${td.border}" onclick="showSignalInline(${safeQ(s)},this,${safeQ(curTime)})">${s}</span>`).join('')}</div>
@@ -700,7 +713,7 @@ function showSignalInline(sig,el,timeCtx){
       <div style="flex:1;min-width:0">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap">
           <span style="font-size:15px;font-weight:700;color:${td.color}">${found.word}</span>
-          ${found.tenses.map(t=>`<span style="background:${td.light};color:${td.text};border:0.5px solid ${td.border};font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600">${t}</span>`).join('')}
+          ${found.tenses.map(t=>`<span style="background:${td.light};color:${td.text};border:0.5px solid ${td.border};font-size:11px;padding:2px 8px;border-radius:8px;font-weight:600">${t}</span>`).join('')}
           <button class="audio-btn" onclick="speak(${safeQ(found.word)},0.87,this)" style="font-size:11px;padding:3px 8px">🔊 Hear</button>
         </div>
         <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:8px">${found.why}</div>
@@ -731,7 +744,7 @@ function renderSigList(){
     <div class="sig-card" id="sc_${i}" onclick="toggleSigCard(${i})">
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
         <span style="font-size:16px;font-weight:700;color:${td.color}">${s.word}</span>
-        ${s.tenses.map(t=>`<span style="background:${td.light};color:${td.text};font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;border:0.5px solid ${td.border}">${t}</span>`).join('')}
+        ${s.tenses.map(t=>`<span style="background:${td.light};color:${td.text};font-size:11px;font-weight:600;padding:2px 8px;border-radius:8px;border:0.5px solid ${td.border}">${t}</span>`).join('')}
         <button class="audio-btn" style="margin-left:auto;font-size:11px;padding:3px 8px" onclick="event.stopPropagation();speak(${safeQ(s.word)},0.87,this)">🔊 Hear</button>
         <i class="ti ti-chevron-down" id="sarr_${i}" style="font-size:14px;color:var(--color-text-secondary);transition:transform .2s"></i>
       </div>
@@ -813,7 +826,7 @@ function renderGap(){
   const sh=item.s.replace('___',`<span id="blankSpan" style="display:inline-block;min-width:90px;border-bottom:2px solid #185FA5;color:#185FA5;font-weight:600;text-align:center;padding:0 4px">___</span>`);
   cont.innerHTML=`<div class="card">
     <div class="ex-hdr">
-      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.tense}</span>
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px">${item.tense}</span>
       <span style="font-size:13px;color:var(--color-text-secondary)">${gIdx+1}/${gItems.length} · Score: ${gScore}/${gTotal}</span>
       <button class="act" onclick="startGap()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
     </div>
@@ -977,7 +990,7 @@ function renderErr(){
   const opts=[{label:item.a,val:'a'},{label:item.b,val:'b'}].sort(()=>Math.random()-.5);window._eO=opts;
   cont.innerHTML=`<div class="card">
     <div class="ex-hdr">
-      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.tense}</span>
+      <span style="background:#E6F1FB;color:#0C447C;font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px">${item.tense}</span>
       <span style="font-size:13px;color:var(--color-text-secondary)">${eIdx+1}/${eItems.length} · Score: ${eScore}/${eTotal}</span>
       <button class="act" onclick="startErr()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
     </div>
@@ -1055,12 +1068,12 @@ function detailHeader(it,gid){
   const sv=isGlossed(gid);
   return`<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
     <span style="font-size:18px;font-weight:700;color:${it.tc}">${it.label}</span>
-    <span style="background:${it.bg};color:${it.tc};font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;border:0.5px solid ${it.brd}">${it.sub||''}</span>
+    <span style="background:${it.bg};color:${it.tc};font-size:12px;font-weight:600;padding:3px 10px;border-radius:8px;border:0.5px solid ${it.brd}">${it.sub||''}</span>
     <button class="audio-btn" onclick="speak(${safeQ(it.label)},0.87,this)">🔊 Hear</button>
     <button class="save-btn${sv?' saved':''}" data-gid="${gid}" style="margin-left:auto" onclick="toggleExtraGloss('${gid}',${safeQ(it.label)},${safeQ(it.formula||it.desc||'')},${safeQ(it.tip||'')},this)">${sv?'🔖 Saved':'🔖 Save'}</button>
   </div>`;
 }
-function useBadges(uses,bg,tc,brd){return`<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">${uses.map(u=>`<span style="background:${bg};color:${tc};font-size:12px;padding:3px 10px;border-radius:20px;border:0.5px solid ${brd}">${u}</span>`).join('')}</div>`;}
+function useBadges(uses,bg,tc,brd){return`<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">${uses.map(u=>`<span style="background:${bg};color:${tc};font-size:12px;padding:3px 10px;border-radius:8px;border:0.5px solid ${brd}">${u}</span>`).join('')}</div>`;}
 
 // ── EXTRA GLOSSARY (for new sections) ─────────────────────────
 function toggleExtraGloss(gid,label,formula,tip,btn){
@@ -1302,7 +1315,7 @@ function stativeSelCard(i){
   const it=STATIVE_CATS[i];const gid='stative::'+it.id;
   det.innerHTML=detailHeader(it,gid)+
     `<div class="lbl">Verbs in this group</div>
-    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">${it.verbs.map(v=>`<span style="background:${it.bg};color:${it.tc};border:0.5px solid ${it.brd};font-size:13px;font-weight:600;padding:4px 12px;border-radius:20px">${v}</span>`).join('')}</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">${it.verbs.map(v=>`<span style="background:${it.bg};color:${it.tc};border:0.5px solid ${it.brd};font-size:13px;font-weight:600;padding:4px 12px;border-radius:8px">${v}</span>`).join('')}</div>
     <div class="lbl">Examples</div>`+exRow(it.ex_pos,it.ex_neg,it.tc,it.brd)+
     `<div class="tip-box"><i class="ti ti-bulb" style="font-size:16px;flex-shrink:0;color:${it.tc}"></i><span>${it.tip}</span></div>`;
   det.classList.add('on');det.scrollIntoView({behavior:'smooth',block:'nearest'});
@@ -1385,10 +1398,10 @@ function renderNarrative(){
     <div class="card">
       <div class="lbl" style="margin-top:0">Colour key — click any sentence to see its role</div>
       <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px">
-        <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:600;padding:3px 11px;border-radius:20px;border:0.5px solid #AFA9EC">Past simple</span>
-        <span style="background:#FAEEDA;color:#633806;font-size:12px;font-weight:600;padding:3px 11px;border-radius:20px;border:0.5px solid #E8C080">Past continuous</span>
-        <span style="background:#E1F5EE;color:#085041;font-size:12px;font-weight:600;padding:3px 11px;border-radius:20px;border:0.5px solid #5DCAA5">Past perfect</span>
-        <span style="background:#FBEAF0;color:#72243E;font-size:12px;font-weight:600;padding:3px 11px;border-radius:20px;border:0.5px solid #ED93B1">Past perfect continuous</span>
+        <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:600;padding:3px 11px;border-radius:8px;border:0.5px solid #AFA9EC">Past simple</span>
+        <span style="background:#FAEEDA;color:#633806;font-size:12px;font-weight:600;padding:3px 11px;border-radius:8px;border:0.5px solid #E8C080">Past continuous</span>
+        <span style="background:#E1F5EE;color:#085041;font-size:12px;font-weight:600;padding:3px 11px;border-radius:8px;border:0.5px solid #5DCAA5">Past perfect</span>
+        <span style="background:#FBEAF0;color:#72243E;font-size:12px;font-weight:600;padding:3px 11px;border-radius:8px;border:0.5px solid #ED93B1">Past perfect continuous</span>
       </div>
       <p style="font-size:16px;line-height:2.4;color:var(--color-text-primary)">
         ${NARRATIVE_TEXT.map((seg,i)=>`<span class="nar-seg" id="ns_${i}" style="background:${seg.bg};color:${seg.col};border-radius:6px;padding:2px 6px;cursor:pointer;border:1.5px solid ${seg.bg};transition:all .15s;margin:1px;display:inline" onclick="narSel2(${i})">${seg.s}</span>`).join(' ')}
@@ -1409,7 +1422,7 @@ function narSel2(i){
         <span style="font-size:15px;font-style:italic;color:${seg.col}">"${seg.s}"</span>
         <button class="audio-btn" onclick="speak(${safeQ(seg.s)},0.84,this)" style="font-size:11px;padding:2px 7px">🔊</button>
       </div>
-      <span style="background:var(--color-background-primary);color:${seg.col};font-size:12px;font-weight:700;padding:2px 9px;border-radius:20px;display:inline-block;margin-bottom:6px">${seg.label}</span>
+      <span style="background:var(--color-background-primary);color:${seg.col};font-size:12px;font-weight:700;padding:2px 9px;border-radius:8px;display:inline-block;margin-bottom:6px">${seg.label}</span>
       <div style="font-size:13px;color:${seg.col};line-height:1.6">${seg.note}</div>
     </div>`;
 }

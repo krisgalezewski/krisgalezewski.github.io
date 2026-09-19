@@ -3,27 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ev-theme')||'dark')}catch(e){}</script>
 <title>English word formation</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lessons/assets/lesson-theme.css">
+<script src="/lessons/assets/lesson-shared.js"></script>
 <style>
 h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .w{padding:1.5rem}
 .nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
-.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nt{padding:7px 15px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
 .nt:hover{background:var(--color-background-secondary)}
 .nt.on{color:#fff;border-color:transparent;font-weight:500}
 .n0.on{background:#534AB7}.n1.on{background:#0F6E56}.n2.on{background:#185FA5}.n3.on{background:#854F0B}.n4.on{background:#993C1D}.n5.on{background:#72243E}.n6.on{background:#3B6D11}.n7.on{background:#712B13}.n8.on{background:#2d7a6b}.n9.on{background:#7a3b2e}
 .pan{display:none}.pan.on{display:block}
-.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:.9rem}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:.9rem}
 .lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
 .lbl:first-child{margin-top:0}
 .tip-box{background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;font-size:13px;color:var(--color-text-secondary);display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px}
 .warn-box{background:#FAEEDA;border-radius:14px;padding:10px 14px;font-size:13px;color:#633806;display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px;border:0.5px solid #E8C080}
-.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act{font-size:13px;padding:7px 16px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
 .act:hover{background:var(--color-background-secondary)}
-.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #534AB7;background:#534AB7;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn{padding:9px 22px;border-radius:8px;border:0.5px solid #534AB7;background:#534AB7;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
 .check-btn:hover{background:#3C3489}
 .check-btn:disabled{opacity:.4;cursor:default}
 .gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
@@ -35,15 +42,15 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .fb-ok{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
 .fb-no{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
 .ex-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
-.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
-.pb{height:5px;border-radius:20px;background:#534AB7;transition:width .3s}
+.pb-w{background:var(--color-background-secondary);border-radius:8px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:8px;background:#534AB7;transition:width .3s}
 .mi{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
 .mi:hover{background:var(--color-background-secondary)}
 .mi.pk{border-color:#534AB7;background:#EEEDFE;color:#3C3489}
 .mi.mt{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
 .mi.bd{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
-.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #534AB7}
-.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
+.quote-box{background:var(--color-background-secondary);border-radius:10px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #534AB7}
+.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
 .audio-btn:hover{background:#EEEDFE;border-color:#AFA9EC;color:#534AB7}
 .audio-btn.playing{background:#EEEDFE;border-color:#534AB7;color:#534AB7;font-weight:500}
 .acc-hdr{display:flex;align-items:center;gap:8px;padding:11px 15px;cursor:pointer;border-radius:14px;transition:all .15s}
@@ -51,11 +58,11 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .acc-body{display:none;padding:0 15px 14px;font-size:14px;color:var(--color-text-secondary);line-height:1.75}
 .acc-body.on{display:block}
 .sub-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
-.st{padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.st{padding:6px 14px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
 .st:hover{background:var(--color-background-secondary)}
 .st.on{background:#534AB7;color:#fff;border-color:#534AB7;font-weight:500}
 .spanel{display:none}.spanel.on{display:block}
-.chip{display:inline-block;font-size:12.5px;padding:3px 11px;border-radius:20px;margin:2px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);background:var(--color-background-secondary);cursor:pointer;transition:all .15s}
+.chip{display:inline-block;font-size:12.5px;padding:3px 11px;border-radius:8px;margin:2px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);background:var(--color-background-secondary);cursor:pointer;transition:all .15s}
 .chip:hover{background:#EEEDFE;border-color:#AFA9EC;color:#3C3489}
 .chip.on{background:#EEEDFE;border-color:#534AB7;color:#3C3489;font-weight:500}
 .eyebrow{font-size:11px;font-weight:500;color:#534AB7;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
@@ -79,8 +86,8 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .confuse-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
 .confuse-box{border-radius:14px;padding:11px 14px;font-size:13.5px;line-height:1.6}
 /* WF */
-.wf-root{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:.9rem}
-.pos-badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;display:inline-block;margin-right:4px;margin-bottom:3px}
+.wf-root{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:.9rem}
+.pos-badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:8px;display:inline-block;margin-right:4px;margin-bottom:3px}
 /* srch */
 .srch{width:100%;padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:14px;font-family:var(--font-sans);margin-bottom:10px}
 .srch:focus{outline:none;border-color:#AFA9EC}
@@ -88,6 +95,7 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 </style>
 </head>
 <body>
+<script>EVLesson.initHeader({category:'Vocabulary'});</script>
 <h2 class="sr-only">English word formation — interactive lesson</h2>
 <div class="w">
 <div class="nav">
@@ -209,6 +217,11 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
   <div class="eyebrow">Word formation</div>
   <div class="lesson-h">My glossary</div>
   <div class="lesson-sub">Word families you have saved — browse the Word families tab and click 🔖 Save on any family</div>
+    <div class="ev-gloss-actions">
+    <button class="ev-gloss-print-btn" id="glossPrintBtn" onclick="EVLesson.printGlossary({title:'My word formation glossary', containerId:'#glossCont'})" disabled>
+      <i class="ti ti-printer" aria-hidden="true"></i> Print / Save as PDF
+    </button>
+  </div>
   <div id="glossCont"></div>
 </div>
 
@@ -232,7 +245,7 @@ function toggleWFGloss(r){
 }
 function renderGloss(){
   wfGloss=gloss.filter(g=>g.type==='wf').map(g=>g.key);
-  const cont=document.getElementById('glossCont');if(!cont)return;
+  const cont=document.getElementById('glossCont');if(!cont)return;const printBtn=document.getElementById('glossPrintBtn');if(printBtn)printBtn.disabled=!glossary.length;
   if(!gloss.length){
     cont.innerHTML='<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px"></i><div style="margin-bottom:8px">Nothing saved yet.</div><div style="font-size:13px">Click \u{1F516} Save in the Parts of speech, Prefixes, Suffixes, or Word families tabs.</div></div>';
     return;
@@ -247,7 +260,7 @@ function renderGloss(){
         +'<div style="flex:1;min-width:0">'
         +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap">'
         +'<span style="font-size:15px;font-weight:700;color:var(--color-text-primary)">'+g.label+'</span>'
-        +'<span style="background:'+tc.bg+';color:'+tc.tc+';font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px">'+(TYPE_LABEL[g.type]||g.type)+'</span>'
+        +'<span style="background:'+tc.bg+';color:'+tc.tc+';font-size:11px;font-weight:600;padding:2px 8px;border-radius:8px">'+(TYPE_LABEL[g.type]||g.type)+'</span>'
         +'<button class="audio-btn" onclick="speak('+safeQ(g.label)+',0.87,this)" style="font-size:11px;padding:3px 8px">\uD83D\uDD0A Hear</button>'
         +'</div>'
         +'<div style="font-size:13px;color:var(--color-text-secondary);line-height:1.65">'+g.detail+'</div>'
@@ -458,7 +471,7 @@ function buildPOS(){
   document.getElementById('posCards').innerHTML=POS_DATA.map((p,i)=>`
     <div style="border:0.5px solid var(--color-border-tertiary);border-radius:14px;margin-bottom:7px;overflow:hidden">
       <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;cursor:pointer" onclick="togglePOSacc(${i})">
-        <span style="background:${POS_COLS[p.id].bg};color:${POS_COLS[p.id].tc};font-size:13px;font-weight:700;padding:3px 11px;border-radius:20px;border:0.5px solid ${POS_COLS[p.id].brd}">${p.label} <span style="opacity:.6;font-size:11px">(${p.abbr})</span></span>
+        <span style="background:${POS_COLS[p.id].bg};color:${POS_COLS[p.id].tc};font-size:13px;font-weight:700;padding:3px 11px;border-radius:8px;border:0.5px solid ${POS_COLS[p.id].brd}">${p.label} <span style="opacity:.6;font-size:11px">(${p.abbr})</span></span>
         <button class="act" data-poskey="${p.id}" style="font-size:12px;padding:3px 10px;margin-left:auto" onclick="event.stopPropagation();savePOS('${p.id}','${p.label}','${p.abbr}')">${isGlossed('pos',p.id)?'🔖 Saved':'🔖 Save'}</button>
         <i class="ti ti-chevron-down" id="posarr_${i}" style="font-size:15px;color:var(--color-text-secondary);margin-left:8px;transition:transform .2s"></i>
       </div>
@@ -476,7 +489,7 @@ function buildPOS(){
 function renderSent(idx){
   const s=SENT_EXAMPLES[idx];
   document.getElementById('sentDisp').innerHTML=`<div style="font-size:16px;line-height:2.3;margin-bottom:4px">${s.words.map((w,wi)=>`<span class="sent-word" id="sw_${idx}_${wi}" style="background:${POS_COLS[w.pos].bg};color:${POS_COLS[w.pos].tc}" onclick="clickSentWord(${idx},${wi})">${w.w}</span>`).join(' ')}</div>
-  <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:6px">${Object.entries(POS_COLS).map(([k,v])=>`<span style="background:${v.bg};color:${v.tc};font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:20px;border:0.5px solid ${v.brd}">${POS_DATA.find(p=>p.id===k)?.abbr||k}</span>`).join('')}</div>`;
+  <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:6px">${Object.entries(POS_COLS).map(([k,v])=>`<span style="background:${v.bg};color:${v.tc};font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:8px;border:0.5px solid ${v.brd}">${POS_DATA.find(p=>p.id===k)?.abbr||k}</span>`).join('')}</div>`;
 }
 function switchSent(idx,el){document.querySelectorAll('#sentTabs .st').forEach(t=>t.classList.remove('on'));el.classList.add('on');activeSentWord=null;document.getElementById('posPopup').classList.remove('on');renderSent(idx);}
 function clickSentWord(si,wi){
@@ -486,7 +499,7 @@ function clickSentWord(si,wi){
   activeSentWord=`${si}_${wi}`;
   document.getElementById(`sw_${si}_${wi}`).classList.add('active');
   const pop=document.getElementById('posPopup');
-  pop.innerHTML=`<span style="background:${c.bg};color:${c.tc};font-size:12px;font-weight:700;padding:2px 9px;border-radius:20px;margin-right:8px;border:0.5px solid ${c.brd}">${POS_DATA.find(p=>p.id===w.pos)?.label||w.pos}</span><strong style="color:var(--color-text-primary)">"${w.w}"</strong> — ${w.info}`;
+  pop.innerHTML=`<span style="background:${c.bg};color:${c.tc};font-size:12px;font-weight:700;padding:2px 9px;border-radius:8px;margin-right:8px;border:0.5px solid ${c.brd}">${POS_DATA.find(p=>p.id===w.pos)?.label||w.pos}</span><strong style="color:var(--color-text-primary)">"${w.w}"</strong> — ${w.info}`;
   pop.classList.add('on');
 }
 function togglePOSacc(i){const b=document.getElementById('posacc_'+i),a=document.getElementById('posarr_'+i);const op=b.style.display==='block';b.style.display=op?'none':'block';a.style.transform=op?'':'rotate(180deg)';}
@@ -611,7 +624,7 @@ function buildPrefixes(){
   document.getElementById('prefixContent').innerHTML=PREFIX_CATS.map((cat,ci)=>`
     <div class="card" style="margin-bottom:.75rem;padding:0">
       <div class="acc-hdr" onclick="toggleAcc('prex',${ci})">
-        <span style="background:${cat.col.bg};color:${cat.col.tc};font-size:13px;font-weight:600;padding:4px 12px;border-radius:20px;border:0.5px solid ${cat.col.brd}">${cat.name}</span>
+        <span style="background:${cat.col.bg};color:${cat.col.tc};font-size:13px;font-weight:600;padding:4px 12px;border-radius:8px;border:0.5px solid ${cat.col.brd}">${cat.name}</span>
         <i class="ti ti-chevron-down" id="prexarr_${ci}" style="font-size:16px;color:var(--color-text-secondary);margin-left:auto;transition:transform .2s"></i>
       </div>
       <div class="acc-body" id="prexacc_${ci}" style="padding:0 15px 15px">
@@ -952,7 +965,7 @@ function renderPSQ(){
   const sh=item.s.replace('___',`<span style="display:inline-block;min-width:90px;border-bottom:2px solid #534AB7;color:#534AB7;font-weight:500;text-align:center;padding:0 4px" id="psqBlank">___</span>`);
   document.getElementById('psqCont').innerHTML=`<div class="card">
     <div class="ex-hdr">
-      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px">${item.type}</span>
       <span style="font-size:13px;color:var(--color-text-secondary)">${psqIdx+1}/${psqItems.length} · Score: ${psqScore}/${psqTotal}</span>
       <button class="act" onclick="startPSQ()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
     </div>
@@ -1010,7 +1023,7 @@ function renderGap(){
   const sh=item.s.replace('___',`<span style="display:inline-block;min-width:110px;border-bottom:2px solid #534AB7;color:#534AB7;font-weight:500;text-align:center;padding:0 4px" id="blankSpan">___</span>`);
   document.getElementById('gapCont').innerHTML=`<div class="card">
     <div class="ex-hdr">
-      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px">${item.type}</span>
       <span style="font-size:13px;color:var(--color-text-secondary)">${gIdx+1}/${gItems.length} · Score: ${gScore}/${gTotal}</span>
       <button class="act" onclick="startGap()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
     </div>
@@ -1098,7 +1111,7 @@ function renderErr(){
   const opts=[{label:item.a,val:'a'},{label:item.b,val:'b'}].sort(()=>Math.random()-.5);window._eO=opts;
   document.getElementById('errCont').innerHTML=`<div class="card">
     <div class="ex-hdr">
-      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">${item.type}</span>
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px">${item.type}</span>
       <span style="font-size:13px;color:var(--color-text-secondary)">${eIdx+1}/${eItems.length} · Score: ${eScore}/${eTotal}</span>
       <button class="act" onclick="startErr()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
     </div>

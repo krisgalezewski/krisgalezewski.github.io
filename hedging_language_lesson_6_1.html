@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ev-theme')||'dark')}catch(e){}</script>
+<title>Hedging language — English Voiced with Kris</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lessons/assets/lesson-theme.css">
+<script src="/lessons/assets/lesson-shared.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 <style>
@@ -10,26 +24,26 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .lesson-h{font-size:26px;font-weight:500;line-height:1.25;margin-bottom:4px}
 .lesson-sub{font-size:14px;color:var(--color-text-secondary)}
 .nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
-.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
+.nt{padding:7px 15px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
 .nt:hover{background:var(--color-background-secondary)}
 .nt.on{color:#fff;border-color:transparent;font-weight:500}
 .n0.on{background:#534AB7}.n1.on{background:#0F6E56}.n2.on{background:#185FA5}.n3.on{background:#854F0B}.n4.on{background:#993C1D}.n5.on{background:#72243E}.n6.on{background:#3B6D11}
 .pan{display:none}.pan.on{display:block}
-.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:1rem}
 .lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
 .lbl:first-child{margin-top:0}
-.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #7F77DD}
-.chip{display:inline-block;font-size:12px;padding:3px 10px;border-radius:20px;margin:2px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);cursor:pointer;background:var(--color-background-primary);transition:all .15s}
+.quote-box{background:var(--color-background-secondary);border-radius:10px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #7F77DD}
+.chip{display:inline-block;font-size:12px;padding:3px 10px;border-radius:8px;margin:2px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);cursor:pointer;background:var(--color-background-primary);transition:all .15s}
 .chip:hover,.chip.on{background:#EEEDFE;border-color:#AFA9EC;color:#3C3489;font-weight:500}
 .srch{width:100%;padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:14px;margin-bottom:10px}
 .srch:focus{outline:none;border-color:#7F77DD}
 .tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px;margin-bottom:1rem}
-.tool-card{border-radius:16px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:12px 14px;cursor:pointer;transition:all .15s}
+.tool-card{border-radius:10px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:12px 14px;cursor:pointer;transition:all .15s}
 .tool-card:hover{background:var(--color-background-secondary)}
 .tool-card.sel{border-color:#AFA9EC;background:#EEEDFE}
-.detail-box{border-radius:20px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:1.25rem 1.5rem;margin-bottom:1rem;display:none}
+.detail-box{border-radius:8px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:1.25rem 1.5rem;margin-bottom:1rem;display:none}
 .detail-box.on{display:block}
-.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act{font-size:13px;padding:7px 16px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
 .act:hover{background:var(--color-background-secondary)}
 .mi{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
 .mi:hover:not([disabled]){background:var(--color-background-secondary)}
@@ -42,21 +56,23 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .gap-opt.gok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:500;cursor:default;pointer-events:none}
 .gap-opt.gbad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F;cursor:default;pointer-events:none}
 .gap-opt.gdim{opacity:.4;cursor:default;pointer-events:none}
-.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #7F77DD;background:#534AB7;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn{padding:9px 22px;border-radius:8px;border:0.5px solid #7F77DD;background:#534AB7;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
 .check-btn:hover{background:#3C3489}
 .check-btn:disabled{opacity:.4;cursor:default}
 .fb-ok{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
 .fb-no{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
 .fb-ok2{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6;display:none}
 .fb-no2{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6;display:none}
-.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
-.pb{height:5px;border-radius:20px;background:#534AB7;transition:width .3s}
+.pb-w{background:var(--color-background-secondary);border-radius:8px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:8px;background:#534AB7;transition:width .3s}
 .para-input{width:100%;padding:10px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:14px;resize:vertical;min-height:90px;font-family:var(--font-sans);line-height:1.6}
 .para-input:focus{outline:none;border-color:#7F77DD}
 .tx-ok{background:#EAF3DE;border-color:#C0DD97}
 .tx-no{background:#FCEBEB;border-color:#F7C1C1}
 </style>
-
+</head>
+<body>
+<script>EVLesson.initHeader({category:'Practical use of English'});</script>
 <div class="w">
 <h2 class="sr-only">Hedging language — interactive lesson covering grammatical and lexical hedging tools, with browse, gap-fill, transformation, matching, and paraphrasing activities.</h2>
 
@@ -128,6 +144,11 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 
 <div id="p6" class="pan">
   <div class="lesson-title"><div class="lesson-eyebrow">Hedging language</div><div class="lesson-h">My glossary</div><div class="lesson-sub">Saved hedging tools for review</div></div>
+    <div class="ev-gloss-actions">
+    <button class="ev-gloss-print-btn" id="glossPrintBtn" onclick="EVLesson.printGlossary({title:'My hedging glossary', containerId:'#glossCont'})" disabled>
+      <i class="ti ti-printer" aria-hidden="true"></i> Print / Save as PDF
+    </button>
+  </div>
   <div id="glossCont"></div>
 </div>
 </div>
@@ -316,7 +337,7 @@ function renderQuote(){
     <div style="font-family:var(--font-serif);font-size:15px;line-height:1.8;color:var(--color-text-primary);margin-bottom:8px">${txt}</div>
     <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">— ${q.author}</div>
     <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">Hedge: ${q.hedge}</span>
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px">Hedge: ${q.hedge}</span>
       <button class="act" onclick="renderQuote()" style="font-size:12px;padding:4px 12px"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> New quote</button>
     </div>`;
 }
@@ -340,7 +361,7 @@ function renderBrowse(){
     return`<div class="tool-card${selTool===t.id?' sel':''}" id="tc_${t.id}" onclick="selT('${t.id}')">
       <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px">
         <span style="font-size:14px;font-weight:500;font-style:italic;flex:1">${t.form}</span>
-        <span style="background:${c.bg};color:${c.tc};font-size:11px;font-weight:500;padding:2px 7px;border-radius:20px;white-space:nowrap">${c.label}</span>
+        <span style="background:${c.bg};color:${c.tc};font-size:11px;font-weight:500;padding:2px 7px;border-radius:8px;white-space:nowrap">${c.label}</span>
         <span style="color:${saved?'#854F0B':'var(--color-text-secondary)'};font-size:15px;cursor:pointer;flex-shrink:0" onclick="event.stopPropagation();toggleGloss('${t.id}')"><i class="ti ti-bookmark" aria-label="${saved?'Remove':'Save'}"></i></span>
       </div>
       <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:5px">${t.fn}</div>
@@ -362,9 +383,9 @@ function selT(id){
   detail.innerHTML=`
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
       <span style="font-size:16px;font-weight:500;font-style:italic">${t.form}</span>
-      <span style="background:${c.bg};color:${c.tc};font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px;border:0.5px solid ${c.brd}">${c.label}</span>
-      <span style="background:${strBg[t.strength]||'#EEEDFE'};color:${strTc[t.strength]||'#3C3489'};font-size:11px;padding:2px 8px;border-radius:20px">Certainty: ${t.strength}</span>
-      <span style="background:${t.register.includes('formal')?'#E6F1FB':'#F1EFE8'};color:${t.register.includes('formal')?'#0C447C':'#444441'};font-size:11px;padding:2px 8px;border-radius:20px">${t.register}</span>
+      <span style="background:${c.bg};color:${c.tc};font-size:12px;font-weight:500;padding:3px 10px;border-radius:8px;border:0.5px solid ${c.brd}">${c.label}</span>
+      <span style="background:${strBg[t.strength]||'#EEEDFE'};color:${strTc[t.strength]||'#3C3489'};font-size:11px;padding:2px 8px;border-radius:8px">Certainty: ${t.strength}</span>
+      <span style="background:${t.register.includes('formal')?'#E6F1FB':'#F1EFE8'};color:${t.register.includes('formal')?'#0C447C':'#444441'};font-size:11px;padding:2px 8px;border-radius:8px">${t.register}</span>
       <button class="act" id="detailSaveBtn" style="margin-left:auto;font-size:12px" onclick="toggleGloss('${id}');this.innerHTML=glossary.includes('${id}')?'<i class=\\'ti ti-bookmark\\' aria-hidden=\\'true\\'></i> Saved':'<i class=\\'ti ti-bookmark\\' aria-hidden=\\'true\\'></i> Save'">${saved?'<i class="ti ti-bookmark" aria-hidden="true"></i> Saved':'<i class="ti ti-bookmark" aria-hidden="true"></i> Save'}</button>
     </div>
     <div class="lbl">Function</div><p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:8px">${t.fn}</p>
@@ -372,7 +393,7 @@ function selT(id){
     <div class="lbl">Usage note</div><div style="font-size:13px;color:var(--color-text-secondary);background:var(--color-background-secondary);border-radius:12px;padding:8px 12px;margin-bottom:10px">${t.note}</div>
     <div class="lbl">Examples</div>
     <div style="display:flex;flex-direction:column;gap:7px">
-      ${t.ex.map(e=>`<div style="background:var(--color-background-secondary);border-radius:12px;padding:8px 13px;font-size:14px;font-style:italic;color:var(--color-text-secondary);display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="flex:1;line-height:1.6">${e}</span><button onclick="hedgeSpeak(${safeQ(e)},this)" style="flex-shrink:0;padding:3px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:12px;color:var(--color-text-secondary);transition:all .15s;display:inline-flex;align-items:center;gap:4px" onmouseover="this.style.background='#EEEDFE';this.style.color='#534AB7'" onmouseout="if(!this.classList.contains('hspk-on')){this.style.background='';this.style.color=''}">🔊</button></div>`).join('')}
+      ${t.ex.map(e=>`<div style="background:var(--color-background-secondary);border-radius:12px;padding:8px 13px;font-size:14px;font-style:italic;color:var(--color-text-secondary);display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="flex:1;line-height:1.6">${e}</span><button onclick="hedgeSpeak(${safeQ(e)},this)" style="flex-shrink:0;padding:3px 10px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:12px;color:var(--color-text-secondary);transition:all .15s;display:inline-flex;align-items:center;gap:4px" onmouseover="this.style.background='#EEEDFE';this.style.color='#534AB7'" onmouseout="if(!this.classList.contains('hspk-on')){this.style.background='';this.style.color=''}">🔊</button></div>`).join('')}
     </div>`;
   detail.classList.add('on');detail.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
@@ -390,7 +411,7 @@ function removeFromGloss(id){
   renderGloss();
 }
 function renderGloss(){
-  const cont=document.getElementById('glossCont');
+  const cont=document.getElementById('glossCont');const printBtn=document.getElementById('glossPrintBtn');if(printBtn)printBtn.disabled=!glossary.length;
   if(!glossary.length){cont.innerHTML=`<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" aria-hidden="true" style="font-size:28px;margin-bottom:10px;display:block;color:#AFA9EC"></i><div style="font-size:14px">No tools saved yet. Browse and tap the bookmark icon to save them here.</div></div>`;return;}
   cont.innerHTML=`<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">${glossary.length} hedging tool${glossary.length!==1?'s':''} saved</div>`+glossary.map(id=>{
     const t=TOOLS.find(x=>x.id===id);const c=cm(t.cat);
@@ -399,14 +420,14 @@ function renderGloss(){
         <div style="flex:1">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
             <span style="font-size:14px;font-weight:500;font-style:italic">${t.form}</span>
-            <span style="background:${c.bg};color:${c.tc};font-size:11px;font-weight:500;padding:2px 7px;border-radius:20px">${c.label}</span>
+            <span style="background:${c.bg};color:${c.tc};font-size:11px;font-weight:500;padding:2px 7px;border-radius:8px">${c.label}</span>
           </div>
           <div style="font-size:13px;color:var(--color-text-secondary)">${t.fn}</div>
         </div>
         <button class="act" style="font-size:12px;flex-shrink:0" title="Remove from glossary" onclick="removeFromGloss('${id}')"><i class="ti ti-x" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i></button>
       </div>
       <div style="display:flex;flex-direction:column;gap:6px">
-        ${t.ex.map(e=>`<div style="background:var(--color-background-secondary);border-radius:12px;padding:8px 13px;font-size:13px;font-style:italic;color:var(--color-text-secondary);display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="flex:1;line-height:1.6">${e}</span><button onclick="hedgeSpeak(${safeQ(e)},this)" style="flex-shrink:0;padding:3px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:12px;color:var(--color-text-secondary);transition:all .15s" onmouseover="this.style.background='#EEEDFE';this.style.color='#534AB7'" onmouseout="if(!this.classList.contains('hspk-on')){this.style.background='';this.style.color=''}">🔊</button></div>`).join('')}
+        ${t.ex.map(e=>`<div style="background:var(--color-background-secondary);border-radius:12px;padding:8px 13px;font-size:13px;font-style:italic;color:var(--color-text-secondary);display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="flex:1;line-height:1.6">${e}</span><button onclick="hedgeSpeak(${safeQ(e)},this)" style="flex-shrink:0;padding:3px 10px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:12px;color:var(--color-text-secondary);transition:all .15s" onmouseover="this.style.background='#EEEDFE';this.style.color='#534AB7'" onmouseout="if(!this.classList.contains('hspk-on')){this.style.background='';this.style.color=''}">🔊</button></div>`).join('')}
       </div>
     </div>`;
   }).join('');
@@ -536,7 +557,7 @@ function renderTrans(){
       </div>
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
         <span style="font-size:12px;color:var(--color-text-secondary)">Use this hedge:</span>
-        <span style="background:#EEEDFE;color:#3C3489;font-size:13px;font-weight:500;font-style:italic;padding:3px 11px;border-radius:20px">${item.use}</span>
+        <span style="background:#EEEDFE;color:#3C3489;font-size:13px;font-weight:500;font-style:italic;padding:3px 11px;border-radius:8px">${item.use}</span>
       </div>
       <textarea class="para-input" id="transInput" placeholder="Write your hedged sentence here…"></textarea>
       <div id="transFb" style="margin-top:6px;font-size:13px;min-height:16px"></div>
@@ -669,3 +690,5 @@ function hedgeSpeak(txt,btn){
 
 showP(0);
 </script>
+</body>
+</html>

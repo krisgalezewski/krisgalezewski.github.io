@@ -3,27 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ev-theme')||'dark')}catch(e){}</script>
 <title>Cleft Sentences — Interactive Lesson</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lessons/assets/lesson-theme.css">
+<script src="/lessons/assets/lesson-shared.js"></script>
 <style>
 h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .w{padding:1.5rem}
 .nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
-.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nt{padding:7px 15px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
 .nt:hover{background:var(--color-background-secondary)}
 .nt.on{color:#fff;border-color:transparent;font-weight:500}
 .n0.on{background:#534AB7}.n1.on{background:#0F6E56}.n2.on{background:#185FA5}.n3.on{background:#854F0B}.n4.on{background:#993C1D}.n5.on{background:#72243E}.n6.on{background:#3B6D11}.n7.on{background:#712B13}.n8.on{background:#4a3b8c}
 .pan{display:none}.pan.on{display:block}
-.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:.9rem}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:.9rem}
 .lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
 .lbl:first-child{margin-top:0}
 .tip-box{background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;font-size:13px;color:var(--color-text-secondary);display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px}
 .warn-box{background:#FAEEDA;border-radius:14px;padding:10px 14px;font-size:13px;color:#633806;display:flex;gap:8px;align-items:flex-start;line-height:1.6;margin-top:8px;border:0.5px solid #E8C080}
-.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act{font-size:13px;padding:7px 16px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
 .act:hover{background:var(--color-background-secondary)}
-.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #534AB7;background:#534AB7;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn{padding:9px 22px;border-radius:8px;border:0.5px solid #534AB7;background:#534AB7;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
 .check-btn:hover{background:#3C3489}
 .check-btn:disabled{opacity:.4;cursor:default}
 .gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
@@ -35,15 +42,15 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .fb-ok{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
 .fb-no{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
 .ex-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
-.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
-.pb{height:5px;border-radius:20px;background:#534AB7;transition:width .3s}
+.pb-w{background:var(--color-background-secondary);border-radius:8px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:8px;background:#534AB7;transition:width .3s}
 .mi{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
 .mi:hover{background:var(--color-background-secondary)}
 .mi.pk{border-color:#534AB7;background:#EEEDFE;color:#3C3489}
 .mi.mt{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
 .mi.bd{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
-.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #534AB7}
-.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
+.quote-box{background:var(--color-background-secondary);border-radius:10px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #534AB7}
+.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
 .audio-btn:hover{background:#EEEDFE;border-color:#AFA9EC;color:#534AB7}
 .audio-btn.playing{background:#EEEDFE;border-color:#534AB7;color:#534AB7;font-weight:500}
 .eyebrow{font-size:11px;font-weight:500;color:#534AB7;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
@@ -58,13 +65,13 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .type-card:hover{opacity:.85;transform:translateY(-1px)}
 .tc-name{font-size:13px;font-weight:600;margin-bottom:3px}
 .tc-sub{font-size:11px;line-height:1.4}
-.type-detail{border-radius:20px;border:0.5px solid var(--color-border-tertiary);padding:1.25rem 1.5rem;margin-bottom:1rem;display:none;background:var(--color-background-primary)}
+.type-detail{border-radius:8px;border:0.5px solid var(--color-border-tertiary);padding:1.25rem 1.5rem;margin-bottom:1rem;display:none;background:var(--color-background-primary)}
 .type-detail.on{display:block}
 /* formula */
 .formula{font-family:var(--font-mono);font-size:13px;background:var(--color-background-secondary);border-radius:14px;padding:10px 14px;border-left:3px solid;margin-bottom:6px;line-height:1.6;color:var(--color-text-primary)}
 /* examples bank */
 .cat-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
-.cf{padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:12px;cursor:pointer;transition:all .15s}
+.cf{padding:5px 12px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:12px;cursor:pointer;transition:all .15s}
 .cf:hover{background:var(--color-background-secondary)}
 .cf.on{background:#534AB7;color:#fff;border-color:#534AB7;font-weight:500}
 /* quiz opts */
@@ -83,12 +90,13 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .slot.cs{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
 .slot.ws{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
 /* glossary remove btn */
-.rm-btn{font-size:12px;padding:3px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-secondary);transition:all .15s;white-space:nowrap}
+.rm-btn{font-size:12px;padding:3px 10px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-secondary);transition:all .15s;white-space:nowrap}
 .rm-btn:hover{background:#FCEBEB;border-color:#F7C1C1;color:#791F1F}
 @media(max-width:520px){.type-grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
+<script>EVLesson.initHeader({category:'Grammar'});</script>
 <h2 class="sr-only">Cleft sentences — interactive lesson covering all six types with examples, quiz, matching game, and jigsaw exercise.</h2>
 <div class="w">
 <div class="nav">
@@ -196,6 +204,11 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
   <div class="eyebrow">Cleft sentences</div>
   <div class="lesson-h">My glossary</div>
   <div class="lesson-sub">Types you have saved — click ✕ to remove any item</div>
+    <div class="ev-gloss-actions">
+    <button class="ev-gloss-print-btn" id="glossPrintBtn" onclick="EVLesson.printGlossary({title:'My cleft sentence glossary', containerId:'#glossCont'})" disabled>
+      <i class="ti ti-printer" aria-hidden="true"></i> Print / Save as PDF
+    </button>
+  </div>
   <div id="glossCont"></div>
 </div>
 
@@ -217,7 +230,7 @@ function toggleGloss(id){
   });
 }
 function renderGloss(){
-  const cont=document.getElementById('glossCont');if(!cont)return;
+  const cont=document.getElementById('glossCont');if(!cont)return;const printBtn=document.getElementById('glossPrintBtn');if(printBtn)printBtn.disabled=!glossary.length;
   if(!gloss.length){
     cont.innerHTML='<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px"></i><div style="margin-bottom:8px">Nothing saved yet.</div><div style="font-size:13px">Open any type in <strong>Types A–Z</strong> and click 🔖 Save.</div></div>';
     return;
@@ -230,7 +243,7 @@ function renderGloss(){
           <div style="flex:1;min-width:0">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap">
               <span style="font-size:15px;font-weight:700;color:var(--color-text-primary)">${g.name}</span>
-              <span style="background:${C.bg};color:${C.tc};border:0.5px solid ${C.brd};font-size:11px;font-weight:600;padding:2px 9px;border-radius:20px">${g.short}</span>
+              <span style="background:${C.bg};color:${C.tc};border:0.5px solid ${C.brd};font-size:11px;font-weight:600;padding:2px 9px;border-radius:8px">${g.short}</span>
               <button class="audio-btn" onclick="speak(${safeQ(g.name)},0.87,this)" style="font-size:11px;padding:3px 8px">🔊 Hear</button>
             </div>
             <div style="font-family:var(--font-mono);font-size:12px;background:var(--color-background-secondary);border-radius:10px;padding:7px 11px;border-left:3px solid ${C.brd};line-height:1.55;margin-bottom:7px">${g.formula}</div>
@@ -407,7 +420,7 @@ function selectType(id){
   detail.innerHTML=`
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px">
       <span style="font-size:18px;font-weight:700;color:${C.tc}">${t.name}</span>
-      <span style="background:${C.bg};color:${C.tc};border:0.5px solid ${C.brd};font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px">${t.short}</span>
+      <span style="background:${C.bg};color:${C.tc};border:0.5px solid ${C.brd};font-size:12px;font-weight:500;padding:3px 10px;border-radius:8px">${t.short}</span>
       <button class="audio-btn" onclick="speak(${safeQ(t.name+'. '+t.formula)},0.82,this)">🔊 Hear</button>
       <button class="act" data-gid="${id}" style="font-size:12px;margin-left:auto" onclick="toggleGloss('${id}')">${saved?'🔖 Saved':'🔖 Save'}</button>
     </div>
@@ -416,7 +429,7 @@ function selectType(id){
     <div class="lbl">When to use it</div>
     <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">${t.desc}</p>
     <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
-      ${t.uses.map(u=>`<span style="background:${C.bg};color:${C.tc};font-size:12px;padding:3px 10px;border-radius:20px;border:0.5px solid ${C.brd}">${u}</span>`).join('')}
+      ${t.uses.map(u=>`<span style="background:${C.bg};color:${C.tc};font-size:12px;padding:3px 10px;border-radius:8px;border:0.5px solid ${C.brd}">${u}</span>`).join('')}
     </div>
     <div class="lbl">Tip</div>
     <div class="tip-box" style="margin-bottom:12px"><i class="ti ti-bulb" style="font-size:15px;flex-shrink:0;color:${t.fl}"></i><span>${t.tip}</span></div>
@@ -450,7 +463,7 @@ function renderExBank(cat){
     return`<div class="card" style="margin-bottom:.8rem">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
         <span style="font-size:15px;font-weight:600;color:${C.tc}">${t.name}</span>
-        <span style="background:${C.bg};color:${C.tc};border:0.5px solid ${C.brd};font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px">${t.short}</span>
+        <span style="background:${C.bg};color:${C.tc};border:0.5px solid ${C.brd};font-size:11px;font-weight:500;padding:2px 9px;border-radius:8px">${t.short}</span>
         <button class="audio-btn" style="margin-left:auto" onclick="speak(${safeQ(t.formula.replace(/<[^>]+>/g,''))},0.82,this)">🔊 Formula</button>
       </div>
       <div class="formula" style="border-color:${t.fl};margin-bottom:10px">${t.formula}</div>
@@ -675,7 +688,7 @@ function renderJig(){
     <div class="card" style="margin-bottom:12px">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
         <span style="font-size:12px;color:var(--color-text-secondary)">Cleft type:</span>
-        <span style="background:${C.bg};color:${C.tc};font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px;border:0.5px solid ${C.brd}">${item.type}</span>
+        <span style="background:${C.bg};color:${C.tc};font-size:12px;font-weight:500;padding:3px 10px;border-radius:8px;border:0.5px solid ${C.brd}">${item.type}</span>
       </div>
       <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">Click a piece from the word bank, then click a slot to place it. Click a filled slot to return the piece.</div>
       <div style="display:flex;flex-wrap:wrap;align-items:center;gap:2px;min-height:44px;margin-bottom:8px" id="jSlots">

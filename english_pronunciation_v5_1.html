@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ev-theme')||'dark')}catch(e){}</script>
+<title>English pronunciation — English Voiced with Kris</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lessons/assets/lesson-theme.css">
+<script src="/lessons/assets/lesson-shared.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 
 <style>
 h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -8,28 +22,28 @@ body{font-family:var(--font-sans);color:var(--color-text-primary);font-size:15px
 .lesson-h{font-size:24px;font-weight:500;line-height:1.25;margin-bottom:3px}
 .lesson-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:1rem}
 .nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem}
-.nt{padding:7px 13px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nt{padding:7px 13px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
 .nt:hover{background:var(--color-background-secondary)}
 .nt.on{color:#fff;border-color:transparent;font-weight:500}
 .n0.on{background:#185FA5}.n1.on{background:#0F6E56}.n2.on{background:#993C1D}.n3.on{background:#534AB7}.n4.on{background:#854F0B}.n5.on{background:#72243E}.n6.on{background:#3B6D11}.n7.on{background:#712B13}.n8.on{background:#2e6b9e}
-.save-btn{font-size:12px;padding:3px 11px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-secondary);transition:all .15s;white-space:nowrap;flex-shrink:0}
+.save-btn{font-size:12px;padding:3px 11px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-secondary);transition:all .15s;white-space:nowrap;flex-shrink:0}
 .save-btn:hover{background:#E6F1FB;border-color:#85B7EB;color:#185FA5}
 .save-btn.saved{background:#E6F1FB;border-color:#185FA5;color:#185FA5;font-weight:600}
 .pan{display:none}.pan.on{display:block}
-.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.1rem 1.4rem;margin-bottom:.9rem}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:1.1rem 1.4rem;margin-bottom:.9rem}
 .lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;margin-top:10px}
 .lbl:first-child{margin-top:0}
 .tip-box{background:var(--color-background-secondary);border-radius:12px;padding:9px 13px;font-size:14px;color:var(--color-text-secondary);margin-top:9px;display:flex;gap:8px;align-items:flex-start;line-height:1.6}
-.act{font-size:13px;padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act{font-size:13px;padding:6px 14px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
 .act:hover{background:var(--color-background-secondary)}
-.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #185FA5;background:#185FA5;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn{padding:9px 22px;border-radius:8px;border:0.5px solid #185FA5;background:#185FA5;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
 .check-btn:hover{background:#0c4577}
 .check-btn:disabled{opacity:.4;cursor:default}
-.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
+.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);transition:all .15s}
 .audio-btn:hover{background:#E6F1FB;border-color:#85B7EB;color:#185FA5}
 .audio-btn.playing{background:#E6F1FB;border-color:#185FA5;color:#185FA5;font-weight:500}
-.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:10px;overflow:hidden}
-.pb{height:5px;border-radius:20px;background:#185FA5;transition:width .3s}
+.pb-w{background:var(--color-background-secondary);border-radius:8px;height:5px;margin-bottom:10px;overflow:hidden}
+.pb{height:5px;border-radius:8px;background:#185FA5;transition:width .3s}
 .fb-ok{background:#EAF3DE;color:#27500A;font-size:14px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
 .fb-no{background:#FCEBEB;color:#791F1F;font-size:14px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
 .gap-opt{display:block;width:100%;padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:15px;text-align:left;cursor:pointer;transition:all .15s;color:var(--color-text-primary);line-height:1.5}
@@ -61,10 +75,10 @@ body{font-family:var(--font-sans);color:var(--color-text-primary);font-size:15px
 .ipa-cell.unvoiced .ipa-symbol{color:#712B13}
 .ipa-cell.voiced .ipa-symbol{color:#085041}
 .ipa-example{font-size:9px;color:var(--color-text-secondary);margin-top:2px;text-align:center}
-.ipa-detail{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:.9rem;display:none}
+.ipa-detail{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:10px;padding:1.1rem 1.4rem;margin-bottom:.9rem;display:none}
 .ipa-detail.on{display:block}
 .word-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
-.word-chip{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);cursor:pointer;transition:all .15s}
+.word-chip{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:8px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);cursor:pointer;transition:all .15s}
 .word-chip:hover{background:#E6F1FB;border-color:#85B7EB}
 .word-chip .wtext{font-size:14px;color:var(--color-text-primary)}
 .syl-btn{padding:8px 14px;border-radius:12px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:15px;cursor:pointer;transition:all .15s;color:var(--color-text-primary)}
@@ -72,14 +86,16 @@ body{font-family:var(--font-sans);color:var(--color-text-primary);font-size:15px
 .syl-btn.sbsel{border-color:#185FA5;background:#E6F1FB;color:#0C447C;font-weight:600}
 .syl-btn.sbok{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:600}
 .syl-btn.sbbad{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
-.tt-box{background:var(--color-background-secondary);border-radius:16px;padding:1rem 1.3rem;margin-bottom:1rem;border-left:3px solid #185FA5}
+.tt-box{background:var(--color-background-secondary);border-radius:10px;padding:1rem 1.3rem;margin-bottom:1rem;border-left:3px solid #185FA5}
 .tt-ipa{font-family:var(--font-mono);font-size:13px;color:#185FA5;line-height:1.7;margin-top:6px;display:none;background:#E6F1FB;padding:8px 12px;border-radius:10px}
 .tt-ipa.on{display:block}
 .mp-card{border-radius:14px;border:0.5px solid var(--color-border-tertiary);padding:10px 14px;text-align:center;cursor:pointer;transition:all .15s;background:var(--color-background-primary)}
 .mp-card:hover{background:var(--color-background-secondary)}
 .mp-word{font-size:18px;font-weight:500;color:var(--color-text-primary);margin-bottom:3px}
 </style>
-
+</head>
+<body>
+<script>EVLesson.initHeader({category:'Pronunciation'});</script>
 <div class="w">
 <h2 class="sr-only">English pronunciation — IPA chart, sounds in depth, minimal pairs, connected speech, stress patterns, quiz, transcription. British English.</h2>
 <div class="nav">
@@ -193,6 +209,11 @@ body{font-family:var(--font-sans);color:var(--color-text-primary);font-size:15px
   <div class="eyebrow">English pronunciation · British English</div>
   <div class="lesson-h">My glossary</div>
   <div class="lesson-sub">Items you have saved — click ✕ to remove any item</div>
+    <div class="ev-gloss-actions">
+    <button class="ev-gloss-print-btn" id="glossPrintBtn" onclick="EVLesson.printGlossary({title:'My pronunciation glossary', containerId:'#glossCont'})" disabled>
+      <i class="ti ti-printer" aria-hidden="true"></i> Print / Save as PDF
+    </button>
+  </div>
   <div id="glossCont"></div>
 </div>
 </div>
@@ -347,7 +368,7 @@ function selectPhone(id){
   speak(ph.ex,0.82);
   const pairPh=ph.pair?IPA_SOUNDS.find(x=>x.id===ph.pair):null;
   const pairHtml=pairPh?`<div style="display:flex;align-items:center;gap:8px;margin-top:8px;padding:7px 12px;background:var(--color-background-secondary);border-radius:12px;flex-wrap:wrap"><span style="font-size:13px;color:var(--color-text-secondary)">Voiced/unvoiced pair:</span><button class="audio-btn" onclick="speak('${pairPh.ex}',0.82,this)">🔊 <span style="font-family:var(--font-mono)">${pairPh.sym}</span> — <em>${pairPh.ex}</em></button></div>`:'';
-  const voiceTag=ph.type==='unvoiced'?`<span style="background:#FAECE7;color:#712B13;font-size:12px;font-weight:600;padding:2px 9px;border-radius:20px">🔇 Unvoiced</span>`:ph.type==='voiced'?`<span style="background:#E1F5EE;color:#085041;font-size:12px;font-weight:600;padding:2px 9px;border-radius:20px">🔊 Voiced</span>`:'';
+  const voiceTag=ph.type==='unvoiced'?`<span style="background:#FAECE7;color:#712B13;font-size:12px;font-weight:600;padding:2px 9px;border-radius:8px">🔇 Unvoiced</span>`:ph.type==='voiced'?`<span style="background:#E1F5EE;color:#085041;font-size:12px;font-weight:600;padding:2px 9px;border-radius:8px">🔊 Voiced</span>`:'';
   const detail=document.getElementById('ipaDetail');
   detail.innerHTML=`
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap">
@@ -379,7 +400,7 @@ function buildSounds(){
     <div class="card" style="margin-bottom:.8rem">
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;cursor:pointer" onclick="toggleSound(${i})">
         <span style="font-size:16px;font-weight:500">${s.title}</span>
-        <span style="background:${s.badge.bg};color:${s.badge.tc};font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px">${s.id}</span>
+        <span style="background:${s.badge.bg};color:${s.badge.tc};font-size:11px;font-weight:500;padding:2px 9px;border-radius:8px">${s.id}</span>
         <i class="ti ti-chevron-down" id="sarrow_${i}" aria-hidden="true" style="font-size:16px;color:var(--color-text-secondary);margin-left:auto;transition:transform .2s"></i>
         <button id="ssave_${i}" class="save-btn${isGlossed('sound',s.id)?' saved':''}" onclick="event.stopPropagation();toggleGloss('sound','${s.id}');document.getElementById('ssave_${i}').classList.toggle('saved',isGlossed('sound','${s.id}'));document.getElementById('ssave_${i}').textContent=isGlossed('sound','${s.id}')?'🔖 Saved':'🔖 Save'">${isGlossed('sound',s.id)?'🔖 Saved':'🔖 Save'}</button>
       </div>
@@ -699,7 +720,7 @@ function renderTrans(){
       <div style="font-size:15px;color:var(--color-text-secondary);margin-bottom:12px">Listen to the word, then choose the correct IPA transcription.</div>
       <div style="text-align:center;margin-bottom:16px">
         <div style="font-size:11px;font-weight:500;color:#185FA5;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Tap to hear the word</div>
-        <button onclick="speak('${q.say}',0.78,this)" style="background:#E6F1FB;border:2px solid #185FA5;border-radius:20px;padding:16px 32px;cursor:pointer;display:inline-flex;flex-direction:column;align-items:center;gap:8px">
+        <button onclick="speak('${q.say}',0.78,this)" style="background:#E6F1FB;border:2px solid #185FA5;border-radius:8px;padding:16px 32px;cursor:pointer;display:inline-flex;flex-direction:column;align-items:center;gap:8px">
           <span style="font-size:36px">🔊</span>
           <span style="font-size:22px;font-weight:600;color:#0C447C">${q.word}</span>
         </button>
@@ -774,7 +795,7 @@ const TYPE_META={
   conn:{label:'Connected speech',bg:'#FAEEDA',tc:'#633806',brd:'#E8C080'},
 };
 function renderGloss(){
-  const cont=document.getElementById('glossCont');if(!cont)return;
+  const cont=document.getElementById('glossCont');if(!cont)return;const printBtn=document.getElementById('glossPrintBtn');if(printBtn)printBtn.disabled=!glossary.length;
   if(!glossary.length){
     cont.innerHTML='<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><div style="font-size:28px;margin-bottom:10px">🔖</div><div style="margin-bottom:8px;font-size:16px">Nothing saved yet.</div><div style="font-size:14px">Click <strong>🔖 Save</strong> on any sound in the <strong>IPA chart</strong>, <strong>Sounds in depth</strong>, or <strong>Connected speech</strong> sections.</div></div>';
     return;
@@ -794,7 +815,7 @@ function renderGloss(){
           <div style="flex:1;min-width:0">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap">
               <span style="font-size:${type==='ipa'?'20px':'15px'};font-weight:700;color:var(--color-text-primary);font-family:${type==='ipa'?'var(--font-mono)':'var(--font-sans)'}">${g.label}</span>
-              <span style="background:${tm.bg};color:${tm.tc};border:0.5px solid ${tm.brd};font-size:10px;font-weight:700;padding:1px 7px;border-radius:20px">${tm.label}</span>
+              <span style="background:${tm.bg};color:${tm.tc};border:0.5px solid ${tm.brd};font-size:10px;font-weight:700;padding:1px 7px;border-radius:8px">${tm.label}</span>
               <button class="audio-btn" onclick="speak(${JSON.stringify(g.type==='ipa'?(IPA_SOUNDS.find(p=>p.id===g.id)||{ex:g.id}).ex:g.label)},0.82,this)" style="font-size:11px;padding:2px 8px">🔊 Hear</button>
             </div>
             <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.6">${g.desc}</div>
@@ -814,3 +835,5 @@ window.addEventListener('load',()=>{
   renderTT();
 });
 </script>
+</body>
+</html>
