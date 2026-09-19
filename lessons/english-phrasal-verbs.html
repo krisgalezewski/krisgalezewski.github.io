@@ -168,7 +168,7 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 <div id="p4" class="pan">
   <div class="eyebrow">Phrasal verbs</div>
   <div class="lesson-h">Scrambled sentences</div>
-  <div class="lesson-sub">Tap a word, then tap a slot to place it — rebuild the sentence in the correct order</div>
+  <div class="lesson-sub">Tap a word to drop it in the next space — rebuild the sentence in the correct order</div>
   <div id="scramCont"></div>
 </div>
 
@@ -542,11 +542,11 @@ const SCRAM_POOL=[
   {sentence:'We set off early to avoid the rush-hour traffic.',words:['We','set','off','early','to','avoid','the','rush-hour','traffic'],pv:'set off'},
   {sentence:'He takes care of his younger siblings every afternoon.',words:['He','takes','care','of','his','younger','siblings','every','afternoon'],pv:'take care of'},
 ];
-let sItems=[],sIdx=0,sScore=0,sTotal=0,sPlaced=[],sSel=null,sChecked=false;
+let sItems=[],sIdx=0,sScore=0,sTotal=0,sPlaced=[],sSlotPiece=[],sChecked=false;
 function startScram(){sItems=[...SCRAM_POOL].sort(()=>Math.random()-.5);sIdx=0;sScore=0;sTotal=0;renderScram();}
 function renderScram(){
   if(sIdx>=sItems.length){const pct=Math.round(sScore/sTotal*100);document.getElementById('scramCont').innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:22px;font-weight:500;margin-bottom:8px">${sScore}/${sTotal}</div><div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:14px">${pct===100?'Perfect!':pct>=70?'Well done!':'Keep practising!'}</div><button class="act" onclick="startScram()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Play again</button></div>`;return;}
-  const item=sItems[sIdx];sPlaced=new Array(item.words.length).fill(null);sSel=null;sChecked=false;
+  const item=sItems[sIdx];sPlaced=new Array(item.words.length).fill(null);sSlotPiece=new Array(item.words.length).fill(null);sChecked=false;
   const sh=[...item.words].sort(()=>Math.random()-.5);window._ssh=sh;
   const prog=Math.round(sIdx/sItems.length*100);
   document.getElementById('scramCont').innerHTML=`<div class="card">
@@ -556,7 +556,7 @@ function renderScram(){
       <button class="act" onclick="startScram()" style="margin-left:auto"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Restart</button>
     </div>
     <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
-    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:8px">Tap a word, then tap a slot to place it. Tap a filled slot to return it.</div>
+    <div style="font-size:14px;color:var(--color-text-secondary);margin-bottom:8px">Tap a word to drop it in the next space. Tap a filled space to send it back.</div>
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:2px;min-height:42px;margin-bottom:8px;padding:8px 10px;background:var(--color-background-secondary);border-radius:10px" id="sSlots">
       ${item.words.map((_,i)=>`<span class="slot" id="ss_${i}" onclick="cSlot(${i})"></span>${i<item.words.length-1?'<span style="color:var(--color-text-secondary);font-size:10px">▸</span>':''}`).join('')}
     </div>
@@ -570,15 +570,29 @@ function renderScram(){
     </div>
   </div>`;
 }
-function cPiece(i){if(sChecked)return;document.querySelectorAll('.piece').forEach(p=>p.classList.remove('sel'));if(sSel===i){sSel=null;return;}sSel=i;document.getElementById('sp_'+i).classList.add('sel');}
-function cSlot(s){
+// Tapping a word bank chip drops it straight into the first empty slot —
+// no separate "select, then tap a slot" step. Tapping a chip that's
+// already placed sends it back to the bank; tapping a filled slot does
+// the same. sSlotPiece tracks exactly which chip (by index into the
+// shuffled bank, window._ssh) is sitting in each slot, so returning a
+// word un-marks the right chip even when two chips share the same text
+// (e.g. a sentence using "the" twice).
+function cPiece(i){
   if(sChecked)return;
-  if(sSel===null){
-    if(sPlaced[s]!==null){const w=sPlaced[s];sPlaced[s]=null;window._ssh.forEach((p,pi)=>{const e=document.getElementById('sp_'+pi);if(e&&e.classList.contains('used')&&p===w&&!sPlaced.includes(p))e.classList.remove('used');});rSSlots();}return;
-  }
-  const w=window._ssh[sSel];
-  if(sPlaced[s]!==null){const old=sPlaced[s];sPlaced[s]=null;window._ssh.forEach((p,pi)=>{const e=document.getElementById('sp_'+pi);if(e&&p===old&&e.classList.contains('used'))e.classList.remove('used');});}
-  sPlaced[s]=w;document.getElementById('sp_'+sSel).classList.add('used');document.getElementById('sp_'+sSel).classList.remove('sel');sSel=null;rSSlots();
+  const chip=document.getElementById('sp_'+i);
+  if(!chip||chip.classList.contains('used'))return;
+  const emptySlot=sPlaced.findIndex(p=>p===null);
+  if(emptySlot===-1)return;
+  sPlaced[emptySlot]=window._ssh[i];sSlotPiece[emptySlot]=i;
+  chip.classList.add('used');
+  rSSlots();
+}
+function cSlot(s){
+  if(sChecked||sPlaced[s]===null)return;
+  const pieceIdx=sSlotPiece[s];
+  sPlaced[s]=null;sSlotPiece[s]=null;
+  if(pieceIdx!==null){const e=document.getElementById('sp_'+pieceIdx);if(e)e.classList.remove('used');}
+  rSSlots();
 }
 function rSSlots(){sItems[sIdx].words.forEach((_,i)=>{const el=document.getElementById('ss_'+i);if(!el)return;if(sPlaced[i]){el.textContent=sPlaced[i];el.className='slot fl';}else{el.textContent='';el.className='slot';}});}
 function arraysEqual(a,b){return a.length===b.length&&a.every((w,i)=>w===b[i]);}
@@ -601,7 +615,7 @@ function checkScram(){
   document.getElementById('sFb').insertAdjacentElement('afterend',aBtn);
   document.querySelectorAll('#scramCont .check-btn').forEach(b=>{b.textContent='Next →';b.onclick=()=>{sIdx++;renderScram();};});
 }
-function clearScram(){if(sChecked)return;sPlaced=new Array(sItems[sIdx].words.length).fill(null);sSel=null;document.querySelectorAll('.piece').forEach(el=>el.classList.remove('sel','used'));rSSlots();document.getElementById('sFb').textContent='';}
+function clearScram(){if(sChecked)return;sPlaced=new Array(sItems[sIdx].words.length).fill(null);sSlotPiece=new Array(sItems[sIdx].words.length).fill(null);document.querySelectorAll('.piece').forEach(el=>el.classList.remove('used'));rSSlots();document.getElementById('sFb').textContent='';}
 
 // ── PARAPHRASING ──────────────────────────────────────────────
 const PARA_POOL=[
