@@ -15,16 +15,30 @@
   var EVLesson = {};
 
   // ---- 1) Header --------------------------------------------------------
+  // Renders the same full site nav as the homepage header, so a student on
+  // any lesson page can jump straight to Articles / Videos / Games /
+  // Quizzes / Lessons / Courses / Book a Lesson — not just back to the
+  // lessons hub. A small breadcrumb line (category · lesson title) sits
+  // underneath it for orientation within /lessons/.
   EVLesson.initHeader = function (opts) {
     opts = opts || {};
     var crumb = opts.category ? opts.category + ' · ' : '';
-    var header = document.createElement('div');
+    var header = document.createElement('header');
     header.className = 'ev-lesson-header';
     header.innerHTML =
-      '<a href="https://englishvoiced.com/" class="ev-lesson-header__logo">' +
-        'English Voiced <small>with Kris</small>' +
+      '<a class="ev-lesson-header__logo" href="https://englishvoiced.com/" aria-label="English Voiced with Kris — home">' +
+        '<span class="ev-lesson-header__logo-name">English Voiced</span>' +
+        '<span class="ev-lesson-header__logo-by">with Kris</span>' +
       '</a>' +
-      '<span class="ev-lesson-header__sep">/</span>' +
+      '<nav class="ev-lesson-header__nav" aria-label="Sections">' +
+        '<a class="ev-lesson-header__nav-articles" href="https://englishvoiced.com/#articles">Lens: Articles</a>' +
+        '<a class="ev-lesson-header__nav-videos"   href="https://englishvoiced.com/#videos">Lens: Videos</a>' +
+        '<a class="ev-lesson-header__nav-games"    href="https://englishvoiced.com/#games">Games</a>' +
+        '<a class="ev-lesson-header__nav-quizzes"  href="https://englishvoiced.com/#quizzes">Quizzes</a>' +
+        '<a class="ev-lesson-header__nav-lessons"  href="/lessons/">Lessons</a>' +
+        '<a class="ev-lesson-header__nav-courses"  href="https://englishvoiced.com/#courses">Courses</a>' +
+        '<a class="ev-lesson-header__nav-book"     href="https://englishvoiced.com/#book">Book a Lesson</a>' +
+      '</nav>' +
       '<span class="ev-lesson-header__crumb">' +
         '<a href="/lessons/">' + crumb + 'All lessons</a>' +
       '</span>';

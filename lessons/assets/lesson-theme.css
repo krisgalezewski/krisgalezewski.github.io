@@ -1,63 +1,102 @@
 /* ==========================================================================
    English Voiced — shared lesson theme
    Linked by every file in /lessons/. Defines the design tokens the lesson
-   pages already reference (var(--color-text-primary) etc.) but never
-   defined themselves — without this file those variables are blank, which
-   is why cards, panels and borders showed up unstyled on the live site.
-   Also carries the shared header/breadcrumb chrome and print rules.
+   pages reference (var(--color-text-primary) etc.) — matched to the exact
+   dark "Slate & Rose" palette used on englishvoiced.com's homepage, so
+   lesson pages look like the same site rather than a bolted-on light theme.
+   Also carries the shared full-site-nav header and print rules.
    Change something here once; every lesson picks it up.
    ========================================================================== */
 
 :root{
   --font-sans: 'Archivo', system-ui, -apple-system, sans-serif;
 
-  --color-text-primary:   #17171c;
-  --color-text-secondary: #5c5b66;
-  --color-background-primary:   #ffffff;
-  --color-background-secondary: #f4f3f8;
-  --color-border-secondary: #e2e0ea;
-  --color-border-tertiary:  #ece9f4;
+  /* ---- homepage tokens, copied exactly ---- */
+  --wrap:1300px;
+  --ink:#08080a;
+  --bone:#f4f1ea;
+  --body:#d6d6db;
+  --label:#8b8b93;
+  --label-dim:#6f6f77;
+  --slate:#55555d;
+  --articles:#0d3f50;  --articles-hi:#10505f;  --articles-tint:#57a6bd;
+  --videos:#4a5a67;    --videos-hi:#586b7a;    --videos-tint:#9fb2c0;
+  --games:#8f1728;     --games-hi:#a51b2f;     --games-tint:#e05a6e;
+  --quizzes:#9c2f5e;   --quizzes-hi:#b23a6d;   --quizzes-tint:#e086ab;
+  --lessons:#9a6a0b;   --lessons-hi:#b37c0d;   --lessons-tint:#d9a02b;
+  --courses:#1c6b34;   --courses-hi:#22803c;   --courses-tint:#4fb56f;
 
-  --ev-ink: #08080a;
-  --ev-accent: #534AB7; /* matches the lessons' existing purple accent */
+  /* ---- lesson-page roles, mapped onto the tokens above ---- */
+  --color-text-primary:   var(--bone);
+  --color-text-secondary: var(--body);
+  --color-background-primary:   #111114;   /* card surface, one step up from --ink */
+  --color-background-secondary: #1a1a1f;   /* nested/inset box surface */
+  --color-border-secondary: rgb(255 255 255 / .12);
+  --color-border-tertiary:  rgb(255 255 255 / .08);
+
+  --ev-ink: var(--ink);
+  --ev-accent: var(--lessons);       /* this lesson section's brand color */
+  --ev-accent-hi: var(--lessons-hi);
+  --ev-accent-tint: var(--lessons-tint);
 }
 
-/* ---------- Shared header: wordmark + breadcrumb back to /lessons/ ------- */
+*{box-sizing:border-box}
+body{background:var(--ink);color:var(--color-text-primary)}
+
+/* ---------- Shared header: full site nav, matching the homepage ---------- */
 .ev-lesson-header{
-  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
-  padding:14px 1.5rem;border-bottom:1px solid var(--color-border-secondary);
+  max-width:calc(var(--wrap) + 56px);margin:0 auto;
+  padding:22px 28px 18px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
   font-family:var(--font-sans);
+  border-bottom:1px solid var(--color-border-tertiary);
+  margin-bottom:1.5rem;
 }
 .ev-lesson-header a{text-decoration:none}
-.ev-lesson-header__logo{
-  display:flex;align-items:baseline;gap:6px;color:var(--ev-ink);font-weight:700;
-  font-size:15px;letter-spacing:-.01em;
+.ev-lesson-header__logo{display:flex;align-items:baseline;gap:10px}
+.ev-lesson-header__logo-name{
+  font-family:'Archivo Black',sans-serif;font-size:17px;letter-spacing:.02em;
+  text-transform:uppercase;color:var(--bone);
 }
-.ev-lesson-header__logo small{font-weight:500;color:var(--color-text-secondary);font-size:12px}
-.ev-lesson-header__sep{color:var(--color-border-secondary)}
+.ev-lesson-header__logo-by{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--label-dim)}
+.ev-lesson-header__nav{
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+}
+.ev-lesson-header__nav a{transition:opacity .15s}
+.ev-lesson-header__nav a:hover{opacity:.8}
+.ev-lesson-header__nav-articles{color:var(--articles-tint)}
+.ev-lesson-header__nav-videos{color:var(--videos-tint)}
+.ev-lesson-header__nav-games{color:var(--games-tint)}
+.ev-lesson-header__nav-quizzes{color:var(--quizzes-tint)}
+.ev-lesson-header__nav-lessons{color:var(--lessons-tint)}
+.ev-lesson-header__nav-courses{color:var(--courses-tint)}
+.ev-lesson-header__nav-book{color:var(--ink);background:var(--bone);padding:10px 18px;border-radius:8px;font-weight:700}
 .ev-lesson-header__crumb{
-  font-size:13px;color:var(--color-text-secondary);display:flex;align-items:center;gap:6px;
+  width:100%;font-size:12px;color:var(--label);margin-top:4px;
+  letter-spacing:normal;text-transform:none;font-weight:400;
 }
-.ev-lesson-header__crumb a{color:var(--color-text-secondary);border-bottom:1px solid transparent}
-.ev-lesson-header__crumb a:hover{color:var(--ev-accent);border-bottom-color:var(--ev-accent)}
+.ev-lesson-header__crumb a{color:var(--label);border-bottom:1px solid transparent}
+.ev-lesson-header__crumb a:hover{color:var(--lessons-tint);border-bottom-color:currentColor}
 
 /* ---------- Glossary print / save-as-PDF ---------------------------------- */
 .ev-gloss-actions{display:flex;justify-content:flex-end;margin-bottom:10px}
 .ev-gloss-print-btn{
   display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:7px 14px;
-  border-radius:20px;border:0.5px solid var(--color-border-secondary);
+  border-radius:8px;border:0.5px solid var(--color-border-secondary);
   background:var(--color-background-primary);color:var(--color-text-secondary);cursor:pointer;
   font-family:var(--font-sans);transition:all .15s;
 }
-.ev-gloss-print-btn:hover{background:#EEEDFE;border-color:#AFA9EC;color:var(--ev-accent)}
+.ev-gloss-print-btn:hover{background:var(--color-background-secondary);border-color:var(--ev-accent);color:var(--ev-accent-tint)}
 .ev-gloss-print-btn:disabled{opacity:.4;cursor:default}
 
 /* Printing (or "Save as PDF") shows ONLY the glossary content, nothing else. */
 @media print{
   body.ev-printing-glossary > *:not(.ev-print-root){display:none !important}
   body.ev-printing-glossary .ev-print-root{display:block !important}
+  body.ev-printing-glossary{background:#fff !important;color:#111 !important}
   .ev-print-root{padding:0 !important}
-  .ev-print-title{font-size:20px;font-weight:700;margin-bottom:2px;font-family:var(--font-sans)}
+  .ev-print-title{font-size:20px;font-weight:700;margin-bottom:2px;font-family:var(--font-sans);color:#111}
   .ev-print-sub{font-size:12px;color:#555;margin-bottom:16px;font-family:var(--font-sans)}
   .ev-gloss-actions{display:none !important}
   .audio-btn, .act{display:none !important} /* interactive controls make no sense on paper */

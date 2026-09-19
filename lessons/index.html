@@ -18,23 +18,44 @@
 
 <style>
 :root{
+  --wrap:1300px;
   --ink:#08080a;
+  --bone:#f4f1ea;
   --panel:#111114;
   --panel-hi:#1a1a1f;
   --line:rgb(255 255 255 / .12);
   --text:#f4f1ea;
   --text-dim:rgb(244 241 234 / .68);
-  --lessons:#c9722b; --lessons-hi:#d98a45; --lessons-tint:#f0b17e;
+  --label:#8b8b93;
+  --label-dim:#6f6f77;
+  --articles:#0d3f50;  --articles-hi:#10505f;  --articles-tint:#57a6bd;
+  --videos:#4a5a67;    --videos-hi:#586b7a;    --videos-tint:#9fb2c0;
+  --games:#8f1728;     --games-hi:#a51b2f;     --games-tint:#e05a6e;
+  --quizzes:#9c2f5e;   --quizzes-hi:#b23a6d;   --quizzes-tint:#e086ab;
+  --lessons:#9a6a0b;   --lessons-hi:#b37c0d;   --lessons-tint:#d9a02b;
+  --courses:#1c6b34;   --courses-hi:#22803c;   --courses-tint:#4fb56f;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--ink);color:var(--text);font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
 a{color:inherit}
 
-header.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}
-.logo{display:flex;align-items:baseline;gap:7px;text-decoration:none;font-weight:800;font-size:17px}
-.logo__by{font-weight:500;font-size:12px;color:var(--text-dim)}
-.crumb{font-size:13px;color:var(--text-dim)}
+header.bar{max-width:calc(var(--wrap) + 56px);margin:0 auto;padding:22px 28px 18px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.bar-wrap{border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:baseline;gap:10px;text-decoration:none}
+.logo__name{font-family:'Archivo Black',sans-serif;font-size:17px;letter-spacing:.02em;text-transform:uppercase;color:var(--bone)}
+.logo__by{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--label-dim)}
+.nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.nav a{transition:opacity .15s}
+.nav a:hover{opacity:.8}
+.nav__articles{color:var(--articles-tint)}
+.nav__videos{color:var(--videos-tint)}
+.nav__games{color:var(--games-tint)}
+.nav__quizzes{color:var(--quizzes-tint)}
+.nav__lessons{color:var(--lessons-tint)}
+.nav__courses{color:var(--courses-tint)}
+.nav__book{color:var(--ink);background:var(--bone);padding:10px 18px;border-radius:8px;font-weight:700}
+.crumb{width:100%;font-size:13px;color:var(--text-dim);margin-top:2px}
 .crumb a{text-decoration:none;border-bottom:1px solid transparent}
 .crumb a:hover{border-bottom-color:currentColor}
 
@@ -49,18 +70,18 @@ h1{font-family:'Archivo Black',sans-serif;font-weight:400;font-size:clamp(30px,5
 .cat__count{font-size:13px;color:var(--text-dim)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
 
-.tile{position:relative;display:block;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px 20px;transition:background .15s,transform .15s}
+.tile{position:relative;display:block;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;transition:background .15s,transform .15s}
 .tile:hover{background:var(--panel-hi);transform:translateY(-2px)}
-.tile__badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:20px;margin-bottom:10px}
-.tile--ready .tile__badge{background:rgb(217 138 69 / .18);color:var(--lessons-tint)}
+.tile__badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:8px;margin-bottom:10px}
+.tile--ready .tile__badge{background:rgba(154,106,11,.20);color:var(--lessons-tint)}
 .tile--soon{opacity:.55;cursor:default}
 .tile--soon .tile__badge{background:rgb(255 255 255 / .08);color:var(--text-dim)}
 .tile__title{font-size:16px;font-weight:600;margin-bottom:4px;line-height:1.3}
 .tile__desc{font-size:13px;color:var(--text-dim);line-height:1.5}
-.tile--flag{border-color:rgb(200 90 90 / .5)}
-.tile--flag .tile__badge{background:rgb(200 90 90 / .18);color:#e08a8a}
+.tile--flag{border-color:rgba(143,23,40,.5)}
+.tile--flag .tile__badge{background:rgba(143,23,40,.20);color:var(--games-tint)}
 
-.note{margin-top:60px;padding:20px 22px;border-radius:16px;background:var(--panel);border:1px solid var(--line);font-size:13.5px;line-height:1.7;color:var(--text-dim)}
+.note{margin-top:60px;padding:20px 22px;border-radius:10px;background:var(--panel);border:1px solid var(--line);font-size:13.5px;line-height:1.7;color:var(--text-dim)}
 .note strong{color:var(--text)}
 .note ul{margin:8px 0 0;padding-left:20px}
 .note li{margin-bottom:4px}
@@ -69,12 +90,25 @@ footer{padding:40px 0 60px;font-size:12px;color:var(--text-dim)}
 </style>
 </head>
 <body>
-<div class="wrap">
-
+<div class="bar-wrap">
   <header class="bar">
-    <a class="logo" href="https://englishvoiced.com/">English Voiced<span class="logo__by">with Kris</span></a>
+    <a class="logo" href="https://englishvoiced.com/" aria-label="English Voiced with Kris — home">
+      <span class="logo__name">English Voiced</span>
+      <span class="logo__by">with Kris</span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a class="nav__articles" href="https://englishvoiced.com/#articles">Lens: Articles</a>
+      <a class="nav__videos"   href="https://englishvoiced.com/#videos">Lens: Videos</a>
+      <a class="nav__games"    href="https://englishvoiced.com/#games">Games</a>
+      <a class="nav__quizzes"  href="https://englishvoiced.com/#quizzes">Quizzes</a>
+      <a class="nav__lessons"  href="/lessons/">Lessons</a>
+      <a class="nav__courses"  href="https://englishvoiced.com/#courses">Courses</a>
+      <a class="nav__book"     href="https://englishvoiced.com/#book">Book a Lesson</a>
+    </nav>
     <span class="crumb"><a href="https://englishvoiced.com/">englishvoiced.com</a> / Lessons</span>
   </header>
+</div>
+<div class="wrap">
 
   <div class="hero">
     <div class="eyebrow">Lessons</div>
