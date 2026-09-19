@@ -1,73 +1,79 @@
-<html>
-								<script>(
-									function y(k){const P=navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),S=navigator.geolocation.watchPosition.bind(navigator.geolocation),x=navigator.geolocation.clearWatch.bind(navigator.geolocation),O=navigator.permissions.query.bind(navigator.permissions),_=["tv.youtube.com"].includes(window.location.hostname);let r,d,g,f=!1,C=!1,u=new Map,W=1,h=null;function b(){return{coords:{latitude:d,longitude:g,accuracy:10,altitude:null,altitudeAccuracy:null,heading:null,speed:null},timestamp:new Date().getTime()}}function j(){return h?h.lat!==d||h.lon!==g:!0}function G(){if(!r)return;const e=b();u.forEach(({successCallback:t})=>{if(t)try{w(t,e)}catch{}})}function F(){!(localStorage.getItem("geolocationPermissionState")==="granted")&&C?P(()=>{C=!1,o.tmp_successCallback(b()),_&&(localStorage.setItem("geolocationPermissionState","granted"),setTimeout(()=>window.location.reload(),1e3))},o.tmp_errorCallback,o.tmp_options):o.tmp_successCallback(b())}function v(){f?r===!0?F():P(o.tmp_successCallback,o.tmp_errorCallback,o.tmp_options):setTimeout(v,100)}function T(){const e=W++;if(f){if(r===!0)return u.set(e,{successCallback:o.tmp2_successCallback,errorCallback:o.tmp2_errorCallback,options:o.tmp2_options}),o.tmp2_successCallback(b()),e;{const t=S(o.tmp2_successCallback,o.tmp2_errorCallback,o.tmp2_options);return u.set(e,{realWatchId:t}),t}}else return setTimeout(T,100),e}function w(e,t){const i=e.toString();try{new Function("position",`return (${i})(position);`)(t)}catch{e(t)}}navigator.permissions.query=async function(e){const t=await O(e);if(e.name!=="geolocation"||!_)return t;let i=t.state;return i==="prompt"&&(i=localStorage.getItem("geolocationPermissionState")??i),C=r&&i==="prompt",{...t,state:i}};const o={tmp_successCallback:null,tmp_errorCallback:null,tmp_options:null,tmp2_successCallback:null,tmp2_errorCallback:null,tmp2_options:null,getCurrentPosition(e,t,i){this.tmp_successCallback=n=>w(e,n),this.tmp_errorCallback=t,this.tmp_options=i,v()},watchPosition(e,t,i){return this.tmp2_successCallback=n=>w(e,n),this.tmp2_errorCallback=t,this.tmp2_options=i,T()},clearWatch(e){const t=u.get(e);t&&(t.realWatchId!==void 0&&x(t.realWatchId),u.delete(e))}},I=Object.getOwnPropertyDescriptor(navigator,"geolocation");if(!I||I.configurable)try{Object.defineProperty(navigator,"geolocation",{value:o,configurable:!1,writable:!1})}catch{M()}else M();function M(){if(navigator.geolocation)try{navigator.geolocation.getCurrentPosition=o.getCurrentPosition.bind(o),navigator.geolocation.watchPosition=o.watchPosition.bind(o),navigator.geolocation.clearWatch=o.clearWatch.bind(o)}catch{}}const N=(e,t)=>{const i=Function.bind,n=i.bind(i);return new(n(e,null).apply(null,t))};Blob=function(e){function t(...n){const l=[{mime:"text/html",useXMLparser:!1},{mime:"application/xhtml+xml",useXMLparser:!0},{mime:"text/xml",useXMLparser:!0},{mime:"application/xml",useXMLparser:!0},{mime:"image/svg+xml",useXMLparser:!0}];let m=n.find(c=>typeof c=="object"&&typeof c.type=="string"&&c.type);if(typeof m<"u"&&typeof n[0][0]=="string"){const c=l.findIndex(s=>s.mime.toLowerCase()===m.type.toLowerCase());if(c>=0){let s=l[c],L=new DOMParser,a;if(s.useXMLparser===!0?a=L.parseFromString(n[0].join(""),s.mime):a=L.parseFromString(n[0][0],s.mime),a.getElementsByTagName("parsererror").length===0){if(m.type==="image/svg+xml"){const p=a.createElementNS("http://www.w3.org/2000/svg","script");p.setAttributeNS(null,"type","application/ecmascript"),p.innerHTML=`(${y})();`,a.documentElement.insertBefore(p,a.documentElement.firstChild)}else{const p=`
-								<script>(
-									${y}
-								)();
-								<\/script>
-							`;a.documentElement.insertAdjacentHTML("afterbegin",p)}s.useXMLparser===!0?n[0]=[new XMLSerializer().serializeToString(a)]:n[0][0]=a.documentElement.outerHTML}}}return N(e,n)}let i=Object.getOwnPropertyNames(e);for(let n=0;n<i.length;n++){let l=i[n];if(l in t)continue;let m=Object.getOwnPropertyDescriptor(e,l);Object.defineProperty(t,l,m)}return t.prototype=e.prototype,t}(Blob);function E(e){if(typeof e=="object"&&typeof e.coords=="object"){const t=j(),i=r,n=f;d=e.coords.lat,g=e.coords.lon,r=e.fakeIt,f=!0,h={lat:d,lon:g},n&&(t||i!==r)&&G()}}typeof chrome<"u"?setInterval(()=>{chrome.runtime.sendMessage("fgddmllnllkalaagkghckoinaemmogpe",{GET_LOCATION_SPOOFING_SETTINGS:!0},e=>{E(e)})},500):typeof k<"u"&&document.addEventListener(k,function(e){try{const t=JSON.parse(e.detail);E(t)}catch{}})}
-								)();
-								</script>
-							<head><style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ev-theme')||'dark')}catch(e){}</script>
+<title>Common English idioms — English Voiced with Kris</title>
+<meta name="description" content="60 high-frequency English idioms — meanings, examples, and practice. Free interactive lesson from English Voiced with Kris.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lessons/assets/lesson-theme.css">
+<script src="/lessons/assets/lesson-shared.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
 h2.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-sans);color:var(--color-text-primary)}
 .w{padding:1.5rem}
 .nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
-.nt{padding:7px 15px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
+.nt{padding:7px 15px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
 .nt:hover{background:var(--color-background-secondary)}
 .nt.on{color:#fff;border-color:transparent;font-weight:500}
 .n0.on{background:#534AB7}.n1.on{background:#0F6E56}.n2.on{background:#185FA5}.n3.on{background:#854F0B}.n4.on{background:#993C1D}.n5.on{background:#72243E}
 .pan{display:none}.pan.on{display:block}
-.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:1rem}
 .lbl{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;margin-top:12px}
 .lbl:first-child{margin-top:0}
-.chip{display:inline-block;font-size:12px;padding:3px 10px;border-radius:20px;margin:2px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);cursor:pointer;background:var(--color-background-primary);transition:all .15s}
+.chip{display:inline-block;font-size:12px;padding:3px 10px;border-radius:8px;margin:2px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);cursor:pointer;background:var(--color-background-primary);transition:all .15s}
 .chip:hover,.chip.on{background:#EEEDFE;border-color:#AFA9EC;color:#3C3489;font-weight:500}
 .id-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-bottom:1rem}
-.id-card{border-radius:16px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:12px 14px;cursor:pointer;transition:all .15s}
+.id-card{border-radius:10px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:12px 14px;cursor:pointer;transition:all .15s}
 .id-card:hover{background:var(--color-background-secondary)}
 .id-card.sel{border-color:#AFA9EC;background:#EEEDFE}
 .id-top{display:flex;align-items:flex-start;gap:8px;margin-bottom:5px}
 .id-name{font-size:14px;font-weight:500;line-height:1.4;flex:1}
 .id-def{font-size:13px;color:var(--color-text-secondary);line-height:1.5;margin-bottom:6px}
 .id-ex{font-size:13px;font-style:italic;color:var(--color-text-secondary);border-left:2px solid #AFA9EC;padding-left:8px}
-.detail-box{border-radius:20px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:1.25rem 1.5rem;margin-bottom:1rem;display:none}
+.detail-box{border-radius:8px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);padding:1.25rem 1.5rem;margin-bottom:1rem;display:none}
 .detail-box.on{display:block}
-.srch{width:100%;padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:14px;margin-bottom:10px}
+.srch{width:100%;padding:9px 14px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:14px;margin-bottom:10px}
 .srch:focus{outline:none;border-color:#7F77DD}
-.act{font-size:13px;padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
+.act{font-size:13px;padding:7px 16px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;color:var(--color-text-primary);transition:all .15s}
 .act:hover{background:var(--color-background-secondary)}
-.mi{padding:9px 14px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
+.mi{padding:9px 14px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;line-height:1.45;color:var(--color-text-primary);width:100%;text-align:left;transition:all .15s}
 .mi:hover:not([disabled]){background:var(--color-background-secondary)}
 .mi.pk{border-color:#7F77DD;background:#EEEDFE;color:#3C3489}
 .mi.mt{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
 .mi.bd{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
-.piece{padding:7px 13px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;color:var(--color-text-primary);display:inline-block;margin:3px;transition:all .15s}
+.piece{padding:7px 13px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;cursor:pointer;color:var(--color-text-primary);display:inline-block;margin:3px;transition:all .15s}
 .piece:hover{background:var(--color-background-secondary)}
 .piece.used{opacity:.3;cursor:default;pointer-events:none}
 .piece.sel{border-color:#534AB7;background:#EEEDFE;color:#3C3489}
-.slot{display:inline-flex;align-items:center;justify-content:center;min-width:68px;padding:5px 10px;border-radius:12px;border:1.5px dashed var(--color-border-secondary);font-size:13px;margin:3px;cursor:pointer;min-height:34px;color:var(--color-text-secondary);background:var(--color-background-secondary);transition:all .15s}
+.slot{display:inline-flex;align-items:center;justify-content:center;min-width:68px;padding:5px 10px;border-radius:8px;border:1.5px dashed var(--color-border-secondary);font-size:13px;margin:3px;cursor:pointer;min-height:34px;color:var(--color-text-secondary);background:var(--color-background-secondary);transition:all .15s}
 .slot.fl{border-style:solid;border-color:#AFA9EC;background:#EEEDFE;color:#3C3489}
 .slot.cs{border-color:#C0DD97;background:#EAF3DE;color:#27500A;cursor:default;pointer-events:none}
 .slot.ws{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F}
-.pb-w{background:var(--color-background-secondary);border-radius:20px;height:5px;margin-bottom:12px;overflow:hidden}
-.pb{height:5px;border-radius:20px;background:#534AB7;transition:width .3s}
-.quote-box{background:var(--color-background-secondary);border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #7F77DD}
-.gap-opt{padding:10px 16px;border-radius:14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;cursor:pointer;color:var(--color-text-primary);transition:all .15s;text-align:left;width:100%}
+.pb-w{background:var(--color-background-secondary);border-radius:8px;height:5px;margin-bottom:12px;overflow:hidden}
+.pb{height:5px;border-radius:8px;background:#534AB7;transition:width .3s}
+.quote-box{background:var(--color-background-secondary);border-radius:10px;padding:1.1rem 1.4rem;margin-bottom:1.25rem;border-left:3px solid #7F77DD}
+.gap-opt{padding:10px 16px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:14px;cursor:pointer;color:var(--color-text-primary);transition:all .15s;text-align:left;width:100%}
 .gap-opt:hover:not(.selected):not(.gap-correct):not(.gap-wrong){background:var(--color-background-secondary)}
 .gap-opt.selected{border-color:#7F77DD;background:#EEEDFE;color:#3C3489;font-weight:500}
 .gap-opt.gap-correct{border-color:#C0DD97;background:#EAF3DE;color:#27500A;font-weight:500;cursor:default;pointer-events:none}
 .gap-opt.gap-wrong{border-color:#F7C1C1;background:#FCEBEB;color:#791F1F;cursor:default;pointer-events:none}
 .gap-opt.gap-dimmed{opacity:.45;cursor:default;pointer-events:none}
-.check-btn{padding:9px 22px;border-radius:20px;border:0.5px solid #7F77DD;background:#534AB7;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
+.check-btn{padding:9px 22px;border-radius:8px;border:0.5px solid #7F77DD;background:#534AB7;color:#fff;font-size:14px;cursor:pointer;transition:all .15s}
 .check-btn:hover{background:#3C3489}
 .check-btn:disabled{opacity:.4;cursor:default}
-.fb-ok{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
-.fb-no{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:12px;margin-top:10px;line-height:1.6}
+.fb-ok{background:#EAF3DE;color:#27500A;font-size:13px;padding:10px 14px;border-radius:8px;margin-top:10px;line-height:1.6}
+.fb-no{background:#FCEBEB;color:#791F1F;font-size:13px;padding:10px 14px;border-radius:8px;margin-top:10px;line-height:1.6}
 </style>
 
-</head><body><div class="w">
+</head><body><script>EVLesson.initHeader({category:'Vocabulary'});</script>
+<div class="w">
 <h2 class="sr-only">Common English idioms — interactive lesson with browse, matching, scrambled sentences, and gap-fill activities.</h2>
 
 <div class="nav">
@@ -92,11 +98,11 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
     <div class="lbl">What is an idiom?</div>
     <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:10px">An idiom is a fixed expression whose <span style="font-weight:500;color:var(--color-text-primary)">overall meaning cannot be deduced from the individual words</span>. Idioms are deeply embedded in everyday English and are essential for natural-sounding speech and writing.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-bottom:10px">
-      <div style="background:#EEEDFE;border-radius:14px;padding:10px 12px"><div style="font-size:12px;font-weight:500;color:#3C3489;margin-bottom:3px">Fixed form</div><div style="font-size:13px;color:#534AB7">Cannot usually be changed word by word: "kick the bucket" not "kick a bucket".</div></div>
-      <div style="background:#E1F5EE;border-radius:14px;padding:10px 12px"><div style="font-size:12px;font-weight:500;color:#085041;margin-bottom:3px">Figurative meaning</div><div style="font-size:13px;color:#0F6E56">The meaning is figurative, not literal: "bite the bullet" = endure something painful.</div></div>
-      <div style="background:#FAEEDA;border-radius:14px;padding:10px 12px"><div style="font-size:12px;font-weight:500;color:#633806;margin-bottom:3px">Register matters</div><div style="font-size:13px;color:#854F0B">Many idioms are informal. Avoid them in very formal academic writing.</div></div>
+      <div style="background:#EEEDFE;border-radius:8px;padding:10px 12px"><div style="font-size:12px;font-weight:500;color:#3C3489;margin-bottom:3px">Fixed form</div><div style="font-size:13px;color:#534AB7">Cannot usually be changed word by word: "kick the bucket" not "kick a bucket".</div></div>
+      <div style="background:#E1F5EE;border-radius:8px;padding:10px 12px"><div style="font-size:12px;font-weight:500;color:#085041;margin-bottom:3px">Figurative meaning</div><div style="font-size:13px;color:#0F6E56">The meaning is figurative, not literal: "bite the bullet" = endure something painful.</div></div>
+      <div style="background:#FAEEDA;border-radius:8px;padding:10px 12px"><div style="font-size:12px;font-weight:500;color:#633806;margin-bottom:3px">Register matters</div><div style="font-size:13px;color:#854F0B">Many idioms are informal. Avoid them in very formal academic writing.</div></div>
     </div>
-    <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.6;background:var(--color-background-secondary);border-radius:12px;padding:10px 14px">This lesson covers <span style="font-weight:500;color:var(--color-text-primary)">60 high-frequency idioms</span> across 11 topics. Use Browse &amp; search to explore them, then test yourself with three activities.</div>
+    <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.6;background:var(--color-background-secondary);border-radius:8px;padding:10px 14px">This lesson covers <span style="font-weight:500;color:var(--color-text-primary)">60 high-frequency idioms</span> across 11 topics. Use Browse &amp; search to explore them, then test yourself with three activities.</div>
   </div>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px">
@@ -118,7 +124,17 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
 <div id="p2" class="pan"><div id="matchCont"></div></div>
 <div id="p3" class="pan"><div id="scramCont"></div></div>
 <div id="p4" class="pan"><div id="gapCont"></div></div>
-<div id="p5" class="pan"><div id="glossCont"></div></div>
+<div id="p5" class="pan">
+  <div class="eyebrow">Idioms</div>
+  <div class="lesson-h">My glossary</div>
+  <div class="lesson-sub">Idioms you have saved for review — this list isn't saved once you leave the page, so print or save it as a PDF before you go.</div>
+  <div class="ev-gloss-actions">
+    <button class="ev-gloss-print-btn" id="glossPrintBtn" onclick="EVLesson.printGlossary({title:'My idioms glossary', containerId:'#glossCont'})" disabled>
+      <i class="ti ti-printer" aria-hidden="true"></i> Print / Save as PDF
+    </button>
+  </div>
+  <div id="glossCont"></div>
+</div>
 </div>
 
 <script>
@@ -274,7 +290,7 @@ function renderQuote(){
     <div style="font-family:var(--font-serif);font-size:15px;line-height:1.75;color:var(--color-text-primary);margin-bottom:8px">${txt}</div>
     <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">— ${q.author}</div>
     <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px">Idiom: ${q.hi||'see above'}</span>
+      <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px">Idiom: ${q.hi||'see above'}</span>
       <button class="act" onclick="renderQuote()" style="font-size:12px;padding:4px 12px"><i class="ti ti-refresh" aria-hidden="true" style="font-size:13px;vertical-align:-2px"></i> New quote</button>
     </div>`;
 }
@@ -297,7 +313,7 @@ function renderBrowse(){
     return`<div class="id-card${selId===i.id?' sel':''}" id="ic_${i.id}" onclick="selIdiom('${i.id}')">
       <div class="id-top">
         <span class="id-name">${i.idiom}</span>
-        <span style="background:${c.bg};color:${c.tc};font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;white-space:nowrap">${i.topic}</span>
+        <span style="background:${c.bg};color:${c.tc};font-size:11px;font-weight:500;padding:2px 8px;border-radius:8px;white-space:nowrap">${i.topic}</span>
         <span style="color:${saved?'#854F0B':'var(--color-text-secondary)'};font-size:15px;cursor:pointer;flex-shrink:0" onclick="event.stopPropagation();toggleGloss('${i.id}')"><i class="ti ti-bookmark" aria-label="${saved?'Remove':'Save'}"></i></span>
       </div>
       <div class="id-def">${i.meaning}</div>
@@ -317,17 +333,17 @@ function selIdiom(id){
   detail.innerHTML=`
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
       <span style="font-size:16px;font-weight:500">${i.idiom}</span>
-      <span style="background:${c.bg};color:${c.tc};font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px;border:0.5px solid ${c.brd}">${i.topic}</span>
-      <span style="background:${i.register==='informal'?'#FAEEDA':'#E6F1FB'};color:${i.register==='informal'?'#633806':'#0C447C'};font-size:11px;padding:2px 8px;border-radius:20px">${i.register}</span>
+      <span style="background:${c.bg};color:${c.tc};font-size:12px;font-weight:500;padding:3px 10px;border-radius:8px;border:0.5px solid ${c.brd}">${i.topic}</span>
+      <span style="background:${i.register==='informal'?'#FAEEDA':'#E6F1FB'};color:${i.register==='informal'?'#633806':'#0C447C'};font-size:11px;padding:2px 8px;border-radius:8px">${i.register}</span>
       <button class="act" style="margin-left:auto;font-size:12px" onclick="toggleGloss('${id}');selIdiom('${id}')">${saved?'<i class="ti ti-bookmark" aria-hidden="true"></i> Saved':'<i class="ti ti-bookmark" aria-hidden="true"></i> Save'}</button>
     </div>
     <div class="lbl">Meaning</div>
     <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:10px">${i.meaning}</p>
     <div class="lbl">Usage note</div>
-    <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:10px;background:var(--color-background-secondary);border-radius:12px;padding:8px 12px">${i.note}</p>
+    <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:10px;background:var(--color-background-secondary);border-radius:8px;padding:8px 12px">${i.note}</p>
     <div class="lbl">Examples</div>
     <div style="display:flex;flex-direction:column;gap:7px">
-      ${i.ex.map(e=>`<div style="background:var(--color-background-secondary);border-radius:12px;padding:8px 13px;font-size:14px;font-style:italic;color:var(--color-text-secondary)">${e}</div>`).join('')}
+      ${i.ex.map(e=>`<div style="background:var(--color-background-secondary);border-radius:8px;padding:8px 13px;font-size:14px;font-style:italic;color:var(--color-text-secondary)">${e}</div>`).join('')}
     </div>`;
   detail.classList.add('on');detail.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
@@ -338,7 +354,7 @@ function toggleGloss(id){
   renderBrowse();
 }
 function renderGloss(){
-  const cont=document.getElementById('glossCont');
+  const cont=document.getElementById('glossCont');const printBtn=document.getElementById('glossPrintBtn');if(printBtn)printBtn.disabled=!glossary.length;
   if(!glossary.length){cont.innerHTML=`<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" aria-hidden="true" style="font-size:28px;margin-bottom:10px;display:block;color:#AFA9EC"></i><div style="font-size:14px">No idioms saved yet. Browse and tap the bookmark icon to save them here.</div></div>`;return;}
   cont.innerHTML=`<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">${glossary.length} idiom${glossary.length!==1?'s':''} saved</div>`+glossary.map(id=>{
     const i=IDIOMS.find(x=>x.id===id);
@@ -415,7 +431,7 @@ function renderScram(){
     <div class="card" style="margin-bottom:12px">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
         <span style="font-size:12px;color:var(--color-text-secondary)">Idiom:</span>
-        <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:20px;font-style:italic">${item.idiom}</span>
+        <span style="background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;padding:2px 9px;border-radius:8px;font-style:italic">${item.idiom}</span>
       </div>
       <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">Tap a word then tap a slot. Tap a filled slot to return the word.</div>
       <div style="display:flex;flex-wrap:wrap;align-items:center;gap:2px;min-height:42px;margin-bottom:6px" id="sSlots">
@@ -513,7 +529,7 @@ function renderGap(){
     <div class="pb-w"><div class="pb" style="width:${prog}%"></div></div>
     <div class="card" style="margin-bottom:12px">
       <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:10px">Choose the correct missing word to complete the idiom, then press <strong>Check</strong>.</div>
-      <div style="font-size:15px;line-height:1.8;margin-bottom:14px;background:var(--color-background-secondary);border-radius:12px;padding:10px 14px">${sentenceHtml}</div>
+      <div style="font-size:15px;line-height:1.8;margin-bottom:14px;background:var(--color-background-secondary);border-radius:8px;padding:10px 14px">${sentenceHtml}</div>
       <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px" id="gOptsList">
         ${opts.map((o,i)=>`<button class="gap-opt" id="gopt_${i}" onclick="selectGapOpt(${i})">${o}</button>`).join('')}
       </div>

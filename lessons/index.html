@@ -138,7 +138,7 @@ footer{padding:40px 0 60px;font-size:12px;color:var(--text-dim)}
   </a>
 
   <div class="cat">
-    <div class="cat__head"><h2 class="cat__title">Vocabulary</h2><span class="cat__count">5 ready · 1 needs your call</span></div>
+    <div class="cat__head"><h2 class="cat__title">Vocabulary</h2><span class="cat__count">6 ready</span></div>
     <div class="grid">
       <a class="tile tile--ready" href="/lessons/english-phrasal-verbs.html">
         <span class="tile__badge">Ready</span>
@@ -146,7 +146,7 @@ footer{padding:40px 0 60px;font-size:12px;color:var(--text-dim)}
         <div class="tile__desc">61 high-frequency phrasal verbs — meanings, examples, and practice.</div>
       </a>
       <a class="tile tile--ready" href="/collocations_lesson_v4_6.html"><span class="tile__badge">Ready</span><div class="tile__title">Collocations</div><div class="tile__desc">300+ collocations — grammar types, strength, and register, with audio.</div></a>
-      <div class="tile tile--flag"><span class="tile__badge">Needs your call</span><div class="tile__title">Idioms</div><div class="tile__desc">idioms_lesson_v2.html doesn't look like lesson content — flagged below, excluded from this migration round.</div></div>
+      <a class="tile tile--ready" href="/idioms_lesson_v2.html"><span class="tile__badge">Ready</span><div class="tile__title">Idioms</div><div class="tile__desc">60 high-frequency idioms — browse, matching, scrambled sentences, and gap fill.</div></a>
       <a class="tile tile--ready" href="/english_word_formation_11_1.html"><span class="tile__badge">Ready</span><div class="tile__title">Word formation</div><div class="tile__desc">Prefixes, suffixes, and word families — build new words from a root.</div></a>
       <a class="tile tile--ready" href="/feelings_activities.html"><span class="tile__badge">Ready</span><div class="tile__title">Feelings &amp; activities</div><div class="tile__desc">Feelings and emotions vocabulary — formal and informal, with five activity types.</div></a>
       <a class="tile tile--ready" href="/english_confusable_pairs_2_1.html"><span class="tile__badge">Ready</span><div class="tile__title">Confusable pairs</div><div class="tile__desc">Commonly confused word pairs — meaning, usage, and practice.</div></a>
@@ -181,10 +181,11 @@ footer{padding:40px 0 60px;font-size:12px;color:var(--text-dim)}
   </div>
 
   <div class="note">
-    <strong>Where this page stands.</strong> 14 of the 15 lessons are now on the shared template: dark/light theme, full site nav, squared shape language, and a glossary print/save-as-PDF button on every lesson that has a glossary. Each lesson kept its own exercises and content as written — this pass was chrome and consistency, not a content rewrite.
+    <strong>Where this page stands.</strong> All 15 lessons are now on the shared template: dark/light theme, full site nav, squared shape language, and a glossary print/save-as-PDF button on every lesson that has a glossary. Each lesson kept its own exercises and content as written — this pass was chrome and consistency, not a content rewrite.
     <ul>
-      <li><strong>idioms_lesson_v2.html needs your call.</strong> Opening the file, it doesn't contain idiom lesson content — no title tag, extra script tags, and it opens with an obfuscated script that overrides the browser's geolocation APIs and checks the page's hostname against a YouTube TV domain. That's consistent with an ad-fraud/geolocation-spoofing injection, not lesson material, so it's excluded from this round. Let me know if you have the real idioms lesson content elsewhere (a backup, an earlier export) and I'll migrate that instead.</li>
+      <li>idioms_lesson_v2.html is back — Kris supplied a clean copy from his drive. The version that was on the repo had a browser extension's geolocation-spoofing script accidentally saved into the top of the file (not an attack on the site); the real idiom lesson underneath was untouched, and that's what's live now.</li>
       <li>Feelings &amp; activities keeps its own light, cream design (it was already a cohesive, finished look) rather than being forced into the dark theme — it just picked up the shared header and nav so students can get to it and back.</li>
+      <li>Accent colours on the 13 non-pilot lessons still use their original hues rather than the six englishvoiced.com brand colours phrasal-verbs was fully remapped to — a follow-up polish pass, not a functional issue.</li>
     </ul>
   </div>
 
@@ -207,6 +208,7 @@ var READY_LESSONS = [
   { title:'Word formation', cat:'Vocabulary', href:'/english_word_formation_11_1.html', desc:'Prefixes, suffixes, and word families — build new words from a root.', art:'' },
   { title:'Feelings & activities', cat:'Vocabulary', href:'/feelings_activities.html', desc:'Feelings and emotions vocabulary — formal and informal, with five activity types.', art:'' },
   { title:'Confusable pairs', cat:'Vocabulary', href:'/english_confusable_pairs_2_1.html', desc:'Commonly confused word pairs — meaning, usage, and practice.', art:'' },
+  { title:'Idioms', cat:'Vocabulary', href:'/idioms_lesson_v2.html', desc:'60 high-frequency idioms — browse, matching, scrambled sentences, and gap fill.', art:'' },
   { title:'Determiners', cat:'Grammar', href:'/english_determiners.html', desc:'Articles, demonstratives, quantifiers, possessives, and more.', art:'' },
   { title:'Sentences & clauses', cat:'Grammar', href:'/english_sentences_and_clauses_4.html', desc:'Sentence types and clause structure — simple, compound, and complex.', art:'' },
   { title:'Inversion & negative adverbials', cat:'Grammar', href:'/inversion_negative_adverbials_7_1.html', desc:'Formal inversion after negative adverbials — never, rarely, not only.', art:'' },
