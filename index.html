@@ -209,6 +209,16 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
 /* Stretched link: the button's link covers the whole tile. */
 .stretch::after{content:"";position:absolute;inset:0}
 
+/* Category link in a tile's top label. It sits in the same corner on every
+   tile, always pointing at that section's own page — the "go to the whole
+   category" escape hatch, distinct from the tile's main .stretch link
+   (usually the item of the week). Needs its own stacking context so a
+   click on the label reaches the label, not the .stretch overlay beneath
+   it (both are positioned within the same .tile). */
+.label--link{position:relative;z-index:1;text-decoration:none;cursor:pointer}
+.label--link:hover,
+.label--link:focus-visible{text-decoration:underline}
+
 /* Image bands. Empty until an image is supplied (see CONFIG in the script). */
 .media{
   position:relative;overflow:hidden;
@@ -273,7 +283,10 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
 /* ---------- Lessons + Courses ---------- */
 .tile--lessons .media,
 .tile--courses .media{flex:none;margin-top:auto;border-radius:8px}
-.tile--lessons .media{height:110px}
+/* The lesson-of-the-week artwork is a full-bleed 552:221 panel (see
+   lessons/assets/art/*.svg) — give the band that exact aspect ratio so it
+   fills edge to edge instead of being letterboxed inside a fixed height. */
+.tile--lessons .media{aspect-ratio:552/221;height:auto}
 .tile--courses .media{height:120px}
 
 /* ---------- Games ---------- */
@@ -300,7 +313,12 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
   .card:hover{transform:translateY(-3px)}
   .card--practice:hover{background:rgb(255 255 255 / .22)}
 }
-.qotd{margin-top:auto;padding-top:12px;border-top:1px solid rgb(255 255 255 / .22)}
+.qotd{
+  display:block;margin-top:auto;padding-top:12px;border-top:1px solid rgb(255 255 255 / .22);
+  text-decoration:none;color:inherit;transition:opacity .2s ease;
+}
+.qotd:hover,
+.qotd:focus-visible{opacity:.82}
 .qotd__k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgb(255 255 255 / .65)}
 .qotd__t{margin-top:4px;font-size:14px;font-weight:700;color:#fff}
 .qotd__m{margin-top:2px;font-size:12px;color:rgb(255 255 255 / .72)}
@@ -361,13 +379,15 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       <span class="logo__by">with Kris</span>
     </a>
     <nav class="nav" aria-label="Sections">
-      <a class="nav__articles" href="#articles">Lens: Articles</a>
-      <a class="nav__videos"   href="#videos">Lens: Videos</a>
-      <a class="nav__games"    href="#games">Games</a>
-      <a class="nav__quizzes"  href="#quizzes">Quizzes</a>
-      <a class="nav__lessons"  href="#lessons">Lessons</a>
-      <a class="nav__courses"  href="#courses">Courses</a>
-      <a class="nav__book"     href="#book">Book a Lesson</a>
+      <a class="nav__articles" href="/english-lens/">Lens: Articles</a>
+      <a class="nav__videos"   href="/english-lens/videos.html">Lens: Videos</a>
+      <a class="nav__games"    href="/english-games/">Games</a>
+      <a class="nav__quizzes"  href="/english-quiz/practice.html">Quizzes</a>
+      <a class="nav__lessons"  href="/lessons/">Lessons</a>
+      <!-- TODO(url): replace "#TODO-courses-url" with the real Courses address -->
+      <a class="nav__courses"  href="#TODO-courses-url">Courses</a>
+      <!-- TODO(url): replace "#TODO-booking-url" with the real booking link or form -->
+      <a class="nav__book"     href="#TODO-booking-url">Book a Lesson</a>
     </nav>
   </header>
 
@@ -385,36 +405,40 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       </div>
     </section>
 
-    <!-- Lessons -->
+    <!-- Lessons. Two targets: the label (top) always goes to /lessons/;
+         the stretched button/tile goes to this week's specific lesson. -->
     <section id="lessons" class="tile tile--lessons" data-section="lessons">
-      <p class="label">Lessons · lesson of the week</p>
+      <a class="label label--link" href="/lessons/">Lessons · lesson of the week</a>
       <div class="head">
         <h2 class="display">The grammar you pretend to know</h2>
         <span class="rule"></span>
       </div>
       <p class="line"><strong data-field="title"></strong> — <span data-field="line"></span></p>
       <div class="media" data-media><img alt="" decoding="async"></div>
-      <a class="btn stretch" id="lessonsBtn" href="/lessons/"><span>Browse lessons</span><span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn stretch" id="lessonsBtn" data-entry-link href="/lessons/"><span>Browse lessons</span><span class="arrow" aria-hidden="true">→</span></a>
     </section>
 
-    <!-- Lens: Videos -->
-    <a id="videos" class="tile tile--videos" href="/english-lens/videos.html" data-section="videos" data-entry-link>
+    <!-- Lens: Videos. Label -> /english-lens/videos.html (all videos);
+         stretched CTA -> this week's specific video. -->
+    <article id="videos" class="tile tile--videos" data-section="videos">
       <div class="media" data-media><img alt="" decoding="async"></div>
       <div class="tile__body">
-        <span class="label">Lens: Videos · 5 a week</span>
+        <a class="label label--link" href="/english-lens/videos.html">Lens: Videos · 5 a week</a>
         <div class="head">
           <h2 class="display">Five minutes, one story</h2>
           <span class="rule"></span>
         </div>
         <p class="vtitle" data-field="title"></p>
         <p class="vmeta" data-field="meta"></p>
+        <a class="cta-line stretch" id="videosBtn" data-entry-link href="/english-lens/videos.html"><span>Watch this video</span><span class="arrow" aria-hidden="true">→</span></a>
       </div>
-    </a>
+    </article>
 
-    <!-- Lens: Articles -->
-    <a id="articles" class="tile tile--articles" href="/english-lens/" data-section="articles" data-entry-link>
+    <!-- Lens: Articles. Label -> /english-lens/ (all articles);
+         stretched CTA -> today's specific pick. -->
+    <article id="articles" class="tile tile--articles" data-section="articles">
       <div class="tile__row">
-        <span class="label">Lens: Articles</span>
+        <a class="label label--link" href="/english-lens/">Lens: Articles</a>
         <span class="label label--dim">12 a week · 2 levels</span>
       </div>
       <div class="head">
@@ -432,27 +456,30 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
           <p class="vocab__q" data-field="thought"></p>
         </div>
       </div>
-      <div class="cta-line"><span>Read today's pick</span><span class="arrow" aria-hidden="true">→</span></div>
-    </a>
+      <a class="cta-line stretch" id="articlesBtn" data-entry-link href="/english-lens/"><span>Read today's pick</span><span class="arrow" aria-hidden="true">→</span></a>
+    </article>
 
-    <!-- Courses -->
+    <!-- Courses. No "course of the week" yet, so both label and CTA point
+         at the same page for now -- swap the label's href separately if
+         that ever changes. -->
     <section id="courses" class="tile tile--courses" data-section="courses">
-      <p class="label">Courses</p>
+      <!-- TODO(url): replace "#TODO-courses-url" with the real Courses address -->
+      <a class="label label--link" href="#TODO-courses-url">Courses</a>
       <div class="head">
         <h2 class="display" data-field="title"></h2>
         <span class="rule"></span>
       </div>
       <p class="line" data-field="line"></p>
       <div class="media" data-media><img alt="" decoding="async"></div>
-      <!-- TODO(url): replace "#TODO-courses-url" with the real Courses address -->
       <a class="btn stretch" href="#TODO-courses-url"><span>See courses</span><span class="arrow" aria-hidden="true">→</span></a>
     </section>
 
-    <!-- Games -->
-    <a id="games" class="tile tile--games" href="/english-games/" data-section="games" data-entry-link>
+    <!-- Games. Label -> /english-games/ (all games);
+         stretched CTA -> this week's specific game. -->
+    <article id="games" class="tile tile--games" data-section="games">
       <div class="tile__main">
         <div class="tile__row">
-          <span class="label">Games</span>
+          <a class="label label--link" href="/english-games/">Games</a>
           <span class="label label--dim" data-day-label></span>
         </div>
         <div class="head">
@@ -460,14 +487,16 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
           <span class="rule"></span>
         </div>
         <p class="line"><strong data-field="title"></strong> — <span data-field="line"></span></p>
-        <span class="btn btn--static"><span>Play now</span><span class="arrow" aria-hidden="true">→</span></span>
+        <a class="btn btn--static stretch" id="gamesBtn" data-entry-link href="/english-games/"><span>Play now</span><span class="arrow" aria-hidden="true">→</span></a>
       </div>
       <div class="media media--side" data-media><img alt="" decoding="async"></div>
-    </a>
+    </article>
 
-    <!-- Quizzes -->
+    <!-- Quizzes. Label -> /english-quiz/practice.html (all quizzes);
+         Join/Self-practice cards are their own distinct destinations;
+         Quiz-of-the-day panel is now a real link too (it had none before). -->
     <section id="quizzes" class="tile tile--quizzes" data-section="quizzes">
-      <p class="label">Quizzes</p>
+      <a class="label label--link" href="/english-quiz/practice.html">Quizzes</a>
       <div class="head">
         <h2 class="display">Find out what stuck</h2>
         <span class="rule"></span>
@@ -482,11 +511,11 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
           <span class="card__t">Self-practice</span>
         </a>
       </div>
-      <div class="qotd">
+      <a class="qotd" id="quizzesBtn" data-entry-link href="/english-quiz/practice.html">
         <p class="qotd__k">Quiz of the day</p>
         <p class="qotd__t" data-field="title"></p>
         <p class="qotd__m" data-field="meta"></p>
-      </div>
+      </a>
     </section>
 
     <!-- Talk to a human first (unframed) -->
@@ -617,12 +646,17 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       img.addEventListener('load', () => box.classList.add('has-img'));
       img.addEventListener('error', () => box.classList.remove('has-img'));
     }
+    // The "item of the week" link is now always an inner element marked
+    // [data-entry-link] (a .stretch CTA, or the equivalent), never the
+    // whole tile -- every tile also carries its own separate .label--link
+    // to the category page, which needs to stay independently clickable.
+    const link = tile.querySelector('[data-entry-link]');
     sections[key] = {
       key, tile, box, img,
       items: SAMPLE[key],
       i: 0,
-      link: tile.hasAttribute('data-entry-link') ? tile : null,
-      defaultHref: tile.getAttribute('href')
+      link,
+      defaultHref: link ? link.getAttribute('href') : ''
     };
   });
   const list = Object.values(sections);
@@ -875,10 +909,9 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       if (el.dataset.field === 'title') el.textContent = pick.title;
       if (el.dataset.field === 'line') el.textContent = pick.line;
     });
-    const btn = document.getElementById('lessonsBtn');
-    if (btn) {
-      btn.setAttribute('href', pick.href);
-      const label = btn.querySelector('span');
+    if (sec.link) {
+      sec.link.setAttribute('href', pick.href);
+      const label = sec.link.querySelector('span');
       if (label) label.textContent = 'Start this lesson';
     }
     // Inline the SVG (rather than an <img src>) so the artwork's own
