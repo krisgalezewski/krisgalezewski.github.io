@@ -173,7 +173,7 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .tile--videos  {--bg:var(--videos);  --bg-hi:var(--videos-hi);  --lbl:.75;grid-area:vid;padding:0;gap:0;min-height:300px}
 .tile--articles{--bg:var(--articles);--bg-hi:var(--articles-hi);--lbl:.72;grid-area:art;--gap:14px}
 .tile--courses {--bg:var(--courses); --bg-hi:var(--courses-hi); --lbl:.78;grid-area:crs}
-.tile--games   {--bg:var(--games);   --bg-hi:var(--games-hi);   --lbl:.72;grid-area:gam;padding:0;gap:0;min-height:250px;flex-direction:row}
+.tile--games   {--bg:var(--games);   --bg-hi:var(--games-hi);   --lbl:.72;grid-area:gam;padding:0;gap:0;min-height:250px}
 .tile--quizzes {--bg:var(--quizzes); --bg-hi:var(--quizzes-hi); --lbl:.75;grid-area:qz;min-height:298px}
 
 /* Labels, headlines, rule, arrow */
@@ -209,15 +209,44 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
 /* Stretched link: the button's link covers the whole tile. */
 .stretch::after{content:"";position:absolute;inset:0}
 
-/* Category link in a tile's top label. It sits in the same corner on every
-   tile, always pointing at that section's own page — the "go to the whole
+/* Category band: a full-width strip pinned to the top of every tile,
+   always pointing at that section's own page — the "go to the whole
    category" escape hatch, distinct from the tile's main .stretch link
-   (usually the item of the week). Needs its own stacking context so a
-   click on the label reaches the label, not the .stretch overlay beneath
-   it (both are positioned within the same .tile). */
-.label--link{position:relative;z-index:1;text-decoration:none;cursor:pointer}
-.label--link:hover,
-.label--link:focus-visible{text-decoration:underline}
+   (usually the item of the week). It's a real background/box rather than
+   plain text, and that box is visible at rest (not just on hover), so it
+   reads as its own control even against a busy item-of-week background —
+   the label alone was too easy to miss. It's also its own row, so a click
+   on it reaches it rather than the .stretch overlay beneath it. */
+.tile__cat{
+  position:relative;z-index:1;
+  display:flex;align-items:center;gap:6px;
+  padding:10px 24px;background:rgb(0 0 0 / .22);
+  font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:rgb(255 255 255 / .88);text-decoration:none;
+  transition:background .2s ease,color .2s ease;
+}
+.tile__cat:hover,
+.tile__cat:focus-visible{background:rgb(0 0 0 / .36);color:#fff}
+.tile__cat__arrow{opacity:.8;font-size:11px;transform:translateY(-1px)}
+/* Tiles whose own padding wraps all their content (Lessons/Courses/
+   Articles/Quizzes): pull the band out to the tile's edges with negative
+   margins the same size as that padding, so it's edge-to-edge like it is
+   on Videos/Games (whose tile padding is already 0). */
+.tile--lessons .tile__cat,
+.tile--courses .tile__cat,
+.tile--articles .tile__cat,
+.tile--quizzes .tile__cat{margin:-24px -24px 0}
+.tile--videos .tile__cat{padding:10px 20px}
+
+/* A secondary bit of meta (the Games "day's pick" flag, the Articles
+   cadence line) that used to sit beside the label in a flex row. The
+   label moved into .tile__cat above, so this now stands alone — keep it
+   in roughly the same spot by pinning it to the row's right edge. */
+.label--corner{align-self:flex-end}
+
+/* Games needs a column (band on top) with a row (text + art) below it,
+   instead of the tile itself being the row. */
+.tile__split{display:flex;flex:1;min-height:0}
 
 /* Image bands. Empty until an image is supplied (see CONFIG in the script). */
 .media{
@@ -405,10 +434,11 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       </div>
     </section>
 
-    <!-- Lessons. Two targets: the label (top) always goes to /lessons/;
-         the stretched button/tile goes to this week's specific lesson. -->
+    <!-- Lessons. Two targets: the category band (top) always goes to
+         /lessons/; the stretched button/tile goes to this week's
+         specific lesson. -->
     <section id="lessons" class="tile tile--lessons" data-section="lessons">
-      <a class="label label--link" href="/lessons/">Lessons · lesson of the week</a>
+      <a class="tile__cat" href="/lessons/">Lessons · lesson of the week<span class="tile__cat__arrow" aria-hidden="true">↗</span></a>
       <div class="head">
         <h2 class="display">The grammar you pretend to know</h2>
         <span class="rule"></span>
@@ -418,12 +448,13 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       <a class="btn stretch" id="lessonsBtn" data-entry-link href="/lessons/"><span>Browse lessons</span><span class="arrow" aria-hidden="true">→</span></a>
     </section>
 
-    <!-- Lens: Videos. Label -> /english-lens/videos.html (all videos);
-         stretched CTA -> this week's specific video. -->
+    <!-- Lens: Videos. Category band (top of the whole card, above the
+         thumbnail) -> /english-lens/videos.html (all videos); stretched
+         CTA -> this week's specific video. -->
     <article id="videos" class="tile tile--videos" data-section="videos">
+      <a class="tile__cat" href="/english-lens/videos.html">Lens: Videos · 5 a week<span class="tile__cat__arrow" aria-hidden="true">↗</span></a>
       <div class="media" data-media><img alt="" decoding="async"></div>
       <div class="tile__body">
-        <a class="label label--link" href="/english-lens/videos.html">Lens: Videos · 5 a week</a>
         <div class="head">
           <h2 class="display">Five minutes, one story</h2>
           <span class="rule"></span>
@@ -434,13 +465,11 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       </div>
     </article>
 
-    <!-- Lens: Articles. Label -> /english-lens/ (all articles);
-         stretched CTA -> today's specific pick. -->
+    <!-- Lens: Articles. Category band (top) -> /english-lens/ (all
+         articles); stretched CTA -> today's specific pick. -->
     <article id="articles" class="tile tile--articles" data-section="articles">
-      <div class="tile__row">
-        <a class="label label--link" href="/english-lens/">Lens: Articles</a>
-        <span class="label label--dim">12 a week · 2 levels</span>
-      </div>
+      <a class="tile__cat" href="/english-lens/">Lens: Articles<span class="tile__cat__arrow" aria-hidden="true">↗</span></a>
+      <span class="label label--dim label--corner">12 a week · 2 levels</span>
       <div class="head">
         <h2 class="display">Read the news, steal the words</h2>
         <span class="rule"></span>
@@ -459,12 +488,12 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       <a class="cta-line stretch" id="articlesBtn" data-entry-link href="/english-lens/"><span>Read today's pick</span><span class="arrow" aria-hidden="true">→</span></a>
     </article>
 
-    <!-- Courses. No "course of the week" yet, so both label and CTA point
-         at the same page for now -- swap the label's href separately if
-         that ever changes. -->
+    <!-- Courses. No "course of the week" yet, so both the band and the CTA
+         point at the same page for now -- swap the band's href separately
+         if that ever changes. -->
     <section id="courses" class="tile tile--courses" data-section="courses">
       <!-- TODO(url): replace "#TODO-courses-url" with the real Courses address -->
-      <a class="label label--link" href="#TODO-courses-url">Courses</a>
+      <a class="tile__cat" href="#TODO-courses-url">Courses<span class="tile__cat__arrow" aria-hidden="true">↗</span></a>
       <div class="head">
         <h2 class="display" data-field="title"></h2>
         <span class="rule"></span>
@@ -474,29 +503,32 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       <a class="btn stretch" href="#TODO-courses-url"><span>See courses</span><span class="arrow" aria-hidden="true">→</span></a>
     </section>
 
-    <!-- Games. Label -> /english-games/ (all games);
-         stretched CTA -> this week's specific game. -->
+    <!-- Games. Category band (top, full width) -> /english-games/ (all
+         games); stretched CTA -> this week's specific game. The band sits
+         above a row (.tile__split) that holds the text column and the
+         side artwork, same as before. -->
     <article id="games" class="tile tile--games" data-section="games">
-      <div class="tile__main">
-        <div class="tile__row">
-          <a class="label label--link" href="/english-games/">Games</a>
-          <span class="label label--dim" data-day-label></span>
+      <a class="tile__cat" href="/english-games/">Games<span class="tile__cat__arrow" aria-hidden="true">↗</span></a>
+      <div class="tile__split">
+        <div class="tile__main">
+          <span class="label label--dim label--corner" data-day-label></span>
+          <div class="head">
+            <h2 class="display">Play your way to fluency</h2>
+            <span class="rule"></span>
+          </div>
+          <p class="line"><strong data-field="title"></strong> — <span data-field="line"></span></p>
+          <a class="btn btn--static stretch" id="gamesBtn" data-entry-link href="/english-games/"><span>Play now</span><span class="arrow" aria-hidden="true">→</span></a>
         </div>
-        <div class="head">
-          <h2 class="display">Play your way to fluency</h2>
-          <span class="rule"></span>
-        </div>
-        <p class="line"><strong data-field="title"></strong> — <span data-field="line"></span></p>
-        <a class="btn btn--static stretch" id="gamesBtn" data-entry-link href="/english-games/"><span>Play now</span><span class="arrow" aria-hidden="true">→</span></a>
+        <div class="media media--side" data-media><img alt="" decoding="async"></div>
       </div>
-      <div class="media media--side" data-media><img alt="" decoding="async"></div>
     </article>
 
-    <!-- Quizzes. Label -> /english-quiz/practice.html (all quizzes);
-         Join/Self-practice cards are their own distinct destinations;
-         Quiz-of-the-day panel is now a real link too (it had none before). -->
+    <!-- Quizzes. Category band (top) -> /english-quiz/practice.html (all
+         quizzes); Join/Self-practice cards are their own distinct
+         destinations; Quiz-of-the-day panel is now a real link too (it
+         had none before). -->
     <section id="quizzes" class="tile tile--quizzes" data-section="quizzes">
-      <a class="label label--link" href="/english-quiz/practice.html">Quizzes</a>
+      <a class="tile__cat" href="/english-quiz/practice.html">Quizzes<span class="tile__cat__arrow" aria-hidden="true">↗</span></a>
       <div class="head">
         <h2 class="display">Find out what stuck</h2>
         <span class="rule"></span>
