@@ -86,38 +86,57 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .nav__courses{color:var(--courses-tint)}
 .nav__book{color:var(--ink);background:var(--bone);padding:10px 18px;border-radius:8px;font-weight:700}
 
-/* ---------- Mosaic grid ---------- */
+/* ---------- Mosaic grid ----------
+   120-column track = the original 12 columns at 10x resolution, so two
+   tiles can be widened by a tenth of a column each (Videos, Quizzes)
+   without disturbing the rest. column-gap stays 0 (119 gutters would blow
+   the grid past the container); the 12px gutter is restored as 6px margin
+   on each side of every tile, with the container's own side padding
+   trimmed by 6px to compensate so the outer edges land in the same place
+   they did on the old 12-column grid. */
 .mosaic{
-  max-width:calc(var(--wrap) + 56px);margin:0 auto;padding:0 28px;
-  display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;
-  grid-template-areas:
-    "hero hero hero hero hero hero hero hero less less less less"
-    "vid  vid  vid  art  art  art  art  art  crs  crs  crs  crs"
-    "gam  gam  gam  gam  gam  qz   qz   qz   talk talk talk talk";
+  max-width:calc(var(--wrap) + 56px);margin:0 auto;padding:0 22px;
+  display:grid;grid-template-columns:repeat(120,minmax(0,1fr));
+  column-gap:0;row-gap:12px;
 }
-.mosaic > *{min-width:0}
+.mosaic > *{min-width:0;margin-inline:6px}
+
+.hero          {grid-row:1;grid-column:1/81}
+.tile--lessons {grid-row:1;grid-column:81/121}
+.tile--videos  {grid-row:2;grid-column:1/34}
+.tile--articles{grid-row:2;grid-column:34/81}
+.tile--courses {grid-row:2;grid-column:81/121}
+.tile--games   {grid-row:3;grid-column:1/48}
+.tile--quizzes {grid-row:3;grid-column:48/81}
+.talk          {grid-row:3;grid-column:81/121}
 
 @media (max-width:1040px){
-  .mosaic{
-    grid-template-areas:
-      "hero hero hero hero hero hero hero hero hero hero hero hero"
-      "less less less less less less crs  crs  crs  crs  crs  crs"
-      "vid  vid  vid  vid  vid  art  art  art  art  art  art  art"
-      "gam  gam  gam  gam  gam  gam  gam  qz   qz   qz   qz   qz"
-      "talk talk talk talk talk talk talk talk talk talk talk talk";
-  }
+  .hero          {grid-row:1;grid-column:1/121}
+  .tile--lessons {grid-row:2;grid-column:1/61}
+  .tile--courses {grid-row:2;grid-column:61/121}
+  .tile--videos  {grid-row:3;grid-column:1/56}
+  .tile--articles{grid-row:3;grid-column:56/121}
+  .tile--games   {grid-row:4;grid-column:1/66}
+  .tile--quizzes {grid-row:4;grid-column:66/121}
+  .talk          {grid-row:5;grid-column:1/121}
   .talk{padding-left:0}
 }
 @media (max-width:640px){
-  .mosaic{
-    grid-template-columns:minmax(0,1fr);
-    grid-template-areas:"hero" "less" "crs" "art" "vid" "gam" "qz" "talk";
-  }
+  .mosaic{grid-template-columns:minmax(0,1fr)}
+  .mosaic > *{grid-column:1/-1 !important}
+  .hero          {grid-row:1}
+  .tile--lessons {grid-row:2}
+  .tile--courses {grid-row:3}
+  .tile--articles{grid-row:4}
+  .tile--videos  {grid-row:5}
+  .tile--games   {grid-row:6}
+  .tile--quizzes {grid-row:7}
+  .talk          {grid-row:8}
 }
 
 /* ---------- Hero (unframed) ---------- */
 .hero{
-  grid-area:hero;padding:10px 26px 10px 0;min-height:320px;
+  padding:10px 26px 10px 0;min-height:320px;
   display:flex;flex-direction:column;justify-content:center;gap:20px;
 }
 .hero h1{
@@ -131,7 +150,7 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
 
 /* ---------- Talk to a human (unframed) ---------- */
 .talk{
-  grid-area:talk;padding:10px 0 10px 26px;min-height:270px;
+  padding:10px 0 10px 26px;min-height:270px;
   display:flex;flex-direction:column;justify-content:center;gap:16px;
 }
 .talk .display{font-size:38px;line-height:.96}
@@ -139,224 +158,129 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .talk__btn{align-self:flex-start;background:var(--games);color:#fff;font-weight:700;font-size:14px;padding:14px 24px;border-radius:8px}
 
 /* ==========================================================================
-   Coloured tiles — one shared hover behaviour
+   Coloured tiles — the two-button pattern
    --------------------------------------------------------------------------
-   Each tile carries a single state variable, --on (0 = resting, 1 = hot).
-   It flips to 1 on mouse hover or keyboard focus, and every effect below is
-   derived from it, so all six tiles behave identically:
-     background lightens · tile lifts · white rule grows · arrow slides in ·
-     image zooms · article panel unfolds
+   Every tile ends in a pair of equally sized buttons: an outline "section"
+   button that always goes to that section's own index, and a filled "item"
+   button for the featured pick. Nothing else in a tile is an ambient click
+   target (the quiz room-code strip and the Articles hover-swap are the two
+   deliberate exceptions, styled separately below), so hover feedback lives
+   on the buttons themselves rather than the whole tile.
    ========================================================================== */
 .tile{
-  --on:0;
-  --bg:#000;--bg-hi:#111;--gap:12px;--lbl:.75;
-  position:relative;isolation:isolate;overflow:hidden;
-  display:flex;flex-direction:column;gap:var(--gap);
-  padding:24px;min-height:348px;border-radius:10px;
-  color:#fff;background:var(--bg);
-  transform:translateY(calc(var(--on) * -4px));
-  box-shadow:0 18px 40px rgb(0 0 0 / calc(var(--on) * .45));
-  transition:transform .35s ease,box-shadow .35s ease;
-}
-/* Lighter colour fades in over the base colour (behind the content). */
-.tile::before{
-  content:"";position:absolute;inset:0;z-index:-1;
-  background:var(--bg-hi);opacity:var(--on);transition:opacity .4s ease;
-}
-.tile:focus-visible,
-.tile:has(:focus-visible){--on:1}
-@media (hover:hover){
-  .tile:hover{--on:1}
+  --bg:#000;--lbl:.75;
+  position:relative;display:flex;flex-direction:column;gap:12px;
+  padding:20px;border-radius:10px;color:#fff;background:var(--bg);
 }
 
-.tile--lessons {--bg:var(--lessons); --bg-hi:var(--lessons-hi); --lbl:.78;grid-area:less}
-.tile--videos  {--bg:var(--videos);  --bg-hi:var(--videos-hi);  --lbl:.75;grid-area:vid;padding:0;gap:0;min-height:300px}
-.tile--articles{--bg:var(--articles);--bg-hi:var(--articles-hi);--lbl:.72;grid-area:art;--gap:14px}
-.tile--courses {--bg:var(--courses); --bg-hi:var(--courses-hi); --lbl:.78;grid-area:crs}
-.tile--games   {--bg:var(--games);   --bg-hi:var(--games-hi);   --lbl:.72;grid-area:gam;padding:0;gap:0;min-height:250px}
-.tile--quizzes {--bg:var(--quizzes); --bg-hi:var(--quizzes-hi); --lbl:.75;grid-area:qz;min-height:298px}
+.tile--lessons {--bg:var(--lessons); --lbl:.78}
+.tile--videos  {--bg:var(--videos);  --lbl:.75;padding:0;gap:0;min-height:300px;overflow:hidden}
+.tile--articles{--bg:var(--articles);--lbl:.72;gap:14px}
+.tile--courses {--bg:var(--courses); --lbl:.78}
+.tile--games   {--bg:var(--games);   --lbl:.72;padding:0;gap:0;min-height:250px;overflow:hidden;flex-direction:row}
+.tile--quizzes {--bg:var(--quizzes); --lbl:.75;min-height:298px}
 
-/* Labels, headlines, rule, arrow */
 .label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgb(255 255 255 / var(--lbl))}
-.label--dim{letter-spacing:.14em;color:rgb(255 255 255 / .55)}
+.label--dim{letter-spacing:.14em;color:rgb(255 255 255 / .6)}
 .tile__row{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
 
-.tile--articles .display{font-size:34px;line-height:1}
+.rule{display:block;height:2px;width:44px;margin-top:8px;background:rgb(255 255 255 / .5)}
+
+.tile--articles .display{font-size:30px;line-height:1}
 .tile--videos   .display{font-size:24px;line-height:1}
-.tile--games    .display{font-size:32px;line-height:.98}
-.tile--quizzes  .display{font-size:30px;line-height:.98}
-.tile--lessons  .display{font-size:30px;line-height:1}
-.tile--courses  .display{font-size:30px;line-height:1.02}
+.tile--games    .display{font-size:28px;line-height:1}
+.tile--quizzes  .display{font-size:26px;line-height:1}
+.tile--lessons  .display{font-size:26px;line-height:1}
+.tile--courses  .display{font-size:26px;line-height:1}
 
-.rule{
-  display:block;height:3px;margin-top:8px;border-radius:2px;background:#fff;
-  width:calc(var(--on) * 56px);transition:width .45s cubic-bezier(.2,.8,.2,1);
-}
-.arrow{
-  display:inline-block;opacity:var(--on);
-  transform:translateX(calc((1 - var(--on)) * -6px));
-  transition:transform .3s ease,opacity .3s ease;
-}
-.line{font-size:14px;line-height:1.5;color:rgb(255 255 255 / .9)}
-
-/* Buttons that sit on a tile (white pill, text in the tile's colour) */
-.btn{
-  align-self:flex-start;display:flex;align-items:center;gap:8px;
-  background:#fff;color:var(--bg);font-weight:700;font-size:13px;
-  padding:11px 18px;border-radius:8px;
-}
-.btn--static{margin-top:auto}
-/* Stretched link: the button's link covers the whole tile. */
-.stretch::after{content:"";position:absolute;inset:0}
-
-/* Category band: a full-width strip pinned to the top of every tile,
-   always pointing at that section's own page — the "go to the whole
-   category" escape hatch, distinct from the tile's main .stretch link
-   (usually the item of the week). It's a real background/box rather than
-   plain text, and that box is visible at rest (not just on hover), so it
-   reads as its own control even against a busy item-of-week background —
-   the label alone was too easy to miss. It's also its own row, so a click
-   on it reaches it rather than the .stretch overlay beneath it. */
-.tile__cat{
-  position:relative;z-index:1;
-  display:flex;align-items:center;gap:6px;
-  padding:10px 24px;background:rgb(0 0 0 / .22);
-  font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
-  color:rgb(255 255 255 / .88);text-decoration:none;
-  transition:background .2s ease,color .2s ease;
-}
-.tile__cat:hover,
-.tile__cat:focus-visible{background:rgb(0 0 0 / .36);color:#fff}
-.tile__cat__arrow{opacity:.8;font-size:11px;transform:translateY(-1px)}
-/* Tiles whose own padding wraps all their content (Lessons/Courses/
-   Articles/Quizzes): pull the band out to the tile's edges with negative
-   margins the same size as that padding, so it's edge-to-edge like it is
-   on Videos/Games (whose tile padding is already 0). */
-.tile--lessons .tile__cat,
-.tile--courses .tile__cat,
-.tile--articles .tile__cat,
-.tile--quizzes .tile__cat{margin:-24px -24px 0}
-.tile--videos .tile__cat{padding:10px 20px}
-
-/* A secondary bit of meta (the Games "day's pick" flag, the Articles
-   cadence line) that used to sit beside the label in a flex row. The
-   label moved into .tile__cat above, so this now stands alone — keep it
-   in roughly the same spot by pinning it to the row's right edge. */
-.label--corner{align-self:flex-end}
-
-/* Games needs a column (band on top) with a row (text + art) below it,
-   instead of the tile itself being the row. */
-.tile__split{display:flex;flex:1;min-height:0}
-
-/* Image bands. Empty until an image is supplied (see CONFIG in the script). */
+/* Artwork — absorbs leftover height so the tile has no dead space. Empty
+   (tinted diagonal placeholder) until an image or an inlined SVG motif is
+   supplied by the script below. */
 .media{
-  position:relative;overflow:hidden;
+  position:relative;overflow:hidden;flex:1;border-radius:6px;
   background-color:rgb(0 0 0 / .2);
   background-image:repeating-linear-gradient(135deg,rgb(255 255 255 / .05) 0 8px,transparent 8px 16px);
 }
-.media img{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;
-  transform:scale(calc(1 + var(--on) * .07));
-  transition:transform 4s ease-out;
-}
+.media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
 .media.has-img img{display:block}
-
-/* An injected line-art motif (e.g. the Games tile's weekly artwork) has no
-   fill of its own — it's stroked shapes meant to sit on a solid panel, the
-   way it does on its home site. Swap the diagonal placeholder for a plain
-   dark panel behind it instead of layering the motif over the stripes. */
 .media.has-art{background-image:none;background-color:rgb(0 0 0 / .28)}
-.media svg{
-  position:absolute;inset:0;width:100%;height:100%;padding:15%;box-sizing:border-box;
-  transform:scale(calc(1 + var(--on) * .07));
-  transition:transform 4s ease-out;
+.media svg{position:absolute;inset:0;width:100%;height:100%;padding:15%;box-sizing:border-box}
+.media svg.lesson-art{padding:0}
+
+.tile--lessons .media{min-height:140px}
+.tile--courses .media{min-height:120px}
+
+/* Pick block — the item of the week. */
+.pick{
+  display:flex;flex-direction:column;gap:5px;margin-top:auto;
+  padding:13px 0 15px;border-top:1px solid rgb(255 255 255 / .28);border-bottom:1px solid rgb(255 255 255 / .28);
 }
-/* The lesson-artwork panels (full-bleed rounded rect + word blocks, unlike
-   the Games tile's inset line-art motif) render at their raw SVG-unit size
-   instead of being scaled to the viewport when a CSS `transform` sits on
-   the same <svg> element — a rendering quirk with viewBox scaling and
-   root-level transforms together. Panels don't need the hover zoom (their
-   own artwork doesn't benefit from it the way a photo does), so this
-   class disables it and removes the motif-only inset padding. */
-.media svg.lesson-art{padding:0;transform:none;transition:none}
+.pick__k{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgb(255 255 255 / .66)}
+.pick__t{font-size:17px;font-weight:700;line-height:1.2;color:#fff}
+.pick__d{font-size:12.5px;line-height:1.45;color:rgb(255 255 255 / .78)}
+
+/* Button pair — always two, always equal width. */
+.btnrow{display:flex;gap:8px}
+.btn2{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:12px 8px;border-radius:8px;font-size:12.5px;font-weight:700;
+  transition:background .25s ease;
+}
+.btn2--outline{border:1.5px solid rgb(255 255 255 / .55);color:#fff}
+.btn2--outline:hover{background:rgb(255 255 255 / .16)}
+.btn2--fill{background:var(--bone);color:var(--bg)}
+.btn2--fill:hover{background:#fff}
 
 /* ---------- Lens: Videos ---------- */
-.tile--videos .media{flex:none;height:130px}
-.tile--videos .media img{
-  transform-origin:60% 40%;
-  transform:scale(calc(1 + var(--on) * .14)) translate(calc(var(--on) * -3%),calc(var(--on) * -2%));
-  transition-duration:6s;
-}
-.tile__body{flex:1;display:flex;flex-direction:column;gap:9px;padding:20px}
-.vtitle{font-size:13.5px;line-height:1.45;color:rgb(255 255 255 / .92)}
-.vmeta{margin-top:auto;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgb(255 255 255 / .6)}
+.tile--videos .media{flex:none;aspect-ratio:16/9;border-radius:0}
+.tile__body{flex:1;display:flex;flex-direction:column;gap:11px;padding:18px}
+.vtitle{font-size:16px;font-weight:700;line-height:1.2;color:#fff}
+.vmeta{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgb(255 255 255 / .7)}
 
 /* ---------- Lens: Articles ---------- */
-.bone{background:var(--bone);border-radius:8px;overflow:hidden}
-.bone__body{padding:16px 18px}
-.bone__src{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate)}
-.bone__title{margin-top:6px;font-size:19px;font-weight:700;line-height:1.2;color:var(--articles)}
-.vocab{
-  background:var(--articles);overflow:hidden;
-  padding:calc(var(--on) * 12px) 18px calc(var(--on) * 14px);
-  max-height:calc(var(--on) * 170px);
-  opacity:var(--on);
-  transform:translateY(calc((1 - var(--on)) * 14px));
-  transition:max-height .45s ease,padding .45s ease,opacity .35s ease,transform .45s ease;
+.art-lead{flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.art-lead p{font-size:13.5px;line-height:1.55;color:rgb(255 255 255 / .84);max-width:46ch}
+.art-pick{
+  flex:1.4;display:flex;flex-direction:column;justify-content:center;gap:9px;min-height:172px;
+  padding:16px 0 18px;border-top:1px solid rgb(255 255 255 / .28);border-bottom:1px solid rgb(255 255 255 / .28);
 }
-.vocab__k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgb(255 255 255 / .6)}
-.vocab__words{margin-top:6px;font-size:13px;line-height:1.5;color:#fff}
-.vocab__q{margin-top:6px;font-size:13px;line-height:1.5;font-style:italic;color:rgb(255 255 255 / .85)}
-.cta-line{margin-top:auto;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#fff}
+.art-pick__k{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgb(255 255 255 / .66)}
+.art-default,.art-vocab{display:flex;flex-direction:column;gap:9px}
+/* CSS-only hover swap: hovering the pick block replaces the headline with
+   this week's vocabulary, in the same reserved space — no layout shift. */
+.art-vocab{display:none}
+.art-pick:hover .art-default{display:none}
+.art-pick:hover .art-vocab{display:flex}
+.art-title{font-size:clamp(22px,2.3vw,30px);font-weight:700;line-height:1.12;color:#fff}
+.art-standfirst{font-size:13.5px;line-height:1.5;color:rgb(255 255 255 / .82);max-width:46ch}
+.art-levels{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgb(255 255 255 / .58)}
+.art-vocab__k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgb(255 255 255 / .6)}
+.art-vocab__list{display:flex;flex-direction:column;gap:5px}
+.art-vocab__list p{margin:0;font-size:16px;line-height:1.35;color:#fff}
+.art-vocab__list strong{font-weight:700}
+.art-vocab__list span{color:rgb(255 255 255 / .76)}
+.art-vocab__q{margin:0;font-size:13px;line-height:1.4;font-style:italic;color:rgb(255 255 255 / .82)}
 
-/* ---------- Lessons + Courses ---------- */
-.tile--lessons .media,
-.tile--courses .media{flex:none;margin-top:auto;border-radius:8px}
-/* The lesson-of-the-week artwork is a full-bleed 552:221 panel (see
-   lessons/assets/art/*.svg) — give the band that exact aspect ratio so it
-   fills edge to edge instead of being letterboxed inside a fixed height. */
-.tile--lessons .media{aspect-ratio:552/221;height:auto}
-.tile--courses .media{height:120px}
+/* Touch devices get no hover — the default state is the correct fallback,
+   and both destinations stay reachable through the buttons regardless. */
+@media (hover:none){
+  .art-pick:hover .art-default{display:flex}
+  .art-pick:hover .art-vocab{display:none}
+}
 
 /* ---------- Games ---------- */
-.tile__main{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px;padding:24px}
-.media--side{flex:none;align-self:stretch;width:38%;min-width:120px}
+.tile__main{flex:1;min-width:0;display:flex;flex-direction:column;gap:11px;padding:20px}
+.media--side{flex:none;width:34%;min-width:150px;border-radius:0}
 
 /* ---------- Quizzes ---------- */
-.cards{display:flex;gap:10px;flex-wrap:wrap}
-.card{
-  flex:1;min-width:120px;display:flex;flex-direction:column;gap:4px;
-  padding:13px 15px;border-radius:8px;
-  transition:transform .3s ease,background .3s ease;
+.qzlink{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:12px 14px;border-radius:8px;background:rgb(0 0 0 / .22);
+  transition:background .25s ease;
 }
-.card__k{font-size:9px;letter-spacing:.16em;text-transform:uppercase}
-.card__t{font-size:16px;font-weight:700;line-height:1.1}
-.card--join{background:var(--bone)}
-.card--join .card__k{color:var(--slate)}
-.card--join .card__t{color:var(--quizzes)}
-.card--practice{background:rgb(255 255 255 / .14);border:1px solid rgb(255 255 255 / .28)}
-.card--practice .card__k{color:rgb(255 255 255 / .72)}
-.card--practice .card__t{color:#fff}
-.card:focus-visible{transform:translateY(-3px)}
-@media (hover:hover){
-  .card:hover{transform:translateY(-3px)}
-  .card--practice:hover{background:rgb(255 255 255 / .22)}
-}
-.qotd{
-  display:block;margin-top:auto;padding-top:12px;border-top:1px solid rgb(255 255 255 / .22);
-  text-decoration:none;color:inherit;transition:opacity .2s ease;
-}
-.qotd:hover,
-.qotd:focus-visible{opacity:.82}
-.qotd__k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgb(255 255 255 / .65)}
-.qotd__t{margin-top:4px;font-size:14px;font-weight:700;color:#fff}
-.qotd__m{margin-top:2px;font-size:12px;color:rgb(255 255 255 / .72)}
-
-/* ---------- Touch devices: nothing essential hides behind hover ---------- */
-@media (hover:none){
-  .vocab{max-height:none;opacity:1;transform:none;padding:12px 18px 14px}
-  .arrow{opacity:1;transform:none}
-}
+.qzlink:hover{background:rgb(0 0 0 / .34)}
+.qzlink__k{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgb(255 255 255 / .66)}
+.qzlink__t{display:block;margin-top:2px;font-size:15px;font-weight:700;color:#fff}
 
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion:reduce){
@@ -434,120 +358,153 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       </div>
     </section>
 
-    <!-- Lessons. Two targets: the category band (top) always goes to
-         /lessons/; the stretched button/tile goes to this week's
-         specific lesson. -->
+    <!-- Lessons. Two equally sized buttons: the section index, and this
+         week's specific lesson. -->
     <section id="lessons" class="tile tile--lessons" data-section="lessons">
-      <a class="tile__cat" href="/lessons/">Lessons · lesson of the week<span class="tile__cat__arrow" aria-hidden="true">↗</span></a>
-      <div class="head">
+      <span class="label">Lessons</span>
+      <div>
         <h2 class="display">The language you thought you knew</h2>
         <span class="rule"></span>
       </div>
-      <p class="line"><strong data-field="title"></strong> — <span data-field="line"></span></p>
       <div class="media" data-media><img alt="" decoding="async"></div>
-      <a class="btn stretch" id="lessonsBtn" data-entry-link href="/lessons/"><span>Browse lessons</span><span class="arrow" aria-hidden="true">→</span></a>
+      <div class="pick">
+        <span class="pick__k">Lesson of the week</span>
+        <p class="pick__t" data-field="title"></p>
+        <p class="pick__d" data-field="line"></p>
+      </div>
+      <div class="btnrow">
+        <a class="btn2 btn2--outline" href="/lessons/">All lessons<span aria-hidden="true">↗</span></a>
+        <a class="btn2 btn2--fill" id="lessonsBtn" data-entry-link href="/lessons/english-phrasal-verbs.html">This lesson<span aria-hidden="true">→</span></a>
+      </div>
     </section>
 
-    <!-- Lens: Videos. Category band (top of the whole card, above the
-         thumbnail) -> /english-lens/videos.html (all videos); stretched
-         CTA -> this week's specific video. -->
+    <!-- Lens: Videos. -->
     <article id="videos" class="tile tile--videos" data-section="videos">
-      <a class="tile__cat" href="/english-lens/videos.html">Lens: Videos · 5 a week<span class="tile__cat__arrow" aria-hidden="true">↗</span></a>
       <div class="media" data-media><img alt="" decoding="async"></div>
       <div class="tile__body">
-        <div class="head">
+        <span class="label">Lens: Videos · 5 a week</span>
+        <div>
           <h2 class="display">Short stories, long gains</h2>
           <span class="rule"></span>
         </div>
-        <p class="vtitle" data-field="title"></p>
-        <p class="vmeta" data-field="meta"></p>
-        <a class="cta-line stretch" id="videosBtn" data-entry-link href="/english-lens/videos.html"><span>Watch this video</span><span class="arrow" aria-hidden="true">→</span></a>
+        <div class="pick">
+          <span class="pick__k">Video of the week</span>
+          <p class="vtitle" data-field="title"></p>
+          <p class="vmeta" data-field="meta"></p>
+        </div>
+        <div class="btnrow">
+          <a class="btn2 btn2--outline" href="/english-lens/videos.html">All videos<span aria-hidden="true">↗</span></a>
+          <a class="btn2 btn2--fill" id="videosBtn" data-entry-link href="/english-lens/videos.html">This video<span aria-hidden="true">→</span></a>
+        </div>
       </div>
     </article>
 
-    <!-- Lens: Articles. Category band (top) -> /english-lens/ (all
-         articles); stretched CTA -> today's specific pick. -->
+    <!-- Lens: Articles. No more expand-on-hover tile — the vocabulary
+         replaces the headline in place, in a block of reserved height, so
+         nothing on the page moves. -->
     <article id="articles" class="tile tile--articles" data-section="articles">
-      <a class="tile__cat" href="/english-lens/">Lens: Articles<span class="tile__cat__arrow" aria-hidden="true">↗</span></a>
-      <span class="label label--dim label--corner">12 a week · 2 levels</span>
-      <div class="head">
-        <h2 class="display">Read the news, keep the words</h2>
-        <span class="rule"></span>
+      <div class="tile__row">
+        <span class="label">Lens: Articles</span>
+        <span class="label label--dim">12 a week · B1 and B2–C1 · audio</span>
       </div>
-      <div class="bone">
-        <div class="bone__body">
-          <p class="bone__src" data-field="meta"></p>
-          <p class="bone__title" data-field="title"></p>
+      <div class="art-lead">
+        <div>
+          <h2 class="display">Read the news, keep the words</h2>
+          <span class="rule"></span>
         </div>
-        <div class="vocab">
-          <p class="vocab__k">Vocabulary &amp; food for thought</p>
-          <p class="vocab__words" data-field="vocab"></p>
-          <p class="vocab__q" data-field="thought"></p>
+        <p>Real news, rewritten at two levels, with the vocabulary that carries it. Hover the pick below to see this week's words.</p>
+      </div>
+      <div class="art-pick">
+        <span class="art-pick__k" data-field="meta"></span>
+        <div class="art-default">
+          <p class="art-title" data-field="title"></p>
+          <p class="art-standfirst" data-field="standfirst"></p>
+          <p class="art-levels">B1 · B2–C1 · 6 min · audio</p>
+        </div>
+        <div class="art-vocab">
+          <p class="art-vocab__k">Vocabulary from this article</p>
+          <div class="art-vocab__list" data-vocab-list></div>
+          <p class="art-vocab__q" data-field="thought"></p>
         </div>
       </div>
-      <a class="cta-line stretch" id="articlesBtn" data-entry-link href="/english-lens/"><span>Read today's pick</span><span class="arrow" aria-hidden="true">→</span></a>
+      <div class="btnrow">
+        <a class="btn2 btn2--outline" href="/english-lens/">All articles<span aria-hidden="true">↗</span></a>
+        <a class="btn2 btn2--fill" id="articlesBtn" data-entry-link href="/english-lens/">This article<span aria-hidden="true">→</span></a>
+      </div>
     </article>
 
-    <!-- Courses. No "course of the week" yet, so both the band and the CTA
-         point at the same page for now -- swap the band's href separately
+    <!-- Courses. No "course of the week" feed yet, so both buttons point at
+         the same page for now — swap the outline button's href separately
          if that ever changes. -->
     <section id="courses" class="tile tile--courses" data-section="courses">
-      <!-- TODO(url): replace "#TODO-courses-url" with the real Courses address -->
-      <a class="tile__cat" href="#TODO-courses-url">Courses<span class="tile__cat__arrow" aria-hidden="true">↗</span></a>
-      <div class="head">
-        <h2 class="display" data-field="title"></h2>
+      <span class="label">Courses</span>
+      <div>
+        <h2 class="display">Long game, better English</h2>
         <span class="rule"></span>
       </div>
-      <p class="line" data-field="line"></p>
       <div class="media" data-media><img alt="" decoding="async"></div>
-      <a class="btn stretch" href="#TODO-courses-url"><span>See courses</span><span class="arrow" aria-hidden="true">→</span></a>
+      <div class="pick">
+        <span class="pick__k">Next intake</span>
+        <p class="pick__t" data-field="title"></p>
+        <p class="pick__d" data-field="line"></p>
+      </div>
+      <div class="btnrow">
+        <!-- TODO(url): replace "#TODO-courses-url" with the real Courses address -->
+        <a class="btn2 btn2--outline" href="#TODO-courses-url">All courses<span aria-hidden="true">↗</span></a>
+        <a class="btn2 btn2--fill" href="#TODO-courses-url">This course<span aria-hidden="true">→</span></a>
+      </div>
     </section>
 
-    <!-- Games. Category band (top, full width) -> /english-games/ (all
-         games); stretched CTA -> this week's specific game. The band sits
-         above a row (.tile__split) that holds the text column and the
-         side artwork, same as before. -->
+    <!-- Games. Flex row: text column on the left, artwork panel on the
+         right. -->
     <article id="games" class="tile tile--games" data-section="games">
-      <a class="tile__cat" href="/english-games/">Games<span class="tile__cat__arrow" aria-hidden="true">↗</span></a>
-      <div class="tile__split">
-        <div class="tile__main">
-          <span class="label label--dim label--corner" data-day-label></span>
-          <div class="head">
-            <h2 class="display">Play your way to fluency</h2>
-            <span class="rule"></span>
-          </div>
-          <p class="line"><strong data-field="title"></strong> — <span data-field="line"></span></p>
-          <a class="btn btn--static stretch" id="gamesBtn" data-entry-link href="/english-games/"><span>Play now</span><span class="arrow" aria-hidden="true">→</span></a>
+      <div class="tile__main">
+        <div class="tile__row">
+          <span class="label">Games</span>
+          <span class="label label--dim">Free · no sign-up</span>
         </div>
-        <div class="media media--side" data-media><img alt="" decoding="async"></div>
+        <div>
+          <h2 class="display">Play your way to fluency</h2>
+          <span class="rule"></span>
+        </div>
+        <div class="pick">
+          <span class="pick__k">Game of the week</span>
+          <p class="pick__t" data-field="title"></p>
+          <p class="pick__d" data-field="line"></p>
+        </div>
+        <div class="btnrow">
+          <a class="btn2 btn2--outline" href="/english-games/">All games<span aria-hidden="true">↗</span></a>
+          <a class="btn2 btn2--fill" id="gamesBtn" data-entry-link href="/english-games/">This game<span aria-hidden="true">→</span></a>
+        </div>
       </div>
+      <div class="media media--side" data-media><img alt="" decoding="async"></div>
     </article>
 
-    <!-- Quizzes. Category band (top) -> /english-quiz/practice.html (all
-         quizzes); Join/Self-practice cards are their own distinct
-         destinations; Quiz-of-the-day panel is now a real link too (it
-         had none before). -->
+    <!-- Quizzes. A room-code link tile sits between the rule and the pick
+         block, its own distinct destination; the button pair covers the
+         section index and today's specific pick. -->
     <section id="quizzes" class="tile tile--quizzes" data-section="quizzes">
-      <a class="tile__cat" href="/english-quiz/practice.html">Quizzes<span class="tile__cat__arrow" aria-hidden="true">↗</span></a>
-      <div class="head">
+      <span class="label">Quizzes</span>
+      <div>
         <h2 class="display">Find out what stuck</h2>
         <span class="rule"></span>
       </div>
-      <div class="cards">
-        <a class="card card--join" href="/english-quiz/play.html">
-          <span class="card__k">Room code?</span>
-          <span class="card__t">Join a quiz</span>
-        </a>
-        <a class="card card--practice" href="/english-quiz/practice.html">
-          <span class="card__k">Anytime</span>
-          <span class="card__t">Self-practice</span>
-        </a>
-      </div>
-      <a class="qotd" id="quizzesBtn" data-entry-link href="/english-quiz/practice.html">
-        <p class="qotd__k">Quiz of the day</p>
-        <p class="qotd__t" data-field="title"></p>
-        <p class="qotd__m" data-field="meta"></p>
+      <a class="qzlink" href="/english-quiz/play.html">
+        <span>
+          <span class="qzlink__k">Room code?</span>
+          <span class="qzlink__t">Join a live quiz</span>
+        </span>
+        <span aria-hidden="true">→</span>
       </a>
+      <div class="pick">
+        <span class="pick__k">Quiz of the day</span>
+        <p class="pick__t" data-field="title"></p>
+        <p class="pick__d" data-field="meta"></p>
+      </div>
+      <div class="btnrow">
+        <a class="btn2 btn2--outline" href="/english-quiz/practice.html">All quizzes<span aria-hidden="true">↗</span></a>
+        <a class="btn2 btn2--fill" id="quizzesBtn" data-entry-link href="/english-quiz/practice.html">Today's quiz<span aria-hidden="true">→</span></a>
+      </div>
     </section>
 
     <!-- Talk to a human first (unframed) -->
@@ -577,7 +534,7 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
        under SAMPLE are used instead.
 
        Entry shapes:
-         articles  { meta, title, vocab, thought, url? }   vocab: string or array
+         articles  { meta, title, standfirst, vocabList, thought, url? }
          videos    { title, meta, image?, url? }
          games     { title, line, image?, url? }
          quizzes   { title, meta }
@@ -628,9 +585,9 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
      ======================================================================== */
   const SAMPLE = {
     articles: [
-      { meta: 'The Economist · B1 / B2–C1', title: 'The Quiet Rise of Repairable Phones', vocab: 'planned obsolescence · to refurbish · a trade-off', thought: '"Would you choose a refurbished phone over a new one?"' },
-      { meta: 'Reuters · B1 / B2–C1', title: 'Night Trains Are Selling Out Across Europe', vocab: 'a sleeper service · to reroute · demand surge', thought: '"Would you swap a two-hour flight for ten hours asleep?"' },
-      { meta: 'BBC · B1 / B2–C1', title: 'The Office Is Now a Place You Visit', vocab: 'hybrid working · to commute · presenteeism', thought: '"How many days in an office is the right number?"' }
+      { meta: 'Article of the week · The Economist', title: 'The Quiet Rise of Repairable Phones', standfirst: 'Right-to-repair laws are changing what a phone is worth after two years, and what makers owe you.', vocabList: [ { word: 'planned obsolescence', gloss: 'designed to stop being useful' }, { word: 'to refurbish', gloss: 'repair and resell as good as new' }, { word: 'a trade-off', gloss: 'what you give up to gain something' } ], thought: '"Would you choose a refurbished phone over a new one?"' },
+      { meta: 'Article of the week · Reuters', title: 'Night Trains Are Selling Out Across Europe', standfirst: 'Sleeper services are booking out months ahead as travellers trade a short flight for a long, quiet night.', vocabList: [ { word: 'a sleeper service', gloss: 'a train with beds for overnight travel' }, { word: 'to reroute', gloss: 'send along a different path' }, { word: 'demand surge', gloss: 'a sudden jump in how much people want something' } ], thought: '"Would you swap a two-hour flight for ten hours asleep?"' },
+      { meta: 'Article of the week · BBC', title: 'The Office Is Now a Place You Visit', standfirst: 'Hybrid work has quietly turned the office from a daily habit into an occasional destination.', vocabList: [ { word: 'hybrid working', gloss: 'splitting time between home and the office' }, { word: 'to commute', gloss: 'travel regularly to and from work' }, { word: 'presenteeism', gloss: 'being seen at work rather than being productive' } ], thought: '"How many days in an office is the right number?"' }
     ],
     videos: [
       { title: 'Cities Rethinking the 15-Minute Commute', meta: 'BBC · 4:12' },
@@ -638,9 +595,9 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       { title: 'The Sea Wall That Divided a Town', meta: 'BBC · 4:36' }
     ],
     games: [
-      { title: 'Synonym Sprint', line: 'beat the clock, steal the word. Sixty seconds, no dictionary.' },
-      { title: 'Phrasal Roulette', line: 'spin it, use it in a sentence. Get out with your dignity.' },
-      { title: 'Odd Word Out', line: 'four words, one impostor. Trust your ear, not your grammar book.' }
+      { title: 'Synonym Sprint', line: 'Beat the clock, steal the word. Sixty seconds, no dictionary.' },
+      { title: 'Phrasal Roulette', line: 'Spin it, use it in a sentence. Get out with your dignity.' },
+      { title: 'Odd Word Out', line: 'Four words, one impostor. Trust your ear, not your grammar book.' }
     ],
     quizzes: [
       { title: 'Phrasal verbs at work', meta: '12 questions · B2' },
@@ -653,8 +610,8 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       { title: 'Determiners', line: 'Articles, demonstratives, quantifiers, possessives, and more.' }
     ],
     courses: [
+      { title: 'Fluent at work', line: 'Meetings, email, small talk. Eight weeks, built around your goals.' },
       { title: 'Long game, better English', line: 'Eight weeks, built around your goals. Starts whenever you do.' },
-      { title: 'Fluent at work', line: 'Meetings, email, small talk. The English your job actually asks for.' },
       { title: 'Exam, handled', line: 'B2 and C1 prep with news you\'d read anyway.' }
     ]
   };
@@ -662,11 +619,19 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
   /* ========================================================================
      Wiring
      ======================================================================== */
-  const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   // Only absolute http(s) URLs or root-relative paths are accepted from data.
   const safeUrl = (u) =>
     typeof u === 'string' && /^(https?:\/\/|\/(?!\/))/.test(u.trim()) ? u.trim() : '';
+
+  // Trims a sentence to roughly `max` characters without cutting a word in
+  // half, for the Articles standfirst (real summaries run long).
+  function truncate(s, max) {
+    if (typeof s !== 'string' || s.length <= max) return s || '';
+    const cut = s.slice(0, max);
+    const lastSpace = cut.lastIndexOf(' ');
+    return (lastSpace > 40 ? cut.slice(0, lastSpace) : cut).replace(/[,;:.\s]+$/, '') + '…';
+  }
 
   const sections = {};
   document.querySelectorAll('[data-section]').forEach((tile) => {
@@ -678,20 +643,34 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       img.addEventListener('load', () => box.classList.add('has-img'));
       img.addEventListener('error', () => box.classList.remove('has-img'));
     }
-    // The "item of the week" link is now always an inner element marked
-    // [data-entry-link] (a .stretch CTA, or the equivalent), never the
-    // whole tile -- every tile also carries its own separate .label--link
-    // to the category page, which needs to stay independently clickable.
+    // The "item of the week" link is always an inner element marked
+    // [data-entry-link] — one of the tile's two buttons — never the whole
+    // tile. The other button (the section index) is a plain static link.
     const link = tile.querySelector('[data-entry-link]');
     sections[key] = {
       key, tile, box, img,
       items: SAMPLE[key],
       i: 0,
       link,
-      defaultHref: link ? link.getAttribute('href') : ''
+      defaultHref: link ? link.getAttribute('href') : '',
+      vocabList: tile.querySelector('[data-vocab-list]')
     };
   });
   const list = Object.values(sections);
+
+  function renderVocabList(container, vocab) {
+    if (!container) return;
+    container.textContent = '';
+    (Array.isArray(vocab) ? vocab : []).slice(0, 3).forEach((v) => {
+      if (!v || !v.word) return;
+      const p = document.createElement('p');
+      const strong = document.createElement('strong');
+      strong.textContent = v.word;
+      p.appendChild(strong);
+      p.appendChild(document.createTextNode(' — ' + (v.gloss || '')));
+      container.appendChild(p);
+    });
+  }
 
   function render(sec) {
     const item = sec.items[sec.i] || {};
@@ -700,6 +679,8 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       const v = item[el.dataset.field];
       el.textContent = Array.isArray(v) ? v.join(' · ') : (v == null ? '' : String(v));
     });
+
+    if (sec.key === 'articles') renderVocabList(sec.vocabList, item.vocabList);
 
     // Tiles that are themselves links can point at the specific item.
     if (sec.link) sec.link.setAttribute('href', safeUrl(item.url) || sec.defaultHref);
@@ -724,11 +705,9 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
 
   // First paint: sample entries, immediately.
   list.forEach(render);
-  document.querySelectorAll('[data-day-label]').forEach((el) => {
-    el.textContent = DAYS[new Date().getDay()] + '\'s pick';
-  });
 
-  // Mouse / pen: each hover-in advances that tile by one.
+  // Mouse / pen: each hover-in advances that tile by one (previews the next
+  // sample entry until real content loads and freezes the tile at one item).
   // Keyboard: tabbing into a tile does the same.
   list.forEach((sec) => {
     sec.tile.addEventListener('pointerenter', (e) => {
@@ -823,10 +802,12 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
     loadFeatured('articles', CONFIG.newsFeed, (data) => {
       const a = data && data.editions && data.editions[0] && data.editions[0].articles && data.editions[0].articles[0];
       if (!a) return null;
+      const vocab = (a.vocabularyB1 || []).slice(0, 3).map((v) => ({ word: v.word, gloss: v.definition }));
       return {
-        meta: a.source + (a.date ? ' · ' + fmtShortDate(a.date) : ''),
+        meta: 'Article of the week · ' + a.source,
         title: a.title,
-        vocab: (a.vocabularyB1 || []).map((v) => v.word),
+        standfirst: truncate(a.summaryB1 || '', 140),
+        vocabList: vocab,
         thought: a.questionB1 ? '"' + a.questionB1 + '"' : ''
       };
     });
@@ -941,11 +922,9 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       if (el.dataset.field === 'title') el.textContent = pick.title;
       if (el.dataset.field === 'line') el.textContent = pick.line;
     });
-    if (sec.link) {
-      sec.link.setAttribute('href', pick.href);
-      const label = sec.link.querySelector('span');
-      if (label) label.textContent = 'Start this lesson';
-    }
+    // The item button's label ("This lesson →") is final copy and stays
+    // put — only its destination changes to this week's specific lesson.
+    if (sec.link) sec.link.setAttribute('href', pick.href);
     // Inline the SVG (rather than an <img src>) so the artwork's own
     // Archivo text renders instead of falling back to Arial/Helvetica —
     // same reasoning as the Games tile's injected motif above.
