@@ -226,7 +226,19 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
    tinted green shows through around them instead of a crop-to-fill
    photo treatment. */
 .tile--courses .media.has-img{background-image:none;background-color:rgb(0 0 0 / .28)}
-.tile--courses .media img{object-fit:cover;object-position:right center;padding:0}
+/* The course graphics are wide (~4.7:1) word-bank banners; this box is
+   much closer to square, so neither object-fit:cover (crops straight
+   through the section-title text) nor contain (shrinks all 4 rows to
+   fit, tiny) reads well. Pin the image to the right edge — where the
+   titles are — at a fixed zoom in between the two, so the titles and
+   a few bars stay uncropped and any short vertical gap just shows the
+   tile's own tinted green behind it, same colour either way. */
+.tile--courses .media img{
+  position:absolute;inset:auto;top:50%;right:0;
+  width:150%;height:auto;max-width:none;
+  transform:translateY(-50%);
+  object-fit:unset;padding:0;
+}
 
 /* Pick block — the item of the week. */
 .pick{
