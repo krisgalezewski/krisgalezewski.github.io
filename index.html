@@ -241,25 +241,38 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .art-lead{flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px}
 .art-lead p{font-size:13.5px;line-height:1.55;color:rgb(255 255 255 / .84);max-width:46ch}
 .art-pick{
-  flex:1.4;display:flex;flex-direction:column;justify-content:center;gap:9px;min-height:172px;
+  flex:1.4;display:flex;flex-direction:column;justify-content:center;gap:9px;height:172px;overflow:hidden;
   padding:16px 0 18px;border-top:1px solid rgb(255 255 255 / .28);border-bottom:1px solid rgb(255 255 255 / .28);
+  box-sizing:content-box;
 }
 .art-pick__k{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgb(255 255 255 / .66)}
-.art-default,.art-vocab{display:flex;flex-direction:column;gap:9px}
+.art-default,.art-vocab{display:flex;flex-direction:column;gap:9px;min-height:0}
 /* CSS-only hover swap: hovering the pick block replaces the headline with
-   this week's vocabulary, in the same reserved space — no layout shift. */
+   this week's vocabulary, in the same reserved space — no layout shift.
+   .art-pick has a fixed height + overflow:hidden, and every text node below
+   is line-clamped, so neither state can grow the box regardless of how long
+   the real article/vocab content turns out to be. */
 .art-vocab{display:none}
 .art-pick:hover .art-default{display:none}
 .art-pick:hover .art-vocab{display:flex}
-.art-title{font-size:clamp(22px,2.3vw,30px);font-weight:700;line-height:1.12;color:#fff}
-.art-standfirst{font-size:13.5px;line-height:1.5;color:rgb(255 255 255 / .82);max-width:46ch}
+.art-title{
+  font-size:clamp(22px,2.3vw,30px);font-weight:700;line-height:1.12;color:#fff;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.art-standfirst{
+  font-size:13.5px;line-height:1.5;color:rgb(255 255 255 / .82);max-width:46ch;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
 .art-levels{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgb(255 255 255 / .58)}
 .art-vocab__k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgb(255 255 255 / .6)}
-.art-vocab__list{display:flex;flex-direction:column;gap:5px}
-.art-vocab__list p{margin:0;font-size:16px;line-height:1.35;color:#fff}
+.art-vocab__list{display:flex;flex-direction:column;gap:5px;overflow:hidden}
+.art-vocab__list p{margin:0;font-size:16px;line-height:1.35;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .art-vocab__list strong{font-weight:700}
 .art-vocab__list span{color:rgb(255 255 255 / .76)}
-.art-vocab__q{margin:0;font-size:13px;line-height:1.4;font-style:italic;color:rgb(255 255 255 / .82)}
+.art-vocab__q{
+  margin:0;font-size:13px;line-height:1.4;font-style:italic;color:rgb(255 255 255 / .82);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
 
 /* Touch devices get no hover — the default state is the correct fallback,
    and both destinations stay reachable through the buttons regardless. */
@@ -802,13 +815,13 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
     loadFeatured('articles', CONFIG.newsFeed, (data) => {
       const a = data && data.editions && data.editions[0] && data.editions[0].articles && data.editions[0].articles[0];
       if (!a) return null;
-      const vocab = (a.vocabularyB1 || []).slice(0, 3).map((v) => ({ word: v.word, gloss: v.definition }));
+      const vocab = (a.vocabularyB1 || []).slice(0, 3).map((v) => ({ word: v.word, gloss: truncate(v.definition || '', 60) }));
       return {
         meta: 'Article of the week · ' + a.source,
-        title: a.title,
+        title: truncate(a.title || '', 90),
         standfirst: truncate(a.summaryB1 || '', 140),
         vocabList: vocab,
-        thought: a.questionB1 ? '"' + a.questionB1 + '"' : ''
+        thought: a.questionB1 ? '"' + truncate(a.questionB1, 100) + '"' : ''
       };
     });
   }
