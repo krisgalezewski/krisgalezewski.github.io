@@ -1,0 +1,42 @@
+[
+  {
+    "start": 0.0,
+    "end": 8.62,
+    "speaker": "Anna"
+  },
+  {
+    "start": 9.07,
+    "end": 14.59,
+    "speaker": "Tomasz"
+  },
+  {
+    "start": 15.04,
+    "end": 21.83,
+    "speaker": "Anna"
+  },
+  {
+    "start": 22.28,
+    "end": 28.85,
+    "speaker": "Tomasz"
+  },
+  {
+    "start": 29.3,
+    "end": 35.3,
+    "speaker": "Anna"
+  },
+  {
+    "start": 35.75,
+    "end": 41.63,
+    "speaker": "Tomasz"
+  },
+  {
+    "start": 42.08,
+    "end": 47.8,
+    "speaker": "Anna"
+  },
+  {
+    "start": 48.24,
+    "end": 53.86,
+    "speaker": "Tomasz"
+  }
+]

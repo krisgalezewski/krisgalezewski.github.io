@@ -365,8 +365,7 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       <a class="nav__lessons"  href="/lessons/">Lessons</a>
       <!-- TODO(url): replace "#TODO-courses-url" with the real Courses address -->
       <a class="nav__courses"  href="#TODO-courses-url">Courses</a>
-      <!-- TODO(url): replace "#TODO-booking-url" with the real booking link or form -->
-      <a class="nav__book"     href="#TODO-booking-url">Book a Lesson</a>
+      <a class="nav__book"     href="/contact/">Book a Lesson</a>
     </nav>
   </header>
 
@@ -475,9 +474,8 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
         <p class="pick__d" data-field="line"></p>
       </div>
       <div class="btnrow">
-        <!-- TODO(url): replace "#TODO-courses-url" with the real Courses address -->
-        <a class="btn2 btn2--outline" href="#TODO-courses-url">All courses<span aria-hidden="true">↗</span></a>
-        <a class="btn2 btn2--fill" href="#TODO-courses-url">This course<span aria-hidden="true">→</span></a>
+        <a class="btn2 btn2--outline" href="/courses/">All courses<span aria-hidden="true">↗</span></a>
+        <a class="btn2 btn2--fill" id="coursesBtn" data-entry-link href="/courses/english-plus-b1-b2/">This course<span aria-hidden="true">→</span></a>
       </div>
     </section>
 
@@ -538,8 +536,7 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       <p class="eyebrow">One-to-one</p>
       <h2 class="display">Talk to a human first</h2>
       <p class="talk__body">An app can mark your answer. A teacher hears the hesitation, catches the habit you can't hear yourself making, and makes you say the thing you'd normally avoid saying. That's where the jump happens.</p>
-      <!-- TODO(url): replace "#TODO-booking-url" with the real booking link or form -->
-      <a class="talk__btn" href="#TODO-booking-url">Book a lesson →</a>
+      <a class="talk__btn" href="/contact/">Book a lesson →</a>
     </section>
 
   </main>
@@ -636,9 +633,8 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       { title: 'Determiners', line: 'Articles, demonstratives, quantifiers, possessives, and more.' }
     ],
     courses: [
-      { title: 'Fluent at work', line: 'Meetings, email, small talk. Eight weeks, built around your goals.' },
-      { title: 'Long game, better English', line: 'Eight weeks, built around your goals. Starts whenever you do.' },
-      { title: 'Exam, handled', line: 'B2 and C1 prep with news you\'d read anyway.' }
+      { title: 'English+ · B1+/B2 Grammar Course', line: 'Tenses, modals, passives, conditionals and reported speech — real practice, not just rules. Try lessons 1 & 2 free.', url: '/courses/english-plus-b1-b2/', image: '/courses/english-plus-b1-b2/assets/welcome-graphic.png' },
+      { title: 'English+ · B2+/C1 Companion Course', line: 'The sequel: nuanced aspect, sophisticated conditionals, advanced passives and discourse-level grammar. Free preview.', url: '/courses/english-plus-b2-c1/', image: '/courses/english-plus-b2-c1/assets/welcome-graphic.png' }
     ]
   };
 
