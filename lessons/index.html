@@ -14,7 +14,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@500&family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -68,29 +68,35 @@ h1{font-family:'Archivo Black',sans-serif;font-weight:400;font-size:clamp(30px,5
 .cat__head{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;flex-wrap:wrap}
 .cat__title{font-size:22px;font-weight:700;margin:0}
 .cat__count{font-size:13px;color:var(--text-dim)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(290px,100%),1fr));gap:14px}
 
-/* Lesson cards — game-card style, matching the artwork handoff from
-   englishvoiced.com/english-games/: a coloured card per category, an
-   art panel (the lesson's word-pair SVG) at the top, a kicker row
-   (category / meta label), then title and a text CTA. Card/ink colours
-   come from CATS below and are applied inline per tile since they're
-   a separate palette from the site's own brand tokens (this is the
-   games-page palette, reused here for visual consistency between the
-   two sections). */
-.tile{position:relative;display:block;text-decoration:none;color:var(--tile-ink,#f2efe6);background:var(--tile-card,var(--panel));border-radius:22px;padding:16px;transition:transform .15s,box-shadow .15s}
+/* Lesson cards — per the "Lesson Card Artwork" Claude Design handoff:
+   a coloured card per category, an inset darker art panel at the top
+   (each lesson has its own HTML/CSS diagram built from its key words,
+   drawn by ART below — no images, no SVG), then the meta row, title,
+   description and a text CTA. Card/panel colours come from CATS. */
+.tile{position:relative;display:flex;flex-direction:column;gap:8px;text-decoration:none;color:#F1EDE4;background:var(--tile-card,var(--panel));border-radius:20px;padding:16px;transition:transform .15s,box-shadow .15s}
 .tile:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgb(0 0 0 / .28)}
-.tile__art{border-radius:14px;overflow:hidden;margin-bottom:14px;background:rgb(0 0 0 / .15);aspect-ratio:552/221}
-.tile__art svg{display:block;width:100%;height:100%}
-.tile__kicker{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.85;margin-bottom:8px}
-.tile__title{font-family:'Archivo Black',sans-serif;text-transform:uppercase;letter-spacing:-.01em;font-size:19px;line-height:1.2;margin-bottom:6px}
-.tile__desc{font-size:13px;line-height:1.5;opacity:.8;margin-bottom:12px}
-.tile__cta{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700}
+.tile__kicker{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(241,237,228,.85);margin-top:6px}
+.tile__title{font-weight:800;font-stretch:115%;text-transform:uppercase;font-size:19px;line-height:1.2}
+.tile__desc{font-size:13px;line-height:1.5;color:rgba(241,237,228,.85);text-wrap:pretty}
+.tile__cta{font-size:12.5px;font-weight:700;margin-top:4px}
+
+/* Art panel + shared artwork pieces. --p is the panel (inner) colour. */
+.art{--c:#F1EDE4;position:relative;height:124px;border-radius:12px;overflow:hidden;background:var(--p);color:var(--c);font-family:'Archivo',sans-serif;font-weight:800;line-height:normal;text-transform:none;letter-spacing:normal;box-sizing:border-box}
+.art *{box-sizing:border-box}
+.art .c1{background:var(--c);color:var(--p);font-weight:800}
+.art .c2{background:rgba(241,237,228,.62);color:var(--p);font-weight:800}
+.art .cap{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9px;letter-spacing:.08em;text-transform:uppercase}
+.art .ghost{border:1.5px dashed rgba(241,237,228,.5);color:rgba(241,237,228,.7)}
+.art .ab{position:absolute}
+.art .ln{height:1.5px;flex:none}
+.art .row{display:flex;align-items:center}
+.art .col{display:flex;flex-direction:column}
 
 .lotw{margin-top:8px;display:flex;gap:26px;align-items:center;background:linear-gradient(135deg,rgba(154,106,11,.14),var(--panel));border:1px solid rgba(154,106,11,.4);border-radius:18px;padding:20px;text-decoration:none;color:inherit;transition:background .15s,transform .15s}
 .lotw:hover{transform:translateY(-2px)}
-.lotw__art{flex:0 0 260px;width:260px;border-radius:14px;overflow:hidden;background:rgb(0 0 0 / .15);aspect-ratio:552/221}
-.lotw__art svg{display:block;width:100%;height:100%}
+.lotw__art{flex:0 0 280px;width:280px;min-width:0}
 .lotw__body{flex:1;min-width:0}
 .lotw__eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lessons-tint);margin-bottom:8px}
 .lotw__cat{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);margin-bottom:4px}
@@ -99,12 +105,8 @@ h1{font-family:'Archivo Black',sans-serif;font-weight:400;font-size:clamp(30px,5
 .lotw__cta{display:inline-block;margin-top:14px;font-size:13px;font-weight:600;color:var(--lessons-tint)}
 @media (max-width:560px){.lotw{flex-direction:column;align-items:stretch}.lotw__art{width:100%;flex-basis:auto}}
 
-.note{margin-top:60px;padding:20px 22px;border-radius:10px;background:var(--panel);border:1px solid var(--line);font-size:13.5px;line-height:1.7;color:var(--text-dim)}
-.note strong{color:var(--text)}
-.note ul{margin:8px 0 0;padding-left:20px}
-.note li{margin-bottom:4px}
 
-footer{padding:40px 0 60px;font-size:12px;color:var(--text-dim)}
+footer{padding:60px 0 60px;font-size:12px;color:var(--text-dim)}
 </style>
 </head>
 <body>
@@ -164,24 +166,15 @@ footer{padding:40px 0 60px;font-size:12px;color:var(--text-dim)}
     <div class="grid" id="gridPractical"></div>
   </div>
 
-  <div class="note">
-    <strong>Where this page stands.</strong> All 15 lessons are on the shared template — dark/light theme, full site nav, squared shape language, a glossary print/save-as-PDF button wherever there's a glossary — and each now has real artwork from the Claude Design handoff. Each lesson kept its own exercises and content as written; this pass was chrome and consistency, not a content rewrite.
-    <ul>
-      <li>idioms_lesson_v2.html is back — Kris supplied a clean copy from his drive. The version that was on the repo had a browser extension's geolocation-spoofing script accidentally saved into the top of the file (not an attack on the site); the real idiom lesson underneath was untouched, and that's what's live now.</li>
-      <li>Feelings and Emotions (renamed from "Feelings &amp; activities" to match its actual title) is now on the same dark/light theme and Archivo type as every other lesson, rather than its own fixed light palette — its distinct sidebar layout and content stayed as they were.</li>
-      <li>Accent colours on the 13 non-pilot lessons still use their original hues rather than the six englishvoiced.com brand colours phrasal-verbs was fully remapped to — a follow-up polish pass, not a functional issue.</li>
-    </ul>
-  </div>
-
-  <footer>English Voiced with Kris</footer>
+  <footer>© English Voiced with Kris</footer>
 </div>
 
 <script>
 // ── Lesson data ──────────────────────────────────────────────────────
 // Single source of truth for the category grids, the Lesson of the
 // Week card below, and (via the same shape) the box on englishvoiced.com's
-// homepage. `slug` names both the artwork file
-// (/lessons/assets/art/<slug>.svg) and the lesson's card colours via CATS.
+// homepage. `slug` keys the card artwork in ART below (and, on the
+// homepage, the older /lessons/assets/art/<slug>.svg files).
 var LESSONS = [
   { title:'English phrasal verbs', cat:'Vocabulary', href:'/lessons/english-phrasal-verbs.html', desc:'61 high-frequency phrasal verbs — meanings, examples, and practice.', slug:'phrasal-verbs', meta:'61 VERBS' },
   { title:'Collocations', cat:'Vocabulary', href:'/collocations_lesson_v4_6.html', desc:'300+ collocations — grammar types, strength, and register, with audio.', slug:'collocations', meta:'300+ PAIRS' },
@@ -200,32 +193,159 @@ var LESSONS = [
   { title:'Hedging language', cat:'Practical use of English', href:'/hedging_language_lesson_6_1.html', desc:'Softening claims with grammatical and lexical hedges.', slug:'hedging-language', meta:'SOFTENING' }
 ];
 
-// Card/ink colours by category — the games-page palette from the
-// artwork handoff, kept separate from the site's own brand tokens
-// since these are specifically the colours the lesson artwork was
-// designed against.
+// Card + panel colours by category (tokens from the artwork handoff).
 var CATS = {
-  'Vocabulary':               { key:'Vocabulary',  grid:'gridVocabulary',  count:'countVocabulary',  card:'#116565', ink:'#f2efe6' },
-  'Grammar':                  { key:'Grammar',      grid:'gridGrammar',     count:'countGrammar',     card:'#a4193d', ink:'#f2efe6' },
-  'Pronunciation':            { key:'Pronunciation',grid:'gridPronunciation',count:'countPronunciation', card:'#146c34', ink:'#f2efe6' },
-  'Practical use of English': { key:'Practical',    grid:'gridPractical',   count:'countPractical',   card:'#9a7b12', ink:'#f2efe6' }
+  'Vocabulary':               { key:'Vocabulary',   grid:'gridVocabulary',    count:'countVocabulary',    card:'#116565', panel:'#0c3d41' },
+  'Grammar':                  { key:'Grammar',      grid:'gridGrammar',       count:'countGrammar',       card:'#A41A3C', panel:'#6c1029' },
+  'Pronunciation':            { key:'Pronunciation',grid:'gridPronunciation', count:'countPronunciation', card:'#156c35', panel:'#0d4021' },
+  'Practical use of English': { key:'Practical',    grid:'gridPractical',     count:'countPractical',     card:'#9a7b11', panel:'#5f4b06' }
 };
 
-// Fetch + inject each lesson's SVG art panel (rather than <img src>) so
-// the Archivo webfont applies to the words drawn inside it — per the
-// artwork handoff, a webfont won't load for text inside an <img>.
-var artCache = {};
-function loadArt(el, slug) {
-  if (!el || !slug) return;
-  if (artCache[slug]) { el.innerHTML = artCache[slug]; return; }
-  fetch('/lessons/assets/art/' + slug + '.svg')
-    .then(function (r) { return r.ok ? r.text() : null; })
-    .then(function (svg) {
-      if (!svg) return;
-      artCache[slug] = svg;
-      el.innerHTML = svg;
-    })
-    .catch(function () { /* leave the panel's background colour showing */ });
+// ── Card artwork ────────────────────────────────────────────────────
+// One small HTML/CSS diagram per lesson, keyed by `slug`. Each entry is
+// [panel layout style, inner HTML]. var(--p) = panel colour, var(--c) =
+// cream ink; .c1 primary chip, .c2 secondary chip, .ghost dashed chip,
+// .cap mono caption. Rebuilt from design_handoff_lesson_card_artwork.
+function cr(a){ return 'rgba(241,237,228,' + a + ')'; }
+var ART = {
+  'phrasal-verbs': ['display:flex;align-items:center;padding:0 20px',
+    '<span class="c1" style="font-size:24px;padding:6px 14px;border-radius:6px">GET</span>' +
+    '<span class="ln" style="width:22px;background:' + cr(.55) + '"></span>' +
+    '<div class="col" style="gap:4px;border-left:1.5px solid ' + cr(.55) + ';padding:2px 0">' +
+      ['UP','ALONG','OVER','BY'].map(function (w) {
+        return w === 'ALONG'
+          ? '<div class="row"><span class="ln" style="width:12px;background:var(--c)"></span><span class="c1" style="font-size:17px;padding:3px 10px;border-radius:5px">ALONG</span></div>'
+          : '<div class="row"><span class="ln" style="width:12px;background:' + cr(.4) + '"></span><span style="font-weight:700;font-size:12px;color:' + cr(.6) + ';padding:2px 8px">' + w + '</span></div>';
+      }).join('') +
+    '</div>'],
+
+  'collocations': ['display:flex;flex-direction:column;justify-content:center;gap:12px;padding:0 20px',
+    '<div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px">' +
+      '<div style="display:flex;box-shadow:0 6px 14px rgba(0,0,0,.25);border-radius:6px"><span class="c1" style="font-size:20px;padding:6px 10px;border-radius:6px 0 0 6px">MAKE</span><span class="c2" style="font-size:20px;padding:6px 10px;border-radius:0 6px 6px 0;border-left:2px solid var(--p)">SENSE</span></div>' +
+      '<span class="cap" style="color:' + cr(.8) + '">✓ NATURAL</span>' +
+    '</div>' +
+    '<div class="row" style="gap:10px;padding-left:4px"><span style="font-weight:700;font-size:15px;color:' + cr(.45) + ';text-decoration:line-through;text-decoration-thickness:1.5px">DO SENSE</span><span class="cap" style="color:' + cr(.55) + '">✗</span></div>'],
+
+  'idioms': ['',
+    '<div class="ab" style="left:20px;right:34px;top:28px;height:62px">' +
+      '<div class="ab c1" style="inset:0;border-radius:6px;clip-path:polygon(0 0,53% 0,47% 34%,55% 58%,49% 100%,0 100%);display:flex;align-items:center;padding-left:14px;font-size:21px">BREAK</div>' +
+      '<div class="ab" style="inset:0;background:' + cr(.78) + ';color:var(--p);border-radius:6px;clip-path:polygon(53% 0,100% 0,100% 100%,49% 100%,55% 58%,47% 34%);transform:translate(9px,5px) rotate(4deg);display:flex;align-items:center;justify-content:flex-end;padding-right:14px;font-size:21px">THE ICE</div>' +
+    '</div>' +
+    '<span class="ab" style="left:52%;bottom:14px;width:7px;height:7px;background:' + cr(.6) + ';transform:rotate(20deg)"></span>' +
+    '<span class="ab" style="left:calc(52% + 16px);bottom:22px;width:4px;height:4px;background:' + cr(.45) + ';transform:rotate(40deg)"></span>' +
+    '<span class="ab" style="left:calc(52% - 14px);bottom:10px;width:5px;height:5px;background:' + cr(.35) + '"></span>'],
+
+  'word-formation': ['display:flex;flex-direction:column;justify-content:center;gap:12px;padding:0 20px',
+    '<div style="display:flex;align-items:flex-end;gap:4px">' +
+      '<span class="ghost" style="font-size:15px;padding:5px 9px;border-radius:5px">UN-</span>' +
+      '<span class="c1" style="font-size:28px;padding:6px 14px;border-radius:6px;line-height:1.1">KIND</span>' +
+      '<span class="c2" style="font-size:18px;padding:5px 10px;border-radius:5px">-NESS</span>' +
+    '</div>' +
+    '<div class="cap" style="color:' + cr(.75) + ';white-space:nowrap">KINDLY · KINDNESS · UNKIND</div>'],
+
+  'feelings-activities': ['',
+    '<div class="ab" style="left:20px;right:20px;bottom:0;display:flex;align-items:flex-end;gap:6px">' +
+      '<div class="col" style="align-items:flex-start;gap:6px"><span style="font-weight:700;font-size:13px;color:' + cr(.65) + ';padding-left:6px">GLAD</span><span style="width:44px;height:18px;background:' + cr(.18) + ';border-radius:4px 4px 0 0"></span></div>' +
+      '<div class="col" style="align-items:flex-start;gap:6px"><span style="font-weight:700;font-size:14px;color:' + cr(.85) + ';padding-left:4px">HAPPY</span><span style="width:58px;height:38px;background:' + cr(.3) + ';border-radius:4px 4px 0 0"></span></div>' +
+      '<div class="col" style="align-items:flex-start;gap:6px;flex:1;min-width:0"><span class="c1" style="font-size:16px;padding:4px 8px;border-radius:5px">DELIGHTED</span><span style="align-self:stretch;height:58px;background:' + cr(.45) + ';border-radius:4px 4px 0 0"></span></div>' +
+    '</div>' +
+    '<span class="ab cap" style="left:20px;top:16px;color:' + cr(.75) + '">INTENSITY ↑</span>'],
+
+  'confusable-pairs': ['display:flex;flex-direction:column;justify-content:center;gap:8px;padding:0 20px',
+    '<div class="row" style="gap:6px"><span class="c1" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:28px;border-radius:6px">A</span><span style="font-size:28px;letter-spacing:.02em">FFECT</span><span class="cap" style="margin-left:auto;color:' + cr(.8) + '">VERB</span></div>' +
+    '<div class="row" style="gap:6px"><span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1.5px solid ' + cr(.6) + ';font-size:28px;border-radius:6px">E</span><span style="font-size:28px;color:' + cr(.5) + ';letter-spacing:.02em">FFECT</span><span class="cap" style="margin-left:auto;color:' + cr(.6) + '">NOUN</span></div>'],
+
+  'determiners': ['display:flex;align-items:center;justify-content:space-between;padding:0 16px 0 20px;gap:8px',
+    '<div class="col" style="gap:10px">' +
+      '<div class="row" style="gap:8px"><span class="c1" style="font-size:20px;padding:5px 12px;border-radius:5px">THE</span><span style="font-weight:700;font-size:18px">moon</span></div>' +
+      '<div class="row" style="gap:8px"><span class="c2" style="font-size:20px;padding:5px 12px;border-radius:5px">SOME</span><span style="font-weight:700;font-size:18px">milk</span></div>' +
+    '</div>' +
+    '<div style="display:grid;gap:4px">' +
+      ['A','AN','THIS','MY'].map(function (w) {
+        return '<span style="border:1.5px dashed ' + cr(.45) + ';color:' + cr(.7) + ';font-weight:700;font-size:10px;padding:1px 6px;border-radius:4px;text-align:center">' + w + '</span>';
+      }).join('') +
+    '</div>'],
+
+  'sentences-clauses': ['padding:18px 20px',
+    '<div style="height:100%;border:1.5px solid ' + cr(.55) + ';border-radius:8px;padding:8px;display:flex;align-items:center;gap:8px">' +
+      '<span class="c1" style="font-size:20px;padding:5px 11px;border-radius:5px">MAIN</span>' +
+      '<div style="flex:1;min-width:0;align-self:stretch;border:1.5px dashed ' + cr(.55) + ';border-radius:6px;padding:6px;display:flex;align-items:center;gap:6px">' +
+        '<span class="c2" style="font-size:16px;padding:4px 9px;border-radius:4px">THAT…</span>' +
+        '<div style="flex:1;min-width:0;align-self:stretch;border:1.5px dotted ' + cr(.45) + ';border-radius:4px;display:flex;align-items:center;justify-content:center"><span style="font-weight:700;font-size:11px;color:' + cr(.65) + '">WHICH…</span></div>' +
+      '</div>' +
+    '</div>'],
+
+  'inversion': ['display:flex;flex-direction:column;justify-content:flex-end;gap:14px;padding:0 20px 22px',
+    '<div style="font-weight:700;font-size:13px;color:' + cr(.5) + ';letter-spacing:.02em">I HAVE NEVER…</div>' +
+    '<div class="row" style="gap:6px">' +
+      '<span class="c1" style="font-size:21px;padding:5px 11px;border-radius:5px">NEVER</span>' +
+      '<div style="position:relative;display:flex;gap:6px">' +
+        '<span class="ab" style="left:18%;right:18%;top:-20px;height:16px;border:1.5px dashed ' + cr(.7) + ';border-bottom:none;border-radius:40px 40px 0 0"></span>' +
+        '<span class="c2" style="font-size:21px;padding:5px 11px;border-radius:5px">HAVE</span>' +
+        '<span class="c2" style="font-size:21px;padding:5px 11px;border-radius:5px">I</span>' +
+      '</div>' +
+    '</div>'],
+
+  'cleft-sentences': ['',
+    '<div class="ab" style="left:50%;top:0;width:170px;height:100%;transform:translateX(-50%);clip-path:polygon(42% 0,58% 0,100% 100%,0 100%);background:linear-gradient(' + cr(.05) + ',' + cr(.22) + ')"></div>' +
+    '<div class="ab" style="left:10px;right:10px;bottom:24px;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:6px">' +
+      '<span style="justify-self:end;font-weight:700;font-size:12px;color:' + cr(.8) + ';white-space:nowrap">IT WAS</span>' +
+      '<span class="c1" style="font-size:24px;padding:6px 12px;border-radius:6px;box-shadow:0 0 28px ' + cr(.3) + '">YOU</span>' +
+      '<span style="font-weight:700;font-size:12px;color:' + cr(.8) + ';white-space:nowrap">THAT…</span>' +
+    '</div>'],
+
+  'conditionals': ['display:flex;align-items:center;padding:0 20px 0 30px',
+    '<span class="c1" style="flex:none;width:48px;height:48px;transform:rotate(45deg);border-radius:5px;display:flex;align-items:center;justify-content:center"><span style="transform:rotate(-45deg);font-size:20px">IF</span></span>' +
+    '<span class="ln" style="width:26px;background:' + cr(.6) + ';margin-left:10px"></span>' +
+    '<div class="col" style="gap:14px;border-left:1.5px solid ' + cr(.6) + '">' +
+      '<div class="row"><span class="ln" style="width:14px;background:var(--c)"></span><span class="c1" style="font-size:19px;padding:4px 11px;border-radius:5px">THEN</span></div>' +
+      '<div class="row"><span class="ln" style="width:14px;background:' + cr(.45) + '"></span><span class="ghost" style="color:' + cr(.75) + ';font-weight:700;font-size:13px;padding:4px 9px;border-radius:5px">OTHERWISE</span></div>' +
+    '</div>'],
+
+  'verb-tenses': ['',
+    '<span class="ab" style="left:20px;width:calc(62% - 20px);top:80px;height:2px;background:' + cr(.7) + '"></span>' +
+    '<span class="ab" style="left:62%;right:20px;top:80px;border-top:2px dashed ' + cr(.35) + '"></span>' +
+    '<span class="ab" style="left:18%;width:44%;top:54px;height:14px;border:2px solid var(--c);border-bottom:none;border-radius:4px 4px 0 0"></span>' +
+    '<span class="ab c1" style="left:40%;top:18px;transform:translateX(-50%);white-space:nowrap;font-size:15px;padding:4px 10px;border-radius:5px">HAVE BEEN -ING</span>' +
+    '<span class="ab" style="left:18%;top:77px;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:' + cr(.7) + '"></span>' +
+    '<span class="ab" style="left:62%;top:73px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--c)"></span>' +
+    '<span class="ab cap" style="left:20px;top:96px;color:' + cr(.7) + '">PAST</span>' +
+    '<span class="ab cap" style="left:62%;top:96px;transform:translateX(-50%)">NOW</span>' +
+    '<span class="ab cap" style="right:20px;top:96px;color:' + cr(.5) + '">FUTURE</span>'],
+
+  'pronunciation': ['display:flex;flex-direction:column;justify-content:center;gap:12px;padding:0 20px',
+    '<div class="row" style="gap:10px">' +
+      '<span class="c1" style="flex:none;width:54px;text-align:center;font-family:\'Noto Sans\',sans-serif;font-weight:700;font-size:19px;padding:4px 0;border-radius:5px">/iː/</span>' +
+      '<span style="flex:1;height:12px;border-radius:6px;background:repeating-linear-gradient(90deg,var(--c) 0 3px,transparent 3px 6px)"></span>' +
+      '<span class="cap" style="flex:none;width:40px">SHEEP</span>' +
+    '</div>' +
+    '<div class="row" style="gap:10px">' +
+      '<span class="c2" style="flex:none;width:54px;text-align:center;font-family:\'Noto Sans\',sans-serif;font-weight:700;font-size:19px;padding:4px 0;border-radius:5px">/ɪ/</span>' +
+      '<span style="flex:1;display:flex"><span style="width:34%;height:12px;border-radius:6px;background:repeating-linear-gradient(90deg,' + cr(.62) + ' 0 3px,transparent 3px 6px)"></span></span>' +
+      '<span class="cap" style="flex:none;width:40px;color:' + cr(.7) + '">SHIP</span>' +
+    '</div>'],
+
+  'transitional-words': ['',
+    '<span class="ab" style="left:50%;top:14px;bottom:0;width:5px;margin-left:-2.5px;background:' + cr(.55) + '"></span>' +
+    '<span class="ab" style="left:50%;bottom:0;width:36px;height:6px;margin-left:-18px;background:' + cr(.55) + '"></span>' +
+    '<span class="ab c1" style="right:calc(50% - 14px);top:26px;font-size:16px;padding:6px 14px 6px 22px;clip-path:polygon(14px 0,100% 0,100% 100%,14px 100%,0 50%);white-space:nowrap">HOWEVER</span>' +
+    '<span class="ab" style="left:calc(50% - 16px);top:64px;background:' + cr(.7) + ';color:var(--p);font-size:15px;padding:6px 20px 6px 12px;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,0 100%);white-space:nowrap">THEREFORE</span>'],
+
+  'hedging-language': ['',
+    '<span class="ab" style="left:20px;top:22px;font-size:18px;color:' + cr(.5) + ';text-decoration:line-through;text-decoration-thickness:2px">IS</span>' +
+    '<span class="ab c1" style="left:62%;top:18px;transform:translateX(-50%);white-space:nowrap;font-size:19px;padding:4px 11px;border-radius:5px">MAY BE</span>' +
+    '<span class="ab" style="left:20px;right:20px;top:74px;height:4px;border-radius:2px;background:' + cr(.25) + '"></span>' +
+    '<span class="ab" style="left:20px;width:calc(62% - 20px);top:74px;height:4px;border-radius:2px;background:' + cr(.7) + '"></span>' +
+    '<span class="ab" style="left:62%;top:67px;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:var(--c);box-shadow:0 0 0 4px ' + cr(.2) + '"></span>' +
+    '<span class="ab" style="left:62%;top:52px;width:1.5px;height:12px;background:var(--c)"></span>' +
+    '<span class="ab cap" style="left:20px;top:94px;color:' + cr(.7) + '">CERTAIN</span>' +
+    '<span class="ab cap" style="right:20px;top:94px;color:' + cr(.7) + '">POSSIBLE</span>']
+};
+
+function artHTML(lesson) {
+  var c = CATS[lesson.cat];
+  var a = ART[lesson.slug] || ['', ''];
+  return '<div class="art" data-art="' + lesson.slug + '" aria-hidden="true" style="--p:' + (c ? c.panel : '#111114') + ';' + a[0] + '">' + a[1] + '</div>';
 }
 
 function buildTile(lesson) {
@@ -234,14 +354,12 @@ function buildTile(lesson) {
   a.className = 'tile';
   a.href = lesson.href;
   a.style.setProperty('--tile-card', c ? c.card : '#111114');
-  a.style.setProperty('--tile-ink', c ? c.ink : '#f2efe6');
   a.innerHTML =
-    '<div class="tile__art" data-art="' + lesson.slug + '"></div>' +
+    artHTML(lesson) +
     '<div class="tile__kicker"><span>' + lesson.cat.replace('Practical use of English', 'Practical English') + '</span><span>' + lesson.meta + '</span></div>' +
     '<div class="tile__title">' + lesson.title + '</div>' +
     '<div class="tile__desc">' + lesson.desc + '</div>' +
     '<span class="tile__cta">Start lesson →</span>';
-  loadArt(a.querySelector('[data-art]'), lesson.slug);
   return a;
 }
 
@@ -281,7 +399,7 @@ function buildTile(lesson) {
   document.getElementById('lotwCat').textContent = pick.cat;
   document.getElementById('lotwTitle').textContent = pick.title;
   document.getElementById('lotwDesc').textContent = pick.desc;
-  loadArt(document.getElementById('lotwArt'), pick.slug);
+  document.getElementById('lotwArt').innerHTML = artHTML(pick);
   card.style.display = 'flex';
 })();
 </script>

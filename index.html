@@ -58,6 +58,7 @@ a{color:var(--bone);text-decoration:none}
 a:hover{opacity:.95}
 a:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .page{background:var(--ink);padding-bottom:32px}
+.site-footer{max-width:calc(var(--wrap) + 56px);margin:0 auto;padding:40px 28px 28px;font-size:12px;color:rgb(244 241 234 / .68)}
 
 /* Archivo Black has one weight; font-weight:400 stops browsers faking a bold. */
 .display{
@@ -382,8 +383,7 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
       <a class="nav__games"    href="/english-games/">Games</a>
       <a class="nav__quizzes"  href="/english-quiz/index.html">Quizzes</a>
       <a class="nav__lessons"  href="/lessons/">Lessons</a>
-      <!-- TODO(url): replace "#TODO-courses-url" with the real Courses address -->
-      <a class="nav__courses"  href="#TODO-courses-url">Courses</a>
+      <a class="nav__courses"  href="/courses/">Courses</a>
       <a class="nav__book"     href="/contact/">Book a Lesson</a>
     </nav>
   </header>
@@ -559,6 +559,8 @@ a:focus-visible{outline:2px solid #fff;outline-offset:3px}
     </section>
 
   </main>
+
+  <footer class="site-footer">© English Voiced with Kris</footer>
 </div>
 
 <script>
