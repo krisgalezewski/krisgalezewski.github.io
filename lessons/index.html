@@ -190,7 +190,8 @@ var LESSONS = [
   { title:'Verb tenses', cat:'Grammar', href:'/english_verb_tenses_v2_6.html', desc:'English tense and aspect, practice, and common mistakes.', slug:'verb-tenses', meta:'TENSE & ASPECT' },
   { title:'Pronunciation', cat:'Pronunciation', href:'/english_pronunciation_v5_1.html', desc:'IPA chart, minimal pairs, connected speech, and stress patterns.', slug:'pronunciation', meta:'IPA' },
   { title:'Transitional words', cat:'Practical use of English', href:'/english_transitional_words_1.html', desc:'Linking words and phrases for clear, connected writing.', slug:'transitional-words', meta:'LINKING' },
-  { title:'Hedging language', cat:'Practical use of English', href:'/hedging_language_lesson_6_1.html', desc:'Softening claims with grammatical and lexical hedges.', slug:'hedging-language', meta:'SOFTENING' }
+  { title:'Hedging language', cat:'Practical use of English', href:'/hedging_language_lesson_6_1.html', desc:'Softening claims with grammatical and lexical hedges.', slug:'hedging-language', meta:'SOFTENING' },
+  { title:'Workplace EQ', cat:'Practical use of English', href:'/lessons/workplace-eq.html', desc:'The unwritten rules of British workplace English — introductions, emails, meetings and more.', slug:'workplace-eq', meta:'48 PHRASES' }
 ];
 
 // Card + panel colours by category (tokens from the artwork handoff).
@@ -339,7 +340,18 @@ var ART = {
     '<span class="ab" style="left:62%;top:67px;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:var(--c);box-shadow:0 0 0 4px ' + cr(.2) + '"></span>' +
     '<span class="ab" style="left:62%;top:52px;width:1.5px;height:12px;background:var(--c)"></span>' +
     '<span class="ab cap" style="left:20px;top:94px;color:' + cr(.7) + '">CERTAIN</span>' +
-    '<span class="ab cap" style="right:20px;top:94px;color:' + cr(.7) + '">POSSIBLE</span>']
+    '<span class="ab cap" style="right:20px;top:94px;color:' + cr(.7) + '">POSSIBLE</span>'],
+
+  'workplace-eq': ['',
+    '<span class="ab c1" style="left:50%;top:16px;transform:translateX(-50%);white-space:nowrap;font-size:18px;padding:5px 12px;border-radius:5px">COULD YOU…?</span>' +
+    '<span class="ab" style="left:20px;right:20px;top:74px;height:4px;border-radius:2px;background:' + cr(.25) + '"></span>' +
+    '<span class="ab" style="left:20px;top:70px;width:12px;height:12px;border-radius:50%;border:1.5px dashed ' + cr(.5) + '"></span>' +
+    '<span class="ab" style="right:20px;top:70px;width:12px;height:12px;border-radius:50%;border:1.5px dashed ' + cr(.5) + '"></span>' +
+    '<span class="ab" style="left:50%;top:67px;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:var(--c);box-shadow:0 0 0 4px ' + cr(.2) + '"></span>' +
+    '<span class="ab" style="left:50%;top:52px;width:1.5px;height:12px;background:var(--c)"></span>' +
+    '<span class="ab cap" style="left:20px;top:94px;color:' + cr(.7) + '">BLUNT</span>' +
+    '<span class="ab cap" style="left:50%;top:94px;transform:translateX(-50%);color:var(--c)">JUST RIGHT</span>' +
+    '<span class="ab cap" style="right:20px;top:94px;color:' + cr(.7) + '">STIFF</span>']
 };
 
 function artHTML(lesson) {
