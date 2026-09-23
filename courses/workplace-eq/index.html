@@ -3,535 +3,508 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Used To vs. Would for Past Habits | English+</title>
+<title>Course home | Workplace EQ</title>
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
-<link rel="apple-touch-icon" href="assets/favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   English+ B2+/C1 Companion Course — Shared Theme
-   Design tokens + reusable component styles for all 20 lessons
-   and 4 tests. Loaded by every lesson-*.html via <link rel="stylesheet">.
-   Structurally identical to the original B1+/B2 course's theme.css —
-   only the four section palettes differ (new colours for this course).
+   Workplace EQ — Shared Theme
+   Reskin: Claude Design handoff "Annual Report · Bottle" (6b).
+   Corporate-editorial: tall condensed Archivo headlines, a strict
+   12-column grid, thin ink rules, warm paper, racing-green palette,
+   square corners everywhere, no shadows.
+
+   Every class name the shared engine (course-engine.js) and the
+   generators emit is kept, so behaviour is unchanged — only the
+   styling moved. Engine markup that still carries inline
+   var(--radius-*) / var(--accent) values picks up the new look
+   through the tokens below.
    ============================================================ */
 
 :root{
-  /* Surfaces */
-  --bg:#F6F7F9;
-  --surface:#FFFFFF;
-  --surface-alt:#EEF1F5;
-  --border:#DFE3E9;
-  --border-strong:#C7CDD6;
+  /* Palette (design tokens from the handoff) */
+  --paper:#F4F1E8;
+  --ink:#14231C;
+  --bottle:#1D4A35;
+  --green:#1E6B47;
+  --green-light:#8FD1AB;
+  --mint:#B8E3C8;
+  --hero-body:#E3EFE6;
+  --tint:#DCEBE0;
+  --grey-rule:#CCCCCC;
+  --grey-text:#888888;
+  --grey-label:#555555;
+  --red:#A23B2A;
+  --red-bg:#F6E3DE;
 
-  /* Text */
-  --text:#1B2430;
-  --text-secondary:#5B6472;
-  --text-tertiary:#8A93A1;
+  /* Engine-facing role tokens (mapped onto the palette) */
+  --bg:var(--paper);
+  --surface:transparent;
+  --surface-alt:#EAE6DA;
+  --border:var(--ink);
+  --border-strong:var(--ink);
+  --text:var(--ink);
+  --text-secondary:#3E4A44;
+  --text-tertiary:var(--grey-text);
+  --accent:var(--green);
+  --accent-dark:var(--bottle);
+  --accent-soft:var(--tint);
+  --accent-soft-border:var(--green);
+  --ok:var(--green);
+  --ok-bg:var(--tint);
+  --ok-border:var(--green);
+  --bad:var(--red);
+  --bad-bg:var(--red-bg);
+  --bad-border:var(--red);
+  --warn:var(--ink);
+  --warn-bg:transparent;
+  --warn-border:var(--green);
+  --c-present:var(--green);
+  --c-present-bg:var(--tint);
+  --c-continuous:var(--bottle);
+  --c-continuous-bg:var(--tint);
+  --c-past:var(--green);
+  --c-future:var(--ink);
+  --c-modal:var(--green);
 
-  /* Accent (default / fallback, overridden per section below) */
-  --accent:#185FA5;
-  --accent-dark:#0C4577;
-  --accent-soft:#E6F1FB;
-  --accent-soft-border:#85B7EB;
-
-  /* Feedback */
-  --ok:#27500A;
-  --ok-bg:#EAF3DE;
-  --ok-border:#C0DD97;
-  --bad:#791F1F;
-  --bad-bg:#FCEBEB;
-  --bad-border:#F7C1C1;
-  --warn:#633806;
-  --warn-bg:#FAEEDA;
-  --warn-border:#E8C080;
-
-  /* Grammar-concept colour coding — kept consistent across the whole
-     course so students learn to associate a colour with a concept
-     family, same convention as the original course. */
-  --c-present:#0F6E56;
-  --c-present-bg:#E4F3EE;
-  --c-continuous:#534AB7;
-  --c-continuous-bg:#ECEAFA;
-  --c-past:#185FA5;
-  --c-future:#993C1D;
-  --c-modal:#854F0B;
-
-  /* Type */
-  --font-sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --font-serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --font-sans:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-serif:'Archivo',system-ui,sans-serif;
   --font-mono:'JetBrains Mono','SFMono-Regular',Consolas,monospace;
 
-  /* Shape */
-  --radius-lg:20px;
-  --radius-md:14px;
-  --radius-sm:10px;
-  --radius-pill:999px;
+  --radius-lg:0;
+  --radius-md:0;
+  --radius-sm:0;
+  --radius-pill:0;
+
+  --gutter:40px;
+  --maxw:1080px;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-
 html{scroll-behavior:smooth}
-
 body{
-  font-family:var(--font-sans);
-  color:var(--text);
-  background:var(--bg);
-  line-height:1.5;
-  -webkit-font-smoothing:antialiased;
+  font-family:var(--font-sans);color:var(--ink);background:var(--paper);
+  line-height:1.6;-webkit-font-smoothing:antialiased;font-size:16px;
 }
-
-h1,h2,h3,h4{font-weight:650;letter-spacing:-0.01em}
-
+h1,h2,h3,h4{font-weight:800;letter-spacing:0}
+a{color:inherit}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:focus-visible{outline:2.5px solid var(--green);outline-offset:2px}
+button{font-family:inherit}
 
-:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px}
+/* Body theme classes: in this design every section uses the same green. */
+body.theme-presence,body.theme-communication,body.theme-velocity{--accent:var(--green)}
 
-/* ---------- Layout ---------- */
-.shell{max-width:760px;margin:0 auto;padding:28px 20px 80px}
+/* ---------- Page frame ---------- */
+.eq-wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+.shell{max-width:var(--maxw);margin:0 auto;padding:0 0 80px}
+.grid12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 20px}
 
-.lesson-header{margin-bottom:20px}
-.lesson-eyebrow{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:8px;
-}
-.lesson-title{font-size:26px;line-height:1.25;margin-bottom:6px;color:var(--accent-dark)}
-.lesson-sub{font-size:14.5px;color:var(--text-secondary)}
-.course-attribution{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
-  max-width:1060px;margin:0 auto;text-align:left;
-  font-size:11.5px;letter-spacing:.03em;text-transform:uppercase;
-  color:var(--text-tertiary);padding:14px 20px 0;
-}
-.course-attribution .back-to-courses{
-  text-transform:none;letter-spacing:0;font-size:13px;font-weight:600;color:var(--accent,#185FA5);
-  text-decoration:none;border:1px solid var(--border-strong,#C7CDD6);border-radius:999px;padding:5px 12px;background:var(--surface,#fff);
-}
-.course-attribution .back-to-courses:hover{background:var(--surface-alt,#EEF1F5)}
+/* Top nav bar (every page) */
+.eq-nav{background:var(--bottle);color:var(--paper);font-size:13px;font-weight:600;letter-spacing:.02em}
+.eq-nav .eq-wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:16px;padding-bottom:16px;flex-wrap:wrap}
+.eq-nav a{text-decoration:none;transition:opacity .15s}
+.eq-nav a:hover{opacity:.85}
+.eq-nav .eq-nav-links{display:flex;gap:24px;flex-wrap:wrap}
+.eq-nav .eq-hl{color:var(--green-light)}
+.course-attribution{display:none}
 
-/* ---------- Per-section colour themes ----------
-   Every widget/button/hover-state throughout the course reads colour
-   purely from --accent/--accent-dark/--accent-soft/--accent-soft-border
-   (and the page background from --bg), so overriding just these five
-   variables per section re-colours the whole page — buttons, toggles,
-   compare-card hovers, formula boxes' border-left accents that use
-   --accent directly, everything — with zero changes needed to any
-   lesson's own JS/CSS. The tense-specific concept colours (--c-present,
-   --c-continuous, etc., used to distinguish grammar forms *within* a
-   lesson) are deliberately left untouched — those stay consistent
-   across every section since a student learns "green = present" once,
-   regardless of which part of the course they're in.
+/* Lesson / test header band */
+.eq-band{background:var(--green);color:var(--paper)}
+.eq-band .grid12{padding-top:40px;padding-bottom:40px}
+.eq-band-meta{grid-column:1 / span 3;font-size:13px;font-weight:700;line-height:1.5;display:flex;flex-direction:column;gap:14px}
+.eq-band-meta .sec-name{color:var(--mint)}
+.eq-band-main{grid-column:4 / span 9;display:flex;flex-direction:column;gap:18px}
+.lesson-title{
+  font-stretch:68%;font-weight:800;font-size:clamp(48px,7.4vw,88px);line-height:.88;
+  text-transform:uppercase;letter-spacing:-.01em;color:var(--paper);margin:0;text-wrap:balance;
+}
+.lesson-sub{font-size:19px;line-height:1.45;font-weight:500;color:var(--paper);text-wrap:pretty}
+.pb-track{background:rgba(244,241,232,.25);height:4px;overflow:hidden;max-width:180px}
+.pb-fill{height:4px;background:var(--mint);transition:width .35s}
+#sync-status{font-size:12px;font-weight:500;color:var(--hero-body);line-height:1.45}
 
-   This course's four palettes are new — deep, muted, "dark and
-   pleasant" tones distinct from the original B1+/B2 course's brick
-   red / teal / indigo / mustard, so the two courses are visually
-   distinguishable at a glance: deep wine, slate blue, forest olive,
-   antique gold. */
-body.theme-aspect{
-  --accent:#6E3550; --accent-dark:#4E2438; --accent-soft:#F5ECEF; --accent-soft-border:#C9A0AF; --bg:#FBF7F8;
-}
-body.theme-conditionals{
-  --accent:#3E5C76; --accent-dark:#2C4356; --accent-soft:#EBF0F4; --accent-soft-border:#A9C0D0; --bg:#F7F9FB;
-}
-body.theme-passive{
-  --accent:#4C6444; --accent-dark:#384A33; --accent-soft:#EEF2EC; --accent-soft-border:#B7C7AE; --bg:#F8FAF7;
-}
-body.theme-discourse{
-  --accent:#8A6D1F; --accent-dark:#665117; --accent-soft:#F7F0DF; --accent-soft-border:#D9BE7E; --bg:#FCFAF4;
-}
+/* Step tabs */
+.eq-steps{border-bottom:1px solid var(--ink);background:var(--paper);position:sticky;top:0;z-index:40}
+.eq-steps .eq-wrap{display:grid;grid-template-columns:repeat(8,minmax(0,1fr))}
+.eq-steps a{padding:10px 8px 10px 0;border-top:4px solid transparent;font-size:12px;font-weight:600;color:var(--grey-text);text-decoration:none;white-space:nowrap}
+.eq-steps a:hover{color:var(--ink)}
+.eq-steps a.on{border-top-color:var(--green);color:var(--ink)}
 
-.section{margin-bottom:36px}
-.section-label{
-  display:flex;align-items:center;gap:10px;
-  font-size:13px;font-weight:650;letter-spacing:.03em;text-transform:uppercase;
-  color:var(--text-tertiary);margin-bottom:12px;
-}
-.section-label .num{
-  width:22px;height:22px;border-radius:50%;background:var(--surface-alt);
-  display:flex;align-items:center;justify-content:center;
-  font-size:11.5px;color:var(--text-secondary);flex-shrink:0;
-}
+/* ---------- Section blocks ---------- */
+.section{padding:40px 0 0;scroll-margin-top:48px}
+.section.eq-sec{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 20px;padding:40px var(--gutter) 0}
+.sec-num{grid-column:1 / span 3;font-stretch:68%;font-weight:800;font-size:96px;line-height:.8;color:var(--green)}
+.sec-body{grid-column:4 / span 9;display:flex;flex-direction:column;gap:18px;min-width:0}
+.sec-h{font-stretch:75%;font-weight:800;font-size:40px;line-height:1;text-transform:uppercase;margin:0}
+.sec-sub{font-size:13px;font-weight:700;color:var(--green);margin-top:-8px}
+.section-label{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:12px}
+.section-label .num{display:none}
 
-/* ---------- Cards ---------- */
-.card{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius-lg);
-  padding:1.3rem 1.5rem;
-  margin-bottom:.9rem;
-}
-.card + .card{margin-top:.9rem}
+/* Cards become open blocks separated by rules */
+.card{background:transparent;border:0;border-top:2px solid var(--ink);padding:16px 0 0;margin:0}
+.card + .card{margin-top:24px}
+.sec-body > .card:first-of-type{border-top:0;padding-top:0}
+.card h3{font-stretch:75%;font-weight:800;text-transform:uppercase;font-size:24px;line-height:1.1;letter-spacing:0}
+.card h4{font-size:13px !important;text-transform:none !important;font-weight:700;color:var(--ink) !important;letter-spacing:0 !important;border-top:0 !important}
+.card p{font-size:17px;line-height:1.6}
+.card p[style*="font-size:13.5px"],.card p[style*="font-size:12.5px"],.card p[style*="font-size:14.5px"],.card p[style*="font-size:14px"]{font-size:15px !important;color:var(--text-secondary) !important}
 
-.tip-box{
-  background:var(--surface-alt);border-radius:var(--radius-md);
-  padding:11px 15px;font-size:13.5px;color:var(--text-secondary);
-  display:flex;flex-wrap:wrap;gap:9px;align-items:flex-start;line-height:1.6;margin-top:10px;
-}
-.tip-box > *{min-width:0}
-.warn-box{
-  background:var(--warn-bg);border:1px solid var(--warn-border);border-radius:var(--radius-md);
-  padding:11px 15px;font-size:13.5px;color:var(--warn);
-  display:flex;flex-wrap:wrap;gap:9px;align-items:flex-start;line-height:1.6;margin-top:10px;
-}
-.warn-box > *{min-width:0}
+/* Key finding (all tips) */
+.kf{display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;border-top:2px solid var(--green);padding-top:14px;margin-top:6px}
+.kf-l{font-size:13px;font-weight:700;color:var(--green);line-height:1.4}
+.kf-t{font-size:16px;line-height:1.6;color:var(--ink);min-width:0}
+.kf-t b,.kf-t strong{font-weight:700}
+.lab-no,.lab-yes{display:inline-block;font-size:12px;font-weight:700;padding:1px 7px;margin-right:6px;vertical-align:1px}
+.lab-no{background:var(--red-bg);color:var(--red)}
+.lab-yes{background:var(--tint);color:var(--green)}
+.tip-box,.warn-box{display:block;background:transparent;border:0;padding:0;margin:0;font-size:16px;color:var(--ink)}
 
-/* ---------- Buttons / pills ---------- */
+/* ---------- Buttons ---------- */
 .btn{
-  font-family:inherit;font-size:14px;padding:9px 20px;border-radius:var(--radius-pill);
-  border:1px solid var(--border-strong);background:var(--surface);color:var(--text);
-  cursor:pointer;transition:all .15s;
+  font-family:inherit;font-size:15px;font-weight:700;padding:10px 22px;border-radius:0;
+  border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:background .15s,color .15s,opacity .15s;
 }
-.btn:hover{background:var(--surface-alt)}
-.btn-primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:550}
-.btn-primary:hover{background:var(--accent-dark);border-color:var(--accent-dark)}
-.btn-primary:disabled{opacity:.45;cursor:not-allowed}
-.btn-ghost{border-color:transparent;background:transparent;color:var(--text-secondary)}
-.btn-ghost:hover{background:var(--surface-alt);color:var(--text)}
-.btn-sm{padding:6px 14px;font-size:12.5px}
+.btn:hover{background:var(--ink);color:#fff}
+.btn-primary{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn-primary:hover{background:var(--green);border-color:var(--green)}
+.btn-primary:disabled,.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-ghost{border-color:transparent;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.btn-ghost:hover{background:transparent;color:var(--green)}
+.btn-sm{padding:8px 18px;font-size:14px}
 
 .pill{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:6px 14px;border-radius:var(--radius-pill);
-  border:1px solid var(--border-strong);background:var(--surface);
-  font-size:13px;color:var(--text-secondary);cursor:pointer;transition:all .15s;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:0;
+  border:2px solid var(--ink);background:transparent;font-size:13px;font-weight:700;color:var(--ink);
+  cursor:pointer;transition:background .15s,color .15s;white-space:nowrap;
 }
-.pill:hover{background:var(--surface-alt)}
-.pill.on{color:#fff;border-color:transparent;background:var(--accent)}
-.pill.on.c-present{background:var(--c-present)}
-.pill.on.c-continuous{background:var(--c-continuous)}
-.pill.on.c-future{background:var(--c-future)}
-.pill.on.c-bad{background:var(--bad)}
-.mode-toggle-outline .pill{border-radius:var(--radius-sm)}
-.mode-toggle-outline .pill.on{background:var(--surface);color:var(--accent);border-color:var(--accent);font-weight:700}
+.pill:hover{background:var(--tint)}
+.pill.on,.mode-toggle-outline .pill.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .pill[disabled]{cursor:not-allowed;pointer-events:none}
 .pill[disabled]:not(.on){opacity:.45}
-.signal-pill{border-color:var(--accent);color:var(--accent);border-radius:var(--radius-sm)}
-.signal-pill:hover:not(:disabled){background:var(--accent-soft)}
+.signal-pill{border-color:var(--green);color:var(--green)}
+.mode-toggle{display:flex;gap:0;flex-wrap:wrap}
+.mode-toggle .pill + .pill{border-left:0}
+.mode-toggle-outline{gap:0 !important}
+.mode-toggle-outline .pill + .pill{border-left:0}
+.pill.align-start{align-self:flex-start}
 
-/* ---------- Progress bar ---------- */
-.pb-track{background:var(--surface-alt);border-radius:var(--radius-pill);height:6px;overflow:hidden}
-.pb-fill{height:6px;border-radius:var(--radius-pill);background:var(--accent);transition:width .35s}
-
-/* ---------- Formula box ---------- */
+/* ---------- Concept widget ---------- */
+#widget-area{background:transparent !important;border:2px solid var(--ink) !important;padding:18px !important;margin-top:0 !important}
+.static-cell{display:flex;align-items:center;justify-content:flex-start;border:0;padding:12px;background:transparent;text-align:left;font-size:15px;color:var(--ink);min-height:20px;line-height:1.45}
+.static-cell.is-primary-cell{color:var(--ink);font-weight:500}
+#widget-area .static-cell.is-primary-cell:first-child{background:var(--bottle);color:#fff;font-weight:700;font-size:17px}
+.static-cell.clickable-cell{cursor:pointer}
+.static-cell.clickable-cell:hover{opacity:.85}
+#widget-hint{font-size:13px !important;color:var(--grey-label) !important;margin-top:0 !important}
 .formula{
-  font-family:var(--font-mono);font-size:13px;background:var(--surface-alt);
-  border-radius:var(--radius-md);padding:11px 15px;border-left:3px solid var(--accent);
-  margin-bottom:8px;line-height:1.7;color:var(--text);
+  font-family:var(--font-sans);font-size:16px;background:transparent;border:0;border-top:1px solid var(--ink);
+  padding:12px 0 4px;margin:0;line-height:1.6;color:var(--ink);border-left:0 !important;
 }
+.formula b{font-weight:700}
+.expand-content{display:none}
+.expand-content.open{display:block}
+#rules-content > div{display:flex;flex-direction:column;gap:12px}
 
-/* ---------- Multiple choice / gap-fill options ---------- */
+/* ---------- Answer options (A / B / C) ---------- */
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;counter-reset:opt}
+.opts.opts-3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .opt{
-  display:block;width:100%;padding:11px 16px;border-radius:var(--radius-md);
-  border:1px solid var(--border-strong);background:var(--surface);
-  font-size:14.5px;font-family:inherit;text-align:left;cursor:pointer;
-  transition:all .15s;color:var(--text);line-height:1.5;margin-bottom:8px;
+  counter-increment:opt;display:flex;flex-direction:column;gap:10px;width:100%;padding:18px;border-radius:0;
+  border:2px solid var(--ink);background:transparent;font-size:17px;font-weight:600;font-family:inherit;text-align:left;
+  cursor:pointer;transition:background .15s,color .15s;color:var(--ink);line-height:1.35;margin:0;
 }
-.opt:last-child{margin-bottom:0}
-.opt:hover:not(.sel):not(.ok):not(.bad):not(.dim){background:var(--surface-alt)}
-.opt.sel{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-dark);font-weight:550}
-.opt.ok{border-color:var(--ok-border);background:var(--ok-bg);color:var(--ok);font-weight:550;cursor:default;pointer-events:none}
-.opt.bad{border-color:var(--bad-border);background:var(--bad-bg);color:var(--bad);cursor:default;pointer-events:none}
-.opt.dim{opacity:.5;cursor:default;pointer-events:none}
+.opts .opt::before{content:counter(opt,upper-alpha);font-size:12px;font-weight:600;color:var(--grey-text)}
+.opt:hover:not(.sel):not(.ok):not(.bad):not(.dim){background:var(--tint)}
+.opt.sel{background:var(--tint);border-color:var(--green)}
+.opt.ok{background:var(--bottle);border-color:var(--bottle);color:#fff;cursor:default;pointer-events:none}
+.opts .opt.ok::before{content:counter(opt,upper-alpha) " \00B7  Correct";color:var(--green-light)}
+.opt.bad{background:var(--red-bg);border-color:var(--red);color:var(--red);cursor:default;pointer-events:none}
+.opts .opt.bad::before{content:counter(opt,upper-alpha) " \00B7  Not quite";color:var(--red)}
+.opt.dim{opacity:.45;cursor:default;pointer-events:none}
+#widget-area .opt{display:inline-flex;width:auto;padding:10px 16px;font-size:15px}
+.q-text{font-size:18px;font-weight:700;line-height:1.4;margin-bottom:12px}
+.q-block + .q-block{margin-top:24px}
 
-.fb-ok{background:var(--ok-bg);color:var(--ok);font-size:13.5px;padding:11px 15px;border-radius:var(--radius-sm);margin-top:10px;line-height:1.6}
-.fb-no{background:var(--bad-bg);color:var(--bad);font-size:13.5px;padding:11px 15px;border-radius:var(--radius-sm);margin-top:10px;line-height:1.6}
+.fb-ok,.fb-no{font-size:15px;padding:12px 16px;border-radius:0;margin-top:10px;line-height:1.55;border-left:4px solid}
+.fb-ok{background:var(--tint);color:var(--bottle);border-color:var(--green)}
+.fb-no{background:var(--red-bg);color:var(--red);border-color:var(--red)}
+.error-banner{background:var(--red-bg);border:2px solid var(--red);color:var(--red);padding:12px 16px;font-size:15px;margin-top:10px;line-height:1.6}
 
-/* ---------- Reading passage + vocab ---------- */
-.passage{
-  font-family:var(--font-serif);font-size:16px;line-height:1.85;color:var(--text);
+/* ---------- Gap-fill box ---------- */
+.gapbox{border:2px solid var(--ink);padding:6px 22px}
+.gap-label{font-size:13px;font-weight:700;padding:16px 0 4px}
+.gap-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:16px 0;border-top:1px solid var(--grey-rule)}
+.gap-label + .gap-row{border-top:0}
+.gap-s{flex:1;min-width:240px;font-size:19px;font-weight:500;line-height:1.7;margin:0 !important}
+.gap-s input{
+  border:0 !important;border-bottom:3px solid var(--green) !important;border-radius:0 !important;background:transparent;
+  padding:2px 6px !important;font-family:inherit;font-size:19px;font-weight:600;color:var(--ink);min-width:120px;outline:none;
 }
-.passage p{margin-bottom:14px}
-.vocab{
-  color:var(--accent-dark);background:var(--accent-soft);
-  padding:1px 4px;border-radius:5px;cursor:pointer;font-weight:550;
-  border-bottom:1.5px dotted var(--accent-soft-border);transition:all .12s;
-}
-.vocab:hover{background:#D6E9FA}
+.gap-s input:focus{background:var(--tint)}
+.gap-row .btn{margin-left:auto;background:var(--ink);color:#fff;border-color:var(--ink)}
+.gap-row .btn:hover{background:var(--green);border-color:var(--green)}
+.gap-row > div[id$="-fb"]{flex-basis:100%}
+.gap-row > div[id$="-fb"]:empty{display:none}
+.gap-row > div[id$="-fb"] > .fb-ok,.gap-row > div[id$="-fb"] > .fb-no{margin-top:0}
 
-.vocab-pop{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);
-  padding:1.1rem 1.3rem;margin-top:10px;box-shadow:0 8px 28px rgba(20,30,50,.10);
-  display:none;font-family:var(--font-sans);
-}
-.vocab-pop.open{display:block}
-.vocab-pop-word{font-size:17px;font-weight:650;margin-bottom:2px}
-.vocab-pop-ipa{font-family:var(--font-mono);font-size:13px;color:var(--text-secondary);margin-bottom:10px}
-.audio-btn{
-  display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:var(--radius-pill);
-  border:1px solid var(--border-strong);background:var(--surface);cursor:pointer;
-  font-size:12.5px;color:var(--text-secondary);transition:all .15s;margin-bottom:10px;
-}
-.audio-btn:hover{background:var(--accent-soft);border-color:var(--accent-soft-border);color:var(--accent)}
-.audio-btn.playing{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:550}
-.vocab-pop-ex{font-size:14px;color:var(--text-secondary);font-style:italic;line-height:1.6;margin-bottom:10px}
-.glossary-btn{font-size:12px}
+/* ---------- Tone cells (too blunt / just right / too stiff) ---------- */
+.tone-set{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:2px solid var(--ink)}
+.tone-set + .tone-set{margin-top:24px}
+.tone-cell{padding:16px;display:flex;flex-direction:column;gap:12px;border:0;border-right:1px solid var(--ink);cursor:pointer;text-align:left;background:transparent;font-family:inherit;color:var(--ink)}
+.tone-cell:first-child{padding-left:0}
+.tone-cell:last-child{border-right:0;padding-right:0}
+.tone-cell.is-right{background:var(--tint);padding-left:16px;padding-right:16px}
+.tone-lbl{font-size:13px;font-weight:700}
+.tone-cell.is-right .tone-lbl{color:var(--green)}
+.tone-bar{height:8px;background:var(--ink);display:block}
+.tone-cell.is-right .tone-bar{background:var(--green)}
+.tone-line{font-size:19px;font-weight:600;line-height:1.3}
+.tone-why{font-size:15px;line-height:1.5;font-weight:400;color:var(--text-secondary);display:none;border-top:1px solid var(--ink);padding-top:10px}
+.tone-cell:hover .tone-why,.tone-cell.open .tone-why{display:block}
+.tone-hint{font-size:13px;color:var(--grey-label)}
+.culture{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;border-top:2px solid var(--ink);padding-top:14px;font-size:15px;line-height:1.5}
+.culture-h{font-size:13px;font-weight:700;margin-bottom:6px}
+.sec-sub-h{font-stretch:75%;font-weight:800;font-size:32px;line-height:1.05;text-transform:uppercase}
 
-/* ---------- Sentence builder (tap-to-order) ---------- */
-.builder-bank{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;min-height:40px}
-.chip{
-  padding:8px 14px;border-radius:var(--radius-pill);border:1px solid var(--border-strong);
-  background:var(--surface);font-size:14px;cursor:pointer;transition:all .15s;
-}
-.chip:hover{background:var(--surface-alt)}
-.chip.used{opacity:.35;pointer-events:none}
-.builder-target{
-  display:flex;flex-wrap:wrap;gap:8px;min-height:46px;padding:10px;
-  border:1.5px dashed var(--border-strong);border-radius:var(--radius-md);background:var(--surface-alt);
-}
-.builder-target .chip{background:var(--accent-soft);border-color:var(--accent-soft-border);color:var(--accent-dark);cursor:grab}
-.builder-target .chip.dragging{opacity:.4}
-.builder-target .chip.drag-over{outline:2px dashed var(--accent);outline-offset:2px}
+/* legacy hover compare (kept for any page still using it) */
+.compare-box{display:inline-block;padding:4px 10px;background:var(--surface-alt);cursor:default}
+.compare-row{display:grid;grid-template-columns:170px 1fr;gap:6px 10px;align-items:baseline}
+#compare-tooltip{position:absolute;z-index:80;max-width:280px;background:var(--paper);color:var(--ink);border:2px solid var(--ink);font-size:14px;line-height:1.5;padding:10px 12px;pointer-events:none;opacity:0;transition:opacity .1s}
+#compare-tooltip.visible{opacity:1}
+.trait-pill{padding:7px 12px;border:2px solid var(--green);background:transparent;color:var(--green);font-size:13px;font-weight:700;cursor:pointer}
 
-/* ---------- Speaking / listening task cards ---------- */
-.task-card{
-  border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.2rem 1.4rem;
-  background:linear-gradient(180deg,var(--surface) 0%,var(--surface-alt) 130%);
-}
-.task-card .kicker{font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.04em;color:var(--accent);margin-bottom:6px}
-.mode-toggle{display:flex;gap:8px;margin-bottom:14px}
-
-/* ---------- Grammar-in-text highlight (toggle) ---------- */
+/* ---------- Reading passage ---------- */
+.passage{font-family:var(--font-sans);font-size:17px;line-height:1.75;color:var(--ink)}
+.passage p{margin-bottom:16px}
+.vocab{color:var(--ink);background:var(--tint);padding:0 3px;border-radius:0;cursor:pointer;font-weight:600;border-bottom:2px solid var(--green)}
+.vocab:hover{background:var(--mint)}
 .gram{cursor:pointer;border-bottom:2px solid transparent;transition:all .15s}
-.passage.show-grammar .gram{
-  background:transparent;color:var(--accent-dark);font-weight:600;
-  border-bottom:2px solid var(--accent);border-radius:2px;padding:0 1px;
-}
+.passage.show-grammar .gram{color:var(--green);font-weight:700;border-bottom:3px solid var(--green);padding:0 1px}
 .passage:not(.show-grammar) .gram{pointer-events:none}
-.gram-explain{background:var(--warn-bg);border:1px solid var(--warn-border);border-radius:var(--radius-md);padding:11px 15px;font-size:13.5px;color:var(--warn);line-height:1.6;margin-top:10px;display:none}
+.gram-explain{border-top:2px solid var(--green);padding:12px 0 0;font-size:15px;color:var(--ink);line-height:1.6;margin-top:10px;display:none}
 .gram-explain.open{display:block}
 
-/* ---------- Listening transcript ----------
-   The container takes zero visual space until "Show full transcript"
-   is pressed — not just hidden via opacity while still occupying
-   layout height. Playback never auto-reveals lines; it only ever
-   highlights the current one via .active once the transcript is
-   already shown. */
-#transcript{max-height:0;overflow:hidden;transition:max-height .3s ease}
-#transcript.expanded{max-height:2000px;margin-top:14px}
-.transcript-line{
-  font-size:14.5px;line-height:1.8;padding:6px 0;opacity:0;transform:translateY(4px);
-  transition:opacity .3s,transform .3s;
+.vocab-pop{background:var(--paper);border:2px solid var(--ink);padding:1.1rem 1.3rem;margin-top:10px;display:none}
+.vocab-pop.open{display:block}
+.vocab-pop-word{font-stretch:75%;font-size:28px;font-weight:800;text-transform:uppercase;line-height:1;margin-bottom:4px}
+.vocab-pop-ipa{font-family:var(--font-mono);font-size:13px;color:var(--grey-label);margin-bottom:12px}
+.vocab-pop-ex{font-size:15px;color:var(--text-secondary);font-style:italic;line-height:1.6;margin-bottom:12px}
+.audio-btn{
+  display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:0;border:2px solid var(--ink);
+  background:transparent;cursor:pointer;font-size:13px;font-weight:700;color:var(--ink);transition:background .15s;margin-bottom:10px;
 }
-.transcript-line.shown{opacity:1;transform:translateY(0)}
-.transcript-line b{color:var(--accent)}
-.transcript-line.active{background:var(--accent-soft);border-radius:8px;padding:6px 10px;margin:0 -10px}
+.audio-btn:hover{background:var(--tint)}
+.audio-btn.playing{background:var(--green);border-color:var(--green);color:#fff}
+.glossary-btn{font-size:13px}
 
-/* ---------- Discussion question picker (speaking task) ---------- */
-.discuss-q{
-  display:flex;align-items:flex-start;gap:10px;width:100%;text-align:left;
-  padding:12px 15px;border-radius:var(--radius-md);border:1px solid var(--border-strong);
-  background:var(--surface);cursor:pointer;font-family:inherit;font-size:14.5px;line-height:1.6;
-  color:var(--text);transition:all .15s;
+/* Shared popup (vocab + key phrase) */
+.course-popup-backdrop{position:fixed;inset:0;background:rgba(20,35,28,.45);display:none;z-index:9998}
+.course-popup-box{
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--paper);border:2px solid var(--ink);
+  border-radius:0;box-shadow:none;padding:1.6rem 1.7rem;max-width:460px;width:calc(100% - 40px);max-height:80vh;overflow-y:auto;display:none;z-index:9999;
+  font-size:16px;line-height:1.6;
 }
-.discuss-q:hover{background:var(--surface-alt)}
-.discuss-q .chk{
-  flex-shrink:0;width:20px;height:20px;border-radius:6px;border:1.5px solid var(--border-strong);
-  display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;margin-top:1px;
-}
-.discuss-q.picked{border-color:var(--accent);background:var(--accent-soft)}
-.discuss-q.picked .chk{background:var(--accent);border-color:var(--accent)}
+#course-popup-root.open .course-popup-backdrop,#course-popup-root.open .course-popup-box{display:block}
+.course-popup-close{position:absolute;top:8px;right:10px;background:none;border:none;font-size:24px;line-height:1;cursor:pointer;color:var(--ink);padding:4px 8px}
+.course-popup-close:hover{color:var(--green)}
+
+/* ---------- Faux-pas spotter ---------- */
+.err-word{cursor:pointer;padding:1px 4px;transition:background .12s;font-size:19px;font-weight:500}
+.err-word:hover{background:var(--tint)}
+.err-word.err-target{background:var(--bottle);color:#fff;font-weight:700}
+.err-word.err-wrong-pick{background:var(--red-bg);color:var(--red);text-decoration:line-through}
+
+/* ---------- Sentence builder ---------- */
+.builder-bank{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;min-height:40px}
+.chip{padding:8px 14px;border-radius:0;border:2px solid var(--ink);background:transparent;font-size:16px;font-weight:600;cursor:pointer;transition:background .15s}
+.chip:hover{background:var(--tint)}
+.chip.used{opacity:.3;pointer-events:none}
+.builder-target{display:flex;flex-wrap:wrap;gap:8px;min-height:52px;padding:10px 0;border:0;border-bottom:3px solid var(--green);background:transparent}
+.builder-target .chip{background:var(--bottle);border-color:var(--bottle);color:#fff;cursor:grab}
+.builder-target .chip.dragging{opacity:.4}
+.builder-target .chip.drag-over{outline:2.5px solid var(--green);outline-offset:2px}
+
+/* ---------- Matching ---------- */
+.match-item{width:100%;text-align:left;padding:12px 14px;border-radius:0;border:2px solid var(--ink);background:transparent;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;line-height:1.4}
+.match-item:hover:not(:disabled){background:var(--tint)}
+.match-item.sel{background:var(--tint);border-color:var(--green)}
+.match-item.match-correct{background:var(--bottle);color:#fff;border-color:var(--bottle)}
+.match-item.match-wrong{background:var(--red-bg);color:var(--red);border-color:var(--red)}
+
+/* ---------- Speaking / listening ---------- */
+.task-card{border:2px solid var(--ink);padding:22px;background:transparent}
+.task-card .kicker{font-size:13px;font-weight:700;color:var(--green);margin-bottom:8px}
+.task-card p{font-size:17px !important;line-height:1.6 !important}
+.discuss-q{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;padding:14px 16px;border-radius:0;border:2px solid var(--ink);background:transparent;cursor:pointer;font-family:inherit;font-size:16px;line-height:1.5;color:var(--ink);font-weight:500}
+.discuss-q:hover{background:var(--tint)}
+.discuss-q .chk{flex-shrink:0;width:20px;height:20px;border-radius:0;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;margin-top:2px}
+.discuss-q.picked{background:var(--tint);border-color:var(--green)}
+.discuss-q.picked .chk{background:var(--green);border-color:var(--green)}
 .discuss-q.disabled{opacity:.45;cursor:not-allowed}
+#transcript{max-height:0;overflow:hidden;transition:max-height .3s ease}
+#transcript.expanded{max-height:2400px;margin-top:14px;border-top:2px solid var(--ink)}
+.transcript-line{font-size:16px;line-height:1.7;padding:8px 0;border-bottom:1px solid var(--grey-rule);opacity:0;transition:opacity .3s}
+.transcript-line.shown{opacity:1}
+.transcript-line b{color:var(--green)}
+.transcript-line.active{background:var(--tint);padding:8px 10px;margin:0 -10px}
+
+/* ---------- Summary ---------- */
+.score-ring{width:auto;height:auto;border-radius:0;display:block;font-stretch:68%;font-weight:800;font-size:64px;line-height:1;background:none;color:var(--green)}
+.summary-row{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid var(--grey-rule)}
+@keyframes summary-pulse{0%{background:var(--tint)}100%{background:transparent}}
+.summary-pulse{animation:summary-pulse 1.1s ease-out}
+#summary-name{font-size:18px;font-weight:700}
+
+/* ---------- Index / glossary shared bits ---------- */
+.name-input{flex:1;min-width:0;border:2px solid var(--ink);border-right:0;border-radius:0;padding:12px 14px;font-family:inherit;font-size:16px;background:#fff;color:var(--ink);outline:none;text-align:left}
+.name-input:focus{box-shadow:inset 0 -3px 0 var(--green)}
+.change-name-link{font-size:13px;font-weight:600;color:var(--ink);text-decoration:underline;cursor:pointer;background:none;border:none;font-family:inherit;padding:0}
+.search-box{width:100%;border:2px solid var(--ink);border-radius:0;padding:12px 14px;font-family:inherit;font-size:16px;margin-bottom:20px;background:#fff;outline:none}
+.glossary-card{border:0;border-top:1px solid var(--grey-rule);border-radius:0;padding:18px 0;margin:0;background:transparent}
+.glossary-word-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.glossary-word{font-stretch:80%;font-size:24px;font-weight:700}
+.glossary-ipa{font-family:var(--font-mono);font-size:13px;color:var(--grey-label);margin-bottom:8px}
+.glossary-meaning{font-size:16px;margin-bottom:6px}
+.glossary-example{font-size:15px;color:var(--text-secondary);font-style:italic;line-height:1.6}
+.glossary-actions{display:flex;gap:6px;flex-shrink:0}
+.empty-state{text-align:center;padding:60px 20px;color:var(--grey-label)}
+
+/* ---------- Teacher dashboard ---------- */
+.roster{display:flex;gap:0;flex-wrap:wrap;margin-bottom:8px;border-top:2px solid var(--ink)}
+.roster-card{flex:1;min-width:160px;background:transparent;border:0;border-right:1px solid var(--ink);border-radius:0;padding:12px 14px}
+.roster-card .name{font-weight:700;font-size:15px;margin-bottom:4px}
+.roster-card .count{font-size:13px;color:var(--grey-label)}
+.roster-card.absent{opacity:.5}
+.absent-toggle,.wipe-btn{font-size:12px;padding:3px 9px;margin-top:6px}
+.wipe-btn{margin-left:6px;color:var(--red)}
+.reveal-section{margin-bottom:14px}
+.reveal-section-title{font-size:13px;font-weight:700;margin-bottom:8px;padding-top:6px}
+table.reveal-table{width:100%;border-collapse:collapse;font-size:14px}
+table.reveal-table th{text-align:left;font-size:12px;color:var(--grey-label);padding:6px 8px;border-bottom:2px solid var(--ink);font-weight:600}
+table.reveal-table td{padding:6px 8px;border-bottom:1px solid var(--grey-rule);vertical-align:top}
+table.reveal-table td.section-id{font-family:var(--font-mono);font-size:12px;color:var(--grey-label);white-space:nowrap}
+.answer-cell{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;cursor:pointer;font-size:13px;max-width:220px}
+.answer-cell.correct{background:var(--tint);color:var(--bottle)}
+.answer-cell.incorrect{background:var(--red-bg);color:var(--red)}
+.answer-cell.revised{outline:2px solid var(--green)}
+.answer-cell.empty{color:var(--grey-text);background:var(--surface-alt);cursor:default}
+.answer-cell .txt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.oral-card{border:2px solid var(--ink);padding:12px 14px;margin-bottom:10px}
+.oral-q{font-size:15px;font-weight:600;margin-bottom:10px}
+.oral-student-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-top:1px solid var(--grey-rule)}
+.verdict-btns{display:flex;gap:6px}
+.verdict-btn{font-size:12px;padding:4px 10px}
+.verdict-btn.pass.on{background:var(--green);color:#fff;border-color:var(--green)}
+.verdict-btn.needs.on{background:var(--red);color:#fff;border-color:var(--red)}
+.join-prompt{text-align:center;padding:60px 20px}
 
 /* ---------- Print-to-PDF report ---------- */
 #course-print-report{display:none}
 @media print{
   body > *:not(#course-print-report){display:none !important}
-  #course-print-report{
-    display:block !important;
-    font-family:Arial,Helvetica,sans-serif;color:#1B2430;
-    max-width:680px;margin:0 auto;padding:20px;
-  }
+  #course-print-report{display:block !important;font-family:Arial,Helvetica,sans-serif;color:#14231C;max-width:680px;margin:0 auto;padding:20px}
 }
 
-/* ---------- Shared popup (vocab, grammar) ---------- */
-.course-popup-backdrop{position:fixed;inset:0;background:rgba(20,30,50,.4);display:none;z-index:9998}
-.course-popup-box{
-  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
-  background:var(--surface);border-radius:var(--radius-lg);box-shadow:0 24px 64px rgba(20,30,50,.28);
-  padding:1.5rem 1.7rem;max-width:420px;width:calc(100% - 40px);max-height:80vh;overflow-y:auto;
-  display:none;z-index:9999;
-}
-#course-popup-root.open .course-popup-backdrop{display:block}
-#course-popup-root.open .course-popup-box{display:block}
-.course-popup-close{
-  position:absolute;top:8px;right:10px;background:none;border:none;font-size:22px;line-height:1;
-  cursor:pointer;color:var(--text-tertiary);padding:5px 9px;border-radius:7px;transition:all .15s;
-}
-.course-popup-close:hover{background:var(--surface-alt);color:var(--text)}
-
-/* ---------- Expandable "full rules" content ---------- */
-.expand-content{display:none}
-.expand-content.open{display:block}
-
-/* ---------- Hoverable compare / trait pills (shared JS pattern:
-   showCompareTooltip/hideCompareTooltip + a "click outside" handler
-   that recognises BOTH classes below) ---------- */
-.trait-pill{padding:7px 12px;border-radius:var(--radius-sm);border:1px solid var(--accent);background:var(--surface);color:var(--accent);font-size:12.5px;font-weight:700;cursor:pointer;transition:background .15s}
-.trait-pill:hover{background:var(--accent-soft)}
-.compare-box{display:inline-block;padding:4px 10px;border-radius:6px;background:var(--surface-alt);cursor:default;transition:background .15s}
-.compare-box:hover{background:var(--accent-soft)}
-.compare-row{display:grid;grid-template-columns:170px 1fr;gap:6px 10px;align-items:baseline}
-@media (max-width:520px){
+/* ---------- Responsive (under 720px) ---------- */
+@media (max-width:720px){
+  :root{--gutter:20px}
+  .grid12,.section.eq-sec{grid-template-columns:minmax(0,1fr)}
+  .eq-band-meta,.eq-band-main,.sec-num,.sec-body{grid-column:1 / -1}
+  .eq-band-meta{margin-bottom:18px}
+  .sec-num{font-size:64px;margin-bottom:10px}
+  .sec-h{font-size:32px}
+  .lesson-sub{font-size:17px}
+  .eq-steps .eq-wrap{display:flex;overflow-x:auto;gap:18px;scrollbar-width:none}
+  .eq-steps a{flex:none;padding-right:0}
+  .opts,.opts.opts-3{grid-template-columns:minmax(0,1fr)}
+  .tone-set,.culture{grid-template-columns:minmax(0,1fr)}
+  .tone-cell,.tone-cell:first-child,.tone-cell:last-child{padding:16px;border-right:0;border-bottom:1px solid var(--ink)}
+  .tone-cell:last-child{border-bottom:0}
+  .kf{grid-template-columns:minmax(0,1fr);gap:6px}
+  .gapbox{padding:4px 16px}
+  .gap-s{font-size:17px;min-width:0}
+  .gap-row .btn{margin-left:0}
   .compare-row{grid-template-columns:1fr}
-}
-#compare-tooltip{
-  position:absolute;z-index:80;max-width:280px;background:var(--accent-soft);color:var(--text-secondary);
-  border:1px solid var(--accent);font-size:13px;line-height:1.5;padding:10px 12px;border-radius:8px;
-  box-shadow:0 4px 16px rgba(0,0,0,.12);pointer-events:none;
-  opacity:0;transition:opacity .1s;
-}
-#compare-tooltip.visible{opacity:1}
-
-.static-cell{display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-md);padding:8px 6px;background:var(--surface);text-align:center;font-size:12.5px;color:var(--text-secondary);min-height:20px}
-.static-cell.is-primary-cell{border-color:var(--accent);background:var(--surface);color:var(--accent);font-weight:650}
-.static-cell.clickable-cell{cursor:pointer}
-.static-cell.clickable-cell:hover{opacity:.85}
-
-/* ---------- Finish/summary feedback ---------- */
-@keyframes summary-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(24,95,165,0.35); }
-  70% { box-shadow: 0 0 0 14px rgba(24,95,165,0); }
-  100% { box-shadow: 0 0 0 0 rgba(24,95,165,0); }
-}
-.summary-pulse{ animation: summary-pulse 1.1s ease-out; }
-.error-banner{
-  background:var(--bad-bg);border:1px solid var(--bad-border);color:var(--bad);
-  border-radius:var(--radius-md);padding:12px 16px;font-size:13.5px;margin-top:10px;line-height:1.6;
-}
-
-/* ---------- Find-the-error (click the wrong word) ---------- */
-.err-word{cursor:pointer;padding:1px 4px;border-radius:5px;transition:all .12s}
-.err-word:hover{background:var(--surface-alt)}
-.err-word.err-target{background:var(--ok-bg);color:var(--ok);font-weight:600}
-.err-word.err-wrong-pick{background:var(--bad-bg);color:var(--bad);text-decoration:line-through}
-
-/* ---------- Matching (click left, then right) ---------- */
-.match-item{
-  width:100%;text-align:left;padding:10px 14px;border-radius:var(--radius-md);
-  border:1px solid var(--border-strong);background:var(--surface);font-size:13.5px;
-  font-family:inherit;cursor:pointer;transition:all .12s;line-height:1.5;
-}
-.match-item:hover:not(:disabled){background:var(--surface-alt)}
-.match-item.sel{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-dark)}
-.match-item.match-correct{background:var(--ok-bg);color:var(--ok);border-color:var(--ok-border)}
-.match-item.match-wrong{background:var(--bad-bg);color:var(--bad);border-color:var(--bad-border)}
-
-/* ---------- Score summary ---------- */
-.score-ring{
-  width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-weight:650;font-size:15px;background:var(--accent-soft);color:var(--accent-dark);flex-shrink:0;
-}
-.summary-row{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid var(--border)}
-.summary-row:last-child{border-bottom:none}
-
-/* ---------- Welcome card (index page) ---------- */
-.welcome-card{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);
-  padding:28px 24px;margin-bottom:24px;text-align:center;
-}
-.welcome-card h1{font-size:24px;margin-bottom:8px}
-.welcome-card p{font-size:14.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:20px}
-.name-form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;max-width:380px;margin:0 auto}
-.name-form .btn{border-radius:var(--radius-sm)}
-.name-input{
-  flex:1;min-width:180px;border:1px solid var(--border-strong);border-radius:var(--radius-sm);
-  padding:10px 18px;font-family:inherit;font-size:14.5px;text-align:center;
-}
-.welcome-back{font-size:14.5px;color:var(--text-secondary);margin-bottom:4px}
-.welcome-back b{color:var(--text)}
-.change-name-link{font-size:12.5px;color:var(--text-tertiary);text-decoration:underline;cursor:pointer;background:none;border:none;font-family:inherit;padding:0;margin-top:10px}
-
-.lesson-list-group{margin-bottom:22px}
-.lesson-list-group-title{
-  font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-tertiary);
-  font-weight:650;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);
-}
-.lesson-list-item{
-  display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:var(--radius-md);
-  text-decoration:none;color:var(--text);font-size:14px;transition:background .12s;
-  border:1px solid transparent;
-}
-.lesson-list-item:hover{background:var(--surface-alt);border-color:var(--border)}
-.lesson-list-item.is-test{background:var(--accent-soft);border-color:var(--accent-soft-border)}
-.lesson-list-item.is-test:hover{background:var(--accent-soft)}
-.lesson-list-num{
-  flex-shrink:0;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:11.5px;font-weight:650;background:var(--surface-alt);color:var(--text-secondary);
-}
-.is-test .lesson-list-num{background:var(--accent);color:#fff}
-
-/* ---------- Glossary page ---------- */
-.glossary-card{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);
-  padding:1.1rem 1.3rem;margin-bottom:.8rem;
-}
-.glossary-word-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-.glossary-word{font-size:16px;font-weight:650}
-.glossary-ipa{font-family:var(--font-mono);font-size:12.5px;color:var(--text-secondary);margin-bottom:8px}
-.glossary-meaning{font-size:14px;margin-bottom:8px}
-.glossary-example{font-size:13.5px;color:var(--text-secondary);font-style:italic;line-height:1.6}
-.glossary-actions{display:flex;gap:6px;flex-shrink:0}
-.empty-state{text-align:center;padding:60px 20px;color:var(--text-tertiary)}
-.search-box{
-  width:100%;border:1px solid var(--border-strong);border-radius:var(--radius-pill);
-  padding:10px 18px;font-family:inherit;font-size:14px;margin-bottom:20px;
-}
-
-/* ---------- Teacher dashboard ---------- */
-.roster{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
-.roster-card{
-  flex:1;min-width:160px;background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius-md);padding:12px 14px;
-}
-.roster-card .name{font-weight:650;font-size:14.5px;margin-bottom:4px}
-.roster-card .count{font-size:12.5px;color:var(--text-secondary)}
-.roster-card.absent{opacity:.55;background:var(--surface-alt)}
-.absent-toggle{font-size:11px;padding:3px 9px;margin-top:6px}
-.wipe-btn{font-size:11px;padding:3px 9px;margin-top:6px;margin-left:6px;color:var(--bad)}
-.reveal-section{margin-bottom:14px}
-.reveal-section-title{font-size:13px;font-weight:650;color:var(--text-secondary);margin-bottom:8px;padding-top:6px}
-table.reveal-table{width:100%;border-collapse:collapse;font-size:13px}
-table.reveal-table th{
-  text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);
-  padding:6px 8px;border-bottom:1px solid var(--border);font-weight:650;
-}
-table.reveal-table td{padding:5px 8px;border-bottom:1px solid var(--surface-alt);vertical-align:top}
-table.reveal-table td.section-id{font-family:var(--font-mono);font-size:11.5px;color:var(--text-tertiary);white-space:nowrap}
-.answer-cell{
-  display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border-radius:8px;cursor:pointer;
-  font-size:12.5px;transition:all .12s;max-width:220px;
-}
-.answer-cell:hover{outline:1.5px solid var(--border-strong)}
-.answer-cell.correct{background:var(--ok-bg);color:var(--ok)}
-.answer-cell.incorrect{background:var(--bad-bg);color:var(--bad)}
-.answer-cell.revised{outline:2px solid var(--accent)}
-.answer-cell.empty{color:var(--text-tertiary);background:var(--surface-alt);cursor:default}
-.answer-cell .txt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.oral-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:12px 14px;margin-bottom:10px}
-.oral-q{font-size:14px;font-weight:550;margin-bottom:10px}
-.oral-student-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-top:1px solid var(--surface-alt)}
-.oral-student-row:first-of-type{border-top:none}
-.verdict-btns{display:flex;gap:6px}
-.verdict-btn{font-size:11px;padding:4px 10px}
-.verdict-btn.pass.on{background:var(--ok);color:#fff;border-color:var(--ok)}
-.verdict-btn.needs.on{background:var(--bad);color:#fff;border-color:var(--bad)}
-.join-prompt{text-align:center;padding:60px 20px}
-
-@media (max-width:520px){
-  .shell{padding:20px 16px 64px}
-  .lesson-title{font-size:22px}
 }
 
 @media (prefers-reduced-motion:reduce){
-  *{animation-duration:.001ms !important;transition-duration:.001ms !important}
+  *{transition:none !important;animation:none !important}
+  html{scroll-behavior:auto}
 }
 
 </style>
-
+<style>
+  /* ---------- Course home (design handoff 6b) ---------- */
+  .eq-hero{background:var(--green);color:var(--paper)}
+  .eq-hero .grid12{padding-top:40px;padding-bottom:44px}
+  .hero-t{grid-column:1 / -1;font-stretch:68%;font-weight:800;font-size:clamp(72px,17vw,168px);line-height:.82;letter-spacing:-.02em;text-transform:uppercase;margin:0}
+  .hero-t span{color:var(--mint)}
+  .hero-tag{grid-column:1 / span 5;margin-top:32px;font-size:22px;font-weight:600;line-height:1.25;text-wrap:pretty}
+  .hero-body{grid-column:7 / span 6;margin-top:32px;font-size:16px;line-height:1.6;color:var(--hero-body);text-wrap:pretty}
+  .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--ink)}
+  .stat{padding:18px 20px;border-right:1px solid var(--ink)}
+  .stat:first-child{padding-left:0}
+  .stat:last-child{border-right:0;padding-right:0}
+  .stat-n{font-stretch:68%;font-weight:800;font-size:64px;line-height:1}
+  .stat-l{font-size:13px;font-weight:600}
+  #overall-pct{color:var(--green)}
+  .name-next{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;padding:24px 0}
+  .welcome{display:flex;flex-direction:column;gap:10px;justify-content:center}
+  .welcome-copy{font-size:13px;font-weight:600;line-height:1.5}
+  .welcome-copy b{font-weight:800}
+  .name-form{display:flex}
+  .name-form .btn{border-radius:0;padding:0 24px}
+  .next-up{text-decoration:none;background:var(--green);color:#fff;padding:16px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;transition:background .15s}
+  .next-up:hover{background:var(--bottle)}
+  .next-k{font-size:13px;font-weight:600}
+  .next-row{display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+  .next-title{font-stretch:75%;font-weight:700;font-size:26px;line-height:1.05}
+  .next-go{font-size:28px;line-height:1}
+  .preview-banner{border:2px solid var(--ink);padding:14px 18px;font-size:15px;line-height:1.55;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;margin:0 0 8px}
+  .preview-banner a{color:var(--green);font-weight:700}
+  .ltable{padding:16px 0 48px}
+  .lrow{display:grid;grid-template-columns:120px minmax(0,1fr) 80px;gap:20px;padding:14px 0;border-bottom:1px solid var(--grey-rule);align-items:baseline;text-decoration:none;color:var(--ink)}
+  .lrow.lhead{padding:10px 0;border-bottom:2px solid var(--ink);font-size:12px;font-weight:600;color:var(--grey-label)}
+  .lrow.group-end{border-bottom:1px solid var(--ink)}
+  .lrow.table-end{border-bottom:2px solid var(--ink)}
+  a.lrow:hover .lr-title{color:var(--green)}
+  .lr-sec{font-size:13px;font-weight:700;display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+  .lr-about{font-size:12px;font-weight:600;color:var(--grey-label);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+  .lr-about:hover{color:var(--green)}
+  .lr-title{font-stretch:80%;font-weight:700;font-size:24px;line-height:1.15;transition:color .15s}
+  .lr-title.is-test{color:var(--green)}
+  .lr-prog{text-align:right;font-size:14px;color:var(--grey-text)}
+  .lr-prog.next{color:var(--green);font-weight:700}
+  .lr-prog.done{color:var(--ink);font-weight:700}
+  .lrow.locked{cursor:default}
+  .lrow.locked .lr-title{opacity:.4}
+  .lrow.locked:hover .lr-title{color:var(--ink)}
+  .lr-expect{display:none;grid-template-columns:120px minmax(0,1fr) 80px;gap:20px;padding:0 0 16px;border-bottom:1px solid var(--grey-rule);font-size:15px;line-height:1.6;color:var(--text-secondary)}
+  .lr-expect.open{display:grid}
+  .lr-expect > div{grid-column:2 / span 1}
+  .lr-expect p + p{margin-top:8px}
+  .lr-sechead{display:none}
+  @media (max-width:720px){
+    .hero-tag,.hero-body{grid-column:1 / -1}
+    .hero-body{margin-top:16px}
+    .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .stat,.stat:first-child,.stat:last-child{padding:16px 0;border-right:0;border-bottom:1px solid var(--ink)}
+    .stat:nth-child(odd){border-right:1px solid var(--ink);padding-right:16px}
+    .stat:nth-child(even){padding-left:16px}
+    .stat:nth-child(n+3){border-bottom:0}
+    .stat-n{font-size:48px}
+    .name-next{grid-template-columns:minmax(0,1fr)}
+    .lrow,.lr-expect{grid-template-columns:minmax(0,1fr) 64px}
+    .lrow .lr-sec{display:none}
+    .lrow.lhead span:first-child{display:none}
+    .lr-expect > div{grid-column:1 / -1}
+    .lr-sechead{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0 6px;font-size:13px;font-weight:700;border-bottom:1px solid var(--grey-rule)}
+    .lr-title{font-size:20px}
+  }
+</style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
 /* ============================================================
@@ -545,373 +518,50 @@ table.reveal-table td.section-id{font-family:var(--font-mono);font-size:11.5px;c
    The anon key is safe to be public — access is controlled by the
    RLS policies in supabase/schema.sql, not by keeping this key secret.
    ============================================================ */
-window.SUPABASE_URL = ''; // preview copy: no backend — localStorage only // preview copy: no backend — localStorage only
-window.SUPABASE_ANON_KEY = ''; // preview copy: no backend — localStorage only // preview copy: no backend — localStorage only
+window.SUPABASE_URL = ''; // preview copy: no backend
+window.SUPABASE_ANON_KEY = ''; // preview copy: no backend
 
 </script>
 </head>
-<body class="theme-aspect">
-
-<div class="course-attribution"><a class="back-to-courses" href="/courses/">&larr; All courses</a><span>English+ B2+/C1 Companion Course · by Kris Galezewski</span></div>
-<div class="shell">
-  <header class="lesson-header">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
-      <div class="lesson-eyebrow">Lesson 2 of 20 · Aspect & Modality, Refined</div>
-      <div style="display:flex;gap:8px">
-      <a id="all-lessons-link" href="index.html" class="pill" style="text-decoration:none;font-size:12.5px;border-radius:var(--radius-sm)">📚 All Lessons</a>
-      <a id="glossary-link" href="glossary-standalone.html" class="pill" style="text-decoration:none;font-size:12.5px;border-radius:var(--radius-sm)">📖 My Glossary</a>
+<body>
+<div class="eq-nav"><div class="eq-wrap">
+  <a href="https://englishvoiced.com/courses/">&larr; All courses</a><span>B2–C1</span><span class="eq-hl">Course home</span>
+</div></div>
+<header class="eq-hero"><div class="eq-wrap grid12">
+  <h1 class="hero-t" id="welcome-heading">Workplace<br><span>EQ</span></h1>
+  <p class="hero-tag">The unwritten rules of professional presence, communication, and career velocity.</p>
+  <p class="hero-body">Your grammar can be perfect and you can still sound rude, cold or junior. This course is about the other half: what British colleagues actually mean, what they expect to hear, and how to say it (with notes on US and international norms along the way).</p>
+</div></header>
+<main class="eq-wrap">
+  <div class="stats">
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Sections</div></div>
+    <div class="stat"><div class="stat-n">7</div><div class="stat-l">Lessons</div></div>
+    <div class="stat"><div class="stat-n">1</div><div class="stat-l">Test</div></div>
+    <div class="stat"><div class="stat-n" id="overall-pct">0%</div><div class="stat-l" id="overall-title">Nothing attempted yet</div></div>
+  </div>
+  <div class="name-next">
+    <div class="welcome" id="welcome-card">
+      <div class="welcome-copy" id="welcome-copy">Add your name, so that you can track your progress throughout the course.</div>
+      <form class="name-form" id="name-form">
+        <input type="text" id="name-input" class="name-input" placeholder="Name" autocomplete="off" aria-label="Your name">
+        <button type="submit" class="btn btn-primary">Start</button>
+      </form>
     </div>
-    </div>
-    <h1 class="lesson-title">Used To vs. Would for Past Habits</h1>
-    <p class="lesson-sub">Two ways to talk about repeated past routines — and why one of them refuses to describe states.</p>
-    <div class="pb-track" style="margin-top:16px"><div class="pb-fill" id="overall-progress" style="width:0%"></div></div>
-    <div id="sync-status" style="font-size:11.5px;color:var(--text-tertiary);margin-top:8px"></div>
-  </header>
-
-  <section class="section" id="sec-warmup">
-    <div class="section-label"><span class="num">1</span> Warm-up</div>
-    <div class="card">
-      <p style="margin-bottom:14px;font-size:14.5px;color:var(--text-secondary)">Both "used to" and "would" describe repeated past habits or routines that no longer happen. They overlap a lot — but not completely.</p>
-      
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px;font-weight:550">1. "I used to live in Kraków" and "I would live in Kraków" — which is correct for describing a past state?</p>
-        <div id="warm-q1">
-          <button class="opt" data-value="right">only "used to"</button><button class="opt" data-value="wrong">either works equally well</button>
-        </div>
-      </div>
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px;font-weight:550">2. "Every summer, we would visit my grandmother" describes…</p>
-        <div id="warm-q2">
-          <button class="opt" data-value="right">a repeated past action, now finished</button><button class="opt" data-value="wrong">a single one-off event</button>
-        </div>
-      </div>
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px;font-weight:550">3. "Used to" can describe both repeated actions AND past states; "would" can only describe…</p>
-        <div id="warm-q3">
-          <button class="opt" data-value="right">repeated actions, not states</button><button class="opt" data-value="wrong">states, not repeated actions</button>
-        </div>
-      </div>
-      <div class="tip-box">💡 <span style="flex:1;min-width:0">If you can replace it with "was/were" (a state), only "used to" works. If it's a repeated action, either usually works.</span></div>
-    </div>
-  </section>
-
-  <section class="section" id="sec-diagnostic">
-    <div class="section-label"><span class="num">2</span> Quick check — before we explain anything</div>
-    <div class="card">
-      <p style="margin-bottom:16px;font-size:14.5px;color:var(--text-secondary)">Four quick questions. This isn't graded harshly — it just shows us where to focus.</p>
-      
-      <div style="margin-bottom:18px">
-        <p style="margin-bottom:8px;font-weight:550">1. She ___ a lot of money before she changed careers. (state)</p>
-        <div id="diag-q1">
-          <button class="opt" data-value="right">used to earn</button><button class="opt" data-value="wrong">would earn</button>
-        </div>
-      </div>
-      <div style="margin-bottom:18px">
-        <p style="margin-bottom:8px;font-weight:550">2. Every Friday, my father ___ us to the cinema.</p>
-        <div id="diag-q2">
-          <button class="opt" data-value="right">would take</button><button class="opt" data-value="wrong">was taking</button>
-        </div>
-      </div>
-      <div style="margin-bottom:18px">
-        <p style="margin-bottom:8px;font-weight:550">3. I ___ believe in ghosts when I was a child. (state)</p>
-        <div id="diag-q3">
-          <button class="opt" data-value="right">used to</button><button class="opt" data-value="wrong">would</button>
-        </div>
-      </div>
-      <div style="margin-bottom:18px">
-        <p style="margin-bottom:8px;font-weight:550">4. We ___ spend hours just talking about nothing.</p>
-        <div id="diag-q4">
-          <button class="opt" data-value="right">would</button><button class="opt" data-value="wrong">are used to</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="sec-concept">
-    <div class="section-label"><span class="num">3</span> The concept</div>
-
-    <div class="card">
-      <h3 style="margin-bottom:10px">Repeated actions vs. states</h3>
-      <p style="font-size:14.5px;line-height:1.7;margin-bottom:14px">For repeated past actions, "used to" and "would" are interchangeable — either one works, and the choice is mostly stylistic ("would" often adds a storytelling feel). The real dividing line is states: "would" simply can't describe a past state (a feeling, belief, possession or ongoing condition) — only "used to" can.</p>
-      <div class="mode-toggle mode-toggle-outline" style="flex-wrap:wrap;gap:8px">
-        <button class="pill on" id="mode-w-usedto">Used to</button><button class="pill" id="mode-w-would">Would</button><button class="pill" id="mode-w-quiz">Quick check</button>
-      </div>
-      <div id="widget-area" style="margin-top:14px;padding:18px;border-radius:var(--radius-md);background:var(--surface-alt);border:1px solid var(--border)"></div>
-      <p id="widget-hint" style="font-size:12.5px;color:var(--text-tertiary);margin-top:8px">— Click either cell to see another example.</p>
-
-      <button class="pill" id="rules-toggle" style="margin-top:16px">📖 Show the full rules</button>
-      <div class="expand-content" id="rules-content">
-        <div style="margin-top:16px">
-          
-          <div class="formula" style="border-left-color:var(--c-past)">✅ Used to: <b>used to + base verb</b> — repeated actions AND states. "I used to smoke." / "I used to hate coffee."</div>
-          <div class="formula" style="border-left-color:var(--c-modal);margin-bottom:20px">✅ Would: <b>would + base verb</b> — repeated actions only, never states. "I would smoke a pack a day." ❌ "I would hate coffee."</div>
-          <div class="warn-box">
-            <span>🎯</span>
-            <span style="flex:1;min-width:0"><b>The tricky part:</b> stative verbs (believe, hate, own, know, be, live as a state, want) simply block "would" — no exceptions.<br><br>
-            ✅ "I used to own a motorbike." — a past state (possession). <b>Only "used to" works.</b><br>
-            ❌ "I would own a motorbike." — ungrammatical; ownership isn't a repeated event, it's a continuous state.<br><br>
-            When in doubt, ask: is this something that happened repeatedly and separately (would OK), or a continuous condition (would blocked, used to only)?<br><br>
-            For a plain repeated action like "I used to cycle to work every day," either form works — "I would cycle to work every day" is just as correct. "Would" is simply the more common choice when you're narrating a story about the past, rather than just stating the fact.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="card">
-      <h3 style="margin-bottom:6px">Compare: repeated action vs. state</h3>
-      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:14px">Hover to see why one allows "would" and the other doesn't.</p>
-      <div id="compare-card" style="font-size:14.5px;line-height:1.9"></div>
-    </div>
-  </section>
-
-  <section class="section" id="sec-reading">
-    <div class="section-label"><span class="num">4</span> Reading — Parkinson's Law and the Expansion of Work</div>
-    <div class="card">
-      <button class="pill" id="gram-toggle">🔍 Show grammar in this text</button>
-      <div class="passage" id="passage" style="margin-top:14px"><p>Before the finance team tightened its deadlines, a single quarterly report <span class="gram" data-gram="g1">used to take</span> nearly two weeks to finish, even though the actual writing <span class="vocab" data-word="consumed">consumed</span> barely two working days. According to Cyril Northcote Parkinson, the economist who first <span class="vocab" data-word="articulated">articulated</span> this idea, work simply <span class="gram" data-gram="g2">would expand</span> to swallow whatever time was available for it — and nowhere was that clearer than in this one office.</p><p>Old-timers <span class="gram" data-gram="g3">would recall</span> how staff meetings <span class="gram" data-gram="g4">would stretch</span> on for two or three hours during quiet months, filling every free slot on the calendar. The office <span class="gram" data-gram="g5">used to feel</span> <span class="vocab" data-word="perpetually">perpetually</span> busy, even when there was demonstrably little to do, and deadlines that <span class="gram" data-gram="g6">used to be</span> vague and generous only encouraged the <span class="vocab" data-word="drift">drift</span>.</p><p>Everything changed when a new director <span class="vocab" data-word="imposed">imposed</span> strict weekly deadlines and insisted that meetings run no longer than thirty minutes. Productivity, remarkably, barely <span class="vocab" data-word="suffered">suffered</span>; the same reports that once occupied two weeks now got finished within days, seemingly <span class="vocab" data-word="confirming">confirming</span> Parkinson's original observation with startling precision. The lesson, old staff admit, is uncomfortable: most of that old <span class="vocab" data-word="slack">slack</span> <span class="vocab" data-word="stemmed">stemmed</span> not from the work itself, but from how much room it was given to expand into.</p></div>
-      <p style="font-size:12.5px;color:var(--text-tertiary);margin-top:10px">Tap a highlighted word for pronunciation, meaning and an example. With grammar highlighting on, tap a highlighted phrase to see why that form was used.</p>
-    </div>
-    <div class="card">
-      <h3 style="margin-bottom:12px">Did you follow it? Quick comprehension check</h3>
-      
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px;font-weight:550">1. According to the passage, why did a report needing only two days of actual writing take two weeks to finish?</p>
-        <div id="comp-q1">
-          <button class="opt" data-value="right">Work tended to expand to fill whatever time was available.</button><button class="opt" data-value="wrong">The writers assigned to it were inexperienced.</button>
-        </div>
-      </div>
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px;font-weight:550">2. What used to happen to staff meetings during quiet months?</p>
-        <div id="comp-q2">
-          <button class="opt" data-value="right">They would stretch on for two or three hours.</button><button class="opt" data-value="wrong">They were cancelled altogether.</button>
-        </div>
-      </div>
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px;font-weight:550">3. What happened after the new director imposed strict deadlines?</p>
-        <div id="comp-q3">
-          <button class="opt" data-value="right">Productivity barely suffered, and reports were finished much faster.</button><button class="opt" data-value="wrong">Most of the finance staff resigned within weeks.</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="sec-vocab">
-    <div class="section-label"><span class="num">5</span> Vocabulary check</div>
-    <div class="card">
-      <p style="font-size:14.5px;margin-bottom:16px">All nine words from the text — mixed formats.</p>
-      <h4 style="font-size:13px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);margin-bottom:12px">Match the meaning</h4>
-      
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px;font-weight:550">1. If time is "consumed" by a task, it is…</p>
-        <div id="vocab-q1">
-          <button class="opt" data-value="right">used up by that task</button><button class="opt" data-value="wrong">saved for later use</button><button class="opt" data-value="wrong2">wasted on something unrelated</button>
-        </div>
-      </div>
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px;font-weight:550">2. "Perpetually" means…</p>
-        <div id="vocab-q2">
-          <button class="opt" data-value="right">constantly, without stopping</button><button class="opt" data-value="wrong">occasionally, now and then</button><button class="opt" data-value="wrong2">briefly, for a moment</button>
-        </div>
-      </div>
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px;font-weight:550">3. To "impose" a rule means to…</p>
-        <div id="vocab-q3">
-          <button class="opt" data-value="right">officially introduce it</button><button class="opt" data-value="wrong">quietly remove it</button><button class="opt" data-value="wrong2">suggest it informally</button>
-        </div>
-      </div>
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px;font-weight:550">4. If something "confirms" a theory, it…</p>
-        <div id="vocab-q4">
-          <button class="opt" data-value="right">shows that the theory is true</button><button class="opt" data-value="wrong">proves the theory false</button><button class="opt" data-value="wrong2">has no relation to the theory</button>
-        </div>
-      </div>
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px;font-weight:550">5. "Slack" in a system refers to…</p>
-        <div id="vocab-q5">
-          <button class="opt" data-value="right">unused capacity or looseness</button><button class="opt" data-value="wrong">a strict, rigid structure</button><button class="opt" data-value="wrong2">a sudden shortage of resources</button>
-        </div>
-      </div>
-      <h4 style="font-size:13px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);margin-bottom:12px;padding-top:6px;border-top:1px solid var(--border)">Complete the sentence — vocabulary focus</h4>
-      
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px">1. Parkinson first <input type="text" id="vgap1-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:120px"> this idea in a well-known essay.</p>
-        <button class="btn btn-sm" id="vgap1-check">Check</button>
-        <div id="vgap1-fb"></div>
-      </div>
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px">2. Vague deadlines only encouraged the <input type="text" id="vgap2-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:90px"> .</p>
-        <button class="btn btn-sm" id="vgap2-check">Check</button>
-        <div id="vgap2-fb"></div>
-      </div>
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px">3. Productivity barely <input type="text" id="vgap3-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:100px"> after the new deadlines came in.</p>
-        <button class="btn btn-sm" id="vgap3-check">Check</button>
-        <div id="vgap3-fb"></div>
-      </div>
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px">4. Most of that old slack <input type="text" id="vgap4-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:100px"> from how loose the deadlines used to be.</p>
-        <button class="btn btn-sm" id="vgap4-check">Check</button>
-        <div id="vgap4-fb"></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="sec-practice">
-    <div class="section-label"><span class="num">6</span> Practice</div>
-    <div class="card">
-      <h3 style="margin-bottom:2px">Gap-fill</h3>
-      <p style="font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-tertiary);margin-bottom:16px">Grammar focus — used to or would — pick the one that actually works.</p>
-      
-      <div style="margin-bottom:18px">
-        <p style="margin-bottom:8px">1. She <input type="text" id="gap1-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:170px"> (own) a small café near the station. (state)</p>
-        <button class="btn btn-sm" id="gap1-check">Check</button>
-        <div id="gap1-fb"></div>
-      </div>
-      <div style="margin-bottom:18px">
-        <p style="margin-bottom:8px">2. Every summer, they <input type="text" id="gap2-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:170px"> (spend) two weeks by the lake.</p>
-        <button class="btn btn-sm" id="gap2-check">Check</button>
-        <div id="gap2-fb"></div>
-      </div>
-      <div style="margin-bottom:18px">
-        <p style="margin-bottom:8px">3. I <input type="text" id="gap3-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:170px"> (believe) in luck more than I do now. (state)</p>
-        <button class="btn btn-sm" id="gap3-check">Check</button>
-        <div id="gap3-fb"></div>
-      </div>
-      <div style="margin-bottom:18px">
-        <p style="margin-bottom:8px">4. He <input type="text" id="gap4-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:170px"> (tell) the same joke at every family dinner.</p>
-        <button class="btn btn-sm" id="gap4-check">Check</button>
-        <div id="gap4-fb"></div>
-      </div>
-      <div style="margin-bottom:18px">
-        <p style="margin-bottom:8px">5. We <input type="text" id="gap5-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:170px"> (live) in a much smaller apartment. (state)</p>
-        <button class="btn btn-sm" id="gap5-check">Check</button>
-        <div id="gap5-fb"></div>
-      </div>
-      <div style="margin-bottom:18px">
-        <p style="margin-bottom:8px">6. My grandmother <input type="text" id="gap6-input" placeholder="type here" style="border:1px solid var(--border-strong);border-radius:8px;padding:6px 10px;font-family:inherit;width:170px"> (knit) us a new scarf every winter.</p>
-        <button class="btn btn-sm" id="gap6-check">Check</button>
-        <div id="gap6-fb"></div>
-      </div>
-    </div>
-    
-    <div class="card">
-      <h3 style="margin-bottom:6px">Would, or used-to-only?</h3>
-      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:16px">Decide whether "would" could also replace "used to" in each sentence, or whether it's a state that blocks "would" entirely.</p>
-      <div id="cat-root"></div>
-    </div>
-    <div class="card">
-      <h3 style="margin-bottom:6px">Sentence builder</h3>
-      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:14px">Tap the chips in the right order. Three rounds.</p>
-      <div id="builders"></div>
-    </div>
-  </section>
-
-  <section class="section" id="sec-speaking">
-    <div class="section-label"><span class="num">7</span> Speaking task</div>
-    <div class="mode-toggle">
-      <button class="pill on" id="mode-solo">👤 Solo</button>
-      <button class="pill" id="mode-group">👥 Group (2–4)</button>
-    </div>
-    <div class="task-card" id="speak-solo">
-      <div class="kicker">60-second task</div>
-      <p style="font-size:14.5px;line-height:1.7">Describe a routine from your childhood using both "used to" and "would" — include at least one past state (used to only) and one repeated action (would or used to).</p>
-      <button class="btn btn-sm" id="solo-done-btn" style="margin-top:14px">✓ I've done this</button>
-    </div>
-    <div class="task-card" id="speak-group" style="display:none">
-      <div class="kicker">Discussion — pick 1–2 questions to answer out loud</div>
-      <p style="font-size:14.5px;line-height:1.7;margin-bottom:12px">Tap the question(s) you'll answer. Your teacher will see your pick and mark it after you speak.</p>
-      <div id="discuss-questions" style="display:flex;flex-direction:column;gap:8px"></div>
-      <p id="discuss-limit-msg" style="font-size:12.5px;color:var(--text-tertiary);margin-top:10px">You can select up to 2 questions.</p>
-    </div>
-  </section>
-
-  <section class="section" id="sec-listening">
-    <div class="section-label"><span class="num">8</span> Listening</div>
-    <div class="card">
-      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px">Anna and Tomasz are discussing Parkinson's Law and how their old office used to run.</p>
-      <audio id="dialogue-audio" preload="none" style="display:none"></audio>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn btn-primary" id="play-dialogue">▶ Play dialogue</button>
-        <button class="btn btn-ghost btn-sm" id="stop-dialogue">⏹ Stop</button>
-        <button class="btn btn-ghost btn-sm" id="show-transcript">Show full transcript</button>
-      </div>
-      <div id="transcript"></div>
-      
-      <div style="margin-top:16px">
-        <p style="margin-bottom:8px;font-weight:550">1. According to Tomasz, how long did reports used to take even though the actual writing needed only two days?</p>
-        <div id="listen-q1">
-          <button class="opt" data-value="right">About two weeks.</button><button class="opt" data-value="wrong">About two months.</button>
-        </div>
-      </div>
-      <div style="margin-top:16px">
-        <p style="margin-bottom:8px;font-weight:550">2. What changed when the new director came in?</p>
-        <div id="listen-q2">
-          <button class="opt" data-value="right">Deadlines got tightened and productivity barely suffered.</button><button class="opt" data-value="wrong">The finance team was disbanded entirely.</button>
-        </div>
-      </div>
-      <div style="margin-top:16px">
-        <p style="margin-bottom:8px;font-weight:550">3. Where does Anna say the old slack came from?</p>
-        <div id="listen-q3">
-          <button class="opt" data-value="right">How loose the deadlines used to be.</button><button class="opt" data-value="wrong">Poorly trained new staff.</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="sec-wrapup">
-    <div class="section-label"><span class="num">9</span> Wrap-up — exit check</div>
-    <div class="card">
-      
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px;font-weight:550">1. She ___ a lot of money in her twenties. (state)</p>
-        <div id="exit-q1">
-          <button class="opt" data-value="right">used to earn</button><button class="opt" data-value="wrong">would earn</button>
-        </div>
-      </div>
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px;font-weight:550">2. Every Sunday, we ___ a long walk together.</p>
-        <div id="exit-q2">
-          <button class="opt" data-value="right">would take</button><button class="opt" data-value="wrong">are taking</button>
-        </div>
-      </div>
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px;font-weight:550">3. He ___ terrified of dogs as a child. (state)</p>
-        <div id="exit-q3">
-          <button class="opt" data-value="right">used to be</button><button class="opt" data-value="wrong">would be</button>
-        </div>
-      </div>
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px;font-weight:550">4. My uncle ___ us the same story every Christmas.</p>
-        <div id="exit-q4">
-          <button class="opt" data-value="right">would tell</button><button class="opt" data-value="wrong">is telling</button>
-        </div>
-      </div>
-      <div style="margin-bottom:16px">
-        <p style="margin-bottom:8px;font-weight:550">5. I ___ three cats when I was younger. (state)</p>
-        <div id="exit-q5">
-          <button class="opt" data-value="right">used to have</button><button class="opt" data-value="wrong">would have</button>
-        </div>
-      </div>
-    </div>
-    <div class="card" id="summary-card">
-      <h3 style="margin-bottom:14px">Your lesson summary</h3>
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px" id="summary-ring-row">
-        <div id="score-ring-holder"></div>
-        <div>
-          <div style="font-weight:600" id="summary-name">—</div>
-          <div style="font-size:13px;margin-top:4px" id="summary-completion"></div>
-          <div style="font-size:13px;color:var(--text-secondary);margin-top:4px" id="summary-weak">Finish the lesson to see your results.</div>
-        </div>
-      </div>
-      <button class="btn btn-primary" id="finish-btn">Finish lesson &amp; see results</button>
-      <button class="btn" id="export-btn" style="margin-left:8px;display:none">⬇ Export PDF report</button>
-    </div>
-  </section>
-</div>
+    <a class="next-up" id="next-up" href="#">
+      <span class="next-k" id="next-k">Up next</span>
+      <span class="next-row"><span class="next-title" id="next-title">Lesson 1 — First Impressions & Small Talk</span><span class="next-go" aria-hidden="true">&rarr;</span></span>
+    </a>
+  </div>
+  <div class="preview-banner">
+    <span>This is a <b>free preview</b>. Lesson 1 is fully open; the rest of the course is listed so you can see where it goes.</span>
+    <span>Interested in the full course? <a href="https://englishvoiced.com/contact/">Get in touch with Kris</a></span>
+  </div>
+  <div class="ltable" id="lesson-index"></div>
+</main>
 
 <script>
 /* ============================================================
-   English+ B2+/C1 Companion Course — Shared Engine
+   Workplace EQ — Shared Engine (forked from the English+ B2+/C1 engine)
    Reused as-is from the original B1+/B2 course per the handoff
    brief (§4: "reuse course-engine.js as-is; the new course's
    lessons just need their own vocab words and dialogues to work
@@ -970,14 +620,14 @@ const Course = (() => {
      PROGRESS LOG
      Row shape mirrors the Supabase `lesson_progress` table.
      ---------------------------------------------------------- */
-  const STORAGE_KEY = 'englishplus_progress';
-  const GLOSSARY_KEY = 'englishplus_glossary';
+  const STORAGE_KEY = 'workplaceeq_progress';
+  const GLOSSARY_KEY = 'workplaceeq_glossary';
 
   // Namespaced distinctly from the original B1+/B2 course's key so a
   // student who has taken both courses on the same device/origin gets
   // asked for their name independently in each — progress and "who am
   // I" never bleed across the two courses.
-  const STUDENT_NAME_KEY = 'englishplus_b2c1_student_name';
+  const STUDENT_NAME_KEY = 'workplaceeq_student_name';
   function getStudentName(){
     let name = localStorage.getItem(STUDENT_NAME_KEY);
     if (!name){
@@ -1168,7 +818,7 @@ const Course = (() => {
     }
     printRoot.innerHTML = `
       <div style="border-bottom:3px solid #185FA5;padding-bottom:12px;margin-bottom:20px">
-        <div style="font-size:11px;color:#5B6472;text-transform:uppercase;letter-spacing:.05em">English+ B2+/C1 Companion Course</div>
+        <div style="font-size:11px;color:#5B6472;text-transform:uppercase;letter-spacing:.05em">Workplace EQ · English Voiced with Kris</div>
         <h1 style="font-size:21px;margin:4px 0 0">${esc(lessonTitle)}</h1>
       </div>
       <p style="font-size:13px;margin:0 0 3px"><b>Student:</b> ${esc(student)}</p>
@@ -1178,7 +828,7 @@ const Course = (() => {
       </div>
       ${typeof totalPossible === 'number' ? (autoRows.length < totalPossible ? `
       <div style="background:#FAEEDA;border:1px solid #E8C080;border-radius:8px;padding:10px 14px;margin-bottom:22px;font-size:12px;color:#633806">
-        ⚠ Only ${Math.round((autoRows.length / totalPossible) * 100)}% of the lesson attempted (${autoRows.length} of ${totalPossible} exercises) — this score reflects only what's been answered so far.
+        Note: only ${Math.round((autoRows.length / totalPossible) * 100)}% of the lesson attempted (${autoRows.length} of ${totalPossible} exercises) — this score reflects only what's been answered so far.
       </div>` : `
       <div style="background:#EAF3DE;border:1px solid #C0DD97;border-radius:8px;padding:10px 14px;margin-bottom:22px;font-size:12px;color:#27500A">
         ✓ Every exercise in this lesson has been attempted.
@@ -1316,7 +966,7 @@ const Course = (() => {
         const html = `
           <div class="vocab-pop-word">${data.word}</div>
           <div class="vocab-pop-ipa">${data.ipa}</div>
-          <button class="audio-btn vocab-audio-btn" data-speak="${data.word}">🔊 Hear it</button>
+          <button class="audio-btn vocab-audio-btn" data-speak="${data.word}">Hear it</button>
           <div style="font-size:14px;margin-bottom:8px">${data.meaning}</div>
           <div class="vocab-pop-ex">"${data.example}"</div>
           <button class="btn btn-sm glossary-btn" data-word="${key}" ${alreadySaved ? 'disabled' : ''}>${alreadySaved ? 'Saved ✓' : '+ Add to my glossary'}</button>
@@ -1473,7 +1123,7 @@ const Course = (() => {
   /* ----------------------------------------------------------
      FIND-THE-ERROR
      ---------------------------------------------------------- */
-  function initErrorSpot(containerId, {lessonId, sectionId, words, errorIndices, correction, onAnswered, restore}){
+  function initErrorSpot(containerId, {lessonId, sectionId, words, errorIndices, correction, explanation, onAnswered, restore}){
     const container = document.getElementById(containerId);
     if (!container) return;
     container.innerHTML = words.map((w, i) => `<span class="err-word" data-idx="${i}">${w}</span>`).join(' ');
@@ -1491,9 +1141,18 @@ const Course = (() => {
       const note = document.createElement('div');
       note.className = isCorrect ? 'fb-ok' : 'fb-no';
       note.style.marginTop = '8px';
-      note.textContent = isCorrect
-        ? `✓ Correct — should be "${correction}"`
-        : `Not quite — the error was "${errorIndices.map(i => words[i]).join(' ')}", which should be "${correction}"`;
+      // Workplace EQ: faux-pas items pass `explanation` (a full sentence
+      // on why the word is socially wrong) instead of a `correction`.
+      const target = errorIndices.map(i => words[i]).join(' ');
+      if (explanation){
+        note.textContent = isCorrect
+          ? `✓ Spotted it — ${explanation}`
+          : `Not quite — the problem was "${target}". ${explanation}`;
+      } else {
+        note.textContent = isCorrect
+          ? `✓ Correct — should be "${correction}"`
+          : `Not quite — the error was "${target}", which should be "${correction}"`;
+      }
       container.insertAdjacentElement('afterend', note);
     }
 
@@ -2075,12 +1734,12 @@ const Course = (() => {
       const content = document.getElementById('rules-content');
       if (!btn) return;
       if (anyQuizActive){
-        btn.disabled = true; btn.textContent = '📖 Disabled during Quick check';
+        btn.disabled = true; btn.textContent = 'Rules hidden during the quick check';
         if (content) content.classList.remove('open');
       } else {
         btn.disabled = false;
         const isOpen = content && content.classList.contains('open');
-        btn.textContent = isOpen ? '📖 Hide the full rules' : '📖 Show the full rules';
+        btn.textContent = isOpen ? 'Hide the full rules' : 'Show the full rules';
       }
     }
     function switchCat(newCat){
@@ -2149,7 +1808,7 @@ const Course = (() => {
     const lineEls = transcriptEl.querySelectorAll('.transcript-line');
     // "lesson-01" from "b2c1-lesson-01-narrative-tenses" — matches the
     // short-prefix convention every other generated filename already uses.
-    const shortPrefixMatch = (lessonId || '').match(/^b2c1-(lesson-\d+)/);
+    const shortPrefixMatch = (lessonId || '').match(/^weq-(lesson-\d+)/);
     const shortPrefix = shortPrefixMatch ? shortPrefixMatch[1] : lessonId;
 
     // Transcript stays fully hidden until "Show full transcript" is
@@ -2175,10 +1834,10 @@ const Course = (() => {
     let finished = false;
 
     function updateButtonLabel(){
-      if (isPlaying){ playBtn.textContent = '⏸ Pause'; return; }
-      if (mode === 'tts' && window.speechSynthesis && window.speechSynthesis.paused){ playBtn.textContent = '▶ Resume'; return; }
-      if (mode === 'audio' && audioEl && audioEl.currentTime > 0 && !finished){ playBtn.textContent = '▶ Resume'; return; }
-      playBtn.textContent = '▶ Play dialogue';
+      if (isPlaying){ playBtn.textContent = 'Pause'; return; }
+      if (mode === 'tts' && window.speechSynthesis && window.speechSynthesis.paused){ playBtn.textContent = 'Resume'; return; }
+      if (mode === 'audio' && audioEl && audioEl.currentTime > 0 && !finished){ playBtn.textContent = 'Resume'; return; }
+      playBtn.textContent = 'Play dialogue';
     }
 
     function setActiveLine(idx){
@@ -2392,7 +2051,7 @@ const Course = (() => {
       gramToggle.addEventListener('click', function(){
         const on = passageEl.classList.toggle('show-grammar');
         this.classList.toggle('on', on);
-        this.textContent = on ? '🔍 Hide grammar in this text' : '🔍 Show grammar in this text';
+        this.textContent = on ? 'Hide key phrases' : 'Show key phrases in this text';
       });
     }
     if (vocabData) initVocab(vocabData, lessonId);
@@ -2420,7 +2079,7 @@ const Course = (() => {
       gramToggle.addEventListener('click', function(){
         const on = passageEl.classList.toggle('show-grammar');
         this.classList.toggle('on', on);
-        this.textContent = on ? '🔍 Hide grammar in this text' : '🔍 Show grammar in this text';
+        this.textContent = on ? 'Hide key phrases' : 'Show key phrases in this text';
       });
     }
   }
@@ -2433,7 +2092,7 @@ const Course = (() => {
     const currentFile = window.location.pathname.split('/').pop();
     const allLessonsLink = document.getElementById('all-lessons-link');
     if (allLessonsLink){
-      allLessonsLink.href = groupParam ? `index-standalone.html?group=${encodeURIComponent(groupParam)}` : 'index-standalone.html';
+      allLessonsLink.href = groupParam ? `index.html?group=${encodeURIComponent(groupParam)}` : 'index.html';
     }
     const glossaryLink = document.getElementById('glossary-link');
     if (glossaryLink){
@@ -2445,9 +2104,9 @@ const Course = (() => {
 
   async function initSyncStatus(lessonId){
     const el = document.getElementById('sync-status');
-    if (el) el.textContent = supabaseClient ? `☁ Syncing your progress…` : `⚠ Offline mode — progress is saved on this device only`;
+    if (el) el.textContent = supabaseClient ? `Syncing your progress…` : `Progress is saved on this device`;
     await syncFromSupabase(lessonId);
-    if (el) el.textContent = supabaseClient ? `☁ Synced · Group: ${GROUP_ID}` : `⚠ Offline mode — progress is saved on this device only`;
+    if (el) el.textContent = supabaseClient ? `Synced · Group: ${GROUP_ID}` : `Progress is saved on this device`;
   }
 
   function initSummary({lessonId, totalExercises, sectionPrefixesForProgress}){
@@ -2490,11 +2149,65 @@ const Course = (() => {
     });
   }
 
+
+  /* ---------------- Workplace EQ reskin additions ---------------- */
+  // Tone cells: the "too blunt / just right / too stiff" comparison as
+  // three columns with a formality bar. Items come in groups (groupEnd
+  // closes a group); each group is shown blunt | just right | stiff.
+  // Hover (desktop) or tap (touch) reveals the explanation in place.
+  function renderToneCells(containerId, items){
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    const kindOf = label => { const l = (label || '').toLowerCase(); return l.includes('right') ? 'right' : (l.includes('blunt') ? 'blunt' : 'stiff'); };
+    const width = { blunt: '90%', right: '50%', stiff: '15%' };
+    const order = { blunt: 0, right: 1, stiff: 2 };
+    const groups = []; let cur = [];
+    items.forEach(it => { cur.push(it); if (it.groupEnd){ groups.push(cur); cur = []; } });
+    if (cur.length) groups.push(cur);
+    el.innerHTML = groups.map(g => {
+      const sorted = [...g].sort((a, b) => order[kindOf(a.label)] - order[kindOf(b.label)]);
+      return '<div class="tone-set">' + sorted.map(it => {
+        const k = kindOf(it.label);
+        return `<button type="button" class="tone-cell${k === 'right' ? ' is-right' : ''}" data-key="${it.key}" aria-expanded="false">
+          <span class="tone-lbl">${esc(it.label)}</span>
+          <span class="tone-bar" style="width:${width[k]}"></span>
+          <span class="tone-line">"${esc(it.text)}"</span>
+          <span class="tone-why">${esc(it.explain)}</span>
+        </button>`;
+      }).join('') + '</div>';
+    }).join('');
+    el.querySelectorAll('.tone-cell').forEach(c => c.addEventListener('click', () => {
+      const open = c.classList.toggle('open');
+      c.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }));
+  }
+
+  // Step tabs under the lesson header: highlight the section currently
+  // in view, and keep the active tab visible when the strip scrolls
+  // horizontally on small screens.
+  function initStepTabs(){
+    const tabs = Array.from(document.querySelectorAll('.eq-steps a[data-step]'));
+    if (!tabs.length || !('IntersectionObserver' in window)) return;
+    const byId = {}; tabs.forEach(t => byId[t.dataset.step] = t);
+    let current = tabs[0].dataset.step;
+    function setOn(id){
+      if (!byId[id] || id === current) return;
+      current = id;
+      tabs.forEach(t => t.classList.toggle('on', t.dataset.step === id));
+      const strip = byId[id].parentElement;
+      if (strip && strip.scrollWidth > strip.clientWidth) strip.scrollTo({ left: byId[id].offsetLeft - 20, behavior: 'smooth' });
+    }
+    const obs = new IntersectionObserver(entries => {
+      entries.filter(e => e.isIntersecting).forEach(e => setOn(e.target.id));
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('section.eq-sec[id]').forEach(s => { if (byId[s.id]) obs.observe(s); });
+  }
+
   return { logProgress, getLessonRows, getCurrentRows, getSectionMap, lessonScore, weakSections, exportReport, exportReportPDF,
            speak, speakSmart, initVocab, initMCQ, initGapFill, initErrorSpot, initMatching, withContractions, renderScoreRing, getStudentName,
            shuffleArray, shuffleOptions, ensureAnswerPositionVariety, showPopup, hidePopup, resetLocalProgress, syncFromSupabase,
            getGlossary, saveToGlossary, removeFromGlossary, syncGlossaryFromSupabase,
-           getGroupId: () => GROUP_ID, isConnected: () => !!supabaseClient,
+           getGroupId: () => GROUP_ID, isConnected: () => !!supabaseClient, renderToneCells, initStepTabs,
            vocabSpan, gramSpan, renderMCQList, renderGapFillList, renderBuilders, renderCategorise,
            renderCompareCard, showCompareTooltip, hideCompareTooltip, renderConceptWidget,
            initListening, initSpeaking, renderDiscussQuestions, initReading, wireGramSpans, initGramToggle,
@@ -2504,85 +2217,189 @@ const Course = (() => {
 </script>
 <script>
 
-const LESSON_ID = "b2c1-lesson-02-used-to-vs-would";
-Course.initPageChrome({lessonId: LESSON_ID});
+const LESSONS = [{"id": "weq-lesson-01-first-impressions", "title": "Lesson 1 — First Impressions & Small Talk", "isTest": false}, {"id": "weq-lesson-02-politeness-register", "title": "Lesson 2 — Politeness & Register", "isTest": false}, {"id": "weq-lesson-03-emails-messaging", "title": "Lesson 3 — Emails & Messaging", "isTest": false}, {"id": "weq-lesson-04-meetings-calls", "title": "Lesson 4 — Meetings & Calls", "isTest": false}, {"id": "weq-lesson-05-difficult-conversations", "title": "Lesson 5 — Difficult Conversations", "isTest": false}, {"id": "weq-lesson-06-visibility-self-advocacy", "title": "Lesson 6 — Visibility & Self-Advocacy", "isTest": false}, {"id": "weq-lesson-07-capstone-week-in-london", "title": "Lesson 7 — Capstone: A Week in London", "isTest": false}, {"id": "weq-test-01", "title": "Final Test: Workplace EQ", "isTest": true}];
+const GROUP_META = [{"title": "Professional Presence", "short": "Presence", "desc": "First impressions, introductions and small talk, then the core skill behind everything else in the course: choosing the right level of politeness and directness for the person in front of you.", "expect": "You'll compare three versions of the same line (too blunt, too stiff, just right) and learn why British listeners hear them so differently. Expect situational choices, rewriting blunt lines politely, and short speaking tasks where you introduce yourself and keep a conversation going."}, {"title": "Communication That Lands", "short": "Communication", "desc": "Emails and chat messages, meetings and video calls, and the conversations most people avoid: saying no, apologising, giving feedback and delivering bad news.", "expect": "Most of the work here is rewriting: turning a clumsy email into one that gets a reply, softening a disagreement without losing the point, and spotting the faux pas in a message before it's sent. Speaking tasks are short role-plays."}, {"title": "Career Velocity", "short": "Career", "desc": "Being visible without bragging, managing up, asking for what you want, and networking that actually leads somewhere, then a capstone week-at-work simulation that pulls the whole course together.", "expect": "You'll practise the language of self-advocacy (taking credit gracefully, asking for a raise or a stretch project) and then work through a full scenario, from a client dinner to a tricky follow-up email. The final test mixes all seven lessons."}];
+const SECTION_SIZES = [2, 3, 3];
+// Public preview: only the first PREVIEW_AVAILABLE items open (null = full course).
+const PREVIEW_AVAILABLE = 1;
 
-(async function initLesson(){
-  await Course.initSyncStatus(LESSON_ID);
-  const sectionMap = Course.getSectionMap(LESSON_ID);
+/* Per-lesson exercise totals, extracted from each generated lesson/test
+   file's own totalExercises at build time, so they never drift. */
+const DEFAULT_TOTAL = 12;
+const LESSON_TOTALS = {"weq-lesson-01-first-impressions": 39, "weq-lesson-02-politeness-register": 39, "weq-lesson-03-emails-messaging": 39, "weq-lesson-04-meetings-calls": 39, "weq-lesson-05-difficult-conversations": 39, "weq-lesson-06-visibility-self-advocacy": 39, "weq-lesson-07-capstone-week-in-london": 39, "weq-test-01": 24};
+function totalFor(id){ return LESSON_TOTALS[id] || DEFAULT_TOTAL; }
 
-  Course.initMCQ('warm-q1', {lessonId: LESSON_ID, sectionId: 'warmup-1', correctValue: "right", restoreAnswer: (sectionMap['warmup-1']||{}).answer_given});
-  Course.initMCQ('warm-q2', {lessonId: LESSON_ID, sectionId: 'warmup-2', correctValue: "right", restoreAnswer: (sectionMap['warmup-2']||{}).answer_given});
-  Course.initMCQ('warm-q3', {lessonId: LESSON_ID, sectionId: 'warmup-3', correctValue: "right", restoreAnswer: (sectionMap['warmup-3']||{}).answer_given});
-  Course.ensureAnswerPositionVariety([{"containerId": "warm-q1", "correctValue": "right"}, {"containerId": "warm-q2", "correctValue": "right"}, {"containerId": "warm-q3", "correctValue": "right"}]);
-  Course.initMCQ('diag-q1', {lessonId: LESSON_ID, sectionId: 'diagnostic-1', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-1']||{}).answer_given});
-  Course.initMCQ('diag-q2', {lessonId: LESSON_ID, sectionId: 'diagnostic-2', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-2']||{}).answer_given});
-  Course.initMCQ('diag-q3', {lessonId: LESSON_ID, sectionId: 'diagnostic-3', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-3']||{}).answer_given});
-  Course.initMCQ('diag-q4', {lessonId: LESSON_ID, sectionId: 'diagnostic-4', correctValue: "right", restoreAnswer: (sectionMap['diagnostic-4']||{}).answer_given});
-  Course.ensureAnswerPositionVariety([{"containerId": "diag-q1", "correctValue": "right"}, {"containerId": "diag-q2", "correctValue": "right"}, {"containerId": "diag-q3", "correctValue": "right"}, {"containerId": "diag-q4", "correctValue": "right"}]);
-
-  /* ---------------- concept widget ---------------- */
-  Course.renderConceptWidget({
-    areaId: 'widget-area', hintId: 'widget-hint',
-    tabIds: [{"id": "mode-w-usedto", "key": "usedto"}, {"id": "mode-w-would", "key": "would"}, {"id": "mode-w-quiz", "key": "quiz"}],
-    categories: {"usedto": [{"label": "a past state (feeling, belief, possession)", "example": "She used to be terrified of public speaking."}, {"label": "a past state that no longer holds", "example": "We used to own a much smaller flat."}], "would": [{"label": "a repeated past action, often with a storytelling feel", "example": "Every winter, we would build a snowman in the garden."}, {"label": "a routine within a specific remembered period", "example": "During his internship, he would arrive an hour early."}]},
-    quizLabels: {"usedto": "Used to (states — \"would\" can't do this)", "would": "Would (storytelling flavour)"},
-    rulesToggleId: 'rules-toggle'
+const GROUPS = (() => {
+  let start = 0;
+  return GROUP_META.map((g, i) => {
+    const end = start + SECTION_SIZES[i];
+    const range = [start, end];
+    start = end;
+    return { ...g, range };
   });
-  Course.renderCompareCard('compare-card', [{"key": "c1", "label": "Repeated action", "text": "We would play cards after dinner every night.", "explain": "A distinct, repeatable event — \"would\" works fine here. So does \"used to\" (\"We used to play cards after dinner every night\") — for a plain repeated action either one is correct; \"would\" is just preferred when you want that storytelling feel."}, {"key": "c2", "label": "Past state", "text": "We used to live three streets away from the office.", "explain": "A continuous condition, not a repeatable event — \"would\" is blocked; only \"used to\" works."}, {"key": "c3", "label": "Repeated action", "text": "She would call her sister every Sunday without fail.", "explain": "A habitual, separately-occurring action — \"would\" is natural here. \"Used to\" works too (\"She used to call her sister every Sunday without fail\"); \"would\" is simply the more typical pick for narrating it as a story."}, {"key": "c4", "label": "Past state", "text": "She used to be quite shy around new people.", "explain": "A state (a personality trait at the time), not a repeated action — only \"used to\" works."}]);
-
-  /* ---------------- reading ---------------- */
-  Course.initGramToggle();
-  Course.wireGramSpans({"g1": "\"Used to\" + take — a past state or general condition (how long the process typically took), not a discrete repeatable event, so \"would\" wouldn't fit as naturally.", "g2": "\"Would\" + expand — describes a repeated, observable pattern of behaviour, which \"would\" can express.", "g3": "\"Would\" + recall — a repeated action (retelling the story), a natural narrative use of \"would\".", "g4": "\"Would\" + stretch — a repeated, separate occurrence each time meetings happened.", "g5": "\"Used to\" + feel — a past state (the general atmosphere of the office), which blocks \"would\".", "g6": "\"Used to\" + be — another past state (how deadlines generally were), so only \"used to\" works here."});
-  Course.initVocab({"consumed": {"word": "consumed", "ipa": "/kənˈsjuːmd/", "meaning": "used up an amount of time, resources or energy", "example": "The actual writing consumed barely two working days."}, "articulated": {"word": "articulated", "ipa": "/ɑːˈtɪk.jʊ.leɪ.tɪd/", "meaning": "expressed an idea clearly in words", "example": "Parkinson first articulated this idea in an essay."}, "perpetually": {"word": "perpetually", "ipa": "/pəˈpetʃ.u.ə.li/", "meaning": "constantly, in a way that never stops", "example": "The office used to feel perpetually busy."}, "drift": {"word": "drift", "ipa": "/drɪft/", "meaning": "a slow, gradual movement away from an original state", "example": "Vague deadlines only encouraged the drift."}, "imposed": {"word": "imposed", "ipa": "/ɪmˈpəʊzd/", "meaning": "officially introduced a rule or requirement", "example": "The new director imposed strict weekly deadlines."}, "suffered": {"word": "suffered", "ipa": "/ˈsʌf.əd/", "meaning": "was negatively affected by something", "example": "Productivity barely suffered after the change."}, "confirming": {"word": "confirming", "ipa": "/kənˈfɜːm.ɪŋ/", "meaning": "showing that something believed or suspected is true", "example": "The result ended up confirming the original theory."}, "slack": {"word": "slack", "ipa": "/slæk/", "meaning": "unused capacity or looseness in a system", "example": "Most of that old slack disappeared overnight."}, "stemmed": {"word": "stemmed", "ipa": "/stemd/", "meaning": "originated or resulted from something", "example": "The delay stemmed from how loose the deadlines were."}}, LESSON_ID);
-  Course.initMCQ('comp-q1', {lessonId: LESSON_ID, sectionId: 'reading-comp-1', correctValue: "right", restoreAnswer: (sectionMap['reading-comp-1']||{}).answer_given});
-  Course.initMCQ('comp-q2', {lessonId: LESSON_ID, sectionId: 'reading-comp-2', correctValue: "right", restoreAnswer: (sectionMap['reading-comp-2']||{}).answer_given});
-  Course.initMCQ('comp-q3', {lessonId: LESSON_ID, sectionId: 'reading-comp-3', correctValue: "right", restoreAnswer: (sectionMap['reading-comp-3']||{}).answer_given});
-  Course.ensureAnswerPositionVariety([{"containerId": "comp-q1", "correctValue": "right"}, {"containerId": "comp-q2", "correctValue": "right"}, {"containerId": "comp-q3", "correctValue": "right"}]);
-
-  /* ---------------- vocab check ---------------- */
-  Course.initMCQ('vocab-q1', {lessonId: LESSON_ID, sectionId: 'vocab-1', correctValue: "right", restoreAnswer: (sectionMap['vocab-1']||{}).answer_given});
-  Course.initMCQ('vocab-q2', {lessonId: LESSON_ID, sectionId: 'vocab-2', correctValue: "right", restoreAnswer: (sectionMap['vocab-2']||{}).answer_given});
-  Course.initMCQ('vocab-q3', {lessonId: LESSON_ID, sectionId: 'vocab-3', correctValue: "right", restoreAnswer: (sectionMap['vocab-3']||{}).answer_given});
-  Course.initMCQ('vocab-q4', {lessonId: LESSON_ID, sectionId: 'vocab-4', correctValue: "right", restoreAnswer: (sectionMap['vocab-4']||{}).answer_given});
-  Course.initMCQ('vocab-q5', {lessonId: LESSON_ID, sectionId: 'vocab-5', correctValue: "right", restoreAnswer: (sectionMap['vocab-5']||{}).answer_given});
-  Course.ensureAnswerPositionVariety([{"containerId": "vocab-q1", "correctValue": "right"}, {"containerId": "vocab-q2", "correctValue": "right"}, {"containerId": "vocab-q3", "correctValue": "right"}, {"containerId": "vocab-q4", "correctValue": "right"}, {"containerId": "vocab-q5", "correctValue": "right"}]);
-    Course.initGapFill('vgap1-input','vgap1-check','vgap1-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-1', correctAnswers:["articulated"], restore: sectionMap['vocab-gap-1'] ? {answerGiven: sectionMap['vocab-gap-1'].answer_given, isCorrect: sectionMap['vocab-gap-1'].override_correct ?? sectionMap['vocab-gap-1'].is_correct} : null});
-  Course.initGapFill('vgap2-input','vgap2-check','vgap2-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-2', correctAnswers:["drift"], restore: sectionMap['vocab-gap-2'] ? {answerGiven: sectionMap['vocab-gap-2'].answer_given, isCorrect: sectionMap['vocab-gap-2'].override_correct ?? sectionMap['vocab-gap-2'].is_correct} : null});
-  Course.initGapFill('vgap3-input','vgap3-check','vgap3-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-3', correctAnswers:["suffered"], restore: sectionMap['vocab-gap-3'] ? {answerGiven: sectionMap['vocab-gap-3'].answer_given, isCorrect: sectionMap['vocab-gap-3'].override_correct ?? sectionMap['vocab-gap-3'].is_correct} : null});
-  Course.initGapFill('vgap4-input','vgap4-check','vgap4-fb',{lessonId:LESSON_ID, sectionId:'vocab-gap-4', correctAnswers:["stemmed"], restore: sectionMap['vocab-gap-4'] ? {answerGiven: sectionMap['vocab-gap-4'].answer_given, isCorrect: sectionMap['vocab-gap-4'].override_correct ?? sectionMap['vocab-gap-4'].is_correct} : null});
-
-  /* ---------------- practice ---------------- */
-    Course.initGapFill('gap1-input','gap1-check','gap1-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-1', correctAnswers:Course.withContractions(["used to own"]), restore: sectionMap['practice-gap-1'] ? {answerGiven: sectionMap['practice-gap-1'].answer_given, isCorrect: sectionMap['practice-gap-1'].override_correct ?? sectionMap['practice-gap-1'].is_correct} : null});
-  Course.initGapFill('gap2-input','gap2-check','gap2-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-2', correctAnswers:Course.withContractions(["would spend", "used to spend"]), restore: sectionMap['practice-gap-2'] ? {answerGiven: sectionMap['practice-gap-2'].answer_given, isCorrect: sectionMap['practice-gap-2'].override_correct ?? sectionMap['practice-gap-2'].is_correct} : null});
-  Course.initGapFill('gap3-input','gap3-check','gap3-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-3', correctAnswers:Course.withContractions(["used to believe"]), restore: sectionMap['practice-gap-3'] ? {answerGiven: sectionMap['practice-gap-3'].answer_given, isCorrect: sectionMap['practice-gap-3'].override_correct ?? sectionMap['practice-gap-3'].is_correct} : null});
-  Course.initGapFill('gap4-input','gap4-check','gap4-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-4', correctAnswers:Course.withContractions(["would tell", "used to tell"]), restore: sectionMap['practice-gap-4'] ? {answerGiven: sectionMap['practice-gap-4'].answer_given, isCorrect: sectionMap['practice-gap-4'].override_correct ?? sectionMap['practice-gap-4'].is_correct} : null});
-  Course.initGapFill('gap5-input','gap5-check','gap5-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-5', correctAnswers:Course.withContractions(["used to live"]), restore: sectionMap['practice-gap-5'] ? {answerGiven: sectionMap['practice-gap-5'].answer_given, isCorrect: sectionMap['practice-gap-5'].override_correct ?? sectionMap['practice-gap-5'].is_correct} : null});
-  Course.initGapFill('gap6-input','gap6-check','gap6-fb',{lessonId:LESSON_ID, sectionId:'practice-gap-6', correctAnswers:Course.withContractions(["would knit", "used to knit"]), restore: sectionMap['practice-gap-6'] ? {answerGiven: sectionMap['practice-gap-6'].answer_given, isCorrect: sectionMap['practice-gap-6'].override_correct ?? sectionMap['practice-gap-6'].is_correct} : null});
-
-  Course.renderCategorise('cat-root', [{"prompt": "\"I used to hate mushrooms as a child.\"", "correct": "Used to only (a state)"}, {"prompt": "\"We used to meet at the same café every Thursday.\"", "correct": "Would also works"}, {"prompt": "\"She used to have really long hair.\"", "correct": "Used to only (a state)"}, {"prompt": "\"He used to visit his grandparents every August.\"", "correct": "Would also works"}], ["Would also works", "Used to only (a state)"], {lessonId: LESSON_ID, sectionPrefix: 'practice-cat'});
-  Course.renderBuilders('builders', [{"words": ["We", "would", "play", "cards", "after", "dinner", "every", "night."]}, {"words": ["She", "used", "to", "own", "a", "small", "bakery", "downtown."]}, {"words": ["He", "used", "to", "believe", "in", "ghosts", "as", "a", "child."]}], {lessonId: LESSON_ID, sectionPrefix: 'practice-builder'});
-
-  /* ---------------- speaking ---------------- */
-  Course.initSpeaking({max: 2, lessonId: LESSON_ID, sectionMap, soloTaskLabel: "Describe a routine from your childhood using both \"used to\" and \"would\" — include at least one past state (used to only) and one repeated action (would or used to)."});
-  Course.renderDiscussQuestions('discuss-questions', ["What's something your family used to do regularly that they no longer do?", "Describe a place you used to live or a job you used to have that felt very different from now.", "Tell your group about a habit you would have as a child that seems strange to you now."], {lessonId: LESSON_ID, max: 2, sectionPrefix: 'speaking-q'});
-
-  /* ---------------- listening ---------------- */
-  Course.initListening({dialogue: [{"speaker": "Anna", "line": "I read about Parkinson's Law today — the idea that work expands to fill whatever time you give it."}, {"speaker": "Tomasz", "line": "That explains our old finance team perfectly. Reports used to take two weeks even though the writing itself barely consumed two days."}, {"speaker": "Anna", "line": "Meetings would stretch on forever too, back before the new director came in."}, {"speaker": "Tomasz", "line": "Right, the office used to feel busy all the time, even when there wasn't much real work."}, {"speaker": "Anna", "line": "Then deadlines got tightened and somehow productivity barely suffered."}, {"speaker": "Tomasz", "line": "Which just confirms Parkinson was onto something."}, {"speaker": "Anna", "line": "Most of that old slack apparently stemmed from how loose the deadlines used to be."}, {"speaker": "Tomasz", "line": "I guess we should be grateful for tighter deadlines, annoying as they are."}], speakerA: 'Anna', speakerB: 'Tomasz', lessonId: LESSON_ID});
-  Course.initMCQ('listen-q1', {lessonId: LESSON_ID, sectionId: 'listening-1', correctValue: "right", restoreAnswer: (sectionMap['listening-1']||{}).answer_given});
-  Course.initMCQ('listen-q2', {lessonId: LESSON_ID, sectionId: 'listening-2', correctValue: "right", restoreAnswer: (sectionMap['listening-2']||{}).answer_given});
-  Course.initMCQ('listen-q3', {lessonId: LESSON_ID, sectionId: 'listening-3', correctValue: "right", restoreAnswer: (sectionMap['listening-3']||{}).answer_given});
-  Course.ensureAnswerPositionVariety([{"containerId": "listen-q1", "correctValue": "right"}, {"containerId": "listen-q2", "correctValue": "right"}, {"containerId": "listen-q3", "correctValue": "right"}]);
-
-  /* ---------------- wrap-up ---------------- */
-  Course.initMCQ('exit-q1', {lessonId: LESSON_ID, sectionId: 'exit-1', correctValue: "right", restoreAnswer: (sectionMap['exit-1']||{}).answer_given});
-  Course.initMCQ('exit-q2', {lessonId: LESSON_ID, sectionId: 'exit-2', correctValue: "right", restoreAnswer: (sectionMap['exit-2']||{}).answer_given});
-  Course.initMCQ('exit-q3', {lessonId: LESSON_ID, sectionId: 'exit-3', correctValue: "right", restoreAnswer: (sectionMap['exit-3']||{}).answer_given});
-  Course.initMCQ('exit-q4', {lessonId: LESSON_ID, sectionId: 'exit-4', correctValue: "right", restoreAnswer: (sectionMap['exit-4']||{}).answer_given});
-  Course.initMCQ('exit-q5', {lessonId: LESSON_ID, sectionId: 'exit-5', correctValue: "right", restoreAnswer: (sectionMap['exit-5']||{}).answer_given});
-  Course.ensureAnswerPositionVariety([{"containerId": "exit-q1", "correctValue": "right"}, {"containerId": "exit-q2", "correctValue": "right"}, {"containerId": "exit-q3", "correctValue": "right"}, {"containerId": "exit-q4", "correctValue": "right"}, {"containerId": "exit-q5", "correctValue": "right"}]);
-  Course.initSummary({lessonId: LESSON_ID, totalExercises: 40});
 })();
+
+const STUDENT_NAME_KEY = 'workplaceeq_student_name';
+const OPEN_KEY = 'workplaceeq_index_open';
+
+const groupParam = new URLSearchParams(window.location.search).get('group');
+function withGroup(href){
+  return groupParam ? `${href}?group=${encodeURIComponent(groupParam)}` : href;
+}
+function standaloneFilename(id){
+  const match = id.match(/^weq-(lesson-\d+|test-\d+)/);
+  const prefix = match ? match[1] : id;
+  return `${prefix}-preview-standalone.html`;
+}
+const isLocked = idx => PREVIEW_AVAILABLE !== null && idx >= PREVIEW_AVAILABLE;
+
+/* ---------- Progress ----------
+   Nothing is read until a name exists: the engine's getStudentName()
+   would otherwise pop up its own name prompt on top of this page's
+   name field (the "asked twice" problem). */
+function lessonProgress(id){
+  let attempted = 0;
+  if (localStorage.getItem(STUDENT_NAME_KEY)){
+    try {
+      attempted = Course.getCurrentRows(id).filter(r => r.exercise_type === 'auto_graded').length;
+    } catch (e){ attempted = 0; }
+  }
+  const total = totalFor(id);
+  const pct = total ? Math.min(100, Math.round((attempted / total) * 100)) : 0;
+  return { attempted, total, pct, done: pct >= 100 };
+}
+
+function readOpen(){
+  try { return new Set(JSON.parse(localStorage.getItem(OPEN_KEY)) || []); }
+  catch (e){ return new Set(); }
+}
+function writeOpen(set){
+  localStorage.setItem(OPEN_KEY, JSON.stringify([...set]));
+}
+
+function rowTitle(l){
+  return l.isTest ? l.title : l.title.replace(/^Lesson\s+(\d+)\s+[—-]\s*/, '$1 ');
+}
+
+function nextIndex(all){
+  let idx = all.findIndex(p => !p.done);
+  if (PREVIEW_AVAILABLE !== null && (idx === -1 || idx >= PREVIEW_AVAILABLE)) idx = Math.min(PREVIEW_AVAILABLE, LESSONS.length) - 1;
+  return idx;
+}
+
+function renderLessonIndex(){
+  const root = document.getElementById('lesson-index');
+  const open = readOpen();
+  const all = LESSONS.map(l => lessonProgress(l.id));
+  const nextIdx = nextIndex(all);
+  let html = '<div class="lrow lhead"><span>Section</span><span>Lesson</span><span style="text-align:right">Progress</span></div>';
+
+  GROUPS.forEach((g, gi) => {
+    const label = String(gi + 1).padStart(2, '0') + ' ' + g.short;
+    const isOpen = open.has(gi);
+    const about = `<button type="button" class="lr-about" data-gi="${gi}" aria-expanded="${isOpen}">${isOpen ? 'Hide details' : 'What to expect'}</button>`;
+    html += `<div class="lr-sechead"><span>${label}</span>${about}</div>`;
+    for (let idx = g.range[0]; idx < g.range[1]; idx++){
+      const l = LESSONS[idx], p = all[idx];
+      const first = idx === g.range[0];
+      const last = idx === g.range[1] - 1;
+      const cls = ['lrow'];
+      if (last) cls.push(gi === GROUPS.length - 1 ? 'table-end' : 'group-end');
+      let prog, progCls = 'lr-prog';
+      if (isLocked(idx)){ prog = 'Locked'; cls.push('locked'); }
+      else if (p.done){ prog = 'Done ✓'; progCls += ' done'; }
+      else if (idx === nextIdx){ prog = p.attempted ? p.pct + '% · Next' : 'Next'; progCls += ' next'; }
+      else prog = p.pct + '%';
+      const sec = first ? `<span class="lr-sec"><span>${label}</span>${about}</span>` : '<span class="lr-sec"></span>';
+      const title = `<span class="lr-title${l.isTest ? ' is-test' : ''}">${rowTitle(l)}</span>`;
+      const inner = `${sec}${title}<span class="${progCls}">${prog}</span>`;
+      html += isLocked(idx)
+        ? `<div class="${cls.join(' ')}" title="Not included in this preview">${inner}</div>`
+        : `<a class="${cls.join(' ')}" href="${withGroup(standaloneFilename(l.id))}">${inner}</a>`;
+      if (first){
+        html += `<div class="lr-expect${isOpen ? ' open' : ''}" id="expect-${gi}"><div><p>${g.desc}</p><p>${g.expect}</p></div></div>`;
+      }
+    }
+  });
+  root.innerHTML = html;
+
+  root.querySelectorAll('.lr-about').forEach(btn => btn.addEventListener('click', (e) => {
+    e.preventDefault(); e.stopPropagation();
+    const gi = Number(btn.dataset.gi);
+    const set = readOpen();
+    if (set.has(gi)) set.delete(gi); else set.add(gi);
+    writeOpen(set);
+    renderLessonIndex();
+  }));
+
+  renderOverall(all, nextIdx);
+}
+
+function renderOverall(all, nextIdx){
+  const counted = PREVIEW_AVAILABLE === null ? all : all.slice(0, PREVIEW_AVAILABLE);
+  const pct = Math.round(counted.reduce((s, p) => s + p.pct, 0) / counted.length);
+  const done = counted.filter(p => p.done).length;
+  document.getElementById('overall-pct').textContent = pct + '%';
+  document.getElementById('overall-title').textContent = done
+    ? `${done} of ${counted.length} finished`
+    : (pct ? 'In progress' : 'Nothing attempted yet');
+
+  const next = LESSONS[nextIdx];
+  const nextEl = document.getElementById('next-up');
+  nextEl.href = withGroup(standaloneFilename(next.id));
+  document.getElementById('next-title').textContent = next.title;
+  const allDone = counted.every(p => p.done);
+  document.getElementById('next-k').textContent = allDone
+    ? (PREVIEW_AVAILABLE === null ? 'Course complete · revisit' : 'Preview complete · revisit')
+    : (all[nextIdx].attempted ? 'Continue' : 'Up next');
+}
+
+function showWelcomeBack(name){
+  const copy = document.getElementById('welcome-copy');
+  copy.innerHTML = '';
+  const b = document.createElement('b'); b.textContent = name;
+  copy.append('Welcome back, ', b, '. Your progress is saved as you go.');
+  const form = document.getElementById('name-form');
+  if (form) form.outerHTML = '<button class="change-name-link" id="change-name-btn" style="align-self:flex-start">Not you? Change name</button>';
+  document.getElementById('change-name-btn').addEventListener('click', () => {
+    localStorage.removeItem(STUDENT_NAME_KEY);
+    location.reload();
+  });
+}
+
+// Pull this student's rows down from Supabase (if connected) so the
+// numbers reflect work done on other devices too, then re-render.
+function syncAndRender(){
+  if (!localStorage.getItem(STUDENT_NAME_KEY) || !Course.isConnected()) return;
+  (async () => {
+    for (const l of LESSONS){ await Course.syncFromSupabase(l.id); }
+    renderLessonIndex();
+  })();
+}
+
+const existingName = localStorage.getItem(STUDENT_NAME_KEY);
+if (existingName){
+  showWelcomeBack(existingName);
+} else {
+  document.getElementById('name-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const val = document.getElementById('name-input').value.trim();
+    if (!val) return;
+    localStorage.setItem(STUDENT_NAME_KEY, val);
+    showWelcomeBack(val);
+    renderLessonIndex();
+    syncAndRender();
+  });
+}
+
+renderLessonIndex();
+syncAndRender();
+
+// Coming back with the browser's Back button can show a cached copy of
+// this page; refresh the numbers whenever it is shown again, and when
+// another tab records progress.
+window.addEventListener('pageshow', (e) => { if (e.persisted){ renderLessonIndex(); syncAndRender(); } });
+window.addEventListener('storage', () => renderLessonIndex());
 
 </script>
 </body>
