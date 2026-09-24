@@ -7,202 +7,580 @@
     "default_image": "default.png"
   },
   "sections": {
-    "home":     {"color": "#08080a", "label": "English Voiced"},
-    "lessons":  {"color": "#9a6a0b", "label": "Lessons"},
-    "courses":  {"color": "#1c6b34", "label": "Courses"},
-    "games":    {"color": "#8f1728", "label": "Games"},
-    "quizzes":  {"color": "#9c2f5e", "label": "Quizzes"},
-    "articles": {"color": "#0d3f50", "label": "Lens: Articles"},
-    "videos":   {"color": "#4a5a67", "label": "Lens: Videos"}
+    "home": {
+      "color": "#08080a",
+      "label": "English Voiced"
+    },
+    "lessons": {
+      "color": "#9a6a0b",
+      "label": "Lessons"
+    },
+    "courses": {
+      "color": "#1c6b34",
+      "label": "Courses"
+    },
+    "games": {
+      "color": "#8f1728",
+      "label": "Games"
+    },
+    "quizzes": {
+      "color": "#9c2f5e",
+      "label": "Quizzes"
+    },
+    "articles": {
+      "color": "#0d3f50",
+      "label": "Lens: Articles"
+    },
+    "videos": {
+      "color": "#4a5a67",
+      "label": "Lens: Videos"
+    }
   },
   "pages": [
-    {"path": "/", "section": "home", "image": "default.png", "priority": "1.0",
-     "title": "English Voiced with Kris — English lessons for adults",
-     "description": "Read and watch the news, practise with games and quizzes, then study one-to-one with a teacher. English for adults, from Kris."},
-    {"path": "/contact/", "section": "home", "image": "default.png", "priority": "0.8",
-     "title": "Contact & Book a Lesson — English Voiced with Kris",
-     "description": "Get in touch with Kris or book a one-to-one English lesson. 18+ years teaching English to adults from 15 countries."},
-
-    {"path": "/lessons/", "section": "lessons", "image": "lessons.png", "priority": "0.9",
-     "title": "Free English Lessons — English Voiced with Kris",
-     "description": "Free interactive English lessons for adults — grammar, vocabulary, pronunciation and practical English, organised by category.",
-     "card": {"eyebrow": "Free interactive lessons", "title": "The language you thought you knew", "line": "Grammar · Vocabulary · Pronunciation · Practical English"}},
-    {"path": "/lessons/english-phrasal-verbs.html", "section": "lessons", "image": "lesson-phrasal-verbs.png",
-     "title": "English phrasal verbs — English Voiced with Kris",
-     "description": "61 high-frequency English phrasal verbs — meanings, examples, grammar, and practice. Free interactive lesson from English Voiced with Kris.",
-     "card": {"eyebrow": "Lesson · Vocabulary", "title": "Phrasal verbs", "line": "61 high-frequency verbs, with meanings, examples and practice"}},
-    {"path": "/lessons/english-collocations.html", "section": "lessons", "image": "lesson-collocations.png",
-     "title": "English collocations — English Voiced with Kris",
-     "description": "300+ English collocations — grammar patterns, strength and register, with audio and practice. A free interactive lesson for adult learners.",
-     "card": {"eyebrow": "Lesson · Vocabulary", "title": "Collocations", "line": "300+ word partnerships, with grammar types, strength and register"}},
-    {"path": "/lessons/english-idioms.html", "section": "lessons", "image": "lesson-idioms.png",
-     "title": "Common English idioms — English Voiced with Kris",
-     "description": "60 high-frequency English idioms — meanings and examples, then matching, scrambled sentences and gap-fill practice. A free interactive lesson.",
-     "card": {"eyebrow": "Lesson · Vocabulary", "title": "Idioms", "line": "60 high-frequency idioms: browse, match, unscramble, fill the gap"}},
-    {"path": "/lessons/english-word-formation.html", "section": "lessons", "image": "lesson-word-formation.png",
-     "title": "English word formation — English Voiced with Kris",
-     "description": "Prefixes, suffixes and word families — learn to build new English words from a root, then practise. A free interactive lesson for adults.",
-     "card": {"eyebrow": "Lesson · Vocabulary", "title": "Word formation", "line": "Prefixes, suffixes and word families: build new words from a root"}},
-    {"path": "/lessons/english-feelings-and-emotions.html", "section": "lessons", "image": "lesson-feelings.png",
-     "title": "Feelings and emotions vocabulary — English Voiced with Kris",
-     "description": "Formal and informal ways to talk about feelings and emotions in English, with five types of practice activity. A free interactive lesson.",
-     "card": {"eyebrow": "Lesson · Vocabulary", "title": "Feelings and emotions", "line": "Formal and informal vocabulary, with five activity types"}},
-    {"path": "/lessons/english-confusable-pairs.html", "section": "lessons", "image": "lesson-confusable-pairs.png",
-     "title": "Commonly confused English words — English Voiced with Kris",
-     "description": "Commonly confused English word pairs — what each word means, how to use it, and practice to make the difference stick. A free interactive lesson.",
-     "card": {"eyebrow": "Lesson · Vocabulary", "title": "Confusable pairs", "line": "Commonly confused word pairs: meaning, usage and practice"}},
-    {"path": "/lessons/english-determiners.html", "section": "lessons", "image": "lesson-determiners.png",
-     "title": "English determiners — English Voiced with Kris",
-     "description": "Articles, demonstratives, quantifiers, possessives and more — how English determiners work, with practice. A free interactive lesson for adults.",
-     "card": {"eyebrow": "Lesson · Grammar", "title": "Determiners", "line": "Articles, demonstratives, quantifiers, possessives and more"}},
-    {"path": "/lessons/english-sentences-and-clauses.html", "section": "lessons", "image": "lesson-sentences-clauses.png",
-     "title": "English sentences and clauses — English Voiced with Kris",
-     "description": "Simple, compound and complex sentences and how clauses fit together — English sentence structure explained, with practice. A free interactive lesson.",
-     "card": {"eyebrow": "Lesson · Grammar", "title": "Sentences & clauses", "line": "Simple, compound and complex: how English sentences are built"}},
-    {"path": "/lessons/english-inversion-negative-adverbials.html", "section": "lessons", "image": "lesson-inversion.png",
-     "title": "Inversion with negative adverbials — English Voiced with Kris",
-     "description": "Never have I…, rarely do we…, not only… but also — formal inversion after negative adverbials, explained with examples and practice.",
-     "card": {"eyebrow": "Lesson · Grammar", "title": "Inversion", "line": "Never have I… Rarely do we… Formal inversion after negative adverbials"}},
-    {"path": "/lessons/english-cleft-sentences.html", "section": "lessons", "image": "lesson-cleft-sentences.png",
-     "title": "English cleft sentences — English Voiced with Kris",
-     "description": "It-clefts and wh-clefts — how to put the emphasis on the right part of an English sentence, with examples and practice. A free interactive lesson.",
-     "card": {"eyebrow": "Lesson · Grammar", "title": "Cleft sentences", "line": "It-clefts and wh-clefts: emphasis where you want it"}},
-    {"path": "/lessons/english-conditionals.html", "section": "lessons", "image": "lesson-conditionals.png",
-     "title": "English conditionals: all six types — English Voiced with Kris",
-     "description": "All six English conditional types, from zero to mixed, plus conditional questions and inversion — explained with examples and interactive practice.",
-     "card": {"eyebrow": "Lesson · Grammar", "title": "Conditionals", "line": "All six types, from zero to mixed, plus questions and inversion"}},
-    {"path": "/lessons/english-verb-tenses.html", "section": "lessons", "image": "lesson-verb-tenses.png",
-     "title": "English verb tenses — English Voiced with Kris",
-     "description": "English tense and aspect made clear — the tenses, when to use each one, common mistakes, and practice. A free interactive lesson for adults.",
-     "card": {"eyebrow": "Lesson · Grammar", "title": "Verb tenses", "line": "Tense and aspect, practice, and the common mistakes"}},
-    {"path": "/lessons/english-pronunciation.html", "section": "lessons", "image": "lesson-pronunciation.png",
-     "title": "English pronunciation and the IPA — English Voiced with Kris",
-     "description": "The IPA chart, minimal pairs, connected speech and word stress — a free interactive English pronunciation lesson for adult learners.",
-     "card": {"eyebrow": "Lesson · Pronunciation", "title": "Pronunciation", "line": "IPA chart, minimal pairs, connected speech and stress"}},
-    {"path": "/lessons/english-transitional-words.html", "section": "lessons", "image": "lesson-transitional-words.png",
-     "title": "Linking words and transitions — English Voiced with Kris",
-     "description": "Linking words and transitional phrases for clear, connected English writing — what they mean, where they go, and practice. A free interactive lesson.",
-     "card": {"eyebrow": "Lesson · Practical English", "title": "Transitional words", "line": "Linking words and phrases for clear, connected writing"}},
-    {"path": "/lessons/english-hedging-language.html", "section": "lessons", "image": "lesson-hedging.png",
-     "title": "Hedging language in English — English Voiced with Kris",
-     "description": "How to soften your claims in English — grammatical and lexical hedges for academic and professional writing and speaking, with practice.",
-     "card": {"eyebrow": "Lesson · Practical English", "title": "Hedging language", "line": "Softening claims with grammatical and lexical hedges"}},
-    {"path": "/lessons/workplace-eq.html", "section": "lessons", "image": "lesson-workplace-eq.png",
-     "title": "Workplace EQ — English Voiced with Kris",
-     "description": "The unwritten rules of British workplace English: introductions, emails, meetings, difficult conversations and more. A free interactive lesson.",
-     "card": {"eyebrow": "Lesson · Practical English", "title": "Workplace EQ", "line": "The unwritten rules of British workplace English"}},
-
-    {"path": "/courses/", "section": "courses", "image": "courses.png", "priority": "0.9",
-     "title": "English Courses — English Voiced with Kris",
-     "description": "Courses with Kris — structured, multi-week English courses with real practice, not just rules: grammar and workplace communication. Free previews available.",
-     "card": {"eyebrow": "Courses · free previews", "title": "Long game, better English", "line": "Structured grammar and workplace courses with real practice"}},
-    {"path": "/courses/english-plus-b1-b2/", "section": "courses", "image": "course-english-plus-b1-b2.png", "priority": "0.8",
-     "title": "English+ B1–B2 Grammar Course (free preview) — English Voiced",
-     "description": "A B1+/B2 grammar course built on real practice: tenses, modals, passives, conditionals and reported speech. 22 lessons — try lessons 1 and 2 free.",
-     "card": {"eyebrow": "Course · B1+/B2", "title": "English+ Grammar", "line": "22 lessons of real practice, not just rules. Lessons 1 and 2 free"}},
-    {"path": "/courses/english-plus-b1-b2/lesson-01-preview-standalone.html", "section": "courses", "image": "course-english-plus-b1-b2.png",
-     "title": "Present simple vs present continuous — English+ free lesson",
-     "description": "Lesson 1 of the English+ B1–B2 grammar course, free: present simple vs present continuous, with reading, listening and speaking practice."},
-    {"path": "/courses/english-plus-b1-b2/lesson-02-preview-standalone.html", "section": "courses", "image": "course-english-plus-b1-b2.png",
-     "title": "Past simple vs past continuous — English+ free lesson",
-     "description": "Lesson 2 of the English+ B1–B2 grammar course, free: past simple vs past continuous, with reading, listening and speaking practice."},
-    {"path": "/courses/english-plus-b2-c1/", "section": "courses", "image": "course-english-plus-b2-c1.png", "priority": "0.8",
-     "title": "English+ B2+/C1 Grammar Course (free preview) — English Voiced",
-     "description": "Advanced grammar for B2+/C1 learners: narrative tenses, sophisticated conditionals, advanced passives and discourse grammar. 20 lessons — try two free.",
-     "card": {"eyebrow": "Course · B2+/C1", "title": "English+ Advanced Grammar", "line": "20 lessons of discourse-level grammar. Two lessons free"}},
-    {"path": "/courses/english-plus-b2-c1/lesson-01-preview-standalone.html", "section": "courses", "image": "course-english-plus-b2-c1.png",
-     "title": "Narrative tenses in storytelling — English+ C1 free lesson",
-     "description": "Lesson 1 of the English+ B2+/C1 grammar course, free: using narrative tenses to tell extended stories, with reading, listening and speaking practice."},
-    {"path": "/courses/english-plus-b2-c1/lesson-02-preview-standalone.html", "section": "courses", "image": "course-english-plus-b2-c1.png",
-     "title": "Used to vs would for past habits — English+ C1 free lesson",
-     "description": "Lesson 2 of the English+ B2+/C1 grammar course, free: used to vs would for past habits, with reading, listening and speaking practice."},
-    {"path": "/courses/workplace-eq/", "section": "courses", "image": "course-workplace-eq.png", "priority": "0.8",
-     "title": "Workplace EQ: British workplace English course — English Voiced",
-     "description": "Your grammar can be perfect and you can still sound rude, cold or junior. A B2–C1 course on the unwritten rules of British workplace English. Lesson 1 free.",
-     "card": {"eyebrow": "Course · B2–C1", "title": "Workplace EQ", "line": "The unwritten rules of professional English. Lesson 1 free"}},
-    {"path": "/courses/workplace-eq/lesson-01-preview-standalone.html", "section": "courses", "image": "course-workplace-eq.png",
-     "title": "First impressions and small talk at work — Workplace EQ",
-     "description": "Lesson 1 of Workplace EQ, free: introductions, names and titles, safe and unsafe small-talk topics, and leaving a conversation gracefully."},
-
-    {"path": "/english-games/", "section": "games", "image": "games.png", "priority": "0.9",
-     "title": "Free English Games for Vocabulary and Grammar — English Voiced",
-     "description": "Fourteen free English language games — vocabulary, grammar, spelling, phrasal verbs and listening. Play solo and climb the global leaderboard.",
-     "card": {"eyebrow": "14 free games", "title": "Play your way to fluency", "line": "Vocabulary · Grammar · Spelling · Listening · Leaderboard"}},
-    {"path": "/english-games/wordsnake.html", "section": "games", "image": "game-wordsnake.png",
-     "title": "WordSnake — English vocabulary game | English Voiced",
-     "description": "Steer your snake to eat letters in order and spell a real English word. Longer words pay more but cost speed. A free vocabulary game.",
-     "card": {"eyebrow": "Game · Vocabulary", "title": "WordSnake", "line": "Eat the letters in order, spell a real word"}},
-    {"path": "/english-games/worddrop.html", "section": "games", "image": "game-worddrop.png",
-     "title": "WordDrop — parts of speech game | English Voiced",
-     "description": "A word lifts out of its sentence — catch it in the lane for its part of speech before it lands. A free English grammar game.",
-     "card": {"eyebrow": "Game · Grammar", "title": "WordDrop", "line": "Catch each word in the lane for its part of speech"}},
-    {"path": "/english-games/wordrunner.html", "section": "games", "image": "game-affix-climber.png",
-     "title": "Affix Climber — prefixes and suffixes game | English Voiced",
-     "description": "Every ledge is a word built from an affix, and half are inventions. Climb only the real English words before the decay line catches you.",
-     "card": {"eyebrow": "Game · Affixes", "title": "Affix Climber", "line": "Climb only the real words. Half of them are invented"}},
-    {"path": "/english-games/englishace.html", "section": "games", "image": "game-english-ace.png",
-     "title": "English Ace — English vocabulary arcade game | English Voiced",
-     "description": "Fly your plane into correct answers and dodge the wrong ones — collocations, spelling and phrasal verbs, under fire. A free English game.",
-     "card": {"eyebrow": "Game · Action", "title": "English Ace", "line": "Collocations, spelling, phrasal verbs, under fire"}},
-    {"path": "/english-games/conditionals.html", "section": "games", "image": "game-conditionals.png",
-     "title": "Conditional Constructor — English conditionals game | English Voiced",
-     "description": "Drag the correct result clause to complete English conditional sentences — four levels, from beginner to expert with inversion.",
-     "card": {"eyebrow": "Game · Grammar", "title": "Conditional Constructor", "line": "Complete the conditional, four levels up to inversion"}},
-    {"path": "/english-games/verbsprint.html", "section": "games", "image": "game-verb-sprint.png",
-     "title": "Irregular Verb Sprint — English irregular verbs game | English Voiced",
-     "description": "Type both forms of English irregular verbs against the clock — three modes, from structured drilling to full sentence completion.",
-     "card": {"eyebrow": "Game · Verbs", "title": "Irregular Verb Sprint", "line": "Both forms, against the clock"}},
-    {"path": "/english-games/synonyms.html", "section": "games", "image": "game-wordspark.png",
-     "title": "WordSpark — English synonyms and antonyms game | English Voiced",
-     "description": "Find synonyms, find antonyms, or type them — three ways to build your English vocabulary under pressure. A free vocabulary game.",
-     "card": {"eyebrow": "Game · Vocabulary", "title": "WordSpark", "line": "Synonyms and antonyms, under pressure"}},
-    {"path": "/english-games/phrasalblitz.html", "section": "games", "image": "game-phrasalblitz.png",
-     "title": "PhrasalBlitz — English phrasal verbs game | English Voiced",
-     "description": "Pick particles, type them, or match pairs — three ways to master English phrasal verbs under pressure. A free game.",
-     "card": {"eyebrow": "Game · Phrasal verbs", "title": "PhrasalBlitz", "line": "Pick, type or match the particle"}},
-    {"path": "/english-games/spellit.html", "section": "games", "image": "game-spellit.png",
-     "title": "SpellIt! — English spelling game | English Voiced",
-     "description": "Read the definition, type the word. English spelling is famously tricky — how far can your streak go? A free spelling game.",
-     "card": {"eyebrow": "Game · Spelling", "title": "SpellIt!", "line": "Read the definition, type the word. How long is your streak?"}},
-    {"path": "/english-games/collocationcrash.html", "section": "games", "image": "game-collocationcrash.png",
-     "title": "CollocationCrash — English collocations game | English Voiced",
-     "description": "Which verb goes with which noun? Master the word partnerships that separate good English from great English. A free collocations game.",
-     "card": {"eyebrow": "Game · Collocations", "title": "CollocationCrash", "line": "Which verb goes with which noun?"}},
-    {"path": "/english-games/wordchain.html", "section": "games", "image": "game-wordchain.png",
-     "title": "WordChain — English word chain game | English Voiced",
-     "description": "Each word must start with the last letter of the previous one. Build the longest chain of English words you can. A free vocabulary game.",
-     "card": {"eyebrow": "Game · Word chain", "title": "WordChain", "line": "Start each word with the last letter of the one before"}},
-    {"path": "/english-games/anagram.html", "section": "games", "image": "game-anagram.png",
-     "title": "Anagram — English vocabulary game | English Voiced",
-     "description": "Read the definition, then unscramble the letters to find the English word. Race against the clock across eight words. A free game.",
-     "card": {"eyebrow": "Game · Anagram", "title": "Anagram", "line": "Read the definition, unscramble the word"}},
-    {"path": "/english-games/wordbuilder.html", "section": "games", "image": "game-word-builder.png",
-     "title": "Word Builder — English word game | English Voiced",
-     "description": "Given a set of letters, make as many English words as you can before time runs out. Longer words score more. A free vocabulary game.",
-     "card": {"eyebrow": "Game · Word builder", "title": "Word Builder", "line": "Make as many words as you can. Longer words score more"}},
-    {"path": "/english-games/dictationdrill.html", "section": "games", "image": "game-dictation-drill.png",
-     "title": "Dictation Drill — English listening game | English Voiced",
-     "description": "Listen, then type exactly what you hear — minimal pairs, tricky spelling, connected speech and full sentences. Train your ear for English.",
-     "card": {"eyebrow": "Game · Listening", "title": "Dictation Drill", "line": "Listen, then type exactly what you hear"}},
-
-    {"path": "/english-quiz/", "section": "quizzes", "image": "quizzes.png", "priority": "0.9",
-     "title": "English Quiz — live and self-practice quizzes | English Voiced",
-     "description": "Join a live English quiz from your lesson with a room code, or practise solo any time — grammar, vocabulary, idioms and more, with a quiz of the day.",
-     "card": {"eyebrow": "Quizzes", "title": "Play your way to fluency", "line": "Join a live quiz from your lesson, or practise solo any time"}},
-    {"path": "/english-quiz/practice.html", "section": "quizzes", "image": "quizzes.png",
-     "title": "Self-practice English quizzes — English Voiced with Kris",
-     "description": "Practise English quizzes solo, any time — grammar, vocabulary, idioms, phrasal verbs and more, at your own pace."},
-
-    {"path": "/english-lens/", "section": "articles", "image": "lens-articles.png", "priority": "0.9",
-     "title": "English Lens: news for B1 and B2–C1 learners — English Voiced",
-     "description": "Twelve news stories a week, each summarised twice — once for B1, once for B2–C1 — with five words to keep and one question worth arguing about.",
-     "card": {"eyebrow": "Lens: Articles · 12 a week", "title": "Read the news, keep the words", "line": "Real news at two levels: B1 and B2–C1"}},
-    {"path": "/english-lens/videos.html", "section": "videos", "image": "lens-videos.png", "priority": "0.9",
-     "title": "English Lens: news videos with comprehension tasks — English Voiced",
-     "description": "Five short news videos every week, one from each category, each with a full set of comprehension tasks. Watch on a break, check what you caught.",
-     "card": {"eyebrow": "Lens: Videos · 5 a week", "title": "Short stories, long gains", "line": "Short news videos with comprehension tasks"}}
+    {
+      "path": "/",
+      "section": "home",
+      "image": "default.png",
+      "priority": "1.0",
+      "title": "English Voiced with Kris — English lessons for adults",
+      "description": "Read and watch the news, practise with games and quizzes, then study one-to-one with a teacher. English for adults, from Kris."
+    },
+    {
+      "path": "/contact/",
+      "section": "home",
+      "image": "default.png",
+      "priority": "0.8",
+      "title": "Contact & Book a Lesson — English Voiced with Kris",
+      "description": "Get in touch with Kris or book a one-to-one English lesson. 18+ years teaching English to adults from 15 countries."
+    },
+    {
+      "path": "/privacy/",
+      "section": "home",
+      "image": "default.png",
+      "priority": "0.3",
+      "title": "Privacy policy — English Voiced with Kris",
+      "description": "What personal data English Voiced collects, why, who processes it, how long it is kept, and your rights under the GDPR."
+    },
+    {
+      "path": "/lessons/",
+      "section": "lessons",
+      "image": "lessons.png",
+      "priority": "0.9",
+      "title": "Free English Lessons — English Voiced with Kris",
+      "description": "Free interactive English lessons for adults — grammar, vocabulary, pronunciation and practical English, organised by category.",
+      "card": {
+        "eyebrow": "Free interactive lessons",
+        "title": "The language you thought you knew",
+        "line": "Grammar · Vocabulary · Pronunciation · Practical English"
+      }
+    },
+    {
+      "path": "/lessons/english-phrasal-verbs.html",
+      "section": "lessons",
+      "image": "lesson-phrasal-verbs.png",
+      "title": "English phrasal verbs — English Voiced with Kris",
+      "description": "61 high-frequency English phrasal verbs — meanings, examples, grammar, and practice. Free interactive lesson from English Voiced with Kris.",
+      "card": {
+        "eyebrow": "Lesson · Vocabulary",
+        "title": "Phrasal verbs",
+        "line": "61 high-frequency verbs, with meanings, examples and practice"
+      }
+    },
+    {
+      "path": "/lessons/english-collocations.html",
+      "section": "lessons",
+      "image": "lesson-collocations.png",
+      "title": "English collocations — English Voiced with Kris",
+      "description": "300+ English collocations — grammar patterns, strength and register, with audio and practice. A free interactive lesson for adult learners.",
+      "card": {
+        "eyebrow": "Lesson · Vocabulary",
+        "title": "Collocations",
+        "line": "300+ word partnerships, with grammar types, strength and register"
+      }
+    },
+    {
+      "path": "/lessons/english-idioms.html",
+      "section": "lessons",
+      "image": "lesson-idioms.png",
+      "title": "Common English idioms — English Voiced with Kris",
+      "description": "60 high-frequency English idioms — meanings and examples, then matching, scrambled sentences and gap-fill practice. A free interactive lesson.",
+      "card": {
+        "eyebrow": "Lesson · Vocabulary",
+        "title": "Idioms",
+        "line": "60 high-frequency idioms: browse, match, unscramble, fill the gap"
+      }
+    },
+    {
+      "path": "/lessons/english-word-formation.html",
+      "section": "lessons",
+      "image": "lesson-word-formation.png",
+      "title": "English word formation — English Voiced with Kris",
+      "description": "Prefixes, suffixes and word families — learn to build new English words from a root, then practise. A free interactive lesson for adults.",
+      "card": {
+        "eyebrow": "Lesson · Vocabulary",
+        "title": "Word formation",
+        "line": "Prefixes, suffixes and word families: build new words from a root"
+      }
+    },
+    {
+      "path": "/lessons/english-feelings-and-emotions.html",
+      "section": "lessons",
+      "image": "lesson-feelings.png",
+      "title": "Feelings and emotions vocabulary — English Voiced with Kris",
+      "description": "Formal and informal ways to talk about feelings and emotions in English, with five types of practice activity. A free interactive lesson.",
+      "card": {
+        "eyebrow": "Lesson · Vocabulary",
+        "title": "Feelings and emotions",
+        "line": "Formal and informal vocabulary, with five activity types"
+      }
+    },
+    {
+      "path": "/lessons/english-confusable-pairs.html",
+      "section": "lessons",
+      "image": "lesson-confusable-pairs.png",
+      "title": "Commonly confused English words — English Voiced with Kris",
+      "description": "Commonly confused English word pairs — what each word means, how to use it, and practice to make the difference stick. A free interactive lesson.",
+      "card": {
+        "eyebrow": "Lesson · Vocabulary",
+        "title": "Confusable pairs",
+        "line": "Commonly confused word pairs: meaning, usage and practice"
+      }
+    },
+    {
+      "path": "/lessons/english-determiners.html",
+      "section": "lessons",
+      "image": "lesson-determiners.png",
+      "title": "English determiners — English Voiced with Kris",
+      "description": "Articles, demonstratives, quantifiers, possessives and more — how English determiners work, with practice. A free interactive lesson for adults.",
+      "card": {
+        "eyebrow": "Lesson · Grammar",
+        "title": "Determiners",
+        "line": "Articles, demonstratives, quantifiers, possessives and more"
+      }
+    },
+    {
+      "path": "/lessons/english-sentences-and-clauses.html",
+      "section": "lessons",
+      "image": "lesson-sentences-clauses.png",
+      "title": "English sentences and clauses — English Voiced with Kris",
+      "description": "Simple, compound and complex sentences and how clauses fit together — English sentence structure explained, with practice. A free interactive lesson.",
+      "card": {
+        "eyebrow": "Lesson · Grammar",
+        "title": "Sentences & clauses",
+        "line": "Simple, compound and complex: how English sentences are built"
+      }
+    },
+    {
+      "path": "/lessons/english-inversion-negative-adverbials.html",
+      "section": "lessons",
+      "image": "lesson-inversion.png",
+      "title": "Inversion with negative adverbials — English Voiced with Kris",
+      "description": "Never have I…, rarely do we…, not only… but also — formal inversion after negative adverbials, explained with examples and practice.",
+      "card": {
+        "eyebrow": "Lesson · Grammar",
+        "title": "Inversion",
+        "line": "Never have I… Rarely do we… Formal inversion after negative adverbials"
+      }
+    },
+    {
+      "path": "/lessons/english-cleft-sentences.html",
+      "section": "lessons",
+      "image": "lesson-cleft-sentences.png",
+      "title": "English cleft sentences — English Voiced with Kris",
+      "description": "It-clefts and wh-clefts — how to put the emphasis on the right part of an English sentence, with examples and practice. A free interactive lesson.",
+      "card": {
+        "eyebrow": "Lesson · Grammar",
+        "title": "Cleft sentences",
+        "line": "It-clefts and wh-clefts: emphasis where you want it"
+      }
+    },
+    {
+      "path": "/lessons/english-conditionals.html",
+      "section": "lessons",
+      "image": "lesson-conditionals.png",
+      "title": "English conditionals: all six types — English Voiced with Kris",
+      "description": "All six English conditional types, from zero to mixed, plus conditional questions and inversion — explained with examples and interactive practice.",
+      "card": {
+        "eyebrow": "Lesson · Grammar",
+        "title": "Conditionals",
+        "line": "All six types, from zero to mixed, plus questions and inversion"
+      }
+    },
+    {
+      "path": "/lessons/english-verb-tenses.html",
+      "section": "lessons",
+      "image": "lesson-verb-tenses.png",
+      "title": "English verb tenses — English Voiced with Kris",
+      "description": "English tense and aspect made clear — the tenses, when to use each one, common mistakes, and practice. A free interactive lesson for adults.",
+      "card": {
+        "eyebrow": "Lesson · Grammar",
+        "title": "Verb tenses",
+        "line": "Tense and aspect, practice, and the common mistakes"
+      }
+    },
+    {
+      "path": "/lessons/english-pronunciation.html",
+      "section": "lessons",
+      "image": "lesson-pronunciation.png",
+      "title": "English pronunciation and the IPA — English Voiced with Kris",
+      "description": "The IPA chart, minimal pairs, connected speech and word stress — a free interactive English pronunciation lesson for adult learners.",
+      "card": {
+        "eyebrow": "Lesson · Pronunciation",
+        "title": "Pronunciation",
+        "line": "IPA chart, minimal pairs, connected speech and stress"
+      }
+    },
+    {
+      "path": "/lessons/english-transitional-words.html",
+      "section": "lessons",
+      "image": "lesson-transitional-words.png",
+      "title": "Linking words and transitions — English Voiced with Kris",
+      "description": "Linking words and transitional phrases for clear, connected English writing — what they mean, where they go, and practice. A free interactive lesson.",
+      "card": {
+        "eyebrow": "Lesson · Practical English",
+        "title": "Transitional words",
+        "line": "Linking words and phrases for clear, connected writing"
+      }
+    },
+    {
+      "path": "/lessons/english-hedging-language.html",
+      "section": "lessons",
+      "image": "lesson-hedging.png",
+      "title": "Hedging language in English — English Voiced with Kris",
+      "description": "How to soften your claims in English — grammatical and lexical hedges for academic and professional writing and speaking, with practice.",
+      "card": {
+        "eyebrow": "Lesson · Practical English",
+        "title": "Hedging language",
+        "line": "Softening claims with grammatical and lexical hedges"
+      }
+    },
+    {
+      "path": "/lessons/workplace-eq.html",
+      "section": "lessons",
+      "image": "lesson-workplace-eq.png",
+      "title": "Workplace EQ — English Voiced with Kris",
+      "description": "The unwritten rules of British workplace English: introductions, emails, meetings, difficult conversations and more. A free interactive lesson.",
+      "card": {
+        "eyebrow": "Lesson · Practical English",
+        "title": "Workplace EQ",
+        "line": "The unwritten rules of British workplace English"
+      }
+    },
+    {
+      "path": "/courses/",
+      "section": "courses",
+      "image": "courses.png",
+      "priority": "0.9",
+      "title": "English Courses — English Voiced with Kris",
+      "description": "Courses with Kris — structured, multi-week English courses with real practice, not just rules: grammar and workplace communication. Free previews available.",
+      "card": {
+        "eyebrow": "Courses · free previews",
+        "title": "Long game, better English",
+        "line": "Structured grammar and workplace courses with real practice"
+      }
+    },
+    {
+      "path": "/courses/english-plus-b1-b2/",
+      "section": "courses",
+      "image": "course-english-plus-b1-b2.png",
+      "priority": "0.8",
+      "title": "English+ B1–B2 Grammar Course (free preview) — English Voiced",
+      "description": "A B1+/B2 grammar course built on real practice: tenses, modals, passives, conditionals and reported speech. 22 lessons — try lessons 1 and 2 free.",
+      "card": {
+        "eyebrow": "Course · B1+/B2",
+        "title": "English+ Grammar",
+        "line": "22 lessons of real practice, not just rules. Lessons 1 and 2 free"
+      }
+    },
+    {
+      "path": "/courses/english-plus-b1-b2/lesson-01-preview-standalone.html",
+      "section": "courses",
+      "image": "course-english-plus-b1-b2.png",
+      "title": "Present simple vs present continuous — English+ free lesson",
+      "description": "Lesson 1 of the English+ B1–B2 grammar course, free: present simple vs present continuous, with reading, listening and speaking practice."
+    },
+    {
+      "path": "/courses/english-plus-b1-b2/lesson-02-preview-standalone.html",
+      "section": "courses",
+      "image": "course-english-plus-b1-b2.png",
+      "title": "Past simple vs past continuous — English+ free lesson",
+      "description": "Lesson 2 of the English+ B1–B2 grammar course, free: past simple vs past continuous, with reading, listening and speaking practice."
+    },
+    {
+      "path": "/courses/english-plus-b2-c1/",
+      "section": "courses",
+      "image": "course-english-plus-b2-c1.png",
+      "priority": "0.8",
+      "title": "English+ B2+/C1 Grammar Course (free preview) — English Voiced",
+      "description": "Advanced grammar for B2+/C1 learners: narrative tenses, sophisticated conditionals, advanced passives and discourse grammar. 20 lessons — try two free.",
+      "card": {
+        "eyebrow": "Course · B2+/C1",
+        "title": "English+ Advanced Grammar",
+        "line": "20 lessons of discourse-level grammar. Two lessons free"
+      }
+    },
+    {
+      "path": "/courses/english-plus-b2-c1/lesson-01-preview-standalone.html",
+      "section": "courses",
+      "image": "course-english-plus-b2-c1.png",
+      "title": "Narrative tenses in storytelling — English+ C1 free lesson",
+      "description": "Lesson 1 of the English+ B2+/C1 grammar course, free: using narrative tenses to tell extended stories, with reading, listening and speaking practice."
+    },
+    {
+      "path": "/courses/english-plus-b2-c1/lesson-02-preview-standalone.html",
+      "section": "courses",
+      "image": "course-english-plus-b2-c1.png",
+      "title": "Used to vs would for past habits — English+ C1 free lesson",
+      "description": "Lesson 2 of the English+ B2+/C1 grammar course, free: used to vs would for past habits, with reading, listening and speaking practice."
+    },
+    {
+      "path": "/courses/workplace-eq/",
+      "section": "courses",
+      "image": "course-workplace-eq.png",
+      "priority": "0.8",
+      "title": "Workplace EQ: British workplace English course — English Voiced",
+      "description": "Your grammar can be perfect and you can still sound rude, cold or junior. A B2–C1 course on the unwritten rules of British workplace English. Lesson 1 free.",
+      "card": {
+        "eyebrow": "Course · B2–C1",
+        "title": "Workplace EQ",
+        "line": "The unwritten rules of professional English. Lesson 1 free"
+      }
+    },
+    {
+      "path": "/courses/workplace-eq/lesson-01-preview-standalone.html",
+      "section": "courses",
+      "image": "course-workplace-eq.png",
+      "title": "First impressions and small talk at work — Workplace EQ",
+      "description": "Lesson 1 of Workplace EQ, free: introductions, names and titles, safe and unsafe small-talk topics, and leaving a conversation gracefully."
+    },
+    {
+      "path": "/english-games/",
+      "section": "games",
+      "image": "games.png",
+      "priority": "0.9",
+      "title": "Free English Games for Vocabulary and Grammar — English Voiced",
+      "description": "Fourteen free English language games — vocabulary, grammar, spelling, phrasal verbs and listening. Play solo and climb the global leaderboard.",
+      "card": {
+        "eyebrow": "14 free games",
+        "title": "Play your way to fluency",
+        "line": "Vocabulary · Grammar · Spelling · Listening · Leaderboard"
+      }
+    },
+    {
+      "path": "/english-games/wordsnake.html",
+      "section": "games",
+      "image": "game-wordsnake.png",
+      "title": "WordSnake — English vocabulary game | English Voiced",
+      "description": "Steer your snake to eat letters in order and spell a real English word. Longer words pay more but cost speed. A free vocabulary game.",
+      "card": {
+        "eyebrow": "Game · Vocabulary",
+        "title": "WordSnake",
+        "line": "Eat the letters in order, spell a real word"
+      }
+    },
+    {
+      "path": "/english-games/worddrop.html",
+      "section": "games",
+      "image": "game-worddrop.png",
+      "title": "WordDrop — parts of speech game | English Voiced",
+      "description": "A word lifts out of its sentence — catch it in the lane for its part of speech before it lands. A free English grammar game.",
+      "card": {
+        "eyebrow": "Game · Grammar",
+        "title": "WordDrop",
+        "line": "Catch each word in the lane for its part of speech"
+      }
+    },
+    {
+      "path": "/english-games/wordrunner.html",
+      "section": "games",
+      "image": "game-affix-climber.png",
+      "title": "Affix Climber — prefixes and suffixes game | English Voiced",
+      "description": "Every ledge is a word built from an affix, and half are inventions. Climb only the real English words before the decay line catches you.",
+      "card": {
+        "eyebrow": "Game · Affixes",
+        "title": "Affix Climber",
+        "line": "Climb only the real words. Half of them are invented"
+      }
+    },
+    {
+      "path": "/english-games/englishace.html",
+      "section": "games",
+      "image": "game-english-ace.png",
+      "title": "English Ace — English vocabulary arcade game | English Voiced",
+      "description": "Fly your plane into correct answers and dodge the wrong ones — collocations, spelling and phrasal verbs, under fire. A free English game.",
+      "card": {
+        "eyebrow": "Game · Action",
+        "title": "English Ace",
+        "line": "Collocations, spelling, phrasal verbs, under fire"
+      }
+    },
+    {
+      "path": "/english-games/conditionals.html",
+      "section": "games",
+      "image": "game-conditionals.png",
+      "title": "Conditional Constructor — English conditionals game | English Voiced",
+      "description": "Drag the correct result clause to complete English conditional sentences — four levels, from beginner to expert with inversion.",
+      "card": {
+        "eyebrow": "Game · Grammar",
+        "title": "Conditional Constructor",
+        "line": "Complete the conditional, four levels up to inversion"
+      }
+    },
+    {
+      "path": "/english-games/verbsprint.html",
+      "section": "games",
+      "image": "game-verb-sprint.png",
+      "title": "Irregular Verb Sprint — English irregular verbs game | English Voiced",
+      "description": "Type both forms of English irregular verbs against the clock — three modes, from structured drilling to full sentence completion.",
+      "card": {
+        "eyebrow": "Game · Verbs",
+        "title": "Irregular Verb Sprint",
+        "line": "Both forms, against the clock"
+      }
+    },
+    {
+      "path": "/english-games/synonyms.html",
+      "section": "games",
+      "image": "game-wordspark.png",
+      "title": "WordSpark — English synonyms and antonyms game | English Voiced",
+      "description": "Find synonyms, find antonyms, or type them — three ways to build your English vocabulary under pressure. A free vocabulary game.",
+      "card": {
+        "eyebrow": "Game · Vocabulary",
+        "title": "WordSpark",
+        "line": "Synonyms and antonyms, under pressure"
+      }
+    },
+    {
+      "path": "/english-games/phrasalblitz.html",
+      "section": "games",
+      "image": "game-phrasalblitz.png",
+      "title": "PhrasalBlitz — English phrasal verbs game | English Voiced",
+      "description": "Pick particles, type them, or match pairs — three ways to master English phrasal verbs under pressure. A free game.",
+      "card": {
+        "eyebrow": "Game · Phrasal verbs",
+        "title": "PhrasalBlitz",
+        "line": "Pick, type or match the particle"
+      }
+    },
+    {
+      "path": "/english-games/spellit.html",
+      "section": "games",
+      "image": "game-spellit.png",
+      "title": "SpellIt! — English spelling game | English Voiced",
+      "description": "Read the definition, type the word. English spelling is famously tricky — how far can your streak go? A free spelling game.",
+      "card": {
+        "eyebrow": "Game · Spelling",
+        "title": "SpellIt!",
+        "line": "Read the definition, type the word. How long is your streak?"
+      }
+    },
+    {
+      "path": "/english-games/collocationcrash.html",
+      "section": "games",
+      "image": "game-collocationcrash.png",
+      "title": "CollocationCrash — English collocations game | English Voiced",
+      "description": "Which verb goes with which noun? Master the word partnerships that separate good English from great English. A free collocations game.",
+      "card": {
+        "eyebrow": "Game · Collocations",
+        "title": "CollocationCrash",
+        "line": "Which verb goes with which noun?"
+      }
+    },
+    {
+      "path": "/english-games/wordchain.html",
+      "section": "games",
+      "image": "game-wordchain.png",
+      "title": "WordChain — English word chain game | English Voiced",
+      "description": "Each word must start with the last letter of the previous one. Build the longest chain of English words you can. A free vocabulary game.",
+      "card": {
+        "eyebrow": "Game · Word chain",
+        "title": "WordChain",
+        "line": "Start each word with the last letter of the one before"
+      }
+    },
+    {
+      "path": "/english-games/anagram.html",
+      "section": "games",
+      "image": "game-anagram.png",
+      "title": "Anagram — English vocabulary game | English Voiced",
+      "description": "Read the definition, then unscramble the letters to find the English word. Race against the clock across eight words. A free game.",
+      "card": {
+        "eyebrow": "Game · Anagram",
+        "title": "Anagram",
+        "line": "Read the definition, unscramble the word"
+      }
+    },
+    {
+      "path": "/english-games/wordbuilder.html",
+      "section": "games",
+      "image": "game-word-builder.png",
+      "title": "Word Builder — English word game | English Voiced",
+      "description": "Given a set of letters, make as many English words as you can before time runs out. Longer words score more. A free vocabulary game.",
+      "card": {
+        "eyebrow": "Game · Word builder",
+        "title": "Word Builder",
+        "line": "Make as many words as you can. Longer words score more"
+      }
+    },
+    {
+      "path": "/english-games/dictationdrill.html",
+      "section": "games",
+      "image": "game-dictation-drill.png",
+      "title": "Dictation Drill — English listening game | English Voiced",
+      "description": "Listen, then type exactly what you hear — minimal pairs, tricky spelling, connected speech and full sentences. Train your ear for English.",
+      "card": {
+        "eyebrow": "Game · Listening",
+        "title": "Dictation Drill",
+        "line": "Listen, then type exactly what you hear"
+      }
+    },
+    {
+      "path": "/english-quiz/",
+      "section": "quizzes",
+      "image": "quizzes.png",
+      "priority": "0.9",
+      "title": "English Quiz — live and self-practice quizzes | English Voiced",
+      "description": "Join a live English quiz from your lesson with a room code, or practise solo any time — grammar, vocabulary, idioms and more, with a quiz of the day.",
+      "card": {
+        "eyebrow": "Quizzes",
+        "title": "Play your way to fluency",
+        "line": "Join a live quiz from your lesson, or practise solo any time"
+      }
+    },
+    {
+      "path": "/english-quiz/practice.html",
+      "section": "quizzes",
+      "image": "quizzes.png",
+      "title": "Self-practice English quizzes — English Voiced with Kris",
+      "description": "Practise English quizzes solo, any time — grammar, vocabulary, idioms, phrasal verbs and more, at your own pace."
+    },
+    {
+      "path": "/english-lens/",
+      "section": "articles",
+      "image": "lens-articles.png",
+      "priority": "0.9",
+      "title": "English Lens: news for B1 and B2–C1 learners — English Voiced",
+      "description": "Twelve news stories a week, each summarised twice — once for B1, once for B2–C1 — with five words to keep and one question worth arguing about.",
+      "card": {
+        "eyebrow": "Lens: Articles · 12 a week",
+        "title": "Read the news, keep the words",
+        "line": "Real news at two levels: B1 and B2–C1"
+      }
+    },
+    {
+      "path": "/english-lens/videos.html",
+      "section": "videos",
+      "image": "lens-videos.png",
+      "priority": "0.9",
+      "title": "English Lens: news videos with comprehension tasks — English Voiced",
+      "description": "Five short news videos every week, one from each category, each with a full set of comprehension tasks. Watch on a break, check what you caught.",
+      "card": {
+        "eyebrow": "Lens: Videos · 5 a week",
+        "title": "Short stories, long gains",
+        "line": "Short news videos with comprehension tasks"
+      }
+    }
   ],
-
   "noindex": [
     "/404.html",
     "/courses/*/glossary-standalone.html",
@@ -213,7 +591,6 @@
     "/english-plus-b2-c1-grammar-course/*",
     "/workplace-eq-course/*"
   ],
-
   "skip": [
     "/rozmowki-przedszkolne.html",
     "/english-games/design_handoff/*",
@@ -233,12 +610,10 @@
     "/idioms_lesson_v2.html",
     "/inversion_negative_adverbials_7_1.html"
   ],
-
   "side_projects": [
     "/spanish-lessons/*",
     "/rozmowki-przedszkolne/*"
   ],
-
   "repos": {
     "/": "krisgalezewski.github.io",
     "/english-games/": "english-games/english-games",

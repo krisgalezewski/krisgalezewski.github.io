@@ -26,9 +26,7 @@
 <meta name="theme-color" content="#08080a">
 <meta name="color-scheme" content="dark">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/fonts/fonts.css">
 
 <style>
 :root{
@@ -91,6 +89,12 @@ h1{font-family:'Archivo Black',sans-serif;font-weight:400;font-size:clamp(30px,5
 .direct a:hover{text-decoration:underline}
 
 .calendly-embed{margin-top:14px;border-radius:14px;overflow:hidden;border:1px solid var(--line);min-height:600px}
+.calendly-embed iframe{display:block;border:0}
+.calendly-gate{min-height:600px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:28px;text-align:center}
+.calendly-gate p{margin:0;max-width:340px;font-size:13px;line-height:1.55;color:var(--text-dim)}
+.calendly-gate a{color:var(--accent)}
+.form-privacy{margin:10px 0 0;font-size:12px;line-height:1.5;color:var(--text-dim)}
+.form-privacy a,footer a{color:var(--text-dim);text-decoration:underline}
 
 footer{padding:40px 0 60px;font-size:12px;color:var(--text-dim)}
 
@@ -161,8 +165,11 @@ footer{padding:40px 0 60px;font-size:12px;color:var(--text-dim)}
     <div class="card">
       <h2>Book a lesson</h2>
       <p>Pick a time that works for you — the calendar below shows my real availability.</p>
-      <div class="calendly-embed">
-        <iframe src="https://calendly.com/galezewski-kris/english-with-kris?hide_gdpr_banner=1" width="100%" height="600" frameborder="0" title="Book a lesson"></iframe>
+      <div class="calendly-embed" id="calendlyEmbed">
+        <div class="calendly-gate">
+          <button type="button" class="btn" id="loadCalendly">Show booking calendar</button>
+          <p>The calendar is provided by Calendly, which sets its own cookies once it loads. <a href="/privacy/#calendly">More in the privacy policy</a>.</p>
+        </div>
       </div>
       <p style="margin-top:12px">
         <a class="btn" href="https://calendly.com/galezewski-kris/english-with-kris" target="_blank" rel="noopener">Open booking page<span aria-hidden="true">↗</span></a>
@@ -184,7 +191,7 @@ footer{padding:40px 0 60px;font-size:12px;color:var(--text-dim)}
 
 </div>
 
-<footer><div class="wrap">© English Voiced with Kris</div></footer>
+<footer><div class="wrap">© English Voiced with Kris · <a href="/privacy/">Privacy</a></div></footer>
 
 <!-- Contact popup -->
 <div class="modal-overlay" id="contactOverlay">
@@ -215,6 +222,7 @@ footer{padding:40px 0 60px;font-size:12px;color:var(--text-dim)}
         <textarea id="cf-message" name="message" required placeholder="What would you like to ask?"></textarea>
       </div>
       <button type="submit" class="btn modal-submit" id="cf-submit">Send message</button>
+      <p class="form-privacy">I'll only use your name and email to reply to you. Messages are delivered through Formspree. See the <a href="/privacy/#contact">privacy policy</a>.</p>
       <div class="modal-status" id="cf-status"></div>
     </form>
     <div class="modal-alt">or email directly — <a href="mailto:kris@englishvoiced.com">kris@englishvoiced.com</a></div>
@@ -222,6 +230,13 @@ footer{padding:40px 0 60px;font-size:12px;color:var(--text-dim)}
 </div>
 
 <script>
+(function(){
+  var btn = document.getElementById('loadCalendly');
+  if (btn) btn.addEventListener('click', function(){
+    var box = document.getElementById('calendlyEmbed');
+    box.innerHTML = '<iframe src="https://calendly.com/galezewski-kris/english-with-kris" width="100%" height="600" title="Book a lesson"></iframe>';
+  });
+})();
 (function(){
   var overlay = document.getElementById('contactOverlay');
   var openBtn = document.getElementById('openContactModal');
