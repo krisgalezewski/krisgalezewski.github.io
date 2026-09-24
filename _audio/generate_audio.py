@@ -26,7 +26,7 @@ How the lessons use it
 
 No extra installs needed: plain Python 3.
 """
-import base64, hashlib, json, os, sys, time, urllib.error, urllib.request
+import base64, hashlib, json, os, re, sys, time, urllib.error, urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -76,7 +76,10 @@ def synthesize(api_key, text):
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     dry = "--dry-run" in sys.argv
-    api_key = args[0] if args else os.environ.get("GOOGLE_TTS_API_KEY", "")
+    api_key = (args[0] if args else os.environ.get("GOOGLE_TTS_API_KEY", "")).strip()
+    if api_key and not re.fullmatch(r"[A-Za-z0-9_-]{30,60}", api_key):
+        sys.exit("That doesn't look like a Google API key (it should be about 39 letters, numbers, - or _ "
+                 "and start with AIza). Run:  python3 _audio/generate_audio.py YOUR_API_KEY")
 
     lessons = json.load(open(TEXTS, encoding="utf-8"))
     texts = sorted({key(t) for ts in lessons.values() for t in ts if key(t)})
