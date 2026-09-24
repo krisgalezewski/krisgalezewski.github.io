@@ -700,7 +700,7 @@ function toggleGloss(id){
   if(document.getElementById('p7').classList.contains('on'))renderGloss();
 }
 function renderGloss(){
-  const cont=document.getElementById('glossCont');if(!cont)return;const printBtn=document.getElementById('glossPrintBtn');if(printBtn)printBtn.disabled=!glossary.length;
+  const cont=document.getElementById('glossCont');if(!cont)return;const printBtn=document.getElementById('glossPrintBtn');if(printBtn)printBtn.disabled=!gloss.length;
   if(!gloss.length){
     cont.innerHTML='<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px"></i><div style="margin-bottom:8px">Nothing saved yet.</div><div style="font-size:13px">Open any adverbial in the <strong>Adverbials A\u2013Z</strong> tab and click \uD83D\uDD16 Save.</div></div>';
     return;

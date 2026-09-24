@@ -571,7 +571,7 @@ const TIME_ORDER=['past','present','future'];
 const TIME_LABELS={past:'Past tenses',present:'Present tenses',future:'Future tenses'};
 const TIME_COLS={past:{bg:'#E6F1FB',tc:'#0C447C'},present:{bg:'#E1F5EE',tc:'#085041'},future:{bg:'#FAECE7',tc:'#712B13'}};
 function renderGloss(){
-  const cont=document.getElementById('glossCont');if(!cont)return;const printBtn=document.getElementById('glossPrintBtn');if(printBtn)printBtn.disabled=!glossary.length;
+  const cont=document.getElementById('glossCont');if(!cont)return;const printBtn=document.getElementById('glossPrintBtn');if(printBtn)printBtn.disabled=!gloss.length;
   if(!gloss.length){cont.innerHTML='<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px"></i><div style="margin-bottom:8px">Nothing saved yet.</div><div style="font-size:13px">Open any tense in <strong>Tenses</strong> and click 🔖 Save. Click any time signal chip and click 🔖 Save.</div></div>';return;}
   let html=`<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">${gloss.length} item${gloss.length!==1?'s':''} saved</div>`;
   // split into tenses and signals

@@ -259,7 +259,7 @@ function toggleWFGloss(r){
 }
 function renderGloss(){
   wfGloss=gloss.filter(g=>g.type==='wf').map(g=>g.key);
-  const cont=document.getElementById('glossCont');if(!cont)return;const printBtn=document.getElementById('glossPrintBtn');if(printBtn)printBtn.disabled=!glossary.length;
+  const cont=document.getElementById('glossCont');if(!cont)return;const printBtn=document.getElementById('glossPrintBtn');if(printBtn)printBtn.disabled=!gloss.length;
   if(!gloss.length){
     cont.innerHTML='<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px"></i><div style="margin-bottom:8px">Nothing saved yet.</div><div style="font-size:13px">Click \u{1F516} Save in the Parts of speech, Prefixes, Suffixes, or Word families tabs.</div></div>';
     return;

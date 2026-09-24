@@ -139,3 +139,85 @@
 
   window.EVLesson = EVLesson;
 })();
+
+/* ==========================================================================
+   3) Recorded audio
+   Every lesson speaks through the browser's built-in voice
+   (speechSynthesis.speak). If a natural-sounding recording of the same
+   sentence exists in /lessons/audio/ (made by _audio/generate_audio.py),
+   play that instead; otherwise fall back to the browser voice exactly as
+   before. The lessons themselves don't need to know: their play buttons,
+   "playing" highlights and onend handlers keep working, because the
+   recording fires the same start/end events on the lesson's utterance.
+   Also stops speech from carrying over to the next page.
+   ========================================================================== */
+(function () {
+  'use strict';
+  var synth = window.speechSynthesis;
+  if (!synth || !window.Audio) return;
+
+  var BASE = '/lessons/audio/';
+  // Lessons slow the browser voice down (rate ~0.82-0.87) to sound natural;
+  // the recordings are already at a natural pace, so rates are taken
+  // relative to that. A "slow" button (0.5-0.55) still plays clearly slower.
+  var NATURAL_RATE = 0.84;
+  var manifest = null, current = null, currentU = null;
+
+  try {
+    fetch(BASE + 'manifest.json', { cache: 'no-cache' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (m) { manifest = m; })
+      .catch(function () {});
+  } catch (e) {}
+
+  var origSpeak = synth.speak.bind(synth);
+  var origCancel = synth.cancel.bind(synth);
+  var speakingDesc = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(synth), 'speaking');
+
+  function key(t) { return String(t == null ? '' : t).replace(/\s+/g, ' ').trim(); }
+  function fire(u, type) { try { u.dispatchEvent(new Event(type)); } catch (e) {} }
+  function stopCurrent() {
+    if (!current) return;
+    var a = current, u = currentU;
+    current = null; currentU = null;
+    try { a.pause(); } catch (e) {}
+    fire(u, 'end');
+  }
+
+  synth.speak = function (u) {
+    var file = manifest && u && manifest[key(u.text)];
+    if (!file) return origSpeak(u);
+    stopCurrent();
+    var a = new Audio(BASE + file);
+    a.playbackRate = Math.max(0.6, Math.min(1.25, (u.rate || NATURAL_RATE) / NATURAL_RATE));
+    current = a; currentU = u;
+    var fellBack = false;
+    function fallback() {
+      if (fellBack) return; fellBack = true;
+      if (current === a) { current = null; currentU = null; }
+      origSpeak(u);
+    }
+    a.addEventListener('playing', function () { fire(u, 'start'); }, { once: true });
+    a.addEventListener('ended', function () {
+      if (current === a) { current = null; currentU = null; }
+      fire(u, 'end');
+    }, { once: true });
+    a.addEventListener('error', fallback, { once: true });
+    var p = a.play();
+    if (p && p.catch) p.catch(fallback);
+  };
+
+  synth.cancel = function () { stopCurrent(); origCancel(); };
+
+  if (speakingDesc && speakingDesc.get) {
+    try {
+      Object.defineProperty(synth, 'speaking', {
+        configurable: true,
+        get: function () { return !!current || speakingDesc.get.call(synth); }
+      });
+    } catch (e) {}
+  }
+
+  // Don't let anything keep talking after the student leaves the page.
+  window.addEventListener('pagehide', function () { synth.cancel(); });
+})();

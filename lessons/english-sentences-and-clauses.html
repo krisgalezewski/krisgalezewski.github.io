@@ -215,7 +215,7 @@ function toggleGloss(type,key,label,detail){
   });
 }
 function renderGloss(){
-  const cont=document.getElementById('glossCont');if(!cont)return;const printBtn=document.getElementById('glossPrintBtn');if(printBtn)printBtn.disabled=!glossary.length;
+  const cont=document.getElementById('glossCont');if(!cont)return;const printBtn=document.getElementById('glossPrintBtn');if(printBtn)printBtn.disabled=!gloss.length;
   if(!gloss.length){
     cont.innerHTML='<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px"></i><div style="margin-bottom:8px">Nothing saved yet.</div><div style="font-size:13px">Open Sentence types or Clauses and click 🔖 Save on any card.</div></div>';
     return;
@@ -241,6 +241,7 @@ function renderGloss(){
 }
 
 
+let bVoice=null;
 function loadV(){const vs=window.speechSynthesis?window.speechSynthesis.getVoices():[];if(!vs.length)return;bVoice=vs.find(v=>v.lang==='en-GB'&&/female|fiona|kate|serena|moira|karen|victoria|claire/i.test(v.name))||vs.find(v=>v.lang==='en-GB'&&!/male|daniel|oliver|arthur/i.test(v.name))||vs.find(v=>v.lang==='en-GB')||vs.find(v=>v.lang.startsWith('en-GB'))||vs.find(v=>v.lang.startsWith('en'));}
 if(window.speechSynthesis){window.speechSynthesis.onvoiceschanged=loadV;loadV();}
 function speak(txt,rate,btn){if(!window.speechSynthesis)return;window.speechSynthesis.cancel();if(!bVoice)loadV();const u=new SpeechSynthesisUtterance(txt);u.lang='en-GB';u.rate=rate||0.84;u.pitch=1.05;if(bVoice)u.voice=bVoice;if(btn){document.querySelectorAll('.audio-btn').forEach(b=>b.classList.remove('playing'));btn.classList.add('playing');u.onend=()=>btn.classList.remove('playing');}window.speechSynthesis.speak(u);}

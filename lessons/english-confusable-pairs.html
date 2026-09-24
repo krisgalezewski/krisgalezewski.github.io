@@ -250,7 +250,7 @@ function toggleGloss(type,key,label,detail){
   });
 }
 function renderGloss(){
-  const cont=document.getElementById('glossCont');if(!cont)return;const printBtn=document.getElementById('glossPrintBtn');if(printBtn)printBtn.disabled=!glossary.length;
+  const cont=document.getElementById('glossCont');if(!cont)return;const printBtn=document.getElementById('glossPrintBtn');if(printBtn)printBtn.disabled=!gloss.length;
   if(!gloss.length){cont.innerHTML='<div class="card" style="text-align:center;padding:2rem;color:var(--color-text-secondary)"><i class="ti ti-bookmark" style="font-size:28px;display:block;margin-bottom:10px"></i><div style="margin-bottom:8px">Nothing saved yet.</div><div style="font-size:13px">Click 🔖 Save on any pair card to add it here.</div></div>';return;}
   const TLABEL={verb:'Verb pair',prep:'Preposition',art:'Article/Determiner',adj:'Adjective pair',conj:'Connector',mod:'Modal verb',noun:'Noun/Register'};
   const TCOL={verb:{bg:'#EEEDFE',tc:'#3C3489'},prep:{bg:'#EAF3DE',tc:'#27500A'},art:{bg:'#E6F1FB',tc:'#0C447C'},adj:{bg:'#FAEEDA',tc:'#633806'},conj:{bg:'#FCEBEB',tc:'#791F1F'},mod:{bg:'#FBEAF0',tc:'#72243E'},noun:{bg:'#EAF3DE',tc:'#27500A'}};
