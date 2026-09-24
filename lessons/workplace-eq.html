@@ -145,7 +145,7 @@ body{font-family:var(--font-sans);color:var(--color-text-primary)}
       <div class="t">Want to go deeper? Take the Workplace EQ course.</div>
       <div class="d">Seven full lessons, one for each area above plus a capstone week-in-London simulation, with readings, listening, speaking tasks, progress tracking and a final test.</div>
     </div>
-    <a class="check-btn" href="https://englishvoiced.com/workplace-eq-course/">Open the course →</a>
+    <a class="check-btn" href="https://englishvoiced.com/courses/workplace-eq/">Open the course →</a>
   </div>
 </div>
 
@@ -224,8 +224,11 @@ function speak(txt,rate,btn){
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
 // ── COURSE LINKS ──────────────────────────────────────────────
-const COURSE='https://englishvoiced.com/workplace-eq-course/';
-const lessonUrl=n=>COURSE+'lesson-0'+n+'-preview-standalone.html';
+// Links go to the free course preview on /courses/, never to the full course:
+// Lesson 1 opens in the preview; the other lessons open the preview's course
+// page with a note that they're part of the full course (?locked=N).
+const COURSE='https://englishvoiced.com/courses/workplace-eq/';
+const lessonUrl=n=>n===1?COURSE+'lesson-01-preview-standalone.html':COURSE+'?locked='+n;
 
 // ── AREAS (each = one course lesson) ──────────────────────────
 const AREAS={
@@ -468,11 +471,11 @@ function renderScenResults(){
     <div class="lbl" style="margin-bottom:10px">Your score by area</div>
     ${rows.map(r=>{const a=AREAS[r.k];return `<div class="bar-row"><span>${a.name}</span><span class="bar-t"><i style="width:${Math.round(r.r*100)}%;background:${a.tc}"></i></span><span style="text-align:right;color:var(--color-text-secondary)">${r.ok}/${r.n}</span></div>`;}).join('')}
     <div class="tip-box" style="margin-top:14px"><i class="ti ti-target-arrow" aria-hidden="true" style="font-size:16px;flex-shrink:0;color:${wa.tc}"></i><span>${allPerfect
-      ?`You got every area right. The <a href="https://englishvoiced.com/workplace-eq-course/" style="color:${wa.tc}">Workplace EQ course</a> takes each one further, with speaking practice and a capstone simulation.`
+      ?`You got every area right. The <a href="https://englishvoiced.com/courses/workplace-eq/" style="color:${wa.tc}">Workplace EQ course</a> takes each one further, with speaking practice and a capstone simulation.`
       :`Your best next step: <strong>${wa.name}</strong>. <a href="${lessonUrl(wa.n)}" style="color:${wa.tc}">Workplace EQ, Lesson ${wa.n}: ${wa.title} →</a> Or <a href="#" onclick="event.preventDefault();showArea('${weakest.k}')" style="color:var(--color-text-primary)">review those phrases here</a> first.`}</span></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
       <button class="act" onclick="startScen()"><i class="ti ti-refresh" style="font-size:13px;vertical-align:-2px"></i> Try again</button>
-      <a class="act" href="https://englishvoiced.com/workplace-eq-course/">Open the full course →</a>
+      <a class="act" href="https://englishvoiced.com/courses/workplace-eq/">Open the full course →</a>
     </div>
   </div>`;
 }

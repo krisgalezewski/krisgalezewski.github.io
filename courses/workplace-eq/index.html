@@ -493,7 +493,11 @@ table.reveal-table td.section-id{font-family:var(--font-mono);font-size:12px;col
   .lr-prog{text-align:right;font-size:14px;color:var(--grey-text)}
   .lr-prog.next{color:var(--green);font-weight:700}
   .lr-prog.done{color:var(--ink);font-weight:700}
-  .lrow.locked{cursor:default}
+  .lrow.locked{cursor:pointer}
+  .lrow.locked.is-flagged .lr-title{opacity:1;color:var(--green)}
+  .locked-notice{border:2px solid var(--green);background:rgba(30,107,71,.07);padding:14px 18px;font-size:15px;line-height:1.55;margin:0 0 8px}
+  .locked-notice a{color:var(--green);font-weight:700}
+  .locked-notice[hidden]{display:none}
   .lrow.locked .lr-title{opacity:.4}
   .lrow.locked:hover .lr-title{color:var(--ink)}
   .lr-expect{display:none;grid-template-columns:120px minmax(0,1fr) 80px;gap:20px;padding:0 0 16px;border-bottom:1px solid var(--grey-rule);font-size:15px;line-height:1.6;color:var(--text-secondary)}
@@ -570,6 +574,7 @@ window.SUPABASE_ANON_KEY = ''; // preview copy: no backend
     <span>This is a <b>free preview</b>. Lesson 1 is fully open; the rest of the course is listed so you can see where it goes.</span>
     <span>Interested in the full course? <a href="https://englishvoiced.com/contact/">Get in touch with Kris</a></span>
   </div>
+  <div class="locked-notice" id="locked-notice" role="status" hidden></div>
   <div class="ltable" id="lesson-index"></div>
 </main>
 
@@ -2328,7 +2333,7 @@ function renderLessonIndex(){
       const title = `<span class="lr-title${l.isTest ? ' is-test' : ''}">${rowTitle(l)}</span>`;
       const inner = `${sec}${title}<span class="${progCls}">${prog}</span>`;
       html += isLocked(idx)
-        ? `<div class="${cls.join(' ')}" title="Not included in this preview">${inner}</div>`
+        ? `<div class="${cls.join(' ')}" data-locked="${idx}" role="button" tabindex="0" title="Not included in this preview">${inner}</div>`
         : `<a class="${cls.join(' ')}" href="${withGroup(standaloneFilename(l.id))}">${inner}</a>`;
       if (first){
         html += `<div class="lr-expect${isOpen ? ' open' : ''}" id="expect-${gi}"><div><p>${g.desc}</p><p>${g.expect}</p></div></div>`;
@@ -2336,6 +2341,13 @@ function renderLessonIndex(){
     }
   });
   root.innerHTML = html;
+
+  root.querySelectorAll('[data-locked]').forEach(row => {
+    const show = () => showLockedNotice(Number(row.dataset.locked));
+    row.addEventListener('click', show);
+    row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(); } });
+  });
+  if (flaggedIdx !== null) { const r = root.querySelector(`[data-locked="${flaggedIdx}"]`); if (r) r.classList.add('is-flagged'); }
 
   root.querySelectorAll('.lr-about').forEach(btn => btn.addEventListener('click', (e) => {
     e.preventDefault(); e.stopPropagation();
@@ -2406,7 +2418,25 @@ if (existingName){
   });
 }
 
+// Preview only: a locked lesson (clicked here, or linked from the free
+// englishvoiced.com lesson as ?locked=N) explains it's in the full course.
+let flaggedIdx = null;
+function showLockedNotice(idx){
+  const box = document.getElementById('locked-notice');
+  const l = LESSONS[idx];
+  if (!box || !l) return;
+  flaggedIdx = idx;
+  box.innerHTML = `<b>${rowTitle(l)}</b> is part of the full Workplace EQ course. This free preview includes Lesson 1 only. `
+    + `Want access to the whole course? <a href="https://englishvoiced.com/contact/">Get in touch with Kris</a>.`;
+  box.hidden = false;
+  renderLessonIndex();
+  box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
 renderLessonIndex();
+if (PREVIEW_AVAILABLE !== null) {
+  const n = parseInt(new URLSearchParams(location.search).get('locked'), 10);
+  if (n >= 1 && n <= LESSONS.length && n - 1 >= PREVIEW_AVAILABLE) showLockedNotice(n - 1);
+}
 syncAndRender();
 
 // Coming back with the browser's Back button can show a cached copy of
