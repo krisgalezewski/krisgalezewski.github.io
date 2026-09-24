@@ -3,9 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lessons — English Voiced with Kris</title>
+<!-- seo: managed by _seo/seo.py, edit _seo/pages.json instead -->
+<title>Free English Lessons — English Voiced with Kris</title>
 <meta name="description" content="Free interactive English lessons for adults — grammar, vocabulary, pronunciation and practical English, organised by category.">
 <link rel="canonical" href="https://englishvoiced.com/lessons/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="English Voiced with Kris">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Free English Lessons">
+<meta property="og:description" content="Free interactive English lessons for adults — grammar, vocabulary, pronunciation and practical English, organised by category.">
+<meta property="og:url" content="https://englishvoiced.com/lessons/">
+<meta property="og:image" content="https://englishvoiced.com/og/lessons.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Free English Lessons">
+<meta name="twitter:card" content="summary_large_image">
+<script defer src="/analytics.js"></script>
+<!-- /seo -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/favicon-180.png">
@@ -177,20 +191,20 @@ footer{padding:60px 0 60px;font-size:12px;color:var(--text-dim)}
 // homepage, the older /lessons/assets/art/<slug>.svg files).
 var LESSONS = [
   { title:'English phrasal verbs', cat:'Vocabulary', href:'/lessons/english-phrasal-verbs.html', desc:'61 high-frequency phrasal verbs — meanings, examples, and practice.', slug:'phrasal-verbs', meta:'61 VERBS' },
-  { title:'Collocations', cat:'Vocabulary', href:'/collocations_lesson_v4_6.html', desc:'300+ collocations — grammar types, strength, and register, with audio.', slug:'collocations', meta:'300+ PAIRS' },
-  { title:'Idioms', cat:'Vocabulary', href:'/idioms_lesson_v2.html', desc:'60 high-frequency idioms — browse, matching, scrambled sentences, and gap fill.', slug:'idioms', meta:'60 IDIOMS' },
-  { title:'Word formation', cat:'Vocabulary', href:'/english_word_formation_11_1.html', desc:'Prefixes, suffixes, and word families — build new words from a root.', slug:'word-formation', meta:'ROOTS' },
-  { title:'Feelings and Emotions', cat:'Vocabulary', href:'/feelings_activities.html', desc:'Feelings and emotions vocabulary — formal and informal, with five activity types.', slug:'feelings-activities', meta:'5 ACTIVITIES' },
-  { title:'Confusable pairs', cat:'Vocabulary', href:'/english_confusable_pairs_2_1.html', desc:'Commonly confused word pairs — meaning, usage, and practice.', slug:'confusable-pairs', meta:'PAIRS' },
-  { title:'Determiners', cat:'Grammar', href:'/english_determiners.html', desc:'Articles, demonstratives, quantifiers, possessives, and more.', slug:'determiners', meta:'ARTICLES' },
-  { title:'Sentences & clauses', cat:'Grammar', href:'/english_sentences_and_clauses_4.html', desc:'Sentence types and clause structure — simple, compound, and complex.', slug:'sentences-clauses', meta:'STRUCTURE' },
-  { title:'Inversion & negative adverbials', cat:'Grammar', href:'/inversion_negative_adverbials_7_1.html', desc:'Formal inversion after negative adverbials — never, rarely, not only.', slug:'inversion', meta:'FORMAL' },
-  { title:'Cleft sentences', cat:'Grammar', href:'/cleft_sentences_interactive_1.html', desc:'It-clefts and wh-clefts — emphasising the right part of a sentence.', slug:'cleft-sentences', meta:'EMPHASIS' },
-  { title:'Conditionals', cat:'Grammar', href:'/english_conditionals_v6_2_1.html', desc:'All 6 conditional types, questions, and inversion — zero to mixed.', slug:'conditionals', meta:'6 TYPES' },
-  { title:'Verb tenses', cat:'Grammar', href:'/english_verb_tenses_v2_6.html', desc:'English tense and aspect, practice, and common mistakes.', slug:'verb-tenses', meta:'TENSE & ASPECT' },
-  { title:'Pronunciation', cat:'Pronunciation', href:'/english_pronunciation_v5_1.html', desc:'IPA chart, minimal pairs, connected speech, and stress patterns.', slug:'pronunciation', meta:'IPA' },
-  { title:'Transitional words', cat:'Practical use of English', href:'/english_transitional_words_1.html', desc:'Linking words and phrases for clear, connected writing.', slug:'transitional-words', meta:'LINKING' },
-  { title:'Hedging language', cat:'Practical use of English', href:'/hedging_language_lesson_6_1.html', desc:'Softening claims with grammatical and lexical hedges.', slug:'hedging-language', meta:'SOFTENING' },
+  { title:'Collocations', cat:'Vocabulary', href:'/lessons/english-collocations.html', desc:'300+ collocations — grammar types, strength, and register, with audio.', slug:'collocations', meta:'300+ PAIRS' },
+  { title:'Idioms', cat:'Vocabulary', href:'/lessons/english-idioms.html', desc:'60 high-frequency idioms — browse, matching, scrambled sentences, and gap fill.', slug:'idioms', meta:'60 IDIOMS' },
+  { title:'Word formation', cat:'Vocabulary', href:'/lessons/english-word-formation.html', desc:'Prefixes, suffixes, and word families — build new words from a root.', slug:'word-formation', meta:'ROOTS' },
+  { title:'Feelings and Emotions', cat:'Vocabulary', href:'/lessons/english-feelings-and-emotions.html', desc:'Feelings and emotions vocabulary — formal and informal, with five activity types.', slug:'feelings-activities', meta:'5 ACTIVITIES' },
+  { title:'Confusable pairs', cat:'Vocabulary', href:'/lessons/english-confusable-pairs.html', desc:'Commonly confused word pairs — meaning, usage, and practice.', slug:'confusable-pairs', meta:'PAIRS' },
+  { title:'Determiners', cat:'Grammar', href:'/lessons/english-determiners.html', desc:'Articles, demonstratives, quantifiers, possessives, and more.', slug:'determiners', meta:'ARTICLES' },
+  { title:'Sentences & clauses', cat:'Grammar', href:'/lessons/english-sentences-and-clauses.html', desc:'Sentence types and clause structure — simple, compound, and complex.', slug:'sentences-clauses', meta:'STRUCTURE' },
+  { title:'Inversion & negative adverbials', cat:'Grammar', href:'/lessons/english-inversion-negative-adverbials.html', desc:'Formal inversion after negative adverbials — never, rarely, not only.', slug:'inversion', meta:'FORMAL' },
+  { title:'Cleft sentences', cat:'Grammar', href:'/lessons/english-cleft-sentences.html', desc:'It-clefts and wh-clefts — emphasising the right part of a sentence.', slug:'cleft-sentences', meta:'EMPHASIS' },
+  { title:'Conditionals', cat:'Grammar', href:'/lessons/english-conditionals.html', desc:'All 6 conditional types, questions, and inversion — zero to mixed.', slug:'conditionals', meta:'6 TYPES' },
+  { title:'Verb tenses', cat:'Grammar', href:'/lessons/english-verb-tenses.html', desc:'English tense and aspect, practice, and common mistakes.', slug:'verb-tenses', meta:'TENSE & ASPECT' },
+  { title:'Pronunciation', cat:'Pronunciation', href:'/lessons/english-pronunciation.html', desc:'IPA chart, minimal pairs, connected speech, and stress patterns.', slug:'pronunciation', meta:'IPA' },
+  { title:'Transitional words', cat:'Practical use of English', href:'/lessons/english-transitional-words.html', desc:'Linking words and phrases for clear, connected writing.', slug:'transitional-words', meta:'LINKING' },
+  { title:'Hedging language', cat:'Practical use of English', href:'/lessons/english-hedging-language.html', desc:'Softening claims with grammatical and lexical hedges.', slug:'hedging-language', meta:'SOFTENING' },
   { title:'Workplace EQ', cat:'Practical use of English', href:'/lessons/workplace-eq.html', desc:'The unwritten rules of British workplace English — introductions, emails, meetings and more.', slug:'workplace-eq', meta:'48 PHRASES' }
 ];
 
