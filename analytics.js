@@ -8,7 +8,7 @@
    Cookieless: no cookies, no personal data, so no cookie banner is needed.
    Visits from your own computer (localhost, file://) are not counted. */
 (function () {
-  var TOKEN = 'PASTE_TOKEN_HERE';
+  var TOKEN = '797cf882a0744ad3a659cf16e09b5977';
   if (!TOKEN || TOKEN === 'PASTE_TOKEN_HERE') return;
   if (!/(^|\.)englishvoiced\.com$/.test(location.hostname)) return;
   var s = document.createElement('script');
