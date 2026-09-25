@@ -58,6 +58,86 @@
     wrap.insertAdjacentElement('afterend', subbar);
 
     EVLesson.initThemeToggle();
+    EVLesson.initQuizLinks();
+  };
+
+  // ---- 1a) Lesson quiz links ----------------------------------------------
+  // Every lesson has a 12-question self-practice quiz in the english-quiz
+  // app (Supabase seed: english-quiz/sql/seed-lesson-quizzes-lessons.sql).
+  // The quiz ids are fixed in that seed, so the links never change. Adds a
+  // "Take the quiz" button to the subbar (visible on every tab) and a card
+  // at the very end of the page. Opens in a new tab on purpose: the
+  // glossary only lives until the page reloads, so leaving would lose it.
+  // A value is either a quiz id, or a list of [practice.html query, label]
+  // for a lesson covered by existing quizzes (matched by their slug).
+  var QUIZ_URL = 'https://englishvoiced.com/english-quiz/practice.html?';
+  EVLesson.QUIZZES = {
+    'english-phrasal-verbs.html': '272e449b-8135-5f3a-a021-ae04d6ea17d0',
+    'english-confusable-pairs.html': '91d7fbc9-4e2d-5b0c-a8aa-c2c57f4564a3',
+    'english-idioms.html': '52329a05-2251-51bd-8585-ad5a1fff7e0f',
+    'english-word-formation.html': '551a7af4-2366-5a1a-b6f7-09bef210abe5',
+    'english-feelings-and-emotions.html': [
+      ['slug=feelings-advanced', 'Vocabulary quiz'],
+      ['slug=feelings-idioms', 'Idioms quiz']
+    ],
+    'english-collocations.html': 'cd55b686-7dfc-57aa-a1ac-d292ac8b039e',
+    'english-determiners.html': '656e117d-b008-5567-97ef-661b35e30c37',
+    'english-sentences-and-clauses.html': 'ddbe0ab5-1b8a-567b-9f80-4dc773ab8db8',
+    'english-inversion-negative-adverbials.html': 'ad02ea0d-4e10-5469-bf55-3f2961fdd0d4',
+    'english-cleft-sentences.html': 'ea11fb4c-1714-5afc-a754-c82f60e2e2a9',
+    'english-conditionals.html': '1f1a4e71-7efa-5ec3-a90a-9b7612c42d10',
+    'english-verb-tenses.html': 'd5369334-11c1-52c9-a704-b6f05a1fc4e3',
+    'english-pronunciation.html': 'a99531d6-c60d-5af6-b0cb-bfcff53f77a5',
+    'english-transitional-words.html': '5d74f5e6-a984-5605-8e83-6ab84c342e48',
+    'english-hedging-language.html': 'bdb2d329-98c5-52fd-a906-fa05b74c4215',
+    'workplace-eq.html': 'b215141d-dd6f-57e8-b515-d3cb80bbb68f'
+  };
+
+  EVLesson.initQuizLinks = function () {
+    var file = (location.pathname.split('/').pop() || '').toLowerCase();
+    if (!/\.html$/.test(file)) file += '.html'; // pretty URLs without .html
+    var entry = EVLesson.QUIZZES[file];
+    if (!entry || document.getElementById('evQuizBtn')) return;
+    var quizzes = typeof entry === 'string' ? [['quiz=' + entry, 'Take the quiz']] : entry;
+    var href = QUIZ_URL + quizzes[0][0];
+    var many = quizzes.length > 1;
+
+    // Subbar button, grouped with the theme toggle on the right
+    var toggle = document.getElementById('evThemeToggle');
+    if (toggle) {
+      var right = document.createElement('div');
+      right.className = 'ev-lesson-subbar__right';
+      toggle.parentNode.insertBefore(right, toggle);
+      right.innerHTML =
+        '<a class="ev-quiz-btn" id="evQuizBtn" href="' + href + '" target="_blank" rel="noopener">' +
+          (many ? 'Take a quiz' : 'Take the quiz') + ' <span aria-hidden="true">→</span></a>';
+      right.appendChild(toggle);
+    }
+
+    // End-of-page card, added once the lesson's own markup has loaded
+    function addCard() {
+      if (document.getElementById('evQuizCard')) return;
+      var card = document.createElement('section');
+      card.className = 'ev-quiz-card';
+      card.id = 'evQuizCard';
+      card.innerHTML =
+        '<div class="ev-quiz-card__inner">' +
+          '<div>' +
+            '<div class="ev-quiz-card__kicker">' + (many ? quizzes.length + ' lesson quizzes' : 'Lesson quiz') + ' · 12 questions' + (many ? ' each' : '') + '</div>' +
+            '<div class="ev-quiz-card__title">Find out what stuck</div>' +
+            '<div class="ev-quiz-card__text">Quick questions on this lesson — you’ll see the right answer after each one. Opens in a new tab, so this lesson stays open.</div>' +
+          '</div>' +
+          '<div class="ev-quiz-card__actions">' +
+            quizzes.map(function (qz) {
+              return '<a class="ev-quiz-btn ev-quiz-btn--lg" href="' + QUIZ_URL + qz[0] + '" target="_blank" rel="noopener">' +
+                qz[1] + ' <span aria-hidden="true">→</span></a>';
+            }).join('') +
+          '</div>' +
+        '</div>';
+      document.body.appendChild(card);
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addCard);
+    else addCard();
   };
 
   // ---- 1b) Light / dark theme toggle --------------------------------------
