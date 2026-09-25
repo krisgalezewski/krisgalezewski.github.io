@@ -1,0 +1,49 @@
+# Keeps the two free Supabase projects from being paused.
+# Supabase pauses free projects after about a week with no activity, which
+# would take the quizzes, games leaderboards and course progress offline.
+# Every 3 days this makes one small read-only request to each project.
+#
+# The keys below are the public "anon" keys that the website already uses in
+# its own code. They can only do what the website itself can do.
+#
+# If a run fails, GitHub emails you. Check that both projects are "Active" in
+# the Supabase dashboard, and restore any that were paused.
+# To test it by hand: GitHub → this repo → Actions → Supabase keep-alive →
+# Run workflow.
+
+name: Supabase keep-alive
+
+on:
+  schedule:
+    - cron: "17 6 */3 * *"   # 06:17 UTC on every 3rd day of the month
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      QUIZ_URL: https://mumvnjyiupzvmcoatwye.supabase.co
+      QUIZ_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11bXZuanlpdXB6dm1jb2F0d3llIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyODEzMDMsImV4cCI6MjA5Njg1NzMwM30.JgMQRDkIvGFUvKR_Iwoo91zaPdd5urNig8yc0g0oMRk
+      COURSES_URL: https://ovosqztjtnvasbaursnh.supabase.co
+      COURSES_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im92b3NxenRqdG52YXNiYXVyc25oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc0ODcxNzcsImV4cCI6MjEwMzA2MzE3N30.I5yzw18Jd2-AgCqLxbkS3CioeUb3kFBjby8dcKUmvoM
+    steps:
+      - name: Quizzes and games project
+        run: |
+          curl --fail-with-body -sS --retry 3 --retry-delay 10 \
+            "$QUIZ_URL/rest/v1/quizzes?select=id&limit=1" \
+            -H "apikey: $QUIZ_KEY" -H "Authorization: Bearer $QUIZ_KEY"
+          echo
+
+      - name: Courses project
+        run: |
+          # Asks for the progress of a student who doesn't exist: the database
+          # runs a real query, returns nothing, and nothing is written.
+          curl --fail-with-body -sS --retry 3 --retry-delay 10 -X POST \
+            "$COURSES_URL/rest/v1/rpc/my_progress" \
+            -H "apikey: $COURSES_KEY" -H "Authorization: Bearer $COURSES_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{"p_group":"keepalive","p_name":"keepalive","p_lesson":"keepalive"}'
+          echo
