@@ -272,7 +272,7 @@
       "image": "courses.png",
       "priority": "0.9",
       "title": "English Courses — English Voiced with Kris",
-      "description": "Courses with Kris — structured, multi-week English courses with real practice, not just rules: grammar and workplace communication. Free previews available.",
+      "description": "Courses with Kris — structured, multi-week English courses with real practice, not just rules: grammar, function words and workplace communication. Free previews available.",
       "card": {
         "eyebrow": "Courses · free previews",
         "title": "Long game, better English",
@@ -332,6 +332,46 @@
       "image": "course-english-plus-b2-c1.png",
       "title": "Used to vs would for past habits — English+ C1 free lesson",
       "description": "Lesson 2 of the English+ B2+/C1 grammar course, free: used to vs would for past habits, with reading, listening and speaking practice."
+    },
+    {
+      "path": "/courses/english-plus-function-words-1/",
+      "section": "courses",
+      "image": "course-english-plus-function-words-1.png",
+      "priority": "0.8",
+      "title": "English+ Function Words I, B1+/B2 course (free preview) — English Voiced",
+      "description": "The small words that hold English together: pronouns, prepositions, phrasal-verb particles, conjunctions, connectors and quantifiers. 11 lessons — try lesson 1 free.",
+      "card": {
+        "eyebrow": "Course · B1+/B2",
+        "title": "English+ Function Words I",
+        "line": "The small words that hold English together. Lesson 1 free"
+      }
+    },
+    {
+      "path": "/courses/english-plus-function-words-1/lesson-01-preview-standalone.html",
+      "section": "courses",
+      "image": "course-english-plus-function-words-1.png",
+      "title": "Personal, possessive and reflexive pronouns — English+ free lesson",
+      "description": "Lesson 1 of English+ Function Words I, free: I or me, my or mine, and when you really need myself, with reading, listening and speaking practice."
+    },
+    {
+      "path": "/courses/english-plus-function-words-2/",
+      "section": "courses",
+      "image": "course-english-plus-function-words-2.png",
+      "priority": "0.8",
+      "title": "English+ Function Words II, B2+/C1 course (free preview) — English Voiced",
+      "description": "Precision and register with the small words: formal relative pronouns, multi-word prepositions, academic connectors, intensifiers and cohesion. 11 lessons — try lesson 1 free.",
+      "card": {
+        "eyebrow": "Course · B2+/C1",
+        "title": "English+ Function Words II",
+        "line": "Precision and register with the small words. Lesson 1 free"
+      }
+    },
+    {
+      "path": "/courses/english-plus-function-words-2/lesson-01-preview-standalone.html",
+      "section": "courses",
+      "image": "course-english-plus-function-words-2.png",
+      "title": "Relative pronouns in formal and academic English — English+ free lesson",
+      "description": "Lesson 1 of English+ Function Words II, free: whom, whose, by which, whereby and sentence-level which in formal and academic writing, with practice."
     },
     {
       "path": "/courses/workplace-eq/",
@@ -589,7 +629,9 @@
     "/english-quiz/host.html",
     "/english-plus-grammar-course/*",
     "/english-plus-b2-c1-grammar-course/*",
-    "/workplace-eq-course/*"
+    "/workplace-eq-course/*",
+    "/english-plus-function-words-1/*",
+    "/english-plus-function-words-2/*"
   ],
   "skip": [
     "/rozmowki-przedszkolne.html",
@@ -623,6 +665,8 @@
     "/english-plus-b2-c1-grammar-course/": "english-plus-b2-c1-grammar-course",
     "/workplace-eq-course/": "workplace-eq-course",
     "/spanish-lessons/": "spanish-lessons",
-    "/rozmowki-przedszkolne/": "rozmowki-przedszkolne"
+    "/rozmowki-przedszkolne/": "rozmowki-przedszkolne",
+    "/english-plus-function-words-1/": "english-plus-function-words-1",
+    "/english-plus-function-words-2/": "english-plus-function-words-2"
   }
 }
